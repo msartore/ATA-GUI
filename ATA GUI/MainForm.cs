@@ -16,6 +16,7 @@ namespace ATA_GUI
         private List<string> arrayApks = new List<string>();
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
+        private bool textboxClear = false;
 
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -53,7 +54,7 @@ namespace ATA_GUI
             }
             if (tabControl1.SelectedTab.Name.Contains("Fastboot"))
             {
-                if (File.Exists("fastboot.exe") && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll"))
+                if (checkAdbFastboot(1))
                 {
                     systemCommand("fastboot devices > check.log");
                     if (File.Exists("check.log"))
@@ -70,7 +71,7 @@ namespace ATA_GUI
                             panelFastboot.Enabled = false;
                             pictureBoxLoading2.Visible = false;
                         }
-                        //File.Delete("check.log");
+                        File.Delete("check.log");
                     }
                     else
                     {
@@ -156,8 +157,14 @@ namespace ATA_GUI
         private void backgroundWorkerSync_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             Object paramObj = e.Argument as Object;
+            String paramObjTmp = "0";
+            if(paramObj.ToString()=="1")
+            {
+                paramObjTmp = "1";
+                paramObj = "0";
+            }
             int i = 0;
-            if (File.Exists("adb.exe") && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll"))
+            if (checkAdbFastboot(0))
             {
                 LogWriteLine("Checking device...");
                 systemCommand("adb shell getprop ro.build.version.release > deviceInfo.tmp");
@@ -165,42 +172,93 @@ namespace ATA_GUI
                 {
                     if (File.ReadAllText("deviceInfo.tmp").Any(char.IsDigit))
                     {
-                        string[] arrayDeviceInfo;
-                        systemCommand("adb shell getprop ro.build.user  >> deviceInfo.tmp");
-                        systemCommand("adb shell getprop ro.product.cpu.abilist  >> deviceInfo.tmp");
-                        systemCommand("adb shell getprop ro.product.manufacturer  >> deviceInfo.tmp");
-                        systemCommand("adb shell getprop ro.product.model  >> deviceInfo.tmp");
-                        systemCommand("adb shell getprop ro.product.board  >> deviceInfo.tmp");
-                        systemCommand("adb shell getprop ro.product.device  >> deviceInfo.tmp");
-                        systemCommand("adb shell ip route >> deviceInfo.tmp");
-                        LogWriteLine("device found!");
-                        arrayDeviceInfo = File.ReadAllLines("deviceInfo.tmp");
-                        Invoke((Action)delegate
+                        switch (paramObj.ToString())
                         {
-                            if (arrayDeviceInfo.Length > 6)
-                            {
-                                labelAV.Text = arrayDeviceInfo[0];
-                                labelBU.Text = arrayDeviceInfo[1];
-                                labelCA.Text = arrayDeviceInfo[2];
-                                labelManu.Text = arrayDeviceInfo[3];
-                                labelModel.Text = arrayDeviceInfo[4];
-                                labelB.Text = arrayDeviceInfo[5];
-                                labelD.Text = arrayDeviceInfo[6];
-                                textBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
-                                if (Int32.TryParse(labelAV.Text.ToString(), out i))
+                            case "0":
+                                string[] arrayDeviceInfo;
+                                systemCommand("adb shell getprop ro.build.user  >> deviceInfo.tmp");
+                                systemCommand("adb shell getprop ro.product.cpu.abilist  >> deviceInfo.tmp");
+                                systemCommand("adb shell getprop ro.product.manufacturer  >> deviceInfo.tmp");
+                                systemCommand("adb shell getprop ro.product.model  >> deviceInfo.tmp");
+                                systemCommand("adb shell getprop ro.product.board  >> deviceInfo.tmp");
+                                systemCommand("adb shell getprop ro.product.device  >> deviceInfo.tmp");
+                                systemCommand("adb shell ip route >> deviceInfo.tmp");
+                                LogWriteLine("device found!");
+                                arrayDeviceInfo = File.ReadAllLines("deviceInfo.tmp");
+                                Invoke((Action)delegate
                                 {
-                                    LogWriteLine("Device info extracted");
-                                    radioButtoNonSystemApp.Checked = true;
-                                    panelSystem.Enabled = true;
-                                    groupBoxADBNet.Enabled = true;
-                                    groupBoxRebootMenu.Enabled = true;
+                                    if (arrayDeviceInfo.Length > 6)
+                                    {
+                                        labelAV.Text = arrayDeviceInfo[0];
+                                        labelBU.Text = arrayDeviceInfo[1];
+                                        labelCA.Text = arrayDeviceInfo[2];
+                                        labelManu.Text = arrayDeviceInfo[3];
+                                        labelModel.Text = arrayDeviceInfo[4];
+                                        labelB.Text = arrayDeviceInfo[5];
+                                        labelD.Text = arrayDeviceInfo[6];
+                                        textBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
+                                        if (Int32.TryParse(labelAV.Text.ToString(), out i))
+                                        {
+                                            LogWriteLine("Device info extracted");
+                                            radioButtoNonSystemApp.Checked = true;
+                                            panelSystem.Enabled = true;
+                                            groupBoxADBNet.Enabled = true;
+                                            groupBoxRebootMenu.Enabled = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        LogWriteLine("Error: failed to extract device info!");
+                                    }
+                                });
+                                break;
+                            case "2":
+                                arrayApks.Clear();
+                                Invoke((Action)delegate
+                                {
+                                    checkedListBoxApp.Items.Clear();
+                                });
+                                string filename ="";
+                                var arrayApksUni = new List<int>();
+                                if (radioButtoNonSystemApp.Checked)
+                                {
+                                    systemCommand("adb shell pm list packages -3 > APKNS.tmp");
+                                    filename = "APKNS.tmp";
                                 }
-                            }
-                            else
-                            {
-                                LogWriteLine("Error: failed to extract device info!");
-                            }
-                        });
+                                if (radioButtonSystemApp.Checked)
+                                {
+                                    systemCommand("adb shell pm list packages -s > APKS.tmp");
+                                    filename = "APKS.tmp";
+                                }
+
+                                if (File.Exists(filename))
+                                {
+                                    LogWriteLine("Loading apps...");
+                                    foreach (string line in File.ReadLines(filename))
+                                    {
+                                        if (line.Contains("package:"))
+                                        {
+                                            arrayApks.Add(line.Substring(8));
+                                        }
+                                    }
+                                    LogWriteLine("Apps loaded!");
+                                    File.Delete(filename);
+                                    foreach (string str in arrayApks)
+                                    {
+                                        Invoke((Action)delegate
+                                        {
+                                            checkedListBoxApp.Items.Add(str);
+                                            checkedListBoxApp.CheckOnClick = true;
+                                        });
+                                    }
+                                }
+                                else
+                                {
+                                    File.Delete(filename);
+                                    MessageShowBox(filename + " not found!", 0);
+                                }
+                                break;
+                        }
                     }
                     else
                     {
@@ -210,7 +268,7 @@ namespace ATA_GUI
                             groupBoxADBNet.Enabled = false;
                             groupBoxRebootMenu.Enabled = false;
                             LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
-                            if (paramObj.ToString() == "0")
+                            if (paramObjTmp == "0")
                                 MessageShowBox("Error device not found/ multiple devices found", 0);
                         });
                     }
@@ -243,6 +301,8 @@ namespace ATA_GUI
                         LogWriteLine("Downloading sdk platform tool...");
                         using (var client = new WebClient())
                         {
+                            try
+                            { 
                             client.DownloadFile("https://dl.google.com/android/repository/platform-tools-latest-windows.zip?authuser=2", "sdkplatformtool.zip");
                             LogWriteLine("sdk platform tool downloaded");
                             LogWriteLine("unzipping sdk platform tool");
@@ -260,6 +320,11 @@ namespace ATA_GUI
                             systemCommand("rmdir /Q /S platform-tools");
                             LogWriteLine("ATA ready!");
                             syncFun(1);
+                            }
+                            catch(Exception ex)
+                            {
+                                MessageShowBox(ex.ToString(), 0);
+                            }
                         }
                         break;
                     case DialogResult.No:
@@ -270,6 +335,15 @@ namespace ATA_GUI
                     default:
                         break;
                 }
+            }
+        }
+
+        private void textboxClick(object sender, EventArgs e)
+        {
+            if(textBoxSearch.Text == "Search" && !textboxClear)
+            {
+                textBoxSearch.Clear();
+                textboxClear = true;
             }
         }
 
@@ -306,9 +380,6 @@ namespace ATA_GUI
             syncFun(1);
         }
 
-
-
-
         private void buttonApk_Click(object sender, EventArgs e)
         {
             this.openFileDialogAPK.Filter = "Apk files *.Apk|*.apk;";
@@ -341,83 +412,11 @@ namespace ATA_GUI
         {
             try
             {
-                backgroundWorkerSyncApp.RunWorkerAsync();
+                syncFun(2);
             }
             catch (Exception ex)
             {
                 MessageShowBox(ex.ToString(), 1);
-            }
-        }
-
-        private void backgroundWorkerSyncApp_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            arrayApks.Clear();
-            Invoke((Action)delegate
-            {
-                checkedListBoxApp.Items.Clear();
-            });
-            if (File.Exists("adb.exe") && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll"))
-            {
-                LogWriteLine("Checking device...");
-                systemCommand("adb shell getprop ro.build.version.release > check.tmp");
-                string androidV;
-                string filename = "check.tmp";
-                bool phone = false;
-                if (File.Exists(filename))
-                {
-                    androidV = File.ReadAllText(filename);
-                    if (androidV.Any(char.IsDigit))
-                        phone = true;
-                    if (phone)
-                    {
-                        LogWriteLine("device found!");
-                        File.Delete(filename);
-                        var arrayApksUni = new List<int>();
-                        if (radioButtoNonSystemApp.Checked)
-                        {
-                            systemCommand("adb shell pm list packages -3 > APKNS.tmp");
-                            filename = "APKNS.tmp";
-                        }
-                        if (radioButtonSystemApp.Checked)
-                        {
-                            systemCommand("adb shell pm list packages -s > APKS.tmp");
-                            filename = "APKS.tmp";
-                        }
-
-                        if (File.Exists(filename))
-                        {
-                            LogWriteLine("Loading apps...");
-                            foreach (string line in File.ReadLines(filename))
-                            {
-                                if (line.Contains("package:"))
-                                {
-                                    arrayApks.Add(line.Substring(8));
-                                }
-                            }
-                            LogWriteLine("Apps loaded!");
-                            File.Delete(filename);
-                            foreach (string str in arrayApks)
-                            {
-                                Invoke((Action)delegate
-                                {
-                                    checkedListBoxApp.Items.Add(str);
-                                    checkedListBoxApp.CheckOnClick = true;
-                                });
-                            }
-                        }
-                        else
-                        {
-                            File.Delete(filename);
-                            MessageShowBox(filename + " not found!", 0);
-                        }
-                    }
-                    else
-                    {
-                        File.Delete(filename);
-                        LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
-                        MessageShowBox("Error device not found/ multiple devices found", 0);
-                    }
-                }
             }
         }
 
@@ -442,7 +441,7 @@ namespace ATA_GUI
                 LoadingForm load = new LoadingForm(arrayApk, command);
                 load.ShowDialog();
                 if (load.DialogResult == DialogResult.OK)
-                    backgroundWorkerSyncApp.RunWorkerAsync();
+                    syncFun(2);
                 else
                     MessageShowBox("Error during uninstallation process", 0);
             }
@@ -527,13 +526,13 @@ namespace ATA_GUI
             }
         }
 
-        private void buttonCheckPermissions_Click(object sender, EventArgs e)
+        private void appFunc(string command1, string command2)
         {
             if (checkedListBoxApp.CheckedItems.Count > 0)
             {
                 foreach (Object list in checkedListBoxApp.CheckedItems)
                 {
-                    systemCommand("adb shell dumpsys package " + list.ToString());
+                    systemCommand(command1 + list.ToString() + command2);
                 }
             }
             else
@@ -542,35 +541,20 @@ namespace ATA_GUI
             }
         }
 
+        private void buttonCheckPermissions_Click(object sender, EventArgs e)
+        {
+            appFunc("adb shell dumpsys package ", null);
+        }
+
         private void buttonGrantDump_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxApp.CheckedItems.Count > 0)
-            {
-                foreach (Object list in checkedListBoxApp.CheckedItems)
-                {
-                    systemCommand("adb shell pm grant " + list.ToString() + " android.permission.DUMP");
-                }
-            }
-            else
-            {
-                MessageShowBox("No app selected", 1);
-            }
+            appFunc("adb shell pm grant ", " android.permission.DUMP");
         }
 
 
         private void buttonGrantPermission_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxApp.CheckedItems.Count > 0)
-            {
-                foreach (Object list in checkedListBoxApp.CheckedItems)
-                {
-                    systemCommand("adb shell pm grant " + list.ToString() + " android.permission.WRITE_SECURE_SETTINGS");
-                }
-            }
-            else
-            {
-                MessageShowBox("No app selected", 1);
-            }
+            appFunc("adb shell pm grant ", " android.permission.WRITE_SECURE_SETTINGS");
         }
 
         private void buttonSearchFile_Click(object sender, EventArgs e)
@@ -718,6 +702,19 @@ namespace ATA_GUI
             }
         }
 
+        private bool checkAdbFastboot(int exeN)
+        {
+            string exeTmp = "adb.exe";
+            if(exeN==1)
+            {
+                exeTmp = "fastboot.exe";
+            }
+            if (File.Exists(exeTmp) && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll"))
+                return true;
+            else
+                return false;
+        }
+
         private void buttonKillAdb_Click(object sender, EventArgs e)
         {
             systemCommand("taskkill /f /im adb.exe");
@@ -726,7 +723,7 @@ namespace ATA_GUI
 
         private void buttonRebootToSystem_Click(object sender, EventArgs e)
         {
-            if (File.Exists("fastboot.exe") && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll"))
+            if (checkAdbFastboot(1))
             {
                 systemCommand("fastboot reboot");
                 LogWriteLine("Rebooted!");
@@ -739,7 +736,7 @@ namespace ATA_GUI
 
         private void buttonHardReset_Click(object sender, EventArgs e)
         {
-            if (File.Exists("fastboot.exe") && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll"))
+            if (checkAdbFastboot(1))
             {
                 LogWriteLine("Erasing process started...");
                 systemCommand("fastboot erase userdata && fastboot erase cache");

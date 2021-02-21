@@ -31,6 +31,9 @@ namespace ATA_GUI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelTopBar = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.buttonCloseWindows = new System.Windows.Forms.Button();
             this.listBoxLog = new System.Windows.Forms.ListBox();
             this.labelLog = new System.Windows.Forms.Label();
             this.buttonKillAdb = new System.Windows.Forms.Button();
@@ -68,6 +71,7 @@ namespace ATA_GUI
             this.buttonCheckPermissions = new System.Windows.Forms.Button();
             this.buttonGrantDump = new System.Windows.Forms.Button();
             this.buttonGrantPermission = new System.Windows.Forms.Button();
+            this.buttonReloadApps = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.radioButtoNonSystemApp = new System.Windows.Forms.RadioButton();
             this.radioButtonSystemApp = new System.Windows.Forms.RadioButton();
@@ -81,6 +85,9 @@ namespace ATA_GUI
             this.buttonRR = new System.Windows.Forms.Button();
             this.buttonRF = new System.Windows.Forms.Button();
             this.tabPageFastboot = new System.Windows.Forms.TabPage();
+            this.panelFastboot = new System.Windows.Forms.Panel();
+            this.buttonHardReset = new System.Windows.Forms.Button();
+            this.buttonRebootToSystem = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBoxDirImg = new System.Windows.Forms.TextBox();
             this.radioButtonRom = new System.Windows.Forms.RadioButton();
@@ -88,30 +95,23 @@ namespace ATA_GUI
             this.radioButtonCache = new System.Windows.Forms.RadioButton();
             this.buttonFlashImg = new System.Windows.Forms.Button();
             this.radioButtonVendor = new System.Windows.Forms.RadioButton();
+            this.pictureBoxLoading2 = new System.Windows.Forms.PictureBox();
             this.radioButtonSystem = new System.Windows.Forms.RadioButton();
             this.radioButtonBoot = new System.Windows.Forms.RadioButton();
             this.radioButtonRecovery = new System.Windows.Forms.RadioButton();
             this.radioButtonBootloader = new System.Windows.Forms.RadioButton();
             this.radioButtonRadio = new System.Windows.Forms.RadioButton();
             this.tabPageRecovery = new System.Windows.Forms.TabPage();
+            this.pictureBoxLoading = new System.Windows.Forms.PictureBox();
             this.buttonInstallZip = new System.Windows.Forms.Button();
             this.textBoxDirFile = new System.Windows.Forms.TextBox();
             this.buttonSearchFile = new System.Windows.Forms.Button();
             this.openFileDialogAPK = new System.Windows.Forms.OpenFileDialog();
-            this.backgroundWorkerSyncApp = new System.ComponentModel.BackgroundWorker();
             this.openFileDialogZip = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorkerZip = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerFlashImg = new System.ComponentModel.BackgroundWorker();
-            this.panelFastboot = new System.Windows.Forms.Panel();
-            this.buttonRebootToSystem = new System.Windows.Forms.Button();
-            this.buttonHardReset = new System.Windows.Forms.Button();
-            this.buttonReloadApps = new System.Windows.Forms.Button();
-            this.pictureBoxLoading2 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxLoading = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.buttonCloseWindows = new System.Windows.Forms.Button();
             this.panelTopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -123,12 +123,11 @@ namespace ATA_GUI
             this.panel1.SuspendLayout();
             this.groupBoxRebootMenu.SuspendLayout();
             this.tabPageFastboot.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.tabPageRecovery.SuspendLayout();
             this.panelFastboot.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading2)).BeginInit();
+            this.tabPageRecovery.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTopBar
@@ -142,6 +141,43 @@ namespace ATA_GUI
             this.panelTopBar.Size = new System.Drawing.Size(856, 39);
             this.panelTopBar.TabIndex = 0;
             this.panelTopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseMove);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ATA_GUI.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(8, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(79, 33);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Black;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(769, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(43, 40);
+            this.button1.TabIndex = 2;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonCloseWindows
+            // 
+            this.buttonCloseWindows.BackColor = System.Drawing.Color.Red;
+            this.buttonCloseWindows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCloseWindows.ForeColor = System.Drawing.Color.Black;
+            this.buttonCloseWindows.Image = ((System.Drawing.Image)(resources.GetObject("buttonCloseWindows.Image")));
+            this.buttonCloseWindows.Location = new System.Drawing.Point(811, 0);
+            this.buttonCloseWindows.Name = "buttonCloseWindows";
+            this.buttonCloseWindows.Size = new System.Drawing.Size(43, 42);
+            this.buttonCloseWindows.TabIndex = 1;
+            this.buttonCloseWindows.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.buttonCloseWindows.UseVisualStyleBackColor = false;
+            this.buttonCloseWindows.Click += new System.EventHandler(this.buttonCloseWindows_Click);
             // 
             // listBoxLog
             // 
@@ -546,6 +582,18 @@ namespace ATA_GUI
             this.buttonGrantPermission.UseVisualStyleBackColor = false;
             this.buttonGrantPermission.Click += new System.EventHandler(this.buttonGrantPermission_Click);
             // 
+            // buttonReloadApps
+            // 
+            this.buttonReloadApps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReloadApps.ForeColor = System.Drawing.Color.Black;
+            this.buttonReloadApps.Image = global::ATA_GUI.Properties.Resources.reload;
+            this.buttonReloadApps.Location = new System.Drawing.Point(508, 15);
+            this.buttonReloadApps.Name = "buttonReloadApps";
+            this.buttonReloadApps.Size = new System.Drawing.Size(28, 20);
+            this.buttonReloadApps.TabIndex = 39;
+            this.buttonReloadApps.UseVisualStyleBackColor = true;
+            this.buttonReloadApps.Click += new System.EventHandler(this.buttonReloadApps_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
@@ -610,6 +658,7 @@ namespace ATA_GUI
             this.textBoxSearch.Size = new System.Drawing.Size(128, 20);
             this.textBoxSearch.TabIndex = 37;
             this.textBoxSearch.Text = "Search";
+            this.textBoxSearch.Click += new System.EventHandler(this.textboxClick);
             this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
             // 
             // checkedListBoxApp
@@ -712,6 +761,44 @@ namespace ATA_GUI
             this.tabPageFastboot.Text = "Fastboot";
             this.tabPageFastboot.UseVisualStyleBackColor = true;
             // 
+            // panelFastboot
+            // 
+            this.panelFastboot.Controls.Add(this.buttonHardReset);
+            this.panelFastboot.Controls.Add(this.buttonRebootToSystem);
+            this.panelFastboot.Controls.Add(this.groupBox4);
+            this.panelFastboot.Location = new System.Drawing.Point(1, 3);
+            this.panelFastboot.Name = "panelFastboot";
+            this.panelFastboot.Size = new System.Drawing.Size(819, 285);
+            this.panelFastboot.TabIndex = 49;
+            // 
+            // buttonHardReset
+            // 
+            this.buttonHardReset.BackColor = System.Drawing.Color.White;
+            this.buttonHardReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonHardReset.ForeColor = System.Drawing.Color.Black;
+            this.buttonHardReset.Location = new System.Drawing.Point(677, 44);
+            this.buttonHardReset.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonHardReset.Name = "buttonHardReset";
+            this.buttonHardReset.Size = new System.Drawing.Size(118, 23);
+            this.buttonHardReset.TabIndex = 50;
+            this.buttonHardReset.Text = "Hard Reset";
+            this.buttonHardReset.UseVisualStyleBackColor = false;
+            this.buttonHardReset.Click += new System.EventHandler(this.buttonHardReset_Click);
+            // 
+            // buttonRebootToSystem
+            // 
+            this.buttonRebootToSystem.BackColor = System.Drawing.Color.White;
+            this.buttonRebootToSystem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRebootToSystem.ForeColor = System.Drawing.Color.Black;
+            this.buttonRebootToSystem.Location = new System.Drawing.Point(448, 44);
+            this.buttonRebootToSystem.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonRebootToSystem.Name = "buttonRebootToSystem";
+            this.buttonRebootToSystem.Size = new System.Drawing.Size(118, 23);
+            this.buttonRebootToSystem.TabIndex = 49;
+            this.buttonRebootToSystem.Text = "Reboot to System";
+            this.buttonRebootToSystem.UseVisualStyleBackColor = false;
+            this.buttonRebootToSystem.Click += new System.EventHandler(this.buttonRebootToSystem_Click);
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.textBoxDirImg);
@@ -797,6 +884,15 @@ namespace ATA_GUI
             this.radioButtonVendor.Text = "Vendor";
             this.radioButtonVendor.UseVisualStyleBackColor = true;
             // 
+            // pictureBoxLoading2
+            // 
+            this.pictureBoxLoading2.Image = global::ATA_GUI.Properties.Resources.loader;
+            this.pictureBoxLoading2.Location = new System.Drawing.Point(140, 114);
+            this.pictureBoxLoading2.Name = "pictureBoxLoading2";
+            this.pictureBoxLoading2.Size = new System.Drawing.Size(34, 33);
+            this.pictureBoxLoading2.TabIndex = 39;
+            this.pictureBoxLoading2.TabStop = false;
+            // 
             // radioButtonSystem
             // 
             this.radioButtonSystem.AutoSize = true;
@@ -865,6 +961,15 @@ namespace ATA_GUI
             this.tabPageRecovery.Text = "Recovery";
             this.tabPageRecovery.UseVisualStyleBackColor = true;
             // 
+            // pictureBoxLoading
+            // 
+            this.pictureBoxLoading.Image = global::ATA_GUI.Properties.Resources.loader;
+            this.pictureBoxLoading.Location = new System.Drawing.Point(352, 137);
+            this.pictureBoxLoading.Name = "pictureBoxLoading";
+            this.pictureBoxLoading.Size = new System.Drawing.Size(34, 33);
+            this.pictureBoxLoading.TabIndex = 35;
+            this.pictureBoxLoading.TabStop = false;
+            // 
             // buttonInstallZip
             // 
             this.buttonInstallZip.BackColor = System.Drawing.Color.White;
@@ -900,10 +1005,6 @@ namespace ATA_GUI
             // 
             this.openFileDialogAPK.FileName = "openFileDialog";
             // 
-            // backgroundWorkerSyncApp
-            // 
-            this.backgroundWorkerSyncApp.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSyncApp_DoWork);
-            // 
             // openFileDialogZip
             // 
             this.openFileDialogZip.FileName = "openFileDialogZip";
@@ -915,111 +1016,6 @@ namespace ATA_GUI
             // backgroundWorkerFlashImg
             // 
             this.backgroundWorkerFlashImg.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerFlashImg_DoWork);
-            // 
-            // panelFastboot
-            // 
-            this.panelFastboot.Controls.Add(this.buttonHardReset);
-            this.panelFastboot.Controls.Add(this.buttonRebootToSystem);
-            this.panelFastboot.Controls.Add(this.groupBox4);
-            this.panelFastboot.Location = new System.Drawing.Point(1, 3);
-            this.panelFastboot.Name = "panelFastboot";
-            this.panelFastboot.Size = new System.Drawing.Size(819, 285);
-            this.panelFastboot.TabIndex = 49;
-            // 
-            // buttonRebootToSystem
-            // 
-            this.buttonRebootToSystem.BackColor = System.Drawing.Color.White;
-            this.buttonRebootToSystem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRebootToSystem.ForeColor = System.Drawing.Color.Black;
-            this.buttonRebootToSystem.Location = new System.Drawing.Point(448, 44);
-            this.buttonRebootToSystem.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonRebootToSystem.Name = "buttonRebootToSystem";
-            this.buttonRebootToSystem.Size = new System.Drawing.Size(118, 23);
-            this.buttonRebootToSystem.TabIndex = 49;
-            this.buttonRebootToSystem.Text = "Reboot to System";
-            this.buttonRebootToSystem.UseVisualStyleBackColor = false;
-            this.buttonRebootToSystem.Click += new System.EventHandler(this.buttonRebootToSystem_Click);
-            // 
-            // buttonHardReset
-            // 
-            this.buttonHardReset.BackColor = System.Drawing.Color.White;
-            this.buttonHardReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonHardReset.ForeColor = System.Drawing.Color.Black;
-            this.buttonHardReset.Location = new System.Drawing.Point(677, 44);
-            this.buttonHardReset.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonHardReset.Name = "buttonHardReset";
-            this.buttonHardReset.Size = new System.Drawing.Size(118, 23);
-            this.buttonHardReset.TabIndex = 50;
-            this.buttonHardReset.Text = "Hard Reset";
-            this.buttonHardReset.UseVisualStyleBackColor = false;
-            this.buttonHardReset.Click += new System.EventHandler(this.buttonHardReset_Click);
-            // 
-            // buttonReloadApps
-            // 
-            this.buttonReloadApps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonReloadApps.ForeColor = System.Drawing.Color.Black;
-            this.buttonReloadApps.Image = global::ATA_GUI.Properties.Resources.reload;
-            this.buttonReloadApps.Location = new System.Drawing.Point(508, 15);
-            this.buttonReloadApps.Name = "buttonReloadApps";
-            this.buttonReloadApps.Size = new System.Drawing.Size(28, 20);
-            this.buttonReloadApps.TabIndex = 39;
-            this.buttonReloadApps.UseVisualStyleBackColor = true;
-            this.buttonReloadApps.Click += new System.EventHandler(this.buttonReloadApps_Click);
-            // 
-            // pictureBoxLoading2
-            // 
-            this.pictureBoxLoading2.Image = global::ATA_GUI.Properties.Resources.loader;
-            this.pictureBoxLoading2.Location = new System.Drawing.Point(140, 114);
-            this.pictureBoxLoading2.Name = "pictureBoxLoading2";
-            this.pictureBoxLoading2.Size = new System.Drawing.Size(34, 33);
-            this.pictureBoxLoading2.TabIndex = 39;
-            this.pictureBoxLoading2.TabStop = false;
-            // 
-            // pictureBoxLoading
-            // 
-            this.pictureBoxLoading.Image = global::ATA_GUI.Properties.Resources.loader;
-            this.pictureBoxLoading.Location = new System.Drawing.Point(352, 137);
-            this.pictureBoxLoading.Name = "pictureBoxLoading";
-            this.pictureBoxLoading.Size = new System.Drawing.Size(34, 33);
-            this.pictureBoxLoading.TabIndex = 35;
-            this.pictureBoxLoading.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::ATA_GUI.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(8, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(79, 33);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Black;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(769, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(43, 40);
-            this.button1.TabIndex = 2;
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // buttonCloseWindows
-            // 
-            this.buttonCloseWindows.BackColor = System.Drawing.Color.Red;
-            this.buttonCloseWindows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCloseWindows.ForeColor = System.Drawing.Color.Black;
-            this.buttonCloseWindows.Image = ((System.Drawing.Image)(resources.GetObject("buttonCloseWindows.Image")));
-            this.buttonCloseWindows.Location = new System.Drawing.Point(811, 0);
-            this.buttonCloseWindows.Name = "buttonCloseWindows";
-            this.buttonCloseWindows.Size = new System.Drawing.Size(43, 42);
-            this.buttonCloseWindows.TabIndex = 1;
-            this.buttonCloseWindows.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.buttonCloseWindows.UseVisualStyleBackColor = false;
-            this.buttonCloseWindows.Click += new System.EventHandler(this.buttonCloseWindows_Click);
             // 
             // MainForm
             // 
@@ -1039,6 +1035,7 @@ namespace ATA_GUI
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.panelTopBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBoxDeviceInfo.ResumeLayout(false);
             this.groupBoxDeviceInfo.PerformLayout();
@@ -1054,14 +1051,13 @@ namespace ATA_GUI
             this.panel1.PerformLayout();
             this.groupBoxRebootMenu.ResumeLayout(false);
             this.tabPageFastboot.ResumeLayout(false);
+            this.panelFastboot.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading2)).EndInit();
             this.tabPageRecovery.ResumeLayout(false);
             this.tabPageRecovery.PerformLayout();
-            this.panelFastboot.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1113,7 +1109,6 @@ namespace ATA_GUI
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.CheckedListBox checkedListBoxApp;
         private System.Windows.Forms.Button buttonReloadApps;
-        private System.ComponentModel.BackgroundWorker backgroundWorkerSyncApp;
         private System.Windows.Forms.Label labelIP;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelSystem;
