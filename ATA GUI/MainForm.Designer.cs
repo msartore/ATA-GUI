@@ -34,7 +34,6 @@ namespace ATA_GUI
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonCloseWindows = new System.Windows.Forms.Button();
-            this.listBoxLog = new System.Windows.Forms.ListBox();
             this.labelLog = new System.Windows.Forms.Label();
             this.buttonKillAdb = new System.Windows.Forms.Button();
             this.buttonSyncApp = new System.Windows.Forms.Button();
@@ -110,6 +109,7 @@ namespace ATA_GUI
             this.openFileDialogZip = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorkerZip = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerFlashImg = new System.ComponentModel.BackgroundWorker();
+            this.richTextBoxLog = new System.Windows.Forms.RichTextBox();
             this.panelTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -178,18 +178,6 @@ namespace ATA_GUI
             this.buttonCloseWindows.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.buttonCloseWindows.UseVisualStyleBackColor = false;
             this.buttonCloseWindows.Click += new System.EventHandler(this.buttonCloseWindows_Click);
-            // 
-            // listBoxLog
-            // 
-            this.listBoxLog.BackColor = System.Drawing.Color.Black;
-            this.listBoxLog.ForeColor = System.Drawing.Color.White;
-            this.listBoxLog.FormattingEnabled = true;
-            this.listBoxLog.Location = new System.Drawing.Point(443, 370);
-            this.listBoxLog.Margin = new System.Windows.Forms.Padding(2);
-            this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.listBoxLog.Size = new System.Drawing.Size(393, 69);
-            this.listBoxLog.TabIndex = 23;
             // 
             // labelLog
             // 
@@ -776,7 +764,7 @@ namespace ATA_GUI
             this.buttonHardReset.BackColor = System.Drawing.Color.White;
             this.buttonHardReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonHardReset.ForeColor = System.Drawing.Color.Black;
-            this.buttonHardReset.Location = new System.Drawing.Point(677, 44);
+            this.buttonHardReset.Location = new System.Drawing.Point(676, 44);
             this.buttonHardReset.Margin = new System.Windows.Forms.Padding(2);
             this.buttonHardReset.Name = "buttonHardReset";
             this.buttonHardReset.Size = new System.Drawing.Size(118, 23);
@@ -790,7 +778,7 @@ namespace ATA_GUI
             this.buttonRebootToSystem.BackColor = System.Drawing.Color.White;
             this.buttonRebootToSystem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRebootToSystem.ForeColor = System.Drawing.Color.Black;
-            this.buttonRebootToSystem.Location = new System.Drawing.Point(448, 44);
+            this.buttonRebootToSystem.Location = new System.Drawing.Point(447, 44);
             this.buttonRebootToSystem.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRebootToSystem.Name = "buttonRebootToSystem";
             this.buttonRebootToSystem.Size = new System.Drawing.Size(118, 23);
@@ -1017,16 +1005,27 @@ namespace ATA_GUI
             // 
             this.backgroundWorkerFlashImg.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerFlashImg_DoWork);
             // 
+            // richTextBoxLog
+            // 
+            this.richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
+            this.richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
+            this.richTextBoxLog.Location = new System.Drawing.Point(443, 375);
+            this.richTextBoxLog.Name = "richTextBoxLog";
+            this.richTextBoxLog.ReadOnly = true;
+            this.richTextBoxLog.Size = new System.Drawing.Size(393, 64);
+            this.richTextBoxLog.TabIndex = 38;
+            this.richTextBoxLog.Text = "";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(852, 450);
+            this.Controls.Add(this.richTextBoxLog);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelLog);
-            this.Controls.Add(this.listBoxLog);
             this.Controls.Add(this.panelTopBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1068,7 +1067,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Panel panelTopBar;
         private System.Windows.Forms.Button buttonCloseWindows;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.Label labelLog;
         private System.Windows.Forms.Button buttonKillAdb;
         private System.Windows.Forms.Button buttonSyncApp;
@@ -1145,6 +1143,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Panel panelFastboot;
         private System.Windows.Forms.Button buttonRebootToSystem;
         private System.Windows.Forms.Button buttonHardReset;
+        private System.Windows.Forms.RichTextBox richTextBoxLog;
     }
 }
 
