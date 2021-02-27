@@ -85,6 +85,13 @@ namespace ATA_GUI
             this.buttonRF = new System.Windows.Forms.Button();
             this.tabPageFastboot = new System.Windows.Forms.TabPage();
             this.panelFastboot = new System.Windows.Forms.Panel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.labelUDT = new System.Windows.Forms.Label();
+            this.labelCDT = new System.Windows.Forms.Label();
+            this.labelBootloaderStatus = new System.Windows.Forms.Label();
+            this.labelDataType = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.buttonHardReset = new System.Windows.Forms.Button();
             this.buttonRebootToSystem = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -110,6 +117,8 @@ namespace ATA_GUI
             this.backgroundWorkerZip = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerFlashImg = new System.ComponentModel.BackgroundWorker();
             this.richTextBoxLog = new System.Windows.Forms.RichTextBox();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panelTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -124,6 +133,7 @@ namespace ATA_GUI
             this.groupBoxRebootMenu.SuspendLayout();
             this.tabPageFastboot.SuspendLayout();
             this.panelFastboot.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading2)).BeginInit();
             this.tabPageRecovery.SuspendLayout();
@@ -247,6 +257,8 @@ namespace ATA_GUI
             // 
             // groupBoxDeviceInfo
             // 
+            this.groupBoxDeviceInfo.Controls.Add(this.labelStatus);
+            this.groupBoxDeviceInfo.Controls.Add(this.label4);
             this.groupBoxDeviceInfo.Controls.Add(this.labelIP);
             this.groupBoxDeviceInfo.Controls.Add(this.label1);
             this.groupBoxDeviceInfo.Controls.Add(this.labelAV);
@@ -751,6 +763,7 @@ namespace ATA_GUI
             // 
             // panelFastboot
             // 
+            this.panelFastboot.Controls.Add(this.groupBox5);
             this.panelFastboot.Controls.Add(this.buttonHardReset);
             this.panelFastboot.Controls.Add(this.buttonRebootToSystem);
             this.panelFastboot.Controls.Add(this.groupBox4);
@@ -759,12 +772,81 @@ namespace ATA_GUI
             this.panelFastboot.Size = new System.Drawing.Size(819, 285);
             this.panelFastboot.TabIndex = 49;
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.labelUDT);
+            this.groupBox5.Controls.Add(this.labelCDT);
+            this.groupBox5.Controls.Add(this.labelBootloaderStatus);
+            this.groupBox5.Controls.Add(this.labelDataType);
+            this.groupBox5.Controls.Add(this.label7);
+            this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Location = new System.Drawing.Point(428, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(385, 155);
+            this.groupBox5.TabIndex = 51;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Device Info";
+            // 
+            // labelUDT
+            // 
+            this.labelUDT.AutoSize = true;
+            this.labelUDT.Location = new System.Drawing.Point(132, 65);
+            this.labelUDT.Name = "labelUDT";
+            this.labelUDT.Size = new System.Drawing.Size(44, 13);
+            this.labelUDT.TabIndex = 15;
+            this.labelUDT.Text = "EMPTY";
+            // 
+            // labelCDT
+            // 
+            this.labelCDT.AutoSize = true;
+            this.labelCDT.Location = new System.Drawing.Point(132, 52);
+            this.labelCDT.Name = "labelCDT";
+            this.labelCDT.Size = new System.Drawing.Size(44, 13);
+            this.labelCDT.TabIndex = 14;
+            this.labelCDT.Text = "EMPTY";
+            // 
+            // labelBootloaderStatus
+            // 
+            this.labelBootloaderStatus.AutoSize = true;
+            this.labelBootloaderStatus.Location = new System.Drawing.Point(132, 39);
+            this.labelBootloaderStatus.Name = "labelBootloaderStatus";
+            this.labelBootloaderStatus.Size = new System.Drawing.Size(44, 13);
+            this.labelBootloaderStatus.TabIndex = 13;
+            this.labelBootloaderStatus.Text = "EMPTY";
+            // 
+            // labelDataType
+            // 
+            this.labelDataType.AutoSize = true;
+            this.labelDataType.Location = new System.Drawing.Point(17, 65);
+            this.labelDataType.Name = "labelDataType";
+            this.labelDataType.Size = new System.Drawing.Size(60, 13);
+            this.labelDataType.TabIndex = 12;
+            this.labelDataType.Text = "Data Type:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 52);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 13);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Cache Type";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(17, 39);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(110, 13);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Bootloader Unlocked:";
+            // 
             // buttonHardReset
             // 
             this.buttonHardReset.BackColor = System.Drawing.Color.White;
             this.buttonHardReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonHardReset.ForeColor = System.Drawing.Color.Black;
-            this.buttonHardReset.Location = new System.Drawing.Point(676, 44);
+            this.buttonHardReset.Location = new System.Drawing.Point(677, 166);
             this.buttonHardReset.Margin = new System.Windows.Forms.Padding(2);
             this.buttonHardReset.Name = "buttonHardReset";
             this.buttonHardReset.Size = new System.Drawing.Size(118, 23);
@@ -778,7 +860,7 @@ namespace ATA_GUI
             this.buttonRebootToSystem.BackColor = System.Drawing.Color.White;
             this.buttonRebootToSystem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRebootToSystem.ForeColor = System.Drawing.Color.Black;
-            this.buttonRebootToSystem.Location = new System.Drawing.Point(447, 44);
+            this.buttonRebootToSystem.Location = new System.Drawing.Point(448, 166);
             this.buttonRebootToSystem.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRebootToSystem.Name = "buttonRebootToSystem";
             this.buttonRebootToSystem.Size = new System.Drawing.Size(118, 23);
@@ -1016,6 +1098,24 @@ namespace ATA_GUI
             this.richTextBoxLog.TabIndex = 38;
             this.richTextBoxLog.Text = "";
             // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(86, 120);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(44, 13);
+            this.labelStatus.TabIndex = 17;
+            this.labelStatus.Text = "EMPTY";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 120);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(82, 13);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Connected via: ";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1051,6 +1151,8 @@ namespace ATA_GUI
             this.groupBoxRebootMenu.ResumeLayout(false);
             this.tabPageFastboot.ResumeLayout(false);
             this.panelFastboot.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading2)).EndInit();
@@ -1144,6 +1246,15 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonRebootToSystem;
         private System.Windows.Forms.Button buttonHardReset;
         private System.Windows.Forms.RichTextBox richTextBoxLog;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label labelUDT;
+        private System.Windows.Forms.Label labelCDT;
+        private System.Windows.Forms.Label labelBootloaderStatus;
+        private System.Windows.Forms.Label labelDataType;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.Label label4;
     }
 }
 

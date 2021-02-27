@@ -17,9 +17,8 @@ namespace ATA_GUI
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
         private bool textboxClear = false;
-        private static string FILEDEVICEINFO = "deviceinfo.tmp";
-        private static string FILEADB = "adb.exe";
-        private static string FILEFASTBOOT = "fastboot.exe";
+        private readonly string FILEADB = "adb.exe";
+        private readonly string FILEFASTBOOT = "fastboot.exe";
 
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -59,27 +58,36 @@ namespace ATA_GUI
             {
                 if (checkAdbFastboot(1))
                 {
-                    systemCommand("fastboot devices > "+ FILEDEVICEINFO);
-                    if (File.Exists(FILEDEVICEINFO))
+                    if (adbFastbootCommandR(new string[] { "devices" }, 1).Contains("fastboot"))
                     {
-                        if (File.ReadAllText(FILEDEVICEINFO).Contains("fastboot"))
+                        string[] log = adbFastbootCommandR(new string[] { "getvar all" }, 1).Split(' ', '\n');
+                        for (int a=0; a< log.Count(); a++)
                         {
-                            panelFastboot.Enabled = true;
-                            pictureBoxLoading2.Visible = false;
-                            LogWriteLine("Device found!");
+                            if (log[a].Contains("partition-type:userdata:"))
+                            {
+                                labelUDT.Text = log[a].Substring("partition-type:userdata:".Length);
+                            }
+                            else if (log[a].Contains("partition-type:cache:"))
+                            {
+                                labelCDT.Text = log[a].Substring("partition-type:cache:".Length);
+                            }
+                            else if (log[a].Contains("unlocked:"))
+                            {
+                                if(log[a].Contains("yes"))
+                                    labelBootloaderStatus.Text = "Yes";
+                                else
+                                    labelBootloaderStatus.Text = "No";
+                            }
                         }
-                        else
-                        {
-                            MessageShowBox("Device not found!", 0);
-                            panelFastboot.Enabled = false;
-                            pictureBoxLoading2.Visible = false;
-                        }
-                        File.Delete(FILEDEVICEINFO);
+                        panelFastboot.Enabled = true;
+                        pictureBoxLoading2.Visible = false;
+                        LogWriteLine("Device found!");
                     }
                     else
                     {
-                        MessageShowBox("Something went wrong!", 0);
+                        MessageShowBox("Device not found!", 0);
                         panelFastboot.Enabled = false;
+                        pictureBoxLoading2.Visible = false;
                     }
                 }
                 else
@@ -138,6 +146,56 @@ namespace ATA_GUI
             cmd.WaitForExit();
         }
 
+        public string adbFastbootCommandR(string[] args, int type)
+        {
+            string ret = "";
+            string line;
+            Cursor.Current = Cursors.WaitCursor;
+            if (!checkAdbFastboot(1)) return null;
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+            startInfo.UseShellExecute = false;
+            startInfo.CreateNoWindow = true;
+            startInfo.RedirectStandardError = true;
+            startInfo.RedirectStandardOutput = true;
+            switch(type)
+            {
+                case 0:
+                    startInfo.FileName = FILEADB;
+                    process.StartInfo = startInfo;
+                                        
+                    foreach (string s in args)
+                    {
+                        startInfo.Arguments = s;
+                        process.Start();
+                        line = process.StandardOutput.ReadToEnd();
+                        if (line.Length > 0)
+                            ret += line;
+                        process.Close();
+                    }
+                    break;
+                case 1:
+                    startInfo.FileName = FILEFASTBOOT;
+                    process.StartInfo = startInfo;
+                    
+                    foreach (string s in args)
+                    {
+                        startInfo.Arguments = s;
+                        process.Start();
+                        line = process.StandardError.ReadToEnd();
+                        if (line.Length > 0)
+                            ret += line + "\n";
+
+                        line = process.StandardOutput.ReadToEnd();
+                        if (line.Length > 0)
+                            ret += line + "\n";
+                        process.Close();
+                    }
+                    break;
+            }
+            return ret;
+        }
+
         /* Type 0 Error, Type 1 Warning, Type 2 Info */
         private void MessageShowBox(string message, int type)
         {
@@ -171,111 +229,94 @@ namespace ATA_GUI
             if (checkAdbFastboot(0))
             {
                 LogWriteLine("Checking device...");
-                systemCommand("adb shell getprop ro.build.version.release > "+ FILEDEVICEINFO);
-                if (File.Exists("deviceInfo.tmp"))
-                {
-                    if (File.ReadAllText("deviceInfo.tmp").Any(char.IsDigit))
+                if(adbFastbootCommandR(new string[] { "shell getprop ro.build.version.release"}, 0).Any(char.IsDigit))
+                { 
+                    switch (paramObj.ToString())
                     {
-                        switch (paramObj.ToString())
-                        {
-                            case "0":
-                                string[] arrayDeviceInfo;
-                                systemCommand("adb shell getprop ro.build.user  >> "+ FILEDEVICEINFO);
-                                systemCommand("adb shell getprop ro.product.cpu.abilist  >> "+ FILEDEVICEINFO);
-                                systemCommand("adb shell getprop ro.product.manufacturer  >> " + FILEDEVICEINFO);
-                                systemCommand("adb shell getprop ro.product.model  >> " + FILEDEVICEINFO);
-                                systemCommand("adb shell getprop ro.product.board  >> " + FILEDEVICEINFO);
-                                systemCommand("adb shell getprop ro.product.device  >> " + FILEDEVICEINFO);
-                                systemCommand("adb shell ip route >> " + FILEDEVICEINFO);
-                                LogWriteLine("device found!");
-                                arrayDeviceInfo = File.ReadAllLines(FILEDEVICEINFO);
+                        case "0":
+                            string[] arrayDeviceInfoCommands = { "shell getprop ro.build.version.release", "shell getprop ro.build.user",  "shell getprop ro.product.cpu.abilist", "shell getprop ro.product.manufacturer" , "shell getprop ro.product.model",
+                                   "shell getprop ro.product.board", "shell getprop ro.product.device", "shell ip route", "devices" };
+                            string deviceinfo = adbFastbootCommandR(arrayDeviceInfoCommands, 0);
+                            string[] arrayDeviceInfo = deviceinfo.Split('\n');
+                            if (arrayDeviceInfo.Length > 6)
+                            {
                                 Invoke((Action)delegate
                                 {
-                                    if (arrayDeviceInfo.Length > 6)
+                                    LogWriteLine("device found!");                                
+                                    labelAV.Text = arrayDeviceInfo[0];
+                                    labelBU.Text = arrayDeviceInfo[1];
+                                    labelCA.Text = arrayDeviceInfo[2];
+                                    labelManu.Text = arrayDeviceInfo[3];
+                                    labelModel.Text = arrayDeviceInfo[4];
+                                    labelB.Text = arrayDeviceInfo[5];
+                                    labelD.Text = arrayDeviceInfo[6];
+                                    if (arrayDeviceInfo.Length > 7)
                                     {
-                                        labelAV.Text = arrayDeviceInfo[0];
-                                        labelBU.Text = arrayDeviceInfo[1];
-                                        labelCA.Text = arrayDeviceInfo[2];
-                                        labelManu.Text = arrayDeviceInfo[3];
-                                        labelModel.Text = arrayDeviceInfo[4];
-                                        labelB.Text = arrayDeviceInfo[5];
-                                        labelD.Text = arrayDeviceInfo[6];
-                                        if(arrayDeviceInfo.Length > 7)
-                                            textBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
-                                        LogWriteLine("Device info extracted");
-                                        radioButtoNonSystemApp.Checked = true;
-                                        panelSystem.Enabled = true;
-                                        groupBoxADBNet.Enabled = true;
-                                        groupBoxRebootMenu.Enabled = true;
+                                        textBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
+                                        if (deviceinfo.Contains(textBoxIP.Text.Substring(0, textBoxIP.Text.Length-2) +":5555"))
+                                            labelStatus.Text = "Wireless";
+                                        else
+                                            labelStatus.Text = "Cable";
                                     }
-                                    else
-                                    {
-                                        panelSystem.Enabled = false;
-                                        groupBoxADBNet.Enabled = false;
-                                        groupBoxRebootMenu.Enabled = false;
-                                        LogWriteLine("Error: failed to extract device info!");
-                                    }
+                                    LogWriteLine("Device info extracted");
+                                    radioButtoNonSystemApp.Checked = true;
+                                    panelSystem.Enabled = true;
+                                    groupBoxADBNet.Enabled = true;
+                                    groupBoxRebootMenu.Enabled = true;
                                 });
-                                break;
-                            case "2":
-                                arrayApks.Clear();
-                                Invoke((Action)delegate
-                                {
-                                    checkedListBoxApp.Items.Clear();
-                                });
-                                string filename ="";
-                                var arrayApksUni = new List<int>();
-                                if (radioButtoNonSystemApp.Checked)
-                                {
-                                    systemCommand("adb shell pm list packages -3 > APKNS.tmp");
-                                    filename = "APKNS.tmp";
-                                }
-                                if (radioButtonSystemApp.Checked)
-                                {
-                                    systemCommand("adb shell pm list packages -s > APKS.tmp");
-                                    filename = "APKS.tmp";
-                                }
+                            }
+                            else
+                            {
+                                panelSystem.Enabled = false;
+                                groupBoxADBNet.Enabled = false;
+                                groupBoxRebootMenu.Enabled = false;
+                                LogWriteLine("Error: failed to extract device info!");
+                            }
+                            break;
+                        case "2":
+                            arrayApks.Clear();
+                            Invoke((Action)delegate
+                            {
+                                checkedListBoxApp.Items.Clear();
+                            });
+                            string[] command = { };
+                            var arrayApksUni = new List<int>();
+                            if (radioButtoNonSystemApp.Checked)
+                            {
+                                command = new string[] { "shell pm list packages -3" };
+                            }
+                            if (radioButtonSystemApp.Checked)
+                            {
+                                command = new string[] { "shell pm list packages -s" };
+                            }
 
-                                if (File.Exists(filename))
+                            string stringApk;
+                            if ((stringApk = adbFastbootCommandR(command,0))!=null)
+                            {
+                                LogWriteLine("Loading apps...");
+                                string[] arrayApkTmp = stringApk.Split('\n');
+                                foreach (string line in arrayApkTmp)
                                 {
-                                    LogWriteLine("Loading apps...");
-                                    foreach (string line in File.ReadLines(filename))
+                                    if (line.Contains("package:"))
                                     {
-                                        if (line.Contains("package:"))
-                                        {
-                                            arrayApks.Add(line.Substring(8));
-                                        }
-                                    }
-                                    LogWriteLine("Apps loaded!");
-                                    File.Delete(filename);
-                                    foreach (string str in arrayApks)
-                                    {
-                                        Invoke((Action)delegate
-                                        {
-                                            checkedListBoxApp.Items.Add(str);
-                                            checkedListBoxApp.CheckOnClick = true;
-                                        });
+                                        arrayApks.Add(line.Substring(8));
                                     }
                                 }
-                                else
+                                foreach (string str in arrayApks)
                                 {
-                                    File.Delete(filename);
-                                    MessageShowBox(filename + " not found!", 0);
+                                    Invoke((Action)delegate
+                                    {
+                                        checkedListBoxApp.Items.Add(str);
+                                        checkedListBoxApp.CheckOnClick = true;
+                                    });
                                 }
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        Invoke((Action)delegate
-                        {
-                            panelSystem.Enabled = false;
-                            groupBoxADBNet.Enabled = false;
-                            groupBoxRebootMenu.Enabled = false;
-                            LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
-                            if (paramObjTmp == "0")
-                                MessageShowBox("Error device not found/ multiple devices found", 0);
-                        });
+                                LogWriteLine("Apps loaded!");
+                            }
+                            else
+                            {
+                                MessageShowBox("Error during apk loading", 0);
+                            }
+                            break;
                     }
                 }
                 else
@@ -285,10 +326,11 @@ namespace ATA_GUI
                         panelSystem.Enabled = false;
                         groupBoxADBNet.Enabled = false;
                         groupBoxRebootMenu.Enabled = false;
-                        LogWriteLine("Error: file not found!");
+                        LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
+                        if (paramObjTmp == "0")
+                            MessageShowBox("Error device not found/ multiple devices found", 0);
                     });
                 }
-                File.Delete(FILEDEVICEINFO);
             }
             else
             {
@@ -309,13 +351,13 @@ namespace ATA_GUI
                             try
                             { 
                             client.DownloadFile("https://dl.google.com/android/repository/platform-tools-latest-windows.zip?authuser=2", "sdkplatformtool.zip");
-                            LogWriteLine("sdk platform tool downloaded");
-                            LogWriteLine("unzipping sdk platform tool");
+                            LogWriteLine("sdk platform tool downloaded!");
+                            LogWriteLine("unzipping sdk platform tool...");
                             using (ZipFile zip = ZipFile.Read("sdkplatformtool.zip"))
                             {
                                 zip.ExtractAll(System.IO.Path.GetDirectoryName(Application.ExecutablePath));
                             }
-                            LogWriteLine("sdk platform tool downloaded Downloaded!");
+                            LogWriteLine("sdk platform tool downloaded!");
                             LogWriteLine("Getting things ready...");
                             systemCommand("move platform-tools\\adb.exe \"%cd%\"");
                             systemCommand("move platform-tools\\AdbWinUsbApi.dll \"%cd%\"");
@@ -354,19 +396,32 @@ namespace ATA_GUI
 
         private void buttonRS_Click(object sender, EventArgs e)
         {
-            rebootSmartphone();
+            if (labelStatus.Text == "Cable")
+                rebootSmartphone();
+            else
+                MessageShowBox("Can't reboot smartphone while is connected via wireless", 0);
         }
 
         private void buttonRR_Click(object sender, EventArgs e)
         {
-            systemCommand("adb reboot recovery");
-            LogWriteLine("Rebooted!");
+            if (labelStatus.Text == "Cable")
+            {
+                systemCommand("adb reboot recovery");
+                LogWriteLine("Rebooted!");
+            }
+            else
+                MessageShowBox("Can't reboot smartphone while is connected via wireless", 0);
         }
 
         private void buttonRF_Click(object sender, EventArgs e)
         {
-            systemCommand("adb reboot-bootloader");
-            LogWriteLine("Rebooted!");
+            if (labelStatus.Text == "Cable")
+            {
+                systemCommand("adb reboot-bootloader");
+                LogWriteLine("Rebooted!");
+            }
+            else
+                MessageShowBox("Can't reboot smartphone while is connected via wireless", 0);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -497,9 +552,10 @@ namespace ATA_GUI
         {
             if (textBoxIP.TextLength > 1)
             {
+                string FILEName = "status.tmp";
                 systemCommand("adb tcpip 5555");
-                systemCommand("adb connect " + textBoxIP.Text + " | findstr \"" + textBoxIP.Text + ":5555\" && if %ERRORLEVEL%==0 0 > "+ FILEDEVICEINFO);
-                if (File.Exists(FILEDEVICEINFO))
+                systemCommand("adb connect " + textBoxIP.Text + " | findstr \"" + textBoxIP.Text + ":5555\" && if %ERRORLEVEL%==0 0 > " + FILEName);
+                if (File.Exists(FILEName))
                 {
                     MessageShowBox("connected to " + textBoxIP.Text, 2);
                 }
@@ -507,7 +563,7 @@ namespace ATA_GUI
                 {
                     MessageShowBox("Failed to connect to " + textBoxIP.Text, 0);
                 }
-                File.Delete(FILEDEVICEINFO);
+                File.Delete(FILEName);
                 syncFun(0);
             }
         }
@@ -516,8 +572,9 @@ namespace ATA_GUI
         {
             if (textBoxIP.TextLength > 1)
             {
-                systemCommand("adb disconnect " + textBoxIP.Text + " | findstr \"disconnect\" && if %ERRORLEVEL%==0 0 > "+ FILEDEVICEINFO);
-                if (File.Exists(FILEDEVICEINFO))
+                string FILEName = "status.tmp";
+                systemCommand("adb disconnect " + textBoxIP.Text + " | findstr \"disconnect\" && if %ERRORLEVEL%==0 0 > " + FILEName);
+                if (File.Exists(FILEName))
                 {
                     MessageShowBox(textBoxIP.Text + " disconnected", 2);
                 }
@@ -525,7 +582,7 @@ namespace ATA_GUI
                 {
                     MessageShowBox(textBoxIP.Text + "Failed to disconnect", 0);
                 }
-                File.Delete(FILEDEVICEINFO);
+                File.Delete(FILEName);
                 syncFun(0);
             }
         }
@@ -536,11 +593,11 @@ namespace ATA_GUI
             {
                 foreach (Object list in checkedListBoxApp.CheckedItems)
                 {
-                    systemCommand(command1 + list.ToString() + command2 + " > "+ FILEDEVICEINFO);
-                    if (File.Exists(FILEDEVICEINFO))
+                    string log;
+                    if((log = adbFastbootCommandR(new string[] { command1 + list.ToString() + command2 }, 0))!=null)
                     {
                         if (type == 1)
-                            ScrollableMessageBox.show(File.ReadAllText(FILEDEVICEINFO), "Granted permissions");
+                            ScrollableMessageBox.show(log, "Granted permissions");
                         else
                             LogWriteLine("Command injected!");
                     }
@@ -549,7 +606,6 @@ namespace ATA_GUI
                         LogWriteLine("Command failed!");
                     }
                 }
-                File.Delete(FILEDEVICEINFO);
             }
             else
             {
@@ -559,18 +615,18 @@ namespace ATA_GUI
 
         private void buttonCheckPermissions_Click(object sender, EventArgs e)
         {
-            appFunc("adb shell dumpsys package ", null, 1);
+            appFunc("shell dumpsys package ", null, 1);
         }
 
         private void buttonGrantDump_Click(object sender, EventArgs e)
         {
-            appFunc("adb shell pm grant ", " android.permission.DUMP", 0);
+            appFunc("shell pm grant ", " android.permission.DUMP", 0);
         }
 
 
         private void buttonGrantPermission_Click(object sender, EventArgs e)
         {
-            appFunc("adb shell pm grant ", " android.permission.WRITE_SECURE_SETTINGS", 0);
+            appFunc("shell pm grant ", " android.permission.WRITE_SECURE_SETTINGS", 0);
         }
 
         private void buttonSearchFile_Click(object sender, EventArgs e)
@@ -605,17 +661,15 @@ namespace ATA_GUI
             {
                 LogWriteLine("Installing " + textBoxDirFile.Text);
                 pictureBoxLoading.Visible = true;
-                systemCommand("adb sideload \"" + textBoxDirFile.Text + "\" | findstr \"error\" && if %ERRORLEVEL%==0 0 > "+ FILEDEVICEINFO);
-                pictureBoxLoading.Visible = false;
-                if (File.Exists(FILEDEVICEINFO))
+                if (adbFastbootCommandR(new string[] { "sideload \"" + textBoxDirFile.Text + "\"" }, 0).Contains("100%"))
                 {
-                    LogWriteLine(textBoxDirFile.Text + " installed");
-                    File.Delete(FILEDEVICEINFO);
+                    LogWriteLine(textBoxDirFile.Text + " flashed");
                 }
                 else
                 {
-                    LogWriteLine(textBoxDirFile.Text + " not installed");
+                    LogWriteLine(textBoxDirFile.Text + " failed to flashed");
                 }
+                pictureBoxLoading.Visible = false;
             });
         }
 
@@ -678,39 +732,38 @@ namespace ATA_GUI
 
         private void backgroundWorkerFlashImg_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            string filenameLog = "flashlog.log";
+            string log = "";
             string command = "";
             switch (sender.ToString())
             {
                 case "0":
-                    command = "fastboot flash boot ";
+                    command = "flash boot ";
                     break;
                 case "1":
-                    command = "fastboot flash bootloader ";
+                    command = "flash bootloader ";
                     break;
                 case "2":
-                    command = "fastboot flash cache ";
+                    command = "flash cache ";
                     break;
                 case "3":
-                    command = "fastboot flash radio ";
+                    command = "flash radio ";
                     break;
                 case "4":
-                    command = "fastboot flash recovery ";
+                    command = "flash recovery ";
                     break;
                 case "5":
-                    command = "fastboot -w && fastboot update ";
-                    return;
+                    command = "-w && fastboot update ";
+                    break;
                 case "6":
-                    command = "fastboot flash system ";
+                    command = "flash system ";
                     break;
                 case "7":
-                    command = "fastboot flash vendor ";
+                    command = "flash vendor ";
                     break;
             }
-            systemCommand(command + textBoxDirImg.Text + " > " + filenameLog);
-            if (File.Exists(filenameLog))
+            if ((log = adbFastbootCommandR(new string[] { command + textBoxDirImg.Text }, 1))!=null)
             {
-                LogWriteLine(File.ReadAllLines(filenameLog).ToString());
+                LogWriteLine(log);
             }
             else
             {
