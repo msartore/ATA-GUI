@@ -18,7 +18,6 @@ namespace ATA_GUI
         public const int HT_CAPTION = 0x2;
         private bool textboxClear = false;
         private readonly string FILEADB = "adb.exe";
-        private readonly string FILEFASTBOOT = "fastboot.exe";
 
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -146,7 +145,7 @@ namespace ATA_GUI
             cmd.WaitForExit();
         }
 
-        public string adbFastbootCommandR(string[] args, int type)
+        static public string adbFastbootCommandR(string[] args, int type)
         {
             string ret = "";
             string line;
@@ -161,7 +160,7 @@ namespace ATA_GUI
             switch(type)
             {
                 case 0:
-                    startInfo.FileName = FILEADB;
+                    startInfo.FileName = "adb.exe";
                     process.StartInfo = startInfo;
                                         
                     foreach (string s in args)
@@ -175,7 +174,7 @@ namespace ATA_GUI
                     }
                     break;
                 case 1:
-                    startInfo.FileName = FILEFASTBOOT;
+                    startInfo.FileName = "fastboot.exe";
                     process.StartInfo = startInfo;
                     
                     foreach (string s in args)
@@ -225,7 +224,6 @@ namespace ATA_GUI
                 paramObjTmp = "1";
                 paramObj = "0";
             }
-            int i = 0;
             if (checkAdbFastboot(0))
             {
                 LogWriteLine("Checking device...");
@@ -427,7 +425,6 @@ namespace ATA_GUI
         private void MainForm_Load(object sender, EventArgs e)
         {
             pictureBoxLoading2.Visible = false;
-            pictureBoxLoading.Visible = false;
             panelFastboot.Enabled = false;
             this.WindowState = FormWindowState.Minimized;
             this.WindowState = FormWindowState.Normal;
@@ -660,16 +657,15 @@ namespace ATA_GUI
             Invoke((Action)delegate
             {
                 LogWriteLine("Installing " + textBoxDirFile.Text);
-                pictureBoxLoading.Visible = true;
-                if (adbFastbootCommandR(new string[] { "sideload \"" + textBoxDirFile.Text + "\"" }, 0).Contains("100%"))
-                {
-                    LogWriteLine(textBoxDirFile.Text + " flashed");
-                }
-                else
+                string log = adbFastbootCommandR(new string[] { "sideload \"" + textBoxDirFile.Text + "\"" }, 0);
+                if(log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log=="")
                 {
                     LogWriteLine(textBoxDirFile.Text + " failed to flashed");
                 }
-                pictureBoxLoading.Visible = false;
+                else
+                {
+                    LogWriteLine(textBoxDirFile.Text + " flashed");
+                }
             });
         }
 
@@ -771,12 +767,12 @@ namespace ATA_GUI
             }
         }
 
-        private bool checkAdbFastboot(int exeN)
+        static private bool checkAdbFastboot(int exeN)
         {
-            string exeTmp = FILEADB;
-            if(exeN==1)
+            string exeTmp = "adb.exe";
+            if (exeN==1)
             {
-                exeTmp = FILEFASTBOOT;
+                exeTmp = "fastboot.exe";
             }
             if (File.Exists(exeTmp) && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll"))
                 return true;
@@ -826,6 +822,25 @@ namespace ATA_GUI
             LogWriteLine("Rebooting smartphone...");
             systemCommand("adb reboot");
             LogWriteLine("Smartphone rebooted");
+        }
+
+        private void buttonRebootRecovery_Click(object sender, EventArgs e)
+        {
+            LogWriteLine("Rebooting smartphone...");
+            systemCommand("fastboot reboot recovery");
+            LogWriteLine("Smartphone rebooted");
+        }
+
+        private void buttonBootloaderMenu_Click(object sender, EventArgs e)
+        {
+            BootloaderMenu bootloaderMenu = new BootloaderMenu();
+            bootloaderMenu.ShowDialog();
+        }
+
+        private void buttonCredits_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
         }
     }
 }

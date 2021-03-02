@@ -37,10 +37,10 @@ namespace ATA_GUI
             // 
             this.richTextBox.Location = new System.Drawing.Point(12, 12);
             this.richTextBox.Name = "richTextBox";
+            this.richTextBox.ReadOnly = true;
             this.richTextBox.Size = new System.Drawing.Size(430, 416);
             this.richTextBox.TabIndex = 0;
             this.richTextBox.Text = "";
-            this.richTextBox.ReadOnly = true;
             // 
             // ScrollableMessageBox
             // 
@@ -52,6 +52,7 @@ namespace ATA_GUI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ScrollableMessageBox";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ScrollableMessageBox";
             this.ResumeLayout(false);
 

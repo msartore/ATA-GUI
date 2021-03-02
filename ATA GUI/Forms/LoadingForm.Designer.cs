@@ -83,6 +83,7 @@ namespace ATA_GUI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "LoadingForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Uninstalling...";
             this.Shown += new System.EventHandler(this.LoadingForm_Shown);
             this.ResumeLayout(false);

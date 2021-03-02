@@ -115,6 +115,7 @@ namespace ATA_GUI
             this.MinimizeBox = false;
             this.Name = "adbMissingForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = " Error ADB Missing!";
             this.Load += new System.EventHandler(this.adbMissingForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
