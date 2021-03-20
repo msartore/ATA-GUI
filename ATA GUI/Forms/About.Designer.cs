@@ -129,7 +129,7 @@ namespace ATA_GUI
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Version: 1.0.0.0";
+            this.label2.Text = "Version: 1.0.0.1";
             // 
             // label3
             // 

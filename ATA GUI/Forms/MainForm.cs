@@ -108,9 +108,9 @@ namespace ATA_GUI
             }
             catch (Exception ex)
             {
-                if (ex.ToString().Contains("Ionic"))
+                if (ex.ToString().Contains("DotNetZip"))
                 {
-                    MessageShowBox("Ionic.Zip.dll not found!", 0);
+                    MessageShowBox("DotNetZip.dll not found!", 0);
                 }
             }
         }
@@ -424,6 +424,11 @@ namespace ATA_GUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            if(!File.Exists("DotNetZip.dll"))
+            {
+                MessageShowBox("DotNetZip.dll not found!", 0);
+                Application.Exit();
+            }
             Disclaimer disclaimer = new Disclaimer();
             if (!disclaimer.checkDiscalimer())
             {
