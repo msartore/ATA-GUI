@@ -424,11 +424,16 @@ namespace ATA_GUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            Disclaimer disclaimer = new Disclaimer();
+            if (!disclaimer.checkDiscalimer())
+            {
+                disclaimer.ShowDialog();
+            }
             pictureBoxLoading2.Visible = false;
             panelFastboot.Enabled = false;
             this.WindowState = FormWindowState.Minimized;
             this.WindowState = FormWindowState.Normal;
-            this.Focus(); this.Show();
+            this.Focus(); 
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
