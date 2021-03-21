@@ -38,6 +38,7 @@ namespace ATA_GUI
             this.buttonKillAdb = new System.Windows.Forms.Button();
             this.buttonSyncApp = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonCredits = new System.Windows.Forms.Button();
             this.buttonLogClear = new System.Windows.Forms.Button();
             this.backgroundWorkerSync = new System.ComponentModel.BackgroundWorker();
             this.groupBoxDeviceInfo = new System.Windows.Forms.GroupBox();
@@ -120,7 +121,7 @@ namespace ATA_GUI
             this.backgroundWorkerZip = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerFlashImg = new System.ComponentModel.BackgroundWorker();
             this.richTextBoxLog = new System.Windows.Forms.RichTextBox();
-            this.buttonCredits = new System.Windows.Forms.Button();
+            this.buttonDE = new System.Windows.Forms.Button();
             this.panelTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -195,7 +196,7 @@ namespace ATA_GUI
             // labelLog
             // 
             this.labelLog.AutoSize = true;
-            this.labelLog.Location = new System.Drawing.Point(440, 355);
+            this.labelLog.Location = new System.Drawing.Point(440, 366);
             this.labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLog.Name = "labelLog";
             this.labelLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -235,12 +236,26 @@ namespace ATA_GUI
             this.groupBox1.Controls.Add(this.buttonLogClear);
             this.groupBox1.Controls.Add(this.buttonSyncApp);
             this.groupBox1.Controls.Add(this.buttonKillAdb);
-            this.groupBox1.Location = new System.Drawing.Point(12, 355);
+            this.groupBox1.Location = new System.Drawing.Point(12, 366);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(426, 84);
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tool Box";
+            // 
+            // buttonCredits
+            // 
+            this.buttonCredits.BackColor = System.Drawing.Color.White;
+            this.buttonCredits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCredits.ForeColor = System.Drawing.Color.Black;
+            this.buttonCredits.Location = new System.Drawing.Point(13, 44);
+            this.buttonCredits.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCredits.Name = "buttonCredits";
+            this.buttonCredits.Size = new System.Drawing.Size(118, 23);
+            this.buttonCredits.TabIndex = 32;
+            this.buttonCredits.Text = "About";
+            this.buttonCredits.UseVisualStyleBackColor = false;
+            this.buttonCredits.Click += new System.EventHandler(this.buttonCredits_Click);
             // 
             // buttonLogClear
             // 
@@ -281,7 +296,7 @@ namespace ATA_GUI
             this.groupBoxDeviceInfo.Controls.Add(this.labelBuildUser);
             this.groupBoxDeviceInfo.Location = new System.Drawing.Point(3, 3);
             this.groupBoxDeviceInfo.Name = "groupBoxDeviceInfo";
-            this.groupBoxDeviceInfo.Size = new System.Drawing.Size(257, 141);
+            this.groupBoxDeviceInfo.Size = new System.Drawing.Size(257, 157);
             this.groupBoxDeviceInfo.TabIndex = 32;
             this.groupBoxDeviceInfo.TabStop = false;
             this.groupBoxDeviceInfo.Text = "Device Info";
@@ -456,7 +471,7 @@ namespace ATA_GUI
             this.tabControl1.Location = new System.Drawing.Point(12, 42);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(828, 310);
+            this.tabControl1.Size = new System.Drawing.Size(828, 321);
             this.tabControl1.TabIndex = 33;
             // 
             // tabPageSystem
@@ -467,7 +482,7 @@ namespace ATA_GUI
             this.tabPageSystem.Location = new System.Drawing.Point(4, 22);
             this.tabPageSystem.Name = "tabPageSystem";
             this.tabPageSystem.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSystem.Size = new System.Drawing.Size(820, 284);
+            this.tabPageSystem.Size = new System.Drawing.Size(820, 295);
             this.tabPageSystem.TabIndex = 0;
             this.tabPageSystem.Text = "System";
             this.tabPageSystem.UseVisualStyleBackColor = true;
@@ -478,7 +493,7 @@ namespace ATA_GUI
             this.groupBoxADBNet.Controls.Add(this.buttonDisconnectIP);
             this.groupBoxADBNet.Controls.Add(this.textBoxIP);
             this.groupBoxADBNet.Controls.Add(this.buttonConnectToIP);
-            this.groupBoxADBNet.Location = new System.Drawing.Point(157, 159);
+            this.groupBoxADBNet.Location = new System.Drawing.Point(157, 172);
             this.groupBoxADBNet.Name = "groupBoxADBNet";
             this.groupBoxADBNet.Size = new System.Drawing.Size(213, 119);
             this.groupBoxADBNet.TabIndex = 37;
@@ -533,11 +548,12 @@ namespace ATA_GUI
             this.panelSystem.Controls.Add(this.groupBoxDeviceInfo);
             this.panelSystem.Location = new System.Drawing.Point(3, 3);
             this.panelSystem.Name = "panelSystem";
-            this.panelSystem.Size = new System.Drawing.Size(811, 150);
+            this.panelSystem.Size = new System.Drawing.Size(811, 163);
             this.panelSystem.TabIndex = 37;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.buttonDE);
             this.groupBox3.Controls.Add(this.groupBox2);
             this.groupBox3.Controls.Add(this.buttonReloadApps);
             this.groupBox3.Controls.Add(this.panel1);
@@ -548,7 +564,7 @@ namespace ATA_GUI
             this.groupBox3.Controls.Add(this.buttonApk);
             this.groupBox3.Location = new System.Drawing.Point(266, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(542, 141);
+            this.groupBox3.Size = new System.Drawing.Size(542, 157);
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "APK Menu";
@@ -560,7 +576,7 @@ namespace ATA_GUI
             this.groupBox2.Controls.Add(this.buttonGrantPermission);
             this.groupBox2.Location = new System.Drawing.Point(142, 16);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(155, 119);
+            this.groupBox2.Size = new System.Drawing.Size(155, 136);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Grant Permission Menu";
@@ -622,10 +638,10 @@ namespace ATA_GUI
             this.panel1.Controls.Add(this.radioButtoNonSystemApp);
             this.panel1.Controls.Add(this.radioButtonSystemApp);
             this.panel1.ForeColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(6, 79);
+            this.panel1.Location = new System.Drawing.Point(6, 104);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(131, 56);
+            this.panel1.Size = new System.Drawing.Size(131, 48);
             this.panel1.TabIndex = 38;
             // 
             // radioButtoNonSystemApp
@@ -692,7 +708,7 @@ namespace ATA_GUI
             this.checkedListBoxApp.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBoxApp.Name = "checkedListBoxApp";
             this.checkedListBoxApp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.checkedListBoxApp.Size = new System.Drawing.Size(235, 94);
+            this.checkedListBoxApp.Size = new System.Drawing.Size(235, 109);
             this.checkedListBoxApp.TabIndex = 37;
             // 
             // buttonUninstallApk
@@ -726,7 +742,7 @@ namespace ATA_GUI
             this.groupBoxRebootMenu.Controls.Add(this.buttonRS);
             this.groupBoxRebootMenu.Controls.Add(this.buttonRR);
             this.groupBoxRebootMenu.Controls.Add(this.buttonRF);
-            this.groupBoxRebootMenu.Location = new System.Drawing.Point(3, 159);
+            this.groupBoxRebootMenu.Location = new System.Drawing.Point(3, 172);
             this.groupBoxRebootMenu.Name = "groupBoxRebootMenu";
             this.groupBoxRebootMenu.Size = new System.Drawing.Size(148, 119);
             this.groupBoxRebootMenu.TabIndex = 35;
@@ -1133,7 +1149,7 @@ namespace ATA_GUI
             // 
             this.richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
             this.richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
-            this.richTextBoxLog.Location = new System.Drawing.Point(443, 375);
+            this.richTextBoxLog.Location = new System.Drawing.Point(443, 386);
             this.richTextBoxLog.Name = "richTextBoxLog";
             this.richTextBoxLog.ReadOnly = true;
             this.richTextBoxLog.Size = new System.Drawing.Size(393, 64);
@@ -1141,26 +1157,25 @@ namespace ATA_GUI
             this.richTextBoxLog.TabStop = false;
             this.richTextBoxLog.Text = "";
             // 
-            // buttonCredits
+            // buttonDE
             // 
-            this.buttonCredits.BackColor = System.Drawing.Color.White;
-            this.buttonCredits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCredits.ForeColor = System.Drawing.Color.Black;
-            this.buttonCredits.Location = new System.Drawing.Point(13, 44);
-            this.buttonCredits.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCredits.Name = "buttonCredits";
-            this.buttonCredits.Size = new System.Drawing.Size(118, 23);
-            this.buttonCredits.TabIndex = 32;
-            this.buttonCredits.Text = "About";
-            this.buttonCredits.UseVisualStyleBackColor = false;
-            this.buttonCredits.Click += new System.EventHandler(this.buttonCredits_Click);
+            this.buttonDE.BackColor = System.Drawing.Color.White;
+            this.buttonDE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDE.ForeColor = System.Drawing.Color.Black;
+            this.buttonDE.Location = new System.Drawing.Point(5, 77);
+            this.buttonDE.Name = "buttonDE";
+            this.buttonDE.Size = new System.Drawing.Size(131, 23);
+            this.buttonDE.TabIndex = 41;
+            this.buttonDE.Text = "Disabled/Enable";
+            this.buttonDE.UseVisualStyleBackColor = false;
+            this.buttonDE.Click += new System.EventHandler(this.buttonDE_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(852, 450);
+            this.ClientSize = new System.Drawing.Size(852, 462);
             this.Controls.Add(this.richTextBoxLog);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
@@ -1296,6 +1311,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonBootloaderMenu;
         private System.Windows.Forms.Button buttonRebootRecovery;
         private System.Windows.Forms.Button buttonCredits;
+        private System.Windows.Forms.Button buttonDE;
     }
 }
 

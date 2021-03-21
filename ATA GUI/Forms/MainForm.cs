@@ -13,7 +13,7 @@ namespace ATA_GUI
     public partial class MainForm : Form
     {
 
-        private List<string> arrayApks = new List<string>();
+        private readonly List<string> arrayApks = new List<string>();
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
         private bool textboxClear = false;
@@ -196,7 +196,7 @@ namespace ATA_GUI
         }
 
         /* Type 0 Error, Type 1 Warning, Type 2 Info */
-        private void MessageShowBox(string message, int type)
+        public static void MessageShowBox(string message, int type)
         {
             switch (type)
             {
@@ -227,7 +227,7 @@ namespace ATA_GUI
             if (checkAdbFastboot(0))
             {
                 LogWriteLine("Checking device...");
-                if(adbFastbootCommandR(new string[] { "shell getprop ro.build.version.release"}, 0).Any(char.IsDigit))
+                if(adbFastbootCommandR(new [] { "shell getprop ro.build.version.release"}, 0).Any(char.IsDigit))
                 { 
                     switch (paramObj.ToString())
                     {
@@ -278,14 +278,13 @@ namespace ATA_GUI
                                 checkedListBoxApp.Items.Clear();
                             });
                             string[] command = { };
-                            var arrayApksUni = new List<int>();
                             if (radioButtoNonSystemApp.Checked)
                             {
-                                command = new string[] { "shell pm list packages -3" };
+                                command = new [] { "shell pm list packages -3" };
                             }
                             if (radioButtonSystemApp.Checked)
                             {
-                                command = new string[] { "shell pm list packages -s" };
+                                command = new [] { "shell pm list packages -s" };
                             }
 
                             string stringApk;
@@ -378,6 +377,7 @@ namespace ATA_GUI
                         System.Diagnostics.Process.Start("https://developer.android.com/license?authuser=2");
                         break;
                     default:
+                        MessageShowBox("Generic error", 0);
                         break;
                 }
             }
@@ -499,17 +499,21 @@ namespace ATA_GUI
                 {
                     command = "adb shell pm uninstall -k --user 0 ";
                 }
-                List<string> arrayApk = new List<string>();
+                List<string> arrayApkSelect = new List<string>();
                 foreach (Object list in checkedListBoxApp.CheckedItems)
                 {
-                    arrayApk.Add(list.ToString());
+                    arrayApkSelect.Add(list.ToString());
                 }
-                LoadingForm load = new LoadingForm(arrayApk, command);
+                LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:");
                 load.ShowDialog();
                 if (load.DialogResult == DialogResult.OK)
+                { 
                     syncFun(2);
+                }
                 else
+                { 
                     MessageShowBox("Error during uninstallation process", 0);
+                }
             }
             else
             {
@@ -601,7 +605,7 @@ namespace ATA_GUI
                 foreach (Object list in checkedListBoxApp.CheckedItems)
                 {
                     string log;
-                    if((log = adbFastbootCommandR(new string[] { command1 + list.ToString() + command2 }, 0))!=null)
+                    if((log = adbFastbootCommandR(new [] { command1 + list.ToString() + command2 }, 0))!=null)
                     {
                         if (type == 1)
                             ScrollableMessageBox.show(log, "Granted permissions");
@@ -767,7 +771,7 @@ namespace ATA_GUI
                     command = "flash vendor ";
                     break;
             }
-            if ((log = adbFastbootCommandR(new string[] { command + textBoxDirImg.Text }, 1))!=null)
+            if ((log = adbFastbootCommandR(new [] { command + textBoxDirImg.Text }, 1))!=null)
             {
                 LogWriteLine(log);
             }
@@ -851,6 +855,54 @@ namespace ATA_GUI
         {
             About about = new About();
             about.ShowDialog();
+        }
+
+        private void buttonDE_Click(object sender, EventArgs e)
+        {
+            if (checkedListBoxApp.CheckedItems.Count > 0)
+            {
+                string command = "";
+                string commandName = "";
+                List<string> arrayApkSelect = new List<string>();
+                foreach (Object list in checkedListBoxApp.CheckedItems)
+                {
+                    arrayApkSelect.Add(list.ToString());
+                }
+
+                DisableEnableMenu disableEnableMenu = new DisableEnableMenu(arrayApkSelect);
+                disableEnableMenu.ShowDialog();
+                switch (disableEnableMenu.DialogResult)
+                {
+                    case DialogResult.No:
+                        command = "adb shell pm enable ";
+                        commandName = "Enabled:";
+                        break;
+                    case DialogResult.Yes:
+                        command = "adb shell pm disable-user --user 0 ";
+                        commandName = "Disabled";
+                        break;
+                    case DialogResult.Cancel:
+                        LogWriteLine("Operations canceled");
+                        return;
+                    default:
+                        MessageShowBox("Generic error", 0);
+                        return;
+                }
+                LoadingForm load = new LoadingForm(arrayApkSelect, command, commandName);
+                load.ShowDialog();
+                if (load.DialogResult == DialogResult.OK)
+                {
+                    syncFun(2);
+                }
+                else
+                { 
+                    MessageShowBox("Error during this process", 0);
+                }
+            }
+            else
+            {
+                MessageShowBox("No app selected", 1);
+            }
         }
     }
 }

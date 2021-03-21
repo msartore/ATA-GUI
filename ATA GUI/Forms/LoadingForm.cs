@@ -10,28 +10,31 @@ namespace ATA_GUI
     public partial class LoadingForm : Form
     {
         private List<string> arrayApk;
-        private string command;
+        private readonly string command;
 
-        public LoadingForm(List<string> arrayApkTemp, string commandTemp)
+
+        public LoadingForm(List<string> arrayApkTemp, string commandTemp, string labelTemp)
         {
             InitializeComponent();
             arrayApk = arrayApkTemp;
             command = commandTemp;
+            labelText.Text = labelTemp;
         }
+
         private void LoadingForm_Shown(Object sender, EventArgs e)
         {
-            if (!backgroundWorkerUninstaller.IsBusy)
+            if (!backgroundWorker.IsBusy)
             {
-                backgroundWorkerUninstaller.RunWorkerAsync();
+                backgroundWorker.RunWorkerAsync();
             }
             else
             {
-                MessageBox.Show("errore 43");
+                MainForm.MessageShowBox("Background worker is busy", 0);
             }
         }
 
 
-        private void backgroundWorkerUninstaller_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             progressBar1.Value = progressBar1.Maximum;
             progressBar1.Refresh();
@@ -39,7 +42,7 @@ namespace ATA_GUI
             this.Close();
         }
 
-        private void backgroundWorkerUninstaller_DoWork(object sender, DoWorkEventArgs e)
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             Invoke((Action)delegate
             {

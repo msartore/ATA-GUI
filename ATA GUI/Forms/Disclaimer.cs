@@ -7,7 +7,7 @@ namespace ATA_GUI
 {
     public partial class Disclaimer : Form
     {
-        private bool closedByMe = false;
+        private bool closedByMe;
         private const string fileName = "InfoCache.xml";
 
         public Disclaimer()
@@ -29,7 +29,6 @@ namespace ATA_GUI
             XmlDocument doc = new XmlDocument();
             doc.Load(fileName);
             XmlNode node = doc.DocumentElement.SelectSingleNode("/disclaimer/agreed");
-            string a = node.InnerText;
             if (node.InnerText == "yes")
             {
                 return true;
@@ -65,7 +64,10 @@ namespace ATA_GUI
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (!closedByMe) Application.Exit(); 
+            if (!closedByMe)
+            { 
+                Application.Exit();
+            }
         }
     }
 }

@@ -70,6 +70,12 @@
     <Compile Include="Forms\BootloaderMenu.Designer.cs">
       <DependentUpon>BootloaderMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DisableEnableMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DisableEnableMenu.Designer.cs">
+      <DependentUpon>DisableEnableMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Disclaimer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BootloaderMenu.resx">
       <DependentUpon>BootloaderMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DisableEnableMenu.resx">
+      <DependentUpon>DisableEnableMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Disclaimer.resx">
       <DependentUpon>Disclaimer.cs</DependentUpon>
