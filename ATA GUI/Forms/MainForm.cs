@@ -18,6 +18,7 @@ namespace ATA_GUI
         public const int HT_CAPTION = 0x2;
         private bool textboxClear = false;
         private readonly string FILEADB = "adb.exe";
+        private bool systemApp = false;
 
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -219,110 +220,148 @@ namespace ATA_GUI
         {
             Object paramObj = e.Argument as Object;
             String paramObjTmp = "0";
-            if(paramObj.ToString()=="1")
+            if(paramObj.ToString()=="3" )
             {
                 paramObjTmp = "1";
-                paramObj = "0";
             }
             if (checkAdbFastboot(0))
             {
                 LogWriteLine("Checking device...");
                 if(adbFastbootCommandR(new [] { "shell getprop ro.build.version.release"}, 0).Any(char.IsDigit))
-                { 
-                    switch (paramObj.ToString())
+                {
+                    string stringApk;
+                    int count = 1;
+                    if(paramObj.ToString()=="3")
                     {
-                        case "0":
-                            string[] arrayDeviceInfoCommands = { "shell getprop ro.build.version.release", "shell getprop ro.build.user",  "shell getprop ro.product.cpu.abilist", "shell getprop ro.product.manufacturer" , "shell getprop ro.product.model",
-                                   "shell getprop ro.product.board", "shell getprop ro.product.device", "shell ip route", "devices" };
-                            string deviceinfo = adbFastbootCommandR(arrayDeviceInfoCommands, 0);
-                            string[] arrayDeviceInfo = deviceinfo.Split('\n');
-                            if (arrayDeviceInfo.Length > 6)
-                            {
-                                Invoke((Action)delegate
+                        count = 2;
+                        paramObj = "0";
+                    }
+                    for(int a = 0; a<count; a++)
+                    {
+                        if (a==1)
+                        {
+                            paramObj = "2";
+                        }
+                        switch (paramObj.ToString())
+                        {
+                            case "0":
+                                string[] arrayDeviceInfoCommands = { "shell getprop ro.build.version.release", "shell getprop ro.build.user",  "shell getprop ro.product.cpu.abilist", "shell getprop ro.product.manufacturer" , "shell getprop ro.product.model",
+                                       "shell getprop ro.product.board", "shell getprop ro.product.device", "shell ip route", "devices" };
+                                string deviceinfo = adbFastbootCommandR(arrayDeviceInfoCommands, 0);
+                                string[] arrayDeviceInfo = deviceinfo.Split('\n');
+                                if (arrayDeviceInfo.Length > 6)
                                 {
-                                    LogWriteLine("device found!");                                
-                                    labelAV.Text = arrayDeviceInfo[0];
-                                    labelBU.Text = arrayDeviceInfo[1];
-                                    labelCA.Text = arrayDeviceInfo[2];
-                                    labelManu.Text = arrayDeviceInfo[3];
-                                    labelModel.Text = arrayDeviceInfo[4];
-                                    labelB.Text = arrayDeviceInfo[5];
-                                    labelD.Text = arrayDeviceInfo[6];
-                                    if (arrayDeviceInfo.Length > 7)
-                                    {
-                                        textBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
-                                        if (deviceinfo.Contains(textBoxIP.Text.Substring(0, textBoxIP.Text.Length-2) +":5555"))
-                                            labelStatus.Text = "Wireless";
-                                        else
-                                            labelStatus.Text = "Cable";
-                                    }
-                                    LogWriteLine("Device info extracted");
-                                    radioButtoNonSystemApp.Checked = true;
-                                    panelSystem.Enabled = true;
-                                    groupBoxADBNet.Enabled = true;
-                                    groupBoxRebootMenu.Enabled = true;
-                                });
-                            }
-                            else
-                            {
-                                panelSystem.Enabled = false;
-                                groupBoxADBNet.Enabled = false;
-                                groupBoxRebootMenu.Enabled = false;
-                                LogWriteLine("Error: failed to extract device info!");
-                            }
-                            break;
-                        case "2":
-                            arrayApks.Clear();
-                            Invoke((Action)delegate
-                            {
-                                checkedListBoxApp.Items.Clear();
-                            });
-                            string[] command = { };
-                            if (radioButtoNonSystemApp.Checked)
-                            {
-                                command = new [] { "shell pm list packages -3" };
-                            }
-                            if (radioButtonSystemApp.Checked)
-                            {
-                                command = new [] { "shell pm list packages -s" };
-                            }
-
-                            string stringApk;
-                            if ((stringApk = adbFastbootCommandR(command,0))!=null)
-                            {
-                                LogWriteLine("Loading apps...");
-                                string[] arrayApkTmp = stringApk.Split('\n');
-                                foreach (string line in arrayApkTmp)
-                                {
-                                    if (line.Contains("package:"))
-                                    {
-                                        arrayApks.Add(line.Substring(8));
-                                    }
-                                }
-                                foreach (string str in arrayApks)
-                                {
+                                
                                     Invoke((Action)delegate
                                     {
-                                        checkedListBoxApp.Items.Add(str);
-                                        checkedListBoxApp.CheckOnClick = true;
+                                        LogWriteLine("device found!");                                
+                                        labelAV.Text = arrayDeviceInfo[0];
+                                        labelBU.Text = arrayDeviceInfo[1];
+                                        labelCA.Text = arrayDeviceInfo[2];
+                                        labelManu.Text = arrayDeviceInfo[3];
+                                        labelModel.Text = arrayDeviceInfo[4];
+                                        labelB.Text = arrayDeviceInfo[5];
+                                        labelD.Text = arrayDeviceInfo[6];
+                                        if (arrayDeviceInfo.Length > 7)
+                                        {
+                                            textBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
+                                            if (deviceinfo.Contains(textBoxIP.Text.Substring(0, textBoxIP.Text.Length-2) +":5555"))
+                                                labelStatus.Text = "Wireless";
+                                            else
+                                                labelStatus.Text = "Cable";
+                                        }
+                                        LogWriteLine("Device info extracted");
+                                        tabPageSystem.Enabled = true;
                                     });
                                 }
-                                LogWriteLine("Apps loaded!");
-                            }
-                            else
-                            {
-                                MessageShowBox("Error during apk loading", 0);
-                            }
-                            break;
+                                else
+                                {
+                                    tabPageSystem.Enabled = false;
+                                    LogWriteLine("Error: failed to extract device info!");
+                                }
+                                break;
+                            case "2":
+                                arrayApks.Clear();
+                                Invoke((Action)delegate
+                                {
+                                    checkedListBoxApp.Items.Clear();
+                                });
+                                string[] command = { };
+                                if (!systemApp)
+                                {
+                                    command = new[] { "shell pm list packages -3" };
+                                }
+                                else
+                                {
+                                    command = new[] { "shell pm list packages -s" };
+                                }
+                                if ((stringApk = adbFastbootCommandR(command,0))!=null)
+                                {
+                                    LogWriteLine("Loading apps...");
+                                    string[] arrayApkTmp = stringApk.Split('\n');
+                                    foreach (string line in arrayApkTmp)
+                                    {
+                                        if (line.Contains("package:"))
+                                        {
+                                            arrayApks.Add(line.Substring(8));
+                                        }
+                                    }
+                                    foreach (string str in arrayApks)
+                                    {
+                                        Invoke((Action)delegate
+                                        {
+                                            checkedListBoxApp.Items.Add(str);
+                                            checkedListBoxApp.CheckOnClick = true;
+                                        });
+                                    }
+                                    LogWriteLine("Apps loaded!");
+                                }
+                                else
+                                {
+                                    MessageShowBox("Error during apk loading", 0);
+                                }
+                                break;
+                            case "4":
+                                arrayApks.Clear();
+                                Invoke((Action)delegate
+                                {
+                                    checkedListBoxApp.Items.Clear();
+                                });
+                                if ((stringApk = adbFastbootCommandR(new[] { "shell pm list packages -3", "shell pm list packages -s" }, 0)) != null)
+                                {
+                                    LogWriteLine("Loading apps...");
+                                    string[] arrayApkTmp = stringApk.Split('\n');
+                                    foreach (string line in arrayApkTmp)
+                                    {
+                                        if (line.Contains("package:"))
+                                        {
+                                            arrayApks.Add(line.Substring(8));
+                                        }
+                                    }
+                                    foreach (string str in arrayApks)
+                                    {
+                                        Invoke((Action)delegate
+                                        {
+                                            checkedListBoxApp.Items.Add(str);
+                                            checkedListBoxApp.CheckOnClick = true;
+                                        });
+                                    }
+                                    LogWriteLine("Apps loaded!");
+                                }
+                                else
+                                {
+                                    MessageShowBox("Error during apk loading", 0);
+                                }
+                                break;
+                        }
                     }
                 }
                 else
                 {
                     Invoke((Action)delegate
                     {
-                        panelSystem.Enabled = false;
-                        groupBoxADBNet.Enabled = false;
-                        groupBoxRebootMenu.Enabled = false;
+                        tabPageSystem.Enabled = false;
+
                         LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
                         if (paramObjTmp == "0")
                             MessageShowBox("Error device not found/ multiple devices found", 0);
@@ -333,9 +372,7 @@ namespace ATA_GUI
             {
                 Invoke((Action)delegate
                 {
-                    panelSystem.Enabled = false;
-                    groupBoxADBNet.Enabled = false;
-                    groupBoxRebootMenu.Enabled = false;
+                    tabPageSystem.Enabled = false;
                 });
                 adbMissingForm adbError = new adbMissingForm();
                 adbError.ShowDialog();
@@ -363,7 +400,6 @@ namespace ATA_GUI
                             File.Delete("sdkplatformtool.zip");
                             systemCommand("rmdir /Q /S platform-tools");
                             LogWriteLine("ATA ready!");
-                            syncFun(1);
                             }
                             catch(Exception ex)
                             {
@@ -380,7 +416,7 @@ namespace ATA_GUI
                         MessageShowBox("Generic error", 0);
                         break;
                 }
-            }
+            }            
         }
 
         private void textboxClick(object sender, EventArgs e)
@@ -443,82 +479,7 @@ namespace ATA_GUI
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            syncFun(1);
-        }
-
-        private void buttonApk_Click(object sender, EventArgs e)
-        {
-            this.openFileDialogAPK.Filter = "Apk files *.Apk|*.apk;";
-            this.openFileDialogAPK.FileName = "";
-            this.openFileDialogAPK.Multiselect = true;
-            this.openFileDialogAPK.Title = "Select Apk";
-
-            DialogResult dr = this.openFileDialogAPK.ShowDialog();
-            if (dr == System.Windows.Forms.DialogResult.OK)
-            {
-                foreach (String file in openFileDialogAPK.FileNames)
-                {
-                    try
-                    {
-                        LogWriteLine("Installing " + file);
-                        systemCommand("adb install -r \"" + file + "\"");
-                        LogWriteLine(file + " installed");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message);
-                    }
-                }
-            }
-        }
-
-
-
-        private void buttonReloadApps_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                syncFun(2);
-            }
-            catch (Exception ex)
-            {
-                MessageShowBox(ex.ToString(), 1);
-            }
-        }
-
-        private void buttonUninstallApk_Click(object sender, EventArgs e)
-        {
-            if (checkedListBoxApp.CheckedItems.Count > 0)
-            {
-                string command = "";
-                if (radioButtoNonSystemApp.Checked)
-                {
-                    command = "adb uninstall ";
-                }
-                if (radioButtonSystemApp.Checked)
-                {
-                    command = "adb shell pm uninstall -k --user 0 ";
-                }
-                List<string> arrayApkSelect = new List<string>();
-                foreach (Object list in checkedListBoxApp.CheckedItems)
-                {
-                    arrayApkSelect.Add(list.ToString());
-                }
-                LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:");
-                load.ShowDialog();
-                if (load.DialogResult == DialogResult.OK)
-                { 
-                    syncFun(2);
-                }
-                else
-                { 
-                    MessageShowBox("Error during uninstallation process", 0);
-                }
-            }
-            else
-            {
-                MessageShowBox("No app selected", 1);
-            }
+            syncFun(3);
         }
 
         private void checkBoxSelectAll_CheckedChanged(object sender, EventArgs e)
@@ -533,20 +494,6 @@ namespace ATA_GUI
                 for (int i = 0; i < checkedListBoxApp.Items.Count; i++)
                     checkedListBoxApp.SetItemCheckState(i, System.Windows.Forms.CheckState.Unchecked);
             }
-        }
-
-        private void radioButtonSystemApp_CheckedChanged(object sender, EventArgs e)
-        {
-            buttonSyncApp.Enabled = true;
-            if (radioButtonSystemApp.Checked)
-                LogWriteLine("System App selected");
-        }
-
-        private void radioButtoNonSystemApp_CheckedChanged(object sender, EventArgs e)
-        {
-            buttonSyncApp.Enabled = true;
-            if (!radioButtonSystemApp.Checked)
-                LogWriteLine("Non System App selected");
         }
 
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
@@ -857,7 +804,80 @@ namespace ATA_GUI
             about.ShowDialog();
         }
 
-        private void buttonDE_Click(object sender, EventArgs e)
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                syncFun(2);
+            }
+            catch (Exception ex)
+            {
+                MessageShowBox(ex.ToString(), 1);
+            }
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            this.openFileDialogAPK.Filter = "Apk files *.Apk|*.apk;";
+            this.openFileDialogAPK.FileName = "";
+            this.openFileDialogAPK.Multiselect = true;
+            this.openFileDialogAPK.Title = "Select Apk";
+
+            DialogResult dr = this.openFileDialogAPK.ShowDialog();
+            if (dr == System.Windows.Forms.DialogResult.OK)
+            {
+                foreach (String file in openFileDialogAPK.FileNames)
+                {
+                    try
+                    {
+                        LogWriteLine("Installing " + file);
+                        systemCommand("adb install -r \"" + file + "\"");
+                        LogWriteLine(file + " installed");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (checkedListBoxApp.CheckedItems.Count > 0)
+            {
+                string command;
+                if (!systemApp)
+                {
+                    command = "adb uninstall ";
+                }
+                else
+                {
+                    command = "adb shell pm uninstall -k --user 0 ";
+                }
+                List<string> arrayApkSelect = new List<string>();
+                foreach (Object list in checkedListBoxApp.CheckedItems)
+                {
+                    arrayApkSelect.Add(list.ToString());
+                }
+                LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:");
+                load.ShowDialog();
+                if (load.DialogResult == DialogResult.OK)
+                {
+                    syncFun(2);
+                }
+                else
+                {
+                    MessageShowBox("Error during uninstallation process", 0);
+                }
+            }
+            else
+            {
+                MessageShowBox("No app selected", 1);
+            }
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
         {
             if (checkedListBoxApp.CheckedItems.Count > 0)
             {
@@ -869,19 +889,23 @@ namespace ATA_GUI
                     arrayApkSelect.Add(list.ToString());
                 }
 
-                DisableEnableMenu disableEnableMenu = new DisableEnableMenu(arrayApkSelect);
-                disableEnableMenu.ShowDialog();
-                switch (disableEnableMenu.DialogResult)
+                PackageMenu packageMenu = new PackageMenu(arrayApkSelect);
+                packageMenu.ShowDialog();
+                switch (packageMenu.dialogResult)
                 {
-                    case DialogResult.No:
+                    case 1:
                         command = "adb shell pm enable ";
                         commandName = "Enabled:";
                         break;
-                    case DialogResult.Yes:
+                    case 0:
                         command = "adb shell pm disable-user --user 0 ";
-                        commandName = "Disabled";
+                        commandName = "Disabled:";
                         break;
-                    case DialogResult.Cancel:
+                    case 2:
+                        command = "adb shell pm clear ";
+                        commandName = "Cleared:";
+                        break;
+                    case -1:
                         LogWriteLine("Operations canceled");
                         return;
                     default:
@@ -895,7 +919,7 @@ namespace ATA_GUI
                     syncFun(2);
                 }
                 else
-                { 
+                {
                     MessageShowBox("Error during this process", 0);
                 }
             }
@@ -903,6 +927,33 @@ namespace ATA_GUI
             {
                 MessageShowBox("No app selected", 1);
             }
+        }
+
+        private void nonSystemAppToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            systemApp = false;
+            syncFun(2);
+        }
+
+        private void systemAppToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            systemApp = true;
+            syncFun(2);
+        }
+
+        private void allToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            syncFun(4);
+        }
+
+        private void toolStripButtonFilter_Click(object sender, EventArgs e)
+        {
+            contextMenuStripFilterBy.Show(Cursor.Position);
+        }
+
+        private void textBoxSearch_Click(object sender, EventArgs e)
+        {
+            textBoxSearch.SelectAll();
         }
     }
 }

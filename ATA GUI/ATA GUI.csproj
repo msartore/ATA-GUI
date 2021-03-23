@@ -70,11 +70,11 @@
     <Compile Include="Forms\BootloaderMenu.Designer.cs">
       <DependentUpon>BootloaderMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DisableEnableMenu.cs">
+    <Compile Include="Forms\PackageMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DisableEnableMenu.Designer.cs">
-      <DependentUpon>DisableEnableMenu.cs</DependentUpon>
+    <Compile Include="Forms\PackageMenu.Designer.cs">
+      <DependentUpon>PackageMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Disclaimer.cs">
       <SubType>Form</SubType>
@@ -111,8 +111,8 @@
     <EmbeddedResource Include="Forms\BootloaderMenu.resx">
       <DependentUpon>BootloaderMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DisableEnableMenu.resx">
-      <DependentUpon>DisableEnableMenu.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\PackageMenu.resx">
+      <DependentUpon>PackageMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Disclaimer.resx">
       <DependentUpon>Disclaimer.cs</DependentUpon>
@@ -160,13 +160,15 @@
     <None Include="Resources\Error.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\reload.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ATALogoGUI.ico" />
+    <None Include="Resources\package.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\install.png" />
+    <None Include="Resources\emptyFilter.png" />
+    <None Include="Resources\reload.png" />
     <None Include="Resources\loader.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

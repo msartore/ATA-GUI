@@ -29,6 +29,7 @@ namespace ATA_GUI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelTopBar = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -60,28 +61,32 @@ namespace ATA_GUI
             this.labelManufacturer = new System.Windows.Forms.Label();
             this.labelCpuAbilitis = new System.Windows.Forms.Label();
             this.labelBuildUser = new System.Windows.Forms.Label();
+            this.checkBoxSelectAll = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageSystem = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonReloadApps = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonFilter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.textBoxSearch = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonInstallApp = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonUninstallApp = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonPackageManager = new System.Windows.Forms.ToolStripButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonCheckPermissions = new System.Windows.Forms.Button();
+            this.buttonGrantDump = new System.Windows.Forms.Button();
+            this.buttonGrantPermission = new System.Windows.Forms.Button();
+            this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
             this.groupBoxADBNet = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonDisconnectIP = new System.Windows.Forms.Button();
             this.textBoxIP = new System.Windows.Forms.TextBox();
             this.buttonConnectToIP = new System.Windows.Forms.Button();
-            this.panelSystem = new System.Windows.Forms.Panel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.buttonCheckPermissions = new System.Windows.Forms.Button();
-            this.buttonGrantDump = new System.Windows.Forms.Button();
-            this.buttonGrantPermission = new System.Windows.Forms.Button();
-            this.buttonReloadApps = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButtoNonSystemApp = new System.Windows.Forms.RadioButton();
-            this.radioButtonSystemApp = new System.Windows.Forms.RadioButton();
-            this.checkBoxSelectAll = new System.Windows.Forms.CheckBox();
-            this.textBoxSearch = new System.Windows.Forms.TextBox();
-            this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
-            this.buttonUninstallApk = new System.Windows.Forms.Button();
-            this.buttonApk = new System.Windows.Forms.Button();
             this.groupBoxRebootMenu = new System.Windows.Forms.GroupBox();
             this.buttonRS = new System.Windows.Forms.Button();
             this.buttonRR = new System.Windows.Forms.Button();
@@ -121,18 +126,23 @@ namespace ATA_GUI
             this.backgroundWorkerZip = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerFlashImg = new System.ComponentModel.BackgroundWorker();
             this.richTextBoxLog = new System.Windows.Forms.RichTextBox();
-            this.buttonDE = new System.Windows.Forms.Button();
+            this.systemAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nonSystemAppToolStripMenuItem = new System.Windows.Forms.ToolStripComboBox();
+            this.filterByToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripFilterBy = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemAppToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.nonSystemAppToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panelTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
-            this.groupBoxADBNet.SuspendLayout();
-            this.panelSystem.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.groupBoxADBNet.SuspendLayout();
             this.groupBoxRebootMenu.SuspendLayout();
             this.tabPageFastboot.SuspendLayout();
             this.panelFastboot.SuspendLayout();
@@ -140,6 +150,7 @@ namespace ATA_GUI
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading2)).BeginInit();
             this.tabPageRecovery.SuspendLayout();
+            this.contextMenuStripFilterBy.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTopBar
@@ -150,7 +161,7 @@ namespace ATA_GUI
             this.panelTopBar.Controls.Add(this.buttonCloseWindows);
             this.panelTopBar.Location = new System.Drawing.Point(0, -3);
             this.panelTopBar.Name = "panelTopBar";
-            this.panelTopBar.Size = new System.Drawing.Size(856, 39);
+            this.panelTopBar.Size = new System.Drawing.Size(884, 39);
             this.panelTopBar.TabIndex = 0;
             this.panelTopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseMove);
             // 
@@ -169,7 +180,7 @@ namespace ATA_GUI
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(769, 0);
+            this.button1.Location = new System.Drawing.Point(798, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(43, 40);
             this.button1.TabIndex = 2;
@@ -184,7 +195,7 @@ namespace ATA_GUI
             this.buttonCloseWindows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCloseWindows.ForeColor = System.Drawing.Color.Black;
             this.buttonCloseWindows.Image = ((System.Drawing.Image)(resources.GetObject("buttonCloseWindows.Image")));
-            this.buttonCloseWindows.Location = new System.Drawing.Point(811, 0);
+            this.buttonCloseWindows.Location = new System.Drawing.Point(840, 0);
             this.buttonCloseWindows.Name = "buttonCloseWindows";
             this.buttonCloseWindows.Size = new System.Drawing.Size(43, 42);
             this.buttonCloseWindows.TabIndex = 1;
@@ -196,7 +207,7 @@ namespace ATA_GUI
             // labelLog
             // 
             this.labelLog.AutoSize = true;
-            this.labelLog.Location = new System.Drawing.Point(440, 366);
+            this.labelLog.Location = new System.Drawing.Point(478, 366);
             this.labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLog.Name = "labelLog";
             this.labelLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -208,7 +219,7 @@ namespace ATA_GUI
             // 
             this.buttonKillAdb.BackColor = System.Drawing.Color.White;
             this.buttonKillAdb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonKillAdb.Location = new System.Drawing.Point(323, 15);
+            this.buttonKillAdb.Location = new System.Drawing.Point(368, 15);
             this.buttonKillAdb.Name = "buttonKillAdb";
             this.buttonKillAdb.Size = new System.Drawing.Size(87, 23);
             this.buttonKillAdb.TabIndex = 29;
@@ -238,7 +249,7 @@ namespace ATA_GUI
             this.groupBox1.Controls.Add(this.buttonKillAdb);
             this.groupBox1.Location = new System.Drawing.Point(12, 366);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(426, 84);
+            this.groupBox1.Size = new System.Drawing.Size(461, 84);
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tool Box";
@@ -262,7 +273,7 @@ namespace ATA_GUI
             this.buttonLogClear.BackColor = System.Drawing.Color.White;
             this.buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogClear.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogClear.Location = new System.Drawing.Point(323, 44);
+            this.buttonLogClear.Location = new System.Drawing.Point(368, 44);
             this.buttonLogClear.Name = "buttonLogClear";
             this.buttonLogClear.Size = new System.Drawing.Size(87, 23);
             this.buttonLogClear.TabIndex = 31;
@@ -294,9 +305,9 @@ namespace ATA_GUI
             this.groupBoxDeviceInfo.Controls.Add(this.labelManufacturer);
             this.groupBoxDeviceInfo.Controls.Add(this.labelCpuAbilitis);
             this.groupBoxDeviceInfo.Controls.Add(this.labelBuildUser);
-            this.groupBoxDeviceInfo.Location = new System.Drawing.Point(3, 3);
+            this.groupBoxDeviceInfo.Location = new System.Drawing.Point(6, 9);
             this.groupBoxDeviceInfo.Name = "groupBoxDeviceInfo";
-            this.groupBoxDeviceInfo.Size = new System.Drawing.Size(257, 157);
+            this.groupBoxDeviceInfo.Size = new System.Drawing.Size(321, 157);
             this.groupBoxDeviceInfo.TabIndex = 32;
             this.groupBoxDeviceInfo.TabStop = false;
             this.groupBoxDeviceInfo.Text = "Device Info";
@@ -463,6 +474,19 @@ namespace ATA_GUI
             this.labelBuildUser.TabIndex = 0;
             this.labelBuildUser.Text = "Build User:";
             // 
+            // checkBoxSelectAll
+            // 
+            this.checkBoxSelectAll.AutoSize = true;
+            this.checkBoxSelectAll.ForeColor = System.Drawing.Color.Black;
+            this.checkBoxSelectAll.Location = new System.Drawing.Point(10, 56);
+            this.checkBoxSelectAll.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxSelectAll.Name = "checkBoxSelectAll";
+            this.checkBoxSelectAll.Size = new System.Drawing.Size(70, 17);
+            this.checkBoxSelectAll.TabIndex = 37;
+            this.checkBoxSelectAll.Text = "Select All";
+            this.checkBoxSelectAll.UseVisualStyleBackColor = true;
+            this.checkBoxSelectAll.CheckedChanged += new System.EventHandler(this.checkBoxSelectAll_CheckedChanged);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPageSystem);
@@ -471,112 +495,152 @@ namespace ATA_GUI
             this.tabControl1.Location = new System.Drawing.Point(12, 42);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(828, 321);
+            this.tabControl1.Size = new System.Drawing.Size(862, 321);
             this.tabControl1.TabIndex = 33;
             // 
             // tabPageSystem
             // 
+            this.tabPageSystem.Controls.Add(this.groupBoxDeviceInfo);
+            this.tabPageSystem.Controls.Add(this.groupBox3);
             this.tabPageSystem.Controls.Add(this.groupBoxADBNet);
-            this.tabPageSystem.Controls.Add(this.panelSystem);
             this.tabPageSystem.Controls.Add(this.groupBoxRebootMenu);
             this.tabPageSystem.Location = new System.Drawing.Point(4, 22);
             this.tabPageSystem.Name = "tabPageSystem";
             this.tabPageSystem.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSystem.Size = new System.Drawing.Size(820, 295);
+            this.tabPageSystem.Size = new System.Drawing.Size(854, 295);
             this.tabPageSystem.TabIndex = 0;
             this.tabPageSystem.Text = "System";
             this.tabPageSystem.UseVisualStyleBackColor = true;
             // 
-            // groupBoxADBNet
-            // 
-            this.groupBoxADBNet.Controls.Add(this.label2);
-            this.groupBoxADBNet.Controls.Add(this.buttonDisconnectIP);
-            this.groupBoxADBNet.Controls.Add(this.textBoxIP);
-            this.groupBoxADBNet.Controls.Add(this.buttonConnectToIP);
-            this.groupBoxADBNet.Location = new System.Drawing.Point(157, 172);
-            this.groupBoxADBNet.Name = "groupBoxADBNet";
-            this.groupBoxADBNet.Size = new System.Drawing.Size(213, 119);
-            this.groupBoxADBNet.TabIndex = 37;
-            this.groupBoxADBNet.TabStop = false;
-            this.groupBoxADBNet.Text = "ADB OVER NETWORK MENU";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 13);
-            this.label2.TabIndex = 39;
-            this.label2.Text = "IP:";
-            // 
-            // buttonDisconnectIP
-            // 
-            this.buttonDisconnectIP.BackColor = System.Drawing.Color.White;
-            this.buttonDisconnectIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDisconnectIP.ForeColor = System.Drawing.Color.Black;
-            this.buttonDisconnectIP.Location = new System.Drawing.Point(120, 52);
-            this.buttonDisconnectIP.Name = "buttonDisconnectIP";
-            this.buttonDisconnectIP.Size = new System.Drawing.Size(76, 23);
-            this.buttonDisconnectIP.TabIndex = 38;
-            this.buttonDisconnectIP.Text = "Disconnect";
-            this.buttonDisconnectIP.UseVisualStyleBackColor = false;
-            this.buttonDisconnectIP.Click += new System.EventHandler(this.buttonDisconnectIP_Click);
-            // 
-            // textBoxIP
-            // 
-            this.textBoxIP.Location = new System.Drawing.Point(29, 26);
-            this.textBoxIP.Name = "textBoxIP";
-            this.textBoxIP.Size = new System.Drawing.Size(167, 20);
-            this.textBoxIP.TabIndex = 37;
-            // 
-            // buttonConnectToIP
-            // 
-            this.buttonConnectToIP.BackColor = System.Drawing.Color.White;
-            this.buttonConnectToIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonConnectToIP.ForeColor = System.Drawing.Color.Black;
-            this.buttonConnectToIP.Location = new System.Drawing.Point(29, 52);
-            this.buttonConnectToIP.Name = "buttonConnectToIP";
-            this.buttonConnectToIP.Size = new System.Drawing.Size(76, 23);
-            this.buttonConnectToIP.TabIndex = 35;
-            this.buttonConnectToIP.Text = "Connect";
-            this.buttonConnectToIP.UseVisualStyleBackColor = false;
-            this.buttonConnectToIP.Click += new System.EventHandler(this.buttonConnectToIP_Click);
-            // 
-            // panelSystem
-            // 
-            this.panelSystem.Controls.Add(this.groupBox3);
-            this.panelSystem.Controls.Add(this.groupBoxDeviceInfo);
-            this.panelSystem.Location = new System.Drawing.Point(3, 3);
-            this.panelSystem.Name = "panelSystem";
-            this.panelSystem.Size = new System.Drawing.Size(811, 163);
-            this.panelSystem.TabIndex = 37;
-            // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.buttonDE);
+            this.groupBox3.Controls.Add(this.toolStrip1);
             this.groupBox3.Controls.Add(this.groupBox2);
-            this.groupBox3.Controls.Add(this.buttonReloadApps);
-            this.groupBox3.Controls.Add(this.panel1);
-            this.groupBox3.Controls.Add(this.checkBoxSelectAll);
-            this.groupBox3.Controls.Add(this.textBoxSearch);
             this.groupBox3.Controls.Add(this.checkedListBoxApp);
-            this.groupBox3.Controls.Add(this.buttonUninstallApk);
-            this.groupBox3.Controls.Add(this.buttonApk);
-            this.groupBox3.Location = new System.Drawing.Point(266, 3);
+            this.groupBox3.Controls.Add(this.checkBoxSelectAll);
+            this.groupBox3.Location = new System.Drawing.Point(331, 9);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(542, 157);
+            this.groupBox3.Size = new System.Drawing.Size(515, 280);
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "APK Menu";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonReloadApps,
+            this.toolStripSeparator2,
+            this.toolStripButtonFilter,
+            this.toolStripSeparator6,
+            this.textBoxSearch,
+            this.toolStripSeparator1,
+            this.toolStripButtonInstallApp,
+            this.toolStripSeparator7,
+            this.toolStripButtonUninstallApp,
+            this.toolStripSeparator5,
+            this.toolStripButtonPackageManager});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 16);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(509, 25);
+            this.toolStrip1.TabIndex = 42;
+            this.toolStrip1.Text = "toolStripAPKMenu";
+            // 
+            // toolStripButtonReloadApps
+            // 
+            this.toolStripButtonReloadApps.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonReloadApps.Image = global::ATA_GUI.Properties.Resources.reload;
+            this.toolStripButtonReloadApps.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonReloadApps.Name = "toolStripButtonReloadApps";
+            this.toolStripButtonReloadApps.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonReloadApps.Text = "Reload Apps";
+            this.toolStripButtonReloadApps.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonFilter
+            // 
+            this.toolStripButtonFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonFilter.Image = global::ATA_GUI.Properties.Resources.emptyFilter;
+            this.toolStripButtonFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonFilter.Name = "toolStripButtonFilter";
+            this.toolStripButtonFilter.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonFilter.Text = "Filter Apps";
+            this.toolStripButtonFilter.ToolTipText = "Apps Filter ";
+            this.toolStripButtonFilter.Click += new System.EventHandler(this.toolStripButtonFilter_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.BackColor = System.Drawing.Color.White;
+            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(150, 25);
+            this.textBoxSearch.Text = "Search";
+            this.textBoxSearch.Click += new System.EventHandler(this.textBoxSearch_Click);
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonInstallApp
+            // 
+            this.toolStripButtonInstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonInstallApp.Image = global::ATA_GUI.Properties.Resources.install;
+            this.toolStripButtonInstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonInstallApp.Name = "toolStripButtonInstallApp";
+            this.toolStripButtonInstallApp.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonInstallApp.Text = "Install App";
+            this.toolStripButtonInstallApp.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonUninstallApp
+            // 
+            this.toolStripButtonUninstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonUninstallApp.Image = global::ATA_GUI.Properties.Resources.delete;
+            this.toolStripButtonUninstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonUninstallApp.Name = "toolStripButtonUninstallApp";
+            this.toolStripButtonUninstallApp.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonUninstallApp.Text = "Uninstall App";
+            this.toolStripButtonUninstallApp.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonPackageManager
+            // 
+            this.toolStripButtonPackageManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonPackageManager.Image = global::ATA_GUI.Properties.Resources.package;
+            this.toolStripButtonPackageManager.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonPackageManager.Name = "toolStripButtonPackageManager";
+            this.toolStripButtonPackageManager.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonPackageManager.Text = "Package Manager";
+            this.toolStripButtonPackageManager.ToolTipText = "Package Menu";
+            this.toolStripButtonPackageManager.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.buttonCheckPermissions);
             this.groupBox2.Controls.Add(this.buttonGrantDump);
             this.groupBox2.Controls.Add(this.buttonGrantPermission);
-            this.groupBox2.Location = new System.Drawing.Point(142, 16);
+            this.groupBox2.Location = new System.Drawing.Point(354, 68);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(155, 136);
+            this.groupBox2.Size = new System.Drawing.Size(155, 113);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Grant Permission Menu";
@@ -620,129 +684,79 @@ namespace ATA_GUI
             this.buttonGrantPermission.UseVisualStyleBackColor = false;
             this.buttonGrantPermission.Click += new System.EventHandler(this.buttonGrantPermission_Click);
             // 
-            // buttonReloadApps
-            // 
-            this.buttonReloadApps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonReloadApps.ForeColor = System.Drawing.Color.Black;
-            this.buttonReloadApps.Image = global::ATA_GUI.Properties.Resources.reload;
-            this.buttonReloadApps.Location = new System.Drawing.Point(508, 15);
-            this.buttonReloadApps.Name = "buttonReloadApps";
-            this.buttonReloadApps.Size = new System.Drawing.Size(28, 20);
-            this.buttonReloadApps.TabIndex = 39;
-            this.buttonReloadApps.UseVisualStyleBackColor = true;
-            this.buttonReloadApps.Click += new System.EventHandler(this.buttonReloadApps_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.radioButtoNonSystemApp);
-            this.panel1.Controls.Add(this.radioButtonSystemApp);
-            this.panel1.ForeColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(6, 104);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(131, 48);
-            this.panel1.TabIndex = 38;
-            // 
-            // radioButtoNonSystemApp
-            // 
-            this.radioButtoNonSystemApp.AutoSize = true;
-            this.radioButtoNonSystemApp.ForeColor = System.Drawing.Color.Black;
-            this.radioButtoNonSystemApp.Location = new System.Drawing.Point(3, 26);
-            this.radioButtoNonSystemApp.Margin = new System.Windows.Forms.Padding(2);
-            this.radioButtoNonSystemApp.Name = "radioButtoNonSystemApp";
-            this.radioButtoNonSystemApp.Size = new System.Drawing.Size(104, 17);
-            this.radioButtoNonSystemApp.TabIndex = 11;
-            this.radioButtoNonSystemApp.TabStop = true;
-            this.radioButtoNonSystemApp.Text = "Non System App";
-            this.radioButtoNonSystemApp.UseVisualStyleBackColor = true;
-            this.radioButtoNonSystemApp.CheckedChanged += new System.EventHandler(this.radioButtoNonSystemApp_CheckedChanged);
-            // 
-            // radioButtonSystemApp
-            // 
-            this.radioButtonSystemApp.AutoSize = true;
-            this.radioButtonSystemApp.ForeColor = System.Drawing.Color.Black;
-            this.radioButtonSystemApp.Location = new System.Drawing.Point(3, 5);
-            this.radioButtonSystemApp.Margin = new System.Windows.Forms.Padding(2);
-            this.radioButtonSystemApp.Name = "radioButtonSystemApp";
-            this.radioButtonSystemApp.Size = new System.Drawing.Size(81, 17);
-            this.radioButtonSystemApp.TabIndex = 10;
-            this.radioButtonSystemApp.TabStop = true;
-            this.radioButtonSystemApp.Text = "System App";
-            this.radioButtonSystemApp.UseVisualStyleBackColor = true;
-            this.radioButtonSystemApp.CheckedChanged += new System.EventHandler(this.radioButtonSystemApp_CheckedChanged);
-            // 
-            // checkBoxSelectAll
-            // 
-            this.checkBoxSelectAll.AutoSize = true;
-            this.checkBoxSelectAll.ForeColor = System.Drawing.Color.Black;
-            this.checkBoxSelectAll.Location = new System.Drawing.Point(302, 18);
-            this.checkBoxSelectAll.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBoxSelectAll.Name = "checkBoxSelectAll";
-            this.checkBoxSelectAll.Size = new System.Drawing.Size(70, 17);
-            this.checkBoxSelectAll.TabIndex = 37;
-            this.checkBoxSelectAll.Text = "Select All";
-            this.checkBoxSelectAll.UseVisualStyleBackColor = true;
-            this.checkBoxSelectAll.CheckedChanged += new System.EventHandler(this.checkBoxSelectAll_CheckedChanged);
-            // 
-            // textBoxSearch
-            // 
-            this.textBoxSearch.BackColor = System.Drawing.Color.White;
-            this.textBoxSearch.ForeColor = System.Drawing.Color.Black;
-            this.textBoxSearch.Location = new System.Drawing.Point(376, 15);
-            this.textBoxSearch.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBoxSearch.Size = new System.Drawing.Size(128, 20);
-            this.textBoxSearch.TabIndex = 37;
-            this.textBoxSearch.Text = "Search";
-            this.textBoxSearch.Click += new System.EventHandler(this.textboxClick);
-            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
-            // 
             // checkedListBoxApp
             // 
             this.checkedListBoxApp.BackColor = System.Drawing.Color.White;
             this.checkedListBoxApp.ForeColor = System.Drawing.Color.Black;
             this.checkedListBoxApp.FormattingEnabled = true;
-            this.checkedListBoxApp.Location = new System.Drawing.Point(302, 41);
+            this.checkedListBoxApp.Location = new System.Drawing.Point(8, 75);
             this.checkedListBoxApp.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBoxApp.Name = "checkedListBoxApp";
             this.checkedListBoxApp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.checkedListBoxApp.Size = new System.Drawing.Size(235, 109);
+            this.checkedListBoxApp.Size = new System.Drawing.Size(339, 199);
             this.checkedListBoxApp.TabIndex = 37;
             // 
-            // buttonUninstallApk
+            // groupBoxADBNet
             // 
-            this.buttonUninstallApk.BackColor = System.Drawing.Color.White;
-            this.buttonUninstallApk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonUninstallApk.ForeColor = System.Drawing.Color.Black;
-            this.buttonUninstallApk.Location = new System.Drawing.Point(5, 48);
-            this.buttonUninstallApk.Name = "buttonUninstallApk";
-            this.buttonUninstallApk.Size = new System.Drawing.Size(131, 23);
-            this.buttonUninstallApk.TabIndex = 36;
-            this.buttonUninstallApk.Text = "Uninstall App";
-            this.buttonUninstallApk.UseVisualStyleBackColor = false;
-            this.buttonUninstallApk.Click += new System.EventHandler(this.buttonUninstallApk_Click);
+            this.groupBoxADBNet.Controls.Add(this.label2);
+            this.groupBoxADBNet.Controls.Add(this.buttonDisconnectIP);
+            this.groupBoxADBNet.Controls.Add(this.textBoxIP);
+            this.groupBoxADBNet.Controls.Add(this.buttonConnectToIP);
+            this.groupBoxADBNet.Location = new System.Drawing.Point(157, 170);
+            this.groupBoxADBNet.Name = "groupBoxADBNet";
+            this.groupBoxADBNet.Size = new System.Drawing.Size(170, 119);
+            this.groupBoxADBNet.TabIndex = 37;
+            this.groupBoxADBNet.TabStop = false;
+            this.groupBoxADBNet.Text = "ADB OVER NETWORK MENU";
             // 
-            // buttonApk
+            // label2
             // 
-            this.buttonApk.BackColor = System.Drawing.Color.White;
-            this.buttonApk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonApk.ForeColor = System.Drawing.Color.Black;
-            this.buttonApk.Location = new System.Drawing.Point(6, 19);
-            this.buttonApk.Name = "buttonApk";
-            this.buttonApk.Size = new System.Drawing.Size(131, 23);
-            this.buttonApk.TabIndex = 35;
-            this.buttonApk.Text = "Install APK";
-            this.buttonApk.UseVisualStyleBackColor = false;
-            this.buttonApk.Click += new System.EventHandler(this.buttonApk_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 13);
+            this.label2.TabIndex = 39;
+            this.label2.Text = "IP:";
+            // 
+            // buttonDisconnectIP
+            // 
+            this.buttonDisconnectIP.BackColor = System.Drawing.Color.White;
+            this.buttonDisconnectIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDisconnectIP.ForeColor = System.Drawing.Color.Black;
+            this.buttonDisconnectIP.Location = new System.Drawing.Point(85, 52);
+            this.buttonDisconnectIP.Name = "buttonDisconnectIP";
+            this.buttonDisconnectIP.Size = new System.Drawing.Size(73, 23);
+            this.buttonDisconnectIP.TabIndex = 38;
+            this.buttonDisconnectIP.Text = "Disconnect";
+            this.buttonDisconnectIP.UseVisualStyleBackColor = false;
+            this.buttonDisconnectIP.Click += new System.EventHandler(this.buttonDisconnectIP_Click);
+            // 
+            // textBoxIP
+            // 
+            this.textBoxIP.Location = new System.Drawing.Point(29, 26);
+            this.textBoxIP.Name = "textBoxIP";
+            this.textBoxIP.Size = new System.Drawing.Size(129, 20);
+            this.textBoxIP.TabIndex = 37;
+            // 
+            // buttonConnectToIP
+            // 
+            this.buttonConnectToIP.BackColor = System.Drawing.Color.White;
+            this.buttonConnectToIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonConnectToIP.ForeColor = System.Drawing.Color.Black;
+            this.buttonConnectToIP.Location = new System.Drawing.Point(6, 52);
+            this.buttonConnectToIP.Name = "buttonConnectToIP";
+            this.buttonConnectToIP.Size = new System.Drawing.Size(73, 23);
+            this.buttonConnectToIP.TabIndex = 35;
+            this.buttonConnectToIP.Text = "Connect";
+            this.buttonConnectToIP.UseVisualStyleBackColor = false;
+            this.buttonConnectToIP.Click += new System.EventHandler(this.buttonConnectToIP_Click);
             // 
             // groupBoxRebootMenu
             // 
             this.groupBoxRebootMenu.Controls.Add(this.buttonRS);
             this.groupBoxRebootMenu.Controls.Add(this.buttonRR);
             this.groupBoxRebootMenu.Controls.Add(this.buttonRF);
-            this.groupBoxRebootMenu.Location = new System.Drawing.Point(3, 172);
+            this.groupBoxRebootMenu.Location = new System.Drawing.Point(6, 170);
             this.groupBoxRebootMenu.Name = "groupBoxRebootMenu";
             this.groupBoxRebootMenu.Size = new System.Drawing.Size(148, 119);
             this.groupBoxRebootMenu.TabIndex = 35;
@@ -794,7 +808,7 @@ namespace ATA_GUI
             this.tabPageFastboot.Location = new System.Drawing.Point(4, 22);
             this.tabPageFastboot.Name = "tabPageFastboot";
             this.tabPageFastboot.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageFastboot.Size = new System.Drawing.Size(820, 284);
+            this.tabPageFastboot.Size = new System.Drawing.Size(854, 295);
             this.tabPageFastboot.TabIndex = 1;
             this.tabPageFastboot.Text = "Fastboot";
             this.tabPageFastboot.UseVisualStyleBackColor = true;
@@ -1024,11 +1038,10 @@ namespace ATA_GUI
             // 
             // pictureBoxLoading2
             // 
-            this.pictureBoxLoading2.Image = global::ATA_GUI.Properties.Resources.loader;
-            this.pictureBoxLoading2.Location = new System.Drawing.Point(140, 114);
+            this.pictureBoxLoading2.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxLoading2.Name = "pictureBoxLoading2";
-            this.pictureBoxLoading2.Size = new System.Drawing.Size(34, 33);
-            this.pictureBoxLoading2.TabIndex = 39;
+            this.pictureBoxLoading2.Size = new System.Drawing.Size(100, 50);
+            this.pictureBoxLoading2.TabIndex = 48;
             this.pictureBoxLoading2.TabStop = false;
             // 
             // radioButtonSystem
@@ -1093,7 +1106,7 @@ namespace ATA_GUI
             this.tabPageRecovery.Controls.Add(this.buttonSearchFile);
             this.tabPageRecovery.Location = new System.Drawing.Point(4, 22);
             this.tabPageRecovery.Name = "tabPageRecovery";
-            this.tabPageRecovery.Size = new System.Drawing.Size(820, 284);
+            this.tabPageRecovery.Size = new System.Drawing.Size(854, 295);
             this.tabPageRecovery.TabIndex = 2;
             this.tabPageRecovery.Text = "Recovery";
             this.tabPageRecovery.UseVisualStyleBackColor = true;
@@ -1149,7 +1162,7 @@ namespace ATA_GUI
             // 
             this.richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
             this.richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
-            this.richTextBoxLog.Location = new System.Drawing.Point(443, 386);
+            this.richTextBoxLog.Location = new System.Drawing.Point(481, 386);
             this.richTextBoxLog.Name = "richTextBoxLog";
             this.richTextBoxLog.ReadOnly = true;
             this.richTextBoxLog.Size = new System.Drawing.Size(393, 64);
@@ -1157,25 +1170,64 @@ namespace ATA_GUI
             this.richTextBoxLog.TabStop = false;
             this.richTextBoxLog.Text = "";
             // 
-            // buttonDE
+            // systemAppToolStripMenuItem
             // 
-            this.buttonDE.BackColor = System.Drawing.Color.White;
-            this.buttonDE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDE.ForeColor = System.Drawing.Color.Black;
-            this.buttonDE.Location = new System.Drawing.Point(5, 77);
-            this.buttonDE.Name = "buttonDE";
-            this.buttonDE.Size = new System.Drawing.Size(131, 23);
-            this.buttonDE.TabIndex = 41;
-            this.buttonDE.Text = "Disabled/Enable";
-            this.buttonDE.UseVisualStyleBackColor = false;
-            this.buttonDE.Click += new System.EventHandler(this.buttonDE_Click);
+            this.systemAppToolStripMenuItem.Name = "systemAppToolStripMenuItem";
+            this.systemAppToolStripMenuItem.ShowShortcutKeys = false;
+            this.systemAppToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.systemAppToolStripMenuItem.Text = "System App";
+            // 
+            // nonSystemAppToolStripMenuItem
+            // 
+            this.nonSystemAppToolStripMenuItem.Name = "nonSystemAppToolStripMenuItem";
+            this.nonSystemAppToolStripMenuItem.Size = new System.Drawing.Size(180, 23);
+            this.nonSystemAppToolStripMenuItem.Text = "Non System App";
+            // 
+            // filterByToolStripMenuItem
+            // 
+            this.filterByToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.systemAppToolStripMenuItem,
+            this.nonSystemAppToolStripMenuItem});
+            this.filterByToolStripMenuItem.Name = "filterByToolStripMenuItem";
+            this.filterByToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.filterByToolStripMenuItem.Text = "Filter By";
+            // 
+            // contextMenuStripFilterBy
+            // 
+            this.contextMenuStripFilterBy.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allToolStripMenuItem,
+            this.systemAppToolStripMenuItem1,
+            this.nonSystemAppToolStripMenuItem1});
+            this.contextMenuStripFilterBy.Name = "contextMenuStripFilterBy";
+            this.contextMenuStripFilterBy.Size = new System.Drawing.Size(164, 70);
+            // 
+            // allToolStripMenuItem
+            // 
+            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.allToolStripMenuItem.Text = "All";
+            this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
+            // 
+            // systemAppToolStripMenuItem1
+            // 
+            this.systemAppToolStripMenuItem1.Name = "systemAppToolStripMenuItem1";
+            this.systemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            this.systemAppToolStripMenuItem1.Text = "System App";
+            this.systemAppToolStripMenuItem1.Click += new System.EventHandler(this.systemAppToolStripMenuItem1_Click);
+            // 
+            // nonSystemAppToolStripMenuItem1
+            // 
+            this.nonSystemAppToolStripMenuItem1.Name = "nonSystemAppToolStripMenuItem1";
+            this.nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            this.nonSystemAppToolStripMenuItem1.Text = "Non System App";
+            this.nonSystemAppToolStripMenuItem1.Click += new System.EventHandler(this.nonSystemAppToolStripMenuItem1_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(852, 462);
+            this.ClientSize = new System.Drawing.Size(880, 454);
             this.Controls.Add(this.richTextBoxLog);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
@@ -1195,14 +1247,13 @@ namespace ATA_GUI
             this.groupBoxDeviceInfo.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPageSystem.ResumeLayout(false);
-            this.groupBoxADBNet.ResumeLayout(false);
-            this.groupBoxADBNet.PerformLayout();
-            this.panelSystem.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.groupBoxADBNet.ResumeLayout(false);
+            this.groupBoxADBNet.PerformLayout();
             this.groupBoxRebootMenu.ResumeLayout(false);
             this.tabPageFastboot.ResumeLayout(false);
             this.panelFastboot.ResumeLayout(false);
@@ -1213,6 +1264,7 @@ namespace ATA_GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading2)).EndInit();
             this.tabPageRecovery.ResumeLayout(false);
             this.tabPageRecovery.PerformLayout();
+            this.contextMenuStripFilterBy.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1253,19 +1305,11 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonRS;
         private System.Windows.Forms.GroupBox groupBoxRebootMenu;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button buttonUninstallApk;
-        private System.Windows.Forms.Button buttonApk;
         private System.Windows.Forms.OpenFileDialog openFileDialogAPK;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton radioButtoNonSystemApp;
-        private System.Windows.Forms.RadioButton radioButtonSystemApp;
         private System.Windows.Forms.CheckBox checkBoxSelectAll;
-        private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.CheckedListBox checkedListBoxApp;
-        private System.Windows.Forms.Button buttonReloadApps;
         private System.Windows.Forms.Label labelIP;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panelSystem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBoxADBNet;
         private System.Windows.Forms.TextBox textBoxIP;
@@ -1311,7 +1355,25 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonBootloaderMenu;
         private System.Windows.Forms.Button buttonRebootRecovery;
         private System.Windows.Forms.Button buttonCredits;
-        private System.Windows.Forms.Button buttonDE;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonReloadApps;
+        private System.Windows.Forms.ToolStripButton toolStripButtonFilter;
+        private System.Windows.Forms.ToolStripTextBox textBoxSearch;
+        private System.Windows.Forms.ToolStripMenuItem systemAppToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox nonSystemAppToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filterByToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton toolStripButtonInstallApp;
+        private System.Windows.Forms.ToolStripButton toolStripButtonUninstallApp;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripButton toolStripButtonPackageManager;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripFilterBy;
+        private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem systemAppToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem nonSystemAppToolStripMenuItem1;
     }
 }
 

@@ -1,7 +1,7 @@
 ﻿
 namespace ATA_GUI
 {
-    partial class DisableEnableMenu
+    partial class PackageMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,13 @@ namespace ATA_GUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisableEnableMenu));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackageMenu));
             this.richTextBoxAPKList = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonEnable = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonDisable = new System.Windows.Forms.Button();
+            this.buttonClearData = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBoxAPKList
@@ -56,7 +57,7 @@ namespace ATA_GUI
             // 
             // buttonEnable
             // 
-            this.buttonEnable.Location = new System.Drawing.Point(277, 115);
+            this.buttonEnable.Location = new System.Drawing.Point(283, 115);
             this.buttonEnable.Name = "buttonEnable";
             this.buttonEnable.Size = new System.Drawing.Size(75, 23);
             this.buttonEnable.TabIndex = 2;
@@ -76,7 +77,7 @@ namespace ATA_GUI
             // 
             // buttonDisable
             // 
-            this.buttonDisable.Location = new System.Drawing.Point(196, 115);
+            this.buttonDisable.Location = new System.Drawing.Point(202, 115);
             this.buttonDisable.Name = "buttonDisable";
             this.buttonDisable.Size = new System.Drawing.Size(75, 23);
             this.buttonDisable.TabIndex = 4;
@@ -84,12 +85,23 @@ namespace ATA_GUI
             this.buttonDisable.UseVisualStyleBackColor = true;
             this.buttonDisable.Click += new System.EventHandler(this.buttonDisable_Click);
             // 
-            // DisableEnableMenu
+            // buttonClearData
+            // 
+            this.buttonClearData.Location = new System.Drawing.Point(121, 115);
+            this.buttonClearData.Name = "buttonClearData";
+            this.buttonClearData.Size = new System.Drawing.Size(75, 23);
+            this.buttonClearData.TabIndex = 5;
+            this.buttonClearData.Text = "Clear Data";
+            this.buttonClearData.UseVisualStyleBackColor = true;
+            this.buttonClearData.Click += new System.EventHandler(this.buttonClearData_Click);
+            // 
+            // PackageMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(470, 151);
+            this.ClientSize = new System.Drawing.Size(470, 145);
+            this.Controls.Add(this.buttonClearData);
             this.Controls.Add(this.buttonDisable);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonEnable);
@@ -98,9 +110,9 @@ namespace ATA_GUI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "DisableEnableMenu";
+            this.Name = "PackageMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "DisableEnableMenu";
+            this.Text = "Package Menu";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,5 +125,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonEnable;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonDisable;
+        private System.Windows.Forms.Button buttonClearData;
     }
 }

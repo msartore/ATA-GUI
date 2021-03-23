@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace ATA_GUI
 {
-    public partial class DisableEnableMenu : Form
+    public partial class PackageMenu : Form
     {
+        public int dialogResult;
+        private bool closedByMe;
 
-
-        public DisableEnableMenu(List<string> apklist)
+        public PackageMenu(List<string> apklist)
         {
             InitializeComponent();
             richTextBoxAPKList.Text = string.Join("", apklist);
@@ -22,20 +23,38 @@ namespace ATA_GUI
 
         private void buttonDisable_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Yes;
+            dialogResult = 0;
+            closedByMe = true;
             this.Close();
         }
 
         private void buttonEnable_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.No;
+            dialogResult = 1;
+            closedByMe = true;
             this.Close();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            dialogResult = -1;
+            closedByMe = true;
             this.Close();
+        }
+
+        private void buttonClearData_Click(object sender, EventArgs e)
+        {
+            dialogResult = 2;
+            closedByMe = true;
+            this.Close();
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (!closedByMe)
+            {
+                dialogResult = -1;
+            }
         }
     }
 }
