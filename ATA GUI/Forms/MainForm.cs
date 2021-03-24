@@ -265,10 +265,29 @@ namespace ATA_GUI
                                         if (arrayDeviceInfo.Length > 7)
                                         {
                                             textBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
-                                            if (deviceinfo.Contains(textBoxIP.Text.Substring(0, textBoxIP.Text.Length-2) +":5555"))
-                                                labelStatus.Text = "Wireless";
-                                            else
+                                            if (labelIP.Text.Contains("t of devices attached"))
+                                            {
+                                                labelIP.Text = "Not connected to a network";
+                                                textBoxIP.Text = "";
                                                 labelStatus.Text = "Cable";
+                                                buttonConnectToIP.Enabled = false;
+                                                buttonDisconnectIP.Enabled = false;
+                                            }
+                                            else
+                                            {
+                                                if (deviceinfo.Contains(textBoxIP.Text.Substring(0, textBoxIP.Text.Length - 2) + ":5555"))
+                                                {
+                                                    labelStatus.Text = "Wireless";
+                                                    buttonConnectToIP.Enabled = false;
+                                                    buttonDisconnectIP.Enabled = true;
+                                                }
+                                                else
+                                                {
+                                                    labelStatus.Text = "Cable";
+                                                    buttonConnectToIP.Enabled = true;
+                                                    buttonDisconnectIP.Enabled = false;
+                                                }
+                                            }
                                         }
                                         LogWriteLine("Device info extracted");
                                         tabPageSystem.Enabled = true;
@@ -460,7 +479,9 @@ namespace ATA_GUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if(!File.Exists("DotNetZip.dll"))
+            groupBox6.AllowDrop = true;
+            groupBox2.AllowDrop = true;
+            if (!File.Exists("DotNetZip.dll"))
             {
                 MessageShowBox("DotNetZip.dll not found!", 0);
                 Application.Exit();
@@ -474,7 +495,7 @@ namespace ATA_GUI
             panelFastboot.Enabled = false;
             this.WindowState = FormWindowState.Minimized;
             this.WindowState = FormWindowState.Normal;
-            this.Focus(); 
+            this.Focus();
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
@@ -494,6 +515,7 @@ namespace ATA_GUI
                 for (int i = 0; i < checkedListBoxApp.Items.Count; i++)
                     checkedListBoxApp.SetItemCheckState(i, System.Windows.Forms.CheckState.Unchecked);
             }
+            labelSelectedAppCount.Text = "Selected App: " + checkedListBoxApp.CheckedItems.Count;
         }
 
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
@@ -516,6 +538,8 @@ namespace ATA_GUI
                 if (File.Exists(FILEName))
                 {
                     MessageShowBox("connected to " + textBoxIP.Text, 2);
+                    buttonConnectToIP.Enabled = false;
+                    buttonDisconnectIP.Enabled = true;
                 }
                 else
                 {
@@ -535,6 +559,8 @@ namespace ATA_GUI
                 if (File.Exists(FILEName))
                 {
                     MessageShowBox(textBoxIP.Text + " disconnected", 2);
+                    buttonConnectToIP.Enabled = true;
+                    buttonDisconnectIP.Enabled = false;
                 }
                 else
                 {
@@ -569,22 +595,6 @@ namespace ATA_GUI
             {
                 MessageShowBox("No app selected", 1);
             }
-        }
-
-        private void buttonCheckPermissions_Click(object sender, EventArgs e)
-        {
-            appFunc("shell dumpsys package ", null, 1);
-        }
-
-        private void buttonGrantDump_Click(object sender, EventArgs e)
-        {
-            appFunc("shell pm grant ", " android.permission.DUMP", 0);
-        }
-
-
-        private void buttonGrantPermission_Click(object sender, EventArgs e)
-        {
-            appFunc("shell pm grant ", " android.permission.WRITE_SECURE_SETTINGS", 0);
         }
 
         private void buttonSearchFile_Click(object sender, EventArgs e)
@@ -830,9 +840,9 @@ namespace ATA_GUI
                 {
                     try
                     {
-                        LogWriteLine("Installing " + file);
+                        LogWriteLine("Installing " + file.Substring(file.LastIndexOf('\\') + 1));
                         systemCommand("adb install -r \"" + file + "\"");
-                        LogWriteLine(file + " installed");
+                        LogWriteLine(file.Substring(file.LastIndexOf('\\') + 1) + " installed");
                     }
                     catch (Exception ex)
                     {
@@ -954,6 +964,98 @@ namespace ATA_GUI
         private void textBoxSearch_Click(object sender, EventArgs e)
         {
             textBoxSearch.SelectAll();
+        }
+
+        private void toolStripButtonPermissionMenu_Click(object sender, EventArgs e)
+        {
+            contextMenuStripPermissionMenu.Show(Cursor.Position);
+        }
+
+        private void groupBox6_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] filePaths = (string[])(e.Data.GetData(DataFormats.FileDrop));
+                string fileName;
+                foreach (string fileLoc in filePaths)
+                {
+                    fileName = fileLoc.Substring(fileLoc.LastIndexOf('\\')+1);
+                    if (fileLoc.ToLower().Contains(".apk"))
+                    { 
+                        if (File.Exists(fileLoc))
+                        {
+                            if(adbFastbootCommandR(new[] { "install -r \"" + fileLoc + "\"" },0) != null)
+                            {
+                                LogWriteLine(fileName+" installed!");
+                                MessageShowBox(fileName +" installed", 2);
+                            }
+                            else
+                            {
+                                LogWriteLine(fileName + " installation failed");
+                                MessageShowBox(fileName + " installation failed", 0);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageShowBox("Error: " + fileName + " is not an apk file", 0);
+                    }
+                }
+            }
+        }
+
+        private void groupBox6_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void checkedListBoxApp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            labelSelectedAppCount.Text = "Selected App: " + checkedListBoxApp.CheckedItems.Count;
+        }
+
+        private void checkGrantedPermissionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            appFunc("shell dumpsys package ", null, 1);
+        }
+
+        private void grantDUMPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            appFunc("shell pm grant ", " android.permission.DUMP", 0);
+        }
+
+        private void grantWriteSecureSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            appFunc("shell pm grant ", " android.permission.WRITE_SECURE_SETTINGS", 0);
+        }
+
+        private void groupBox2_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] filePaths = (string[])(e.Data.GetData(DataFormats.FileDrop));
+                LoadingForm loading = new LoadingForm(filePaths);
+                loading.ShowDialog();
+            }
+        }
+
+        private void groupBox2_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
         }
     }
 }

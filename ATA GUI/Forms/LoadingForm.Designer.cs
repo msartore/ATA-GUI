@@ -34,7 +34,7 @@ namespace ATA_GUI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadingForm));
             this.labelText = new System.Windows.Forms.Label();
-            this.labelApk = new System.Windows.Forms.Label();
+            this.labelFileName = new System.Windows.Forms.Label();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
@@ -42,24 +42,26 @@ namespace ATA_GUI
             // labelText
             // 
             this.labelText.AutoSize = true;
-            this.labelText.Location = new System.Drawing.Point(24, 108);
+            this.labelText.Location = new System.Drawing.Point(12, 108);
             this.labelText.Name = "labelText";
             this.labelText.Size = new System.Drawing.Size(67, 13);
             this.labelText.TabIndex = 1;
             this.labelText.Text = "Uninstalling: ";
             // 
-            // labelApk
+            // labelFileName
             // 
-            this.labelApk.AutoSize = true;
-            this.labelApk.Location = new System.Drawing.Point(97, 108);
-            this.labelApk.Name = "labelApk";
-            this.labelApk.Size = new System.Drawing.Size(0, 13);
-            this.labelApk.TabIndex = 2;
+            this.labelFileName.AutoSize = true;
+            this.labelFileName.Location = new System.Drawing.Point(120, 108);
+            this.labelFileName.Name = "labelFileName";
+            this.labelFileName.Size = new System.Drawing.Size(0, 13);
+            this.labelFileName.TabIndex = 2;
             // 
             // backgroundWorker
             // 
             this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.WorkerSupportsCancellation = true;
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
             // progressBar1
@@ -77,7 +79,7 @@ namespace ATA_GUI
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(350, 155);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.labelApk);
+            this.Controls.Add(this.labelFileName);
             this.Controls.Add(this.labelText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -92,7 +94,7 @@ namespace ATA_GUI
         }
 
         private System.Windows.Forms.Label labelText;
-        private System.Windows.Forms.Label labelApk;
+        private System.Windows.Forms.Label labelFileName;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private System.Windows.Forms.ProgressBar progressBar1;
         #endregion

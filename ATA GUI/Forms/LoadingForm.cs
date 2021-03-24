@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Threading;
-
+using System.IO;
 
 namespace ATA_GUI
 {
     public partial class LoadingForm : Form
     {
-        private List<string> arrayApk;
+        private readonly List<string> arrayApk;
         private readonly string command;
+        private readonly string[] fileArray;
+        private readonly bool fileTransfer;
 
 
         public LoadingForm(List<string> arrayApkTemp, string commandTemp, string labelTemp)
@@ -19,6 +21,15 @@ namespace ATA_GUI
             arrayApk = arrayApkTemp;
             command = commandTemp;
             labelText.Text = labelTemp;
+            fileTransfer = false;
+        }
+
+        public LoadingForm(string [] array)
+        {
+            InitializeComponent();
+            fileArray = array;
+            fileTransfer = true;
+            labelText.Text = "Transfering file:";
         }
 
         private void LoadingForm_Shown(Object sender, EventArgs e)
@@ -37,6 +48,7 @@ namespace ATA_GUI
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             progressBar1.Value = progressBar1.Maximum;
+            progressBar1.Update();
             progressBar1.Refresh();
             DialogResult = DialogResult.OK;
             this.Close();
@@ -46,16 +58,55 @@ namespace ATA_GUI
         {
             Invoke((Action)delegate
             {
-                progressBar1.Maximum = arrayApk.Count;
-                foreach (string apk in arrayApk)
+                if (fileTransfer)
                 {
-                    labelApk.Text = apk;
-                    MainForm.systemCommand(command + apk);
-                    progressBar1.Value += 1;
-                    progressBar1.Refresh();
-                    Thread.Sleep(500);
+                    MainForm.systemCommand("adb shell mkdir storage/emulate/0/ATA");
+                    progressBar1.Maximum = fileArray.Length;
+                    int i = 0;
+                    foreach (string file in fileArray)
+                    {
+                        if (File.Exists(file))
+                        {
+                            labelFileName.Text = file.Substring(file.LastIndexOf('\\') + 1);
+                            this.Refresh();
+                            if (MainForm.adbFastbootCommandR(new[] { "push " + file + " storage/emulated/0/ATA " }, 0) == null)
+                            {
+                                MainForm.MessageShowBox(labelFileName.Text + " not transfered", 0);
+                            }
+                            backgroundWorker.ReportProgress(++i);
+                        }
+                        else
+                        {
+                            backgroundWorker.ReportProgress(++i);
+                        }
+                    }
+                }
+                else
+                {
+                    progressBar1.Maximum = arrayApk.Count;
+                    int i = 0;
+                    foreach (string apk in arrayApk)
+                    {
+                        labelFileName.Text = apk;
+                        this.Refresh();
+                        if (MainForm.adbFastbootCommandR(new[] { command + apk }, 0) == null)
+                        {
+                            MainForm.MessageShowBox(labelFileName.Text + " not " + labelText.Text.Substring(0,labelText.Text.Length-1), 0);
+                        }
+                        backgroundWorker.ReportProgress(++i);
+                    }
                 }
             });
+        }
+
+        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
+            progressBar1.Value = e.ProgressPercentage - 1;
+            progressBar1.Value = e.ProgressPercentage;
+            Thread.Sleep(1000);
+            progressBar1.Update();
+            progressBar1.Refresh();
         }
     }
 }

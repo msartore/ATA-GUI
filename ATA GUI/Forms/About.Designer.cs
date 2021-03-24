@@ -64,7 +64,7 @@ namespace ATA_GUI
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Version: 1.2.0";
+            this.label2.Text = "Version: 1.3.0";
             // 
             // label1
             // 

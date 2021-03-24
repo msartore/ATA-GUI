@@ -164,6 +164,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ATALogoGUI.ico" />
+    <None Include="Resources\file_upload.png" />
+    <None Include="Resources\security.png" />
     <None Include="Resources\package.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\install.png" />

@@ -65,6 +65,13 @@ namespace ATA_GUI
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageSystem = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.labelSelectedAppCount = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonReloadApps = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -77,10 +84,8 @@ namespace ATA_GUI
             this.toolStripButtonUninstallApp = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonPackageManager = new System.Windows.Forms.ToolStripButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.buttonCheckPermissions = new System.Windows.Forms.Button();
-            this.buttonGrantDump = new System.Windows.Forms.Button();
-            this.buttonGrantPermission = new System.Windows.Forms.Button();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonPermissionMenu = new System.Windows.Forms.ToolStripButton();
             this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
             this.groupBoxADBNet = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -133,6 +138,10 @@ namespace ATA_GUI
             this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemAppToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.nonSystemAppToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripPermissionMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.grantWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grantDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkGrantedPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -140,8 +149,11 @@ namespace ATA_GUI
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.groupBoxADBNet.SuspendLayout();
             this.groupBoxRebootMenu.SuspendLayout();
             this.tabPageFastboot.SuspendLayout();
@@ -151,6 +163,7 @@ namespace ATA_GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading2)).BeginInit();
             this.tabPageRecovery.SuspendLayout();
             this.contextMenuStripFilterBy.SuspendLayout();
+            this.contextMenuStripPermissionMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTopBar
@@ -514,8 +527,10 @@ namespace ATA_GUI
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.toolStrip1);
             this.groupBox3.Controls.Add(this.groupBox2);
+            this.groupBox3.Controls.Add(this.labelSelectedAppCount);
+            this.groupBox3.Controls.Add(this.groupBox6);
+            this.groupBox3.Controls.Add(this.toolStrip1);
             this.groupBox3.Controls.Add(this.checkedListBoxApp);
             this.groupBox3.Controls.Add(this.checkBoxSelectAll);
             this.groupBox3.Location = new System.Drawing.Point(331, 9);
@@ -524,6 +539,77 @@ namespace ATA_GUI
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "APK Menu";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.pictureBox3);
+            this.groupBox2.Location = new System.Drawing.Point(352, 173);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(155, 102);
+            this.groupBox2.TabIndex = 44;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "File Transfer";
+            this.groupBox2.DragDrop += new System.Windows.Forms.DragEventHandler(this.groupBox2_DragDrop);
+            this.groupBox2.DragEnter += new System.Windows.Forms.DragEventHandler(this.groupBox2_DragEnter);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(55, 69);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Drop File";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::ATA_GUI.Properties.Resources.file_upload;
+            this.pictureBox3.Location = new System.Drawing.Point(63, 31);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(36, 35);
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
+            // labelSelectedAppCount
+            // 
+            this.labelSelectedAppCount.AutoSize = true;
+            this.labelSelectedAppCount.Location = new System.Drawing.Point(251, 57);
+            this.labelSelectedAppCount.Name = "labelSelectedAppCount";
+            this.labelSelectedAppCount.Size = new System.Drawing.Size(83, 13);
+            this.labelSelectedAppCount.TabIndex = 44;
+            this.labelSelectedAppCount.Text = "Selected App: 0";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label3);
+            this.groupBox6.Controls.Add(this.pictureBox2);
+            this.groupBox6.Location = new System.Drawing.Point(352, 69);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(155, 102);
+            this.groupBox6.TabIndex = 43;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Apk Installer";
+            this.groupBox6.DragDrop += new System.Windows.Forms.DragEventHandler(this.groupBox6_DragDrop);
+            this.groupBox6.DragEnter += new System.Windows.Forms.DragEventHandler(this.groupBox6_DragEnter);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(55, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Drop Apk";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::ATA_GUI.Properties.Resources.file_upload;
+            this.pictureBox2.Location = new System.Drawing.Point(63, 31);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(36, 35);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
             // 
             // toolStrip1
             // 
@@ -539,7 +625,9 @@ namespace ATA_GUI
             this.toolStripSeparator7,
             this.toolStripButtonUninstallApp,
             this.toolStripSeparator5,
-            this.toolStripButtonPackageManager});
+            this.toolStripButtonPackageManager,
+            this.toolStripSeparator3,
+            this.toolStripButtonPermissionMenu});
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(509, 25);
@@ -633,56 +721,21 @@ namespace ATA_GUI
             this.toolStripButtonPackageManager.ToolTipText = "Package Menu";
             this.toolStripButtonPackageManager.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
-            // groupBox2
+            // toolStripSeparator3
             // 
-            this.groupBox2.Controls.Add(this.buttonCheckPermissions);
-            this.groupBox2.Controls.Add(this.buttonGrantDump);
-            this.groupBox2.Controls.Add(this.buttonGrantPermission);
-            this.groupBox2.Location = new System.Drawing.Point(354, 68);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(155, 113);
-            this.groupBox2.TabIndex = 40;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Grant Permission Menu";
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // buttonCheckPermissions
+            // toolStripButtonPermissionMenu
             // 
-            this.buttonCheckPermissions.BackColor = System.Drawing.Color.White;
-            this.buttonCheckPermissions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCheckPermissions.ForeColor = System.Drawing.Color.Black;
-            this.buttonCheckPermissions.Location = new System.Drawing.Point(5, 76);
-            this.buttonCheckPermissions.Name = "buttonCheckPermissions";
-            this.buttonCheckPermissions.Size = new System.Drawing.Size(146, 23);
-            this.buttonCheckPermissions.TabIndex = 42;
-            this.buttonCheckPermissions.Text = "Check granted permissions";
-            this.buttonCheckPermissions.UseVisualStyleBackColor = false;
-            this.buttonCheckPermissions.Click += new System.EventHandler(this.buttonCheckPermissions_Click);
-            // 
-            // buttonGrantDump
-            // 
-            this.buttonGrantDump.BackColor = System.Drawing.Color.White;
-            this.buttonGrantDump.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonGrantDump.ForeColor = System.Drawing.Color.Black;
-            this.buttonGrantDump.Location = new System.Drawing.Point(5, 47);
-            this.buttonGrantDump.Name = "buttonGrantDump";
-            this.buttonGrantDump.Size = new System.Drawing.Size(146, 23);
-            this.buttonGrantDump.TabIndex = 41;
-            this.buttonGrantDump.Text = "DUMP";
-            this.buttonGrantDump.UseVisualStyleBackColor = false;
-            this.buttonGrantDump.Click += new System.EventHandler(this.buttonGrantDump_Click);
-            // 
-            // buttonGrantPermission
-            // 
-            this.buttonGrantPermission.BackColor = System.Drawing.Color.White;
-            this.buttonGrantPermission.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonGrantPermission.ForeColor = System.Drawing.Color.Black;
-            this.buttonGrantPermission.Location = new System.Drawing.Point(5, 19);
-            this.buttonGrantPermission.Name = "buttonGrantPermission";
-            this.buttonGrantPermission.Size = new System.Drawing.Size(146, 23);
-            this.buttonGrantPermission.TabIndex = 40;
-            this.buttonGrantPermission.Text = "Write_Secure_Settings";
-            this.buttonGrantPermission.UseVisualStyleBackColor = false;
-            this.buttonGrantPermission.Click += new System.EventHandler(this.buttonGrantPermission_Click);
+            this.toolStripButtonPermissionMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonPermissionMenu.Image = global::ATA_GUI.Properties.Resources.security;
+            this.toolStripButtonPermissionMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonPermissionMenu.Name = "toolStripButtonPermissionMenu";
+            this.toolStripButtonPermissionMenu.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonPermissionMenu.Text = "toolStripButton1";
+            this.toolStripButtonPermissionMenu.ToolTipText = "Permission Menu";
+            this.toolStripButtonPermissionMenu.Click += new System.EventHandler(this.toolStripButtonPermissionMenu_Click);
             // 
             // checkedListBoxApp
             // 
@@ -695,6 +748,7 @@ namespace ATA_GUI
             this.checkedListBoxApp.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.checkedListBoxApp.Size = new System.Drawing.Size(339, 199);
             this.checkedListBoxApp.TabIndex = 37;
+            this.checkedListBoxApp.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxApp_SelectedIndexChanged);
             // 
             // groupBoxADBNet
             // 
@@ -1222,8 +1276,39 @@ namespace ATA_GUI
             this.nonSystemAppToolStripMenuItem1.Text = "Non System App";
             this.nonSystemAppToolStripMenuItem1.Click += new System.EventHandler(this.nonSystemAppToolStripMenuItem1_Click);
             // 
+            // contextMenuStripPermissionMenu
+            // 
+            this.contextMenuStripPermissionMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.grantWriteSecureSettingsToolStripMenuItem,
+            this.grantDUMPToolStripMenuItem,
+            this.checkGrantedPermissionsToolStripMenuItem});
+            this.contextMenuStripPermissionMenu.Name = "contextMenuStripPermissionMenu";
+            this.contextMenuStripPermissionMenu.Size = new System.Drawing.Size(222, 70);
+            // 
+            // grantWriteSecureSettingsToolStripMenuItem
+            // 
+            this.grantWriteSecureSettingsToolStripMenuItem.Name = "grantWriteSecureSettingsToolStripMenuItem";
+            this.grantWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.grantWriteSecureSettingsToolStripMenuItem.Text = "Grant Write_Secure_Settings";
+            this.grantWriteSecureSettingsToolStripMenuItem.Click += new System.EventHandler(this.grantWriteSecureSettingsToolStripMenuItem_Click);
+            // 
+            // grantDUMPToolStripMenuItem
+            // 
+            this.grantDUMPToolStripMenuItem.Name = "grantDUMPToolStripMenuItem";
+            this.grantDUMPToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.grantDUMPToolStripMenuItem.Text = "Grant DUMP";
+            this.grantDUMPToolStripMenuItem.Click += new System.EventHandler(this.grantDUMPToolStripMenuItem_Click);
+            // 
+            // checkGrantedPermissionsToolStripMenuItem
+            // 
+            this.checkGrantedPermissionsToolStripMenuItem.Name = "checkGrantedPermissionsToolStripMenuItem";
+            this.checkGrantedPermissionsToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.checkGrantedPermissionsToolStripMenuItem.Text = "Check granted permissions";
+            this.checkGrantedPermissionsToolStripMenuItem.Click += new System.EventHandler(this.checkGrantedPermissionsToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -1249,9 +1334,14 @@ namespace ATA_GUI
             this.tabPageSystem.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             this.groupBoxADBNet.ResumeLayout(false);
             this.groupBoxADBNet.PerformLayout();
             this.groupBoxRebootMenu.ResumeLayout(false);
@@ -1265,6 +1355,7 @@ namespace ATA_GUI
             this.tabPageRecovery.ResumeLayout(false);
             this.tabPageRecovery.PerformLayout();
             this.contextMenuStripFilterBy.ResumeLayout(false);
+            this.contextMenuStripPermissionMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1316,10 +1407,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonConnectToIP;
         private System.Windows.Forms.Button buttonDisconnectIP;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button buttonCheckPermissions;
-        private System.Windows.Forms.Button buttonGrantDump;
-        private System.Windows.Forms.Button buttonGrantPermission;
         private System.Windows.Forms.Button buttonInstallZip;
         private System.Windows.Forms.TextBox textBoxDirFile;
         private System.Windows.Forms.Button buttonSearchFile;
@@ -1374,6 +1461,19 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem systemAppToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem nonSystemAppToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton toolStripButtonPermissionMenu;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label labelSelectedAppCount;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripPermissionMenu;
+        private System.Windows.Forms.ToolStripMenuItem grantWriteSecureSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem grantDUMPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkGrantedPermissionsToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
 
