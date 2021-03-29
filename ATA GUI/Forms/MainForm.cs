@@ -60,7 +60,7 @@ namespace ATA_GUI
         {
             if (tabControl1.SelectedTab.Name.Contains("System"))
             {
-                syncFun(3);
+                syncFun(0);
                 return;
             }
             if (tabControl1.SelectedTab.Name.Contains("Fastboot"))
@@ -234,7 +234,7 @@ namespace ATA_GUI
             {
                 paramObjTmp = "1";
             }
-            if (checkAdbFastboot(0) && devices.Count>0)
+            if (checkAdbFastboot(0))
             {
                 LogWriteLine("Checking device...");
                 if(adbFastbootCommandR(new [] { "-s " + Regex.Replace(currentDeviceSelected, @"\t|\n|\r", "") + " shell getprop ro.build.version.release" }, 0).Any(char.IsDigit))
