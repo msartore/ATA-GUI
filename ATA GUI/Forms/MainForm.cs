@@ -7,18 +7,27 @@ using System.Net;
 using Ionic.Zip;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 namespace ATA_GUI
 {
     public partial class MainForm : Form
     {
-
         private readonly List<string> arrayApks = new List<string>();
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
         private bool textboxClear = false;
         private readonly string FILEADB = "adb.exe";
         private bool systemApp = false;
+        private List<Device> devices = new List<Device>();
+        private string currentDeviceSelected = "";
+
+        private static readonly Regex regex = new Regex(@"\t|\n|\r|\s+");
+
+        public static string RemoveWhiteSpaces(string str)
+        {
+            return regex.Replace(str, String.Empty);
+        }
 
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -51,7 +60,7 @@ namespace ATA_GUI
         {
             if (tabControl1.SelectedTab.Name.Contains("System"))
             {
-                syncFun(0);
+                syncFun(3);
                 return;
             }
             if (tabControl1.SelectedTab.Name.Contains("Fastboot"))
@@ -60,7 +69,7 @@ namespace ATA_GUI
                 {
                     if (adbFastbootCommandR(new string[] { "devices" }, 1).Contains("fastboot"))
                     {
-                        string[] log = adbFastbootCommandR(new string[] { "getvar all" }, 1).Split(' ', '\n');
+                        string[] log = adbFastbootCommandR(new [] { "getvar all" }, 1).Split(' ', '\n');
                         for (int a=0; a< log.Count(); a++)
                         {
                             if (log[a].Contains("partition-type:userdata:"))
@@ -220,14 +229,15 @@ namespace ATA_GUI
         {
             Object paramObj = e.Argument as Object;
             String paramObjTmp = "0";
+            
             if(paramObj.ToString()=="3" )
             {
                 paramObjTmp = "1";
             }
-            if (checkAdbFastboot(0))
+            if (checkAdbFastboot(0) && devices.Count>0)
             {
                 LogWriteLine("Checking device...");
-                if(adbFastbootCommandR(new [] { "shell getprop ro.build.version.release"}, 0).Any(char.IsDigit))
+                if(adbFastbootCommandR(new [] { "-s " + Regex.Replace(currentDeviceSelected, @"\t|\n|\r", "") + " shell getprop ro.build.version.release" }, 0).Any(char.IsDigit))
                 {
                     string stringApk;
                     int count = 1;
@@ -245,11 +255,11 @@ namespace ATA_GUI
                         switch (paramObj.ToString())
                         {
                             case "0":
-                                string[] arrayDeviceInfoCommands = { "shell getprop ro.build.version.release", "shell getprop ro.build.user",  "shell getprop ro.product.cpu.abilist", "shell getprop ro.product.manufacturer" , "shell getprop ro.product.model",
-                                       "shell getprop ro.product.board", "shell getprop ro.product.device", "shell ip route", "devices" };
+                                string[] arrayDeviceInfoCommands = { "-s "+ currentDeviceSelected +" shell getprop ro.build.version.release", "-s "+ currentDeviceSelected +" shell getprop ro.build.user",  "-s "+ currentDeviceSelected +" shell getprop ro.product.cpu.abilist", "-s "+ currentDeviceSelected +" shell getprop ro.product.manufacturer" , "-s "+ currentDeviceSelected +" shell getprop ro.product.model",
+                                       "-s "+ currentDeviceSelected +" shell getprop ro.product.board", "-s "+ currentDeviceSelected +" shell getprop ro.product.device", "-s "+ currentDeviceSelected +" shell ip route"};
                                 string deviceinfo = adbFastbootCommandR(arrayDeviceInfoCommands, 0);
                                 string[] arrayDeviceInfo = deviceinfo.Split('\n');
-                                if (arrayDeviceInfo.Length > 6)
+                                if (arrayDeviceInfo.Length > 5)
                                 {
                                 
                                     Invoke((Action)delegate
@@ -269,24 +279,8 @@ namespace ATA_GUI
                                             {
                                                 labelIP.Text = "Not connected to a network";
                                                 textBoxIP.Text = "";
-                                                labelStatus.Text = "Cable";
                                                 buttonConnectToIP.Enabled = false;
                                                 buttonDisconnectIP.Enabled = false;
-                                            }
-                                            else
-                                            {
-                                                if (deviceinfo.Contains(textBoxIP.Text.Substring(0, textBoxIP.Text.Length - 2) + ":5555"))
-                                                {
-                                                    labelStatus.Text = "Wireless";
-                                                    buttonConnectToIP.Enabled = false;
-                                                    buttonDisconnectIP.Enabled = true;
-                                                }
-                                                else
-                                                {
-                                                    labelStatus.Text = "Cable";
-                                                    buttonConnectToIP.Enabled = true;
-                                                    buttonDisconnectIP.Enabled = false;
-                                                }
                                             }
                                         }
                                         LogWriteLine("Device info extracted");
@@ -295,24 +289,28 @@ namespace ATA_GUI
                                 }
                                 else
                                 {
-                                    tabPageSystem.Enabled = false;
+                                    Invoke((Action)delegate
+                                    {
+                                        tabPageSystem.Enabled = false;
+                                    });
                                     LogWriteLine("Error: failed to extract device info!");
                                 }
                                 break;
                             case "2":
-                                arrayApks.Clear();
+                                arrayApks.Clear(); 
                                 Invoke((Action)delegate
                                 {
+                                    labelSelectedAppCount.Text = "Selected App: 0";
                                     checkedListBoxApp.Items.Clear();
                                 });
                                 string[] command = { };
                                 if (!systemApp)
                                 {
-                                    command = new[] { "shell pm list packages -3" };
+                                    command = new[] { "-s " + currentDeviceSelected + " shell pm list packages -3" };
                                 }
                                 else
                                 {
-                                    command = new[] { "shell pm list packages -s" };
+                                    command = new[] { "-s " + currentDeviceSelected + " shell pm list packages -s" };
                                 }
                                 if ((stringApk = adbFastbootCommandR(command,0))!=null)
                                 {
@@ -346,7 +344,7 @@ namespace ATA_GUI
                                 {
                                     checkedListBoxApp.Items.Clear();
                                 });
-                                if ((stringApk = adbFastbootCommandR(new[] { "shell pm list packages -3", "shell pm list packages -s" }, 0)) != null)
+                                if ((stringApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -3", "-s " + currentDeviceSelected + " shell pm list packages -s" }, 0)) != null)
                                 {
                                     LogWriteLine("Loading apps...");
                                     string[] arrayApkTmp = stringApk.Split('\n');
@@ -449,36 +447,24 @@ namespace ATA_GUI
 
         private void buttonRS_Click(object sender, EventArgs e)
         {
-            if (labelStatus.Text == "Cable")
-                rebootSmartphone();
-            else
-                MessageShowBox("Can't reboot smartphone while is connected via wireless", 0);
+            rebootSmartphone();
         }
 
         private void buttonRR_Click(object sender, EventArgs e)
         {
-            if (labelStatus.Text == "Cable")
-            {
-                systemCommand("adb reboot recovery");
-                LogWriteLine("Rebooted!");
-            }
-            else
-                MessageShowBox("Can't reboot smartphone while is connected via wireless", 0);
+            systemCommand("adb -s " + currentDeviceSelected + " reboot recovery");
+            LogWriteLine("Rebooted!");
         }
 
         private void buttonRF_Click(object sender, EventArgs e)
         {
-            if (labelStatus.Text == "Cable")
-            {
-                systemCommand("adb reboot-bootloader");
-                LogWriteLine("Rebooted!");
-            }
-            else
-                MessageShowBox("Can't reboot smartphone while is connected via wireless", 0);
+            systemCommand("adb -s " + currentDeviceSelected + " reboot-bootloader");
+            LogWriteLine("Rebooted!");
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            comboBoxDevices.DropDownStyle = ComboBoxStyle.DropDownList;
             groupBox6.AllowDrop = true;
             groupBox2.AllowDrop = true;
             if (!File.Exists("DotNetZip.dll"))
@@ -498,8 +484,51 @@ namespace ATA_GUI
             this.Focus();
         }
 
+        private void DevicesListUpdate()
+        {
+            if (checkAdbFastboot(0))
+            {
+                List<string> devicesTmp;
+                string dev = adbFastbootCommandR(new[] { "devices" }, 0);
+                if (dev != null)
+                {
+                    devicesTmp = dev.Substring("List of devices attached".Length).Split('	').ToList();
+                    for (int i = 0; i < devicesTmp.Count; i++)
+                    {
+                        Device deviceTmp = new Device();
+                        if (devicesTmp[i].Contains("device"))
+                        {
+                            devicesTmp[i] = RemoveWhiteSpaces(devicesTmp[i]);
+                            devicesTmp[i] = devicesTmp[i].Substring(devicesTmp[i].IndexOf("device") + "device".Length);
+                            if (devicesTmp[i].Length < 1)
+                                devicesTmp.RemoveAt(i);
+                            else
+                            {
+                                deviceTmp.Name = adbFastbootCommandR(new[] { "-s " + Regex.Replace(devicesTmp[i], @"\t|\n|\r", "") + " shell getprop ro.product.model" }, 0);
+                                deviceTmp.Serial = devicesTmp[i];
+                                devices.Add(deviceTmp);
+                            }
+                        }
+                        else
+                        {
+                            deviceTmp.Name = adbFastbootCommandR(new[] { "-s " + Regex.Replace(devicesTmp[i], @"\t|\n|\r", "") + " shell getprop ro.product.model" }, 0);
+                            deviceTmp.Serial = devicesTmp[i];
+                            devices.Add(deviceTmp);
+                        }
+                    }
+                    for (int i = 0; i < devices.Count; i++)
+                    {
+                        comboBoxDevices.Items.Add(devices[i].Name);
+                    }
+                    comboBoxDevices.SelectedIndex = 0;
+                    currentDeviceSelected = Regex.Replace(devices[0].Serial, @"\t|\n|\r", "");
+                }
+            }
+        }
+
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            DevicesListUpdate();
             syncFun(3);
         }
 
@@ -578,7 +607,7 @@ namespace ATA_GUI
                 foreach (Object list in checkedListBoxApp.CheckedItems)
                 {
                     string log;
-                    if((log = adbFastbootCommandR(new [] { command1 + list.ToString() + command2 }, 0))!=null)
+                    if((log = adbFastbootCommandR(new [] { " -s " + currentDeviceSelected + " " + command1 + list.ToString() + command2 }, 0))!=null)
                     {
                         if (type == 1)
                             ScrollableMessageBox.show(log, "Granted permissions");
@@ -791,7 +820,7 @@ namespace ATA_GUI
         private void rebootSmartphone()
         {
             LogWriteLine("Rebooting smartphone...");
-            systemCommand("adb reboot");
+            systemCommand("adb -s " + currentDeviceSelected + " reboot");
             LogWriteLine("Smartphone rebooted");
         }
 
@@ -859,18 +888,18 @@ namespace ATA_GUI
                 string command;
                 if (!systemApp)
                 {
-                    command = "adb uninstall ";
+                    command = "-s " + currentDeviceSelected + " uninstall ";
                 }
                 else
                 {
-                    command = "adb shell pm uninstall -k --user 0 ";
+                    command = "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ";
                 }
                 List<string> arrayApkSelect = new List<string>();
                 foreach (Object list in checkedListBoxApp.CheckedItems)
                 {
                     arrayApkSelect.Add(list.ToString());
                 }
-                LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:");
+                LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:", currentDeviceSelected);
                 load.ShowDialog();
                 if (load.DialogResult == DialogResult.OK)
                 {
@@ -904,15 +933,15 @@ namespace ATA_GUI
                 switch (packageMenu.dialogResult)
                 {
                     case 1:
-                        command = "adb shell pm enable ";
+                        command = "adb -s " + currentDeviceSelected + " shell pm enable ";
                         commandName = "Enabled:";
                         break;
                     case 0:
-                        command = "adb shell pm disable-user --user 0 ";
+                        command = "adb -s " + currentDeviceSelected + " shell pm disable-user --user 0 ";
                         commandName = "Disabled:";
                         break;
                     case 2:
-                        command = "adb shell pm clear ";
+                        command = "adb -s " + currentDeviceSelected + " shell pm clear ";
                         commandName = "Cleared:";
                         break;
                     case -1:
@@ -922,7 +951,7 @@ namespace ATA_GUI
                         MessageShowBox("Generic error", 0);
                         return;
                 }
-                LoadingForm load = new LoadingForm(arrayApkSelect, command, commandName);
+                LoadingForm load = new LoadingForm(arrayApkSelect, command, commandName, currentDeviceSelected);
                 load.ShowDialog();
                 if (load.DialogResult == DialogResult.OK)
                 {
@@ -984,7 +1013,7 @@ namespace ATA_GUI
                     { 
                         if (File.Exists(fileLoc))
                         {
-                            if(adbFastbootCommandR(new[] { "install -r \"" + fileLoc + "\"" },0) != null)
+                            if(adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " install -r \"" + fileLoc + "\"" },0) != null)
                             {
                                 LogWriteLine(fileName+" installed!");
                                 MessageShowBox(fileName +" installed", 2);
@@ -1041,7 +1070,7 @@ namespace ATA_GUI
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] filePaths = (string[])(e.Data.GetData(DataFormats.FileDrop));
-                LoadingForm loading = new LoadingForm(filePaths);
+                LoadingForm loading = new LoadingForm(filePaths, currentDeviceSelected);
                 loading.ShowDialog();
             }
         }
@@ -1055,6 +1084,32 @@ namespace ATA_GUI
             else
             {
                 e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void comboBoxDevices_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            currentDeviceSelected = Regex.Replace(devices[comboBoxDevices.SelectedIndex].Serial, @"\t|\n|\r", "");
+        }
+
+        private void buttonReloadDevicesList_Click(object sender, EventArgs e)
+        {
+            comboBoxDevices.Items.Clear();
+            devices.Clear();
+            DevicesListUpdate();
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            if(tabControl1.SelectedTab.Text!="System")
+            {
+                comboBoxDevices.Enabled = false;
+                buttonReloadDevicesList.Enabled = false;
+            }
+            else
+            {
+                comboBoxDevices.Enabled = true;
+                buttonReloadDevicesList.Enabled = true;
             }
         }
     }

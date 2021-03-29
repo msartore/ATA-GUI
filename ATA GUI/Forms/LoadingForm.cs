@@ -12,24 +12,27 @@ namespace ATA_GUI
         private readonly List<string> arrayApk;
         private readonly string command;
         private readonly string[] fileArray;
+        private readonly string deviceSerial;
         private readonly bool fileTransfer;
 
 
-        public LoadingForm(List<string> arrayApkTemp, string commandTemp, string labelTemp)
+        public LoadingForm(List<string> arrayApkTemp, string commandTemp, string labelTemp, string deviceSerialTmp)
         {
             InitializeComponent();
             arrayApk = arrayApkTemp;
             command = commandTemp;
             labelText.Text = labelTemp;
             fileTransfer = false;
+            deviceSerial = deviceSerialTmp;
         }
 
-        public LoadingForm(string [] array)
+        public LoadingForm(string [] array, string deviceSerialTmp)
         {
             InitializeComponent();
             fileArray = array;
             fileTransfer = true;
             labelText.Text = "Transfering file:";
+            deviceSerial = deviceSerialTmp;
         }
 
         private void LoadingForm_Shown(Object sender, EventArgs e)
@@ -60,7 +63,7 @@ namespace ATA_GUI
             {
                 if (fileTransfer)
                 {
-                    MainForm.systemCommand("adb shell mkdir storage/emulate/0/ATA");
+                    MainForm.systemCommand("adb -s "+ deviceSerial + " shell mkdir sdcard/ATA");
                     progressBar1.Maximum = fileArray.Length;
                     int i = 0;
                     foreach (string file in fileArray)
@@ -69,7 +72,8 @@ namespace ATA_GUI
                         {
                             labelFileName.Text = file.Substring(file.LastIndexOf('\\') + 1);
                             this.Refresh();
-                            if (MainForm.adbFastbootCommandR(new[] { "push " + file + " storage/emulated/0/ATA " }, 0) == null)
+                            
+                            if (MainForm.adbFastbootCommandR(new[] { "-s " + deviceSerial + " push " + file + " sdcard/ATA " }, 0) == null)
                             {
                                 MainForm.MessageShowBox(labelFileName.Text + " not transfered", 0);
                             }
@@ -89,10 +93,7 @@ namespace ATA_GUI
                     {
                         labelFileName.Text = apk;
                         this.Refresh();
-                        if (MainForm.adbFastbootCommandR(new[] { command + apk }, 0) == null)
-                        {
-                            MainForm.MessageShowBox(labelFileName.Text + " not " + labelText.Text.Substring(0,labelText.Text.Length-1), 0);
-                        }
+                        MainForm.systemCommand("adb " + command + apk);
                         backgroundWorker.ReportProgress(++i);
                     }
                 }

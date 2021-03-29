@@ -38,7 +38,6 @@ namespace ATA_GUI
             this.labelLog = new System.Windows.Forms.Label();
             this.buttonKillAdb = new System.Windows.Forms.Button();
             this.buttonSyncApp = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonCredits = new System.Windows.Forms.Button();
             this.buttonLogClear = new System.Windows.Forms.Button();
             this.backgroundWorkerSync = new System.ComponentModel.BackgroundWorker();
@@ -142,9 +141,11 @@ namespace ATA_GUI
             this.grantWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grantDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkGrantedPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonReloadDevicesList = new System.Windows.Forms.Button();
+            this.comboBoxDevices = new System.Windows.Forms.ComboBox();
             this.panelTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -164,6 +165,7 @@ namespace ATA_GUI
             this.tabPageRecovery.SuspendLayout();
             this.contextMenuStripFilterBy.SuspendLayout();
             this.contextMenuStripPermissionMenu.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTopBar
@@ -220,7 +222,7 @@ namespace ATA_GUI
             // labelLog
             // 
             this.labelLog.AutoSize = true;
-            this.labelLog.Location = new System.Drawing.Point(478, 366);
+            this.labelLog.Location = new System.Drawing.Point(474, 366);
             this.labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLog.Name = "labelLog";
             this.labelLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -232,7 +234,7 @@ namespace ATA_GUI
             // 
             this.buttonKillAdb.BackColor = System.Drawing.Color.White;
             this.buttonKillAdb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonKillAdb.Location = new System.Drawing.Point(368, 15);
+            this.buttonKillAdb.Location = new System.Drawing.Point(385, 427);
             this.buttonKillAdb.Name = "buttonKillAdb";
             this.buttonKillAdb.Size = new System.Drawing.Size(87, 23);
             this.buttonKillAdb.TabIndex = 29;
@@ -245,37 +247,24 @@ namespace ATA_GUI
             this.buttonSyncApp.BackColor = System.Drawing.Color.White;
             this.buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSyncApp.ForeColor = System.Drawing.Color.Black;
-            this.buttonSyncApp.Location = new System.Drawing.Point(13, 15);
+            this.buttonSyncApp.Location = new System.Drawing.Point(17, 22);
             this.buttonSyncApp.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSyncApp.Name = "buttonSyncApp";
-            this.buttonSyncApp.Size = new System.Drawing.Size(118, 23);
+            this.buttonSyncApp.Size = new System.Drawing.Size(131, 45);
             this.buttonSyncApp.TabIndex = 0;
             this.buttonSyncApp.Text = "Sync Smartphone";
             this.buttonSyncApp.UseVisualStyleBackColor = false;
             this.buttonSyncApp.Click += new System.EventHandler(this.buttonSyncApp_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.buttonCredits);
-            this.groupBox1.Controls.Add(this.buttonLogClear);
-            this.groupBox1.Controls.Add(this.buttonSyncApp);
-            this.groupBox1.Controls.Add(this.buttonKillAdb);
-            this.groupBox1.Location = new System.Drawing.Point(12, 366);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(461, 84);
-            this.groupBox1.TabIndex = 31;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tool Box";
             // 
             // buttonCredits
             // 
             this.buttonCredits.BackColor = System.Drawing.Color.White;
             this.buttonCredits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCredits.ForeColor = System.Drawing.Color.Black;
-            this.buttonCredits.Location = new System.Drawing.Point(13, 44);
+            this.buttonCredits.Location = new System.Drawing.Point(384, 370);
             this.buttonCredits.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCredits.Name = "buttonCredits";
-            this.buttonCredits.Size = new System.Drawing.Size(118, 23);
+            this.buttonCredits.Size = new System.Drawing.Size(88, 23);
             this.buttonCredits.TabIndex = 32;
             this.buttonCredits.Text = "About";
             this.buttonCredits.UseVisualStyleBackColor = false;
@@ -286,9 +275,9 @@ namespace ATA_GUI
             this.buttonLogClear.BackColor = System.Drawing.Color.White;
             this.buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogClear.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogClear.Location = new System.Drawing.Point(368, 44);
+            this.buttonLogClear.Location = new System.Drawing.Point(384, 398);
             this.buttonLogClear.Name = "buttonLogClear";
-            this.buttonLogClear.Size = new System.Drawing.Size(87, 23);
+            this.buttonLogClear.Size = new System.Drawing.Size(88, 23);
             this.buttonLogClear.TabIndex = 31;
             this.buttonLogClear.Text = "Clear log";
             this.buttonLogClear.UseVisualStyleBackColor = false;
@@ -330,9 +319,9 @@ namespace ATA_GUI
             this.labelStatus.AutoSize = true;
             this.labelStatus.Location = new System.Drawing.Point(86, 120);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(44, 13);
+            this.labelStatus.Size = new System.Drawing.Size(65, 13);
             this.labelStatus.TabIndex = 17;
-            this.labelStatus.Text = "EMPTY";
+            this.labelStatus.Text = "UNKNOWN";
             // 
             // label4
             // 
@@ -505,11 +494,12 @@ namespace ATA_GUI
             this.tabControl1.Controls.Add(this.tabPageSystem);
             this.tabControl1.Controls.Add(this.tabPageFastboot);
             this.tabControl1.Controls.Add(this.tabPageRecovery);
-            this.tabControl1.Location = new System.Drawing.Point(12, 42);
+            this.tabControl1.Location = new System.Drawing.Point(9, 42);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(862, 321);
             this.tabControl1.TabIndex = 33;
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPageSystem
             // 
@@ -1216,7 +1206,7 @@ namespace ATA_GUI
             // 
             this.richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
             this.richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
-            this.richTextBoxLog.Location = new System.Drawing.Point(481, 386);
+            this.richTextBoxLog.Location = new System.Drawing.Point(477, 386);
             this.richTextBoxLog.Name = "richTextBoxLog";
             this.richTextBoxLog.ReadOnly = true;
             this.richTextBoxLog.Size = new System.Drawing.Size(393, 64);
@@ -1306,6 +1296,38 @@ namespace ATA_GUI
             this.checkGrantedPermissionsToolStripMenuItem.Text = "Check granted permissions";
             this.checkGrantedPermissionsToolStripMenuItem.Click += new System.EventHandler(this.checkGrantedPermissionsToolStripMenuItem_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.buttonReloadDevicesList);
+            this.groupBox1.Controls.Add(this.comboBoxDevices);
+            this.groupBox1.Controls.Add(this.buttonSyncApp);
+            this.groupBox1.Location = new System.Drawing.Point(8, 365);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(332, 84);
+            this.groupBox1.TabIndex = 31;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Device Sync Settings";
+            // 
+            // buttonReloadDevicesList
+            // 
+            this.buttonReloadDevicesList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReloadDevicesList.Location = new System.Drawing.Point(168, 44);
+            this.buttonReloadDevicesList.Name = "buttonReloadDevicesList";
+            this.buttonReloadDevicesList.Size = new System.Drawing.Size(152, 23);
+            this.buttonReloadDevicesList.TabIndex = 2;
+            this.buttonReloadDevicesList.Text = "Reload Devices";
+            this.buttonReloadDevicesList.UseVisualStyleBackColor = true;
+            this.buttonReloadDevicesList.Click += new System.EventHandler(this.buttonReloadDevicesList_Click);
+            // 
+            // comboBoxDevices
+            // 
+            this.comboBoxDevices.FormattingEnabled = true;
+            this.comboBoxDevices.Location = new System.Drawing.Point(168, 22);
+            this.comboBoxDevices.Name = "comboBoxDevices";
+            this.comboBoxDevices.Size = new System.Drawing.Size(152, 21);
+            this.comboBoxDevices.TabIndex = 1;
+            this.comboBoxDevices.SelectedIndexChanged += new System.EventHandler(this.comboBoxDevices_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1313,6 +1335,9 @@ namespace ATA_GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(880, 454);
+            this.Controls.Add(this.buttonKillAdb);
+            this.Controls.Add(this.buttonCredits);
+            this.Controls.Add(this.buttonLogClear);
             this.Controls.Add(this.richTextBoxLog);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
@@ -1327,7 +1352,6 @@ namespace ATA_GUI
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.panelTopBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             this.groupBoxDeviceInfo.ResumeLayout(false);
             this.groupBoxDeviceInfo.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1356,6 +1380,7 @@ namespace ATA_GUI
             this.tabPageRecovery.PerformLayout();
             this.contextMenuStripFilterBy.ResumeLayout(false);
             this.contextMenuStripPermissionMenu.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1369,7 +1394,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Label labelLog;
         private System.Windows.Forms.Button buttonKillAdb;
         private System.Windows.Forms.Button buttonSyncApp;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorkerSync;
         private System.Windows.Forms.GroupBox groupBoxDeviceInfo;
         private System.Windows.Forms.Label labelAV;
@@ -1474,6 +1498,9 @@ namespace ATA_GUI
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox comboBoxDevices;
+        private System.Windows.Forms.Button buttonReloadDevicesList;
     }
 }
 
