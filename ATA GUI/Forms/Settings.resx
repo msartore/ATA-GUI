@@ -118,60 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAu
-        IwAALiMBeKU/dgAAAKtJREFUWEfNzTsOwjAQBuHcniNwJ2oOECEh8uhS0pjfrqLVtEGz0teM5d2ptaaG
-        0QSjCUYTjCYYTTCaYDTBaILRBKMJRhOMJhhNMJpgNMFogtEEY3GLOd7xiSXWk63Ywfm9/+k7+q5X3IPu
-        DhiLfwzdHTAW37h66O6AsXjEcaFn0N0BowlGE4wmGE0wmmA0wWiC0QSjCUYTjCYYTTCaYDTBaILRBKMJ
-        Ro82/QD8Yw2HxH/JmAAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="buttonCloseWindows.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAu
-        IwAALiMBeKU/dgAAAgZJREFUWEfN1z0vREEUBmAi6MRHJwpahfgq/QetaPknapR60QkVEhp+goRC4isa
-        jYRKBGG9r7U3Z493zMzVzEmeZPfds5uT2bl3ZzsajUbRZFgSGZZEhiWRYUlkWBIZlkSGJZFhwDJMuKyO
-        HlhyWZAMhUVgPcIAqJ5Ux8BaAfV6Gxk6XDlbV9AHqjdmH2ytg+qryNCZg3uwdQqDoPpDtsHWByyA6q3I
-        UOAwXDlbfJ46pF+5V5gB1dtGhgFDwJWzdQmxIffA1hMkDUcy/AP3nl/JcwjtSf+1vsAUqF5JhhG8iv2Q
-        19APts+vHIebBdsTJcMEHPIMbHHI1ut+z/FrzR6OZJioF27B1glsNh9W9Q7joD4jSoYZuPf8kLbeYBrU
-        e5PIMFMXHIEvfuWjoN6TTIY1bIEvXt2qN4sMMx1AqG6g7s/iNxlm8MM9wEXzYVXco7yg1PujZJhoB2x9
-        wjB0AvefLd6Sap2CZJjA3+c43CS0XudN2w/Jm3v2kDKM8MM9gzrIcu/xQrHFIbP2pAz/4H9bY6cSHiR4
-        oLDFAwcPHqr/FxkG1D0y/euoJkNnBA7BVtaRCTiMP6pxj0Y/Q4YO/+DYyj4y/eDe8yu5Aaq3IkOBf3Ba
-        VetU8oNX8R2wdqEbVF9FhgGrMO+yOsZgzWVBMiyJDEsiw5LIsCQyLIkMSyLDksiwHI2OL7HIbkbDFtDA
-        AAAAAElFTkSuQmCC
-</value>
-  </data>
-  <metadata name="backgroundWorkerSync.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>853, 19</value>
-  </metadata>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>853, 19</value>
-  </metadata>
-  <metadata name="openFileDialogAPK.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>199, 17</value>
-  </metadata>
-  <metadata name="openFileDialogZip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>353, 18</value>
-  </metadata>
-  <metadata name="backgroundWorkerZip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>492, 18</value>
-  </metadata>
-  <metadata name="backgroundWorkerFlashImg.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>666, 18</value>
-  </metadata>
-  <metadata name="contextMenuStripFilterBy.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>958, 19</value>
-  </metadata>
-  <metadata name="contextMenuStripPermissionMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1147, 19</value>
-  </metadata>
-  <metadata name="backgroundWorkerAdbDownloader.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 58</value>
-  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAAAAAAAEAIACtJQAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAEAAAABAAgGAAAAXHKoZgAAAAFv

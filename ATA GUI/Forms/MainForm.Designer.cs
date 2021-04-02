@@ -38,7 +38,7 @@ namespace ATA_GUI
             this.labelLog = new System.Windows.Forms.Label();
             this.buttonKillAdb = new System.Windows.Forms.Button();
             this.buttonSyncApp = new System.Windows.Forms.Button();
-            this.buttonCredits = new System.Windows.Forms.Button();
+            this.buttonSettings = new System.Windows.Forms.Button();
             this.buttonLogClear = new System.Windows.Forms.Button();
             this.backgroundWorkerSync = new System.ComponentModel.BackgroundWorker();
             this.groupBoxDeviceInfo = new System.Windows.Forms.GroupBox();
@@ -144,6 +144,7 @@ namespace ATA_GUI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonReloadDevicesList = new System.Windows.Forms.Button();
             this.comboBoxDevices = new System.Windows.Forms.ComboBox();
+            this.backgroundWorkerAdbDownloader = new System.ComponentModel.BackgroundWorker();
             this.panelTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxDeviceInfo.SuspendLayout();
@@ -256,19 +257,19 @@ namespace ATA_GUI
             this.buttonSyncApp.UseVisualStyleBackColor = false;
             this.buttonSyncApp.Click += new System.EventHandler(this.buttonSyncApp_Click);
             // 
-            // buttonCredits
+            // buttonSettings
             // 
-            this.buttonCredits.BackColor = System.Drawing.Color.White;
-            this.buttonCredits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCredits.ForeColor = System.Drawing.Color.Black;
-            this.buttonCredits.Location = new System.Drawing.Point(384, 370);
-            this.buttonCredits.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCredits.Name = "buttonCredits";
-            this.buttonCredits.Size = new System.Drawing.Size(88, 23);
-            this.buttonCredits.TabIndex = 32;
-            this.buttonCredits.Text = "About";
-            this.buttonCredits.UseVisualStyleBackColor = false;
-            this.buttonCredits.Click += new System.EventHandler(this.buttonCredits_Click);
+            this.buttonSettings.BackColor = System.Drawing.Color.White;
+            this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSettings.ForeColor = System.Drawing.Color.Black;
+            this.buttonSettings.Location = new System.Drawing.Point(384, 370);
+            this.buttonSettings.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.Size = new System.Drawing.Size(88, 23);
+            this.buttonSettings.TabIndex = 32;
+            this.buttonSettings.Text = "Settings";
+            this.buttonSettings.UseVisualStyleBackColor = false;
+            this.buttonSettings.Click += new System.EventHandler(this.buttonCredits_Click);
             // 
             // buttonLogClear
             // 
@@ -1328,6 +1329,10 @@ namespace ATA_GUI
             this.comboBoxDevices.TabIndex = 1;
             this.comboBoxDevices.SelectedIndexChanged += new System.EventHandler(this.comboBoxDevices_SelectedIndexChanged);
             // 
+            // backgroundWorkerAdbDownloader
+            // 
+            this.backgroundWorkerAdbDownloader.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAdbDownloader_DoWork);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1336,7 +1341,7 @@ namespace ATA_GUI
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(880, 454);
             this.Controls.Add(this.buttonKillAdb);
-            this.Controls.Add(this.buttonCredits);
+            this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonLogClear);
             this.Controls.Add(this.richTextBoxLog);
             this.Controls.Add(this.tabControl1);
@@ -1465,7 +1470,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonBootloaderMenu;
         private System.Windows.Forms.Button buttonRebootRecovery;
-        private System.Windows.Forms.Button buttonCredits;
+        private System.Windows.Forms.Button buttonSettings;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButtonReloadApps;
         private System.Windows.Forms.ToolStripButton toolStripButtonFilter;
@@ -1501,6 +1506,7 @@ namespace ATA_GUI
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboBoxDevices;
         private System.Windows.Forms.Button buttonReloadDevicesList;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerAdbDownloader;
     }
 }
 

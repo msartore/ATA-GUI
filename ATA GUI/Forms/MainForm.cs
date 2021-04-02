@@ -8,6 +8,9 @@ using Ionic.Zip;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Net.NetworkInformation;
 
 namespace ATA_GUI
 {
@@ -33,6 +36,24 @@ namespace ATA_GUI
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
+
+        public class Release
+        {
+            private int number;
+            private bool pre;
+
+            public Release()
+            {
+                number = -1;
+                pre = false;
+            }
+
+            public int Number { get => number; set => number = value; }
+            public bool Pre { get => pre; set => pre = value; }
+        }
+
+        private const string currentVersion = "v.1.4.0";
+
         public MainForm()
         {
             InitializeComponent();
@@ -160,7 +181,6 @@ namespace ATA_GUI
             string ret = "";
             string line;
             Cursor.Current = Cursors.WaitCursor;
-            if (!checkAdbFastboot(1)) return null;
             System.Diagnostics.Process process = new System.Diagnostics.Process();
             System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
             startInfo.UseShellExecute = false;
@@ -237,140 +257,163 @@ namespace ATA_GUI
             if (checkAdbFastboot(0))
             {
                 LogWriteLine("Checking device...");
-                if(adbFastbootCommandR(new [] { "-s " + Regex.Replace(currentDeviceSelected, @"\t|\n|\r", "") + " shell getprop ro.build.version.release" }, 0).Any(char.IsDigit))
+                string version = adbFastbootCommandR(new[] { "-s " + Regex.Replace(currentDeviceSelected, @"\t|\n|\r", "") + " shell getprop ro.build.version.release" }, 0);
+                if (version != null)
                 {
-                    string stringApk;
-                    int count = 1;
-                    if(paramObj.ToString()=="3")
-                    {
-                        count = 2;
-                        paramObj = "0";
-                    }
-                    for(int a = 0; a<count; a++)
-                    {
-                        if (a==1)
+                    if(version.Any(char.IsDigit))
+                    { 
+                        string stringApk;
+                        int count = 1;
+                        if(paramObj.ToString()=="3")
                         {
-                            paramObj = "2";
+                            count = 2;
+                            paramObj = "0";
                         }
-                        switch (paramObj.ToString())
+                        for(int a = 0; a<count; a++)
                         {
-                            case "0":
-                                string[] arrayDeviceInfoCommands = { "-s "+ currentDeviceSelected +" shell getprop ro.build.version.release", "-s "+ currentDeviceSelected +" shell getprop ro.build.user",  "-s "+ currentDeviceSelected +" shell getprop ro.product.cpu.abilist", "-s "+ currentDeviceSelected +" shell getprop ro.product.manufacturer" , "-s "+ currentDeviceSelected +" shell getprop ro.product.model",
-                                       "-s "+ currentDeviceSelected +" shell getprop ro.product.board", "-s "+ currentDeviceSelected +" shell getprop ro.product.device", "-s "+ currentDeviceSelected +" shell ip route"};
-                                string deviceinfo = adbFastbootCommandR(arrayDeviceInfoCommands, 0);
-                                string[] arrayDeviceInfo = deviceinfo.Split('\n');
-                                if (arrayDeviceInfo.Length > 5)
-                                {
+                            if (a==1)
+                            {
+                                paramObj = "2";
+                            }
+                            switch (paramObj.ToString())
+                            {
+                                case "0":
+                                    string[] arrayDeviceInfoCommands = { "-s "+ currentDeviceSelected +" shell getprop ro.build.version.release", "-s "+ currentDeviceSelected +" shell getprop ro.build.user",  "-s "+ currentDeviceSelected +" shell getprop ro.product.cpu.abilist", "-s "+ currentDeviceSelected +" shell getprop ro.product.manufacturer" , "-s "+ currentDeviceSelected +" shell getprop ro.product.model",
+                                           "-s "+ currentDeviceSelected +" shell getprop ro.product.board", "-s "+ currentDeviceSelected +" shell getprop ro.product.device", "-s "+ currentDeviceSelected +" shell ip route"};
+                                    string deviceinfo = adbFastbootCommandR(arrayDeviceInfoCommands, 0);
+                                    string[] arrayDeviceInfo = deviceinfo.Split('\n');
+                                    if (arrayDeviceInfo.Length > 5)
+                                    {
                                 
+                                        Invoke((Action)delegate
+                                        {
+                                            LogWriteLine("device found!");                                
+                                            labelAV.Text = arrayDeviceInfo[0];
+                                            labelBU.Text = arrayDeviceInfo[1];
+                                            labelCA.Text = arrayDeviceInfo[2];
+                                            labelManu.Text = arrayDeviceInfo[3];
+                                            labelModel.Text = arrayDeviceInfo[4];
+                                            labelB.Text = arrayDeviceInfo[5];
+                                            labelD.Text = arrayDeviceInfo[6];
+                                            if (arrayDeviceInfo.Length > 7)
+                                            {
+                                                textBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
+                                                if (labelIP.Text.Contains("t of devices attached"))
+                                                {
+                                                    labelIP.Text = "Not connected to a network";
+                                                    textBoxIP.Text = "";
+                                                    buttonConnectToIP.Enabled = false;
+                                                    buttonDisconnectIP.Enabled = false;
+                                                }
+                                            }
+                                            if(currentDeviceSelected.Contains("192"))
+                                            {
+                                                labelStatus.Text = "Wireless";
+                                            }
+                                            else
+                                            {
+                                                labelStatus.Text = "Cable";
+                                            }
+                                            LogWriteLine("Device info extracted");
+                                            tabPageSystem.Enabled = true;
+                                        });
+                                    }
+                                    else
+                                    {
+                                        Invoke((Action)delegate
+                                        {
+                                            tabPageSystem.Enabled = false;
+                                        });
+                                        LogWriteLine("Error: failed to extract device info!");
+                                    }
+                                    break;
+                                case "2":
+                                    arrayApks.Clear(); 
                                     Invoke((Action)delegate
                                     {
-                                        LogWriteLine("device found!");                                
-                                        labelAV.Text = arrayDeviceInfo[0];
-                                        labelBU.Text = arrayDeviceInfo[1];
-                                        labelCA.Text = arrayDeviceInfo[2];
-                                        labelManu.Text = arrayDeviceInfo[3];
-                                        labelModel.Text = arrayDeviceInfo[4];
-                                        labelB.Text = arrayDeviceInfo[5];
-                                        labelD.Text = arrayDeviceInfo[6];
-                                        if (arrayDeviceInfo.Length > 7)
+                                        labelSelectedAppCount.Text = "Selected App: 0";
+                                        checkedListBoxApp.Items.Clear();
+                                    });
+                                    string[] command = { };
+                                    if (!systemApp)
+                                    {
+                                        command = new[] { "-s " + currentDeviceSelected + " shell pm list packages -3" };
+                                    }
+                                    else
+                                    {
+                                        command = new[] { "-s " + currentDeviceSelected + " shell pm list packages -s" };
+                                    }
+                                    if ((stringApk = adbFastbootCommandR(command,0))!=null)
+                                    {
+                                        LogWriteLine("Loading apps...");
+                                        string[] arrayApkTmp = stringApk.Split('\n');
+                                        foreach (string line in arrayApkTmp)
                                         {
-                                            textBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
-                                            if (labelIP.Text.Contains("t of devices attached"))
+                                            if (line.Contains("package:"))
                                             {
-                                                labelIP.Text = "Not connected to a network";
-                                                textBoxIP.Text = "";
-                                                buttonConnectToIP.Enabled = false;
-                                                buttonDisconnectIP.Enabled = false;
+                                                arrayApks.Add(line.Substring(8));
                                             }
                                         }
-                                        LogWriteLine("Device info extracted");
-                                        tabPageSystem.Enabled = true;
-                                    });
-                                }
-                                else
-                                {
+                                        foreach (string str in arrayApks)
+                                        {
+                                            Invoke((Action)delegate
+                                            {
+                                                checkedListBoxApp.Items.Add(str);
+                                                checkedListBoxApp.CheckOnClick = true;
+                                            });
+                                        }
+                                        LogWriteLine("Apps loaded!");
+                                    }
+                                    else
+                                    {
+                                        MessageShowBox("Error during apk loading", 0);
+                                    }
+                                    break;
+                                case "4":
+                                    arrayApks.Clear();
                                     Invoke((Action)delegate
                                     {
-                                        tabPageSystem.Enabled = false;
+                                        checkedListBoxApp.Items.Clear();
                                     });
-                                    LogWriteLine("Error: failed to extract device info!");
-                                }
-                                break;
-                            case "2":
-                                arrayApks.Clear(); 
-                                Invoke((Action)delegate
-                                {
-                                    labelSelectedAppCount.Text = "Selected App: 0";
-                                    checkedListBoxApp.Items.Clear();
-                                });
-                                string[] command = { };
-                                if (!systemApp)
-                                {
-                                    command = new[] { "-s " + currentDeviceSelected + " shell pm list packages -3" };
-                                }
-                                else
-                                {
-                                    command = new[] { "-s " + currentDeviceSelected + " shell pm list packages -s" };
-                                }
-                                if ((stringApk = adbFastbootCommandR(command,0))!=null)
-                                {
-                                    LogWriteLine("Loading apps...");
-                                    string[] arrayApkTmp = stringApk.Split('\n');
-                                    foreach (string line in arrayApkTmp)
+                                    if ((stringApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -3", "-s " + currentDeviceSelected + " shell pm list packages -s" }, 0)) != null)
                                     {
-                                        if (line.Contains("package:"))
+                                        LogWriteLine("Loading apps...");
+                                        string[] arrayApkTmp = stringApk.Split('\n');
+                                        foreach (string line in arrayApkTmp)
                                         {
-                                            arrayApks.Add(line.Substring(8));
+                                            if (line.Contains("package:"))
+                                            {
+                                                arrayApks.Add(line.Substring(8));
+                                            }
                                         }
-                                    }
-                                    foreach (string str in arrayApks)
-                                    {
-                                        Invoke((Action)delegate
+                                        foreach (string str in arrayApks)
                                         {
-                                            checkedListBoxApp.Items.Add(str);
-                                            checkedListBoxApp.CheckOnClick = true;
-                                        });
-                                    }
-                                    LogWriteLine("Apps loaded!");
-                                }
-                                else
-                                {
-                                    MessageShowBox("Error during apk loading", 0);
-                                }
-                                break;
-                            case "4":
-                                arrayApks.Clear();
-                                Invoke((Action)delegate
-                                {
-                                    checkedListBoxApp.Items.Clear();
-                                });
-                                if ((stringApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -3", "-s " + currentDeviceSelected + " shell pm list packages -s" }, 0)) != null)
-                                {
-                                    LogWriteLine("Loading apps...");
-                                    string[] arrayApkTmp = stringApk.Split('\n');
-                                    foreach (string line in arrayApkTmp)
-                                    {
-                                        if (line.Contains("package:"))
-                                        {
-                                            arrayApks.Add(line.Substring(8));
+                                            Invoke((Action)delegate
+                                            {
+                                                checkedListBoxApp.Items.Add(str);
+                                                checkedListBoxApp.CheckOnClick = true;
+                                            });
                                         }
+                                        LogWriteLine("Apps loaded!");
                                     }
-                                    foreach (string str in arrayApks)
+                                    else
                                     {
-                                        Invoke((Action)delegate
-                                        {
-                                            checkedListBoxApp.Items.Add(str);
-                                            checkedListBoxApp.CheckOnClick = true;
-                                        });
+                                        MessageShowBox("Error during apk loading", 0);
                                     }
-                                    LogWriteLine("Apps loaded!");
-                                }
-                                else
-                                {
-                                    MessageShowBox("Error during apk loading", 0);
-                                }
-                                break;
+                                    break;
+                            }
                         }
+                    }
+                    else
+                    {
+                        Invoke((Action)delegate
+                        {
+                            tabPageSystem.Enabled = false;
+
+                            LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
+                            if (paramObjTmp == "0")
+                                MessageShowBox("Error device not found/ multiple devices found", 0);
+                        });
                     }
                 }
                 else
@@ -387,53 +430,20 @@ namespace ATA_GUI
             }
             else
             {
-                Invoke((Action)delegate
-                {
-                    tabPageSystem.Enabled = false;
-                });
-                adbMissingForm adbError = new adbMissingForm();
-                adbError.ShowDialog();
-                switch (adbError.DialogResult)
-                {
-                    case DialogResult.Yes:
-                        LogWriteLine("Downloading sdk platform tool...");
-                        using (var client = new WebClient())
-                        {
-                            try
-                            { 
-                            client.DownloadFile("https://dl.google.com/android/repository/platform-tools-latest-windows.zip?authuser=2", "sdkplatformtool.zip");
-                            LogWriteLine("sdk platform tool downloaded!");
-                            LogWriteLine("unzipping sdk platform tool...");
-                            using (ZipFile zip = ZipFile.Read("sdkplatformtool.zip"))
-                            {
-                                zip.ExtractAll(System.IO.Path.GetDirectoryName(Application.ExecutablePath));
-                            }
-                            LogWriteLine("sdk platform tool downloaded!");
-                            LogWriteLine("Getting things ready...");
-                            systemCommand("move platform-tools\\adb.exe \"%cd%\"");
-                            systemCommand("move platform-tools\\AdbWinUsbApi.dll \"%cd%\"");
-                            systemCommand("move platform-tools\\AdbWinApi.dll \"%cd%\"");
-                            systemCommand("move platform-tools\\fastboot.exe \"%cd%\"");
-                            File.Delete("sdkplatformtool.zip");
-                            systemCommand("rmdir /Q /S platform-tools");
-                            LogWriteLine("ATA ready!");
-                            }
-                            catch(Exception ex)
-                            {
-                                MessageShowBox(ex.ToString(), 0);
-                            }
-                        }
-                        break;
-                    case DialogResult.No:
-                        break;
-                    case DialogResult.OK:
-                        System.Diagnostics.Process.Start("https://developer.android.com/license?authuser=2");
-                        break;
-                    default:
-                        MessageShowBox("Generic error", 0);
-                        break;
-                }
+                adbDownload();
             }            
+        }
+
+        private void adbDownload()
+        {
+            try
+            {
+                backgroundWorkerAdbDownloader.RunWorkerAsync();
+            }
+            catch(Exception ex)
+            {
+                MessageShowBox("Error: " + ex.ToString(), 0);
+            }
         }
 
         private void textboxClick(object sender, EventArgs e)
@@ -526,8 +536,41 @@ namespace ATA_GUI
             }
         }
 
-        private void MainForm_Shown(object sender, EventArgs e)
+        private async void MainForm_Shown(object sender, EventArgs e)
         {
+            Ping myPing = new Ping();
+            String host = "google.com";
+            byte[] buffer = new byte[32];
+            int timeout = 1000;
+            PingOptions pingOptions = new PingOptions();
+            PingReply reply = myPing.Send(host, timeout, buffer, pingOptions);
+            if (reply.Status == IPStatus.Success)
+            {
+                Release currentRelease = new Release();
+                Release latestRelease = new Release();
+                HttpClient _client = new HttpClient();
+                _client.DefaultRequestHeaders.Add("User-Agent", "C# App");
+                string json = await _client.GetStringAsync("https://api.github.com/repos/MassimilianoSartore/ATA-GUI/releases");
+                dynamic jsonReal = JsonConvert.DeserializeObject(json);
+                string latestRelese = jsonReal[0]["tag_name"];
+                latestRelease.Number = int.Parse(Regex.Replace(latestRelese, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
+                if (latestRelese.Contains("Pre")) latestRelease.Pre = true;
+                currentRelease.Number = int.Parse(Regex.Replace(currentVersion, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
+                if (currentVersion.Contains("Pre")) currentRelease.Pre = true;
+                string linkString = jsonReal[0]["assets"][0]["browser_download_url"];
+                if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && (currentRelease.Pre == latestRelease.Pre)))
+                {
+                    if (MessageBox.Show("Update found, do you want to update it?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        UpdateForm update = new UpdateForm(linkString);
+                        update.ShowDialog();
+                    }
+                }
+            }
+            else
+            {
+                LogWriteLine("You are offline");
+            }
             DevicesListUpdate();
             syncFun(3);
         }
@@ -767,7 +810,7 @@ namespace ATA_GUI
             }
         }
 
-        static private bool checkAdbFastboot(int exeN)
+        private bool checkAdbFastboot(int exeN)
         {
             string exeTmp = "adb.exe";
             if (exeN==1)
@@ -839,8 +882,8 @@ namespace ATA_GUI
 
         private void buttonCredits_Click(object sender, EventArgs e)
         {
-            About about = new About();
-            about.ShowDialog();
+            Settings settings = new Settings();
+            settings.ShowDialog();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -1110,6 +1153,62 @@ namespace ATA_GUI
             {
                 comboBoxDevices.Enabled = true;
                 buttonReloadDevicesList.Enabled = true;
+            }
+        }
+
+        private void backgroundWorkerAdbDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            Invoke((Action)delegate
+            {
+                tabPageSystem.Enabled = false;
+            });
+            adbMissingForm adbError = new adbMissingForm();
+            adbError.ShowDialog();
+            switch (adbError.DialogResult)
+            {
+                case DialogResult.Yes:
+                    LogWriteLine("Downloading sdk platform tool...");
+                    using (var client = new WebClient())
+                    {
+                        try
+                        {
+                            client.DownloadFile("https://dl.google.com/android/repository/platform-tools-latest-windows.zip?authuser=2", "sdkplatformtool.zip");
+                            LogWriteLine("sdk platform tool downloaded!");
+                            LogWriteLine("unzipping sdk platform tool...");
+                            using (ZipFile zip = ZipFile.Read("sdkplatformtool.zip"))
+                            {
+                                zip.ExtractAll(System.IO.Path.GetDirectoryName(Application.ExecutablePath));
+                            }
+                            LogWriteLine("sdk platform tool downloaded!");
+                            LogWriteLine("Getting things ready...");
+                            systemCommand("taskkill /f /im adb.exe");
+                            systemCommand("taskkill /f /im fastboot.exe");
+                            systemCommand("del adb.exe");
+                            systemCommand("del AdbWinUsbApi.dll");
+                            systemCommand("del AdbWinApi.dll");
+                            systemCommand("del fastboot.exe");
+                            systemCommand("move platform-tools\\adb.exe \"%cd%\"");
+                            systemCommand("move platform-tools\\AdbWinUsbApi.dll \"%cd%\"");
+                            systemCommand("move platform-tools\\AdbWinApi.dll \"%cd%\"");
+                            systemCommand("move platform-tools\\fastboot.exe \"%cd%\"");
+                            File.Delete("sdkplatformtool.zip");
+                            systemCommand("rmdir /Q /S platform-tools");
+                            LogWriteLine("ATA ready!");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageShowBox(ex.ToString(), 0);
+                        }
+                    }
+                    break;
+                case DialogResult.No:
+                    break;
+                case DialogResult.OK:
+                    System.Diagnostics.Process.Start("https://developer.android.com/license?authuser=2");
+                    break;
+                default:
+                    MessageShowBox("Generic error", 0);
+                    break;
             }
         }
     }

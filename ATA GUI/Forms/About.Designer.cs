@@ -34,6 +34,7 @@ namespace ATA_GUI
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.linkLabelNewtonsoft = new System.Windows.Forms.LinkLabel();
             this.linkLabelSDK = new System.Windows.Forms.LinkLabel();
             this.linkLabelDNZ = new System.Windows.Forms.LinkLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -62,9 +63,9 @@ namespace ATA_GUI
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 13);
+            this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Version: 1.4.0 Pre-release";
+            this.label2.Text = "Version: 1.4.0";
             // 
             // label1
             // 
@@ -78,14 +79,26 @@ namespace ATA_GUI
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.linkLabelNewtonsoft);
             this.groupBox2.Controls.Add(this.linkLabelSDK);
             this.groupBox2.Controls.Add(this.linkLabelDNZ);
             this.groupBox2.Location = new System.Drawing.Point(12, 129);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(361, 57);
+            this.groupBox2.Size = new System.Drawing.Size(361, 77);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Assest Used";
+            // 
+            // linkLabelNewtonsoft
+            // 
+            this.linkLabelNewtonsoft.AutoSize = true;
+            this.linkLabelNewtonsoft.Location = new System.Drawing.Point(12, 54);
+            this.linkLabelNewtonsoft.Name = "linkLabelNewtonsoft";
+            this.linkLabelNewtonsoft.Size = new System.Drawing.Size(83, 13);
+            this.linkLabelNewtonsoft.TabIndex = 2;
+            this.linkLabelNewtonsoft.TabStop = true;
+            this.linkLabelNewtonsoft.Text = "Newtonsoft.json";
+            this.linkLabelNewtonsoft.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelNewtonsoft_LinkClicked);
             // 
             // linkLabelSDK
             // 
@@ -152,7 +165,7 @@ namespace ATA_GUI
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(298, 192);
+            this.buttonClose.Location = new System.Drawing.Point(298, 212);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 3;
@@ -165,7 +178,7 @@ namespace ATA_GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(385, 225);
+            this.ClientSize = new System.Drawing.Size(385, 247);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -173,6 +186,7 @@ namespace ATA_GUI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "About";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About";
@@ -199,5 +213,6 @@ namespace ATA_GUI
         private System.Windows.Forms.LinkLabel linkLabelRepo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.LinkLabel linkLabelNewtonsoft;
     }
 }

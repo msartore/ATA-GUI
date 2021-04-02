@@ -40,5 +40,10 @@ namespace ATA_GUI
         {
             this.Close();
         }
+
+        private void linkLabelNewtonsoft_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.newtonsoft.com/json");
+        }
     }
 }
