@@ -24,6 +24,7 @@ namespace ATA_GUI
         private bool systemApp = false;
         private List<Device> devices = new List<Device>();
         private string currentDeviceSelected = "";
+        private bool deviceWireless = false;
 
         private static readonly Regex regex = new Regex(@"\t|\n|\r|\s+");
 
@@ -309,10 +310,14 @@ namespace ATA_GUI
                                             if(currentDeviceSelected.Contains("192"))
                                             {
                                                 labelStatus.Text = "Wireless";
+                                                buttonConnectToIP.Enabled = false;
+                                                deviceWireless = true;
                                             }
                                             else
                                             {
                                                 labelStatus.Text = "Cable";
+                                                buttonConnectToIP.Enabled = true;
+                                                deviceWireless = false;
                                             }
                                             LogWriteLine("Device info extracted");
                                             tabPageSystem.Enabled = true;
@@ -334,7 +339,7 @@ namespace ATA_GUI
                                         labelSelectedAppCount.Text = "Selected App: 0";
                                         checkedListBoxApp.Items.Clear();
                                     });
-                                    string[] command = { };
+                                    string[] command;
                                     if (!systemApp)
                                     {
                                         command = new[] { "-s " + currentDeviceSelected + " shell pm list packages -3" };
@@ -442,7 +447,7 @@ namespace ATA_GUI
             }
             catch(Exception ex)
             {
-                MessageShowBox("Error: " + ex.ToString(), 0);
+                MessageShowBox("Error: " + ex, 0);
             }
         }
 
@@ -457,19 +462,28 @@ namespace ATA_GUI
 
         private void buttonRS_Click(object sender, EventArgs e)
         {
-            rebootSmartphone();
+            if(!deviceWireless || MessageBox.Show("Adb is not able to check if the device rebooted via wireless mode, do you want to continue?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            { 
+                rebootSmartphone();
+            }
         }
 
         private void buttonRR_Click(object sender, EventArgs e)
         {
-            systemCommand("adb -s " + currentDeviceSelected + " reboot recovery");
-            LogWriteLine("Rebooted!");
+            if (!deviceWireless || MessageBox.Show("Adb is not able to check if the device rebooted via wireless mode, do you want to continue?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            { 
+                systemCommand("adb -s " + currentDeviceSelected + " reboot recovery");
+                LogWriteLine("Rebooted!");
+            }
         }
 
         private void buttonRF_Click(object sender, EventArgs e)
         {
-            systemCommand("adb -s " + currentDeviceSelected + " reboot-bootloader");
-            LogWriteLine("Rebooted!");
+            if (!deviceWireless || MessageBox.Show("Adb is not able to check if the device rebooted via wireless mode, do you want to continue?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            { 
+                systemCommand("adb -s " + currentDeviceSelected + " reboot-bootloader");
+                LogWriteLine("Rebooted!");
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -554,9 +568,9 @@ namespace ATA_GUI
                 dynamic jsonReal = JsonConvert.DeserializeObject(json);
                 string latestRelese = jsonReal[0]["tag_name"];
                 latestRelease.Number = int.Parse(Regex.Replace(latestRelese, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
-                if (latestRelese.Contains("Pre")) latestRelease.Pre = true;
+                if (latestRelese.Contains("Pre")) { latestRelease.Pre = true; }
                 currentRelease.Number = int.Parse(Regex.Replace(currentVersion, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
-                if (currentVersion.Contains("Pre")) currentRelease.Pre = true;
+                if (currentVersion.Contains("Pre")) { currentRelease.Pre = true; }
                 string linkString = jsonReal[0]["assets"][0]["browser_download_url"];
                 if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && (currentRelease.Pre == latestRelease.Pre)))
                 {

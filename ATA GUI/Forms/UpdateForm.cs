@@ -9,7 +9,7 @@ namespace ATA_GUI
 {
     public partial class UpdateForm : Form
     {
-        private string link;
+        private readonly string link;
 
         public UpdateForm(string linkTmp)
         {
@@ -32,7 +32,7 @@ namespace ATA_GUI
                         labelLog.Text = "Failed to update, missing ATAUpdater.bat";
                         return;
                     }
-                    if (File.Exists("ATAUpdate.zip")) File.Delete("ATAUpdate.zip");
+                    if (File.Exists("ATAUpdate.zip")) { File.Delete("ATAUpdate.zip"); }
                     labelWarning.Text = "Don't close this program!";
                     labelWarning.BackColor = System.Drawing.Color.Red;
                     this.Refresh();
