@@ -63,7 +63,7 @@ namespace ATA_GUI
             this.checkBoxSelectAll = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageSystem = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBoxAPKMenu = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -150,7 +150,7 @@ namespace ATA_GUI
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.groupBoxAPKMenu.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox6.SuspendLayout();
@@ -505,7 +505,7 @@ namespace ATA_GUI
             // tabPageSystem
             // 
             this.tabPageSystem.Controls.Add(this.groupBoxDeviceInfo);
-            this.tabPageSystem.Controls.Add(this.groupBox3);
+            this.tabPageSystem.Controls.Add(this.groupBoxAPKMenu);
             this.tabPageSystem.Controls.Add(this.groupBoxADBNet);
             this.tabPageSystem.Controls.Add(this.groupBoxRebootMenu);
             this.tabPageSystem.Location = new System.Drawing.Point(4, 22);
@@ -516,20 +516,20 @@ namespace ATA_GUI
             this.tabPageSystem.Text = "System";
             this.tabPageSystem.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // groupBoxAPKMenu
             // 
-            this.groupBox3.Controls.Add(this.groupBox2);
-            this.groupBox3.Controls.Add(this.labelSelectedAppCount);
-            this.groupBox3.Controls.Add(this.groupBox6);
-            this.groupBox3.Controls.Add(this.toolStrip1);
-            this.groupBox3.Controls.Add(this.checkedListBoxApp);
-            this.groupBox3.Controls.Add(this.checkBoxSelectAll);
-            this.groupBox3.Location = new System.Drawing.Point(331, 9);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(515, 280);
-            this.groupBox3.TabIndex = 36;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "APK Menu";
+            this.groupBoxAPKMenu.Controls.Add(this.groupBox2);
+            this.groupBoxAPKMenu.Controls.Add(this.labelSelectedAppCount);
+            this.groupBoxAPKMenu.Controls.Add(this.groupBox6);
+            this.groupBoxAPKMenu.Controls.Add(this.toolStrip1);
+            this.groupBoxAPKMenu.Controls.Add(this.checkedListBoxApp);
+            this.groupBoxAPKMenu.Controls.Add(this.checkBoxSelectAll);
+            this.groupBoxAPKMenu.Location = new System.Drawing.Point(331, 9);
+            this.groupBoxAPKMenu.Name = "groupBoxAPKMenu";
+            this.groupBoxAPKMenu.Size = new System.Drawing.Size(515, 280);
+            this.groupBoxAPKMenu.TabIndex = 36;
+            this.groupBoxAPKMenu.TabStop = false;
+            this.groupBoxAPKMenu.Text = "APK Menu";
             // 
             // groupBox2
             // 
@@ -782,6 +782,7 @@ namespace ATA_GUI
             this.textBoxIP.Name = "textBoxIP";
             this.textBoxIP.Size = new System.Drawing.Size(129, 20);
             this.textBoxIP.TabIndex = 37;
+            this.textBoxIP.Text = "192.168.";
             // 
             // buttonConnectToIP
             // 
@@ -1361,8 +1362,8 @@ namespace ATA_GUI
             this.groupBoxDeviceInfo.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPageSystem.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBoxAPKMenu.ResumeLayout(false);
+            this.groupBoxAPKMenu.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -1424,7 +1425,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonRF;
         private System.Windows.Forms.Button buttonRS;
         private System.Windows.Forms.GroupBox groupBoxRebootMenu;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBoxAPKMenu;
         private System.Windows.Forms.OpenFileDialog openFileDialogAPK;
         private System.Windows.Forms.CheckBox checkBoxSelectAll;
         private System.Windows.Forms.CheckedListBox checkedListBoxApp;

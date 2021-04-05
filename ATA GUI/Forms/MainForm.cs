@@ -24,7 +24,10 @@ namespace ATA_GUI
         private bool systemApp = false;
         private List<Device> devices = new List<Device>();
         private string currentDeviceSelected = "";
-        private bool deviceWireless = false;
+        private bool deviceWireless;
+        private bool allApk;
+        private string stringApk; 
+        private string stringApkS;
 
         private static readonly Regex regex = new Regex(@"\t|\n|\r|\s+");
 
@@ -263,7 +266,6 @@ namespace ATA_GUI
                 {
                     if(version.Any(char.IsDigit))
                     { 
-                        string stringApk;
                         int count = 1;
                         if(paramObj.ToString()=="3")
                         {
@@ -311,23 +313,26 @@ namespace ATA_GUI
                                             {
                                                 labelStatus.Text = "Wireless";
                                                 buttonConnectToIP.Enabled = false;
+                                                buttonDisconnectIP.Enabled = true;
                                                 deviceWireless = true;
                                             }
                                             else
                                             {
                                                 labelStatus.Text = "Cable";
                                                 buttonConnectToIP.Enabled = true;
+                                                buttonDisconnectIP.Enabled = false;
                                                 deviceWireless = false;
                                             }
                                             LogWriteLine("Device info extracted");
-                                            tabPageSystem.Enabled = true;
+                                            disableEnableSystem(true);
                                         });
                                     }
                                     else
                                     {
                                         Invoke((Action)delegate
                                         {
-                                            tabPageSystem.Enabled = false;
+                                            disableEnableSystem(false);
+                                            buttonDisconnectIP.Enabled = false;
                                         });
                                         LogWriteLine("Error: failed to extract device info!");
                                     }
@@ -351,22 +356,7 @@ namespace ATA_GUI
                                     if ((stringApk = adbFastbootCommandR(command,0))!=null)
                                     {
                                         LogWriteLine("Loading apps...");
-                                        string[] arrayApkTmp = stringApk.Split('\n');
-                                        foreach (string line in arrayApkTmp)
-                                        {
-                                            if (line.Contains("package:"))
-                                            {
-                                                arrayApks.Add(line.Substring(8));
-                                            }
-                                        }
-                                        foreach (string str in arrayApks)
-                                        {
-                                            Invoke((Action)delegate
-                                            {
-                                                checkedListBoxApp.Items.Add(str);
-                                                checkedListBoxApp.CheckOnClick = true;
-                                            });
-                                        }
+                                        sortApks(stringApk.Split('\n'));
                                         LogWriteLine("Apps loaded!");
                                     }
                                     else
@@ -375,36 +365,32 @@ namespace ATA_GUI
                                     }
                                     break;
                                 case "4":
+                                    var arrayApkTmp = new List<string>();
                                     arrayApks.Clear();
                                     Invoke((Action)delegate
                                     {
                                         checkedListBoxApp.Items.Clear();
                                     });
-                                    if ((stringApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -3", "-s " + currentDeviceSelected + " shell pm list packages -s" }, 0)) != null)
+                                    LogWriteLine("Loading apps...");
+                                    if ((stringApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -3"}, 0)) != null)
                                     {
-                                        LogWriteLine("Loading apps...");
-                                        string[] arrayApkTmp = stringApk.Split('\n');
-                                        foreach (string line in arrayApkTmp)
-                                        {
-                                            if (line.Contains("package:"))
-                                            {
-                                                arrayApks.Add(line.Substring(8));
-                                            }
-                                        }
-                                        foreach (string str in arrayApks)
-                                        {
-                                            Invoke((Action)delegate
-                                            {
-                                                checkedListBoxApp.Items.Add(str);
-                                                checkedListBoxApp.CheckOnClick = true;
-                                            });
-                                        }
-                                        LogWriteLine("Apps loaded!");
+                                        arrayApkTmp.AddRange(stringApk.Split('\n'));
                                     }
                                     else
                                     {
                                         MessageShowBox("Error during apk loading", 0);
                                     }
+                                    if ((stringApkS = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -s" }, 0)) != null)
+                                    {
+                                        arrayApkTmp.AddRange(stringApkS.Split('\n'));
+                                        sortApks(arrayApkTmp.ToArray());
+                                    }
+                                    else
+                                    {
+                                        MessageShowBox("Error during apk loading", 0);
+                                        break;
+                                    }
+                                    LogWriteLine("Apps loaded!");
                                     break;
                             }
                         }
@@ -413,8 +399,8 @@ namespace ATA_GUI
                     {
                         Invoke((Action)delegate
                         {
-                            tabPageSystem.Enabled = false;
-
+                            disableEnableSystem(false);
+                            buttonDisconnectIP.Enabled = false;
                             LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
                             if (paramObjTmp == "0")
                                 MessageShowBox("Error device not found/ multiple devices found", 0);
@@ -425,11 +411,12 @@ namespace ATA_GUI
                 {
                     Invoke((Action)delegate
                     {
-                        tabPageSystem.Enabled = false;
-
+                        disableEnableSystem(false);
+                        buttonDisconnectIP.Enabled = false;
                         LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
                         if (paramObjTmp == "0")
                             MessageShowBox("Error device not found/ multiple devices found", 0);
+
                     });
                 }
             }
@@ -437,6 +424,30 @@ namespace ATA_GUI
             {
                 adbDownload();
             }            
+        }
+
+        private void sortApks(string [] arrayApkTmp)
+        {
+            foreach (string line in arrayApkTmp)
+            {
+                if (line.Contains("package:"))
+                {
+                    arrayApks.Add(line.Substring(8));
+                }
+            }
+            arrayApks.Sort();
+            Invoke((Action)delegate
+            {
+                checkedListBoxApp.Items.AddRange(arrayApks.ToArray());
+                checkedListBoxApp.CheckOnClick = true;
+            });
+        }
+
+        private void disableEnableSystem(bool enable)
+        {
+            groupBoxDeviceInfo.Enabled = enable;
+            groupBoxRebootMenu.Enabled = enable;
+            groupBoxAPKMenu.Enabled = enable;
         }
 
         private void adbDownload()
@@ -555,10 +566,23 @@ namespace ATA_GUI
             Ping myPing = new Ping();
             String host = "google.com";
             byte[] buffer = new byte[32];
+            bool tempCheck = false;
             int timeout = 1000;
             PingOptions pingOptions = new PingOptions();
-            PingReply reply = myPing.Send(host, timeout, buffer, pingOptions);
-            if (reply.Status == IPStatus.Success)
+            PingReply reply;
+            try
+            {
+                reply = myPing.Send(host, timeout, buffer, pingOptions);
+                if (reply.Status == IPStatus.Success)
+                {
+                    tempCheck = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageShowBox("Error: " + ex, 0);
+            }
+            if (tempCheck)
             {
                 Release currentRelease = new Release();
                 Release latestRelease = new Release();
@@ -904,7 +928,14 @@ namespace ATA_GUI
         {
             try
             {
-                syncFun(2);
+                if (!allApk)
+                {
+                    syncFun(2);
+                }
+                else
+                {
+                    syncFun(4);
+                }
             }
             catch (Exception ex)
             {
@@ -943,28 +974,61 @@ namespace ATA_GUI
             if (checkedListBoxApp.CheckedItems.Count > 0)
             {
                 string command;
-                if (!systemApp)
+                if(allApk)
                 {
-                    command = "-s " + currentDeviceSelected + " uninstall ";
+                    LoadingForm load;
+                    foreach (Object list in checkedListBoxApp.CheckedItems)
+                    {
+                        if(stringApk.Contains(list.ToString()))
+                        {
+                            load = new LoadingForm(new List<string> { list.ToString() }, "-s " + currentDeviceSelected + " uninstall ", "Uninstalled:", currentDeviceSelected);
+                            load.ShowDialog();
+                            if (load.DialogResult != DialogResult.OK)
+                            {
+                                MessageShowBox("Error during uninstallation process", 0);
+                            }
+                        }
+                        else if(stringApkS.Contains(list.ToString()))
+                        {
+                            load = new LoadingForm(new List<string> { list.ToString() }, command = "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ", "Uninstalled:", currentDeviceSelected);
+                            load.ShowDialog();
+                            if (load.DialogResult != DialogResult.OK)
+                            {
+                                MessageShowBox("Error during uninstallation process", 0);
+                            }
+                        }
+                        else
+                        {
+                            MessageShowBox("Error during uninstallation process", 0);
+                        }
+                    }
+                    syncFun(4);
                 }
                 else
                 {
-                    command = "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ";
-                }
-                List<string> arrayApkSelect = new List<string>();
-                foreach (Object list in checkedListBoxApp.CheckedItems)
-                {
-                    arrayApkSelect.Add(list.ToString());
-                }
-                LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:", currentDeviceSelected);
-                load.ShowDialog();
-                if (load.DialogResult == DialogResult.OK)
-                {
-                    syncFun(2);
-                }
-                else
-                {
-                    MessageShowBox("Error during uninstallation process", 0);
+                    List<string> arrayApkSelect = new List<string>();
+                    if (!systemApp)
+                    {
+                        command = "-s " + currentDeviceSelected + " uninstall ";
+                    }
+                    else
+                    {
+                        command = "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ";
+                    }
+                    foreach (Object list in checkedListBoxApp.CheckedItems)
+                    {
+                        arrayApkSelect.Add(list.ToString());
+                    }
+                    LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:", currentDeviceSelected);
+                    load.ShowDialog();
+                    if (load.DialogResult == DialogResult.OK)
+                    {
+                        syncFun(2);
+                    }
+                    else
+                    {
+                        MessageShowBox("Error during uninstallation process", 0);
+                    }
                 }
             }
             else
@@ -1027,18 +1091,21 @@ namespace ATA_GUI
 
         private void nonSystemAppToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            allApk = false;
             systemApp = false;
             syncFun(2);
         }
 
         private void systemAppToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            allApk = false;
             systemApp = true;
             syncFun(2);
         }
 
         private void allToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            allApk = true;
             syncFun(4);
         }
 
@@ -1174,7 +1241,8 @@ namespace ATA_GUI
         {
             Invoke((Action)delegate
             {
-                tabPageSystem.Enabled = false;
+                disableEnableSystem(false);
+                buttonDisconnectIP.Enabled = false;
             });
             adbMissingForm adbError = new adbMissingForm();
             adbError.ShowDialog();
