@@ -62,6 +62,7 @@ namespace ATA_GUI
         {
             InitializeComponent();
         }
+
         private void panelTopBar_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -72,7 +73,15 @@ namespace ATA_GUI
         }
 
         private void buttonCloseWindows_Click(object sender, EventArgs e)
-        {
+        { 
+            if (Process.GetProcessesByName("adb").Length != 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to kill ADB?", "Kill ADB", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    systemCommand("taskkill /f /im " + FILEADB);
+                }
+            }
             Application.Exit();
         }
 
