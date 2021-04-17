@@ -35,6 +35,8 @@ namespace ATA_GUI
             // 
             // richTextBox
             // 
+            this.richTextBox.BackColor = System.Drawing.Color.Black;
+            this.richTextBox.ForeColor = System.Drawing.Color.White;
             this.richTextBox.Location = new System.Drawing.Point(12, 12);
             this.richTextBox.Name = "richTextBox";
             this.richTextBox.ReadOnly = true;

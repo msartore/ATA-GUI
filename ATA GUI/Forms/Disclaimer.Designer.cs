@@ -42,6 +42,7 @@ namespace ATA_GUI
             // 
             // buttonAccept
             // 
+            this.buttonAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAccept.Location = new System.Drawing.Point(270, 243);
             this.buttonAccept.Name = "buttonAccept";
             this.buttonAccept.Size = new System.Drawing.Size(75, 23);
@@ -72,6 +73,7 @@ namespace ATA_GUI
             // 
             // buttonCancel
             // 
+            this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCancel.Location = new System.Drawing.Point(366, 243);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);

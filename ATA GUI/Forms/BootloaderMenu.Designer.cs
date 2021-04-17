@@ -131,6 +131,8 @@ namespace ATA_GUI
             // 
             // richTextBoxLog
             // 
+            this.richTextBoxLog.BackColor = System.Drawing.Color.Black;
+            this.richTextBoxLog.ForeColor = System.Drawing.Color.White;
             this.richTextBoxLog.Location = new System.Drawing.Point(12, 234);
             this.richTextBoxLog.Name = "richTextBoxLog";
             this.richTextBoxLog.Size = new System.Drawing.Size(406, 204);

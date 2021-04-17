@@ -12,8 +12,10 @@ namespace ATA_GUI
 {
     public partial class PackageMenu : Form
     {
-        public int dialogResult;
+        private int dialogResult;
         private bool closedByMe;
+
+        public int DialogResult1 { get => dialogResult; }
 
         public PackageMenu(List<string> apklist)
         {
@@ -21,40 +23,36 @@ namespace ATA_GUI
             richTextBoxAPKList.Text = string.Join("", apklist);
         }
 
-        private void buttonDisable_Click(object sender, EventArgs e)
+        private void ButtonDisable_Click(object sender, EventArgs e)
         {
-            dialogResult = 0;
-            closedByMe = true;
-            this.Close();
+            SetResults(0);
         }
 
-        private void buttonEnable_Click(object sender, EventArgs e)
+        private void ButtonEnable_Click(object sender, EventArgs e)
         {
-            dialogResult = 1;
-            closedByMe = true;
-            this.Close();
+            SetResults(1);
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            dialogResult = -1;
-            closedByMe = true;
-            this.Close();
+            SetResults(-1);
         }
 
-        private void buttonClearData_Click(object sender, EventArgs e)
+        private void ButtonClearData_Click(object sender, EventArgs e)
         {
-            dialogResult = 2;
+            SetResults(2);
+        }
+
+        private void SetResults(int d)
+        {
+            dialogResult = d;
             closedByMe = true;
             this.Close();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (!closedByMe)
-            {
-                dialogResult = -1;
-            }
+            if (!closedByMe) dialogResult = -1;
         }
     }
 }

@@ -165,6 +165,7 @@ namespace ATA_GUI
             // 
             // buttonClose
             // 
+            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonClose.Location = new System.Drawing.Point(298, 212);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);

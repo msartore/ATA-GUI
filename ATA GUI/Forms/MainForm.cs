@@ -11,18 +11,19 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.NetworkInformation;
+using System.Text;
 
 namespace ATA_GUI
 {
     public partial class MainForm : Form
     {
         private readonly List<string> arrayApks = new List<string>();
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
+        private static readonly int WM_NCLBUTTONDOWN = 0xA1;
+        private static readonly int HT_CAPTION = 0x2;
         private bool textboxClear = false;
         private readonly string FILEADB = "adb.exe";
         private bool systemApp = false;
-        private List<Device> devices = new List<Device>();
+        private readonly List<Device> devices = new List<Device>();
         private string currentDeviceSelected = "";
         private bool deviceWireless;
         private bool allApk;
@@ -116,10 +117,7 @@ namespace ATA_GUI
                             }
                             else if (log[a].Contains("unlocked:"))
                             {
-                                if(log[a].Contains("yes"))
-                                    labelBootloaderStatus.Text = "Yes";
-                                else
-                                    labelBootloaderStatus.Text = "No";
+                                labelBootloaderStatus.Text = log[a].Contains("yes") ?  "Yes" : "No";
                             }
                         }
                         panelFastboot.Enabled = true;
@@ -191,7 +189,7 @@ namespace ATA_GUI
 
         static public string adbFastbootCommandR(string[] args, int type)
         {
-            string ret = "";
+            StringBuilder ret = new StringBuilder();
             string line;
             Cursor.Current = Cursors.WaitCursor;
             System.Diagnostics.Process process = new System.Diagnostics.Process();
@@ -211,8 +209,7 @@ namespace ATA_GUI
                         startInfo.Arguments = s;
                         process.Start();
                         line = process.StandardOutput.ReadToEnd();
-                        if (line.Length > 0)
-                            ret += line;
+                        if (line.Length > 0) ret.Append(line);
                         process.Close();
                     }
                     break;
@@ -225,17 +222,17 @@ namespace ATA_GUI
                         startInfo.Arguments = s;
                         process.Start();
                         line = process.StandardError.ReadToEnd();
-                        if (line.Length > 0)
-                            ret += line + "\n";
+                        if (line.Length > 0) ret.Append(line + "\n");
 
                         line = process.StandardOutput.ReadToEnd();
-                        if (line.Length > 0)
-                            ret += line + "\n";
+                        if (line.Length > 0) ret.Append(line + "\n");
                         process.Close();
                     }
                     break;
+                default:
+                    break;
             }
-            return ret;
+            return ret.ToString();
         }
 
         /* Type 0 Error, Type 1 Warning, Type 2 Info */
@@ -400,6 +397,8 @@ namespace ATA_GUI
                                         break;
                                     }
                                     LogWriteLine("Apps loaded!");
+                                    break;
+                                default:
                                     break;
                             }
                         }
@@ -700,9 +699,11 @@ namespace ATA_GUI
                     if((log = adbFastbootCommandR(new [] { " -s " + currentDeviceSelected + " " + command1 + list.ToString() + command2 }, 0))!=null)
                     {
                         if (type == 1)
+                        {
                             ScrollableMessageBox.show(log, "Granted permissions");
-                        else
-                            LogWriteLine("Command injected!");
+                            continue;
+                        }
+                        LogWriteLine("Command injected!");
                     }
                     else
                     {
@@ -777,22 +778,14 @@ namespace ATA_GUI
         {
             if (textBoxDirImg.Text.Length > 0)
             {
-                if (radioButtonBoot.Checked)
-                    flash(0);
-                if (radioButtonBootloader.Checked)
-                    flash(1);
-                if (radioButtonCache.Checked)
-                    flash(2);
-                if (radioButtonRadio.Checked)
-                    flash(3);
-                if (radioButtonRecovery.Checked)
-                    flash(4);
-                if (radioButtonRom.Checked)
-                    flash(5);
-                if (radioButtonSystem.Checked)
-                    flash(6);
-                if (radioButtonVendor.Checked)
-                    flash(7);
+                if (radioButtonBoot.Checked)    flash(0);
+                if (radioButtonBootloader.Checked)  flash(1);
+                if (radioButtonCache.Checked)   flash(2);
+                if (radioButtonRadio.Checked)   flash(3);
+                if (radioButtonRecovery.Checked)flash(4);
+                if (radioButtonRom.Checked)     flash(5);
+                if (radioButtonSystem.Checked)  flash(6);
+                if (radioButtonVendor.Checked)  flash(7);
                 MessageShowBox("Please select where to flash the img", 1);
             }
             else
@@ -864,10 +857,7 @@ namespace ATA_GUI
             {
                 exeTmp = "fastboot.exe";
             }
-            if (File.Exists(exeTmp) && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll"))
-                return true;
-            else
-                return false;
+            return File.Exists(exeTmp) && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll");
         }
 
         private void buttonKillAdb_Click(object sender, EventArgs e)
@@ -1060,7 +1050,7 @@ namespace ATA_GUI
 
                 PackageMenu packageMenu = new PackageMenu(arrayApkSelect);
                 packageMenu.ShowDialog();
-                switch (packageMenu.dialogResult)
+                switch (packageMenu.DialogResult1)
                 {
                     case 1:
                         command = "adb -s " + currentDeviceSelected + " shell pm enable ";
