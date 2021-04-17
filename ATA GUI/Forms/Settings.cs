@@ -57,7 +57,7 @@ namespace ATA_GUI
                 if (currentVersion.Contains("Pre")) currentRelease.Pre = true;
                 string linkString = jsonReal[0]["assets"][0]["browser_download_url"];
                 changelog = jsonReal[0]["body"];
-                if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && (currentRelease.Pre == latestRelease.Pre)))
+                if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && (latestRelease.Pre)))
                 {
                     if (MessageBox.Show("Update found, do you want to update it?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
