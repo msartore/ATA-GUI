@@ -30,6 +30,10 @@ namespace ATA_GUI
                     if (!File.Exists("ATAUpdater.bat"))
                     {
                         labelLog.Text = "Failed to update, missing ATAUpdater.bat";
+                        labelLog.BackColor = System.Drawing.Color.Red;
+                        this.Close();
+                        this.Refresh();
+                        Thread.Sleep(2000);
                         return;
                     }
                     if (File.Exists("ATAUpdate.zip")) { File.Delete("ATAUpdate.zip"); }
@@ -57,6 +61,7 @@ namespace ATA_GUI
                 {
                     MainForm.MessageShowBox(ex.ToString(), 0);
                     labelLog.Text = "Failed to update";
+                    labelLog.BackColor = System.Drawing.Color.Red;
                     this.Refresh();
                     this.Close();
                 }
