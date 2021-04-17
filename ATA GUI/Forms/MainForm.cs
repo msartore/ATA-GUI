@@ -599,13 +599,13 @@ namespace ATA_GUI
                 _client.DefaultRequestHeaders.Add("User-Agent", "C# App");
                 string json = await _client.GetStringAsync("https://api.github.com/repos/MassimilianoSartore/ATA-GUI/releases");
                 dynamic jsonReal = JsonConvert.DeserializeObject(json);
-                string latestRelese = jsonReal[0]["tag_name"];
-                latestRelease.Number = int.Parse(Regex.Replace(latestRelese, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
-                if (latestRelese.Contains("Pre")) { latestRelease.Pre = true; }
+                string latestReleaseName = jsonReal[0]["tag_name"];
+                latestRelease.Number = int.Parse(Regex.Replace(latestReleaseName, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
+                if (latestReleaseName.Contains("Pre")) { latestRelease.Pre = true; }
                 currentRelease.Number = int.Parse(Regex.Replace(CURRENTVERSION, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
                 if (CURRENTVERSION.Contains("Pre")) { currentRelease.Pre = true; }
                 string linkString = jsonReal[0]["assets"][0]["browser_download_url"];
-                if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && (latestRelease.Pre)))
+                if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && (currentRelease.Pre && !latestRelease.Pre)))
                 {
                     if (MessageBox.Show("Update found, do you want to update it?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
