@@ -37,9 +37,9 @@ namespace ATA_GUI
             this.labelCurrentRelease = new System.Windows.Forms.Label();
             this.labelLatestRelease = new System.Windows.Forms.Label();
             this.labelLog = new System.Windows.Forms.Label();
-            this.linkLabelCLogLatest = new System.Windows.Forms.LinkLabel();
-            this.linkLabelCLogCurrent = new System.Windows.Forms.LinkLabel();
             this.linkLabelChangelog = new System.Windows.Forms.LinkLabel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonCredits
@@ -47,7 +47,7 @@ namespace ATA_GUI
             this.buttonCredits.BackColor = System.Drawing.Color.White;
             this.buttonCredits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCredits.ForeColor = System.Drawing.Color.Black;
-            this.buttonCredits.Location = new System.Drawing.Point(101, 271);
+            this.buttonCredits.Location = new System.Drawing.Point(89, 161);
             this.buttonCredits.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCredits.Name = "buttonCredits";
             this.buttonCredits.Size = new System.Drawing.Size(160, 23);
@@ -61,7 +61,7 @@ namespace ATA_GUI
             this.buttonCheckLastVersion.BackColor = System.Drawing.Color.White;
             this.buttonCheckLastVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCheckLastVersion.ForeColor = System.Drawing.Color.Black;
-            this.buttonCheckLastVersion.Location = new System.Drawing.Point(101, 170);
+            this.buttonCheckLastVersion.Location = new System.Drawing.Point(89, 93);
             this.buttonCheckLastVersion.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCheckLastVersion.Name = "buttonCheckLastVersion";
             this.buttonCheckLastVersion.Size = new System.Drawing.Size(160, 23);
@@ -73,7 +73,7 @@ namespace ATA_GUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 92);
+            this.label1.Location = new System.Drawing.Point(65, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 13);
             this.label1.TabIndex = 35;
@@ -82,7 +82,7 @@ namespace ATA_GUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 126);
+            this.label2.Location = new System.Drawing.Point(65, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 13);
             this.label2.TabIndex = 36;
@@ -91,7 +91,7 @@ namespace ATA_GUI
             // labelCurrentRelease
             // 
             this.labelCurrentRelease.AutoSize = true;
-            this.labelCurrentRelease.Location = new System.Drawing.Point(192, 92);
+            this.labelCurrentRelease.Location = new System.Drawing.Point(221, 28);
             this.labelCurrentRelease.Name = "labelCurrentRelease";
             this.labelCurrentRelease.Size = new System.Drawing.Size(57, 13);
             this.labelCurrentRelease.TabIndex = 37;
@@ -100,7 +100,7 @@ namespace ATA_GUI
             // labelLatestRelease
             // 
             this.labelLatestRelease.AutoSize = true;
-            this.labelLatestRelease.Location = new System.Drawing.Point(192, 126);
+            this.labelLatestRelease.Location = new System.Drawing.Point(221, 49);
             this.labelLatestRelease.Name = "labelLatestRelease";
             this.labelLatestRelease.Size = new System.Drawing.Size(57, 13);
             this.labelLatestRelease.TabIndex = 38;
@@ -109,29 +109,15 @@ namespace ATA_GUI
             // labelLog
             // 
             this.labelLog.AutoSize = true;
-            this.labelLog.Location = new System.Drawing.Point(104, 209);
+            this.labelLog.Location = new System.Drawing.Point(92, 132);
             this.labelLog.Name = "labelLog";
             this.labelLog.Size = new System.Drawing.Size(0, 13);
             this.labelLog.TabIndex = 39;
             // 
-            // linkLabelCLogLatest
-            // 
-            this.linkLabelCLogLatest.Location = new System.Drawing.Point(0, 0);
-            this.linkLabelCLogLatest.Name = "linkLabelCLogLatest";
-            this.linkLabelCLogLatest.Size = new System.Drawing.Size(100, 23);
-            this.linkLabelCLogLatest.TabIndex = 1;
-            // 
-            // linkLabelCLogCurrent
-            // 
-            this.linkLabelCLogCurrent.Location = new System.Drawing.Point(0, 0);
-            this.linkLabelCLogCurrent.Name = "linkLabelCLogCurrent";
-            this.linkLabelCLogCurrent.Size = new System.Drawing.Size(100, 23);
-            this.linkLabelCLogCurrent.TabIndex = 0;
-            // 
             // linkLabelChangelog
             // 
             this.linkLabelChangelog.AutoSize = true;
-            this.linkLabelChangelog.Location = new System.Drawing.Point(192, 139);
+            this.linkLabelChangelog.Location = new System.Drawing.Point(221, 62);
             this.linkLabelChangelog.Name = "linkLabelChangelog";
             this.linkLabelChangelog.Size = new System.Drawing.Size(58, 13);
             this.linkLabelChangelog.TabIndex = 40;
@@ -139,22 +125,30 @@ namespace ATA_GUI
             this.linkLabelChangelog.Text = "Changelog";
             this.linkLabelChangelog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelChangelog_LinkClicked);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.labelCurrentRelease);
+            this.groupBox1.Controls.Add(this.labelLog);
+            this.groupBox1.Controls.Add(this.linkLabelChangelog);
+            this.groupBox1.Controls.Add(this.buttonCheckLastVersion);
+            this.groupBox1.Controls.Add(this.buttonCredits);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.labelLatestRelease);
+            this.groupBox1.Location = new System.Drawing.Point(12, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(339, 204);
+            this.groupBox1.TabIndex = 41;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Info";
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(363, 363);
-            this.Controls.Add(this.linkLabelChangelog);
-            this.Controls.Add(this.linkLabelCLogCurrent);
-            this.Controls.Add(this.linkLabelCLogLatest);
-            this.Controls.Add(this.labelLog);
-            this.Controls.Add(this.labelLatestRelease);
-            this.Controls.Add(this.labelCurrentRelease);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonCheckLastVersion);
-            this.Controls.Add(this.buttonCredits);
+            this.ClientSize = new System.Drawing.Size(363, 219);
+            this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -163,8 +157,9 @@ namespace ATA_GUI
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -177,8 +172,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Label labelCurrentRelease;
         private System.Windows.Forms.Label labelLatestRelease;
         private System.Windows.Forms.Label labelLog;
-        private System.Windows.Forms.LinkLabel linkLabelCLogLatest;
-        private System.Windows.Forms.LinkLabel linkLabelCLogCurrent;
         private System.Windows.Forms.LinkLabel linkLabelChangelog;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
