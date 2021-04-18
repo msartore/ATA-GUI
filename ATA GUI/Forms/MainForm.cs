@@ -363,6 +363,7 @@ namespace ATA_GUI
                                     {
                                         LogWriteLine("Loading apps...");
                                         sortApks(stringApk.Split('\n'));
+                                        toolStripLabelTotalApps.Text = "Total: " + checkedListBoxApp.Items.Count;
                                         LogWriteLine("Apps loaded!");
                                     }
                                     else
@@ -397,6 +398,7 @@ namespace ATA_GUI
                                         break;
                                     }
                                     LogWriteLine("Apps loaded!");
+                                    toolStripLabelTotalApps.Text = "Total: " + checkedListBoxApp.Items.Count;
                                     break;
                                 default:
                                     break;
@@ -411,7 +413,11 @@ namespace ATA_GUI
                             buttonDisconnectIP.Enabled = false;
                             LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
                             if (paramObjTmp == "0")
+                            {
+                                toolStripLabelTotalApps.Text = "Total: 0";
+                                checkedListBoxApp.Items.Clear();
                                 MessageShowBox("Error device not found/ multiple devices found", 0);
+                            }
                         });
                     }
                 }
@@ -423,8 +429,11 @@ namespace ATA_GUI
                         buttonDisconnectIP.Enabled = false;
                         LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
                         if (paramObjTmp == "0")
+                        {
+                            toolStripLabelTotalApps.Text = "Total: 0";
+                            checkedListBoxApp.Items.Clear();
                             MessageShowBox("Error device not found/ multiple devices found", 0);
-
+                        }
                     });
                 }
             }
@@ -968,17 +977,77 @@ namespace ATA_GUI
             }
         }
 
+        public void uninstaller(CheckedListBox.CheckedItemCollection foundPackageList)
+        {
+            string command;
+            if (allApk)
+            {
+                LoadingForm load;
+                foreach (Object list in foundPackageList)
+                {
+                    if (stringApk.Contains(list.ToString()))
+                    {
+                        load = new LoadingForm(new List<string> { list.ToString() }, "-s " + currentDeviceSelected + " uninstall ", "Uninstalled:", currentDeviceSelected);
+                        load.ShowDialog();
+                        if (load.DialogResult != DialogResult.OK)
+                        {
+                            MessageShowBox("Error during uninstallation process", 0);
+                        }
+                    }
+                    else if (stringApkS.Contains(list.ToString()))
+                    {
+                        load = new LoadingForm(new List<string> { list.ToString() }, command = "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ", "Uninstalled:", currentDeviceSelected);
+                        load.ShowDialog();
+                        if (load.DialogResult != DialogResult.OK)
+                        {
+                            MessageShowBox("Error during uninstallation process", 0);
+                        }
+                    }
+                    else
+                    {
+                        MessageShowBox("Error during uninstallation process", 0);
+                    }
+                }
+                syncFun(4);
+                checkBoxSelectAll.Checked = false;
+            }
+            else
+            {
+                List<string> arrayApkSelect = new List<string>();
+                if (!systemApp)
+                {
+                    command = "-s " + currentDeviceSelected + " uninstall ";
+                }
+                else
+                {
+                    command = "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ";
+                }
+                foreach (Object list in foundPackageList)
+                {
+                    arrayApkSelect.Add(list.ToString());
+                }
+                LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:", currentDeviceSelected);
+                load.ShowDialog();
+                if (load.DialogResult != DialogResult.OK)
+                {
+                    MessageShowBox("Error during uninstallation process", 0);
+                }
+                syncFun(2);
+                checkBoxSelectAll.Checked = false;
+            }
+        }
+
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             if (checkedListBoxApp.CheckedItems.Count > 0)
             {
                 string command;
-                if(allApk)
+                if (allApk)
                 {
                     LoadingForm load;
                     foreach (Object list in checkedListBoxApp.CheckedItems)
                     {
-                        if(stringApk.Contains(list.ToString()))
+                        if (stringApk.Contains(list.ToString()))
                         {
                             load = new LoadingForm(new List<string> { list.ToString() }, "-s " + currentDeviceSelected + " uninstall ", "Uninstalled:", currentDeviceSelected);
                             load.ShowDialog();
@@ -987,7 +1056,7 @@ namespace ATA_GUI
                                 MessageShowBox("Error during uninstallation process", 0);
                             }
                         }
-                        else if(stringApkS.Contains(list.ToString()))
+                        else if (stringApkS.Contains(list.ToString()))
                         {
                             load = new LoadingForm(new List<string> { list.ToString() }, command = "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ", "Uninstalled:", currentDeviceSelected);
                             load.ShowDialog();
@@ -1002,6 +1071,7 @@ namespace ATA_GUI
                         }
                     }
                     syncFun(4);
+                    checkBoxSelectAll.Checked = false;
                 }
                 else
                 {
@@ -1020,14 +1090,12 @@ namespace ATA_GUI
                     }
                     LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:", currentDeviceSelected);
                     load.ShowDialog();
-                    if (load.DialogResult == DialogResult.OK)
-                    {
-                        syncFun(2);
-                    }
-                    else
+                    if (load.DialogResult != DialogResult.OK)
                     {
                         MessageShowBox("Error during uninstallation process", 0);
                     }
+                    syncFun(2);
+                    checkBoxSelectAll.Checked = false;
                 }
             }
             else
@@ -1290,6 +1358,24 @@ namespace ATA_GUI
                 default:
                     MessageShowBox("Generic error", 0);
                     break;
+            }
+        }
+
+        private void toolStripButtonBloatwareDetecter_Click(object sender, EventArgs e)
+        {
+            if(checkedListBoxApp.Items.Count>0)
+            { 
+                List<string> listOfApps = new List<string>();
+                foreach(Object list in checkedListBoxApp.Items)
+                {
+                    listOfApps.Add(list.ToString());
+                }
+                BloatwareDetecter bloatwareDetecter = new BloatwareDetecter(listOfApps, this);
+                bloatwareDetecter.ShowDialog();
+            }
+            else
+            {
+                MessageShowBox("Apps not loaded!", 1);
             }
         }
     }

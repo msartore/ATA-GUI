@@ -71,6 +71,23 @@ namespace ATA_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;bloatware&gt;
+        ///  &lt;normal&gt;
+        ///    com.facebook.services
+        ///    com.facebook.system
+        ///    com.facebook.appmanager
+        ///  &lt;/normal&gt;
+        ///&lt;/bloatware&gt; 
+        ///.
+        /// </summary>
+        internal static string bloatwareList {
+            get {
+                return ResourceManager.GetString("bloatwareList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap delete {

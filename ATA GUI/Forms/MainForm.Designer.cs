@@ -85,6 +85,10 @@ namespace ATA_GUI
             this.toolStripButtonPackageManager = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonPermissionMenu = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonBloatwareDetecter = new System.Windows.Forms.ToolStripButton();
             this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
             this.groupBoxADBNet = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -618,7 +622,11 @@ namespace ATA_GUI
             this.toolStripSeparator5,
             this.toolStripButtonPackageManager,
             this.toolStripSeparator3,
-            this.toolStripButtonPermissionMenu});
+            this.toolStripButtonPermissionMenu,
+            this.toolStripSeparator4,
+            this.toolStripLabelTotalApps,
+            this.toolStripSeparator8,
+            this.toolStripButtonBloatwareDetecter});
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(509, 25);
@@ -727,6 +735,32 @@ namespace ATA_GUI
             this.toolStripButtonPermissionMenu.Text = "toolStripButton1";
             this.toolStripButtonPermissionMenu.ToolTipText = "Permission Menu";
             this.toolStripButtonPermissionMenu.Click += new System.EventHandler(this.toolStripButtonPermissionMenu_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabelTotalApps
+            // 
+            this.toolStripLabelTotalApps.Name = "toolStripLabelTotalApps";
+            this.toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 22);
+            this.toolStripLabelTotalApps.Text = "Total: 0";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonBloatwareDetecter
+            // 
+            this.toolStripButtonBloatwareDetecter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonBloatwareDetecter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonBloatwareDetecter.Image")));
+            this.toolStripButtonBloatwareDetecter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonBloatwareDetecter.Name = "toolStripButtonBloatwareDetecter";
+            this.toolStripButtonBloatwareDetecter.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonBloatwareDetecter.Text = "Bloatware Detecter";
+            this.toolStripButtonBloatwareDetecter.Click += new System.EventHandler(this.toolStripButtonBloatwareDetecter_Click);
             // 
             // checkedListBoxApp
             // 
@@ -1508,6 +1542,10 @@ namespace ATA_GUI
         private System.Windows.Forms.ComboBox comboBoxDevices;
         private System.Windows.Forms.Button buttonReloadDevicesList;
         private System.ComponentModel.BackgroundWorker backgroundWorkerAdbDownloader;
+        private System.Windows.Forms.ToolStripLabel toolStripLabelTotalApps;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripButton toolStripButtonBloatwareDetecter;
     }
 }
 

@@ -66,6 +66,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\BloatwareDetecter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BloatwareDetecter.Designer.cs">
+      <DependentUpon>BloatwareDetecter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Device.cs" />
     <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
@@ -129,6 +135,9 @@
     <Compile Include="Forms\UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\BloatwareDetecter.resx">
+      <DependentUpon>BloatwareDetecter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ATALogoGUI.ico" />
+    <None Include="Resources\bloatwareList.xml" />
     <None Include="Resources\file_upload.png" />
     <None Include="Resources\security.png" />
     <None Include="Resources\package.png" />
