@@ -72,7 +72,6 @@ namespace ATA_GUI
                         {
                             labelFileName.Text = file.Substring(file.LastIndexOf('\\') + 1);
                             this.Refresh();
-                            
                             if (MainForm.adbFastbootCommandR(new[] { "-s " + deviceSerial + " push " + file + " sdcard/ATA " }, 0) == null)
                             {
                                 MainForm.MessageShowBox(labelFileName.Text + " not transfered", 0);

@@ -29,6 +29,7 @@ namespace ATA_GUI
         private bool allApk;
         private string stringApk; 
         private string stringApkS;
+        private bool connected = true;
 
         private static readonly Regex regex = new Regex(@"\t|\n|\r|\s+");
 
@@ -259,8 +260,8 @@ namespace ATA_GUI
         {
             Object paramObj = e.Argument as Object;
             String paramObjTmp = "0";
-            
-            if(paramObj.ToString()=="3" )
+
+            if (paramObj.ToString()=="3" )
             {
                 paramObjTmp = "1";
             }
@@ -293,9 +294,11 @@ namespace ATA_GUI
                                     string[] arrayDeviceInfo = deviceinfo.Split('\n');
                                     if (arrayDeviceInfo.Length > 5)
                                     {
-                                
+                                        disableSystem(false);
                                         Invoke((Action)delegate
                                         {
+                                            toolStripLabelTotalApps.Text = "Total: 0";
+                                            checkedListBoxApp.Items.Clear();
                                             LogWriteLine("device found!");                                
                                             labelAV.Text = arrayDeviceInfo[0];
                                             labelBU.Text = arrayDeviceInfo[1];
@@ -414,8 +417,6 @@ namespace ATA_GUI
                             LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
                             if (paramObjTmp == "0")
                             {
-                                toolStripLabelTotalApps.Text = "Total: 0";
-                                checkedListBoxApp.Items.Clear();
                                 MessageShowBox("Error device not found/ multiple devices found", 0);
                             }
                         });
@@ -430,8 +431,6 @@ namespace ATA_GUI
                         LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
                         if (paramObjTmp == "0")
                         {
-                            toolStripLabelTotalApps.Text = "Total: 0";
-                            checkedListBoxApp.Items.Clear();
                             MessageShowBox("Error device not found/ multiple devices found", 0);
                         }
                     });
@@ -595,9 +594,9 @@ namespace ATA_GUI
                     tempCheck = true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageShowBox("Error: " + ex, 0);
+                LogWriteLine("You are offline");
             }
             if (tempCheck)
             {
@@ -624,7 +623,8 @@ namespace ATA_GUI
             }
             else
             {
-                LogWriteLine("You are offline");
+                connected = false;
+                disableSystem(true);
             }
             DevicesListUpdate();
             syncFun(3);
@@ -1041,62 +1041,7 @@ namespace ATA_GUI
         {
             if (checkedListBoxApp.CheckedItems.Count > 0)
             {
-                string command;
-                if (allApk)
-                {
-                    LoadingForm load;
-                    foreach (Object list in checkedListBoxApp.CheckedItems)
-                    {
-                        if (stringApk.Contains(list.ToString()))
-                        {
-                            load = new LoadingForm(new List<string> { list.ToString() }, "-s " + currentDeviceSelected + " uninstall ", "Uninstalled:", currentDeviceSelected);
-                            load.ShowDialog();
-                            if (load.DialogResult != DialogResult.OK)
-                            {
-                                MessageShowBox("Error during uninstallation process", 0);
-                            }
-                        }
-                        else if (stringApkS.Contains(list.ToString()))
-                        {
-                            load = new LoadingForm(new List<string> { list.ToString() }, command = "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ", "Uninstalled:", currentDeviceSelected);
-                            load.ShowDialog();
-                            if (load.DialogResult != DialogResult.OK)
-                            {
-                                MessageShowBox("Error during uninstallation process", 0);
-                            }
-                        }
-                        else
-                        {
-                            MessageShowBox("Error during uninstallation process", 0);
-                        }
-                    }
-                    syncFun(4);
-                    checkBoxSelectAll.Checked = false;
-                }
-                else
-                {
-                    List<string> arrayApkSelect = new List<string>();
-                    if (!systemApp)
-                    {
-                        command = "-s " + currentDeviceSelected + " uninstall ";
-                    }
-                    else
-                    {
-                        command = "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ";
-                    }
-                    foreach (Object list in checkedListBoxApp.CheckedItems)
-                    {
-                        arrayApkSelect.Add(list.ToString());
-                    }
-                    LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:", currentDeviceSelected);
-                    load.ShowDialog();
-                    if (load.DialogResult != DialogResult.OK)
-                    {
-                        MessageShowBox("Error during uninstallation process", 0);
-                    }
-                    syncFun(2);
-                    checkBoxSelectAll.Checked = false;
-                }
+                uninstaller(checkedListBoxApp.CheckedItems);
             }
             else
             {
@@ -1306,6 +1251,11 @@ namespace ATA_GUI
 
         private void backgroundWorkerAdbDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            if(!connected)
+            {
+                MessageShowBox("You are offline, ATA can't download ADB", 0);
+                return; 
+            }
             Invoke((Action)delegate
             {
                 disableEnableSystem(false);
@@ -1347,18 +1297,30 @@ namespace ATA_GUI
                         catch (Exception ex)
                         {
                             MessageShowBox(ex.ToString(), 0);
+                            disableSystem(true);
                         }
                     }
                     break;
                 case DialogResult.No:
+                    disableSystem(true);
                     break;
                 case DialogResult.OK:
                     System.Diagnostics.Process.Start("https://developer.android.com/license?authuser=2");
+                    disableSystem(true);
                     break;
                 default:
                     MessageShowBox("Generic error", 0);
+                    disableSystem(true);
                     break;
             }
+        }
+
+        private void disableSystem(bool a)
+        {
+            Invoke((Action)delegate
+            {
+                tabPageSystem.Enabled = !a;
+            });
         }
 
         private void toolStripButtonBloatwareDetecter_Click(object sender, EventArgs e)

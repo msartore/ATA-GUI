@@ -14,10 +14,10 @@ namespace ATA_GUI
 {
     public partial class BloatwareDetecter : Form
     {
-        private List<string> packageList = new List<string>();
-        private List<string> installedPackageList;
-        private List<string> foundPackageList = new List<string>();
-        private MainForm mainForm;
+        private readonly List<string> packageList = new List<string>();
+        private readonly List<string> installedPackageList;
+        private readonly List<string> foundPackageList = new List<string>();
+        private readonly MainForm mainForm;
 
         public BloatwareDetecter(List<string> listOfApps, MainForm main)
         {
@@ -30,7 +30,6 @@ namespace ATA_GUI
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(Properties.Resources.bloatwareList);
-            string packages = "";
             packageList.Clear();
             foundPackageList.Clear();
             checkedListBoxBloatwareList.Items.Clear();
@@ -54,6 +53,9 @@ namespace ATA_GUI
                     packageList.AddRange(doc.DocumentElement.SelectSingleNode("/bloatware/basic").InnerText.Split('\n').Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToArray());
                     packageList.AddRange(doc.DocumentElement.SelectSingleNode("/bloatware/medium").InnerText.Split('\n').Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToArray());
                     packageList.AddRange(doc.DocumentElement.SelectSingleNode("/bloatware/advance").InnerText.Split('\n').Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToArray());
+                    break;
+                default:
+                    MainForm.MessageShowBox("Error, this value can't be set", 0);
                     break;
             }
             string temp;
