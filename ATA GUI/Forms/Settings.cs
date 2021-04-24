@@ -12,21 +12,6 @@ namespace ATA_GUI
     {
         private string changelog = "";
 
-        public class Release
-        {
-            private int number;
-            private bool pre;
-
-            public Release()
-            {
-                number = -1;
-                pre = false;
-            }
-
-            public int Number { get => number; set => number = value; }
-            public bool Pre { get => pre; set => pre = value; }
-        }
-
         private const string currentVersion = "v1.4.1";
 
         public Settings()

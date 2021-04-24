@@ -14,7 +14,7 @@ namespace ATA_GUI
 {
     public partial class BloatwareDetecter : Form
     {
-        private List<string> packageList = new List<string>();
+        private readonly List<string> packageList = new List<string>();
         private readonly List<string> installedPackageList;
         private readonly HashSet<string> foundPackageList = new HashSet<string>();
         private readonly MainForm mainForm;

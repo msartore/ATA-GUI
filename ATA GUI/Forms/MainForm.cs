@@ -43,21 +43,6 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public class Release
-        {
-            private int number;
-            private bool pre;
-
-            public Release()
-            {
-                number = -1;
-                pre = false;
-            }
-
-            public int Number { get => number; set => number = value; }
-            public bool Pre { get => pre; set => pre = value; }
-        }
-
         private const string CURRENTVERSION = "v.1.4.1";
 
         public MainForm()
@@ -406,10 +391,6 @@ namespace ATA_GUI
                                     break;
                                 case "5":
                                     string stringInstalledApk;
-                                    List<String> uninstalledApps = new List<string>();
-                                    List<String> allApps = new List<string>();
-                                    List<String> installedApps = new List<string>();
-                                    bool tempCheck = false;
 
                                     arrayApks.Clear();
                                     Invoke((Action)delegate
@@ -1154,6 +1135,9 @@ namespace ATA_GUI
         {
             toolStripButtonUninstallApp.Enabled = true;
             toolStripButtonRestoreApp.Enabled = false;
+            toolStripButtonPermissionMenu.Enabled = true;
+            toolStripButtonPackageManager.Enabled = true;
+            toolStripButtonBloatwareDetecter.Enabled = true;
             allApk = false;
             systemApp = false;
             syncFun(2);
@@ -1163,6 +1147,9 @@ namespace ATA_GUI
         {
             toolStripButtonUninstallApp.Enabled = true;
             toolStripButtonRestoreApp.Enabled = false;
+            toolStripButtonPermissionMenu.Enabled = true;
+            toolStripButtonPackageManager.Enabled = true;
+            toolStripButtonBloatwareDetecter.Enabled = true;
             allApk = false;
             systemApp = true;
             syncFun(2);
@@ -1172,6 +1159,9 @@ namespace ATA_GUI
         {
             toolStripButtonUninstallApp.Enabled = true;
             toolStripButtonRestoreApp.Enabled = false;
+            toolStripButtonPermissionMenu.Enabled = true;
+            toolStripButtonPackageManager.Enabled = true;
+            toolStripButtonBloatwareDetecter.Enabled = true;
             allApk = true;
             syncFun(4);
         }
@@ -1416,6 +1406,9 @@ namespace ATA_GUI
         {
             toolStripButtonUninstallApp.Enabled = false;
             toolStripButtonRestoreApp.Enabled = true;
+            toolStripButtonPermissionMenu.Enabled = false;
+            toolStripButtonPackageManager.Enabled = false;
+            toolStripButtonBloatwareDetecter.Enabled = false;
             allApk = false;
             systemApp = false;
             syncFun(5);
