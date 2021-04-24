@@ -126,6 +126,7 @@ namespace ATA_GUI
             this.radioButtonBootloader = new System.Windows.Forms.RadioButton();
             this.radioButtonRadio = new System.Windows.Forms.RadioButton();
             this.tabPageRecovery = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
             this.buttonInstallZip = new System.Windows.Forms.Button();
             this.textBoxDirFile = new System.Windows.Forms.TextBox();
             this.buttonSearchFile = new System.Windows.Forms.Button();
@@ -149,6 +150,9 @@ namespace ATA_GUI
             this.buttonReloadDevicesList = new System.Windows.Forms.Button();
             this.comboBoxDevices = new System.Windows.Forms.ComboBox();
             this.backgroundWorkerAdbDownloader = new System.ComponentModel.BackgroundWorker();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonRestoreApp = new System.Windows.Forms.ToolStripButton();
+            this.uninstalledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxDeviceInfo.SuspendLayout();
@@ -626,7 +630,9 @@ namespace ATA_GUI
             this.toolStripSeparator4,
             this.toolStripLabelTotalApps,
             this.toolStripSeparator8,
-            this.toolStripButtonBloatwareDetecter});
+            this.toolStripButtonBloatwareDetecter,
+            this.toolStripSeparator9,
+            this.toolStripButtonRestoreApp});
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(509, 25);
@@ -1181,6 +1187,7 @@ namespace ATA_GUI
             // 
             // tabPageRecovery
             // 
+            this.tabPageRecovery.Controls.Add(this.label6);
             this.tabPageRecovery.Controls.Add(this.buttonInstallZip);
             this.tabPageRecovery.Controls.Add(this.textBoxDirFile);
             this.tabPageRecovery.Controls.Add(this.buttonSearchFile);
@@ -1191,11 +1198,22 @@ namespace ATA_GUI
             this.tabPageRecovery.Text = "Recovery";
             this.tabPageRecovery.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Red;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(282, 73);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(279, 13);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "YOUR SMARTPHONE MUST BE IN RECOVERY MODE";
+            // 
             // buttonInstallZip
             // 
             this.buttonInstallZip.BackColor = System.Drawing.Color.White;
             this.buttonInstallZip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInstallZip.Location = new System.Drawing.Point(365, 153);
+            this.buttonInstallZip.Location = new System.Drawing.Point(372, 153);
             this.buttonInstallZip.Name = "buttonInstallZip";
             this.buttonInstallZip.Size = new System.Drawing.Size(87, 23);
             this.buttonInstallZip.TabIndex = 34;
@@ -1277,9 +1295,10 @@ namespace ATA_GUI
             this.contextMenuStripFilterBy.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allToolStripMenuItem,
             this.systemAppToolStripMenuItem1,
-            this.nonSystemAppToolStripMenuItem1});
+            this.nonSystemAppToolStripMenuItem1,
+            this.uninstalledAppToolStripMenuItem});
             this.contextMenuStripFilterBy.Name = "contextMenuStripFilterBy";
-            this.contextMenuStripFilterBy.Size = new System.Drawing.Size(164, 70);
+            this.contextMenuStripFilterBy.Size = new System.Drawing.Size(181, 114);
             // 
             // allToolStripMenuItem
             // 
@@ -1367,6 +1386,29 @@ namespace ATA_GUI
             // backgroundWorkerAdbDownloader
             // 
             this.backgroundWorkerAdbDownloader.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAdbDownloader_DoWork);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonRestoreApp
+            // 
+            this.toolStripButtonRestoreApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRestoreApp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRestoreApp.Image")));
+            this.toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
+            this.toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonRestoreApp.Tag = "";
+            this.toolStripButtonRestoreApp.Text = "Restore App";
+            this.toolStripButtonRestoreApp.Click += new System.EventHandler(this.toolStripButtonRestoreApp_Click);
+            // 
+            // uninstalledAppToolStripMenuItem
+            // 
+            this.uninstalledAppToolStripMenuItem.Name = "uninstalledAppToolStripMenuItem";
+            this.uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uninstalledAppToolStripMenuItem.Text = "Uninstalled App";
+            this.uninstalledAppToolStripMenuItem.Click += new System.EventHandler(this.uninstalledAppToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1546,6 +1588,10 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripButton toolStripButtonBloatwareDetecter;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripButton toolStripButtonRestoreApp;
+        private System.Windows.Forms.ToolStripMenuItem uninstalledAppToolStripMenuItem;
     }
 }
 

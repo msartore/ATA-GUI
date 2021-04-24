@@ -27,7 +27,7 @@ namespace ATA_GUI
             public bool Pre { get => pre; set => pre = value; }
         }
 
-        private const string currentVersion = "v1.4.0";
+        private const string currentVersion = "v1.4.1";
 
         public Settings()
         {

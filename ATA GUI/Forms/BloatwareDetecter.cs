@@ -14,9 +14,9 @@ namespace ATA_GUI
 {
     public partial class BloatwareDetecter : Form
     {
-        private readonly List<string> packageList = new List<string>();
+        private List<string> packageList = new List<string>();
         private readonly List<string> installedPackageList;
-        private readonly List<string> foundPackageList = new List<string>();
+        private readonly HashSet<string> foundPackageList = new HashSet<string>();
         private readonly MainForm mainForm;
 
         public BloatwareDetecter(List<string> listOfApps, MainForm main)
@@ -58,7 +58,7 @@ namespace ATA_GUI
                     MainForm.MessageShowBox("Error, this value can't be set", 0);
                     break;
             }
-            string temp;
+            string temp; 
             foreach (string app in packageList)
             {
                 temp = RemoveWhitespace(app);
@@ -90,6 +90,8 @@ namespace ATA_GUI
         private void BloatwareDetecter_Shown(object sender, EventArgs e)
         {
             AppFinder();
+            MainForm.MessageShowBox("Warning: Be careful before uninstalling any system app or service. You must ensure that the package is not used by system " +
+                "to function. Uninstalling a critical system app may result in bricking your phone. So always double check before uninstalling any system app.", 1);
         }
 
         private void buttonUninstall_Click(object sender, EventArgs e)

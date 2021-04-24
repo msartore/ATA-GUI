@@ -1,55 +1,152 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <bloatware>
   <basic>
-    com.facebook.services
+    com.facebook.katana
     com.facebook.system
     com.facebook.appmanager
-    com.facebook.katana
-    com.zhiliaoapp.musically
+    com.facebook.services
+    cn.wps.xiaomi.abroad.lite
     com.netflix.partner.activation
+    com.zhiliaoapp.musically
     ru.yandex.searchplugin
     com.yandex.zen
     com.ebay.mobile
-    com.alibaba.aliexpresshd
-    ru.ozon.app.android
-    ru.auto.ara
     com.ebay.carrier
-    com.android.browser
+    ru.ozon.app.android
+    com.alibaba.aliexpresshd
     sg.bigo.live
-    com.google.android.apps.tachyon
-    com.google.android.videos
-    com.google.android.music
-    com.amazon.mShop.android
-    com.amazon.fv
-    com.amazon.kindle
-    com.amazon.mp3
-    com.amazon.venezia
-    com.google.android.apps.plus
+    ru.auto.ara
   </basic>
   <medium>
-    com.google.android.apps.photos
-    com.mipay.wallet.in
-    com.xiaomi.payment
-    cn.wps.xiaomi.abroad.lite
     com.miui.videoplayer
     com.miui.player
     com.mi.globalbrowser
     com.microsoft.skydrive
     com.skype.raider
     com.microsoft.office.excel
-    com.microsoft.office.powerpoint
     com.microsoft.office.word
+    com.microsoft.office.powerpoint
+    com.google.android.googlequicksearchbox
+    com.google.android.gm
+    com.google.android.apps.tachyon
+    com.google.android.music
+    com.google.android.apps.docs
+    com.google.android.apps.maps
+    com.android.chrome
+    com.google.android.apps.photos
+    com.google.vr.vrcore
+    com.google.android.youtube
+    com.google.android.videos
+    com.google.android.talk
     com.google.android.apps.books
     com.google.android.apps.magazines
     com.google.android.apps.plus
-    com.google.android.apps.docs
-    com.google.android.apps.maps
+    com.samsung.svoice.sync
+    com.samsung.android.app.watchmanager
+    com.samsung.android.drivelink.stub
+    com.samsung.android.svoice
+    com.samsung.android.widgetapp.yahooedge.finance
+    com.android.dreams.phototable
+    com.samsung.android.widgetapp.yahooedge.sport
+    com.samsung.android.spdfnote
+    com.sec.android.widgetapp.samsungapps
+    com.samsung.android.email.provider
+    com.samsung.android.app.ledcoverdream
+    com.sec.android.cover.ledcover
+    com.sec.android.app.desktoplauncher
+    com.sec.android.app.withtv
+    com.samsung.android.app.memo
+    com.sec.spp.push
+    com.sec.android.app.shealth
+    com.samsung.android.spay
+    com.samsung.android.voicewakeup
+    com.samsung.voiceserviceplatform
+    com.sec.android.sidesync30
+    com.samsung.android.hmt.vrsvc
+    com.samsung.android.app.vrsetupwizardstub
+    com.samsung.android.hmt.vrshell
+    com.android.exchange
+    com.samsung.groupcast
+    com.sec.android.service.health
+    com.sec.kidsplat.installer
+    com.sec.android.widgetapp.diotek.smemo
+    com.sec.android.provider.snote
+    com.sec.android.app.translator
+    com.vlingo.midas
+    com.sec.readershub
+    com.sec.android.app.gamehub
+    com.sec.everglades.update
+    com.sec.everglades
+    tv.peel.samsung.app
+    com.sec.yosemite.phone
+    com.samsung.android.app.episodes
+    com.samsung.android.app.storyalbumwidget
+    com.samsung.android.tripwidget
+    com.samsung.android.service.travel
+    com.tripadvisor.tripadvisor
+    com.android.email
+    com.sec.android.app.ocr
+    com.amazon.mShop.android
+    com.amazon.fv
+    com.amazon.kindle
+    com.amazon.mp3
+    com.amazon.venezia
+    flipboard.boxer.app
+    flipboard.app
+    com.hancom.office.editor.hidden
+    com.audible.application
+    com.blurb.checkout
+    com.cequint.ecid
+    com.imdb.mobile
+    com.gotv.nflgamecenter.us.lite
+    com.infraware.polarisoffice5
+    com.nuance.swype.input
   </medium>
   <advance>
-    com.google.android.youtube
     com.vcast.mediamanager
     com.samsung.vmmhux
-    com.google.android.talk
     com.vzw.hss.myverizon
+    com.asurion.android.verizon.vms
+    com.motricity.verizon.ssodownloadable
+    com.vzw.hs.android.modlite
+    com.samsung.vvm
+    com.mobitv.client.tmobiletvhd
+    us.com.dt.iq.appsource.tmobile
+    com.dsi.ant.sample.acquirechannels
+    com.dsi.ant.service.socket
+    com.dsi.ant.server
+    com.dsi.ant.plugins.antplus
+    flipboard.boxer.app
+    com.cnn.mobile.android.phone.edgepanel
+    com.sec.android.easyonehand
+    com.samsung.android.widgetapp.yahooedge.finance
+    com.android.dreams.phototable
+    com.google.android.printservice.recommendation
+    com.android.printspooler
+    com.samsung.android.widgetapp.yahooedge.sport
+    com.samsung.android.spdfnote
+    com.sec.android.daemonapp
+    com.samsung.android.weather
+    com.samsung.android.app.reminder
+    com.hancom.office.editor.hidden
+    com.samsung.android.keyguardwallpaperupdator
+    com.samsung.android.app.news
+    com.android.egg
+    com.sec.android.widgetapp.samsungapps
+    com.sec.android.app.sbrowser
+    com.samsung.android.app.sbrowseredge
+    com.samsung.android.game.gamehome
+    com.enhance.gameservice
+    com.samsung.android.game.gametools
+    com.samsung.android.app.ledcoverdream
+    com.sec.android.cover.ledcover
+    com.samsung.android.email.provider
+    com.wsomacp
+    com.samsung.android.hmt.vrsvc
+    com.samsung.android.app.vrsetupwizardstub
+    com.samsung.android.hmt.vrshell
+    com.google.vr.vrcore
+    com.sec.android.app.desktoplauncher
+    com.sec.android.app.withtv
   </advance>
 </bloatware> 

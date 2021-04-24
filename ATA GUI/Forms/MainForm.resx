@@ -158,6 +158,17 @@
         R1pqWt70xR5qBj2C/vIv6A/pX9LzfYbe1BWecImTr+t2MBPqxv+SzRYAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="toolStripButtonRestoreApp.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEGSURBVDhP1dOxSwJRHMDxEzGECMtBaGtx6j9QiUAwdHDL
+        ub/BWfsLwqkhcHMSHGpLECfnQHDK/oR0qCUHLb+/93jpne/O8IbwCx9474G/O0/P2atiqOABPXRwizT+
+        XBZv+MEUA4ywwBz3OEBgeczwiiIiMKXQwDe6iMLaCd4xREIOfLqB3G1N7SzVIbd+rnar5ENnevlbG584
+        VDtPL+jrpSvboAvIeVntPMkV7vTSlW3QEeS8qnYUxzPk0PjCFUwfaCKpdrqNQdL6MO8Q6RQtTHAtB+T7
+        1WTYIwpqZy+HS70MftgmGXqsl9a2/vymJ4xRwk5/SFMGoV8Rk7y08mBDvbT/leMsAYiWQVHWcghJAAAA
+        AElFTkSuQmCC
+</value>
+  </data>
   <metadata name="openFileDialogAPK.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>199, 17</value>
   </metadata>

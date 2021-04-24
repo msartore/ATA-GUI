@@ -20,9 +20,9 @@ namespace ATA_GUI
         private readonly List<string> arrayApks = new List<string>();
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
         private static readonly int HT_CAPTION = 0x2;
-        private bool textboxClear = false;
+        private bool textboxClear;
         private readonly string FILEADB = "adb.exe";
-        private bool systemApp = false;
+        private bool systemApp;
         private readonly List<Device> devices = new List<Device>();
         private string currentDeviceSelected = "";
         private bool deviceWireless;
@@ -31,7 +31,7 @@ namespace ATA_GUI
         private string stringApkS;
         private bool connected = true;
 
-        private static readonly Regex regex = new Regex(@"\t|\n|\r|\s+");
+        private static readonly Regex regex = new Regex(@"\s+");
 
         public static string RemoveWhiteSpaces(string str)
         {
@@ -58,7 +58,7 @@ namespace ATA_GUI
             public bool Pre { get => pre; set => pre = value; }
         }
 
-        private const string CURRENTVERSION = "v.1.4.0";
+        private const string CURRENTVERSION = "v.1.4.1";
 
         public MainForm()
         {
@@ -103,7 +103,7 @@ namespace ATA_GUI
             {
                 if (checkAdbFastboot(1))
                 {
-                    if (adbFastbootCommandR(new string[] { "devices" }, 1).Contains("fastboot"))
+                    if (adbFastbootCommandR(new [] { "devices" }, 1).Contains("fastboot"))
                     {
                         string[] log = adbFastbootCommandR(new [] { "getvar all" }, 1).Split(' ', '\n');
                         for (int a=0; a< log.Count(); a++)
@@ -210,7 +210,7 @@ namespace ATA_GUI
                         startInfo.Arguments = s;
                         process.Start();
                         line = process.StandardOutput.ReadToEnd();
-                        if (line.Length > 0) ret.Append(line);
+                        if (line.Length > 0) { ret.Append(line); }
                         process.Close();
                     }
                     break;
@@ -223,10 +223,10 @@ namespace ATA_GUI
                         startInfo.Arguments = s;
                         process.Start();
                         line = process.StandardError.ReadToEnd();
-                        if (line.Length > 0) ret.Append(line + "\n");
+                        if (line.Length > 0) { ret.Append(line + "\n"); }
 
                         line = process.StandardOutput.ReadToEnd();
-                        if (line.Length > 0) ret.Append(line + "\n");
+                        if (line.Length > 0) { ret.Append(line + "\n"); }
                         process.Close();
                     }
                     break;
@@ -268,7 +268,7 @@ namespace ATA_GUI
             if (checkAdbFastboot(0))
             {
                 LogWriteLine("Checking device...");
-                string version = adbFastbootCommandR(new[] { "-s " + Regex.Replace(currentDeviceSelected, @"\t|\n|\r", "") + " shell getprop ro.build.version.release" }, 0);
+                string version = adbFastbootCommandR(new[] { "-s " + Regex.Replace(currentDeviceSelected, @"\s", "") + " shell getprop ro.build.version.release" }, 0);
                 if (version != null)
                 {
                     if(version.Any(char.IsDigit))
@@ -389,11 +389,58 @@ namespace ATA_GUI
                                     else
                                     {
                                         MessageShowBox("Error during apk loading", 0);
+                                        break;
                                     }
                                     if ((stringApkS = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -s" }, 0)) != null)
                                     {
                                         arrayApkTmp.AddRange(stringApkS.Split('\n'));
                                         sortApks(arrayApkTmp.ToArray());
+                                    }
+                                    else
+                                    {
+                                        MessageShowBox("Error during apk loading", 0);
+                                        break;
+                                    }
+                                    LogWriteLine("Apps loaded!");
+                                    toolStripLabelTotalApps.Text = "Total: " + checkedListBoxApp.Items.Count;
+                                    break;
+                                case "5":
+                                    string stringInstalledApk;
+                                    List<String> uninstalledApps = new List<string>();
+                                    List<String> allApps = new List<string>();
+                                    List<String> installedApps = new List<string>();
+                                    bool tempCheck = false;
+
+                                    arrayApks.Clear();
+                                    Invoke((Action)delegate
+                                    {
+                                        checkedListBoxApp.Items.Clear();
+                                    });
+                                    LogWriteLine("Loading apps...");
+                                    if ((stringApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -u" }, 0)) != null)
+                                    {
+                                        if ((stringInstalledApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages" }, 0)) != null)
+                                        {
+                                            List<string> diff;
+                                            IEnumerable<string> set1 = stringApk.Split('\n').Distinct();
+                                            IEnumerable<string> set2 = stringInstalledApk.Split('\n').Distinct();
+
+                                            if (set2.Count() > set1.Count())
+                                            {
+                                                diff = set2.Except(set1).ToList();
+                                            }
+                                            else
+                                            {
+                                                diff = set1.Except(set2).ToList();
+                                            }
+                                            
+                                            sortApks(diff.ToArray());
+                                        }
+                                        else
+                                        {
+                                            MessageShowBox("Error during apk loading", 0);
+                                            break;
+                                        }
                                     }
                                     else
                                     {
@@ -414,10 +461,10 @@ namespace ATA_GUI
                         {
                             disableEnableSystem(false);
                             buttonDisconnectIP.Enabled = false;
-                            LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
+                            LogWriteLine("Error device not found!");
                             if (paramObjTmp == "0")
                             {
-                                MessageShowBox("Error device not found/ multiple devices found", 0);
+                                MessageShowBox("Error device not found!", 0);
                             }
                         });
                     }
@@ -428,10 +475,10 @@ namespace ATA_GUI
                     {
                         disableEnableSystem(false);
                         buttonDisconnectIP.Enabled = false;
-                        LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
+                        LogWriteLine("Error device not found!");
                         if (paramObjTmp == "0")
                         {
-                            MessageShowBox("Error device not found/ multiple devices found", 0);
+                            MessageShowBox("Error device not found!", 0);
                         }
                     });
                 }
@@ -555,14 +602,14 @@ namespace ATA_GUI
                                 devicesTmp.RemoveAt(i);
                             else
                             {
-                                deviceTmp.Name = adbFastbootCommandR(new[] { "-s " + Regex.Replace(devicesTmp[i], @"\t|\n|\r", "") + " shell getprop ro.product.model" }, 0);
+                                deviceTmp.Name = adbFastbootCommandR(new[] { "-s " + Regex.Replace(devicesTmp[i], @"\s", "") + " shell getprop ro.product.model" }, 0);
                                 deviceTmp.Serial = devicesTmp[i];
                                 devices.Add(deviceTmp);
                             }
                         }
                         else
                         {
-                            deviceTmp.Name = adbFastbootCommandR(new[] { "-s " + Regex.Replace(devicesTmp[i], @"\t|\n|\r", "") + " shell getprop ro.product.model" }, 0);
+                            deviceTmp.Name = adbFastbootCommandR(new[] { "-s " + Regex.Replace(devicesTmp[i], @"\s", "") + " shell getprop ro.product.model" }, 0);
                             deviceTmp.Serial = devicesTmp[i];
                             devices.Add(deviceTmp);
                         }
@@ -572,13 +619,14 @@ namespace ATA_GUI
                         comboBoxDevices.Items.Add(devices[i].Name);
                     }
                     comboBoxDevices.SelectedIndex = 0;
-                    currentDeviceSelected = Regex.Replace(devices[0].Serial, @"\t|\n|\r", "");
+                    currentDeviceSelected = Regex.Replace(devices[0].Serial, @"\s", "");
                 }
             }
         }
 
         private async void MainForm_Shown(object sender, EventArgs e)
         {
+            toolStripButtonRestoreApp.Enabled = false;
             Ping myPing = new Ping();
             String host = "google.com";
             byte[] buffer = new byte[32];
@@ -756,15 +804,16 @@ namespace ATA_GUI
         {
             Invoke((Action)delegate
             {
-                LogWriteLine("Installing " + textBoxDirFile.Text);
+                string fileName = textBoxDirFile.Text.Substring(textBoxDirFile.Text.LastIndexOf('\\') + 1);
+                LogWriteLine("Installing " + fileName);
                 string log = adbFastbootCommandR(new string[] { "sideload \"" + textBoxDirFile.Text + "\"" }, 0);
-                if(log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log=="")
+                if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log=="")
                 {
-                    LogWriteLine(textBoxDirFile.Text + " failed to flashed");
+                    LogWriteLine(fileName + " failed to flash");
                 }
                 else
                 {
-                    LogWriteLine(textBoxDirFile.Text + " flashed");
+                    LogWriteLine(fileName + " flashed");
                 }
             });
         }
@@ -979,7 +1028,6 @@ namespace ATA_GUI
 
         public void uninstaller(CheckedListBox.CheckedItemCollection foundPackageList)
         {
-            string command;
             if (allApk)
             {
                 LoadingForm load;
@@ -996,7 +1044,7 @@ namespace ATA_GUI
                     }
                     else if (stringApkS.Contains(list.ToString()))
                     {
-                        load = new LoadingForm(new List<string> { list.ToString() }, command = "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ", "Uninstalled:", currentDeviceSelected);
+                        load = new LoadingForm(new List<string> { list.ToString() }, "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ", "Uninstalled:", currentDeviceSelected);
                         load.ShowDialog();
                         if (load.DialogResult != DialogResult.OK)
                         {
@@ -1013,6 +1061,7 @@ namespace ATA_GUI
             }
             else
             {
+                string command;
                 List<string> arrayApkSelect = new List<string>();
                 if (!systemApp)
                 {
@@ -1103,6 +1152,8 @@ namespace ATA_GUI
 
         private void nonSystemAppToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            toolStripButtonUninstallApp.Enabled = true;
+            toolStripButtonRestoreApp.Enabled = false;
             allApk = false;
             systemApp = false;
             syncFun(2);
@@ -1110,6 +1161,8 @@ namespace ATA_GUI
 
         private void systemAppToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            toolStripButtonUninstallApp.Enabled = true;
+            toolStripButtonRestoreApp.Enabled = false;
             allApk = false;
             systemApp = true;
             syncFun(2);
@@ -1117,6 +1170,8 @@ namespace ATA_GUI
 
         private void allToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            toolStripButtonUninstallApp.Enabled = true;
+            toolStripButtonRestoreApp.Enabled = false;
             allApk = true;
             syncFun(4);
         }
@@ -1225,7 +1280,7 @@ namespace ATA_GUI
 
         private void comboBoxDevices_SelectedIndexChanged(object sender, EventArgs e)
         {
-            currentDeviceSelected = Regex.Replace(devices[comboBoxDevices.SelectedIndex].Serial, @"\t|\n|\r", "");
+            currentDeviceSelected = Regex.Replace(devices[comboBoxDevices.SelectedIndex].Serial, @"\s", "");
         }
 
         private void buttonReloadDevicesList_Click(object sender, EventArgs e)
@@ -1339,6 +1394,31 @@ namespace ATA_GUI
             {
                 MessageShowBox("Apps not loaded!", 1);
             }
+        }
+
+        private void toolStripButtonRestoreApp_Click(object sender, EventArgs e)
+        {
+            List<String> apps = new List<String>();
+            foreach(Object app in checkedListBoxApp.CheckedItems)
+            {
+                apps.Add(app.ToString());
+            }
+            LoadingForm load = new LoadingForm(apps, "-s " + currentDeviceSelected + " shell cmd package install-existing ", "Restored:", currentDeviceSelected);
+            load.ShowDialog();
+            if (load.DialogResult != DialogResult.OK)
+            {
+                MessageShowBox("Error during uninstallation process", 0);
+            }
+            syncFun(5);
+        }
+
+        private void uninstalledAppToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonUninstallApp.Enabled = false;
+            toolStripButtonRestoreApp.Enabled = true;
+            allApk = false;
+            systemApp = false;
+            syncFun(5);
         }
     }
 }
