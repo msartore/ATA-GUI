@@ -12,7 +12,7 @@ namespace ATA_GUI
     {
         private string changelog = "";
 
-        private const string currentVersion = "v1.4.1";
+        private const string currentVersion = "v1.5.0";
 
         public Settings()
         {
@@ -37,9 +37,9 @@ namespace ATA_GUI
                 dynamic jsonReal = JsonConvert.DeserializeObject(json);
                 labelLatestRelease.Text = jsonReal[0]["tag_name"];
                 latestRelease.Number = int.Parse(Regex.Replace(labelLatestRelease.Text, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
-                if (labelLatestRelease.Text.Contains("Pre")) latestRelease.Pre = true;
+                if (labelLatestRelease.Text.Contains("Pre")) { latestRelease.Pre = true; }
                 currentRelease.Number = int.Parse(Regex.Replace(currentVersion, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
-                if (currentVersion.Contains("Pre")) currentRelease.Pre = true;
+                if (currentVersion.Contains("Pre")) { currentRelease.Pre = true; }
                 string linkString = jsonReal[0]["assets"][0]["browser_download_url"];
                 changelog = jsonReal[0]["body"];
                 if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && (currentRelease.Pre && !latestRelease.Pre)))

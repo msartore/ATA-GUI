@@ -43,7 +43,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        private const string CURRENTVERSION = "v.1.4.1";
+        private const string CURRENTVERSION = "v.1.5.0";
 
         public MainForm()
         {
@@ -1388,18 +1388,25 @@ namespace ATA_GUI
 
         private void toolStripButtonRestoreApp_Click(object sender, EventArgs e)
         {
-            List<String> apps = new List<String>();
-            foreach(Object app in checkedListBoxApp.CheckedItems)
+            if (checkedListBoxApp.CheckedItems.Count > 0)
             {
-                apps.Add(app.ToString());
+                List<String> apps = new List<String>();
+                foreach (Object app in checkedListBoxApp.CheckedItems)
+                {
+                    apps.Add(app.ToString());
+                }
+                LoadingForm load = new LoadingForm(apps, "-s " + currentDeviceSelected + " shell cmd package install-existing ", "Restored:", currentDeviceSelected);
+                load.ShowDialog();
+                if (load.DialogResult != DialogResult.OK)
+                {
+                    MessageShowBox("Error during uninstallation process", 0);
+                }
+                syncFun(5);
             }
-            LoadingForm load = new LoadingForm(apps, "-s " + currentDeviceSelected + " shell cmd package install-existing ", "Restored:", currentDeviceSelected);
-            load.ShowDialog();
-            if (load.DialogResult != DialogResult.OK)
+            else
             {
-                MessageShowBox("Error during uninstallation process", 0);
+                MessageShowBox("No app selected", 1);
             }
-            syncFun(5);
         }
 
         private void uninstalledAppToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1412,6 +1419,11 @@ namespace ATA_GUI
             allApk = false;
             systemApp = false;
             syncFun(5);
+        }
+
+        private void pictureBoxLogo_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/MassimilianoSartore/ATA-GUI");
         }
     }
 }

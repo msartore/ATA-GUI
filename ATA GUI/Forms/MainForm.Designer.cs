@@ -32,7 +32,7 @@ namespace ATA_GUI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelTopBar = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonCloseWindows = new System.Windows.Forms.Button();
             this.labelLog = new System.Windows.Forms.Label();
@@ -89,6 +89,8 @@ namespace ATA_GUI
             this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonBloatwareDetecter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonRestoreApp = new System.Windows.Forms.ToolStripButton();
             this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
             this.groupBoxADBNet = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -142,6 +144,7 @@ namespace ATA_GUI
             this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemAppToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.nonSystemAppToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.uninstalledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripPermissionMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.grantWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grantDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,11 +153,8 @@ namespace ATA_GUI
             this.buttonReloadDevicesList = new System.Windows.Forms.Button();
             this.comboBoxDevices = new System.Windows.Forms.ComboBox();
             this.backgroundWorkerAdbDownloader = new System.ComponentModel.BackgroundWorker();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonRestoreApp = new System.Windows.Forms.ToolStripButton();
-            this.uninstalledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelTopBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -180,7 +180,7 @@ namespace ATA_GUI
             // panelTopBar
             // 
             this.panelTopBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panelTopBar.Controls.Add(this.pictureBox1);
+            this.panelTopBar.Controls.Add(this.pictureBoxLogo);
             this.panelTopBar.Controls.Add(this.button1);
             this.panelTopBar.Controls.Add(this.buttonCloseWindows);
             this.panelTopBar.Location = new System.Drawing.Point(0, -3);
@@ -189,14 +189,15 @@ namespace ATA_GUI
             this.panelTopBar.TabIndex = 0;
             this.panelTopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseMove);
             // 
-            // pictureBox1
+            // pictureBoxLogo
             // 
-            this.pictureBox1.Image = global::ATA_GUI.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(8, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(79, 33);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxLogo.Image = global::ATA_GUI.Properties.Resources.logo;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(8, 9);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(79, 33);
+            this.pictureBoxLogo.TabIndex = 3;
+            this.pictureBoxLogo.TabStop = false;
+            this.pictureBoxLogo.Click += new System.EventHandler(this.pictureBoxLogo_Click); ;
             // 
             // button1
             // 
@@ -768,6 +769,22 @@ namespace ATA_GUI
             this.toolStripButtonBloatwareDetecter.Text = "Bloatware Detecter";
             this.toolStripButtonBloatwareDetecter.Click += new System.EventHandler(this.toolStripButtonBloatwareDetecter_Click);
             // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonRestoreApp
+            // 
+            this.toolStripButtonRestoreApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRestoreApp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRestoreApp.Image")));
+            this.toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
+            this.toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonRestoreApp.Tag = "";
+            this.toolStripButtonRestoreApp.Text = "Restore App";
+            this.toolStripButtonRestoreApp.Click += new System.EventHandler(this.toolStripButtonRestoreApp_Click);
+            // 
             // checkedListBoxApp
             // 
             this.checkedListBoxApp.BackColor = System.Drawing.Color.White;
@@ -1298,7 +1315,7 @@ namespace ATA_GUI
             this.nonSystemAppToolStripMenuItem1,
             this.uninstalledAppToolStripMenuItem});
             this.contextMenuStripFilterBy.Name = "contextMenuStripFilterBy";
-            this.contextMenuStripFilterBy.Size = new System.Drawing.Size(181, 114);
+            this.contextMenuStripFilterBy.Size = new System.Drawing.Size(164, 92);
             // 
             // allToolStripMenuItem
             // 
@@ -1320,6 +1337,13 @@ namespace ATA_GUI
             this.nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             this.nonSystemAppToolStripMenuItem1.Text = "Non System App";
             this.nonSystemAppToolStripMenuItem1.Click += new System.EventHandler(this.nonSystemAppToolStripMenuItem1_Click);
+            // 
+            // uninstalledAppToolStripMenuItem
+            // 
+            this.uninstalledAppToolStripMenuItem.Name = "uninstalledAppToolStripMenuItem";
+            this.uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.uninstalledAppToolStripMenuItem.Text = "Uninstalled App";
+            this.uninstalledAppToolStripMenuItem.Click += new System.EventHandler(this.uninstalledAppToolStripMenuItem_Click);
             // 
             // contextMenuStripPermissionMenu
             // 
@@ -1387,29 +1411,6 @@ namespace ATA_GUI
             // 
             this.backgroundWorkerAdbDownloader.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAdbDownloader_DoWork);
             // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonRestoreApp
-            // 
-            this.toolStripButtonRestoreApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonRestoreApp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRestoreApp.Image")));
-            this.toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
-            this.toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonRestoreApp.Tag = "";
-            this.toolStripButtonRestoreApp.Text = "Restore App";
-            this.toolStripButtonRestoreApp.Click += new System.EventHandler(this.toolStripButtonRestoreApp_Click);
-            // 
-            // uninstalledAppToolStripMenuItem
-            // 
-            this.uninstalledAppToolStripMenuItem.Name = "uninstalledAppToolStripMenuItem";
-            this.uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.uninstalledAppToolStripMenuItem.Text = "Uninstalled App";
-            this.uninstalledAppToolStripMenuItem.Click += new System.EventHandler(this.uninstalledAppToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1433,7 +1434,7 @@ namespace ATA_GUI
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.panelTopBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.groupBoxDeviceInfo.ResumeLayout(false);
             this.groupBoxDeviceInfo.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1507,7 +1508,7 @@ namespace ATA_GUI
         private System.Windows.Forms.CheckedListBox checkedListBoxApp;
         private System.Windows.Forms.Label labelIP;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.GroupBox groupBoxADBNet;
         private System.Windows.Forms.TextBox textBoxIP;
         private System.Windows.Forms.Button buttonConnectToIP;
