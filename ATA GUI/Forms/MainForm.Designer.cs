@@ -197,7 +197,7 @@ namespace ATA_GUI
             this.pictureBoxLogo.Size = new System.Drawing.Size(79, 33);
             this.pictureBoxLogo.TabIndex = 3;
             this.pictureBoxLogo.TabStop = false;
-            this.pictureBoxLogo.Click += new System.EventHandler(this.pictureBoxLogo_Click); ;
+            this.pictureBoxLogo.Click += new System.EventHandler(this.pictureBoxLogo_Click);
             // 
             // button1
             // 
@@ -621,7 +621,7 @@ namespace ATA_GUI
             this.toolStripSeparator6,
             this.textBoxSearch,
             this.toolStripSeparator1,
-            this.toolStripButtonInstallApp,
+            this.toolStripButtonRestoreApp,
             this.toolStripSeparator7,
             this.toolStripButtonUninstallApp,
             this.toolStripSeparator5,
@@ -629,11 +629,11 @@ namespace ATA_GUI
             this.toolStripSeparator3,
             this.toolStripButtonPermissionMenu,
             this.toolStripSeparator4,
-            this.toolStripLabelTotalApps,
-            this.toolStripSeparator8,
             this.toolStripButtonBloatwareDetecter,
             this.toolStripSeparator9,
-            this.toolStripButtonRestoreApp});
+            this.toolStripLabelTotalApps,
+            this.toolStripSeparator8,
+            this.toolStripButtonInstallApp});
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(509, 25);

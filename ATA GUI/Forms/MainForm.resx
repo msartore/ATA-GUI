@@ -148,16 +148,6 @@
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>853, 19</value>
   </metadata>
-  <data name="toolStripButtonBloatwareDetecter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD2SURBVEhL5dUhVkJRFIXhFwwEg4HIAAwMwBkYHICR6BAM
-        RgLBATgEh+AADAzAYCASjASCwSD/Dru8teHcJyb41/rSXecs1oN36c6mKzzgHW+4xwhHdYFbvOIbvz0b
-        vOAGg7rGAmv0l+7ziUdMUJYWDFGWhoYoS0Pm0pmVpSFz6czK0pC5dGZlachcOrOyNGQunYl+2mVbpOEW
-        HyhbIg230Ftfprc4DYtLZ6L7qmyKNCwunem+GqMp3ZhpySG6+JrThfeDtCjRzdr86Z2eZ1rWpw9yhz81
-        R1pqWt70xR5qBj2C/vIv6A/pX9LzfYbe1BWecImTr+t2MBPqxv+SzRYAAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="toolStripButtonRestoreApp.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -167,6 +157,16 @@
         VDtPL+jrpSvboAvIeVntPMkV7vTSlW3QEeS8qnYUxzPk0PjCFUwfaCKpdrqNQdL6MO8Q6RQtTHAtB+T7
         1WTYIwpqZy+HS70MftgmGXqsl9a2/vymJ4xRwk5/SFMGoV8Rk7y08mBDvbT/leMsAYiWQVHWcghJAAAA
         AElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonBloatwareDetecter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD2SURBVEhL5dUhVkJRFIXhFwwEg4HIAAwMwBkYHICR6BAM
+        RgLBATgEh+AADAzAYCASjASCwSD/Dru8teHcJyb41/rSXecs1oN36c6mKzzgHW+4xwhHdYFbvOIbvz0b
+        vOAGg7rGAmv0l+7ziUdMUJYWDFGWhoYoS0Pm0pmVpSFz6czK0pC5dGZlachcOrOyNGQunYl+2mVbpOEW
+        HyhbIg230Ftfprc4DYtLZ6L7qmyKNCwunem+GqMp3ZhpySG6+JrThfeDtCjRzdr86Z2eZ1rWpw9yhz81
+        R1pqWt70xR5qBj2C/vIv6A/pX9LzfYbe1BWecImTr+t2MBPqxv+SzRYAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="openFileDialogAPK.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
