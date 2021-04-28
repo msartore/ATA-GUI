@@ -109,7 +109,7 @@ namespace ATA_GUI
             // labelLog
             // 
             this.labelLog.AutoSize = true;
-            this.labelLog.Location = new System.Drawing.Point(92, 132);
+            this.labelLog.Location = new System.Drawing.Point(115, 132);
             this.labelLog.Name = "labelLog";
             this.labelLog.Size = new System.Drawing.Size(0, 13);
             this.labelLog.TabIndex = 39;

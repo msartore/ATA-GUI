@@ -641,10 +641,12 @@ namespace ATA_GUI
                 currentRelease.Number = int.Parse(Regex.Replace(CURRENTVERSION, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
                 if (CURRENTVERSION.Contains("Pre")) { currentRelease.Pre = true; }
                 string linkString = jsonReal[0]["assets"][0]["browser_download_url"];
+                string linkRepository = jsonReal[0]["html_url"];
                 if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && (currentRelease.Pre && !latestRelease.Pre)))
                 {
                     if (MessageBox.Show("Update found, do you want to update it?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
+                        Process.Start((string)jsonReal[0]["html_url"]);
                         UpdateForm update = new UpdateForm(linkString);
                         update.ShowDialog();
                     }

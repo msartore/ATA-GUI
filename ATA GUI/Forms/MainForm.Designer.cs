@@ -78,7 +78,7 @@ namespace ATA_GUI
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.textBoxSearch = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonInstallApp = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonRestoreApp = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonUninstallApp = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -86,11 +86,11 @@ namespace ATA_GUI
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonPermissionMenu = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonBloatwareDetecter = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonRestoreApp = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonInstallApp = new System.Windows.Forms.ToolStripButton();
             this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
             this.groupBoxADBNet = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -232,7 +232,7 @@ namespace ATA_GUI
             // labelLog
             // 
             this.labelLog.AutoSize = true;
-            this.labelLog.Location = new System.Drawing.Point(474, 366);
+            this.labelLog.Location = new System.Drawing.Point(474, 368);
             this.labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLog.Name = "labelLog";
             this.labelLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -271,7 +271,7 @@ namespace ATA_GUI
             this.buttonSettings.BackColor = System.Drawing.Color.White;
             this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSettings.ForeColor = System.Drawing.Color.Black;
-            this.buttonSettings.Location = new System.Drawing.Point(384, 370);
+            this.buttonSettings.Location = new System.Drawing.Point(384, 369);
             this.buttonSettings.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSettings.Name = "buttonSettings";
             this.buttonSettings.Size = new System.Drawing.Size(88, 23);
@@ -686,15 +686,16 @@ namespace ATA_GUI
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButtonInstallApp
+            // toolStripButtonRestoreApp
             // 
-            this.toolStripButtonInstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonInstallApp.Image = global::ATA_GUI.Properties.Resources.install;
-            this.toolStripButtonInstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonInstallApp.Name = "toolStripButtonInstallApp";
-            this.toolStripButtonInstallApp.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonInstallApp.Text = "Install App";
-            this.toolStripButtonInstallApp.Click += new System.EventHandler(this.toolStripButton3_Click);
+            this.toolStripButtonRestoreApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRestoreApp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRestoreApp.Image")));
+            this.toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
+            this.toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonRestoreApp.Tag = "";
+            this.toolStripButtonRestoreApp.Text = "Restore App";
+            this.toolStripButtonRestoreApp.Click += new System.EventHandler(this.toolStripButtonRestoreApp_Click);
             // 
             // toolStripSeparator7
             // 
@@ -748,17 +749,6 @@ namespace ATA_GUI
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripLabelTotalApps
-            // 
-            this.toolStripLabelTotalApps.Name = "toolStripLabelTotalApps";
-            this.toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 22);
-            this.toolStripLabelTotalApps.Text = "Total: 0";
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
-            // 
             // toolStripButtonBloatwareDetecter
             // 
             this.toolStripButtonBloatwareDetecter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -774,16 +764,26 @@ namespace ATA_GUI
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButtonRestoreApp
+            // toolStripLabelTotalApps
             // 
-            this.toolStripButtonRestoreApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonRestoreApp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRestoreApp.Image")));
-            this.toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
-            this.toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonRestoreApp.Tag = "";
-            this.toolStripButtonRestoreApp.Text = "Restore App";
-            this.toolStripButtonRestoreApp.Click += new System.EventHandler(this.toolStripButtonRestoreApp_Click);
+            this.toolStripLabelTotalApps.Name = "toolStripLabelTotalApps";
+            this.toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 22);
+            this.toolStripLabelTotalApps.Text = "Total: 0";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonInstallApp
+            // 
+            this.toolStripButtonInstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonInstallApp.Image = global::ATA_GUI.Properties.Resources.install;
+            this.toolStripButtonInstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonInstallApp.Name = "toolStripButtonInstallApp";
+            this.toolStripButtonInstallApp.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonInstallApp.Text = "Install App";
+            this.toolStripButtonInstallApp.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // checkedListBoxApp
             // 
@@ -825,7 +825,7 @@ namespace ATA_GUI
             this.buttonDisconnectIP.BackColor = System.Drawing.Color.White;
             this.buttonDisconnectIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDisconnectIP.ForeColor = System.Drawing.Color.Black;
-            this.buttonDisconnectIP.Location = new System.Drawing.Point(85, 52);
+            this.buttonDisconnectIP.Location = new System.Drawing.Point(89, 52);
             this.buttonDisconnectIP.Name = "buttonDisconnectIP";
             this.buttonDisconnectIP.Size = new System.Drawing.Size(73, 23);
             this.buttonDisconnectIP.TabIndex = 38;
@@ -846,7 +846,7 @@ namespace ATA_GUI
             this.buttonConnectToIP.BackColor = System.Drawing.Color.White;
             this.buttonConnectToIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonConnectToIP.ForeColor = System.Drawing.Color.Black;
-            this.buttonConnectToIP.Location = new System.Drawing.Point(6, 52);
+            this.buttonConnectToIP.Location = new System.Drawing.Point(8, 52);
             this.buttonConnectToIP.Name = "buttonConnectToIP";
             this.buttonConnectToIP.Size = new System.Drawing.Size(73, 23);
             this.buttonConnectToIP.TabIndex = 35;

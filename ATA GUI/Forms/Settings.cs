@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
@@ -52,7 +53,7 @@ namespace ATA_GUI
                 }
                 else
                 {
-                    labelLog.Text = "ATA GUI is update-to-date";
+                    labelLog.Text = "ATA GUI is up to date";
                     this.Refresh();
                 }
             }
