@@ -244,9 +244,9 @@ namespace ATA_GUI
             // 
             this.buttonKillAdb.BackColor = System.Drawing.Color.White;
             this.buttonKillAdb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonKillAdb.Location = new System.Drawing.Point(385, 427);
+            this.buttonKillAdb.Location = new System.Drawing.Point(384, 427);
             this.buttonKillAdb.Name = "buttonKillAdb";
-            this.buttonKillAdb.Size = new System.Drawing.Size(87, 23);
+            this.buttonKillAdb.Size = new System.Drawing.Size(86, 23);
             this.buttonKillAdb.TabIndex = 29;
             this.buttonKillAdb.Text = "Kill Adb";
             this.buttonKillAdb.UseVisualStyleBackColor = false;
@@ -274,7 +274,7 @@ namespace ATA_GUI
             this.buttonSettings.Location = new System.Drawing.Point(384, 369);
             this.buttonSettings.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSettings.Name = "buttonSettings";
-            this.buttonSettings.Size = new System.Drawing.Size(88, 23);
+            this.buttonSettings.Size = new System.Drawing.Size(86, 23);
             this.buttonSettings.TabIndex = 32;
             this.buttonSettings.Text = "Settings";
             this.buttonSettings.UseVisualStyleBackColor = false;
@@ -287,7 +287,7 @@ namespace ATA_GUI
             this.buttonLogClear.ForeColor = System.Drawing.Color.Black;
             this.buttonLogClear.Location = new System.Drawing.Point(384, 398);
             this.buttonLogClear.Name = "buttonLogClear";
-            this.buttonLogClear.Size = new System.Drawing.Size(88, 23);
+            this.buttonLogClear.Size = new System.Drawing.Size(86, 23);
             this.buttonLogClear.TabIndex = 31;
             this.buttonLogClear.Text = "Clear log";
             this.buttonLogClear.UseVisualStyleBackColor = false;

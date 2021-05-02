@@ -541,8 +541,35 @@ namespace ATA_GUI
             }
         }
 
+        public void ToolTipGenerator(Control button, string title, string message)
+        {
+            ToolTip buttonToolTip = new ToolTip();
+            buttonToolTip.ToolTipTitle = title;
+            buttonToolTip.UseFading = true;
+            buttonToolTip.UseAnimation = true;
+            buttonToolTip.IsBalloon = true;
+            buttonToolTip.ShowAlways = true;
+            buttonToolTip.AutoPopDelay = 0;
+            buttonToolTip.InitialDelay = 0;
+            buttonToolTip.ReshowDelay = 0;
+            buttonToolTip.SetToolTip(button, message);
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
+            ToolTipGenerator(buttonConnectToIP, "Connect device", "Connect to your device with this IP");
+            ToolTipGenerator(buttonDisconnectIP, "Disconnect device", "Disconnect from your device with this IP");
+            ToolTipGenerator(buttonKillAdb, "Kill Adb", "If adb is still running it will be killed");
+            ToolTipGenerator(buttonLogClear, "Clear log", "Log will be clean from the box");
+            ToolTipGenerator(buttonRR, "Reboot to recovery", "Your device will be rebooted to recovery");
+            ToolTipGenerator(buttonRS, "Reboot to system", "Your device will be rebooted to system");
+            ToolTipGenerator(buttonRF, "Reboot to fastboot", "Your device will be rebooted to fastboot");
+            ToolTipGenerator(buttonReloadDevicesList, "Reload devices", "The devices list will be updated");
+            ToolTipGenerator(buttonSyncApp, "Sync smartphone", "All the info needed will be extracted from your smartphone");
+            ToolTipGenerator(buttonRebootRecovery, "Reboot to recovery", "Your device will be rebooted to recovery");
+            ToolTipGenerator(groupBox2, "File Transfer", "Drop a file in this box and it will be trasfered in a new folder called ATA inside your device");
+            ToolTipGenerator(groupBox6, "Apk Installer", "Drop an apk file and it will be installed inside your device");
+
             comboBoxDevices.DropDownStyle = ComboBoxStyle.DropDownList;
             groupBox6.AllowDrop = true;
             groupBox2.AllowDrop = true;
