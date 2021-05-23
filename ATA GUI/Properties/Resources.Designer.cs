@@ -71,15 +71,38 @@ namespace ATA_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_mobile_screen_share_black_48dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_mobile_screen_share_black_48dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;bloatware&gt;
-        ///  &lt;normal&gt;
-        ///    com.facebook.services
+        ///  &lt;basic&gt;
+        ///    com.facebook.katana
         ///    com.facebook.system
         ///    com.facebook.appmanager
-        ///  &lt;/normal&gt;
-        ///&lt;/bloatware&gt; 
-        ///.
+        ///    com.facebook.services
+        ///    cn.wps.xiaomi.abroad.lite
+        ///    com.netflix.partner.activation
+        ///    com.zhiliaoapp.musically
+        ///    ru.yandex.searchplugin
+        ///    com.yandex.zen
+        ///    com.ebay.mobile
+        ///    com.ebay.carrier
+        ///    ru.ozon.app.android
+        ///    com.alibaba.aliexpresshd
+        ///    sg.bigo.live
+        ///    ru.auto.ara
+        ///  &lt;/basic&gt;
+        ///  &lt;medium&gt;
+        ///    com.miui.videoplayer
+        ///    com.miui. [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string bloatwareList {
             get {

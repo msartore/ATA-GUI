@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.Drawing;
 
 namespace ATA_GUI
 {
@@ -43,7 +44,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        private const string CURRENTVERSION = "v.1.5.0";
+        private const string CURRENTVERSION = "v.1.6.0";
 
         public MainForm()
         {
@@ -489,6 +490,7 @@ namespace ATA_GUI
 
         private void disableEnableSystem(bool enable)
         {
+            buttonMobileScreenShare.Enabled = enable;
             groupBoxDeviceInfo.Enabled = enable;
             groupBoxRebootMenu.Enabled = enable;
             groupBoxAPKMenu.Enabled = enable;
@@ -559,6 +561,7 @@ namespace ATA_GUI
         {
             ToolTipGenerator(buttonConnectToIP, "Connect device", "Connect to your device with this IP");
             ToolTipGenerator(buttonDisconnectIP, "Disconnect device", "Disconnect from your device with this IP");
+            ToolTipGenerator(buttonMobileScreenShare, "Share Device Screen", "Your device screen will be shared on your PC");
             ToolTipGenerator(buttonKillAdb, "Kill Adb", "If adb is still running it will be killed");
             ToolTipGenerator(buttonLogClear, "Clear log", "Log will be clean from the box");
             ToolTipGenerator(buttonRR, "Reboot to recovery", "Your device will be rebooted to recovery");
@@ -985,12 +988,6 @@ namespace ATA_GUI
             bootloaderMenu.ShowDialog();
         }
 
-        private void buttonCredits_Click(object sender, EventArgs e)
-        {
-            Settings settings = new Settings();
-            settings.ShowDialog();
-        }
-
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             try
@@ -1315,6 +1312,8 @@ namespace ATA_GUI
             {
                 comboBoxDevices.Enabled = false;
                 buttonReloadDevicesList.Enabled = false;
+                buttonMobileScreenShare.Enabled = false;
+                disableEnableSystem(false);
             }
             else
             {
@@ -1335,7 +1334,7 @@ namespace ATA_GUI
                 disableEnableSystem(false);
                 buttonDisconnectIP.Enabled = false;
             });
-            adbMissingForm adbError = new adbMissingForm();
+            exeMissingForm adbError = new exeMissingForm("adb.exe not found\n\nDo you want to download sdk platform tool?\n\n[By pressing YES you agree sdk platform tool terms and conditions]\nfor more info press info button", "Error, ADB Missing!");
             adbError.ShowDialog();
             switch (adbError.DialogResult)
             {
@@ -1352,7 +1351,7 @@ namespace ATA_GUI
                             {
                                 zip.ExtractAll(System.IO.Path.GetDirectoryName(Application.ExecutablePath));
                             }
-                            LogWriteLine("sdk platform tool downloaded!");
+                            LogWriteLine("sdk platform tool extraced!");
                             LogWriteLine("Getting things ready...");
                             systemCommand("taskkill /f /im adb.exe");
                             systemCommand("taskkill /f /im fastboot.exe");
@@ -1379,7 +1378,7 @@ namespace ATA_GUI
                     disableSystem(true);
                     break;
                 case DialogResult.OK:
-                    System.Diagnostics.Process.Start("https://developer.android.com/license?authuser=2");
+                    Process.Start("https://developer.android.com/license?authuser=2");
                     disableSystem(true);
                     break;
                 default:
@@ -1394,6 +1393,7 @@ namespace ATA_GUI
             Invoke((Action)delegate
             {
                 tabPageSystem.Enabled = !a;
+                buttonMobileScreenShare.Enabled = !a;
             });
         }
 
@@ -1452,7 +1452,114 @@ namespace ATA_GUI
 
         private void pictureBoxLogo_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/MassimilianoSartore/ATA-GUI");
+            Process.Start("https://github.com/MassimilianoSartore/ATA-GUI");
+        }
+
+        private void buttonMobileScreenShare_Click(object sender, EventArgs e)
+        {
+            if (File.Exists("scrcpy.exe"))
+            {
+                systemCommand("start scrcpy");
+            }
+            else
+            {
+                try
+                {
+                    backgroundWorkerExeDownloader.RunWorkerAsync();
+                }
+                catch (Exception ex)
+                {
+                    MessageShowBox(ex.ToString(), 0);
+                }
+            }
+
+        }
+
+        private void backgroundWorkerExeDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            if (!connected)
+            {
+                MessageShowBox("You are offline, ATA can't download scrcpy", 0);
+                return;
+            }
+            exeMissingForm scrcpyError = new exeMissingForm("scrcpy.exe not found\n\nDo you want to download scrcpy?\n\n[By pressing YES you agree scrcpy terms and conditions]\nfor more info press info button", "Error, scrcpy Missing!");
+            scrcpyError.ShowDialog();
+            switch (scrcpyError.DialogResult)
+            {
+                case DialogResult.Yes:
+                    LogWriteLine("Downloading scrcpy...");
+                    using (var client = new WebClient())
+                    {
+                        try
+                        {
+                            client.DownloadFile("https://github.com/Genymobile/scrcpy/releases/download/v1.17/scrcpy-win32-v1.17.zip", "scrcpy.zip");
+                            LogWriteLine("scrcpy downloaded!");
+                            LogWriteLine("unzipping scrcpy...");
+                            using (ZipFile zip = ZipFile.Read("scrcpy.zip"))
+                            {
+                                zip.ExtractAll(System.IO.Path.GetDirectoryName(Application.ExecutablePath), ExtractExistingFileAction.DoNotOverwrite);
+                            }
+                            LogWriteLine("scrcpy Extracted!");
+                            LogWriteLine("Getting things ready...");
+                            systemCommand("del scrcpy.zip");
+                            LogWriteLine("scrcpy ready!");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageShowBox(ex.ToString(), 0);
+                            disableSystem(true);
+                        }
+                    }
+                    break;
+                case DialogResult.No:
+                    break;
+                case DialogResult.OK:
+                    Process.Start("https://raw.githubusercontent.com/Genymobile/scrcpy/master/LICENSE");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void labelHelp_MouseHover(object sender, EventArgs e)
+        {
+            labelHelp.BackColor = System.Drawing.ColorTranslator.FromHtml("#1f2121");
+        }
+
+        private void labelHelp_MouseLeave(object sender, EventArgs e)
+        {
+            labelHelp.BackColor = System.Drawing.Color.Black;
+        }
+
+        private void labelSettings_MouseLeave(object sender, EventArgs e)
+        {
+            labelSettings.BackColor = System.Drawing.Color.Black;
+        }
+
+        private void labelSettings_MouseHover(object sender, EventArgs e)
+        {
+            labelSettings.BackColor = System.Drawing.ColorTranslator.FromHtml("#1f2121");
+        }
+
+        private void labelSettings_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.ShowDialog();
+        }
+
+        private void labelHelp_Click(object sender, EventArgs e)
+        {
+            contextMenuStripHelp.Show(Cursor.Position);
+        }
+
+        private void reportBugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBUG%5D");
+        }
+
+        private void videoTutorialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/wiki#coming-soon");
         }
     }
 }

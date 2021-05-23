@@ -10,16 +10,24 @@ using System.Windows.Forms;
 
 namespace ATA_GUI
 {
-    public partial class adbMissingForm : Form
+    public partial class exeMissingForm : Form
     {
-        public adbMissingForm()
+
+        private string title;
+        private string message;
+
+        public exeMissingForm(string message, string title)
         {
             InitializeComponent();
+
+            this.title = title;
+            this.message = message;
         }
 
         private void adbMissingForm_Load(object sender, EventArgs e)
         {
-            label1.Text = "adb.exe not found\n\nDo you want to download sdk platform tool?\n\n[By pressing YES you agree sdk platform tool terms and conditions]\nfor more info press info button";
+            label1.Text = message;
+            this.Text = title;
         }
 
         private void buttonInfo_Click(object sender, EventArgs e)

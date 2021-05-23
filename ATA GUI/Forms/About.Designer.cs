@@ -42,6 +42,7 @@ namespace ATA_GUI
             this.linkLabelRepo = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
+            this.linkLabelScrcpy = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -65,7 +66,7 @@ namespace ATA_GUI
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Version: 1.5.0";
+            this.label2.Text = "Version: 1.6.0";
             // 
             // label1
             // 
@@ -79,12 +80,13 @@ namespace ATA_GUI
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.linkLabelScrcpy);
             this.groupBox2.Controls.Add(this.linkLabelNewtonsoft);
             this.groupBox2.Controls.Add(this.linkLabelSDK);
             this.groupBox2.Controls.Add(this.linkLabelDNZ);
             this.groupBox2.Location = new System.Drawing.Point(12, 129);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(361, 77);
+            this.groupBox2.Size = new System.Drawing.Size(361, 104);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Assest Used";
@@ -166,7 +168,7 @@ namespace ATA_GUI
             // buttonClose
             // 
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClose.Location = new System.Drawing.Point(298, 212);
+            this.buttonClose.Location = new System.Drawing.Point(298, 239);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 3;
@@ -174,12 +176,23 @@ namespace ATA_GUI
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
+            // linkLabelScrcpy
+            // 
+            this.linkLabelScrcpy.AutoSize = true;
+            this.linkLabelScrcpy.Location = new System.Drawing.Point(12, 74);
+            this.linkLabelScrcpy.Name = "linkLabelScrcpy";
+            this.linkLabelScrcpy.Size = new System.Drawing.Size(40, 13);
+            this.linkLabelScrcpy.TabIndex = 3;
+            this.linkLabelScrcpy.TabStop = true;
+            this.linkLabelScrcpy.Text = "Scrcpy";
+            this.linkLabelScrcpy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelScrcpy_LinkClicked);
+            // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(385, 247);
+            this.ClientSize = new System.Drawing.Size(385, 274);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -215,5 +228,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkLabelNewtonsoft;
+        private System.Windows.Forms.LinkLabel linkLabelScrcpy;
     }
 }

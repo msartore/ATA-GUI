@@ -45,5 +45,10 @@ namespace ATA_GUI
         {
             Process.Start("https://www.newtonsoft.com/json");
         }
+
+        private void linkLabelScrcpy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/Genymobile/scrcpy");
+        }
     }
 }

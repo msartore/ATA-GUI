@@ -1,7 +1,7 @@
 ﻿
 namespace ATA_GUI
 {
-    partial class adbMissingForm
+    partial class exeMissingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace ATA_GUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(adbMissingForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(exeMissingForm));
             this.buttonYes = new System.Windows.Forms.Button();
             this.buttonNo = new System.Windows.Forms.Button();
             this.buttonInfo = new System.Windows.Forms.Button();
@@ -103,7 +103,7 @@ namespace ATA_GUI
             this.panel1.Size = new System.Drawing.Size(426, 50);
             this.panel1.TabIndex = 5;
             // 
-            // adbMissingForm
+            // exeMissingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -116,10 +116,9 @@ namespace ATA_GUI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "adbMissingForm";
+            this.Name = "exeMissingForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = " Error ADB Missing!";
             this.Load += new System.EventHandler(this.adbMissingForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);

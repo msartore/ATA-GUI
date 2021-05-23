@@ -31,14 +31,9 @@ namespace ATA_GUI
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.panelTopBar = new System.Windows.Forms.Panel();
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.buttonCloseWindows = new System.Windows.Forms.Button();
             this.labelLog = new System.Windows.Forms.Label();
             this.buttonKillAdb = new System.Windows.Forms.Button();
             this.buttonSyncApp = new System.Windows.Forms.Button();
-            this.buttonSettings = new System.Windows.Forms.Button();
             this.buttonLogClear = new System.Windows.Forms.Button();
             this.backgroundWorkerSync = new System.ComponentModel.BackgroundWorker();
             this.groupBoxDeviceInfo = new System.Windows.Forms.GroupBox();
@@ -72,25 +67,6 @@ namespace ATA_GUI
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonReloadApps = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonFilter = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.textBoxSearch = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonRestoreApp = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonUninstallApp = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonPackageManager = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonPermissionMenu = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonBloatwareDetecter = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonInstallApp = new System.Windows.Forms.ToolStripButton();
             this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
             this.groupBoxADBNet = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -132,6 +108,25 @@ namespace ATA_GUI
             this.buttonInstallZip = new System.Windows.Forms.Button();
             this.textBoxDirFile = new System.Windows.Forms.TextBox();
             this.buttonSearchFile = new System.Windows.Forms.Button();
+            this.toolStripButtonReloadApps = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonFilter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.textBoxSearch = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonRestoreApp = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonUninstallApp = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonPackageManager = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonPermissionMenu = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonBloatwareDetecter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonInstallApp = new System.Windows.Forms.ToolStripButton();
             this.openFileDialogAPK = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogZip = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorkerZip = new System.ComponentModel.BackgroundWorker();
@@ -153,8 +148,25 @@ namespace ATA_GUI
             this.buttonReloadDevicesList = new System.Windows.Forms.Button();
             this.comboBoxDevices = new System.Windows.Forms.ComboBox();
             this.backgroundWorkerAdbDownloader = new System.ComponentModel.BackgroundWorker();
-            this.panelTopBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
+            this.backgroundWorkerExeDownloader = new System.ComponentModel.BackgroundWorker();
+            this.buttonMobileScreenShare = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.panelTopBar = new System.Windows.Forms.Panel();
+            this.labelHelp = new System.Windows.Forms.Label();
+            this.labelSettings = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.buttonCloseWindows = new System.Windows.Forms.Button();
+            this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
+            this.contextMenuStripHelp = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.videoTutorialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.videoTutorialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -163,7 +175,6 @@ namespace ATA_GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.toolStrip1.SuspendLayout();
             this.groupBoxADBNet.SuspendLayout();
             this.groupBoxRebootMenu.SuspendLayout();
             this.tabPageFastboot.SuspendLayout();
@@ -175,64 +186,15 @@ namespace ATA_GUI
             this.contextMenuStripFilterBy.SuspendLayout();
             this.contextMenuStripPermissionMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
+            this.panelTopBar.SuspendLayout();
+            this.contextMenuStripHelp.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panelTopBar
-            // 
-            this.panelTopBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panelTopBar.Controls.Add(this.pictureBoxLogo);
-            this.panelTopBar.Controls.Add(this.button1);
-            this.panelTopBar.Controls.Add(this.buttonCloseWindows);
-            this.panelTopBar.Location = new System.Drawing.Point(0, -3);
-            this.panelTopBar.Name = "panelTopBar";
-            this.panelTopBar.Size = new System.Drawing.Size(884, 39);
-            this.panelTopBar.TabIndex = 0;
-            this.panelTopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseMove);
-            // 
-            // pictureBoxLogo
-            // 
-            this.pictureBoxLogo.Image = global::ATA_GUI.Properties.Resources.logo;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(8, 9);
-            this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(79, 33);
-            this.pictureBoxLogo.TabIndex = 3;
-            this.pictureBoxLogo.TabStop = false;
-            this.pictureBoxLogo.Click += new System.EventHandler(this.pictureBoxLogo_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Black;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(798, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(43, 40);
-            this.button1.TabIndex = 2;
-            this.button1.TabStop = false;
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // buttonCloseWindows
-            // 
-            this.buttonCloseWindows.BackColor = System.Drawing.Color.Red;
-            this.buttonCloseWindows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCloseWindows.ForeColor = System.Drawing.Color.Black;
-            this.buttonCloseWindows.Image = ((System.Drawing.Image)(resources.GetObject("buttonCloseWindows.Image")));
-            this.buttonCloseWindows.Location = new System.Drawing.Point(840, 0);
-            this.buttonCloseWindows.Name = "buttonCloseWindows";
-            this.buttonCloseWindows.Size = new System.Drawing.Size(43, 42);
-            this.buttonCloseWindows.TabIndex = 1;
-            this.buttonCloseWindows.TabStop = false;
-            this.buttonCloseWindows.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.buttonCloseWindows.UseVisualStyleBackColor = false;
-            this.buttonCloseWindows.Click += new System.EventHandler(this.buttonCloseWindows_Click);
             // 
             // labelLog
             // 
             this.labelLog.AutoSize = true;
-            this.labelLog.Location = new System.Drawing.Point(474, 368);
+            this.labelLog.Location = new System.Drawing.Point(513, 369);
             this.labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLog.Name = "labelLog";
             this.labelLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -244,9 +206,9 @@ namespace ATA_GUI
             // 
             this.buttonKillAdb.BackColor = System.Drawing.Color.White;
             this.buttonKillAdb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonKillAdb.Location = new System.Drawing.Point(384, 427);
+            this.buttonKillAdb.Location = new System.Drawing.Point(428, 421);
             this.buttonKillAdb.Name = "buttonKillAdb";
-            this.buttonKillAdb.Size = new System.Drawing.Size(86, 23);
+            this.buttonKillAdb.Size = new System.Drawing.Size(82, 23);
             this.buttonKillAdb.TabIndex = 29;
             this.buttonKillAdb.Text = "Kill Adb";
             this.buttonKillAdb.UseVisualStyleBackColor = false;
@@ -266,28 +228,14 @@ namespace ATA_GUI
             this.buttonSyncApp.UseVisualStyleBackColor = false;
             this.buttonSyncApp.Click += new System.EventHandler(this.buttonSyncApp_Click);
             // 
-            // buttonSettings
-            // 
-            this.buttonSettings.BackColor = System.Drawing.Color.White;
-            this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSettings.ForeColor = System.Drawing.Color.Black;
-            this.buttonSettings.Location = new System.Drawing.Point(384, 369);
-            this.buttonSettings.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonSettings.Name = "buttonSettings";
-            this.buttonSettings.Size = new System.Drawing.Size(86, 23);
-            this.buttonSettings.TabIndex = 32;
-            this.buttonSettings.Text = "Settings";
-            this.buttonSettings.UseVisualStyleBackColor = false;
-            this.buttonSettings.Click += new System.EventHandler(this.buttonCredits_Click);
-            // 
             // buttonLogClear
             // 
             this.buttonLogClear.BackColor = System.Drawing.Color.White;
             this.buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogClear.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogClear.Location = new System.Drawing.Point(384, 398);
+            this.buttonLogClear.Location = new System.Drawing.Point(428, 392);
             this.buttonLogClear.Name = "buttonLogClear";
-            this.buttonLogClear.Size = new System.Drawing.Size(86, 23);
+            this.buttonLogClear.Size = new System.Drawing.Size(82, 23);
             this.buttonLogClear.TabIndex = 31;
             this.buttonLogClear.Text = "Clear log";
             this.buttonLogClear.UseVisualStyleBackColor = false;
@@ -490,7 +438,7 @@ namespace ATA_GUI
             // 
             this.checkBoxSelectAll.AutoSize = true;
             this.checkBoxSelectAll.ForeColor = System.Drawing.Color.Black;
-            this.checkBoxSelectAll.Location = new System.Drawing.Point(10, 56);
+            this.checkBoxSelectAll.Location = new System.Drawing.Point(8, 56);
             this.checkBoxSelectAll.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxSelectAll.Name = "checkBoxSelectAll";
             this.checkBoxSelectAll.Size = new System.Drawing.Size(70, 17);
@@ -504,10 +452,10 @@ namespace ATA_GUI
             this.tabControl1.Controls.Add(this.tabPageSystem);
             this.tabControl1.Controls.Add(this.tabPageFastboot);
             this.tabControl1.Controls.Add(this.tabPageRecovery);
-            this.tabControl1.Location = new System.Drawing.Point(9, 42);
+            this.tabControl1.Location = new System.Drawing.Point(8, 43);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(862, 321);
+            this.tabControl1.Size = new System.Drawing.Size(901, 321);
             this.tabControl1.TabIndex = 33;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
@@ -520,7 +468,7 @@ namespace ATA_GUI
             this.tabPageSystem.Location = new System.Drawing.Point(4, 22);
             this.tabPageSystem.Name = "tabPageSystem";
             this.tabPageSystem.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSystem.Size = new System.Drawing.Size(854, 295);
+            this.tabPageSystem.Size = new System.Drawing.Size(893, 295);
             this.tabPageSystem.TabIndex = 0;
             this.tabPageSystem.Text = "System";
             this.tabPageSystem.UseVisualStyleBackColor = true;
@@ -535,7 +483,7 @@ namespace ATA_GUI
             this.groupBoxAPKMenu.Controls.Add(this.checkBoxSelectAll);
             this.groupBoxAPKMenu.Location = new System.Drawing.Point(331, 9);
             this.groupBoxAPKMenu.Name = "groupBoxAPKMenu";
-            this.groupBoxAPKMenu.Size = new System.Drawing.Size(515, 280);
+            this.groupBoxAPKMenu.Size = new System.Drawing.Size(556, 280);
             this.groupBoxAPKMenu.TabIndex = 36;
             this.groupBoxAPKMenu.TabStop = false;
             this.groupBoxAPKMenu.Text = "APK Menu";
@@ -544,7 +492,7 @@ namespace ATA_GUI
             // 
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.pictureBox3);
-            this.groupBox2.Location = new System.Drawing.Point(352, 173);
+            this.groupBox2.Location = new System.Drawing.Point(396, 173);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(155, 102);
             this.groupBox2.TabIndex = 44;
@@ -584,9 +532,9 @@ namespace ATA_GUI
             // 
             this.groupBox6.Controls.Add(this.label3);
             this.groupBox6.Controls.Add(this.pictureBox2);
-            this.groupBox6.Location = new System.Drawing.Point(352, 69);
+            this.groupBox6.Location = new System.Drawing.Point(396, 68);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(155, 102);
+            this.groupBox6.Size = new System.Drawing.Size(155, 103);
             this.groupBox6.TabIndex = 43;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Apk Installer";
@@ -614,6 +562,7 @@ namespace ATA_GUI
             // toolStrip1
             // 
             this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonReloadApps,
             this.toolStripSeparator2,
@@ -633,168 +582,23 @@ namespace ATA_GUI
             this.toolStripSeparator9,
             this.toolStripLabelTotalApps,
             this.toolStripSeparator8,
-            this.toolStripButtonInstallApp});
+            this.toolStripButtonInstallApp });
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(509, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(550, 19);
             this.toolStrip1.TabIndex = 42;
             this.toolStrip1.Text = "toolStripAPKMenu";
-            // 
-            // toolStripButtonReloadApps
-            // 
-            this.toolStripButtonReloadApps.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonReloadApps.Image = global::ATA_GUI.Properties.Resources.reload;
-            this.toolStripButtonReloadApps.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonReloadApps.Name = "toolStripButtonReloadApps";
-            this.toolStripButtonReloadApps.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonReloadApps.Text = "Reload Apps";
-            this.toolStripButtonReloadApps.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonFilter
-            // 
-            this.toolStripButtonFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonFilter.Image = global::ATA_GUI.Properties.Resources.emptyFilter;
-            this.toolStripButtonFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonFilter.Name = "toolStripButtonFilter";
-            this.toolStripButtonFilter.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonFilter.Text = "Filter Apps";
-            this.toolStripButtonFilter.ToolTipText = "Apps Filter ";
-            this.toolStripButtonFilter.Click += new System.EventHandler(this.toolStripButtonFilter_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
-            // 
-            // textBoxSearch
-            // 
-            this.textBoxSearch.BackColor = System.Drawing.Color.White;
-            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(150, 25);
-            this.textBoxSearch.Text = "Search";
-            this.textBoxSearch.Click += new System.EventHandler(this.textBoxSearch_Click);
-            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonRestoreApp
-            // 
-            this.toolStripButtonRestoreApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonRestoreApp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRestoreApp.Image")));
-            this.toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
-            this.toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonRestoreApp.Tag = "";
-            this.toolStripButtonRestoreApp.Text = "Restore App";
-            this.toolStripButtonRestoreApp.Click += new System.EventHandler(this.toolStripButtonRestoreApp_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonUninstallApp
-            // 
-            this.toolStripButtonUninstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonUninstallApp.Image = global::ATA_GUI.Properties.Resources.delete;
-            this.toolStripButtonUninstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonUninstallApp.Name = "toolStripButtonUninstallApp";
-            this.toolStripButtonUninstallApp.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonUninstallApp.Text = "Uninstall App";
-            this.toolStripButtonUninstallApp.Click += new System.EventHandler(this.toolStripButton4_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonPackageManager
-            // 
-            this.toolStripButtonPackageManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonPackageManager.Image = global::ATA_GUI.Properties.Resources.package;
-            this.toolStripButtonPackageManager.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonPackageManager.Name = "toolStripButtonPackageManager";
-            this.toolStripButtonPackageManager.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonPackageManager.Text = "Package Manager";
-            this.toolStripButtonPackageManager.ToolTipText = "Package Menu";
-            this.toolStripButtonPackageManager.Click += new System.EventHandler(this.toolStripButton5_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonPermissionMenu
-            // 
-            this.toolStripButtonPermissionMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonPermissionMenu.Image = global::ATA_GUI.Properties.Resources.security;
-            this.toolStripButtonPermissionMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonPermissionMenu.Name = "toolStripButtonPermissionMenu";
-            this.toolStripButtonPermissionMenu.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonPermissionMenu.Text = "toolStripButton1";
-            this.toolStripButtonPermissionMenu.ToolTipText = "Permission Menu";
-            this.toolStripButtonPermissionMenu.Click += new System.EventHandler(this.toolStripButtonPermissionMenu_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonBloatwareDetecter
-            // 
-            this.toolStripButtonBloatwareDetecter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonBloatwareDetecter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonBloatwareDetecter.Image")));
-            this.toolStripButtonBloatwareDetecter.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonBloatwareDetecter.Name = "toolStripButtonBloatwareDetecter";
-            this.toolStripButtonBloatwareDetecter.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonBloatwareDetecter.Text = "Bloatware Detecter";
-            this.toolStripButtonBloatwareDetecter.Click += new System.EventHandler(this.toolStripButtonBloatwareDetecter_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabelTotalApps
-            // 
-            this.toolStripLabelTotalApps.Name = "toolStripLabelTotalApps";
-            this.toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 22);
-            this.toolStripLabelTotalApps.Text = "Total: 0";
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonInstallApp
-            // 
-            this.toolStripButtonInstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonInstallApp.Image = global::ATA_GUI.Properties.Resources.install;
-            this.toolStripButtonInstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonInstallApp.Name = "toolStripButtonInstallApp";
-            this.toolStripButtonInstallApp.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonInstallApp.Text = "Install App";
-            this.toolStripButtonInstallApp.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // checkedListBoxApp
             // 
             this.checkedListBoxApp.BackColor = System.Drawing.Color.White;
             this.checkedListBoxApp.ForeColor = System.Drawing.Color.Black;
             this.checkedListBoxApp.FormattingEnabled = true;
-            this.checkedListBoxApp.Location = new System.Drawing.Point(8, 75);
+            this.checkedListBoxApp.Location = new System.Drawing.Point(5, 75);
             this.checkedListBoxApp.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBoxApp.Name = "checkedListBoxApp";
             this.checkedListBoxApp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.checkedListBoxApp.Size = new System.Drawing.Size(339, 199);
+            this.checkedListBoxApp.Size = new System.Drawing.Size(386, 199);
             this.checkedListBoxApp.TabIndex = 37;
             this.checkedListBoxApp.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxApp_SelectedIndexChanged);
             // 
@@ -911,7 +715,7 @@ namespace ATA_GUI
             this.tabPageFastboot.Location = new System.Drawing.Point(4, 22);
             this.tabPageFastboot.Name = "tabPageFastboot";
             this.tabPageFastboot.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageFastboot.Size = new System.Drawing.Size(854, 295);
+            this.tabPageFastboot.Size = new System.Drawing.Size(893, 295);
             this.tabPageFastboot.TabIndex = 1;
             this.tabPageFastboot.Text = "Fastboot";
             this.tabPageFastboot.UseVisualStyleBackColor = true;
@@ -1210,7 +1014,7 @@ namespace ATA_GUI
             this.tabPageRecovery.Controls.Add(this.buttonSearchFile);
             this.tabPageRecovery.Location = new System.Drawing.Point(4, 22);
             this.tabPageRecovery.Name = "tabPageRecovery";
-            this.tabPageRecovery.Size = new System.Drawing.Size(854, 295);
+            this.tabPageRecovery.Size = new System.Drawing.Size(893, 295);
             this.tabPageRecovery.TabIndex = 2;
             this.tabPageRecovery.Text = "Recovery";
             this.tabPageRecovery.UseVisualStyleBackColor = true;
@@ -1257,6 +1061,151 @@ namespace ATA_GUI
             this.buttonSearchFile.UseVisualStyleBackColor = false;
             this.buttonSearchFile.Click += new System.EventHandler(this.buttonSearchFile_Click);
             // 
+            // toolStripButtonReloadApps
+            // 
+            this.toolStripButtonReloadApps.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonReloadApps.Image = global::ATA_GUI.Properties.Resources.reload;
+            this.toolStripButtonReloadApps.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonReloadApps.Name = "toolStripButtonReloadApps";
+            this.toolStripButtonReloadApps.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonReloadApps.Text = "Reload Apps";
+            this.toolStripButtonReloadApps.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonFilter
+            // 
+            this.toolStripButtonFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonFilter.Image = global::ATA_GUI.Properties.Resources.emptyFilter;
+            this.toolStripButtonFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonFilter.Name = "toolStripButtonFilter";
+            this.toolStripButtonFilter.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonFilter.Text = "Filter Apps";
+            this.toolStripButtonFilter.ToolTipText = "Apps Filter ";
+            this.toolStripButtonFilter.Click += new System.EventHandler(this.toolStripButtonFilter_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
+            // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.BackColor = System.Drawing.Color.White;
+            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(150, 23);
+            this.textBoxSearch.Text = "Search";
+            this.textBoxSearch.Click += new System.EventHandler(this.textBoxSearch_Click);
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonRestoreApp
+            // 
+            this.toolStripButtonRestoreApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRestoreApp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRestoreApp.Image")));
+            this.toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
+            this.toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonRestoreApp.Tag = "";
+            this.toolStripButtonRestoreApp.Text = "Restore App";
+            this.toolStripButtonRestoreApp.Click += new System.EventHandler(this.toolStripButtonRestoreApp_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonUninstallApp
+            // 
+            this.toolStripButtonUninstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonUninstallApp.Image = global::ATA_GUI.Properties.Resources.delete;
+            this.toolStripButtonUninstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonUninstallApp.Name = "toolStripButtonUninstallApp";
+            this.toolStripButtonUninstallApp.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonUninstallApp.Text = "Uninstall App";
+            this.toolStripButtonUninstallApp.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonPackageManager
+            // 
+            this.toolStripButtonPackageManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonPackageManager.Image = global::ATA_GUI.Properties.Resources.package;
+            this.toolStripButtonPackageManager.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonPackageManager.Name = "toolStripButtonPackageManager";
+            this.toolStripButtonPackageManager.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonPackageManager.Text = "Package Manager";
+            this.toolStripButtonPackageManager.ToolTipText = "Package Menu";
+            this.toolStripButtonPackageManager.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonPermissionMenu
+            // 
+            this.toolStripButtonPermissionMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonPermissionMenu.Image = global::ATA_GUI.Properties.Resources.security;
+            this.toolStripButtonPermissionMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonPermissionMenu.Name = "toolStripButtonPermissionMenu";
+            this.toolStripButtonPermissionMenu.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonPermissionMenu.Text = "toolStripButton1";
+            this.toolStripButtonPermissionMenu.ToolTipText = "Permission Menu";
+            this.toolStripButtonPermissionMenu.Click += new System.EventHandler(this.toolStripButtonPermissionMenu_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonBloatwareDetecter
+            // 
+            this.toolStripButtonBloatwareDetecter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonBloatwareDetecter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonBloatwareDetecter.Image")));
+            this.toolStripButtonBloatwareDetecter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonBloatwareDetecter.Name = "toolStripButtonBloatwareDetecter";
+            this.toolStripButtonBloatwareDetecter.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonBloatwareDetecter.Text = "Bloatware Detecter";
+            this.toolStripButtonBloatwareDetecter.Click += new System.EventHandler(this.toolStripButtonBloatwareDetecter_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripLabelTotalApps
+            // 
+            this.toolStripLabelTotalApps.Name = "toolStripLabelTotalApps";
+            this.toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 15);
+            this.toolStripLabelTotalApps.Text = "Total: 0";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonInstallApp
+            // 
+            this.toolStripButtonInstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonInstallApp.Image = global::ATA_GUI.Properties.Resources.install;
+            this.toolStripButtonInstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonInstallApp.Name = "toolStripButtonInstallApp";
+            this.toolStripButtonInstallApp.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonInstallApp.Text = "Install App";
+            this.toolStripButtonInstallApp.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
             // openFileDialogAPK
             // 
             this.openFileDialogAPK.FileName = "openFileDialog";
@@ -1277,7 +1226,7 @@ namespace ATA_GUI
             // 
             this.richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
             this.richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
-            this.richTextBoxLog.Location = new System.Drawing.Point(477, 386);
+            this.richTextBoxLog.Location = new System.Drawing.Point(516, 387);
             this.richTextBoxLog.Name = "richTextBoxLog";
             this.richTextBoxLog.ReadOnly = true;
             this.richTextBoxLog.Size = new System.Drawing.Size(393, 64);
@@ -1380,7 +1329,7 @@ namespace ATA_GUI
             this.groupBox1.Controls.Add(this.buttonReloadDevicesList);
             this.groupBox1.Controls.Add(this.comboBoxDevices);
             this.groupBox1.Controls.Add(this.buttonSyncApp);
-            this.groupBox1.Location = new System.Drawing.Point(8, 365);
+            this.groupBox1.Location = new System.Drawing.Point(7, 366);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(332, 84);
             this.groupBox1.TabIndex = 31;
@@ -1411,15 +1360,193 @@ namespace ATA_GUI
             // 
             this.backgroundWorkerAdbDownloader.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAdbDownloader_DoWork);
             // 
+            // backgroundWorkerExeDownloader
+            // 
+            this.backgroundWorkerExeDownloader.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerExeDownloader_DoWork);
+            // 
+            // buttonMobileScreenShare
+            // 
+            this.buttonMobileScreenShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMobileScreenShare.Image = global::ATA_GUI.Properties.Resources.baseline_mobile_screen_share_black_48dp;
+            this.buttonMobileScreenShare.Location = new System.Drawing.Point(353, 383);
+            this.buttonMobileScreenShare.Name = "buttonMobileScreenShare";
+            this.buttonMobileScreenShare.Size = new System.Drawing.Size(60, 63);
+            this.buttonMobileScreenShare.TabIndex = 39;
+            this.buttonMobileScreenShare.UseVisualStyleBackColor = true;
+            this.buttonMobileScreenShare.Click += new System.EventHandler(this.buttonMobileScreenShare_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(347, 368);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(72, 13);
+            this.label9.TabIndex = 40;
+            this.label9.Text = "Screen Share";
+            // 
+            // pictureBoxLogo
+            // 
+            this.pictureBoxLogo.Image = global::ATA_GUI.Properties.Resources.logo;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(8, 9);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(79, 33);
+            this.pictureBoxLogo.TabIndex = 3;
+            this.pictureBoxLogo.TabStop = false;
+            this.pictureBoxLogo.Click += new System.EventHandler(this.pictureBoxLogo_Click);
+            // 
+            // panelTopBar
+            // 
+            this.panelTopBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelTopBar.Controls.Add(this.labelHelp);
+            this.panelTopBar.Controls.Add(this.labelSettings);
+            this.panelTopBar.Controls.Add(this.pictureBoxLogo);
+            this.panelTopBar.Controls.Add(this.button1);
+            this.panelTopBar.Controls.Add(this.buttonCloseWindows);
+            this.panelTopBar.Location = new System.Drawing.Point(0, -3);
+            this.panelTopBar.Name = "panelTopBar";
+            this.panelTopBar.Size = new System.Drawing.Size(919, 39);
+            this.panelTopBar.TabIndex = 0;
+            this.panelTopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseMove);
+            // 
+            // labelHelp
+            // 
+            this.labelHelp.AutoSize = true;
+            this.labelHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHelp.ForeColor = System.Drawing.Color.White;
+            this.labelHelp.Location = new System.Drawing.Point(166, 13);
+            this.labelHelp.Name = "labelHelp";
+            this.labelHelp.Size = new System.Drawing.Size(33, 15);
+            this.labelHelp.TabIndex = 5;
+            this.labelHelp.Text = "Help";
+            this.labelHelp.Click += new System.EventHandler(this.labelHelp_Click);
+            this.labelHelp.MouseLeave += new System.EventHandler(this.labelHelp_MouseLeave);
+            this.labelHelp.MouseHover += new System.EventHandler(this.labelHelp_MouseHover);
+            // 
+            // labelSettings
+            // 
+            this.labelSettings.AutoSize = true;
+            this.labelSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSettings.ForeColor = System.Drawing.Color.White;
+            this.labelSettings.Location = new System.Drawing.Point(103, 13);
+            this.labelSettings.Name = "labelSettings";
+            this.labelSettings.Size = new System.Drawing.Size(51, 15);
+            this.labelSettings.TabIndex = 4;
+            this.labelSettings.Text = "Settings";
+            this.labelSettings.Click += new System.EventHandler(this.labelSettings_Click);
+            this.labelSettings.MouseLeave += new System.EventHandler(this.labelSettings_MouseLeave);
+            this.labelSettings.MouseHover += new System.EventHandler(this.labelSettings_MouseHover);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Black;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Image = global::ATA_GUI.Properties.Resources._;
+            this.button1.Location = new System.Drawing.Point(831, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(43, 40);
+            this.button1.TabIndex = 2;
+            this.button1.TabStop = false;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonCloseWindows
+            // 
+            this.buttonCloseWindows.BackColor = System.Drawing.Color.Red;
+            this.buttonCloseWindows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCloseWindows.ForeColor = System.Drawing.Color.Black;
+            this.buttonCloseWindows.Image = global::ATA_GUI.Properties.Resources.x;
+            this.buttonCloseWindows.Location = new System.Drawing.Point(873, 0);
+            this.buttonCloseWindows.Name = "buttonCloseWindows";
+            this.buttonCloseWindows.Size = new System.Drawing.Size(43, 42);
+            this.buttonCloseWindows.TabIndex = 1;
+            this.buttonCloseWindows.TabStop = false;
+            this.buttonCloseWindows.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.buttonCloseWindows.UseVisualStyleBackColor = false;
+            this.buttonCloseWindows.Click += new System.EventHandler(this.buttonCloseWindows_Click);
+            // 
+            // BottomToolStripPanel
+            // 
+            this.BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.BottomToolStripPanel.Name = "BottomToolStripPanel";
+            this.BottomToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.BottomToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.BottomToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // TopToolStripPanel
+            // 
+            this.TopToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopToolStripPanel.Name = "TopToolStripPanel";
+            this.TopToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.TopToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.TopToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // RightToolStripPanel
+            // 
+            this.RightToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.RightToolStripPanel.Name = "RightToolStripPanel";
+            this.RightToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.RightToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.RightToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // LeftToolStripPanel
+            // 
+            this.LeftToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.LeftToolStripPanel.Name = "LeftToolStripPanel";
+            this.LeftToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.LeftToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.LeftToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // ContentPanel
+            // 
+            this.ContentPanel.Size = new System.Drawing.Size(150, 150);
+            // 
+            // contextMenuStripHelp
+            // 
+            this.contextMenuStripHelp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpToolStripMenuItem,
+            this.reportBugToolStripMenuItem});
+            this.contextMenuStripHelp.Name = "contextMenuStripHelp";
+            this.contextMenuStripHelp.Size = new System.Drawing.Size(134, 48);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.videoTutorialToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // videoTutorialToolStripMenuItem
+            // 
+            this.videoTutorialToolStripMenuItem.Name = "videoTutorialToolStripMenuItem";
+            this.videoTutorialToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.videoTutorialToolStripMenuItem.Text = "Video Tutorial";
+            this.videoTutorialToolStripMenuItem.Click += new System.EventHandler(this.videoTutorialToolStripMenuItem_Click);
+            // 
+            // reportBugToolStripMenuItem
+            // 
+            this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
+            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.reportBugToolStripMenuItem.Text = "Report Bug";
+            this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
+            // 
+            // videoTutorialsToolStripMenuItem
+            // 
+            this.videoTutorialsToolStripMenuItem.Name = "videoTutorialsToolStripMenuItem";
+            this.videoTutorialsToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(880, 454);
+            this.ClientSize = new System.Drawing.Size(914, 456);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.buttonMobileScreenShare);
             this.Controls.Add(this.buttonKillAdb);
-            this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonLogClear);
             this.Controls.Add(this.richTextBoxLog);
             this.Controls.Add(this.tabControl1);
@@ -1433,8 +1560,6 @@ namespace ATA_GUI
             this.Text = "ATA GUI";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
-            this.panelTopBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.groupBoxDeviceInfo.ResumeLayout(false);
             this.groupBoxDeviceInfo.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1447,8 +1572,6 @@ namespace ATA_GUI
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.groupBoxADBNet.ResumeLayout(false);
             this.groupBoxADBNet.PerformLayout();
             this.groupBoxRebootMenu.ResumeLayout(false);
@@ -1464,16 +1587,16 @@ namespace ATA_GUI
             this.contextMenuStripFilterBy.ResumeLayout(false);
             this.contextMenuStripPermissionMenu.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
+            this.panelTopBar.ResumeLayout(false);
+            this.panelTopBar.PerformLayout();
+            this.contextMenuStripHelp.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panelTopBar;
-        private System.Windows.Forms.Button buttonCloseWindows;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelLog;
         private System.Windows.Forms.Button buttonKillAdb;
         private System.Windows.Forms.Button buttonSyncApp;
@@ -1508,7 +1631,6 @@ namespace ATA_GUI
         private System.Windows.Forms.CheckedListBox checkedListBoxApp;
         private System.Windows.Forms.Label labelIP;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.GroupBox groupBoxADBNet;
         private System.Windows.Forms.TextBox textBoxIP;
         private System.Windows.Forms.Button buttonConnectToIP;
@@ -1548,7 +1670,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonBootloaderMenu;
         private System.Windows.Forms.Button buttonRebootRecovery;
-        private System.Windows.Forms.Button buttonSettings;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButtonReloadApps;
         private System.Windows.Forms.ToolStripButton toolStripButtonFilter;
@@ -1593,6 +1714,25 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripButton toolStripButtonRestoreApp;
         private System.Windows.Forms.ToolStripMenuItem uninstalledAppToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerExeDownloader;
+        private System.Windows.Forms.Button buttonMobileScreenShare;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
+        private System.Windows.Forms.Panel panelTopBar;
+        private System.Windows.Forms.ToolStripPanel BottomToolStripPanel;
+        private System.Windows.Forms.ToolStripPanel TopToolStripPanel;
+        private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
+        private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
+        private System.Windows.Forms.ToolStripContentPanel ContentPanel;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonCloseWindows;
+        private System.Windows.Forms.Label labelHelp;
+        private System.Windows.Forms.Label labelSettings;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripHelp;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportBugToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem videoTutorialsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem videoTutorialToolStripMenuItem;
     }
 }
 
