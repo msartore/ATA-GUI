@@ -18,6 +18,7 @@ namespace ATA_GUI
         private readonly List<string> installedPackageList;
         private readonly HashSet<string> foundPackageList = new HashSet<string>();
         private readonly MainForm mainForm;
+        public string currentDevice;
 
         public BloatwareDetecter(List<string> listOfApps, MainForm main)
         {
@@ -94,11 +95,16 @@ namespace ATA_GUI
                 "to function. Uninstalling a critical system app may result in bricking your phone. So always double check before uninstalling any system app.", 1);
         }
 
-        private void buttonUninstall_Click(object sender, EventArgs e)
+        private void buttonDisable_Click(object sender, EventArgs e)
         {
             if(checkedListBoxBloatwareList.CheckedItems.Count> 0)
-            { 
-                mainForm.uninstaller(checkedListBoxBloatwareList.CheckedItems);
+            {
+                List<string> apks = new List<string>();
+                foreach (Object list in checkedListBoxBloatwareList.CheckedItems)
+                {
+                    apks.Add(list.ToString());
+                }
+                mainForm.loadMethod(apks, "adb -s " + currentDevice + " shell pm disable-user --user 0 ", "Disabled:");
                 this.Close();
             }
             else

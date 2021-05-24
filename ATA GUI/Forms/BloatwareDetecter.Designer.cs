@@ -37,7 +37,7 @@ namespace ATA_GUI
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.checkedListBoxBloatwareList = new System.Windows.Forms.CheckedListBox();
-            this.buttonUninstall = new System.Windows.Forms.Button();
+            this.buttonDisable = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBloatwareInt)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,16 +110,16 @@ namespace ATA_GUI
             this.checkedListBoxBloatwareList.Size = new System.Drawing.Size(302, 79);
             this.checkedListBoxBloatwareList.TabIndex = 6;
             // 
-            // buttonUninstall
+            // buttonDisable
             // 
-            this.buttonUninstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonUninstall.Location = new System.Drawing.Point(165, 262);
-            this.buttonUninstall.Name = "buttonUninstall";
-            this.buttonUninstall.Size = new System.Drawing.Size(75, 23);
-            this.buttonUninstall.TabIndex = 7;
-            this.buttonUninstall.Text = "Uninstall";
-            this.buttonUninstall.UseVisualStyleBackColor = true;
-            this.buttonUninstall.Click += new System.EventHandler(this.buttonUninstall_Click);
+            this.buttonDisable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDisable.Location = new System.Drawing.Point(165, 262);
+            this.buttonDisable.Name = "buttonDisable";
+            this.buttonDisable.Size = new System.Drawing.Size(75, 23);
+            this.buttonDisable.TabIndex = 7;
+            this.buttonDisable.Text = "Disable";
+            this.buttonDisable.UseVisualStyleBackColor = true;
+            this.buttonDisable.Click += new System.EventHandler(this.buttonDisable_Click);
             // 
             // BloatwareDetecter
             // 
@@ -127,7 +127,7 @@ namespace ATA_GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(394, 297);
-            this.Controls.Add(this.buttonUninstall);
+            this.Controls.Add(this.buttonDisable);
             this.Controls.Add(this.checkedListBoxBloatwareList);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -158,6 +158,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckedListBox checkedListBoxBloatwareList;
-        private System.Windows.Forms.Button buttonUninstall;
+        private System.Windows.Forms.Button buttonDisable;
     }
 }

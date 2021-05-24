@@ -16,14 +16,13 @@ namespace ATA_GUI
         private readonly bool fileTransfer;
 
 
-        public LoadingForm(List<string> arrayApkTemp, string commandTemp, string labelTemp, string deviceSerialTmp)
+        public LoadingForm(List<string> arrayApkTemp, string commandTemp, string labelTemp)
         {
             InitializeComponent();
             arrayApk = arrayApkTemp;
             command = commandTemp;
             labelText.Text = labelTemp;
             fileTransfer = false;
-            deviceSerial = deviceSerialTmp;
         }
 
         public LoadingForm(string [] array, string deviceSerialTmp)
@@ -92,7 +91,7 @@ namespace ATA_GUI
                     {
                         labelFileName.Text = apk;
                         this.Refresh();
-                        MainForm.systemCommand("adb " + command + apk);
+                        MainForm.systemCommand(command + apk);
                         backgroundWorker.ReportProgress(++i);
                     }
                 }

@@ -44,7 +44,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        private const string CURRENTVERSION = "v.1.6.0";
+        private const string CURRENTVERSION = "v.1.6.5";
 
         public MainForm()
         {
@@ -295,8 +295,11 @@ namespace ATA_GUI
                                             labelD.Text = arrayDeviceInfo[6];
                                             if (arrayDeviceInfo.Length > 7)
                                             {
-                                                textBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
-                                                if (labelIP.Text.Contains("t of devices attached"))
+                                                if(arrayDeviceInfo[7].Length > 4)
+                                                {
+                                                    textBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
+                                                }
+                                                if (labelIP.Text.Contains("t of devices attached") || arrayDeviceInfo[7].Length == 0)
                                                 {
                                                     labelIP.Text = "Not connected to a network";
                                                     textBoxIP.Text = "";
@@ -1042,7 +1045,7 @@ namespace ATA_GUI
                 {
                     if (stringApk.Contains(list.ToString()))
                     {
-                        load = new LoadingForm(new List<string> { list.ToString() }, "-s " + currentDeviceSelected + " uninstall ", "Uninstalled:", currentDeviceSelected);
+                        load = new LoadingForm(new List<string> { list.ToString() }, "-s " + currentDeviceSelected + " uninstall ", "Uninstalled:");
                         load.ShowDialog();
                         if (load.DialogResult != DialogResult.OK)
                         {
@@ -1051,7 +1054,7 @@ namespace ATA_GUI
                     }
                     else if (stringApkS.Contains(list.ToString()))
                     {
-                        load = new LoadingForm(new List<string> { list.ToString() }, "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ", "Uninstalled:", currentDeviceSelected);
+                        load = new LoadingForm(new List<string> { list.ToString() }, "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ", "Uninstalled:");
                         load.ShowDialog();
                         if (load.DialogResult != DialogResult.OK)
                         {
@@ -1082,7 +1085,7 @@ namespace ATA_GUI
                 {
                     arrayApkSelect.Add(list.ToString());
                 }
-                LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:", currentDeviceSelected);
+                LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:");
                 load.ShowDialog();
                 if (load.DialogResult != DialogResult.OK)
                 {
@@ -1140,20 +1143,25 @@ namespace ATA_GUI
                         MessageShowBox("Generic error", 0);
                         return;
                 }
-                LoadingForm load = new LoadingForm(arrayApkSelect, command, commandName, currentDeviceSelected);
-                load.ShowDialog();
-                if (load.DialogResult == DialogResult.OK)
-                {
-                    syncFun(2);
-                }
-                else
-                {
-                    MessageShowBox("Error during this process", 0);
-                }
+                loadMethod(arrayApkSelect, command, commandName);
             }
             else
             {
                 MessageShowBox("No app selected", 1);
+            }
+        }
+
+        public void loadMethod(List<string> arrayApkSelect, string command, string commandName)
+        {
+            LoadingForm load = new LoadingForm(arrayApkSelect, command, commandName);
+            load.ShowDialog();
+            if (load.DialogResult == DialogResult.OK)
+            {
+                syncFun(2);
+            }
+            else
+            {
+                MessageShowBox("Error during this process", 0);
             }
         }
 
@@ -1407,6 +1415,7 @@ namespace ATA_GUI
                     listOfApps.Add(list.ToString());
                 }
                 BloatwareDetecter bloatwareDetecter = new BloatwareDetecter(listOfApps, this);
+                bloatwareDetecter.currentDevice = currentDeviceSelected;
                 bloatwareDetecter.ShowDialog();
             }
             else
@@ -1424,7 +1433,7 @@ namespace ATA_GUI
                 {
                     apps.Add(app.ToString());
                 }
-                LoadingForm load = new LoadingForm(apps, "-s " + currentDeviceSelected + " shell cmd package install-existing ", "Restored:", currentDeviceSelected);
+                LoadingForm load = new LoadingForm(apps, "-s " + currentDeviceSelected + " shell cmd package install-existing ", "Restored:");
                 load.ShowDialog();
                 if (load.DialogResult != DialogResult.OK)
                 {
