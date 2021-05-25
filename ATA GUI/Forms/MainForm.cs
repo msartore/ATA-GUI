@@ -44,7 +44,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        private const string CURRENTVERSION = "v.1.6.5";
+        private const string CURRENTVERSION = "v.1.6.6";
 
         public MainForm()
         {
@@ -1045,7 +1045,7 @@ namespace ATA_GUI
                 {
                     if (stringApk.Contains(list.ToString()))
                     {
-                        load = new LoadingForm(new List<string> { list.ToString() }, "-s " + currentDeviceSelected + " uninstall ", "Uninstalled:");
+                        load = new LoadingForm(new List<string> { list.ToString() }, "adb -s " + currentDeviceSelected + " uninstall ", "Uninstalled:");
                         load.ShowDialog();
                         if (load.DialogResult != DialogResult.OK)
                         {
@@ -1054,7 +1054,7 @@ namespace ATA_GUI
                     }
                     else if (stringApkS.Contains(list.ToString()))
                     {
-                        load = new LoadingForm(new List<string> { list.ToString() }, "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ", "Uninstalled:");
+                        load = new LoadingForm(new List<string> { list.ToString() }, "adb -s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ", "Uninstalled:");
                         load.ShowDialog();
                         if (load.DialogResult != DialogResult.OK)
                         {
@@ -1075,11 +1075,11 @@ namespace ATA_GUI
                 List<string> arrayApkSelect = new List<string>();
                 if (!systemApp)
                 {
-                    command = "-s " + currentDeviceSelected + " uninstall ";
+                    command = "adb -s " + currentDeviceSelected + " uninstall ";
                 }
                 else
                 {
-                    command = "-s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ";
+                    command = "adb -s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ";
                 }
                 foreach (Object list in foundPackageList)
                 {
@@ -1433,7 +1433,7 @@ namespace ATA_GUI
                 {
                     apps.Add(app.ToString());
                 }
-                LoadingForm load = new LoadingForm(apps, "-s " + currentDeviceSelected + " shell cmd package install-existing ", "Restored:");
+                LoadingForm load = new LoadingForm(apps, "adb -s " + currentDeviceSelected + " shell cmd package install-existing ", "Restored:");
                 load.ShowDialog();
                 if (load.DialogResult != DialogResult.OK)
                 {

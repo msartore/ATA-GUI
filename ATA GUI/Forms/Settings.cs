@@ -13,7 +13,7 @@ namespace ATA_GUI
     {
         private string changelog = "";
 
-        private const string currentVersion = "v1.6.5";
+        private const string currentVersion = "v1.6.6";
 
         public Settings()
         {
