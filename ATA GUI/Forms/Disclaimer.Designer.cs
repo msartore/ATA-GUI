@@ -56,9 +56,9 @@ namespace ATA_GUI
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(29, 81);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(412, 39);
+            this.label1.Size = new System.Drawing.Size(413, 39);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Please read the following license agreement. it will be necessary for you to agre" +
+            this.label1.Text = "Please read the following license agreement. It will be necessary for you to agre" +
     "e to be\r\nbound by the terms of this agreement before being permitted to \r\ncontin" +
     "ue to use the product.";
             // 
@@ -127,7 +127,7 @@ namespace ATA_GUI
             this.MaximizeBox = false;
             this.Name = "Disclaimer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Licence Agreement";
+            this.Text = "ATA GUI Licence Agreement";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

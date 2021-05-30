@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace ATA_GUI
 {
@@ -25,26 +26,23 @@ namespace ATA_GUI
         private readonly string FILEADB = "adb.exe";
         private bool systemApp;
         private readonly List<Device> devices = new List<Device>();
-        private string currentDeviceSelected = "";
+        private string currentDeviceSelected = string.Empty;
         private bool deviceWireless;
         private bool allApk;
         private string stringApk; 
         private string stringApkS;
         private bool connected = true;
-
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+        private const string CURRENTVERSION = "v.1.6.7";
         private static readonly Regex regex = new Regex(@"\s+");
 
         public static string RemoveWhiteSpaces(string str)
         {
             return regex.Replace(str, String.Empty);
         }
-
-        [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        private const string CURRENTVERSION = "v.1.6.6";
 
         public MainForm()
         {
@@ -58,24 +56,6 @@ namespace ATA_GUI
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
-        }
-
-        private void buttonCloseWindows_Click(object sender, EventArgs e)
-        { 
-            if (Process.GetProcessesByName("adb").Length != 0)
-            {
-                DialogResult dialogResult = MessageBox.Show("Do you want to kill ADB?", "Kill ADB", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    systemCommand("taskkill /f /im " + FILEADB);
-                }
-            }
-            Application.Exit();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
         }
 
         private void buttonSyncApp_Click(object sender, EventArgs e)
@@ -239,6 +219,46 @@ namespace ATA_GUI
                 default:
                     MessageShowBox("Error in MessageShowBox", 0);
                     break;
+            }
+        }
+
+        private async void updateCheckAsync()
+        {
+            Release currentRelease = new Release();
+            Release latestRelease = new Release();
+            string json;
+            try
+            {
+                HttpClient _client = new HttpClient();
+                _client.Timeout = TimeSpan.FromSeconds(5);
+                _client.DefaultRequestHeaders.Add("User-Agent", "ATA");
+                json = await _client.GetStringAsync("https://api.github.com/repos/MassimilianoSartore/ATA-GUI/releases");
+                dynamic jsonReal = JsonConvert.DeserializeObject(json);
+                string latestReleaseName = jsonReal[0]["tag_name"];
+                latestRelease.Number = int.Parse(Regex.Replace(latestReleaseName, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
+                if (latestReleaseName.Contains("Pre")) { latestRelease.Pre = true; }
+                currentRelease.Number = int.Parse(Regex.Replace(CURRENTVERSION, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
+                if (CURRENTVERSION.Contains("Pre")) { currentRelease.Pre = true; }
+                string linkString = jsonReal[0]["assets"][0]["browser_download_url"];
+                string linkRepository = jsonReal[0]["html_url"];
+                if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && (currentRelease.Pre && !latestRelease.Pre)))
+                {
+                    if (MessageBox.Show("Update found, do you want to update it?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Process.Start((string)jsonReal[0]["html_url"]);
+                        UpdateForm update = new UpdateForm(linkString);
+                        update.ShowDialog();
+                    }
+                }
+                else
+                {
+                    LogWriteLine("ATA is up to date!");
+                }
+            }
+            catch
+            {
+                LogWriteLine("Timeout Error occurred while connecting to the Server!");
+                LogWriteLine("Open settings to check if a new version is avaiable!");
             }
         }
 
@@ -638,13 +658,13 @@ namespace ATA_GUI
             }
         }
 
-        private async void MainForm_Shown(object sender, EventArgs e)
+        private void MainForm_Shown(object sender, EventArgs e)
         {
+            LogWriteLine("Checking connection...");
             toolStripButtonRestoreApp.Enabled = false;
             Ping myPing = new Ping();
-            String host = "google.com";
+            String host = "1.1.1.1";
             byte[] buffer = new byte[32];
-            bool tempCheck = false;
             int timeout = 1000;
             PingOptions pingOptions = new PingOptions();
             PingReply reply;
@@ -653,45 +673,19 @@ namespace ATA_GUI
                 reply = myPing.Send(host, timeout, buffer, pingOptions);
                 if (reply.Status == IPStatus.Success)
                 {
-                    tempCheck = true;
+                    connected = true;
                 }
             }
             catch
             {
                 LogWriteLine("You are offline");
-            }
-            if (tempCheck)
-            {
-                Release currentRelease = new Release();
-                Release latestRelease = new Release();
-                HttpClient _client = new HttpClient();
-                _client.DefaultRequestHeaders.Add("User-Agent", "C# App");
-                string json = await _client.GetStringAsync("https://api.github.com/repos/MassimilianoSartore/ATA-GUI/releases");
-                dynamic jsonReal = JsonConvert.DeserializeObject(json);
-                string latestReleaseName = jsonReal[0]["tag_name"];
-                latestRelease.Number = int.Parse(Regex.Replace(latestReleaseName, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
-                if (latestReleaseName.Contains("Pre")) { latestRelease.Pre = true; }
-                currentRelease.Number = int.Parse(Regex.Replace(CURRENTVERSION, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
-                if (CURRENTVERSION.Contains("Pre")) { currentRelease.Pre = true; }
-                string linkString = jsonReal[0]["assets"][0]["browser_download_url"];
-                string linkRepository = jsonReal[0]["html_url"];
-                if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && (currentRelease.Pre && !latestRelease.Pre)))
-                {
-                    if (MessageBox.Show("Update found, do you want to update it?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        Process.Start((string)jsonReal[0]["html_url"]);
-                        UpdateForm update = new UpdateForm(linkString);
-                        update.ShowDialog();
-                    }
-                }
-            }
-            else
-            {
-                connected = false;
                 disableSystem(true);
             }
+            LogWriteLine("Connection checked!");
+
             DevicesListUpdate();
             syncFun(3);
+            updateCheckAsync();
         }
 
         private void checkBoxSelectAll_CheckedChanged(object sender, EventArgs e)
@@ -885,8 +879,9 @@ namespace ATA_GUI
 
         private void backgroundWorkerFlashImg_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            string log = "";
-            string command = "";
+            string command = string.Empty;
+            string log;
+
             switch (sender.ToString())
             {
                 case "0":
@@ -914,7 +909,7 @@ namespace ATA_GUI
                     command = "flash vendor ";
                     break;
             }
-            if ((log = adbFastbootCommandR(new [] { command + textBoxDirImg.Text }, 1))!=null)
+            if ((log = adbFastbootCommandR(new[] { command + textBoxDirImg.Text }, 1)) != null)
             {
                 LogWriteLine(log);
             }
@@ -1112,8 +1107,8 @@ namespace ATA_GUI
         {
             if (checkedListBoxApp.CheckedItems.Count > 0)
             {
-                string command = "";
-                string commandName = "";
+                string command = string.Empty;
+                string commandName = string.Empty;
                 List<string> arrayApkSelect = new List<string>();
                 foreach (Object list in checkedListBoxApp.CheckedItems)
                 {
@@ -1316,17 +1311,15 @@ namespace ATA_GUI
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-            if(tabControl1.SelectedTab.Text!="System")
+            comboBoxDevices.Enabled = true;
+            buttonReloadDevicesList.Enabled = true;
+
+            if (tabControl1.SelectedTab.Text!="System")
             {
                 comboBoxDevices.Enabled = false;
                 buttonReloadDevicesList.Enabled = false;
                 buttonMobileScreenShare.Enabled = false;
                 disableEnableSystem(false);
-            }
-            else
-            {
-                comboBoxDevices.Enabled = true;
-                buttonReloadDevicesList.Enabled = true;
             }
         }
 
@@ -1342,7 +1335,7 @@ namespace ATA_GUI
                 disableEnableSystem(false);
                 buttonDisconnectIP.Enabled = false;
             });
-            exeMissingForm adbError = new exeMissingForm("adb.exe not found\n\nDo you want to download sdk platform tool?\n\n[By pressing YES you agree sdk platform tool terms and conditions]\nfor more info press info button", "Error, ADB Missing!");
+            ExeMissingForm adbError = new ExeMissingForm("adb.exe not found\n\nDo you want to download sdk platform tool?\n\n[By pressing YES you agree sdk platform tool terms and conditions]\nfor more info press info button", "Error, ADB Missing!");
             adbError.ShowDialog();
             switch (adbError.DialogResult)
             {
@@ -1375,9 +1368,10 @@ namespace ATA_GUI
                             systemCommand("rmdir /Q /S platform-tools");
                             LogWriteLine("ATA ready!");
                         }
-                        catch (Exception ex)
+                        catch
                         {
-                            MessageShowBox(ex.ToString(), 0);
+                            LogWriteLine("Error during sdk platform tool download!");
+                            MessageShowBox("Error during sdk platform tool download!", 0);
                             disableSystem(true);
                         }
                     }
@@ -1415,7 +1409,7 @@ namespace ATA_GUI
                     listOfApps.Add(list.ToString());
                 }
                 BloatwareDetecter bloatwareDetecter = new BloatwareDetecter(listOfApps, this);
-                bloatwareDetecter.currentDevice = currentDeviceSelected;
+                bloatwareDetecter.CurrentDevice = currentDeviceSelected;
                 bloatwareDetecter.ShowDialog();
             }
             else
@@ -1491,7 +1485,7 @@ namespace ATA_GUI
                 MessageShowBox("You are offline, ATA can't download scrcpy", 0);
                 return;
             }
-            exeMissingForm scrcpyError = new exeMissingForm("scrcpy.exe not found\n\nDo you want to download scrcpy?\n\n[By pressing YES you agree scrcpy terms and conditions]\nfor more info press info button", "Error, scrcpy Missing!");
+            ExeMissingForm scrcpyError = new ExeMissingForm("scrcpy.exe not found\n\nDo you want to download scrcpy?\n\n[By pressing YES you agree scrcpy terms and conditions]\nfor more info press info button", "Error, scrcpy Missing!");
             scrcpyError.ShowDialog();
             switch (scrcpyError.DialogResult)
             {
@@ -1569,6 +1563,44 @@ namespace ATA_GUI
         private void videoTutorialToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/wiki#coming-soon");
+        }
+
+        private void pictureBoxMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void pictureBoxClose_Click(object sender, EventArgs e)
+        {
+            if (Process.GetProcessesByName("adb").Length != 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to kill ADB?", "Kill ADB", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    systemCommand("taskkill /f /im " + FILEADB);
+                }
+            }
+            Application.Exit();
+        }
+
+        private void pictureBoxMinimize_MouseHover(object sender, EventArgs e)
+        {
+            pictureBoxMinimize.BackColor = System.Drawing.ColorTranslator.FromHtml("#1f2121");
+        }
+
+        private void pictureBoxMinimize_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBoxMinimize.BackColor = Color.Black;
+        }
+
+        private void pictureBoxClose_MouseHover(object sender, EventArgs e)
+        {
+            pictureBoxClose.BackColor = Color.Red;
+        }
+
+        private void pictureBoxClose_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBoxClose.BackColor = Color.Black;
         }
     }
 }

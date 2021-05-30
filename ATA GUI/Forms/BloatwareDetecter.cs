@@ -18,7 +18,12 @@ namespace ATA_GUI
         private readonly List<string> installedPackageList;
         private readonly HashSet<string> foundPackageList = new HashSet<string>();
         private readonly MainForm mainForm;
-        public string currentDevice;
+        private string currentDevice;
+
+        public string CurrentDevice
+        {
+            set { currentDevice = value; }
+        }
 
         public BloatwareDetecter(List<string> listOfApps, MainForm main)
         {

@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ATA_GUI
 {
-    public partial class exeMissingForm : Form
+    public partial class ExeMissingForm : Form
     {
 
-        private string title;
-        private string message;
+        private readonly string title;
+        private readonly string message;
 
-        public exeMissingForm(string message, string title)
+        public ExeMissingForm(string message, string title)
         {
             InitializeComponent();
 

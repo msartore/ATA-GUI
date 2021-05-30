@@ -79,11 +79,11 @@
     <Compile Include="Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\exeMissingForm.cs">
+    <Compile Include="Forms\ExeMissingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\exeMissingForm.Designer.cs">
-      <DependentUpon>exeMissingForm.cs</DependentUpon>
+    <Compile Include="Forms\ExeMissingForm.Designer.cs">
+      <DependentUpon>ExeMissingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\BootloaderMenu.cs">
       <SubType>Form</SubType>
@@ -142,8 +142,8 @@
     <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\exeMissingForm.resx">
-      <DependentUpon>exeMissingForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ExeMissingForm.resx">
+      <DependentUpon>ExeMissingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BootloaderMenu.resx">
       <DependentUpon>BootloaderMenu.cs</DependentUpon>

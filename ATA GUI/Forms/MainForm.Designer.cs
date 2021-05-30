@@ -67,6 +67,25 @@ namespace ATA_GUI
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonReloadApps = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonFilter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.textBoxSearch = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonRestoreApp = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonUninstallApp = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonPackageManager = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonPermissionMenu = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonBloatwareDetecter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonInstallApp = new System.Windows.Forms.ToolStripButton();
             this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
             this.groupBoxADBNet = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -108,25 +127,6 @@ namespace ATA_GUI
             this.buttonInstallZip = new System.Windows.Forms.Button();
             this.textBoxDirFile = new System.Windows.Forms.TextBox();
             this.buttonSearchFile = new System.Windows.Forms.Button();
-            this.toolStripButtonReloadApps = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonFilter = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.textBoxSearch = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonRestoreApp = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonUninstallApp = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonPackageManager = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonPermissionMenu = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonBloatwareDetecter = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonInstallApp = new System.Windows.Forms.ToolStripButton();
             this.openFileDialogAPK = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogZip = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorkerZip = new System.ComponentModel.BackgroundWorker();
@@ -153,10 +153,10 @@ namespace ATA_GUI
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelTopBar = new System.Windows.Forms.Panel();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
+            this.pictureBoxMinimize = new System.Windows.Forms.PictureBox();
             this.labelHelp = new System.Windows.Forms.Label();
             this.labelSettings = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.buttonCloseWindows = new System.Windows.Forms.Button();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -175,6 +175,7 @@ namespace ATA_GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.groupBoxADBNet.SuspendLayout();
             this.groupBoxRebootMenu.SuspendLayout();
             this.tabPageFastboot.SuspendLayout();
@@ -188,6 +189,8 @@ namespace ATA_GUI
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelTopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).BeginInit();
             this.contextMenuStripHelp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -562,7 +565,6 @@ namespace ATA_GUI
             // toolStrip1
             // 
             this.toolStrip1.BackColor = System.Drawing.Color.White;
-            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonReloadApps,
             this.toolStripSeparator2,
@@ -582,12 +584,157 @@ namespace ATA_GUI
             this.toolStripSeparator9,
             this.toolStripLabelTotalApps,
             this.toolStripSeparator8,
-            this.toolStripButtonInstallApp });
+            this.toolStripButtonInstallApp});
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(550, 19);
+            this.toolStrip1.Size = new System.Drawing.Size(550, 23);
             this.toolStrip1.TabIndex = 42;
             this.toolStrip1.Text = "toolStripAPKMenu";
+            // 
+            // toolStripButtonReloadApps
+            // 
+            this.toolStripButtonReloadApps.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonReloadApps.Image = global::ATA_GUI.Properties.Resources.reload;
+            this.toolStripButtonReloadApps.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonReloadApps.Name = "toolStripButtonReloadApps";
+            this.toolStripButtonReloadApps.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonReloadApps.Text = "Reload Apps";
+            this.toolStripButtonReloadApps.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonFilter
+            // 
+            this.toolStripButtonFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonFilter.Image = global::ATA_GUI.Properties.Resources.emptyFilter;
+            this.toolStripButtonFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonFilter.Name = "toolStripButtonFilter";
+            this.toolStripButtonFilter.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonFilter.Text = "Filter Apps";
+            this.toolStripButtonFilter.ToolTipText = "Apps Filter ";
+            this.toolStripButtonFilter.Click += new System.EventHandler(this.toolStripButtonFilter_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
+            // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.BackColor = System.Drawing.Color.White;
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(150, 23);
+            this.textBoxSearch.Text = "Search";
+            this.textBoxSearch.Click += new System.EventHandler(this.textBoxSearch_Click);
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonRestoreApp
+            // 
+            this.toolStripButtonRestoreApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRestoreApp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRestoreApp.Image")));
+            this.toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
+            this.toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonRestoreApp.Tag = "";
+            this.toolStripButtonRestoreApp.Text = "Restore App";
+            this.toolStripButtonRestoreApp.Click += new System.EventHandler(this.toolStripButtonRestoreApp_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonUninstallApp
+            // 
+            this.toolStripButtonUninstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonUninstallApp.Image = global::ATA_GUI.Properties.Resources.delete;
+            this.toolStripButtonUninstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonUninstallApp.Name = "toolStripButtonUninstallApp";
+            this.toolStripButtonUninstallApp.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonUninstallApp.Text = "Uninstall App";
+            this.toolStripButtonUninstallApp.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonPackageManager
+            // 
+            this.toolStripButtonPackageManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonPackageManager.Image = global::ATA_GUI.Properties.Resources.package;
+            this.toolStripButtonPackageManager.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonPackageManager.Name = "toolStripButtonPackageManager";
+            this.toolStripButtonPackageManager.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonPackageManager.Text = "Package Manager";
+            this.toolStripButtonPackageManager.ToolTipText = "Package Menu";
+            this.toolStripButtonPackageManager.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonPermissionMenu
+            // 
+            this.toolStripButtonPermissionMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonPermissionMenu.Image = global::ATA_GUI.Properties.Resources.security;
+            this.toolStripButtonPermissionMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonPermissionMenu.Name = "toolStripButtonPermissionMenu";
+            this.toolStripButtonPermissionMenu.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonPermissionMenu.Text = "toolStripButton1";
+            this.toolStripButtonPermissionMenu.ToolTipText = "Permission Menu";
+            this.toolStripButtonPermissionMenu.Click += new System.EventHandler(this.toolStripButtonPermissionMenu_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonBloatwareDetecter
+            // 
+            this.toolStripButtonBloatwareDetecter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonBloatwareDetecter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonBloatwareDetecter.Image")));
+            this.toolStripButtonBloatwareDetecter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonBloatwareDetecter.Name = "toolStripButtonBloatwareDetecter";
+            this.toolStripButtonBloatwareDetecter.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonBloatwareDetecter.Text = "Bloatware Detecter";
+            this.toolStripButtonBloatwareDetecter.Click += new System.EventHandler(this.toolStripButtonBloatwareDetecter_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripLabelTotalApps
+            // 
+            this.toolStripLabelTotalApps.Name = "toolStripLabelTotalApps";
+            this.toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 15);
+            this.toolStripLabelTotalApps.Text = "Total: 0";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonInstallApp
+            // 
+            this.toolStripButtonInstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonInstallApp.Image = global::ATA_GUI.Properties.Resources.install;
+            this.toolStripButtonInstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonInstallApp.Name = "toolStripButtonInstallApp";
+            this.toolStripButtonInstallApp.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonInstallApp.Text = "Install App";
+            this.toolStripButtonInstallApp.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // checkedListBoxApp
             // 
@@ -1061,151 +1208,6 @@ namespace ATA_GUI
             this.buttonSearchFile.UseVisualStyleBackColor = false;
             this.buttonSearchFile.Click += new System.EventHandler(this.buttonSearchFile_Click);
             // 
-            // toolStripButtonReloadApps
-            // 
-            this.toolStripButtonReloadApps.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonReloadApps.Image = global::ATA_GUI.Properties.Resources.reload;
-            this.toolStripButtonReloadApps.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonReloadApps.Name = "toolStripButtonReloadApps";
-            this.toolStripButtonReloadApps.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonReloadApps.Text = "Reload Apps";
-            this.toolStripButtonReloadApps.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripButtonFilter
-            // 
-            this.toolStripButtonFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonFilter.Image = global::ATA_GUI.Properties.Resources.emptyFilter;
-            this.toolStripButtonFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonFilter.Name = "toolStripButtonFilter";
-            this.toolStripButtonFilter.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonFilter.Text = "Filter Apps";
-            this.toolStripButtonFilter.ToolTipText = "Apps Filter ";
-            this.toolStripButtonFilter.Click += new System.EventHandler(this.toolStripButtonFilter_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
-            // 
-            // textBoxSearch
-            // 
-            this.textBoxSearch.BackColor = System.Drawing.Color.White;
-            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(150, 23);
-            this.textBoxSearch.Text = "Search";
-            this.textBoxSearch.Click += new System.EventHandler(this.textBoxSearch_Click);
-            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripButtonRestoreApp
-            // 
-            this.toolStripButtonRestoreApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonRestoreApp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRestoreApp.Image")));
-            this.toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
-            this.toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonRestoreApp.Tag = "";
-            this.toolStripButtonRestoreApp.Text = "Restore App";
-            this.toolStripButtonRestoreApp.Click += new System.EventHandler(this.toolStripButtonRestoreApp_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripButtonUninstallApp
-            // 
-            this.toolStripButtonUninstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonUninstallApp.Image = global::ATA_GUI.Properties.Resources.delete;
-            this.toolStripButtonUninstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonUninstallApp.Name = "toolStripButtonUninstallApp";
-            this.toolStripButtonUninstallApp.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonUninstallApp.Text = "Uninstall App";
-            this.toolStripButtonUninstallApp.Click += new System.EventHandler(this.toolStripButton4_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripButtonPackageManager
-            // 
-            this.toolStripButtonPackageManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonPackageManager.Image = global::ATA_GUI.Properties.Resources.package;
-            this.toolStripButtonPackageManager.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonPackageManager.Name = "toolStripButtonPackageManager";
-            this.toolStripButtonPackageManager.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonPackageManager.Text = "Package Manager";
-            this.toolStripButtonPackageManager.ToolTipText = "Package Menu";
-            this.toolStripButtonPackageManager.Click += new System.EventHandler(this.toolStripButton5_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripButtonPermissionMenu
-            // 
-            this.toolStripButtonPermissionMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonPermissionMenu.Image = global::ATA_GUI.Properties.Resources.security;
-            this.toolStripButtonPermissionMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonPermissionMenu.Name = "toolStripButtonPermissionMenu";
-            this.toolStripButtonPermissionMenu.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonPermissionMenu.Text = "toolStripButton1";
-            this.toolStripButtonPermissionMenu.ToolTipText = "Permission Menu";
-            this.toolStripButtonPermissionMenu.Click += new System.EventHandler(this.toolStripButtonPermissionMenu_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripButtonBloatwareDetecter
-            // 
-            this.toolStripButtonBloatwareDetecter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonBloatwareDetecter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonBloatwareDetecter.Image")));
-            this.toolStripButtonBloatwareDetecter.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonBloatwareDetecter.Name = "toolStripButtonBloatwareDetecter";
-            this.toolStripButtonBloatwareDetecter.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonBloatwareDetecter.Text = "Bloatware Detecter";
-            this.toolStripButtonBloatwareDetecter.Click += new System.EventHandler(this.toolStripButtonBloatwareDetecter_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripLabelTotalApps
-            // 
-            this.toolStripLabelTotalApps.Name = "toolStripLabelTotalApps";
-            this.toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 15);
-            this.toolStripLabelTotalApps.Text = "Total: 0";
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripButtonInstallApp
-            // 
-            this.toolStripButtonInstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonInstallApp.Image = global::ATA_GUI.Properties.Resources.install;
-            this.toolStripButtonInstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonInstallApp.Name = "toolStripButtonInstallApp";
-            this.toolStripButtonInstallApp.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonInstallApp.Text = "Install App";
-            this.toolStripButtonInstallApp.Click += new System.EventHandler(this.toolStripButton3_Click);
-            // 
             // openFileDialogAPK
             // 
             this.openFileDialogAPK.FileName = "openFileDialog";
@@ -1397,16 +1399,40 @@ namespace ATA_GUI
             // panelTopBar
             // 
             this.panelTopBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelTopBar.Controls.Add(this.pictureBoxClose);
+            this.panelTopBar.Controls.Add(this.pictureBoxMinimize);
             this.panelTopBar.Controls.Add(this.labelHelp);
             this.panelTopBar.Controls.Add(this.labelSettings);
             this.panelTopBar.Controls.Add(this.pictureBoxLogo);
-            this.panelTopBar.Controls.Add(this.button1);
-            this.panelTopBar.Controls.Add(this.buttonCloseWindows);
             this.panelTopBar.Location = new System.Drawing.Point(0, -3);
             this.panelTopBar.Name = "panelTopBar";
             this.panelTopBar.Size = new System.Drawing.Size(919, 39);
             this.panelTopBar.TabIndex = 0;
             this.panelTopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseMove);
+            // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Image = global::ATA_GUI.Properties.Resources.x;
+            this.pictureBoxClose.Location = new System.Drawing.Point(876, 1);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(39, 39);
+            this.pictureBoxClose.TabIndex = 41;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
+            this.pictureBoxClose.MouseLeave += new System.EventHandler(this.pictureBoxClose_MouseLeave);
+            this.pictureBoxClose.MouseHover += new System.EventHandler(this.pictureBoxClose_MouseHover);
+            // 
+            // pictureBoxMinimize
+            // 
+            this.pictureBoxMinimize.Image = global::ATA_GUI.Properties.Resources._;
+            this.pictureBoxMinimize.Location = new System.Drawing.Point(838, 1);
+            this.pictureBoxMinimize.Name = "pictureBoxMinimize";
+            this.pictureBoxMinimize.Size = new System.Drawing.Size(39, 39);
+            this.pictureBoxMinimize.TabIndex = 6;
+            this.pictureBoxMinimize.TabStop = false;
+            this.pictureBoxMinimize.Click += new System.EventHandler(this.pictureBoxMinimize_Click);
+            this.pictureBoxMinimize.MouseLeave += new System.EventHandler(this.pictureBoxMinimize_MouseLeave);
+            this.pictureBoxMinimize.MouseHover += new System.EventHandler(this.pictureBoxMinimize_MouseHover);
             // 
             // labelHelp
             // 
@@ -1435,36 +1461,6 @@ namespace ATA_GUI
             this.labelSettings.Click += new System.EventHandler(this.labelSettings_Click);
             this.labelSettings.MouseLeave += new System.EventHandler(this.labelSettings_MouseLeave);
             this.labelSettings.MouseHover += new System.EventHandler(this.labelSettings_MouseHover);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Black;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Image = global::ATA_GUI.Properties.Resources._;
-            this.button1.Location = new System.Drawing.Point(831, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(43, 40);
-            this.button1.TabIndex = 2;
-            this.button1.TabStop = false;
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // buttonCloseWindows
-            // 
-            this.buttonCloseWindows.BackColor = System.Drawing.Color.Red;
-            this.buttonCloseWindows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCloseWindows.ForeColor = System.Drawing.Color.Black;
-            this.buttonCloseWindows.Image = global::ATA_GUI.Properties.Resources.x;
-            this.buttonCloseWindows.Location = new System.Drawing.Point(873, 0);
-            this.buttonCloseWindows.Name = "buttonCloseWindows";
-            this.buttonCloseWindows.Size = new System.Drawing.Size(43, 42);
-            this.buttonCloseWindows.TabIndex = 1;
-            this.buttonCloseWindows.TabStop = false;
-            this.buttonCloseWindows.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.buttonCloseWindows.UseVisualStyleBackColor = false;
-            this.buttonCloseWindows.Click += new System.EventHandler(this.buttonCloseWindows_Click);
             // 
             // BottomToolStripPanel
             // 
@@ -1572,6 +1568,8 @@ namespace ATA_GUI
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.groupBoxADBNet.ResumeLayout(false);
             this.groupBoxADBNet.PerformLayout();
             this.groupBoxRebootMenu.ResumeLayout(false);
@@ -1590,6 +1588,8 @@ namespace ATA_GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelTopBar.ResumeLayout(false);
             this.panelTopBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).EndInit();
             this.contextMenuStripHelp.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1724,8 +1724,6 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
         private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button buttonCloseWindows;
         private System.Windows.Forms.Label labelHelp;
         private System.Windows.Forms.Label labelSettings;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripHelp;
@@ -1733,6 +1731,8 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem reportBugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem videoTutorialsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem videoTutorialToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBoxMinimize;
+        private System.Windows.Forms.PictureBox pictureBoxClose;
     }
 }
 

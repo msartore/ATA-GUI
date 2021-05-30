@@ -10,6 +10,8 @@ namespace ATA_GUI
     public partial class UpdateForm : Form
     {
         private readonly string link;
+        private const string ataUFileName = "ATAUpdater.bat";
+        private const string ataZipFileName = "ATAUpdate.zip";
 
         public UpdateForm(string linkTmp)
         {
@@ -24,27 +26,34 @@ namespace ATA_GUI
             {
                 try
                 {
+                    if (!File.Exists(ataUFileName))
+                    {
+                        using (StreamWriter sw = File.CreateText(ataUFileName))
+                        {
+                            sw.WriteLine("@echo off\nTITLE ATA GUI Updater\ntaskkill /f /im \"ATA GUI.exe\"\ndel \"ATA GUI.exe\"\ndel ATAUpdate.zip\ncd ATAUpdate\ndel ATAUpdater.bat\nmove /y * ../\ncd ..\nrmdir ATAUpdate\nstart \"\" \"ATA GUI.exe\"\nexit");
+                        }
+                    }
                     labelLog.Text = "Downloading update...";
                     MainForm.systemCommand("rmdir /s /q ATAUpdate");
                     this.Refresh();
-                    if (!File.Exists("ATAUpdater.bat"))
+                    if (!File.Exists(ataUFileName))
                     {
-                        labelLog.Text = "Failed to update, missing ATAUpdater.bat";
+                        labelLog.Text = "Failed to update, missing " + ataUFileName;
                         labelLog.BackColor = System.Drawing.Color.Red;
                         this.Close();
                         this.Refresh();
                         Thread.Sleep(2000);
                         return;
                     }
-                    if (File.Exists("ATAUpdate.zip")) { File.Delete("ATAUpdate.zip"); }
+                    if (File.Exists(ataZipFileName)) { File.Delete(ataZipFileName); }
                     labelWarning.Text = "Don't close this program!";
                     labelWarning.BackColor = System.Drawing.Color.Red;
                     this.Refresh();
-                    client.DownloadFile(link, "ATAUpdate.zip");
+                    client.DownloadFile(link, ataZipFileName);
                     UpdateProgressBar(1);
                     labelLog.Text = "Unzipping update...";
                     this.Refresh();
-                    using (ZipFile zip = ZipFile.Read("ATAUpdate.zip"))
+                    using (ZipFile zip = ZipFile.Read(ataZipFileName))
                     {
                         MainForm.systemCommand("mkdir ATAUpdate");
                         zip.ExtractAll(Application.ExecutablePath.Replace("\\ATA GUI.exe", "") + "\\ATAUpdate");
@@ -54,7 +63,7 @@ namespace ATA_GUI
                     this.Refresh();
                     labelLog.Text = "Closing App...";
                     this.Refresh();
-                    MainForm.systemCommand("start \"\" ATAUpdater.bat");
+                    MainForm.systemCommand("start \"\" " + ataUFileName);
                     Application.Exit();
                 }
                 catch (Exception ex)
@@ -62,10 +71,9 @@ namespace ATA_GUI
                     MainForm.MessageShowBox(ex.ToString(), 0);
                     labelLog.Text = "Failed to update";
                     labelLog.BackColor = System.Drawing.Color.Red;
-                    this.Refresh();
-                    this.Close();
                 }
             }
+            this.Close();
         }
 
         private void UpdateForm_Shown(object sender, EventArgs e)
