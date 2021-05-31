@@ -18,12 +18,8 @@ namespace ATA_GUI
         private readonly List<string> installedPackageList;
         private readonly HashSet<string> foundPackageList = new HashSet<string>();
         private readonly MainForm mainForm;
-        private string currentDevice;
 
-        public string CurrentDevice
-        {
-            set { currentDevice = value; }
-        }
+        public string CurrentDevice { get; set; }
 
         public BloatwareDetecter(List<string> listOfApps, MainForm main)
         {
@@ -109,7 +105,7 @@ namespace ATA_GUI
                 {
                     apks.Add(list.ToString());
                 }
-                mainForm.loadMethod(apks, "adb -s " + currentDevice + " shell pm disable-user --user 0 ", "Disabled:");
+                mainForm.loadMethod(apks, "adb -s " + CurrentDevice + " shell pm disable-user --user 0 ", "Disabled:");
                 this.Close();
             }
             else

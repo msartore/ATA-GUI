@@ -11,10 +11,9 @@ namespace ATA_GUI
 {
     public partial class Settings : Form
     {
-        private string changelog = "";
-
+        private string changelog = string.Empty;
         private const string CURRENTVERSION = "v1.6.7";
-        private bool runningCheck = false;
+        private bool runningCheck;
 
         public Settings()
         {
@@ -26,13 +25,7 @@ namespace ATA_GUI
             if(!runningCheck)
             {
                 runningCheck = true;
-                Ping myPing = new Ping();
-                String host = "1.1.1.1";
-                byte[] buffer = new byte[32];
-                int timeout = 1000;
-                PingOptions pingOptions = new PingOptions();
-                PingReply reply = myPing.Send(host, timeout, buffer, pingOptions);
-                if (reply.Status == IPStatus.Success)
+                if (MainForm.pingCheck())
                 {
                     Release currentRelease = new Release();
                     Release latestRelease = new Release();
@@ -51,7 +44,6 @@ namespace ATA_GUI
                         currentRelease.Number = int.Parse(Regex.Replace(CURRENTVERSION, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
                         if (CURRENTVERSION.Contains("Pre")) { currentRelease.Pre = true; }
                         string linkString = jsonReal[0]["assets"][0]["browser_download_url"];
-                        string linkRepository = jsonReal[0]["html_url"];
                         changelog = jsonReal[0]["body"];
                         if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && (currentRelease.Pre && !latestRelease.Pre)))
                         {
@@ -73,12 +65,12 @@ namespace ATA_GUI
                         labelLog.Text = string.Empty;
                         MainForm.MessageShowBox("Timeout Error occurred while connecting to the Server", 0);
                     }
-                    runningCheck = false;
                 }
                 else
                 {
                     labelLog.Text = "You are offline";
                 }
+                runningCheck = false;
             }
             else
             {

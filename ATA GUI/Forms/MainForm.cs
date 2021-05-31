@@ -14,6 +14,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace ATA_GUI
 {
@@ -222,7 +223,7 @@ namespace ATA_GUI
             }
         }
 
-        private async void updateCheckAsync()
+        private async Task updateCheckAsync()
         {
             Release currentRelease = new Release();
             Release latestRelease = new Release();
@@ -658,29 +659,37 @@ namespace ATA_GUI
             }
         }
 
+        public static bool pingCheck()
+        {
+            Ping myPing = new Ping();
+            PingReply reply;
+            try
+            {
+                reply = myPing.Send(IPAddress.Parse("1.1.1.1"), 1000, new byte[32], new PingOptions());
+                if (reply.Status == IPStatus.Success)
+                {
+                    return true;
+                }
+            }
+            catch {}
+            return false;
+        }
+
         private void MainForm_Shown(object sender, EventArgs e)
         {
             LogWriteLine("Checking connection...");
             toolStripButtonRestoreApp.Enabled = false;
-            Ping myPing = new Ping();
-            String host = "1.1.1.1";
-            byte[] buffer = new byte[32];
-            int timeout = 1000;
-            PingOptions pingOptions = new PingOptions();
-            PingReply reply;
-            try
-            {
-                reply = myPing.Send(host, timeout, buffer, pingOptions);
-                if (reply.Status == IPStatus.Success)
-                {
-                    connected = true;
-                }
-            }
-            catch
+
+            if(!pingCheck())
             {
                 LogWriteLine("You are offline");
                 disableSystem(true);
             }
+            else
+            {
+                connected = true;
+            }
+
             LogWriteLine("Connection checked!");
 
             DevicesListUpdate();
