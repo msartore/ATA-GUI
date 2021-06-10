@@ -10,7 +10,10 @@ namespace ATA_GUI
     {
         private string currentDevice = string.Empty;
         private string poolString = string.Empty;
-        private System.Timers.Timer timer;
+        private string line = string.Empty;
+        private readonly System.Timers.Timer timer;
+        private readonly System.Diagnostics.Process process = new System.Diagnostics.Process();
+        private readonly System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
 
         public DeviceLogs(string CurrentDevice)
         {
@@ -19,6 +22,14 @@ namespace ATA_GUI
             timer = new System.Timers.Timer();
             timer.Interval = 1000;
             timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+
+            startInfo.UseShellExecute = false;
+            startInfo.CreateNoWindow = true;
+            startInfo.RedirectStandardError = true;
+            startInfo.RedirectStandardOutput = true;
+
+            startInfo.FileName = "adb.exe";
+            process.StartInfo = startInfo;
         }
 
         private void buttonLogcat_Click(object sender, EventArgs e)
@@ -53,6 +64,7 @@ namespace ATA_GUI
             catch
             {
                 MainForm.MessageShowBox("Error during log event", 0);
+                timer.Stop();
             }
 
             poolString = string.Empty;
@@ -62,26 +74,17 @@ namespace ATA_GUI
         {
             timer.Start();
 
-            StringBuilder ret = new StringBuilder();
-            string line = string.Empty;
             int lineCounter = 0;
-
-            System.Diagnostics.Process process = new System.Diagnostics.Process();
-            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-            startInfo.UseShellExecute = false;
-            startInfo.CreateNoWindow = true;
-            startInfo.RedirectStandardError = true;
-            startInfo.RedirectStandardOutput = true;
-
-            startInfo.FileName = "adb.exe";
-            process.StartInfo = startInfo;
 
             startInfo.Arguments = e.Argument as string;
             process.Start();
             while (!process.HasExited)
             {
                 line = process.StandardOutput.ReadLine() + "\n";
-                if (backgroundWorkerLog.CancellationPending) break;
+                if (backgroundWorkerLog.CancellationPending)
+                {
+                    break;
+                }
                 backgroundWorkerLog.ReportProgress(lineCounter++, line);
             }
             process.Close();
@@ -99,7 +102,10 @@ namespace ATA_GUI
 
         private void checkAndStop()
         {
-            if (!backgroundWorkerLog.IsBusy) return;
+            if (!backgroundWorkerLog.IsBusy)
+            {
+                return;
+            }
             backgroundWorkerLog.CancelAsync();
             timer.Stop();
         }
@@ -108,6 +114,16 @@ namespace ATA_GUI
         {
             poolString = string.Empty;
             richTextBoxLog.Clear();
+        }
+
+        private void buttonCopyText_Click(object sender, EventArgs e)
+        {
+            if(richTextBoxLog.Text.Length <= 0)
+            {
+                return;
+            }
+            Clipboard.SetText(richTextBoxLog.Text);
+            MainForm.MessageShowBox("Text copied!", 2);
         }
     }
 }

@@ -35,6 +35,7 @@ namespace ATA_GUI
             this.backgroundWorkerLog = new System.ComponentModel.BackgroundWorker();
             this.buttonStop = new System.Windows.Forms.Button();
             this.buttonClearLog = new System.Windows.Forms.Button();
+            this.buttonCopyText = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonGetEvent
@@ -111,12 +112,27 @@ namespace ATA_GUI
             this.buttonClearLog.UseVisualStyleBackColor = false;
             this.buttonClearLog.Click += new System.EventHandler(this.buttonClearLog_Click);
             // 
+            // buttonCopyText
+            // 
+            this.buttonCopyText.BackColor = System.Drawing.Color.White;
+            this.buttonCopyText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCopyText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCopyText.ForeColor = System.Drawing.Color.Black;
+            this.buttonCopyText.Location = new System.Drawing.Point(101, 461);
+            this.buttonCopyText.Name = "buttonCopyText";
+            this.buttonCopyText.Size = new System.Drawing.Size(82, 23);
+            this.buttonCopyText.TabIndex = 39;
+            this.buttonCopyText.Text = "Copy log";
+            this.buttonCopyText.UseVisualStyleBackColor = false;
+            this.buttonCopyText.Click += new System.EventHandler(this.buttonCopyText_Click);
+            // 
             // DeviceLogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(653, 491);
+            this.Controls.Add(this.buttonCopyText);
             this.Controls.Add(this.buttonClearLog);
             this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.richTextBoxLog);
@@ -142,5 +158,6 @@ namespace ATA_GUI
         private System.ComponentModel.BackgroundWorker backgroundWorkerLog;
         private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Button buttonClearLog;
+        private System.Windows.Forms.Button buttonCopyText;
     }
 }
