@@ -167,6 +167,7 @@ namespace ATA_GUI
             this.videoTutorialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.videoTutorialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonDeviceLogs = new System.Windows.Forms.Button();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -197,6 +198,7 @@ namespace ATA_GUI
             // labelLog
             // 
             this.labelLog.AutoSize = true;
+            this.labelLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelLog.Location = new System.Drawing.Point(513, 369);
             this.labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLog.Name = "labelLog";
@@ -209,7 +211,8 @@ namespace ATA_GUI
             // 
             this.buttonKillAdb.BackColor = System.Drawing.Color.White;
             this.buttonKillAdb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonKillAdb.Location = new System.Drawing.Point(428, 421);
+            this.buttonKillAdb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonKillAdb.Location = new System.Drawing.Point(428, 428);
             this.buttonKillAdb.Name = "buttonKillAdb";
             this.buttonKillAdb.Size = new System.Drawing.Size(82, 23);
             this.buttonKillAdb.TabIndex = 29;
@@ -221,6 +224,7 @@ namespace ATA_GUI
             // 
             this.buttonSyncApp.BackColor = System.Drawing.Color.White;
             this.buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSyncApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
             this.buttonSyncApp.ForeColor = System.Drawing.Color.Black;
             this.buttonSyncApp.Location = new System.Drawing.Point(17, 22);
             this.buttonSyncApp.Margin = new System.Windows.Forms.Padding(2);
@@ -235,8 +239,9 @@ namespace ATA_GUI
             // 
             this.buttonLogClear.BackColor = System.Drawing.Color.White;
             this.buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLogClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogClear.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogClear.Location = new System.Drawing.Point(428, 392);
+            this.buttonLogClear.Location = new System.Drawing.Point(428, 399);
             this.buttonLogClear.Name = "buttonLogClear";
             this.buttonLogClear.Size = new System.Drawing.Size(82, 23);
             this.buttonLogClear.TabIndex = 31;
@@ -626,6 +631,7 @@ namespace ATA_GUI
             // textBoxSearch
             // 
             this.textBoxSearch.BackColor = System.Drawing.Color.White;
+            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(150, 23);
             this.textBoxSearch.Text = "Search";
@@ -1227,6 +1233,7 @@ namespace ATA_GUI
             // richTextBoxLog
             // 
             this.richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
+            this.richTextBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
             this.richTextBoxLog.Location = new System.Drawing.Point(516, 387);
             this.richTextBoxLog.Name = "richTextBoxLog";
@@ -1331,6 +1338,7 @@ namespace ATA_GUI
             this.groupBox1.Controls.Add(this.buttonReloadDevicesList);
             this.groupBox1.Controls.Add(this.comboBoxDevices);
             this.groupBox1.Controls.Add(this.buttonSyncApp);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(7, 366);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(332, 84);
@@ -1341,6 +1349,7 @@ namespace ATA_GUI
             // buttonReloadDevicesList
             // 
             this.buttonReloadDevicesList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReloadDevicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonReloadDevicesList.Location = new System.Drawing.Point(168, 44);
             this.buttonReloadDevicesList.Name = "buttonReloadDevicesList";
             this.buttonReloadDevicesList.Size = new System.Drawing.Size(152, 23);
@@ -1351,6 +1360,7 @@ namespace ATA_GUI
             // 
             // comboBoxDevices
             // 
+            this.comboBoxDevices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxDevices.FormattingEnabled = true;
             this.comboBoxDevices.Location = new System.Drawing.Point(168, 22);
             this.comboBoxDevices.Name = "comboBoxDevices";
@@ -1370,7 +1380,7 @@ namespace ATA_GUI
             // 
             this.buttonMobileScreenShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonMobileScreenShare.Image = global::ATA_GUI.Properties.Resources.baseline_mobile_screen_share_black_48dp;
-            this.buttonMobileScreenShare.Location = new System.Drawing.Point(353, 383);
+            this.buttonMobileScreenShare.Location = new System.Drawing.Point(351, 388);
             this.buttonMobileScreenShare.Name = "buttonMobileScreenShare";
             this.buttonMobileScreenShare.Size = new System.Drawing.Size(60, 63);
             this.buttonMobileScreenShare.TabIndex = 39;
@@ -1380,7 +1390,8 @@ namespace ATA_GUI
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(347, 368);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(345, 373);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 40;
@@ -1533,6 +1544,20 @@ namespace ATA_GUI
             this.videoTutorialsToolStripMenuItem.Name = "videoTutorialsToolStripMenuItem";
             this.videoTutorialsToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             // 
+            // buttonDeviceLogs
+            // 
+            this.buttonDeviceLogs.BackColor = System.Drawing.Color.White;
+            this.buttonDeviceLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDeviceLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDeviceLogs.ForeColor = System.Drawing.Color.Black;
+            this.buttonDeviceLogs.Location = new System.Drawing.Point(428, 370);
+            this.buttonDeviceLogs.Name = "buttonDeviceLogs";
+            this.buttonDeviceLogs.Size = new System.Drawing.Size(82, 23);
+            this.buttonDeviceLogs.TabIndex = 41;
+            this.buttonDeviceLogs.Text = "Device Logs";
+            this.buttonDeviceLogs.UseVisualStyleBackColor = false;
+            this.buttonDeviceLogs.Click += new System.EventHandler(this.buttonDeviceLogs_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1540,6 +1565,7 @@ namespace ATA_GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(914, 456);
+            this.Controls.Add(this.buttonDeviceLogs);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.buttonMobileScreenShare);
             this.Controls.Add(this.buttonKillAdb);
@@ -1733,6 +1759,7 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem videoTutorialToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBoxMinimize;
         private System.Windows.Forms.PictureBox pictureBoxClose;
+        private System.Windows.Forms.Button buttonDeviceLogs;
     }
 }
 

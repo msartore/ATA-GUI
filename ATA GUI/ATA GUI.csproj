@@ -66,6 +66,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeviceLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeviceLogs.Designer.cs">
+      <DependentUpon>DeviceLogs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\BloatwareDetecter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     <Compile Include="Forms\UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DeviceLogs.resx">
+      <DependentUpon>DeviceLogs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\BloatwareDetecter.resx">
       <DependentUpon>BloatwareDetecter.cs</DependentUpon>
     </EmbeddedResource>

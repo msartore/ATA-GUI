@@ -223,7 +223,7 @@ namespace ATA_GUI
             }
         }
 
-        private async Task updateCheckAsync()
+        private async void updateCheckAsync()
         {
             Release currentRelease = new Release();
             Release latestRelease = new Release();
@@ -1610,6 +1610,12 @@ namespace ATA_GUI
         private void pictureBoxClose_MouseLeave(object sender, EventArgs e)
         {
             pictureBoxClose.BackColor = Color.Black;
+        }
+
+        private void buttonDeviceLogs_Click(object sender, EventArgs e)
+        {
+            DeviceLogs deviceLog = new DeviceLogs(currentDeviceSelected);
+            deviceLog.Show();
         }
     }
 }
