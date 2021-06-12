@@ -518,6 +518,7 @@ namespace ATA_GUI
             groupBoxDeviceInfo.Enabled = enable;
             groupBoxRebootMenu.Enabled = enable;
             groupBoxAPKMenu.Enabled = enable;
+            buttonDeviceLogs.Enabled = enable;
         }
 
         private void adbDownload()
@@ -622,32 +623,30 @@ namespace ATA_GUI
             if (checkAdbFastboot(0))
             {
                 List<string> devicesTmp;
+                int deviceCounter = 0;
+
                 string dev = adbFastbootCommandR(new[] { "devices" }, 0);
                 if (dev != null)
                 {
+                    devices.Clear();
                     devicesTmp = dev.Substring("List of devices attached".Length).Split('	').ToList();
                     for (int i = 0; i < devicesTmp.Count; i++)
                     {
                         Device deviceTmp = new Device();
-                        if (devicesTmp[i].Contains("device"))
-                        {
-                            devicesTmp[i] = RemoveWhiteSpaces(devicesTmp[i]);
-                            devicesTmp[i] = devicesTmp[i].Substring(devicesTmp[i].IndexOf("device") + "device".Length);
-                            if (devicesTmp[i].Length < 1)
-                                devicesTmp.RemoveAt(i);
-                            else
-                            {
-                                deviceTmp.Name = adbFastbootCommandR(new[] { "-s " + Regex.Replace(devicesTmp[i], @"\s", "") + " shell getprop ro.product.model" }, 0);
-                                deviceTmp.Serial = devicesTmp[i];
-                                devices.Add(deviceTmp);
-                            }
-                        }
-                        else
+                        
+                        if(Regex.Match(devicesTmp[i], "^(?:\\w*)").Success && !devicesTmp[i].Contains("recovery") && !devicesTmp[i].Contains("device") && devicesTmp[i] != "\r\n\r\n")
                         {
                             deviceTmp.Name = adbFastbootCommandR(new[] { "-s " + Regex.Replace(devicesTmp[i], @"\s", "") + " shell getprop ro.product.model" }, 0);
                             deviceTmp.Serial = devicesTmp[i];
+                            deviceCounter++;
+
                             devices.Add(deviceTmp);
                         }
+                    }
+                    if (devices.Count == 0)
+                    {
+                        disableEnableSystem(false);
+                        return;
                     }
                     for (int i = 0; i < devices.Count; i++)
                     {
@@ -1327,6 +1326,7 @@ namespace ATA_GUI
             {
                 comboBoxDevices.Enabled = false;
                 buttonReloadDevicesList.Enabled = false;
+                buttonDeviceLogs.Enabled = false;
                 buttonMobileScreenShare.Enabled = false;
                 disableEnableSystem(false);
             }
