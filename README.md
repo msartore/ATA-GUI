@@ -14,7 +14,7 @@ ATA GUI is a project to port ATA to all the users. ATA GUI is an Advance Tool fo
 
 ## ATA Licence
 
-    Copyright (C) 2019-2021 SwayWasTaken
+    Copyright (C) 2021 SwayWasTaken
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
