@@ -12,7 +12,7 @@ namespace ATA_GUI
     public partial class Settings : Form
     {
         private string changelog = string.Empty;
-        private const string CURRENTVERSION = "v1.6.7";
+        private const string CURRENTVERSION = "v1.7.0";
         private bool runningCheck;
 
         public Settings()
