@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net.Http;
-using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -12,7 +11,7 @@ namespace ATA_GUI
     public partial class Settings : Form
     {
         private string changelog = string.Empty;
-        private const string CURRENTVERSION = "v1.7.0";
+        private const string CURRENTVERSION = "v1.7.1";
         private bool runningCheck;
 
         public Settings()
@@ -36,7 +35,9 @@ namespace ATA_GUI
                         HttpClient _client = new HttpClient();
                         _client.Timeout = TimeSpan.FromSeconds(60);
                         _client.DefaultRequestHeaders.Add("User-Agent", "ATA");
-                        json = await _client.GetStringAsync("https://api.github.com/repos/MassimilianoSartore/ATA-GUI/releases");
+                        json = await _client.GetStringAsync("https://ata.msartore.dev/api/links.json");
+                        dynamic jsonMirror = JsonConvert.DeserializeObject(json);
+                        json = await _client.GetStringAsync(jsonMirror[0]["url"].ToString());
                         dynamic jsonReal = JsonConvert.DeserializeObject(json);
                         string latestReleaseName = jsonReal[0]["tag_name"];
                         latestRelease.Number = int.Parse(Regex.Replace(latestReleaseName, @"[^\d]+(\d*:abc$)|[^\d]+", ""));

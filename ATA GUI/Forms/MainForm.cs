@@ -13,8 +13,6 @@ using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Drawing;
-using System.Threading.Tasks;
-using System.Configuration;
 
 namespace ATA_GUI
 {
@@ -37,7 +35,7 @@ namespace ATA_GUI
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-        private const string CURRENTVERSION = "v.1.7.0";
+        private const string CURRENTVERSION = "v.1.7.1";
         private static readonly Regex regex = new Regex(@"\s+");
 
         public static string RemoveWhiteSpaces(string str)
@@ -233,7 +231,9 @@ namespace ATA_GUI
                 HttpClient _client = new HttpClient();
                 _client.Timeout = TimeSpan.FromSeconds(5);
                 _client.DefaultRequestHeaders.Add("User-Agent", "ATA");
-                json = await _client.GetStringAsync("https://api.github.com/repos/MassimilianoSartore/ATA-GUI/releases");
+                json = await _client.GetStringAsync("https://ata.msartore.dev/api/links.json");
+                dynamic jsonMirror = JsonConvert.DeserializeObject(json);
+                json = await _client.GetStringAsync(jsonMirror[0]["url"].ToString());
                 dynamic jsonReal = JsonConvert.DeserializeObject(json);
                 string latestReleaseName = jsonReal[0]["tag_name"];
                 latestRelease.Number = int.Parse(Regex.Replace(latestReleaseName, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
@@ -256,8 +256,9 @@ namespace ATA_GUI
                     LogWriteLine("ATA is up to date!");
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                MessageShowBox(ex.ToString(), 0);
                 LogWriteLine("Timeout Error occurred while connecting to the Server!");
                 LogWriteLine("Open settings to check if a new version is avaiable!");
             }
