@@ -1296,7 +1296,10 @@ namespace ATA_GUI
 
         private void buttonReloadDevicesList_Click(object sender, EventArgs e)
         {
-            if (!checkAdbFastboot(0)) adbDownload();
+            if (!checkAdbFastboot(0)) 
+            {
+                adbDownload();
+            }
             comboBoxDevices.Items.Clear();
             devices.Clear();
             DevicesListUpdate();

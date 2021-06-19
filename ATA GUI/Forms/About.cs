@@ -50,5 +50,10 @@ namespace ATA_GUI
         {
             Process.Start("https://github.com/Genymobile/scrcpy");
         }
+
+        private void linkLabelIcons_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://icons8.com");
+        }
     }
 }
