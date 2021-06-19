@@ -103,6 +103,26 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dogecoin {
+            get {
+                object obj = ResourceManager.GetObject("dogecoin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_bitcoin_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-bitcoin-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_box_important_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-box-important-48", resourceCulture);
@@ -143,6 +163,16 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_ethereum_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-ethereum-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_filter_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-filter-48", resourceCulture);
@@ -166,6 +196,16 @@ namespace ATA_GUI.Properties {
         internal static System.Drawing.Bitmap icons8_folder_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-folder-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_paypal_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-paypal-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

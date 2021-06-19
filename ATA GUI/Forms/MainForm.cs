@@ -1551,11 +1551,6 @@ namespace ATA_GUI
             contextMenuStripHelp.Show(Cursor.Position);
         }
 
-        private void reportBugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBUG%5D");
-        }
-
         private void videoTutorialToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/wiki#coming-soon");
@@ -1627,6 +1622,12 @@ namespace ATA_GUI
         private void pictureBoxSearchFile_MouseLeave(object sender, EventArgs e)
         {
             pictureBoxSearchFile.BackColor = Color.Transparent;
+        }
+
+        private void submitFeedbackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Feedback feedback = new Feedback();
+            feedback.ShowDialog();
         }
     }
 }

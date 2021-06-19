@@ -112,6 +112,7 @@ namespace ATA_GUI
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxDirImg = new System.Windows.Forms.TextBox();
             this.radioButtonRom = new System.Windows.Forms.RadioButton();
+            this.buttonSearchFileFastboot = new System.Windows.Forms.Button();
             this.radioButtonCache = new System.Windows.Forms.RadioButton();
             this.buttonFlashImg = new System.Windows.Forms.Button();
             this.radioButtonVendor = new System.Windows.Forms.RadioButton();
@@ -160,14 +161,13 @@ namespace ATA_GUI
             this.contextMenuStripHelp = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.videoTutorialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.submitFeedbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.videoTutorialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonDeviceLogs = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonReloadDevicesList = new System.Windows.Forms.Button();
             this.comboBoxDevices = new System.Windows.Forms.ComboBox();
             this.buttonSyncApp = new System.Windows.Forms.Button();
-            this.buttonSearchFileFastboot = new System.Windows.Forms.Button();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -1044,6 +1044,18 @@ namespace ATA_GUI
             this.radioButtonRom.Text = "Rom";
             this.radioButtonRom.UseVisualStyleBackColor = true;
             // 
+            // buttonSearchFileFastboot
+            // 
+            this.buttonSearchFileFastboot.BackColor = System.Drawing.Color.White;
+            this.buttonSearchFileFastboot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSearchFileFastboot.Location = new System.Drawing.Point(277, 39);
+            this.buttonSearchFileFastboot.Name = "buttonSearchFileFastboot";
+            this.buttonSearchFileFastboot.Size = new System.Drawing.Size(87, 23);
+            this.buttonSearchFileFastboot.TabIndex = 36;
+            this.buttonSearchFileFastboot.Text = "Search File";
+            this.buttonSearchFileFastboot.UseVisualStyleBackColor = false;
+            this.buttonSearchFileFastboot.Click += new System.EventHandler(this.buttonSearchFileFastboot_Click);
+            // 
             // radioButtonCache
             // 
             this.radioButtonCache.AutoSize = true;
@@ -1457,17 +1469,17 @@ namespace ATA_GUI
             // 
             this.contextMenuStripHelp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.helpToolStripMenuItem,
-            this.reportBugToolStripMenuItem});
+            this.submitFeedbackToolStripMenuItem});
             this.contextMenuStripHelp.Name = "contextMenuStripHelp";
-            this.contextMenuStripHelp.Size = new System.Drawing.Size(134, 48);
+            this.contextMenuStripHelp.Size = new System.Drawing.Size(181, 70);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.videoTutorialToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.helpToolStripMenuItem.Text = "Open help";
             // 
             // videoTutorialToolStripMenuItem
             // 
@@ -1476,12 +1488,12 @@ namespace ATA_GUI
             this.videoTutorialToolStripMenuItem.Text = "Video Tutorial";
             this.videoTutorialToolStripMenuItem.Click += new System.EventHandler(this.videoTutorialToolStripMenuItem_Click);
             // 
-            // reportBugToolStripMenuItem
+            // submitFeedbackToolStripMenuItem
             // 
-            this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
-            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.reportBugToolStripMenuItem.Text = "Report Bug";
-            this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
+            this.submitFeedbackToolStripMenuItem.Name = "submitFeedbackToolStripMenuItem";
+            this.submitFeedbackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.submitFeedbackToolStripMenuItem.Text = "Submit Feedback";
+            this.submitFeedbackToolStripMenuItem.Click += new System.EventHandler(this.submitFeedbackToolStripMenuItem_Click);
             // 
             // videoTutorialsToolStripMenuItem
             // 
@@ -1552,18 +1564,6 @@ namespace ATA_GUI
             this.buttonSyncApp.Text = "Sync Smartphone";
             this.buttonSyncApp.UseVisualStyleBackColor = false;
             this.buttonSyncApp.Click += new System.EventHandler(this.buttonSyncApp_Click);
-            // 
-            // buttonSearchFileFastboot
-            // 
-            this.buttonSearchFileFastboot.BackColor = System.Drawing.Color.White;
-            this.buttonSearchFileFastboot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSearchFileFastboot.Location = new System.Drawing.Point(277, 39);
-            this.buttonSearchFileFastboot.Name = "buttonSearchFileFastboot";
-            this.buttonSearchFileFastboot.Size = new System.Drawing.Size(87, 23);
-            this.buttonSearchFileFastboot.TabIndex = 36;
-            this.buttonSearchFileFastboot.Text = "Search File";
-            this.buttonSearchFileFastboot.UseVisualStyleBackColor = false;
-            this.buttonSearchFileFastboot.Click += new System.EventHandler(this.buttonSearchFileFastboot_Click);
             // 
             // MainForm
             // 
@@ -1754,7 +1754,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Label labelSettings;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripHelp;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportBugToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem submitFeedbackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem videoTutorialsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem videoTutorialToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBoxMinimize;

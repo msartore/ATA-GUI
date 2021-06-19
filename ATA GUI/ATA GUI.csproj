@@ -66,11 +66,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeviceLogs.cs">
+    <Compile Include="Forms\DeviceLogs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DeviceLogs.Designer.cs">
+    <Compile Include="Forms\DeviceLogs.Designer.cs">
       <DependentUpon>DeviceLogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Feedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Feedback.Designer.cs">
+      <DependentUpon>Feedback.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\BloatwareDetecter.cs">
       <SubType>Form</SubType>
@@ -142,8 +148,11 @@
     <Compile Include="Forms\UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DeviceLogs.resx">
+    <EmbeddedResource Include="Forms\DeviceLogs.resx">
       <DependentUpon>DeviceLogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Feedback.resx">
+      <DependentUpon>Feedback.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BloatwareDetecter.resx">
       <DependentUpon>BloatwareDetecter.cs</DependentUpon>
@@ -216,6 +225,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ATALogoGUI.ico" />
+    <None Include="Resources\icons8-bitcoin-48.png" />
+    <None Include="Resources\icons8-paypal-48.png" />
+    <None Include="Resources\icons8-ethereum-48.png" />
+    <None Include="Resources\dogecoin.png" />
     <None Include="Resources\icons8-folder-48.png" />
     <None Include="Resources\icons8-loading-bar.gif" />
     <None Include="Resources\icons8-box-important-48.png" />
