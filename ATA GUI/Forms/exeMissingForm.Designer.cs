@@ -84,10 +84,10 @@ namespace ATA_GUI
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::ATA_GUI.Properties.Resources.Error;
+            this.pictureBox1.Image = global::ATA_GUI.Properties.Resources.icons8_cancel_48;
             this.pictureBox1.Location = new System.Drawing.Point(23, 26);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox1.Size = new System.Drawing.Size(48, 48);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -103,7 +103,7 @@ namespace ATA_GUI
             this.panel1.Size = new System.Drawing.Size(426, 50);
             this.panel1.TabIndex = 5;
             // 
-            // exeMissingForm
+            // ExeMissingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -116,7 +116,7 @@ namespace ATA_GUI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "exeMissingForm";
+            this.Name = "ExeMissingForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.adbMissingForm_Load);

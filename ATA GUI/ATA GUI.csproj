@@ -216,16 +216,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ATALogoGUI.ico" />
-    <None Include="Resources\baseline_mobile_screen_share_black_48dp.png" />
+    <None Include="Resources\icons8-folder-48.png" />
+    <None Include="Resources\icons8-loading-bar.gif" />
+    <None Include="Resources\icons8-box-important-48.png" />
+    <None Include="Resources\icons8-cancel-48.png" />
+    <None Include="Resources\icons8-close-window-48.png" />
+    <None Include="Resources\icons8-reduce-48.png" />
+    <None Include="Resources\icons8-flash-on-48.png" />
+    <None Include="Resources\icons8-synchronize-48.png" />
+    <None Include="Resources\icons8-screensharing-48.png" />
+    <None Include="Resources\icons8-drag-and-drop-48.png" />
+    <None Include="Resources\icons8-refresh-48.png" />
+    <None Include="Resources\icons8-filter-48.png" />
+    <None Include="Resources\icons8-support-48.png" />
+    <None Include="Resources\icons8-remove-48.png" />
+    <None Include="Resources\icons8-restart-48.png" />
+    <None Include="Resources\icons8-services-48.png" />
+    <None Include="Resources\icons8-software-installer-48.png" />
     <None Include="Resources\bloatwareList.xml" />
-    <None Include="Resources\file_upload.png" />
-    <None Include="Resources\security.png" />
-    <None Include="Resources\package.png" />
-    <None Include="Resources\delete.png" />
-    <None Include="Resources\install.png" />
-    <None Include="Resources\emptyFilter.png" />
-    <None Include="Resources\reload.png" />
-    <None Include="Resources\loader.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

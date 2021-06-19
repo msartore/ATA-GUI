@@ -87,20 +87,17 @@ namespace ATA_GUI
                             }
                         }
                         panelFastboot.Enabled = true;
-                        pictureBoxLoading2.Visible = false;
                         LogWriteLine("Device found!");
                     }
                     else
                     {
                         MessageShowBox("Device not found!", 0);
                         panelFastboot.Enabled = false;
-                        pictureBoxLoading2.Visible = false;
                     }
                 }
                 else
                 {
                     MessageShowBox("Error fastboot not found", 0);
-                    pictureBoxLoading2.Visible = false;
                     panelFastboot.Enabled = false;
                 }
                 return;
@@ -158,8 +155,8 @@ namespace ATA_GUI
             StringBuilder ret = new StringBuilder();
             string line;
             Cursor.Current = Cursors.WaitCursor;
-            System.Diagnostics.Process process = new System.Diagnostics.Process();
-            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.UseShellExecute = false;
             startInfo.CreateNoWindow = true;
             startInfo.RedirectStandardError = true;
@@ -256,9 +253,8 @@ namespace ATA_GUI
                     LogWriteLine("ATA is up to date!");
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageShowBox(ex.ToString(), 0);
                 LogWriteLine("Timeout Error occurred while connecting to the Server!");
                 LogWriteLine("Open settings to check if a new version is avaiable!");
             }
@@ -612,7 +608,6 @@ namespace ATA_GUI
             {
                 disclaimer.ShowDialog();
             }
-            pictureBoxLoading2.Visible = false;
             panelFastboot.Enabled = false;
             this.WindowState = FormWindowState.Minimized;
             this.WindowState = FormWindowState.Normal;
@@ -795,16 +790,7 @@ namespace ATA_GUI
 
         private void buttonSearchFile_Click(object sender, EventArgs e)
         {
-            this.openFileDialogZip.Filter = "Zip files *.zip|*.zip;";
-            this.openFileDialogZip.FileName = "";
-            this.openFileDialogZip.Multiselect = false;
-            this.openFileDialogZip.Title = "Select Zip";
 
-            DialogResult dr = this.openFileDialogZip.ShowDialog();
-            if (dr == System.Windows.Forms.DialogResult.OK)
-            {
-                textBoxDirFile.Text = this.openFileDialogZip.FileName;
-            }
         }
 
         private void buttonInstallZip_Click(object sender, EventArgs e)
@@ -845,7 +831,7 @@ namespace ATA_GUI
             this.openFileDialogZip.Title = "Select Img";
 
             DialogResult dr = this.openFileDialogZip.ShowDialog();
-            if (dr == System.Windows.Forms.DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
                 textBoxDirImg.Text = this.openFileDialogZip.FileName;
             }
@@ -875,14 +861,11 @@ namespace ATA_GUI
         {
             try
             {
-                pictureBoxLoading2.Visible = true;
                 backgroundWorkerFlashImg.RunWorkerAsync(index);
-                pictureBoxLoading2.Visible = false;
             }
             catch (Exception ex)
             {
                 MessageShowBox(ex.ToString(), 0);
-                pictureBoxLoading2.Visible = false;
             }
         }
 
@@ -1313,6 +1296,7 @@ namespace ATA_GUI
 
         private void buttonReloadDevicesList_Click(object sender, EventArgs e)
         {
+            if (!checkAdbFastboot(0)) adbDownload();
             comboBoxDevices.Items.Clear();
             devices.Clear();
             DevicesListUpdate();
@@ -1394,7 +1378,6 @@ namespace ATA_GUI
                     disableSystem(true);
                     break;
                 default:
-                    MessageShowBox("Generic error", 0);
                     disableSystem(true);
                     break;
             }
@@ -1593,7 +1576,7 @@ namespace ATA_GUI
             Application.Exit();
         }
 
-        private void pictureBoxMinimize_MouseHover(object sender, EventArgs e)
+        private void pictureBoxMinimize_MouseEnter(object sender, EventArgs e)
         {
             pictureBoxMinimize.BackColor = System.Drawing.ColorTranslator.FromHtml("#1f2121");
         }
@@ -1603,7 +1586,7 @@ namespace ATA_GUI
             pictureBoxMinimize.BackColor = Color.Black;
         }
 
-        private void pictureBoxClose_MouseHover(object sender, EventArgs e)
+        private void pictureBoxClose_MouseEnter(object sender, EventArgs e)
         {
             pictureBoxClose.BackColor = Color.Red;
         }
@@ -1617,6 +1600,30 @@ namespace ATA_GUI
         {
             DeviceLogs deviceLog = new DeviceLogs(currentDeviceSelected);
             deviceLog.Show();
+        }
+
+        private void pictureBoxSearchFile_Click(object sender, EventArgs e)
+        {
+            this.openFileDialogZip.Filter = "Zip files *.zip|*.zip;";
+            this.openFileDialogZip.FileName = "";
+            this.openFileDialogZip.Multiselect = false;
+            this.openFileDialogZip.Title = "Select Zip";
+
+            DialogResult dr = this.openFileDialogZip.ShowDialog();
+            if (dr == System.Windows.Forms.DialogResult.OK)
+            {
+                textBoxDirFile.Text = this.openFileDialogZip.FileName;
+            }
+        }
+
+        private void pictureBoxSearchFile_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBoxSearchFile.BackColor = Color.DarkGray;
+        }
+
+        private void pictureBoxSearchFile_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBoxSearchFile.BackColor = Color.Transparent;
         }
     }
 }

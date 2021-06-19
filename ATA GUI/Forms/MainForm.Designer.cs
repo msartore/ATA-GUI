@@ -33,7 +33,6 @@ namespace ATA_GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.labelLog = new System.Windows.Forms.Label();
             this.buttonKillAdb = new System.Windows.Forms.Button();
-            this.buttonSyncApp = new System.Windows.Forms.Button();
             this.buttonLogClear = new System.Windows.Forms.Button();
             this.backgroundWorkerSync = new System.ComponentModel.BackgroundWorker();
             this.groupBoxDeviceInfo = new System.Windows.Forms.GroupBox();
@@ -110,23 +109,22 @@ namespace ATA_GUI
             this.buttonHardReset = new System.Windows.Forms.Button();
             this.buttonRebootToSystem = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.textBoxDirImg = new System.Windows.Forms.TextBox();
             this.radioButtonRom = new System.Windows.Forms.RadioButton();
-            this.buttonSearchFileFastboot = new System.Windows.Forms.Button();
             this.radioButtonCache = new System.Windows.Forms.RadioButton();
             this.buttonFlashImg = new System.Windows.Forms.Button();
             this.radioButtonVendor = new System.Windows.Forms.RadioButton();
-            this.pictureBoxLoading2 = new System.Windows.Forms.PictureBox();
             this.radioButtonSystem = new System.Windows.Forms.RadioButton();
             this.radioButtonBoot = new System.Windows.Forms.RadioButton();
             this.radioButtonRecovery = new System.Windows.Forms.RadioButton();
             this.radioButtonBootloader = new System.Windows.Forms.RadioButton();
             this.radioButtonRadio = new System.Windows.Forms.RadioButton();
             this.tabPageRecovery = new System.Windows.Forms.TabPage();
+            this.pictureBoxSearchFile = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonInstallZip = new System.Windows.Forms.Button();
             this.textBoxDirFile = new System.Windows.Forms.TextBox();
-            this.buttonSearchFile = new System.Windows.Forms.Button();
             this.openFileDialogAPK = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogZip = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorkerZip = new System.ComponentModel.BackgroundWorker();
@@ -144,9 +142,6 @@ namespace ATA_GUI
             this.grantWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grantDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkGrantedPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonReloadDevicesList = new System.Windows.Forms.Button();
-            this.comboBoxDevices = new System.Windows.Forms.ComboBox();
             this.backgroundWorkerAdbDownloader = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerExeDownloader = new System.ComponentModel.BackgroundWorker();
             this.buttonMobileScreenShare = new System.Windows.Forms.Button();
@@ -168,6 +163,11 @@ namespace ATA_GUI
             this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.videoTutorialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonDeviceLogs = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonReloadDevicesList = new System.Windows.Forms.Button();
+            this.comboBoxDevices = new System.Windows.Forms.ComboBox();
+            this.buttonSyncApp = new System.Windows.Forms.Button();
+            this.buttonSearchFileFastboot = new System.Windows.Forms.Button();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -183,23 +183,23 @@ namespace ATA_GUI
             this.panelFastboot.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading2)).BeginInit();
             this.tabPageRecovery.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchFile)).BeginInit();
             this.contextMenuStripFilterBy.SuspendLayout();
             this.contextMenuStripPermissionMenu.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).BeginInit();
             this.contextMenuStripHelp.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelLog
             // 
             this.labelLog.AutoSize = true;
             this.labelLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLog.Location = new System.Drawing.Point(513, 369);
+            this.labelLog.Location = new System.Drawing.Point(513, 372);
             this.labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLog.Name = "labelLog";
             this.labelLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -212,7 +212,7 @@ namespace ATA_GUI
             this.buttonKillAdb.BackColor = System.Drawing.Color.White;
             this.buttonKillAdb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonKillAdb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonKillAdb.Location = new System.Drawing.Point(428, 428);
+            this.buttonKillAdb.Location = new System.Drawing.Point(428, 431);
             this.buttonKillAdb.Name = "buttonKillAdb";
             this.buttonKillAdb.Size = new System.Drawing.Size(82, 23);
             this.buttonKillAdb.TabIndex = 29;
@@ -220,28 +220,13 @@ namespace ATA_GUI
             this.buttonKillAdb.UseVisualStyleBackColor = false;
             this.buttonKillAdb.Click += new System.EventHandler(this.buttonKillAdb_Click);
             // 
-            // buttonSyncApp
-            // 
-            this.buttonSyncApp.BackColor = System.Drawing.Color.White;
-            this.buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSyncApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
-            this.buttonSyncApp.ForeColor = System.Drawing.Color.Black;
-            this.buttonSyncApp.Location = new System.Drawing.Point(17, 22);
-            this.buttonSyncApp.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonSyncApp.Name = "buttonSyncApp";
-            this.buttonSyncApp.Size = new System.Drawing.Size(131, 45);
-            this.buttonSyncApp.TabIndex = 0;
-            this.buttonSyncApp.Text = "Sync Smartphone";
-            this.buttonSyncApp.UseVisualStyleBackColor = false;
-            this.buttonSyncApp.Click += new System.EventHandler(this.buttonSyncApp_Click);
-            // 
             // buttonLogClear
             // 
             this.buttonLogClear.BackColor = System.Drawing.Color.White;
             this.buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogClear.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogClear.Location = new System.Drawing.Point(428, 399);
+            this.buttonLogClear.Location = new System.Drawing.Point(428, 402);
             this.buttonLogClear.Name = "buttonLogClear";
             this.buttonLogClear.Size = new System.Drawing.Size(82, 23);
             this.buttonLogClear.TabIndex = 31;
@@ -460,7 +445,7 @@ namespace ATA_GUI
             this.tabControl1.Controls.Add(this.tabPageSystem);
             this.tabControl1.Controls.Add(this.tabPageFastboot);
             this.tabControl1.Controls.Add(this.tabPageRecovery);
-            this.tabControl1.Location = new System.Drawing.Point(8, 43);
+            this.tabControl1.Location = new System.Drawing.Point(8, 46);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(901, 321);
@@ -520,10 +505,10 @@ namespace ATA_GUI
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::ATA_GUI.Properties.Resources.file_upload;
-            this.pictureBox3.Location = new System.Drawing.Point(63, 31);
+            this.pictureBox3.Image = global::ATA_GUI.Properties.Resources.icons8_drag_and_drop_48;
+            this.pictureBox3.Location = new System.Drawing.Point(56, 19);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(36, 35);
+            this.pictureBox3.Size = new System.Drawing.Size(51, 47);
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
             // 
@@ -560,10 +545,10 @@ namespace ATA_GUI
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::ATA_GUI.Properties.Resources.file_upload;
-            this.pictureBox2.Location = new System.Drawing.Point(63, 31);
+            this.pictureBox2.Image = global::ATA_GUI.Properties.Resources.icons8_drag_and_drop_48;
+            this.pictureBox2.Location = new System.Drawing.Point(56, 19);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(36, 35);
+            this.pictureBox2.Size = new System.Drawing.Size(51, 47);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
@@ -600,7 +585,7 @@ namespace ATA_GUI
             // toolStripButtonReloadApps
             // 
             this.toolStripButtonReloadApps.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonReloadApps.Image = global::ATA_GUI.Properties.Resources.reload;
+            this.toolStripButtonReloadApps.Image = global::ATA_GUI.Properties.Resources.icons8_refresh_48;
             this.toolStripButtonReloadApps.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonReloadApps.Name = "toolStripButtonReloadApps";
             this.toolStripButtonReloadApps.Size = new System.Drawing.Size(23, 20);
@@ -615,7 +600,7 @@ namespace ATA_GUI
             // toolStripButtonFilter
             // 
             this.toolStripButtonFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonFilter.Image = global::ATA_GUI.Properties.Resources.emptyFilter;
+            this.toolStripButtonFilter.Image = global::ATA_GUI.Properties.Resources.icons8_filter_48;
             this.toolStripButtonFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonFilter.Name = "toolStripButtonFilter";
             this.toolStripButtonFilter.Size = new System.Drawing.Size(23, 20);
@@ -646,7 +631,7 @@ namespace ATA_GUI
             // toolStripButtonRestoreApp
             // 
             this.toolStripButtonRestoreApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonRestoreApp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRestoreApp.Image")));
+            this.toolStripButtonRestoreApp.Image = global::ATA_GUI.Properties.Resources.icons8_restart_48;
             this.toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
             this.toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 20);
@@ -662,7 +647,7 @@ namespace ATA_GUI
             // toolStripButtonUninstallApp
             // 
             this.toolStripButtonUninstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonUninstallApp.Image = global::ATA_GUI.Properties.Resources.delete;
+            this.toolStripButtonUninstallApp.Image = global::ATA_GUI.Properties.Resources.icons8_remove_48;
             this.toolStripButtonUninstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonUninstallApp.Name = "toolStripButtonUninstallApp";
             this.toolStripButtonUninstallApp.Size = new System.Drawing.Size(23, 20);
@@ -677,7 +662,7 @@ namespace ATA_GUI
             // toolStripButtonPackageManager
             // 
             this.toolStripButtonPackageManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonPackageManager.Image = global::ATA_GUI.Properties.Resources.package;
+            this.toolStripButtonPackageManager.Image = global::ATA_GUI.Properties.Resources.icons8_support_48;
             this.toolStripButtonPackageManager.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonPackageManager.Name = "toolStripButtonPackageManager";
             this.toolStripButtonPackageManager.Size = new System.Drawing.Size(23, 20);
@@ -693,7 +678,7 @@ namespace ATA_GUI
             // toolStripButtonPermissionMenu
             // 
             this.toolStripButtonPermissionMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonPermissionMenu.Image = global::ATA_GUI.Properties.Resources.security;
+            this.toolStripButtonPermissionMenu.Image = global::ATA_GUI.Properties.Resources.icons8_services_48;
             this.toolStripButtonPermissionMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonPermissionMenu.Name = "toolStripButtonPermissionMenu";
             this.toolStripButtonPermissionMenu.Size = new System.Drawing.Size(23, 20);
@@ -709,7 +694,7 @@ namespace ATA_GUI
             // toolStripButtonBloatwareDetecter
             // 
             this.toolStripButtonBloatwareDetecter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonBloatwareDetecter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonBloatwareDetecter.Image")));
+            this.toolStripButtonBloatwareDetecter.Image = global::ATA_GUI.Properties.Resources.icons8_box_important_48;
             this.toolStripButtonBloatwareDetecter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonBloatwareDetecter.Name = "toolStripButtonBloatwareDetecter";
             this.toolStripButtonBloatwareDetecter.Size = new System.Drawing.Size(23, 20);
@@ -735,7 +720,7 @@ namespace ATA_GUI
             // toolStripButtonInstallApp
             // 
             this.toolStripButtonInstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonInstallApp.Image = global::ATA_GUI.Properties.Resources.install;
+            this.toolStripButtonInstallApp.Image = global::ATA_GUI.Properties.Resources.icons8_software_installer_48;
             this.toolStripButtonInstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonInstallApp.Name = "toolStripButtonInstallApp";
             this.toolStripButtonInstallApp.Size = new System.Drawing.Size(23, 20);
@@ -1013,13 +998,13 @@ namespace ATA_GUI
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.textBoxDirImg);
             this.groupBox4.Controls.Add(this.radioButtonRom);
             this.groupBox4.Controls.Add(this.buttonSearchFileFastboot);
             this.groupBox4.Controls.Add(this.radioButtonCache);
             this.groupBox4.Controls.Add(this.buttonFlashImg);
             this.groupBox4.Controls.Add(this.radioButtonVendor);
-            this.groupBox4.Controls.Add(this.pictureBoxLoading2);
             this.groupBox4.Controls.Add(this.radioButtonSystem);
             this.groupBox4.Controls.Add(this.radioButtonBoot);
             this.groupBox4.Controls.Add(this.radioButtonRecovery);
@@ -1031,6 +1016,15 @@ namespace ATA_GUI
             this.groupBox4.TabIndex = 48;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Flash img";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(124, 123);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(55, 13);
+            this.label10.TabIndex = 49;
+            this.label10.Text = "Flash .Img";
             // 
             // textBoxDirImg
             // 
@@ -1050,18 +1044,6 @@ namespace ATA_GUI
             this.radioButtonRom.Text = "Rom";
             this.radioButtonRom.UseVisualStyleBackColor = true;
             // 
-            // buttonSearchFileFastboot
-            // 
-            this.buttonSearchFileFastboot.BackColor = System.Drawing.Color.White;
-            this.buttonSearchFileFastboot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSearchFileFastboot.Location = new System.Drawing.Point(277, 39);
-            this.buttonSearchFileFastboot.Name = "buttonSearchFileFastboot";
-            this.buttonSearchFileFastboot.Size = new System.Drawing.Size(87, 23);
-            this.buttonSearchFileFastboot.TabIndex = 36;
-            this.buttonSearchFileFastboot.Text = "Search File";
-            this.buttonSearchFileFastboot.UseVisualStyleBackColor = false;
-            this.buttonSearchFileFastboot.Click += new System.EventHandler(this.buttonSearchFileFastboot_Click);
-            // 
             // radioButtonCache
             // 
             this.radioButtonCache.AutoSize = true;
@@ -1077,11 +1059,12 @@ namespace ATA_GUI
             // 
             this.buttonFlashImg.BackColor = System.Drawing.Color.White;
             this.buttonFlashImg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonFlashImg.Location = new System.Drawing.Point(114, 177);
+            this.buttonFlashImg.ForeColor = System.Drawing.Color.Transparent;
+            this.buttonFlashImg.Image = global::ATA_GUI.Properties.Resources.icons8_flash_on_48;
+            this.buttonFlashImg.Location = new System.Drawing.Point(114, 140);
             this.buttonFlashImg.Name = "buttonFlashImg";
-            this.buttonFlashImg.Size = new System.Drawing.Size(87, 23);
+            this.buttonFlashImg.Size = new System.Drawing.Size(69, 63);
             this.buttonFlashImg.TabIndex = 38;
-            this.buttonFlashImg.Text = "Flash img";
             this.buttonFlashImg.UseVisualStyleBackColor = false;
             this.buttonFlashImg.Click += new System.EventHandler(this.buttonFlashImg_Click);
             // 
@@ -1095,14 +1078,6 @@ namespace ATA_GUI
             this.radioButtonVendor.TabStop = true;
             this.radioButtonVendor.Text = "Vendor";
             this.radioButtonVendor.UseVisualStyleBackColor = true;
-            // 
-            // pictureBoxLoading2
-            // 
-            this.pictureBoxLoading2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxLoading2.Name = "pictureBoxLoading2";
-            this.pictureBoxLoading2.Size = new System.Drawing.Size(100, 50);
-            this.pictureBoxLoading2.TabIndex = 48;
-            this.pictureBoxLoading2.TabStop = false;
             // 
             // radioButtonSystem
             // 
@@ -1161,16 +1136,29 @@ namespace ATA_GUI
             // 
             // tabPageRecovery
             // 
+            this.tabPageRecovery.Controls.Add(this.pictureBoxSearchFile);
             this.tabPageRecovery.Controls.Add(this.label6);
             this.tabPageRecovery.Controls.Add(this.buttonInstallZip);
             this.tabPageRecovery.Controls.Add(this.textBoxDirFile);
-            this.tabPageRecovery.Controls.Add(this.buttonSearchFile);
             this.tabPageRecovery.Location = new System.Drawing.Point(4, 22);
             this.tabPageRecovery.Name = "tabPageRecovery";
             this.tabPageRecovery.Size = new System.Drawing.Size(893, 295);
             this.tabPageRecovery.TabIndex = 2;
             this.tabPageRecovery.Text = "Recovery";
             this.tabPageRecovery.UseVisualStyleBackColor = true;
+            // 
+            // pictureBoxSearchFile
+            // 
+            this.pictureBoxSearchFile.Image = global::ATA_GUI.Properties.Resources.icons8_folder_48;
+            this.pictureBoxSearchFile.Location = new System.Drawing.Point(533, 106);
+            this.pictureBoxSearchFile.Name = "pictureBoxSearchFile";
+            this.pictureBoxSearchFile.Size = new System.Drawing.Size(28, 20);
+            this.pictureBoxSearchFile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSearchFile.TabIndex = 36;
+            this.pictureBoxSearchFile.TabStop = false;
+            this.pictureBoxSearchFile.Click += new System.EventHandler(this.pictureBoxSearchFile_Click);
+            this.pictureBoxSearchFile.MouseEnter += new System.EventHandler(this.pictureBoxSearchFile_MouseEnter);
+            this.pictureBoxSearchFile.MouseLeave += new System.EventHandler(this.pictureBoxSearchFile_MouseLeave);
             // 
             // label6
             // 
@@ -1197,22 +1185,10 @@ namespace ATA_GUI
             // 
             // textBoxDirFile
             // 
-            this.textBoxDirFile.Location = new System.Drawing.Point(250, 109);
+            this.textBoxDirFile.Location = new System.Drawing.Point(284, 106);
             this.textBoxDirFile.Name = "textBoxDirFile";
             this.textBoxDirFile.Size = new System.Drawing.Size(245, 20);
             this.textBoxDirFile.TabIndex = 33;
-            // 
-            // buttonSearchFile
-            // 
-            this.buttonSearchFile.BackColor = System.Drawing.Color.White;
-            this.buttonSearchFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSearchFile.Location = new System.Drawing.Point(501, 107);
-            this.buttonSearchFile.Name = "buttonSearchFile";
-            this.buttonSearchFile.Size = new System.Drawing.Size(87, 23);
-            this.buttonSearchFile.TabIndex = 32;
-            this.buttonSearchFile.Text = "Search File";
-            this.buttonSearchFile.UseVisualStyleBackColor = false;
-            this.buttonSearchFile.Click += new System.EventHandler(this.buttonSearchFile_Click);
             // 
             // openFileDialogAPK
             // 
@@ -1235,7 +1211,7 @@ namespace ATA_GUI
             this.richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
             this.richTextBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
-            this.richTextBoxLog.Location = new System.Drawing.Point(516, 387);
+            this.richTextBoxLog.Location = new System.Drawing.Point(516, 390);
             this.richTextBoxLog.Name = "richTextBoxLog";
             this.richTextBoxLog.ReadOnly = true;
             this.richTextBoxLog.Size = new System.Drawing.Size(393, 64);
@@ -1333,41 +1309,6 @@ namespace ATA_GUI
             this.checkGrantedPermissionsToolStripMenuItem.Text = "Check granted permissions";
             this.checkGrantedPermissionsToolStripMenuItem.Click += new System.EventHandler(this.checkGrantedPermissionsToolStripMenuItem_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.buttonReloadDevicesList);
-            this.groupBox1.Controls.Add(this.comboBoxDevices);
-            this.groupBox1.Controls.Add(this.buttonSyncApp);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(7, 366);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(332, 84);
-            this.groupBox1.TabIndex = 31;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Device Sync Settings";
-            // 
-            // buttonReloadDevicesList
-            // 
-            this.buttonReloadDevicesList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonReloadDevicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReloadDevicesList.Location = new System.Drawing.Point(168, 44);
-            this.buttonReloadDevicesList.Name = "buttonReloadDevicesList";
-            this.buttonReloadDevicesList.Size = new System.Drawing.Size(152, 23);
-            this.buttonReloadDevicesList.TabIndex = 2;
-            this.buttonReloadDevicesList.Text = "Reload Devices";
-            this.buttonReloadDevicesList.UseVisualStyleBackColor = true;
-            this.buttonReloadDevicesList.Click += new System.EventHandler(this.buttonReloadDevicesList_Click);
-            // 
-            // comboBoxDevices
-            // 
-            this.comboBoxDevices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxDevices.FormattingEnabled = true;
-            this.comboBoxDevices.Location = new System.Drawing.Point(168, 22);
-            this.comboBoxDevices.Name = "comboBoxDevices";
-            this.comboBoxDevices.Size = new System.Drawing.Size(152, 21);
-            this.comboBoxDevices.TabIndex = 1;
-            this.comboBoxDevices.SelectedIndexChanged += new System.EventHandler(this.comboBoxDevices_SelectedIndexChanged);
-            // 
             // backgroundWorkerAdbDownloader
             // 
             this.backgroundWorkerAdbDownloader.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAdbDownloader_DoWork);
@@ -1379,8 +1320,9 @@ namespace ATA_GUI
             // buttonMobileScreenShare
             // 
             this.buttonMobileScreenShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMobileScreenShare.Image = global::ATA_GUI.Properties.Resources.baseline_mobile_screen_share_black_48dp;
-            this.buttonMobileScreenShare.Location = new System.Drawing.Point(351, 388);
+            this.buttonMobileScreenShare.ForeColor = System.Drawing.Color.Transparent;
+            this.buttonMobileScreenShare.Image = global::ATA_GUI.Properties.Resources.icons8_screensharing_48;
+            this.buttonMobileScreenShare.Location = new System.Drawing.Point(351, 391);
             this.buttonMobileScreenShare.Name = "buttonMobileScreenShare";
             this.buttonMobileScreenShare.Size = new System.Drawing.Size(60, 63);
             this.buttonMobileScreenShare.TabIndex = 39;
@@ -1391,7 +1333,7 @@ namespace ATA_GUI
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(345, 373);
+            this.label9.Location = new System.Drawing.Point(345, 376);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 40;
@@ -1417,33 +1359,35 @@ namespace ATA_GUI
             this.panelTopBar.Controls.Add(this.pictureBoxLogo);
             this.panelTopBar.Location = new System.Drawing.Point(0, -3);
             this.panelTopBar.Name = "panelTopBar";
-            this.panelTopBar.Size = new System.Drawing.Size(919, 39);
+            this.panelTopBar.Size = new System.Drawing.Size(919, 44);
             this.panelTopBar.TabIndex = 0;
             this.panelTopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseMove);
             // 
             // pictureBoxClose
             // 
-            this.pictureBoxClose.Image = global::ATA_GUI.Properties.Resources.x;
-            this.pictureBoxClose.Location = new System.Drawing.Point(876, 1);
+            this.pictureBoxClose.Image = global::ATA_GUI.Properties.Resources.icons8_close_window_48;
+            this.pictureBoxClose.Location = new System.Drawing.Point(870, 2);
             this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(39, 39);
+            this.pictureBoxClose.Size = new System.Drawing.Size(46, 42);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxClose.TabIndex = 41;
             this.pictureBoxClose.TabStop = false;
             this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
+            this.pictureBoxClose.MouseEnter += new System.EventHandler(this.pictureBoxClose_MouseEnter);
             this.pictureBoxClose.MouseLeave += new System.EventHandler(this.pictureBoxClose_MouseLeave);
-            this.pictureBoxClose.MouseHover += new System.EventHandler(this.pictureBoxClose_MouseHover);
             // 
             // pictureBoxMinimize
             // 
             this.pictureBoxMinimize.Image = global::ATA_GUI.Properties.Resources._;
-            this.pictureBoxMinimize.Location = new System.Drawing.Point(838, 1);
+            this.pictureBoxMinimize.Location = new System.Drawing.Point(828, 3);
             this.pictureBoxMinimize.Name = "pictureBoxMinimize";
-            this.pictureBoxMinimize.Size = new System.Drawing.Size(39, 39);
+            this.pictureBoxMinimize.Size = new System.Drawing.Size(43, 41);
+            this.pictureBoxMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxMinimize.TabIndex = 6;
             this.pictureBoxMinimize.TabStop = false;
             this.pictureBoxMinimize.Click += new System.EventHandler(this.pictureBoxMinimize_Click);
+            this.pictureBoxMinimize.MouseEnter += new System.EventHandler(this.pictureBoxMinimize_MouseEnter);
             this.pictureBoxMinimize.MouseLeave += new System.EventHandler(this.pictureBoxMinimize_MouseLeave);
-            this.pictureBoxMinimize.MouseHover += new System.EventHandler(this.pictureBoxMinimize_MouseHover);
             // 
             // labelHelp
             // 
@@ -1550,7 +1494,7 @@ namespace ATA_GUI
             this.buttonDeviceLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDeviceLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDeviceLogs.ForeColor = System.Drawing.Color.Black;
-            this.buttonDeviceLogs.Location = new System.Drawing.Point(428, 370);
+            this.buttonDeviceLogs.Location = new System.Drawing.Point(428, 373);
             this.buttonDeviceLogs.Name = "buttonDeviceLogs";
             this.buttonDeviceLogs.Size = new System.Drawing.Size(82, 23);
             this.buttonDeviceLogs.TabIndex = 41;
@@ -1558,13 +1502,76 @@ namespace ATA_GUI
             this.buttonDeviceLogs.UseVisualStyleBackColor = false;
             this.buttonDeviceLogs.Click += new System.EventHandler(this.buttonDeviceLogs_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.buttonReloadDevicesList);
+            this.groupBox1.Controls.Add(this.comboBoxDevices);
+            this.groupBox1.Controls.Add(this.buttonSyncApp);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(7, 369);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(332, 84);
+            this.groupBox1.TabIndex = 31;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Device Sync Settings";
+            // 
+            // buttonReloadDevicesList
+            // 
+            this.buttonReloadDevicesList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReloadDevicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonReloadDevicesList.ForeColor = System.Drawing.Color.Black;
+            this.buttonReloadDevicesList.Location = new System.Drawing.Point(172, 48);
+            this.buttonReloadDevicesList.Name = "buttonReloadDevicesList";
+            this.buttonReloadDevicesList.Size = new System.Drawing.Size(152, 23);
+            this.buttonReloadDevicesList.TabIndex = 2;
+            this.buttonReloadDevicesList.Text = "Refresh Device List";
+            this.buttonReloadDevicesList.UseVisualStyleBackColor = true;
+            this.buttonReloadDevicesList.Click += new System.EventHandler(this.buttonReloadDevicesList_Click);
+            // 
+            // comboBoxDevices
+            // 
+            this.comboBoxDevices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxDevices.FormattingEnabled = true;
+            this.comboBoxDevices.Location = new System.Drawing.Point(172, 26);
+            this.comboBoxDevices.Name = "comboBoxDevices";
+            this.comboBoxDevices.Size = new System.Drawing.Size(152, 21);
+            this.comboBoxDevices.TabIndex = 1;
+            this.comboBoxDevices.SelectedIndexChanged += new System.EventHandler(this.comboBoxDevices_SelectedIndexChanged);
+            // 
+            // buttonSyncApp
+            // 
+            this.buttonSyncApp.BackColor = System.Drawing.Color.White;
+            this.buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSyncApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
+            this.buttonSyncApp.ForeColor = System.Drawing.Color.Black;
+            this.buttonSyncApp.Location = new System.Drawing.Point(17, 26);
+            this.buttonSyncApp.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSyncApp.Name = "buttonSyncApp";
+            this.buttonSyncApp.Size = new System.Drawing.Size(131, 45);
+            this.buttonSyncApp.TabIndex = 0;
+            this.buttonSyncApp.Text = "Sync Smartphone";
+            this.buttonSyncApp.UseVisualStyleBackColor = false;
+            this.buttonSyncApp.Click += new System.EventHandler(this.buttonSyncApp_Click);
+            // 
+            // buttonSearchFileFastboot
+            // 
+            this.buttonSearchFileFastboot.BackColor = System.Drawing.Color.White;
+            this.buttonSearchFileFastboot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSearchFileFastboot.Location = new System.Drawing.Point(277, 39);
+            this.buttonSearchFileFastboot.Name = "buttonSearchFileFastboot";
+            this.buttonSearchFileFastboot.Size = new System.Drawing.Size(87, 23);
+            this.buttonSearchFileFastboot.TabIndex = 36;
+            this.buttonSearchFileFastboot.Text = "Search File";
+            this.buttonSearchFileFastboot.UseVisualStyleBackColor = false;
+            this.buttonSearchFileFastboot.Click += new System.EventHandler(this.buttonSearchFileFastboot_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(914, 456);
+            this.ClientSize = new System.Drawing.Size(914, 457);
             this.Controls.Add(this.buttonDeviceLogs);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.buttonMobileScreenShare);
@@ -1605,18 +1612,18 @@ namespace ATA_GUI
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading2)).EndInit();
             this.tabPageRecovery.ResumeLayout(false);
             this.tabPageRecovery.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchFile)).EndInit();
             this.contextMenuStripFilterBy.ResumeLayout(false);
             this.contextMenuStripPermissionMenu.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelTopBar.ResumeLayout(false);
             this.panelTopBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).EndInit();
             this.contextMenuStripHelp.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1625,7 +1632,6 @@ namespace ATA_GUI
         #endregion
         private System.Windows.Forms.Label labelLog;
         private System.Windows.Forms.Button buttonKillAdb;
-        private System.Windows.Forms.Button buttonSyncApp;
         private System.ComponentModel.BackgroundWorker backgroundWorkerSync;
         private System.Windows.Forms.GroupBox groupBoxDeviceInfo;
         private System.Windows.Forms.Label labelAV;
@@ -1664,17 +1670,14 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonInstallZip;
         private System.Windows.Forms.TextBox textBoxDirFile;
-        private System.Windows.Forms.Button buttonSearchFile;
         private System.Windows.Forms.OpenFileDialog openFileDialogZip;
         private System.ComponentModel.BackgroundWorker backgroundWorkerZip;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox textBoxDirImg;
         private System.Windows.Forms.RadioButton radioButtonRom;
-        private System.Windows.Forms.Button buttonSearchFileFastboot;
         private System.Windows.Forms.RadioButton radioButtonCache;
         private System.Windows.Forms.Button buttonFlashImg;
         private System.Windows.Forms.RadioButton radioButtonVendor;
-        private System.Windows.Forms.PictureBox pictureBoxLoading2;
         private System.Windows.Forms.RadioButton radioButtonSystem;
         private System.Windows.Forms.RadioButton radioButtonBoot;
         private System.Windows.Forms.RadioButton radioButtonRecovery;
@@ -1728,9 +1731,6 @@ namespace ATA_GUI
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBoxDevices;
-        private System.Windows.Forms.Button buttonReloadDevicesList;
         private System.ComponentModel.BackgroundWorker backgroundWorkerAdbDownloader;
         private System.Windows.Forms.ToolStripLabel toolStripLabelTotalApps;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
@@ -1760,6 +1760,13 @@ namespace ATA_GUI
         private System.Windows.Forms.PictureBox pictureBoxMinimize;
         private System.Windows.Forms.PictureBox pictureBoxClose;
         private System.Windows.Forms.Button buttonDeviceLogs;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button buttonReloadDevicesList;
+        private System.Windows.Forms.ComboBox comboBoxDevices;
+        private System.Windows.Forms.Button buttonSyncApp;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.PictureBox pictureBoxSearchFile;
+        private System.Windows.Forms.Button buttonSearchFileFastboot;
     }
 }
 

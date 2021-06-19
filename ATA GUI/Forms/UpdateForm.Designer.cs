@@ -29,6 +29,7 @@ namespace ATA_GUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateForm));
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.labelLog = new System.Windows.Forms.Label();
             this.labelWarning = new System.Windows.Forms.Label();
@@ -66,6 +67,7 @@ namespace ATA_GUI
             this.Controls.Add(this.labelLog);
             this.Controls.Add(this.progressBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UpdateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UpdateForm";
