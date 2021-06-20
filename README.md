@@ -12,7 +12,7 @@ ATA GUI is a project to port ATA to all the users. ATA GUI is an Advance Tool fo
 <img src="Resources/interface.jpg">
 
 
-## ATA Licence
+## ATA License
 
     Copyright (C) 2021 SwayWasTaken
 
