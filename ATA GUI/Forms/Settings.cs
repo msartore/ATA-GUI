@@ -92,8 +92,8 @@ namespace ATA_GUI
             if (!Feedback.checkFeedbackFile())
             { 
                 checkBoxInitPopUp.Checked = true;
-                starting = false;
             }
+            starting = false;
         }
 
         private void linkLabelChangelog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
