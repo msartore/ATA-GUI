@@ -38,7 +38,7 @@ If you want to see your Android screen interact with the app or content on your 
 
 In short, Scrcpy is an excellent way to easily view your Android screen on your computer and interact with it in real time.
 
-## Scrcpy Licence
+## Scrcpy License
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ In short, Scrcpy is an excellent way to easily view your Android screen on your 
 
 Although some new features in these tools are available only for recent versions of Android, the tools are backward compatible, so you need only one version of the SDK Platform-Tools.
 
-## SDK Platform Tools Licence
+## SDK Platform Tools License
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

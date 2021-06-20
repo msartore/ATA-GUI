@@ -30,7 +30,7 @@ namespace ATA_GUI
                 }
                 XmlDocument doc = new XmlDocument();
                 doc.Load(fileName);
-                XmlNode node = doc.DocumentElement.SelectSingleNode("/ATA/licence");
+                XmlNode node = doc.DocumentElement.SelectSingleNode("/ATA/license");
                 if (node.InnerText == "yes")
                 {
                     return true;
@@ -47,7 +47,7 @@ namespace ATA_GUI
             using (XmlWriter writer = XmlWriter.Create(fileName))
             {
                 writer.WriteStartElement("ATA");
-                writer.WriteElementString("licence", agreed);
+                writer.WriteElementString("license", agreed);
                 writer.WriteElementString("initialPopUpFeedback", "yes");
                 writer.WriteEndElement();
                 writer.Flush();
