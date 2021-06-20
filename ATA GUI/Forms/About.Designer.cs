@@ -34,6 +34,7 @@ namespace ATA_GUI
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.linkLabelIcons = new System.Windows.Forms.LinkLabel();
             this.linkLabelScrcpy = new System.Windows.Forms.LinkLabel();
             this.linkLabelNewtonsoft = new System.Windows.Forms.LinkLabel();
             this.linkLabelSDK = new System.Windows.Forms.LinkLabel();
@@ -43,7 +44,6 @@ namespace ATA_GUI
             this.linkLabelRepo = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.linkLabelIcons = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -67,7 +67,7 @@ namespace ATA_GUI
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Version: 1.7.1";
+            this.label2.Text = "Version: 1.7.5";
             // 
             // label1
             // 
@@ -92,6 +92,17 @@ namespace ATA_GUI
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Assest Used";
+            // 
+            // linkLabelIcons
+            // 
+            this.linkLabelIcons.AutoSize = true;
+            this.linkLabelIcons.Location = new System.Drawing.Point(12, 93);
+            this.linkLabelIcons.Name = "linkLabelIcons";
+            this.linkLabelIcons.Size = new System.Drawing.Size(39, 13);
+            this.linkLabelIcons.TabIndex = 4;
+            this.linkLabelIcons.TabStop = true;
+            this.linkLabelIcons.Text = "Icons8";
+            this.linkLabelIcons.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelIcons_LinkClicked);
             // 
             // linkLabelScrcpy
             // 
@@ -188,17 +199,6 @@ namespace ATA_GUI
             this.buttonClose.Text = "Close";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            // 
-            // linkLabelIcons
-            // 
-            this.linkLabelIcons.AutoSize = true;
-            this.linkLabelIcons.Location = new System.Drawing.Point(12, 93);
-            this.linkLabelIcons.Name = "linkLabelIcons";
-            this.linkLabelIcons.Size = new System.Drawing.Size(39, 13);
-            this.linkLabelIcons.TabIndex = 4;
-            this.linkLabelIcons.TabStop = true;
-            this.linkLabelIcons.Text = "Icons8";
-            this.linkLabelIcons.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelIcons_LinkClicked);
             // 
             // About
             // 

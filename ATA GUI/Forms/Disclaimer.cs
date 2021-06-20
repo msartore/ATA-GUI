@@ -22,29 +22,33 @@ namespace ATA_GUI
 
         private bool readFromFile()
         {
-            if (!File.Exists(fileName))
+            try
             {
-                return false;
-            }
-            XmlDocument doc = new XmlDocument();
-            doc.Load(fileName);
-            XmlNode node = doc.DocumentElement.SelectSingleNode("/disclaimer/agreed");
-            if (node.InnerText == "yes")
+                if (!File.Exists(fileName))
+                {
+                    return false;
+                }
+                XmlDocument doc = new XmlDocument();
+                doc.Load(fileName);
+                XmlNode node = doc.DocumentElement.SelectSingleNode("/ATA/licence");
+                if (node.InnerText == "yes")
+                {
+                    return true;
+                }
+            }catch
             {
-                return true;
+                File.Delete(fileName);
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         private void createDiscalimer(string agreed)
         {
             using (XmlWriter writer = XmlWriter.Create(fileName))
             {
-                writer.WriteStartElement("disclaimer");
-                writer.WriteElementString("agreed", agreed);
+                writer.WriteStartElement("ATA");
+                writer.WriteElementString("licence", agreed);
+                writer.WriteElementString("initialPopUpFeedback", "yes");
                 writer.WriteEndElement();
                 writer.Flush();
             }

@@ -39,6 +39,7 @@ namespace ATA_GUI
             this.labelLog = new System.Windows.Forms.Label();
             this.linkLabelChangelog = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxInitPopUp = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,6 +128,7 @@ namespace ATA_GUI
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBoxInitPopUp);
             this.groupBox1.Controls.Add(this.labelCurrentRelease);
             this.groupBox1.Controls.Add(this.labelLog);
             this.groupBox1.Controls.Add(this.linkLabelChangelog);
@@ -137,17 +139,28 @@ namespace ATA_GUI
             this.groupBox1.Controls.Add(this.labelLatestRelease);
             this.groupBox1.Location = new System.Drawing.Point(12, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(339, 204);
+            this.groupBox1.Size = new System.Drawing.Size(339, 231);
             this.groupBox1.TabIndex = 41;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Info";
+            // 
+            // checkBoxInitPopUp
+            // 
+            this.checkBoxInitPopUp.AutoSize = true;
+            this.checkBoxInitPopUp.Location = new System.Drawing.Point(89, 199);
+            this.checkBoxInitPopUp.Name = "checkBoxInitPopUp";
+            this.checkBoxInitPopUp.Size = new System.Drawing.Size(145, 17);
+            this.checkBoxInitPopUp.TabIndex = 41;
+            this.checkBoxInitPopUp.Text = "Disable feedback pop up";
+            this.checkBoxInitPopUp.UseVisualStyleBackColor = true;
+            this.checkBoxInitPopUp.CheckedChanged += new System.EventHandler(this.checkBoxInitPopUp_CheckedChanged);
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(363, 219);
+            this.ClientSize = new System.Drawing.Size(363, 249);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -174,5 +187,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Label labelLog;
         private System.Windows.Forms.LinkLabel linkLabelChangelog;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox checkBoxInitPopUp;
     }
 }

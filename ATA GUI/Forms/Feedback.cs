@@ -1,21 +1,61 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace ATA_GUI
 {
     public partial class Feedback : Form
     {
+        private const string fileName = "InfoCache.xml";
+
         public Feedback()
         {
             InitializeComponent();
+        }
+
+        public static bool checkFeedbackFile()
+        {
+            if (!File.Exists(fileName))
+            {
+                return false;
+            }
+            XmlDocument doc = new XmlDocument();
+            doc.Load(fileName);
+            XmlNode node = doc.DocumentElement.SelectSingleNode("/ATA/initialPopUpFeedback");
+            if (node.InnerText == "yes")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool changeFeedbackFile(bool popUp)
+        {
+            if (!File.Exists(fileName))
+            {
+                MainForm.MessageShowBox("Error: InfoCache.xml has been deleted", 0);
+                return false;
+            }
+            XmlDocument doc = new XmlDocument();
+            doc.Load(fileName);
+            XmlNode root = doc.DocumentElement;
+            XmlNode myNode = root.SelectSingleNode("/ATA/initialPopUpFeedback");
+
+            if (popUp)
+            {
+                myNode.FirstChild.Value = "yes";
+            }
+            else
+            {
+                myNode.FirstChild.Value = "no";
+            }
+            doc.Save(fileName);
+            return false;
         }
 
         private void buttonSendFeedback_Click(object sender, EventArgs e)
@@ -25,7 +65,7 @@ namespace ATA_GUI
 
         private void buttonShareTwitter_Click(object sender, EventArgs e)
         {
-            Process.Start("https://twitter.com/intent/tweet?text=Check+out+this+cool+uninstaller+that+I+found!+https://github.com/MassimilianoSartore/ATA-GUI");
+            Process.Start("https://twitter.com/intent/tweet?text=Check+out+this+cool+Android™+tool+that+I+found!+https://github.com/MassimilianoSartore/ATA-GUI");
         }
 
         private void buttonSGF_Click(object sender, EventArgs e)
@@ -40,7 +80,7 @@ namespace ATA_GUI
 
         private void buttonDonate_Click(object sender, EventArgs e)
         {
-            Process.Start("https://msartore.dev/Donation/");
+            Process.Start("https://msartore.dev/donation/");
         }
     }
 }

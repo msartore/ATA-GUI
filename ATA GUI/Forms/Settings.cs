@@ -11,8 +11,9 @@ namespace ATA_GUI
     public partial class Settings : Form
     {
         private string changelog = string.Empty;
-        private const string CURRENTVERSION = "v1.7.1";
+        private const string CURRENTVERSION = "v1.7.5";
         private bool runningCheck;
+        private bool starting = true;
 
         public Settings()
         {
@@ -87,11 +88,31 @@ namespace ATA_GUI
         private void Settings_Load(object sender, EventArgs e)
         {
             labelCurrentRelease.Text = CURRENTVERSION;
+
+            if (!Feedback.checkFeedbackFile())
+            { 
+                checkBoxInitPopUp.Checked = true;
+                starting = false;
+            }
         }
 
         private void linkLabelChangelog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ScrollableMessageBox.show(changelog, "Changelog");
+        }
+
+        private void checkBoxInitPopUp_CheckedChanged(object sender, EventArgs e)
+        {
+            if(starting)
+            {
+                return;
+            }
+            if(checkBoxInitPopUp.Checked)
+            {
+                Feedback.changeFeedbackFile(false);
+                return;
+            }
+            Feedback.changeFeedbackFile(true);
         }
     }
 }
