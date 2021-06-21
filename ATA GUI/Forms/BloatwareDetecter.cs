@@ -92,8 +92,8 @@ namespace ATA_GUI
         private void BloatwareDetecter_Shown(object sender, EventArgs e)
         {
             AppFinder();
-            MainForm.MessageShowBox("Warning: Be careful before uninstalling any system app or service. You must ensure that the package is not used by system " +
-                "to function. Uninstalling a critical system app may result in bricking your phone. So always double check before uninstalling any system app.", 1);
+            MainForm.MessageShowBox("Warning: Be careful before disabling any system app or service. You must ensure that the package is not used by system " +
+                "to function. Disabling a critical system app may result in bricking your phone. So always double check before disabling any system app.", 1);
         }
 
         private void buttonDisable_Click(object sender, EventArgs e)
