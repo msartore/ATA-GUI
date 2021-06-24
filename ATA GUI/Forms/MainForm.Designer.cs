@@ -141,7 +141,11 @@ namespace ATA_GUI
             this.uninstalledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripPermissionMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.grantWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grantWriteSecureSettingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.revokeWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grantDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grantDUMPToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.revokeDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkGrantedPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorkerAdbDownloader = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerExeDownloader = new System.ComponentModel.BackgroundWorker();
@@ -1298,26 +1302,58 @@ namespace ATA_GUI
             this.grantDUMPToolStripMenuItem,
             this.checkGrantedPermissionsToolStripMenuItem});
             this.contextMenuStripPermissionMenu.Name = "contextMenuStripPermissionMenu";
-            this.contextMenuStripPermissionMenu.Size = new System.Drawing.Size(222, 70);
+            this.contextMenuStripPermissionMenu.Size = new System.Drawing.Size(265, 92);
             // 
             // grantWriteSecureSettingsToolStripMenuItem
             // 
+            this.grantWriteSecureSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.grantWriteSecureSettingsToolStripMenuItem1,
+            this.revokeWriteSecureSettingsToolStripMenuItem});
             this.grantWriteSecureSettingsToolStripMenuItem.Name = "grantWriteSecureSettingsToolStripMenuItem";
-            this.grantWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-            this.grantWriteSecureSettingsToolStripMenuItem.Text = "Grant Write_Secure_Settings";
-            this.grantWriteSecureSettingsToolStripMenuItem.Click += new System.EventHandler(this.grantWriteSecureSettingsToolStripMenuItem_Click);
+            this.grantWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.grantWriteSecureSettingsToolStripMenuItem.Text = "Grant/Revoke Write_Secure_Settings";
+            // 
+            // grantWriteSecureSettingsToolStripMenuItem1
+            // 
+            this.grantWriteSecureSettingsToolStripMenuItem1.Name = "grantWriteSecureSettingsToolStripMenuItem1";
+            this.grantWriteSecureSettingsToolStripMenuItem1.Size = new System.Drawing.Size(230, 22);
+            this.grantWriteSecureSettingsToolStripMenuItem1.Text = "Grant Write_Secure_Settings";
+            this.grantWriteSecureSettingsToolStripMenuItem1.Click += new System.EventHandler(this.grantWriteSecureSettingsToolStripMenuItem_Click);
+            // 
+            // revokeWriteSecureSettingsToolStripMenuItem
+            // 
+            this.revokeWriteSecureSettingsToolStripMenuItem.Name = "revokeWriteSecureSettingsToolStripMenuItem";
+            this.revokeWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.revokeWriteSecureSettingsToolStripMenuItem.Text = "Revoke Write_Secure_Settings";
+            this.revokeWriteSecureSettingsToolStripMenuItem.Click += new System.EventHandler(this.revokeWriteSecureSettingsToolStripMenuItem_Click);
             // 
             // grantDUMPToolStripMenuItem
             // 
+            this.grantDUMPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.grantDUMPToolStripMenuItem1,
+            this.revokeDUMPToolStripMenuItem});
             this.grantDUMPToolStripMenuItem.Name = "grantDUMPToolStripMenuItem";
-            this.grantDUMPToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-            this.grantDUMPToolStripMenuItem.Text = "Grant DUMP";
-            this.grantDUMPToolStripMenuItem.Click += new System.EventHandler(this.grantDUMPToolStripMenuItem_Click);
+            this.grantDUMPToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.grantDUMPToolStripMenuItem.Text = "Grant/Revoke DUMP";
+            // 
+            // grantDUMPToolStripMenuItem1
+            // 
+            this.grantDUMPToolStripMenuItem1.Name = "grantDUMPToolStripMenuItem1";
+            this.grantDUMPToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.grantDUMPToolStripMenuItem1.Text = "Grant DUMP";
+            this.grantDUMPToolStripMenuItem1.Click += new System.EventHandler(this.grantDUMPToolStripMenuItem_Click);
+            // 
+            // revokeDUMPToolStripMenuItem
+            // 
+            this.revokeDUMPToolStripMenuItem.Name = "revokeDUMPToolStripMenuItem";
+            this.revokeDUMPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.revokeDUMPToolStripMenuItem.Text = "Revoke DUMP";
+            this.revokeDUMPToolStripMenuItem.Click += new System.EventHandler(this.revokeDUMPToolStripMenuItem_Click);
             // 
             // checkGrantedPermissionsToolStripMenuItem
             // 
             this.checkGrantedPermissionsToolStripMenuItem.Name = "checkGrantedPermissionsToolStripMenuItem";
-            this.checkGrantedPermissionsToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.checkGrantedPermissionsToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
             this.checkGrantedPermissionsToolStripMenuItem.Text = "Check granted permissions";
             this.checkGrantedPermissionsToolStripMenuItem.Click += new System.EventHandler(this.checkGrantedPermissionsToolStripMenuItem_Click);
             // 
@@ -1471,14 +1507,14 @@ namespace ATA_GUI
             this.helpToolStripMenuItem,
             this.submitFeedbackToolStripMenuItem});
             this.contextMenuStripHelp.Name = "contextMenuStripHelp";
-            this.contextMenuStripHelp.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStripHelp.Size = new System.Drawing.Size(166, 48);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.videoTutorialToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.helpToolStripMenuItem.Text = "Open help";
             // 
             // videoTutorialToolStripMenuItem
@@ -1491,7 +1527,7 @@ namespace ATA_GUI
             // submitFeedbackToolStripMenuItem
             // 
             this.submitFeedbackToolStripMenuItem.Name = "submitFeedbackToolStripMenuItem";
-            this.submitFeedbackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.submitFeedbackToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.submitFeedbackToolStripMenuItem.Text = "Submit Feedback";
             this.submitFeedbackToolStripMenuItem.Click += new System.EventHandler(this.submitFeedbackToolStripMenuItem_Click);
             // 
@@ -1767,6 +1803,10 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox pictureBoxSearchFile;
         private System.Windows.Forms.Button buttonSearchFileFastboot;
+        private System.Windows.Forms.ToolStripMenuItem grantWriteSecureSettingsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem revokeWriteSecureSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem grantDUMPToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem revokeDUMPToolStripMenuItem;
     }
 }
 

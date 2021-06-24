@@ -1261,16 +1261,6 @@ namespace ATA_GUI
             appFunc("shell dumpsys package ", null, 1);
         }
 
-        private void grantDUMPToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            appFunc("shell pm grant ", " android.permission.DUMP", 0);
-        }
-
-        private void grantWriteSecureSettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            appFunc("shell pm grant ", " android.permission.WRITE_SECURE_SETTINGS", 0);
-        }
-
         private void groupBox2_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -1632,6 +1622,26 @@ namespace ATA_GUI
         {
             Feedback feedback = new Feedback();
             feedback.ShowDialog();
+        }
+
+        private void grantWriteSecureSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            appFunc("shell pm grant ", " android.permission.WRITE_SECURE_SETTINGS", 0);
+        }
+
+        private void revokeWriteSecureSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            appFunc("shell pm revoke ", " android.permission.WRITE_SECURE_SETTINGS", 0);
+        }
+
+        private void grantDUMPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            appFunc("shell pm grant ", " android.permission.DUMP", 0);
+        }
+
+        private void revokeDUMPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            appFunc("shell pm revoke ", " android.permission.DUMP", 0);
         }
     }
 }
