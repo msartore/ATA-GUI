@@ -11,7 +11,7 @@ namespace ATA_GUI
     public partial class Settings : Form
     {
         private string changelog = string.Empty;
-        private string CURRENTVERSION = MainForm.CURRENTVERSION;
+        private static readonly string CURRENTVERSION = MainForm.CURRENTVERSION;
         private bool runningCheck;
         private bool starting = true;
 

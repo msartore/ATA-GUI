@@ -81,6 +81,8 @@ namespace ATA_GUI
             this.toolStripButtonPermissionMenu = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonBloatwareDetecter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -172,6 +174,12 @@ namespace ATA_GUI
             this.buttonReloadDevicesList = new System.Windows.Forms.Button();
             this.comboBoxDevices = new System.Windows.Forms.ComboBox();
             this.buttonSyncApp = new System.Windows.Forms.Button();
+            this.contextMenuStripSearch = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.duckduckgoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.googleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playMarketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.APKMirrorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fDroidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -197,6 +205,7 @@ namespace ATA_GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).BeginInit();
             this.contextMenuStripHelp.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.contextMenuStripSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelLog
@@ -575,6 +584,8 @@ namespace ATA_GUI
             this.toolStripButtonPermissionMenu,
             this.toolStripSeparator4,
             this.toolStripButtonBloatwareDetecter,
+            this.toolStripSeparator10,
+            this.toolStripButtonSearch,
             this.toolStripSeparator9,
             this.toolStripLabelTotalApps,
             this.toolStripSeparator8,
@@ -704,6 +715,21 @@ namespace ATA_GUI
             this.toolStripButtonBloatwareDetecter.Size = new System.Drawing.Size(23, 20);
             this.toolStripButtonBloatwareDetecter.Text = "Bloatware Detecter";
             this.toolStripButtonBloatwareDetecter.Click += new System.EventHandler(this.toolStripButtonBloatwareDetecter_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonSearch
+            // 
+            this.toolStripButtonSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSearch.Image = global::ATA_GUI.Properties.Resources.icons8_search_48;
+            this.toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSearch.Name = "toolStripButtonSearch";
+            this.toolStripButtonSearch.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonSearch.Text = "Search";
+            this.toolStripButtonSearch.Click += new System.EventHandler(this.toolStripButtonSearch_Click);
             // 
             // toolStripSeparator9
             // 
@@ -1302,7 +1328,7 @@ namespace ATA_GUI
             this.grantDUMPToolStripMenuItem,
             this.checkGrantedPermissionsToolStripMenuItem});
             this.contextMenuStripPermissionMenu.Name = "contextMenuStripPermissionMenu";
-            this.contextMenuStripPermissionMenu.Size = new System.Drawing.Size(265, 92);
+            this.contextMenuStripPermissionMenu.Size = new System.Drawing.Size(265, 70);
             // 
             // grantWriteSecureSettingsToolStripMenuItem
             // 
@@ -1339,19 +1365,20 @@ namespace ATA_GUI
             // grantDUMPToolStripMenuItem1
             // 
             this.grantDUMPToolStripMenuItem1.Name = "grantDUMPToolStripMenuItem1";
-            this.grantDUMPToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.grantDUMPToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
             this.grantDUMPToolStripMenuItem1.Text = "Grant DUMP";
             this.grantDUMPToolStripMenuItem1.Click += new System.EventHandler(this.grantDUMPToolStripMenuItem_Click);
             // 
             // revokeDUMPToolStripMenuItem
             // 
             this.revokeDUMPToolStripMenuItem.Name = "revokeDUMPToolStripMenuItem";
-            this.revokeDUMPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.revokeDUMPToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.revokeDUMPToolStripMenuItem.Text = "Revoke DUMP";
             this.revokeDUMPToolStripMenuItem.Click += new System.EventHandler(this.revokeDUMPToolStripMenuItem_Click);
             // 
             // checkGrantedPermissionsToolStripMenuItem
             // 
+            this.checkGrantedPermissionsToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_privacy_policy_48;
             this.checkGrantedPermissionsToolStripMenuItem.Name = "checkGrantedPermissionsToolStripMenuItem";
             this.checkGrantedPermissionsToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
             this.checkGrantedPermissionsToolStripMenuItem.Text = "Check granted permissions";
@@ -1513,6 +1540,7 @@ namespace ATA_GUI
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.videoTutorialToolStripMenuItem});
+            this.helpToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_help_48;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.helpToolStripMenuItem.Text = "Open help";
@@ -1520,12 +1548,13 @@ namespace ATA_GUI
             // videoTutorialToolStripMenuItem
             // 
             this.videoTutorialToolStripMenuItem.Name = "videoTutorialToolStripMenuItem";
-            this.videoTutorialToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.videoTutorialToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.videoTutorialToolStripMenuItem.Text = "Video Tutorial";
             this.videoTutorialToolStripMenuItem.Click += new System.EventHandler(this.videoTutorialToolStripMenuItem_Click);
             // 
             // submitFeedbackToolStripMenuItem
             // 
+            this.submitFeedbackToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_get_help_48;
             this.submitFeedbackToolStripMenuItem.Name = "submitFeedbackToolStripMenuItem";
             this.submitFeedbackToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.submitFeedbackToolStripMenuItem.Text = "Submit Feedback";
@@ -1601,6 +1630,57 @@ namespace ATA_GUI
             this.buttonSyncApp.UseVisualStyleBackColor = false;
             this.buttonSyncApp.Click += new System.EventHandler(this.buttonSyncApp_Click);
             // 
+            // contextMenuStripSearch
+            // 
+            this.contextMenuStripSearch.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.duckduckgoToolStripMenuItem,
+            this.googleToolStripMenuItem,
+            this.playMarketToolStripMenuItem,
+            this.APKMirrorToolStripMenuItem,
+            this.fDroidToolStripMenuItem});
+            this.contextMenuStripSearch.Name = "contextMenuStripSearch";
+            this.contextMenuStripSearch.Size = new System.Drawing.Size(142, 114);
+            // 
+            // duckduckgoToolStripMenuItem
+            // 
+            this.duckduckgoToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_duckduckgo_48;
+            this.duckduckgoToolStripMenuItem.Name = "duckduckgoToolStripMenuItem";
+            this.duckduckgoToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.duckduckgoToolStripMenuItem.Text = "Duckduckgo";
+            this.duckduckgoToolStripMenuItem.Click += new System.EventHandler(this.duckduckgoToolStripMenuItem_Click);
+            // 
+            // googleToolStripMenuItem
+            // 
+            this.googleToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_google_48;
+            this.googleToolStripMenuItem.Name = "googleToolStripMenuItem";
+            this.googleToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.googleToolStripMenuItem.Text = "Google";
+            this.googleToolStripMenuItem.Click += new System.EventHandler(this.googleToolStripMenuItem_Click);
+            // 
+            // playMarketToolStripMenuItem
+            // 
+            this.playMarketToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.playmarketicon;
+            this.playMarketToolStripMenuItem.Name = "playMarketToolStripMenuItem";
+            this.playMarketToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.playMarketToolStripMenuItem.Text = "Play Market";
+            this.playMarketToolStripMenuItem.Click += new System.EventHandler(this.playMarketToolStripMenuItem_Click);
+            // 
+            // APKMirrorToolStripMenuItem
+            // 
+            this.APKMirrorToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.apkmirror;
+            this.APKMirrorToolStripMenuItem.Name = "APKMirrorToolStripMenuItem";
+            this.APKMirrorToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.APKMirrorToolStripMenuItem.Text = "APK Mirror";
+            this.APKMirrorToolStripMenuItem.Click += new System.EventHandler(this.APKMirrorToolStripMenuItem_Click);
+            // 
+            // fDroidToolStripMenuItem
+            // 
+            this.fDroidToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.fdroidlogo;
+            this.fDroidToolStripMenuItem.Name = "fDroidToolStripMenuItem";
+            this.fDroidToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.fDroidToolStripMenuItem.Text = "F-Droid";
+            this.fDroidToolStripMenuItem.Click += new System.EventHandler(this.fDroidToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1660,6 +1740,7 @@ namespace ATA_GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).EndInit();
             this.contextMenuStripHelp.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.contextMenuStripSearch.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1807,6 +1888,14 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem revokeWriteSecureSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grantDUMPToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem revokeDUMPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripSearch;
+        private System.Windows.Forms.ToolStripMenuItem duckduckgoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem googleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem playMarketToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem APKMirrorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fDroidToolStripMenuItem;
     }
 }
 

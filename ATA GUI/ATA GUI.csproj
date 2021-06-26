@@ -218,13 +218,19 @@
     <None Include="Resources\-.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Error.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ATALogoGUI.ico" />
+    <None Include="Resources\icons8-get-help-48.png" />
+    <None Include="Resources\icons8-help-48.png" />
+    <None Include="Resources\icons8-privacy-policy-48.png" />
+    <None Include="Resources\fdroidlogo.png" />
+    <None Include="Resources\apkmirror.png" />
+    <None Include="Resources\playmarketicon.png" />
+    <None Include="Resources\icons8-google-48.png" />
+    <None Include="Resources\icons8-duckduckgo-48.png" />
+    <None Include="Resources\icons8-search-48.png" />
     <None Include="Resources\icons8-bitcoin-48.png" />
     <None Include="Resources\icons8-paypal-48.png" />
     <None Include="Resources\icons8-ethereum-48.png" />

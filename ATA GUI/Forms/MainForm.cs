@@ -35,7 +35,7 @@ namespace ATA_GUI
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-        public const string CURRENTVERSION = "v1.7.7_Pre-release";
+        public static readonly string CURRENTVERSION = "v1.7.7_Pre-release";
         private static readonly Regex regex = new Regex(@"\s+");
 
         public static string RemoveWhiteSpaces(string str)
@@ -1646,6 +1646,56 @@ namespace ATA_GUI
         private void revokeDUMPToolStripMenuItem_Click(object sender, EventArgs e)
         {
             appFunc("shell pm revoke ", " android.permission.DUMP", 0);
+        }
+
+        private void toolStripButtonSearch_Click(object sender, EventArgs e)
+        {
+            if(checkedListBoxApp.CheckedItems.Count == 0)
+            {
+                MessageShowBox("No app selected", 1);
+                return;
+            }
+            contextMenuStripSearch.Show(Cursor.Position);
+        }
+
+        private void duckduckgoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (string file in checkedListBoxApp.CheckedItems)
+            {
+                Process.Start("https://duckduckgo.com/?q=" + file);
+            }
+        }
+
+        private void googleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (string file in checkedListBoxApp.CheckedItems)
+            {
+                Process.Start("https://www.google.com/search?q=" + file);
+            }
+        }
+
+        private void playMarketToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (string file in checkedListBoxApp.CheckedItems)
+            {
+                Process.Start("https://play.google.com/store/apps/details?id=" + file);
+            }
+        }
+
+        private void APKMirrorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (string file in checkedListBoxApp.CheckedItems)
+            {
+                Process.Start("https://www.apkmirror.com/?post_type=app_release&searchtype=apk&s=" + file);
+            }
+        }
+
+        private void fDroidToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (string file in checkedListBoxApp.CheckedItems)
+            {
+                Process.Start("https://f-droid.org/en/packages/" + file);
+            }
         }
     }
 }
