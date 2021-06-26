@@ -31,7 +31,7 @@ namespace ATA_GUI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.linkLabelIcons = new System.Windows.Forms.LinkLabel();
@@ -51,7 +51,7 @@ namespace ATA_GUI
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.labelVersion);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
@@ -60,14 +60,14 @@ namespace ATA_GUI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Program Version";
             // 
-            // label2
+            // labelVersion
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Version: v1.7.7 Pre-release";
+            this.labelVersion.AutoSize = true;
+            this.labelVersion.Location = new System.Drawing.Point(12, 32);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(106, 13);
+            this.labelVersion.TabIndex = 1;
+            this.labelVersion.Text = "Version: UNKNOWN";
             // 
             // label1
             // 
@@ -217,6 +217,7 @@ namespace ATA_GUI
             this.Name = "About";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About";
+            this.Load += new System.EventHandler(this.About_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -235,7 +236,7 @@ namespace ATA_GUI
         private System.Windows.Forms.LinkLabel linkLabelDNZ;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button buttonClose;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelVersion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel linkLabelRepo;
         private System.Windows.Forms.Label label3;

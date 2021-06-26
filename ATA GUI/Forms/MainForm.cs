@@ -35,7 +35,7 @@ namespace ATA_GUI
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-        private const string CURRENTVERSION = "v1.7.7_Pre-release";
+        public const string CURRENTVERSION = "v1.7.7_Pre-release";
         private static readonly Regex regex = new Regex(@"\s+");
 
         public static string RemoveWhiteSpaces(string str)
@@ -246,6 +246,10 @@ namespace ATA_GUI
                         Process.Start((string)jsonReal[0]["html_url"]);
                         UpdateForm update = new UpdateForm(linkString);
                         update.ShowDialog();
+                    }
+                    else
+                    {
+                        labelLog.Text = "ATA is not up to date, update\nit as soon as you can!";
                     }
                 }
                 else

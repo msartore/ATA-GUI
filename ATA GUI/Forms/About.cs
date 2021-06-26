@@ -55,5 +55,10 @@ namespace ATA_GUI
         {
             Process.Start("https://icons8.com");
         }
+
+        private void About_Load(object sender, EventArgs e)
+        {
+            labelVersion.Text = "Version: " + MainForm.CURRENTVERSION;
+        }
     }
 }

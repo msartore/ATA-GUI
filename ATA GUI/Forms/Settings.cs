@@ -11,7 +11,7 @@ namespace ATA_GUI
     public partial class Settings : Form
     {
         private string changelog = string.Empty;
-        private const string CURRENTVERSION = "v1.7.7_Pre-release";
+        private string CURRENTVERSION = MainForm.CURRENTVERSION;
         private bool runningCheck;
         private bool starting = true;
 
@@ -54,6 +54,10 @@ namespace ATA_GUI
                                 Process.Start((string)jsonReal[0]["html_url"]);
                                 UpdateForm update = new UpdateForm(linkString);
                                 update.ShowDialog();
+                            }
+                            else
+                            {
+                                labelLog.Text = "ATA is not up to date, update\nit as soon as you can!";
                             }
                         }
                         else
