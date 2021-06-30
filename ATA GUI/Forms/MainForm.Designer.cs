@@ -141,6 +141,7 @@ namespace ATA_GUI
             this.systemAppToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.nonSystemAppToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstalledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disabledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripPermissionMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.grantWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grantWriteSecureSettingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -1289,37 +1290,46 @@ namespace ATA_GUI
             this.allToolStripMenuItem,
             this.systemAppToolStripMenuItem1,
             this.nonSystemAppToolStripMenuItem1,
-            this.uninstalledAppToolStripMenuItem});
+            this.uninstalledAppToolStripMenuItem,
+            this.disabledAppToolStripMenuItem});
             this.contextMenuStripFilterBy.Name = "contextMenuStripFilterBy";
-            this.contextMenuStripFilterBy.Size = new System.Drawing.Size(164, 92);
+            this.contextMenuStripFilterBy.Size = new System.Drawing.Size(181, 136);
             // 
             // allToolStripMenuItem
             // 
             this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.allToolStripMenuItem.Text = "All";
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
             // 
             // systemAppToolStripMenuItem1
             // 
             this.systemAppToolStripMenuItem1.Name = "systemAppToolStripMenuItem1";
-            this.systemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            this.systemAppToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.systemAppToolStripMenuItem1.Text = "System App";
             this.systemAppToolStripMenuItem1.Click += new System.EventHandler(this.systemAppToolStripMenuItem1_Click);
             // 
             // nonSystemAppToolStripMenuItem1
             // 
             this.nonSystemAppToolStripMenuItem1.Name = "nonSystemAppToolStripMenuItem1";
-            this.nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            this.nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.nonSystemAppToolStripMenuItem1.Text = "Non System App";
             this.nonSystemAppToolStripMenuItem1.Click += new System.EventHandler(this.nonSystemAppToolStripMenuItem1_Click);
             // 
             // uninstalledAppToolStripMenuItem
             // 
             this.uninstalledAppToolStripMenuItem.Name = "uninstalledAppToolStripMenuItem";
-            this.uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.uninstalledAppToolStripMenuItem.Text = "Uninstalled App";
             this.uninstalledAppToolStripMenuItem.Click += new System.EventHandler(this.uninstalledAppToolStripMenuItem_Click);
+            // 
+            // disabledAppToolStripMenuItem
+            // 
+            this.disabledAppToolStripMenuItem.Name = "disabledAppToolStripMenuItem";
+            this.disabledAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.disabledAppToolStripMenuItem.Text = "Disabled App";
+            this.disabledAppToolStripMenuItem.Visible = false;
+            this.disabledAppToolStripMenuItem.Click += new System.EventHandler(this.disabledAppToolStripMenuItem_Click);
             // 
             // contextMenuStripPermissionMenu
             // 
@@ -1548,7 +1558,7 @@ namespace ATA_GUI
             // videoTutorialToolStripMenuItem
             // 
             this.videoTutorialToolStripMenuItem.Name = "videoTutorialToolStripMenuItem";
-            this.videoTutorialToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.videoTutorialToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.videoTutorialToolStripMenuItem.Text = "Video Tutorial";
             this.videoTutorialToolStripMenuItem.Click += new System.EventHandler(this.videoTutorialToolStripMenuItem_Click);
             // 
@@ -1896,6 +1906,7 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem playMarketToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem APKMirrorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fDroidToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem disabledAppToolStripMenuItem;
     }
 }
 

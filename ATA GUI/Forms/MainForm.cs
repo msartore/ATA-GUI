@@ -35,7 +35,7 @@ namespace ATA_GUI
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-        public static readonly string CURRENTVERSION = "v1.8.0";
+        public static readonly string CURRENTVERSION = "v1.8.1";
         private static readonly Regex regex = new Regex(@"\s+");
 
         public static string RemoveWhiteSpaces(string str)
@@ -624,17 +624,19 @@ namespace ATA_GUI
             {
                 List<string> devicesTmp;
                 int deviceCounter = 0;
+                Device deviceTmp;
 
                 string dev = adbFastbootCommandR(new[] { "devices" }, 0);
                 if (dev != null)
                 {
                     devices.Clear();
-                    devicesTmp = dev.Substring("List of devices attached".Length).Split('	').ToList();
+                    devicesTmp = dev.Substring("List of devices attached".Length).Split().ToList();
+                    
                     for (int i = 0; i < devicesTmp.Count; i++)
                     {
-                        Device deviceTmp = new Device();
+                        deviceTmp = new Device();
                         
-                        if(Regex.Match(devicesTmp[i], "^(?:\\w*)").Success && !devicesTmp[i].Contains("recovery") && !devicesTmp[i].Contains("device") && devicesTmp[i] != "\r\n\r\n")
+                        if(Regex.Match(devicesTmp[i],  "^[a-zA-Z0-9]*$").Success && devicesTmp[i].Length > 2 && devicesTmp[i] != "recovery" && devicesTmp[i] != "device")
                         {
                             deviceTmp.Name = adbFastbootCommandR(new[] { "-s " + Regex.Replace(devicesTmp[i], @"\s", "") + " shell getprop ro.product.model" }, 0);
                             deviceTmp.Serial = devicesTmp[i];
@@ -648,9 +650,9 @@ namespace ATA_GUI
                         disableEnableSystem(false);
                         return;
                     }
-                    for (int i = 0; i < devices.Count; i++)
+                    foreach (Device device in devices)
                     {
-                        comboBoxDevices.Items.Add(devices[i].Name);
+                        comboBoxDevices.Items.Add(device.Name);
                     }
                     comboBoxDevices.SelectedIndex = 0;
                     currentDeviceSelected = Regex.Replace(devices[0].Serial, @"\s", "");
@@ -1696,6 +1698,18 @@ namespace ATA_GUI
             {
                 Process.Start("https://f-droid.org/en/packages/" + file);
             }
+        }
+
+        private void disabledAppToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonUninstallApp.Enabled = true;
+            toolStripButtonRestoreApp.Enabled = false;
+            toolStripButtonPermissionMenu.Enabled = true;
+            toolStripButtonPackageManager.Enabled = true;
+            toolStripButtonBloatwareDetecter.Enabled = true;
+            allApk = false;
+            systemApp = true;
+
         }
     }
 }
