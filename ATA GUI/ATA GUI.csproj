@@ -148,6 +148,12 @@
     <Compile Include="Forms\UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TaskManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaskManager.Designer.cs">
+      <DependentUpon>TaskManager.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\DeviceLogs.resx">
       <DependentUpon>DeviceLogs.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UpdateForm.resx">
       <DependentUpon>UpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaskManager.resx">
+      <DependentUpon>TaskManager.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

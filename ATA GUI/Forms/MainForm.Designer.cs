@@ -32,7 +32,6 @@ namespace ATA_GUI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.labelLog = new System.Windows.Forms.Label();
-            this.buttonKillAdb = new System.Windows.Forms.Button();
             this.buttonLogClear = new System.Windows.Forms.Button();
             this.backgroundWorkerSync = new System.ComponentModel.BackgroundWorker();
             this.groupBoxDeviceInfo = new System.Windows.Forms.GroupBox();
@@ -156,6 +155,7 @@ namespace ATA_GUI
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelTopBar = new System.Windows.Forms.Panel();
+            this.labelTools = new System.Windows.Forms.Label();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.pictureBoxMinimize = new System.Windows.Forms.PictureBox();
             this.labelHelp = new System.Windows.Forms.Label();
@@ -181,6 +181,10 @@ namespace ATA_GUI
             this.playMarketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.APKMirrorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fDroidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripTools = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemADBKill = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonTaskManager = new System.Windows.Forms.Button();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -207,6 +211,7 @@ namespace ATA_GUI
             this.contextMenuStripHelp.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.contextMenuStripSearch.SuspendLayout();
+            this.contextMenuStripTools.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelLog
@@ -221,28 +226,15 @@ namespace ATA_GUI
             this.labelLog.TabIndex = 24;
             this.labelLog.Text = "Log:";
             // 
-            // buttonKillAdb
-            // 
-            this.buttonKillAdb.BackColor = System.Drawing.Color.White;
-            this.buttonKillAdb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonKillAdb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonKillAdb.Location = new System.Drawing.Point(428, 431);
-            this.buttonKillAdb.Name = "buttonKillAdb";
-            this.buttonKillAdb.Size = new System.Drawing.Size(82, 23);
-            this.buttonKillAdb.TabIndex = 29;
-            this.buttonKillAdb.Text = "Kill Adb";
-            this.buttonKillAdb.UseVisualStyleBackColor = false;
-            this.buttonKillAdb.Click += new System.EventHandler(this.buttonKillAdb_Click);
-            // 
             // buttonLogClear
             // 
             this.buttonLogClear.BackColor = System.Drawing.Color.White;
             this.buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogClear.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogClear.Location = new System.Drawing.Point(428, 402);
+            this.buttonLogClear.Location = new System.Drawing.Point(423, 431);
             this.buttonLogClear.Name = "buttonLogClear";
-            this.buttonLogClear.Size = new System.Drawing.Size(82, 23);
+            this.buttonLogClear.Size = new System.Drawing.Size(87, 23);
             this.buttonLogClear.TabIndex = 31;
             this.buttonLogClear.Text = "Clear log";
             this.buttonLogClear.UseVisualStyleBackColor = false;
@@ -1437,6 +1429,7 @@ namespace ATA_GUI
             // panelTopBar
             // 
             this.panelTopBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelTopBar.Controls.Add(this.labelTools);
             this.panelTopBar.Controls.Add(this.pictureBoxClose);
             this.panelTopBar.Controls.Add(this.pictureBoxMinimize);
             this.panelTopBar.Controls.Add(this.labelHelp);
@@ -1447,6 +1440,20 @@ namespace ATA_GUI
             this.panelTopBar.Size = new System.Drawing.Size(919, 44);
             this.panelTopBar.TabIndex = 0;
             this.panelTopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseMove);
+            // 
+            // labelTools
+            // 
+            this.labelTools.AutoSize = true;
+            this.labelTools.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTools.ForeColor = System.Drawing.Color.White;
+            this.labelTools.Location = new System.Drawing.Point(212, 13);
+            this.labelTools.Name = "labelTools";
+            this.labelTools.Size = new System.Drawing.Size(37, 15);
+            this.labelTools.TabIndex = 42;
+            this.labelTools.Text = "Tools";
+            this.labelTools.Click += new System.EventHandler(this.labelTools_Click);
+            this.labelTools.MouseEnter += new System.EventHandler(this.labelTools_MouseEnter);
+            this.labelTools.MouseLeave += new System.EventHandler(this.labelTools_MouseLeave);
             // 
             // pictureBoxClose
             // 
@@ -1485,8 +1492,8 @@ namespace ATA_GUI
             this.labelHelp.TabIndex = 5;
             this.labelHelp.Text = "Help";
             this.labelHelp.Click += new System.EventHandler(this.labelHelp_Click);
+            this.labelHelp.MouseEnter += new System.EventHandler(this.labelHelp_MouseEnter);
             this.labelHelp.MouseLeave += new System.EventHandler(this.labelHelp_MouseLeave);
-            this.labelHelp.MouseHover += new System.EventHandler(this.labelHelp_MouseHover);
             // 
             // labelSettings
             // 
@@ -1499,8 +1506,8 @@ namespace ATA_GUI
             this.labelSettings.TabIndex = 4;
             this.labelSettings.Text = "Settings";
             this.labelSettings.Click += new System.EventHandler(this.labelSettings_Click);
+            this.labelSettings.MouseEnter += new System.EventHandler(this.labelSettings_MouseEnter);
             this.labelSettings.MouseLeave += new System.EventHandler(this.labelSettings_MouseLeave);
-            this.labelSettings.MouseHover += new System.EventHandler(this.labelSettings_MouseHover);
             // 
             // BottomToolStripPanel
             // 
@@ -1581,9 +1588,9 @@ namespace ATA_GUI
             this.buttonDeviceLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDeviceLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDeviceLogs.ForeColor = System.Drawing.Color.Black;
-            this.buttonDeviceLogs.Location = new System.Drawing.Point(428, 373);
+            this.buttonDeviceLogs.Location = new System.Drawing.Point(423, 402);
             this.buttonDeviceLogs.Name = "buttonDeviceLogs";
-            this.buttonDeviceLogs.Size = new System.Drawing.Size(82, 23);
+            this.buttonDeviceLogs.Size = new System.Drawing.Size(87, 23);
             this.buttonDeviceLogs.TabIndex = 41;
             this.buttonDeviceLogs.Text = "Device Logs";
             this.buttonDeviceLogs.UseVisualStyleBackColor = false;
@@ -1691,6 +1698,42 @@ namespace ATA_GUI
             this.fDroidToolStripMenuItem.Text = "F-Droid";
             this.fDroidToolStripMenuItem.Click += new System.EventHandler(this.fDroidToolStripMenuItem_Click);
             // 
+            // contextMenuStripTools
+            // 
+            this.contextMenuStripTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.contextMenuStripTools.Name = "contextMenuStripHelp";
+            this.contextMenuStripTools.Size = new System.Drawing.Size(98, 26);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemADBKill});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(97, 22);
+            this.toolStripMenuItem1.Text = "ADB";
+            // 
+            // toolStripMenuItemADBKill
+            // 
+            this.toolStripMenuItemADBKill.Name = "toolStripMenuItemADBKill";
+            this.toolStripMenuItemADBKill.Size = new System.Drawing.Size(116, 22);
+            this.toolStripMenuItemADBKill.Text = "Kill ADB";
+            this.toolStripMenuItemADBKill.Click += new System.EventHandler(this.toolStripMenuItemADBKill_Click);
+            // 
+            // buttonTaskManager
+            // 
+            this.buttonTaskManager.BackColor = System.Drawing.Color.White;
+            this.buttonTaskManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonTaskManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonTaskManager.ForeColor = System.Drawing.Color.Black;
+            this.buttonTaskManager.Location = new System.Drawing.Point(423, 373);
+            this.buttonTaskManager.Name = "buttonTaskManager";
+            this.buttonTaskManager.Size = new System.Drawing.Size(87, 23);
+            this.buttonTaskManager.TabIndex = 42;
+            this.buttonTaskManager.Text = "Task Manager";
+            this.buttonTaskManager.UseVisualStyleBackColor = false;
+            this.buttonTaskManager.Click += new System.EventHandler(this.buttonTaskManager_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1698,10 +1741,10 @@ namespace ATA_GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(914, 457);
+            this.Controls.Add(this.buttonTaskManager);
             this.Controls.Add(this.buttonDeviceLogs);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.buttonMobileScreenShare);
-            this.Controls.Add(this.buttonKillAdb);
             this.Controls.Add(this.buttonLogClear);
             this.Controls.Add(this.richTextBoxLog);
             this.Controls.Add(this.tabControl1);
@@ -1751,6 +1794,7 @@ namespace ATA_GUI
             this.contextMenuStripHelp.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.contextMenuStripSearch.ResumeLayout(false);
+            this.contextMenuStripTools.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1758,7 +1802,6 @@ namespace ATA_GUI
 
         #endregion
         private System.Windows.Forms.Label labelLog;
-        private System.Windows.Forms.Button buttonKillAdb;
         private System.ComponentModel.BackgroundWorker backgroundWorkerSync;
         private System.Windows.Forms.GroupBox groupBoxDeviceInfo;
         private System.Windows.Forms.Label labelAV;
@@ -1907,6 +1950,11 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem APKMirrorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fDroidToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem disabledAppToolStripMenuItem;
+        private System.Windows.Forms.Label labelTools;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripTools;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemADBKill;
+        private System.Windows.Forms.Button buttonTaskManager;
     }
 }
 

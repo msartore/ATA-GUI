@@ -5,7 +5,7 @@
 ## 💡Introduction
 ATA GUI is a project to port ATA to all the users. ATA GUI is an Advance Tool for Android™ powered by SDK Platform Tools. 
 
-> **Last version:**  v1.8.1
+> **Last version:**  v1.8.5
 
 ## ✨Interface
 

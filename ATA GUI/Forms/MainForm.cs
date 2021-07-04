@@ -18,14 +18,14 @@ namespace ATA_GUI
 {
     public partial class MainForm : Form
     {
-        private readonly List<string> arrayApks = new List<string>();
+        public static readonly List<string> arrayApks = new List<string>();
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
         private static readonly int HT_CAPTION = 0x2;
         private bool textboxClear;
         private readonly string FILEADB = "adb.exe";
         private bool systemApp;
         private readonly List<Device> devices = new List<Device>();
-        private string currentDeviceSelected = string.Empty;
+        public static string currentDeviceSelected = string.Empty;
         private bool deviceWireless;
         private bool allApk;
         private string stringApk; 
@@ -35,7 +35,7 @@ namespace ATA_GUI
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-        public static readonly string CURRENTVERSION = "v1.8.1";
+        public static readonly string CURRENTVERSION = "v1.8.5";
         private static readonly Regex regex = new Regex(@"\s+");
 
         public static string RemoveWhiteSpaces(string str)
@@ -520,6 +520,7 @@ namespace ATA_GUI
             groupBoxRebootMenu.Enabled = enable;
             groupBoxAPKMenu.Enabled = enable;
             buttonDeviceLogs.Enabled = enable;
+            buttonTaskManager.Enabled = enable; 
         }
 
         private void adbDownload()
@@ -588,7 +589,6 @@ namespace ATA_GUI
             ToolTipGenerator(buttonConnectToIP, "Connect device", "Connect to your device with this IP");
             ToolTipGenerator(buttonDisconnectIP, "Disconnect device", "Disconnect from your device with this IP");
             ToolTipGenerator(buttonMobileScreenShare, "Share Device Screen", "Your device screen will be shared on your PC");
-            ToolTipGenerator(buttonKillAdb, "Kill Adb", "If adb is still running it will be killed");
             ToolTipGenerator(buttonLogClear, "Clear log", "Log will be clean from the box");
             ToolTipGenerator(buttonRR, "Reboot to recovery", "Your device will be rebooted to recovery");
             ToolTipGenerator(buttonRS, "Reboot to system", "Your device will be rebooted to system");
@@ -929,12 +929,6 @@ namespace ATA_GUI
                 exeTmp = "fastboot.exe";
             }
             return File.Exists(exeTmp) && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll");
-        }
-
-        private void buttonKillAdb_Click(object sender, EventArgs e)
-        {
-            systemCommand("taskkill /f /im "+ FILEADB);
-            MessageShowBox("Adb.exe killed!", 2);
         }
 
         private void buttonRebootToSystem_Click(object sender, EventArgs e)
@@ -1315,6 +1309,7 @@ namespace ATA_GUI
                 comboBoxDevices.Enabled = false;
                 buttonReloadDevicesList.Enabled = false;
                 buttonDeviceLogs.Enabled = false;
+                buttonTaskManager.Enabled = false;
                 buttonMobileScreenShare.Enabled = false;
                 disableEnableSystem(false);
             }
@@ -1520,11 +1515,6 @@ namespace ATA_GUI
             }
         }
 
-        private void labelHelp_MouseHover(object sender, EventArgs e)
-        {
-            labelHelp.BackColor = System.Drawing.ColorTranslator.FromHtml("#1f2121");
-        }
-
         private void labelHelp_MouseLeave(object sender, EventArgs e)
         {
             labelHelp.BackColor = System.Drawing.Color.Black;
@@ -1533,11 +1523,6 @@ namespace ATA_GUI
         private void labelSettings_MouseLeave(object sender, EventArgs e)
         {
             labelSettings.BackColor = System.Drawing.Color.Black;
-        }
-
-        private void labelSettings_MouseHover(object sender, EventArgs e)
-        {
-            labelSettings.BackColor = System.Drawing.ColorTranslator.FromHtml("#1f2121");
         }
 
         private void labelSettings_Click(object sender, EventArgs e)
@@ -1710,6 +1695,42 @@ namespace ATA_GUI
             allApk = false;
             systemApp = true;
 
+        }
+
+        private void toolStripMenuItemADBKill_Click(object sender, EventArgs e)
+        {
+            systemCommand("taskkill /f /im " + FILEADB);
+            MessageShowBox("Adb.exe killed!", 2);
+        }
+
+        private void labelTools_MouseEnter(object sender, EventArgs e)
+        {
+            labelTools.BackColor = System.Drawing.ColorTranslator.FromHtml("#1f2121");
+        }
+
+        private void labelTools_MouseLeave(object sender, EventArgs e)
+        {
+            labelTools.BackColor = System.Drawing.Color.Black;
+        }
+
+        private void labelHelp_MouseEnter(object sender, EventArgs e)
+        {
+            labelHelp.BackColor = System.Drawing.ColorTranslator.FromHtml("#1f2121");
+        }
+
+        private void labelSettings_MouseEnter(object sender, EventArgs e)
+        {
+            labelSettings.BackColor = System.Drawing.ColorTranslator.FromHtml("#1f2121");
+        }
+
+        private void labelTools_Click(object sender, EventArgs e)
+        {
+            contextMenuStripTools.Show(Cursor.Position);
+        }
+
+        private void buttonTaskManager_Click(object sender, EventArgs e)
+        {
+            (new TaskManager()).ShowDialog();
         }
     }
 }
