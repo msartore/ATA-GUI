@@ -148,10 +148,10 @@
     <Compile Include="Forms\UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TaskManager.cs">
+    <Compile Include="Forms\TaskManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TaskManager.Designer.cs">
+    <Compile Include="Forms\TaskManager.Designer.cs">
       <DependentUpon>TaskManager.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\DeviceLogs.resx">
@@ -198,7 +198,7 @@
     <EmbeddedResource Include="Forms\UpdateForm.resx">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TaskManager.resx">
+    <EmbeddedResource Include="Forms\TaskManager.resx">
       <DependentUpon>TaskManager.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

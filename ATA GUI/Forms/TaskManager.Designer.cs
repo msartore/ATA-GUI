@@ -36,14 +36,14 @@ namespace ATA_GUI
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonReloadTasks = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.appsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.textBoxTaskName = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabelTotalTasks = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.appsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
@@ -112,6 +112,32 @@ namespace ATA_GUI
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
             // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allToolStripMenuItem,
+            this.appsToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = global::ATA_GUI.Properties.Resources.icons8_filter_48;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 20);
+            this.toolStripDropDownButton1.Text = "Filter";
+            // 
+            // allToolStripMenuItem
+            // 
+            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.allToolStripMenuItem.Text = "All";
+            this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
+            // 
+            // appsToolStripMenuItem
+            // 
+            this.appsToolStripMenuItem.Name = "appsToolStripMenuItem";
+            this.appsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.appsToolStripMenuItem.Text = "Apps";
+            this.appsToolStripMenuItem.Click += new System.EventHandler(this.appsToolStripMenuItem_Click);
+            // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
@@ -132,7 +158,7 @@ namespace ATA_GUI
             this.toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSearch.Name = "toolStripButtonSearch";
             this.toolStripButtonSearch.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonSearch.Text = "toolStripButton1";
+            this.toolStripButtonSearch.Text = "Search";
             this.toolStripButtonSearch.Click += new System.EventHandler(this.toolStripButtonSearch_Click);
             // 
             // toolStripSeparator1
@@ -145,32 +171,6 @@ namespace ATA_GUI
             this.toolStripLabelTotalTasks.Name = "toolStripLabelTotalTasks";
             this.toolStripLabelTotalTasks.Size = new System.Drawing.Size(44, 15);
             this.toolStripLabelTotalTasks.Text = "Total: 0";
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.allToolStripMenuItem,
-            this.appsToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = global::ATA_GUI.Properties.Resources.icons8_filter_48;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 20);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButtonFilter";
-            // 
-            // allToolStripMenuItem
-            // 
-            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.allToolStripMenuItem.Text = "All";
-            this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
-            // 
-            // appsToolStripMenuItem
-            // 
-            this.appsToolStripMenuItem.Name = "appsToolStripMenuItem";
-            this.appsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.appsToolStripMenuItem.Text = "Apps";
-            this.appsToolStripMenuItem.Click += new System.EventHandler(this.appsToolStripMenuItem_Click);
             // 
             // label1
             // 

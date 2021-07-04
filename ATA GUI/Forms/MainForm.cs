@@ -733,7 +733,7 @@ namespace ATA_GUI
             {
                 if (currentDeviceSelected.Length > 0)
                 {
-                    adbFastbootCommandR(new string[] { " -s " + currentDeviceSelected + " tcpip 5555 " }, 0);
+                    adbFastbootCommandR(new [] { " -s " + currentDeviceSelected + " tcpip 5555 " }, 0);
                 }
                 string FILEName = "status.tmp";
                 systemCommand("adb connect " + textBoxIP.Text + " | findstr \"" + textBoxIP.Text + ":5555\" && if %ERRORLEVEL%==0 0 > " + FILEName);
@@ -748,6 +748,7 @@ namespace ATA_GUI
                     MessageShowBox("Failed to connect to " + textBoxIP.Text, 0);
                 }
                 File.Delete(FILEName);
+                reloadList();
                 syncFun(0);
             }
         }
@@ -770,6 +771,7 @@ namespace ATA_GUI
                 }
                 File.Delete(FILEName);
                 syncFun(0);
+                reloadList();
             }
         }
 
@@ -824,7 +826,7 @@ namespace ATA_GUI
             {
                 string fileName = textBoxDirFile.Text.Substring(textBoxDirFile.Text.LastIndexOf('\\') + 1);
                 LogWriteLine("Installing " + fileName);
-                string log = adbFastbootCommandR(new string[] { "sideload \"" + textBoxDirFile.Text + "\"" }, 0);
+                string log = adbFastbootCommandR(new [] { "sideload \"" + textBoxDirFile.Text + "\"" }, 0);
                 if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log=="")
                 {
                     LogWriteLine(fileName + " failed to flash");
@@ -1293,7 +1295,12 @@ namespace ATA_GUI
 
         private void buttonReloadDevicesList_Click(object sender, EventArgs e)
         {
-            if (!checkAdbFastboot(0)) 
+            reloadList();
+        }
+
+        private void reloadList()
+        {
+            if (!checkAdbFastboot(0))
             {
                 adbDownload();
             }
