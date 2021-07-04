@@ -35,7 +35,7 @@ namespace ATA_GUI
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-        public static readonly string CURRENTVERSION = "v1.8.5";
+        public static readonly string CURRENTVERSION = "v1.8.6";
         private static readonly Regex regex = new Regex(@"\s+");
 
         public static string RemoveWhiteSpaces(string str)
@@ -636,7 +636,7 @@ namespace ATA_GUI
                     {
                         deviceTmp = new Device();
                         
-                        if(Regex.Match(devicesTmp[i],  "^[a-zA-Z0-9]*$").Success && devicesTmp[i].Length > 2 && devicesTmp[i] != "recovery" && devicesTmp[i] != "device")
+                        if(Regex.Match(devicesTmp[i],  "^[a-zA-Z0-9.:]*$").Success && devicesTmp[i].Length > 2 && devicesTmp[i] != "recovery" && devicesTmp[i] != "device")
                         {
                             deviceTmp.Name = adbFastbootCommandR(new[] { "-s " + Regex.Replace(devicesTmp[i], @"\s", "") + " shell getprop ro.product.model" }, 0);
                             deviceTmp.Serial = devicesTmp[i];
@@ -731,8 +731,11 @@ namespace ATA_GUI
         {
             if (textBoxIP.TextLength > 1)
             {
+                if (currentDeviceSelected.Length > 0)
+                {
+                    adbFastbootCommandR(new string[] { " -s " + currentDeviceSelected + " tcpip 5555 " }, 0);
+                }
                 string FILEName = "status.tmp";
-                systemCommand("adb tcpip 5555");
                 systemCommand("adb connect " + textBoxIP.Text + " | findstr \"" + textBoxIP.Text + ":5555\" && if %ERRORLEVEL%==0 0 > " + FILEName);
                 if (File.Exists(FILEName))
                 {
