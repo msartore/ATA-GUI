@@ -77,7 +77,7 @@ namespace ATA_GUI
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(197, 14);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ATA GUI (Advance Tool for Android™)";
+            this.label1.Text = "ATA-GUI (Advance Tool for Android™)";
             // 
             // groupBox2
             // 

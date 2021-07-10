@@ -1755,7 +1755,7 @@ namespace ATA_GUI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ATA GUI";
+            this.Text = "ATA-GUI";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.groupBoxDeviceInfo.ResumeLayout(false);

@@ -57,7 +57,7 @@ jobs:
         tag=$(git describe --tags --abbrev=0)
         release_name="ATA-GUI_$tag"
         release_path="D:/a/ATA-GUI/ATA-GUI/ATA-GUI/bin/Release/"
-        7z a -tzip "${release_name}.zip" "${release_path}Newtonsoft.Json.dll" "${release_path}ATA GUI.exe" "${release_path}DotNetZip.dll" "D:/a/ATA-GUI/ATA-GUI/LICENSE"
+        7z a -tzip "${release_name}.zip" "${release_path}Newtonsoft.Json.dll" "${release_path}ATA-GUI.exe" "${release_path}DotNetZip.dll" "D:/a/ATA-GUI/ATA-GUI/LICENSE"
       
   
     - name: Get Previous tag

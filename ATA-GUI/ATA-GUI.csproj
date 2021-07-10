@@ -7,7 +7,7 @@
     <ProjectGuid>{21B03755-439E-47E7-B115-DACFA87D8079}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>ATA_GUI</RootNamespace>
-    <AssemblyName>ATA GUI</AssemblyName>
+    <AssemblyName>ATA-GUI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

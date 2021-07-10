@@ -30,7 +30,7 @@ namespace ATA_GUI
                     {
                         using (StreamWriter sw = File.CreateText(ataUFileName))
                         {
-                            sw.WriteLine("@echo off\nTITLE ATA GUI Updater\ntaskkill /f /im \"ATA GUI.exe\"\ndel \"ATA GUI.exe\"\ndel ATAUpdate.zip\ncd ATAUpdate\ndel ATAUpdater.bat\nmove /y * ../\ncd ..\nrmdir ATAUpdate\nstart \"\" \"ATA GUI.exe\"\nexit");
+                            sw.WriteLine("@echo off\nTITLE ATA-GUI Updater\ntaskkill /f /im \"ATA-GUI.exe\"\ndel \"ATA-GUI.exe\"\ndel ATAUpdate.zip\ncd ATAUpdate\ndel ATAUpdater.bat\nmove /y * ../\ncd ..\nrmdir ATAUpdate\nstart \"\" \"ATA-GUI.exe\"\nexit");
                         }
                     }
                     labelLog.Text = "Downloading update...";
@@ -56,7 +56,7 @@ namespace ATA_GUI
                     using (ZipFile zip = ZipFile.Read(ataZipFileName))
                     {
                         MainForm.systemCommand("mkdir ATAUpdate");
-                        zip.ExtractAll(Application.ExecutablePath.Replace("\\ATA GUI.exe", "") + "\\ATAUpdate");
+                        zip.ExtractAll(Application.ExecutablePath.Replace("\\ATA-GUI.exe", "") + "\\ATAUpdate");
                     }
                     UpdateProgressBar(2);
                     labelLog.Text = "Starting to update...";

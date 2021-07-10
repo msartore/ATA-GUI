@@ -127,7 +127,7 @@ namespace ATA_GUI
             this.MaximizeBox = false;
             this.Name = "Disclaimer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ATA GUI Licence Agreement";
+            this.Text = "ATA-GUI Licence Agreement";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
