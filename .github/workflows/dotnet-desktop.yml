@@ -67,7 +67,7 @@ jobs:
     - name: Create Release
       uses: ncipollo/release-action@v1.8.6
       with:
-        artifacts: ATA-GUI*
+        artifacts: ATA-GUI_*
         name: ${{steps.previoustag.outputs.tag}}
         tag: ${{steps.previoustag.outputs.tag}}
         token: ${{ secrets.GITHUB_TOKEN }}
