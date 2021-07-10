@@ -1,0 +1,73 @@
+name: .NET Core Desktop
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    environment: NuGet
+
+    strategy:
+      matrix:
+        configuration: [Release]
+
+    runs-on: windows-latest  
+                            
+    env:
+      Solution_Name: ATA-GUI.sln
+      
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+        
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.2
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+    
+    - name: Restore NuGet packages
+      run: nuget restore $env:Solution_Name
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+      
+    - name: Build the solution
+      run: msbuild $env:Solution_Name /p:Configuration=$env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+        
+    - name: Prepare package
+      shell: bash
+      run: |
+        tag=$(git describe --tags --abbrev=0)
+        release_name="ATA-GUI_$tag"
+        release_path="D:/a/ATA-GUI/ATA-GUI/ATA-GUI/bin/Release/"
+        7z a -tzip "${release_name}.zip" "${release_path}Newtonsoft.Json.dll" "${release_path}ATA GUI.exe" "${release_path}DotNetZip.dll" "D:/a/ATA-GUI/ATA-GUI/LICENSE"
+      
+  
+    - name: Get Previous tag
+      id: previoustag
+      uses: "WyriHaximus/github-action-get-previous-tag@v1"
+      
+    - name: Create Release
+      uses: ncipollo/release-action@v1.8.6
+      with:
+        artifacts: ATA-GUI*
+        name: ${{steps.previoustag.outputs.tag}}
+        tag: ${{steps.previoustag.outputs.tag}}
+        token: ${{ secrets.GITHUB_TOKEN }}
