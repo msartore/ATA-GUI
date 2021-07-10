@@ -18,25 +18,26 @@ namespace ATA_GUI
 {
     public partial class MainForm : Form
     {
-        public static readonly List<string> arrayApks = new List<string>();
-        private static readonly int WM_NCLBUTTONDOWN = 0xA1;
-        private static readonly int HT_CAPTION = 0x2;
-        private bool textboxClear;
-        private readonly string FILEADB = "adb.exe";
-        private bool systemApp;
-        private readonly List<Device> devices = new List<Device>();
-        public static string currentDeviceSelected = string.Empty;
-        private bool deviceWireless;
-        private bool allApk;
-        private string stringApk; 
-        private string stringApkS;
-        private bool connected = true;
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
+
         public static readonly string CURRENTVERSION = "v1.8.7";
+        public static readonly List<string> arrayApks = new List<string>();
+        private static readonly int WM_NCLBUTTONDOWN = 0xA1;
+        private static readonly int HT_CAPTION = 0x2;
         private static readonly Regex regex = new Regex(@"\s+");
+        private bool textboxClear;
+        private bool connected = true;
+        private bool systemApp;
+        private bool deviceWireless;
+        private bool allApk;
+        public static string currentDeviceSelected = string.Empty;
+        private readonly string FILEADB = "adb.exe";
+        private readonly List<Device> devices = new List<Device>();
+        private string stringApk; 
+        private string stringApkS;
 
         public static string RemoveWhiteSpaces(string str)
         {
@@ -729,28 +730,7 @@ namespace ATA_GUI
 
         private void buttonConnectToIP_Click(object sender, EventArgs e)
         {
-            if (textBoxIP.TextLength > 1)
-            {
-                if (currentDeviceSelected.Length > 0)
-                {
-                    adbFastbootCommandR(new [] { " -s " + currentDeviceSelected + " tcpip 5555 " }, 0);
-                }
-                string FILEName = "status.tmp";
-                systemCommand("adb connect " + textBoxIP.Text + " | findstr \"" + textBoxIP.Text + ":5555\" && if %ERRORLEVEL%==0 0 > " + FILEName);
-                if (File.Exists(FILEName))
-                {
-                    MessageShowBox("connected to " + textBoxIP.Text, 2);
-                    buttonConnectToIP.Enabled = false;
-                    buttonDisconnectIP.Enabled = true;
-                }
-                else
-                {
-                    MessageShowBox("Failed to connect to " + textBoxIP.Text, 0);
-                }
-                File.Delete(FILEName);
-                reloadList();
-                syncFun(0);
-            }
+            backgroundWorkerADBConnect.RunWorkerAsync();
         }
 
         private void buttonDisconnectIP_Click(object sender, EventArgs e)
@@ -1741,6 +1721,48 @@ namespace ATA_GUI
         private void buttonTaskManager_Click(object sender, EventArgs e)
         {
             (new TaskManager()).ShowDialog();
+        }
+
+        private void backgroundWorkerADBConnect_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            int deviceCountTmp = devices.Count; 
+            string ip = string.Empty;
+
+            Invoke((Action)delegate
+            {
+                ip = textBoxIP.Text;
+            });
+
+            if (ip.Length > 1)
+            {
+                if (currentDeviceSelected.Length > 0)
+                {
+                    adbFastbootCommandR(new[] { " -s " + currentDeviceSelected + " tcpip 5555 " }, 0);
+                }
+
+                systemCommand("adb connect " + ip);
+
+                Invoke((Action)delegate
+                {
+                    reloadList();
+                });
+
+                if (deviceCountTmp < devices.Count)
+                {
+                    MessageShowBox("connected to " + ip, 2);
+                    Invoke((Action)delegate
+                    {
+                        buttonConnectToIP.Enabled = false;
+                        buttonDisconnectIP.Enabled = true;
+                    });
+                }
+                else
+                {
+                    MessageShowBox("Failed to connect to " + ip, 0);
+                }
+                
+                syncFun(3);
+            }
         }
     }
 }

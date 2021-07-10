@@ -185,6 +185,7 @@ namespace ATA_GUI
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemADBKill = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonTaskManager = new System.Windows.Forms.Button();
+            this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -1285,40 +1286,40 @@ namespace ATA_GUI
             this.uninstalledAppToolStripMenuItem,
             this.disabledAppToolStripMenuItem});
             this.contextMenuStripFilterBy.Name = "contextMenuStripFilterBy";
-            this.contextMenuStripFilterBy.Size = new System.Drawing.Size(181, 136);
+            this.contextMenuStripFilterBy.Size = new System.Drawing.Size(164, 114);
             // 
             // allToolStripMenuItem
             // 
             this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.allToolStripMenuItem.Text = "All";
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
             // 
             // systemAppToolStripMenuItem1
             // 
             this.systemAppToolStripMenuItem1.Name = "systemAppToolStripMenuItem1";
-            this.systemAppToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.systemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             this.systemAppToolStripMenuItem1.Text = "System App";
             this.systemAppToolStripMenuItem1.Click += new System.EventHandler(this.systemAppToolStripMenuItem1_Click);
             // 
             // nonSystemAppToolStripMenuItem1
             // 
             this.nonSystemAppToolStripMenuItem1.Name = "nonSystemAppToolStripMenuItem1";
-            this.nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             this.nonSystemAppToolStripMenuItem1.Text = "Non System App";
             this.nonSystemAppToolStripMenuItem1.Click += new System.EventHandler(this.nonSystemAppToolStripMenuItem1_Click);
             // 
             // uninstalledAppToolStripMenuItem
             // 
             this.uninstalledAppToolStripMenuItem.Name = "uninstalledAppToolStripMenuItem";
-            this.uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.uninstalledAppToolStripMenuItem.Text = "Uninstalled App";
             this.uninstalledAppToolStripMenuItem.Click += new System.EventHandler(this.uninstalledAppToolStripMenuItem_Click);
             // 
             // disabledAppToolStripMenuItem
             // 
             this.disabledAppToolStripMenuItem.Name = "disabledAppToolStripMenuItem";
-            this.disabledAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.disabledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.disabledAppToolStripMenuItem.Text = "Disabled App";
             this.disabledAppToolStripMenuItem.Visible = false;
             this.disabledAppToolStripMenuItem.Click += new System.EventHandler(this.disabledAppToolStripMenuItem_Click);
@@ -1734,6 +1735,10 @@ namespace ATA_GUI
             this.buttonTaskManager.UseVisualStyleBackColor = false;
             this.buttonTaskManager.Click += new System.EventHandler(this.buttonTaskManager_Click);
             // 
+            // backgroundWorkerADBConnect
+            // 
+            this.backgroundWorkerADBConnect.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerADBConnect_DoWork);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1955,6 +1960,7 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemADBKill;
         private System.Windows.Forms.Button buttonTaskManager;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerADBConnect;
     }
 }
 
