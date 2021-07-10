@@ -186,6 +186,7 @@ namespace ATA_GUI
             this.toolStripMenuItemADBKill = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonTaskManager = new System.Windows.Forms.Button();
             this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -1739,6 +1740,10 @@ namespace ATA_GUI
             // 
             this.backgroundWorkerADBConnect.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerADBConnect_DoWork);
             // 
+            // backgroundWorkerADBDisconnect
+            // 
+            this.backgroundWorkerADBDisconnect.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerADBDisconnect_DoWork);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1961,6 +1966,7 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemADBKill;
         private System.Windows.Forms.Button buttonTaskManager;
         private System.ComponentModel.BackgroundWorker backgroundWorkerADBConnect;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerADBDisconnect;
     }
 }
 

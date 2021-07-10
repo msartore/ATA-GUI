@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Drawing;
+using System.Threading;
 
 namespace ATA_GUI
 {
@@ -23,7 +24,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v1.8.7";
+        public static readonly string CURRENTVERSION = "v1.8.8";
         public static readonly List<string> arrayApks = new List<string>();
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
         private static readonly int HT_CAPTION = 0x2;
@@ -735,24 +736,7 @@ namespace ATA_GUI
 
         private void buttonDisconnectIP_Click(object sender, EventArgs e)
         {
-            if (textBoxIP.TextLength > 1)
-            {
-                string FILEName = "status.tmp";
-                systemCommand("adb disconnect " + textBoxIP.Text + " | findstr \"disconnect\" && if %ERRORLEVEL%==0 0 > " + FILEName);
-                if (File.Exists(FILEName))
-                {
-                    MessageShowBox(textBoxIP.Text + " disconnected", 2);
-                    buttonConnectToIP.Enabled = true;
-                    buttonDisconnectIP.Enabled = false;
-                }
-                else
-                {
-                    MessageShowBox(textBoxIP.Text + "Failed to disconnect", 0);
-                }
-                File.Delete(FILEName);
-                syncFun(0);
-                reloadList();
-            }
+            backgroundWorkerADBDisconnect.RunWorkerAsync();
         }
 
         private void appFunc(string command1, string command2, int type)
@@ -1730,7 +1714,7 @@ namespace ATA_GUI
 
             Invoke((Action)delegate
             {
-                ip = textBoxIP.Text;
+                ip = textBoxIP.Text.Trim();
             });
 
             if (ip.Length > 1)
@@ -1741,6 +1725,8 @@ namespace ATA_GUI
                 }
 
                 systemCommand("adb connect " + ip);
+
+                Thread.Sleep(1000);
 
                 Invoke((Action)delegate
                 {
@@ -1761,6 +1747,45 @@ namespace ATA_GUI
                     MessageShowBox("Failed to connect to " + ip, 0);
                 }
                 
+                syncFun(3);
+            }
+        }
+
+        private void backgroundWorkerADBDisconnect_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            int deviceCountTmp = devices.Count;
+            string ip = string.Empty;
+
+            Invoke((Action)delegate
+            {
+                ip = textBoxIP.Text.Trim();
+            });
+
+            if (ip.Length > 1)
+            {
+                systemCommand("adb disconnect " + ip);
+
+                Thread.Sleep(1000);
+
+                Invoke((Action)delegate
+                {
+                    reloadList();
+                });
+
+                if (deviceCountTmp > devices.Count)
+                {
+                    MessageShowBox( ip + " disconnected", 2);
+                    Invoke((Action)delegate
+                    {
+                        buttonConnectToIP.Enabled = true;
+                        buttonDisconnectIP.Enabled = false;
+                    });
+                }
+                else
+                {
+                    MessageShowBox(ip + "Failed to disconnect", 0);
+                }
+
                 syncFun(3);
             }
         }
