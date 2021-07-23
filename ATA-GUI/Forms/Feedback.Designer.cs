@@ -117,7 +117,7 @@ namespace ATA_GUI
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ATA_GUI.Properties.Resources.dogecoin;
-            this.pictureBox1.Location = new System.Drawing.Point(119, 288);
+            this.pictureBox1.Location = new System.Drawing.Point(116, 288);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(41, 49);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -137,7 +137,7 @@ namespace ATA_GUI
             // pictureBox3
             // 
             this.pictureBox3.Image = global::ATA_GUI.Properties.Resources.icons8_ethereum_48;
-            this.pictureBox3.Location = new System.Drawing.Point(73, 288);
+            this.pictureBox3.Location = new System.Drawing.Point(68, 288);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(40, 49);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

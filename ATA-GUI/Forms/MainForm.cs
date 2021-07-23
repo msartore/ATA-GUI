@@ -24,7 +24,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v1.8.8";
+        public static readonly string CURRENTVERSION = "v1.8.9";
         public static readonly List<string> arrayApks = new List<string>();
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
         private static readonly int HT_CAPTION = 0x2;
@@ -731,12 +731,26 @@ namespace ATA_GUI
 
         private void buttonConnectToIP_Click(object sender, EventArgs e)
         {
-            backgroundWorkerADBConnect.RunWorkerAsync();
+            if(!backgroundWorkerADBConnect.IsBusy)
+            {
+                backgroundWorkerADBConnect.RunWorkerAsync();
+            }
+            else
+            {
+                MessageShowBox("Wait, process still running", 1);
+            }
         }
 
         private void buttonDisconnectIP_Click(object sender, EventArgs e)
         {
-            backgroundWorkerADBDisconnect.RunWorkerAsync();
+            if (!backgroundWorkerADBConnect.IsBusy)
+            {
+                backgroundWorkerADBDisconnect.RunWorkerAsync();
+            }
+            else
+            {
+                MessageShowBox("Wait, process still running", 1);
+            }
         }
 
         private void appFunc(string command1, string command2, int type)
