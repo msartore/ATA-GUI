@@ -781,39 +781,38 @@ namespace ATA_GUI
             }
         }
 
-        private void buttonSearchFile_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonInstallZip_Click(object sender, EventArgs e)
         {
-            if (textBoxDirFile.TextLength > 0)
+            if (!backgroundWorkerZip.IsBusy)
             {
-                backgroundWorkerZip.RunWorkerAsync();
+                if (textBoxDirFile.TextLength > 0)
+                {
+                    backgroundWorkerZip.RunWorkerAsync();
+                }
+                else
+                {
+                    MessageShowBox("No zip selected", 1);
+                }
             }
             else
             {
-                MessageShowBox("No zip selected", 1);
+                MessageShowBox("Wait, process still running", 1);
             }
         }
 
         private void backgroundWorkerZip_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            Invoke((Action)delegate
+            string fileName = textBoxDirFile.Text.Substring(textBoxDirFile.Text.LastIndexOf('\\') + 1);
+            LogWriteLine("Installing " + fileName);
+            string log = adbFastbootCommandR(new [] { "sideload \"" + textBoxDirFile.Text + "\"" }, 0);
+            if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log=="")
             {
-                string fileName = textBoxDirFile.Text.Substring(textBoxDirFile.Text.LastIndexOf('\\') + 1);
-                LogWriteLine("Installing " + fileName);
-                string log = adbFastbootCommandR(new [] { "sideload \"" + textBoxDirFile.Text + "\"" }, 0);
-                if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log=="")
-                {
-                    LogWriteLine(fileName + " failed to flash");
-                }
-                else
-                {
-                    LogWriteLine(fileName + " flashed");
-                }
-            });
+                LogWriteLine(fileName + " failed to flash");
+            }
+            else
+            {
+                LogWriteLine(fileName + " flashed");
+            }
         }
 
         private void buttonSearchFileFastboot_Click(object sender, EventArgs e)

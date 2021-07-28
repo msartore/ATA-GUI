@@ -1658,13 +1658,13 @@ namespace ATA_GUI
             this.APKMirrorToolStripMenuItem,
             this.fDroidToolStripMenuItem});
             this.contextMenuStripSearch.Name = "contextMenuStripSearch";
-            this.contextMenuStripSearch.Size = new System.Drawing.Size(142, 114);
+            this.contextMenuStripSearch.Size = new System.Drawing.Size(181, 136);
             // 
             // duckduckgoToolStripMenuItem
             // 
             this.duckduckgoToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_duckduckgo_48;
             this.duckduckgoToolStripMenuItem.Name = "duckduckgoToolStripMenuItem";
-            this.duckduckgoToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.duckduckgoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.duckduckgoToolStripMenuItem.Text = "Duckduckgo";
             this.duckduckgoToolStripMenuItem.Click += new System.EventHandler(this.duckduckgoToolStripMenuItem_Click);
             // 
@@ -1672,7 +1672,7 @@ namespace ATA_GUI
             // 
             this.googleToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_google_48;
             this.googleToolStripMenuItem.Name = "googleToolStripMenuItem";
-            this.googleToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.googleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.googleToolStripMenuItem.Text = "Google";
             this.googleToolStripMenuItem.Click += new System.EventHandler(this.googleToolStripMenuItem_Click);
             // 
@@ -1680,7 +1680,7 @@ namespace ATA_GUI
             // 
             this.playMarketToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.playmarketicon;
             this.playMarketToolStripMenuItem.Name = "playMarketToolStripMenuItem";
-            this.playMarketToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.playMarketToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.playMarketToolStripMenuItem.Text = "Play Market";
             this.playMarketToolStripMenuItem.Click += new System.EventHandler(this.playMarketToolStripMenuItem_Click);
             // 
@@ -1688,7 +1688,7 @@ namespace ATA_GUI
             // 
             this.APKMirrorToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.apkmirror;
             this.APKMirrorToolStripMenuItem.Name = "APKMirrorToolStripMenuItem";
-            this.APKMirrorToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.APKMirrorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.APKMirrorToolStripMenuItem.Text = "APK Mirror";
             this.APKMirrorToolStripMenuItem.Click += new System.EventHandler(this.APKMirrorToolStripMenuItem_Click);
             // 
@@ -1696,7 +1696,7 @@ namespace ATA_GUI
             // 
             this.fDroidToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.fdroidlogo;
             this.fDroidToolStripMenuItem.Name = "fDroidToolStripMenuItem";
-            this.fDroidToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.fDroidToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fDroidToolStripMenuItem.Text = "F-Droid";
             this.fDroidToolStripMenuItem.Click += new System.EventHandler(this.fDroidToolStripMenuItem_Click);
             // 
