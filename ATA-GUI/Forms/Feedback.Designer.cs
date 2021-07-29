@@ -146,6 +146,7 @@ namespace ATA_GUI
             // 
             // pictureBox4
             // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Image = global::ATA_GUI.Properties.Resources.icons8_bitcoin_48;
             this.pictureBox4.Location = new System.Drawing.Point(16, 288);
             this.pictureBox4.Name = "pictureBox4";
@@ -273,6 +274,7 @@ namespace ATA_GUI
             this.Name = "Feedback";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Send Feedback ";
+            this.Load += new System.EventHandler(this.Feedback_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
