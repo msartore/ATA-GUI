@@ -24,7 +24,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v1.9.1";
+        public static readonly string CURRENTVERSION = "v1.9.2_Pre-release";
         public static readonly List<string> arrayApks = new List<string>();
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
         private static readonly int HT_CAPTION = 0x2;
@@ -33,12 +33,11 @@ namespace ATA_GUI
         private bool connected = true;
         private bool systemApp;
         private bool deviceWireless;
-        private bool allApk;
         public static string currentDeviceSelected = string.Empty;
         private readonly string FILEADB = "adb.exe";
         private readonly List<Device> devices = new List<Device>();
-        private string stringApk; 
-        private string stringApkS;
+        private string stringApk;
+        private string user;
 
         public static string RemoveWhiteSpaces(string str)
         {
@@ -345,6 +344,14 @@ namespace ATA_GUI
                                                 buttonDisconnectIP.Enabled = false;
                                                 deviceWireless = false;
                                             }
+                                            if(Int32.Parse(labelAV.Text)>7)
+                                            {
+                                                labelUser.Text = user = Regex.Replace(adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell am get-current-user" }, 0), @"\t|\n|\r", "");
+                                            }
+                                            else
+                                            {
+                                                MessageShowBox("Feature currently not avaiable for device under android 8", 2);
+                                            }
                                             LogWriteLine("Device info extracted");
                                             disableEnableSystem(true);
                                         });
@@ -369,11 +376,11 @@ namespace ATA_GUI
                                     string[] command;
                                     if (!systemApp)
                                     {
-                                        command = new[] { "-s " + currentDeviceSelected + " shell pm list packages -3" };
+                                        command = new[] { "-s " + currentDeviceSelected + " shell pm list packages -3 --user " + user };
                                     }
                                     else
                                     {
-                                        command = new[] { "-s " + currentDeviceSelected + " shell pm list packages -s" };
+                                        command = new[] { "-s " + currentDeviceSelected + " shell pm list packages -s --user " + user };
                                     }
                                     if ((stringApk = adbFastbootCommandR(command,0))!=null)
                                     {
@@ -395,7 +402,7 @@ namespace ATA_GUI
                                         checkedListBoxApp.Items.Clear();
                                     });
                                     LogWriteLine("Loading apps...");
-                                    if ((stringApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -3"}, 0)) != null)
+                                    if ((stringApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -3 --user " + user }, 0)) != null)
                                     {
                                         arrayApkTmp.AddRange(stringApk.Split('\n'));
                                     }
@@ -404,9 +411,9 @@ namespace ATA_GUI
                                         MessageShowBox("Error during apk loading", 0);
                                         break;
                                     }
-                                    if ((stringApkS = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -s" }, 0)) != null)
+                                    if ((stringApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -s --user " + user }, 0)) != null)
                                     {
-                                        arrayApkTmp.AddRange(stringApkS.Split('\n'));
+                                        arrayApkTmp.AddRange(stringApk.Split('\n'));
                                         sortApks(arrayApkTmp.ToArray());
                                     }
                                     else
@@ -426,9 +433,9 @@ namespace ATA_GUI
                                         checkedListBoxApp.Items.Clear();
                                     });
                                     LogWriteLine("Loading apps...");
-                                    if ((stringApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -u" }, 0)) != null)
+                                    if ((stringApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages -u --user " + user }, 0)) != null)
                                     {
-                                        if ((stringInstalledApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages" }, 0)) != null)
+                                        if ((stringInstalledApk = adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " shell pm list packages --user " + user }, 0)) != null)
                                         {
                                             List<string> diff;
                                             IEnumerable<string> set1 = stringApk.Split('\n').Distinct();
@@ -709,12 +716,12 @@ namespace ATA_GUI
             if (checkBoxSelectAll.Checked)
             {
                 for (int i = 0; i < checkedListBoxApp.Items.Count; i++)
-                    checkedListBoxApp.SetItemCheckState(i, System.Windows.Forms.CheckState.Checked);
+                    checkedListBoxApp.SetItemCheckState(i, CheckState.Checked);
             }
             else
             {
                 for (int i = 0; i < checkedListBoxApp.Items.Count; i++)
-                    checkedListBoxApp.SetItemCheckState(i, System.Windows.Forms.CheckState.Unchecked);
+                    checkedListBoxApp.SetItemCheckState(i, CheckState.Unchecked);
             }
             labelSelectedAppCount.Text = "Selected App: " + checkedListBoxApp.CheckedItems.Count;
         }
@@ -757,10 +764,10 @@ namespace ATA_GUI
         {
             if (checkedListBoxApp.CheckedItems.Count > 0)
             {
-                foreach (Object list in checkedListBoxApp.CheckedItems)
+                foreach (Object current in checkedListBoxApp.CheckedItems)
                 {
                     string log;
-                    if((log = adbFastbootCommandR(new [] { " -s " + currentDeviceSelected + " " + command1 + list.ToString() + command2 }, 0))!=null)
+                    if((log = adbFastbootCommandR(new [] { " -s " + currentDeviceSelected + " " + command1 + "--user " + user + " " + current.ToString() + command2 }, 0))!=null)
                     {
                         if (type == 1)
                         {
@@ -968,14 +975,7 @@ namespace ATA_GUI
         {
             try
             {
-                if (!allApk)
-                {
-                    syncFun(2);
-                }
-                else
-                {
-                    syncFun(4);
-                }
+                syncFun(4);
             }
             catch (Exception ex)
             {
@@ -998,7 +998,7 @@ namespace ATA_GUI
                     try
                     {
                         LogWriteLine("Installing " + file.Substring(file.LastIndexOf('\\') + 1));
-                        systemCommand("adb install -r \"" + file + "\"");
+                        systemCommand("adb install -r  --user " + user + " \"" + file + "\"");
                         LogWriteLine(file.Substring(file.LastIndexOf('\\') + 1) + " installed");
                     }
                     catch (Exception ex)
@@ -1011,62 +1011,21 @@ namespace ATA_GUI
 
         public void uninstaller(CheckedListBox.CheckedItemCollection foundPackageList)
         {
-            if (allApk)
+            string command = "adb -s " + currentDeviceSelected + " shell pm uninstall -k --user " + user + " ";
+            LoadingForm load;
+            List<string> arrayApkSelect = new List<string>();
+            foreach (Object list in foundPackageList)
             {
-                LoadingForm load;
-                foreach (Object list in foundPackageList)
-                {
-                    if (stringApk.Contains(list.ToString()))
-                    {
-                        load = new LoadingForm(new List<string> { list.ToString() }, "adb -s " + currentDeviceSelected + " uninstall ", "Uninstalled:");
-                        load.ShowDialog();
-                        if (load.DialogResult != DialogResult.OK)
-                        {
-                            MessageShowBox("Error during uninstallation process", 0);
-                        }
-                    }
-                    else if (stringApkS.Contains(list.ToString()))
-                    {
-                        load = new LoadingForm(new List<string> { list.ToString() }, "adb -s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ", "Uninstalled:");
-                        load.ShowDialog();
-                        if (load.DialogResult != DialogResult.OK)
-                        {
-                            MessageShowBox("Error during uninstallation process", 0);
-                        }
-                    }
-                    else
-                    {
-                        MessageShowBox("Error during uninstallation process", 0);
-                    }
-                }
-                syncFun(4);
-                checkBoxSelectAll.Checked = false;
+                arrayApkSelect.Add(list.ToString());
             }
-            else
+            load = new LoadingForm(arrayApkSelect, command, "Uninstalled:");
+            load.ShowDialog();
+            if (load.DialogResult != DialogResult.OK)
             {
-                string command;
-                List<string> arrayApkSelect = new List<string>();
-                if (!systemApp)
-                {
-                    command = "adb -s " + currentDeviceSelected + " uninstall ";
-                }
-                else
-                {
-                    command = "adb -s " + currentDeviceSelected + " shell pm uninstall -k --user 0 ";
-                }
-                foreach (Object list in foundPackageList)
-                {
-                    arrayApkSelect.Add(list.ToString());
-                }
-                LoadingForm load = new LoadingForm(arrayApkSelect, command, "Uninstalled:");
-                load.ShowDialog();
-                if (load.DialogResult != DialogResult.OK)
-                {
-                    MessageShowBox("Error during uninstallation process", 0);
-                }
-                syncFun(2);
-                checkBoxSelectAll.Checked = false;
+                MessageShowBox("Error during uninstallation process", 0);
             }
+            syncFun(4);
+            checkBoxSelectAll.Checked = false;
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -1098,15 +1057,15 @@ namespace ATA_GUI
                 switch (packageMenu.DialogResult1)
                 {
                     case 1:
-                        command = "adb -s " + currentDeviceSelected + " shell pm enable ";
+                        command = "adb -s " + currentDeviceSelected + " shell pm enable --user " + user + " ";
                         commandName = "Enabled:";
                         break;
                     case 0:
-                        command = "adb -s " + currentDeviceSelected + " shell pm disable-user --user 0 ";
+                        command = "adb -s " + currentDeviceSelected + " shell pm disable-user --user " + user + " ";
                         commandName = "Disabled:";
                         break;
                     case 2:
-                        command = "adb -s " + currentDeviceSelected + " shell pm clear ";
+                        command = "adb -s " + currentDeviceSelected + " shell pm clear --user " + user + " ";
                         commandName = "Cleared:";
                         break;
                     case -1:
@@ -1145,7 +1104,6 @@ namespace ATA_GUI
             toolStripButtonPermissionMenu.Enabled = true;
             toolStripButtonPackageManager.Enabled = true;
             toolStripButtonBloatwareDetecter.Enabled = true;
-            allApk = false;
             systemApp = false;
             syncFun(2);
         }
@@ -1157,7 +1115,6 @@ namespace ATA_GUI
             toolStripButtonPermissionMenu.Enabled = true;
             toolStripButtonPackageManager.Enabled = true;
             toolStripButtonBloatwareDetecter.Enabled = true;
-            allApk = false;
             systemApp = true;
             syncFun(2);
         }
@@ -1169,7 +1126,6 @@ namespace ATA_GUI
             toolStripButtonPermissionMenu.Enabled = true;
             toolStripButtonPackageManager.Enabled = true;
             toolStripButtonBloatwareDetecter.Enabled = true;
-            allApk = true;
             syncFun(4);
         }
 
@@ -1201,7 +1157,7 @@ namespace ATA_GUI
                     { 
                         if (File.Exists(fileLoc))
                         {
-                            if(adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " install -r \"" + fileLoc + "\"" },0) != null)
+                            if(adbFastbootCommandR(new[] { "-s " + currentDeviceSelected + " install -r --user " + user + " \"" + fileLoc + "\"" },0) != null)
                             {
                                 LogWriteLine(fileName+" installed!");
                                 MessageShowBox(fileName +" installed", 2);
@@ -1240,7 +1196,7 @@ namespace ATA_GUI
 
         private void checkGrantedPermissionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            appFunc("shell dumpsys package ", null, 1);
+            appFunc("shell dumpsys package --user " + user, null, 1);
         }
 
         private void groupBox2_DragDrop(object sender, DragEventArgs e)
@@ -1405,11 +1361,11 @@ namespace ATA_GUI
                 {
                     apps.Add(app.ToString());
                 }
-                LoadingForm load = new LoadingForm(apps, "adb -s " + currentDeviceSelected + " shell cmd package install-existing ", "Restored:");
+                LoadingForm load = new LoadingForm(apps, "adb -s " + currentDeviceSelected + " shell cmd package install-existing --user " + user + " ", "Restored:");
                 load.ShowDialog();
                 if (load.DialogResult != DialogResult.OK)
                 {
-                    MessageShowBox("Error during uninstallation process", 0);
+                    MessageShowBox("Error during restoring process", 0);
                 }
                 syncFun(5);
             }
@@ -1426,7 +1382,6 @@ namespace ATA_GUI
             toolStripButtonPermissionMenu.Enabled = false;
             toolStripButtonPackageManager.Enabled = false;
             toolStripButtonBloatwareDetecter.Enabled = false;
-            allApk = false;
             systemApp = false;
             syncFun(5);
         }
@@ -1679,9 +1634,7 @@ namespace ATA_GUI
             toolStripButtonPermissionMenu.Enabled = true;
             toolStripButtonPackageManager.Enabled = true;
             toolStripButtonBloatwareDetecter.Enabled = true;
-            allApk = false;
             systemApp = true;
-
         }
 
         private void toolStripMenuItemADBKill_Click(object sender, EventArgs e)
@@ -1692,22 +1645,22 @@ namespace ATA_GUI
 
         private void labelTools_MouseEnter(object sender, EventArgs e)
         {
-            labelTools.BackColor = System.Drawing.ColorTranslator.FromHtml("#1f2121");
+            labelTools.BackColor = ColorTranslator.FromHtml("#1f2121");
         }
 
         private void labelTools_MouseLeave(object sender, EventArgs e)
         {
-            labelTools.BackColor = System.Drawing.Color.Black;
+            labelTools.BackColor = Color.Black;
         }
 
         private void labelHelp_MouseEnter(object sender, EventArgs e)
         {
-            labelHelp.BackColor = System.Drawing.ColorTranslator.FromHtml("#1f2121");
+            labelHelp.BackColor = ColorTranslator.FromHtml("#1f2121");
         }
 
         private void labelSettings_MouseEnter(object sender, EventArgs e)
         {
-            labelSettings.BackColor = System.Drawing.ColorTranslator.FromHtml("#1f2121");
+            labelSettings.BackColor = ColorTranslator.FromHtml("#1f2121");
         }
 
         private void labelTools_Click(object sender, EventArgs e)

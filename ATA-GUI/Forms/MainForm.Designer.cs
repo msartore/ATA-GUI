@@ -35,6 +35,8 @@ namespace ATA_GUI
             this.buttonLogClear = new System.Windows.Forms.Button();
             this.backgroundWorkerSync = new System.ComponentModel.BackgroundWorker();
             this.groupBoxDeviceInfo = new System.Windows.Forms.GroupBox();
+            this.labelUser = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.labelStatus = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.labelIP = new System.Windows.Forms.Label();
@@ -248,6 +250,8 @@ namespace ATA_GUI
             // 
             // groupBoxDeviceInfo
             // 
+            this.groupBoxDeviceInfo.Controls.Add(this.labelUser);
+            this.groupBoxDeviceInfo.Controls.Add(this.label12);
             this.groupBoxDeviceInfo.Controls.Add(this.labelStatus);
             this.groupBoxDeviceInfo.Controls.Add(this.label4);
             this.groupBoxDeviceInfo.Controls.Add(this.labelIP);
@@ -272,6 +276,24 @@ namespace ATA_GUI
             this.groupBoxDeviceInfo.TabIndex = 32;
             this.groupBoxDeviceInfo.TabStop = false;
             this.groupBoxDeviceInfo.Text = "Device Info";
+            // 
+            // labelUser
+            // 
+            this.labelUser.AutoSize = true;
+            this.labelUser.Location = new System.Drawing.Point(86, 133);
+            this.labelUser.Name = "labelUser";
+            this.labelUser.Size = new System.Drawing.Size(65, 13);
+            this.labelUser.TabIndex = 19;
+            this.labelUser.Text = "UNKNOWN";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 133);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(35, 13);
+            this.label12.TabIndex = 18;
+            this.label12.Text = "User: ";
             // 
             // labelStatus
             // 
@@ -646,7 +668,7 @@ namespace ATA_GUI
             this.toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
             this.toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 20);
             this.toolStripButtonRestoreApp.Tag = "";
-            this.toolStripButtonRestoreApp.Text = "Restore App";
+            this.toolStripButtonRestoreApp.Text = "Restore App [Only system apps can be restored]";
             this.toolStripButtonRestoreApp.Click += new System.EventHandler(this.toolStripButtonRestoreApp_Click);
             // 
             // toolStripSeparator7
@@ -1705,20 +1727,20 @@ namespace ATA_GUI
             this.contextMenuStripTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
             this.contextMenuStripTools.Name = "contextMenuStripHelp";
-            this.contextMenuStripTools.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStripTools.Size = new System.Drawing.Size(98, 26);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemADBKill});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(97, 22);
             this.toolStripMenuItem1.Text = "ADB";
             // 
             // toolStripMenuItemADBKill
             // 
             this.toolStripMenuItemADBKill.Name = "toolStripMenuItemADBKill";
-            this.toolStripMenuItemADBKill.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemADBKill.Size = new System.Drawing.Size(116, 22);
             this.toolStripMenuItemADBKill.Text = "Kill ADB";
             this.toolStripMenuItemADBKill.Click += new System.EventHandler(this.toolStripMenuItemADBKill_Click);
             // 
@@ -1967,6 +1989,8 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonTaskManager;
         private System.ComponentModel.BackgroundWorker backgroundWorkerADBConnect;
         private System.ComponentModel.BackgroundWorker backgroundWorkerADBDisconnect;
+        private System.Windows.Forms.Label labelUser;
+        private System.Windows.Forms.Label label12;
     }
 }
 
