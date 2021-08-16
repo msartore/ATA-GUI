@@ -87,7 +87,9 @@ namespace ATA_GUI
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonInstallApp = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownInstallApkButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.installAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downgradeAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
             this.groupBoxADBNet = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -606,7 +608,7 @@ namespace ATA_GUI
             this.toolStripSeparator9,
             this.toolStripLabelTotalApps,
             this.toolStripSeparator8,
-            this.toolStripButtonInstallApp});
+            this.toolStripDropDownInstallApkButton});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
@@ -764,15 +766,31 @@ namespace ATA_GUI
             this.toolStripSeparator8.Name = "toolStripSeparator8";
             this.toolStripSeparator8.Size = new System.Drawing.Size(6, 23);
             // 
-            // toolStripButtonInstallApp
+            // toolStripDropDownInstallApkButton
             // 
-            this.toolStripButtonInstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonInstallApp.Image = global::ATA_GUI.Properties.Resources.icons8_software_installer_48;
-            this.toolStripButtonInstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonInstallApp.Name = "toolStripButtonInstallApp";
-            this.toolStripButtonInstallApp.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonInstallApp.Text = "Install App";
-            this.toolStripButtonInstallApp.Click += new System.EventHandler(this.toolStripButton3_Click);
+            this.toolStripDropDownInstallApkButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownInstallApkButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.installAppToolStripMenuItem,
+            this.downgradeAppToolStripMenuItem});
+            this.toolStripDropDownInstallApkButton.Image = global::ATA_GUI.Properties.Resources.icons8_software_installer_48;
+            this.toolStripDropDownInstallApkButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownInstallApkButton.Name = "toolStripDropDownInstallApkButton";
+            this.toolStripDropDownInstallApkButton.Size = new System.Drawing.Size(29, 20);
+            this.toolStripDropDownInstallApkButton.Text = "Install App";
+            // 
+            // installAppToolStripMenuItem
+            // 
+            this.installAppToolStripMenuItem.Name = "installAppToolStripMenuItem";
+            this.installAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.installAppToolStripMenuItem.Text = "Install App";
+            this.installAppToolStripMenuItem.Click += new System.EventHandler(this.installAppToolStripMenuItem_Click);
+            // 
+            // downgradeAppToolStripMenuItem
+            // 
+            this.downgradeAppToolStripMenuItem.Name = "downgradeAppToolStripMenuItem";
+            this.downgradeAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.downgradeAppToolStripMenuItem.Text = "Downgrade App";
+            this.downgradeAppToolStripMenuItem.Click += new System.EventHandler(this.downgradeAppToolStripMenuItem_Click);
             // 
             // checkedListBoxApp
             // 
@@ -1910,7 +1928,6 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem filterByToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton toolStripButtonInstallApp;
         private System.Windows.Forms.ToolStripButton toolStripButtonUninstallApp;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
@@ -1991,6 +2008,9 @@ namespace ATA_GUI
         private System.ComponentModel.BackgroundWorker backgroundWorkerADBDisconnect;
         private System.Windows.Forms.Label labelUser;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownInstallApkButton;
+        private System.Windows.Forms.ToolStripMenuItem installAppToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem downgradeAppToolStripMenuItem;
     }
 }
 

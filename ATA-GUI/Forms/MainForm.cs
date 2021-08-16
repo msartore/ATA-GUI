@@ -983,32 +983,6 @@ namespace ATA_GUI
             }
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            this.openFileDialogAPK.Filter = "Apk files *.Apk|*.apk;";
-            this.openFileDialogAPK.FileName = "";
-            this.openFileDialogAPK.Multiselect = true;
-            this.openFileDialogAPK.Title = "Select Apk";
-
-            DialogResult dr = this.openFileDialogAPK.ShowDialog();
-            if (dr == System.Windows.Forms.DialogResult.OK)
-            {
-                foreach (String file in openFileDialogAPK.FileNames)
-                {
-                    try
-                    {
-                        LogWriteLine("Installing " + file.Substring(file.LastIndexOf('\\') + 1));
-                        systemCommand("adb install -r  --user " + user + " \"" + file + "\"");
-                        LogWriteLine(file.Substring(file.LastIndexOf('\\') + 1) + " installed");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message);
-                    }
-                }
-            }
-        }
-
         public void uninstaller(CheckedListBox.CheckedItemCollection foundPackageList)
         {
             string command = "adb -s " + currentDeviceSelected + " shell pm uninstall -k --user " + user + " ";
@@ -1285,7 +1259,7 @@ namespace ATA_GUI
                             LogWriteLine("unzipping sdk platform tool...");
                             using (ZipFile zip = ZipFile.Read("sdkplatformtool.zip"))
                             {
-                                zip.ExtractAll(System.IO.Path.GetDirectoryName(Application.ExecutablePath));
+                                zip.ExtractAll(Path.GetDirectoryName(Application.ExecutablePath));
                             }
                             LogWriteLine("sdk platform tool extraced!");
                             LogWriteLine("Getting things ready...");
@@ -1433,7 +1407,7 @@ namespace ATA_GUI
                             LogWriteLine("unzipping scrcpy...");
                             using (ZipFile zip = ZipFile.Read("scrcpy.zip"))
                             {
-                                zip.ExtractAll(System.IO.Path.GetDirectoryName(Application.ExecutablePath), ExtractExistingFileAction.DoNotOverwrite);
+                                zip.ExtractAll(Path.GetDirectoryName(Application.ExecutablePath), ExtractExistingFileAction.DoNotOverwrite);
                             }
                             LogWriteLine("scrcpy Extracted!");
                             LogWriteLine("Getting things ready...");
@@ -1753,6 +1727,48 @@ namespace ATA_GUI
                 }
 
                 syncFun(3);
+            }
+        }
+
+        private void installAppToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            installApp("");
+        }
+
+        private void downgradeAppToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            installApp("-d");
+        }
+
+        private void installApp(string downgradeCommand)
+        {
+            this.openFileDialogAPK.Filter = "Apk files *.Apk|*.apk;";
+            this.openFileDialogAPK.FileName = "";
+            this.openFileDialogAPK.Multiselect = true;
+            this.openFileDialogAPK.Title = "Select Apk";
+
+            DialogResult dr = this.openFileDialogAPK.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                foreach (String file in openFileDialogAPK.FileNames)
+                {
+                    try
+                    {
+                        LogWriteLine("Installing " + file.Substring(file.LastIndexOf('\\') + 1));
+                        if (adbFastbootCommandR(new[] { "install -r " + downgradeCommand + " --user " + user + " \"" + file + "\"" }, 0).Contains("Success"))
+                        {
+                            LogWriteLine(file.Substring(file.LastIndexOf('\\') + 1) + " installed");
+                        }
+                        else
+                        {
+                            LogWriteLine(file.Substring(file.LastIndexOf('\\') + 1) + " not installed");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
             }
         }
     }
