@@ -738,8 +738,14 @@ namespace ATA_GUI
 
         private void buttonConnectToIP_Click(object sender, EventArgs e)
         {
-            if(!backgroundWorkerADBConnect.IsBusy)
+
+        }
+
+        private void connectToIp()
+        {
+            if (!backgroundWorkerADBConnect.IsBusy)
             {
+                LogWriteLine("Trying to connect to your device...");
                 backgroundWorkerADBConnect.RunWorkerAsync();
             }
             else
@@ -1769,6 +1775,14 @@ namespace ATA_GUI
                         MessageBox.Show("Error: " + ex.Message);
                     }
                 }
+            }
+        }
+
+        private void textBoxIP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                connectToIp();
             }
         }
     }

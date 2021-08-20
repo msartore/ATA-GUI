@@ -781,14 +781,14 @@ namespace ATA_GUI
             // installAppToolStripMenuItem
             // 
             this.installAppToolStripMenuItem.Name = "installAppToolStripMenuItem";
-            this.installAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.installAppToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.installAppToolStripMenuItem.Text = "Install App";
             this.installAppToolStripMenuItem.Click += new System.EventHandler(this.installAppToolStripMenuItem_Click);
             // 
             // downgradeAppToolStripMenuItem
             // 
             this.downgradeAppToolStripMenuItem.Name = "downgradeAppToolStripMenuItem";
-            this.downgradeAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.downgradeAppToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.downgradeAppToolStripMenuItem.Text = "Downgrade App";
             this.downgradeAppToolStripMenuItem.Click += new System.EventHandler(this.downgradeAppToolStripMenuItem_Click);
             // 
@@ -847,6 +847,7 @@ namespace ATA_GUI
             this.textBoxIP.Size = new System.Drawing.Size(129, 20);
             this.textBoxIP.TabIndex = 37;
             this.textBoxIP.Text = "192.168.";
+            this.textBoxIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxIP_KeyPress);
             // 
             // buttonConnectToIP
             // 
