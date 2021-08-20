@@ -24,8 +24,9 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v1.9.2_Pre-release";
+        public static readonly string CURRENTVERSION = "v1.9.2";
         public static readonly List<string> arrayApks = new List<string>();
+        public static readonly string IPFileName = "IPList.txt";
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
         private static readonly int HT_CAPTION = 0x2;
         private static readonly Regex regex = new Regex(@"\s+");
@@ -36,6 +37,7 @@ namespace ATA_GUI
         public static string currentDeviceSelected = string.Empty;
         private readonly string FILEADB = "adb.exe";
         private readonly List<Device> devices = new List<Device>();
+        private readonly List<string> IPList = new List<string>();
         private string stringApk;
         private string user;
 
@@ -320,12 +322,12 @@ namespace ATA_GUI
                                             {
                                                 if(arrayDeviceInfo[7].Length > 4)
                                                 {
-                                                    textBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
+                                                    comboBoxIP.Text = labelIP.Text = arrayDeviceInfo[7].Substring(arrayDeviceInfo[7].IndexOf("src") + 4);
                                                 }
                                                 if (labelIP.Text.Contains("t of devices attached") || arrayDeviceInfo[7].Length == 0)
                                                 {
                                                     labelIP.Text = "Not connected to a network";
-                                                    textBoxIP.Text = "";
+                                                    comboBoxIP.ResetText();
                                                     buttonConnectToIP.Enabled = false;
                                                     buttonDisconnectIP.Enabled = false;
                                                 }
@@ -608,6 +610,12 @@ namespace ATA_GUI
             ToolTipGenerator(groupBox2, "File Transfer", "Drop a file in this box and it will be trasfered in a new folder called ATA inside your device");
             ToolTipGenerator(groupBox6, "Apk Installer", "Drop an apk file and it will be installed inside your device");
 
+            if (File.Exists(IPFileName))
+            {
+                IPList.AddRange(File.ReadAllLines(IPFileName));
+                comboBoxIP.Items.AddRange(IPList.ToArray());
+            }
+
             comboBoxDevices.DropDownStyle = ComboBoxStyle.DropDownList;
             groupBox6.AllowDrop = true;
             groupBox2.AllowDrop = true;
@@ -738,7 +746,7 @@ namespace ATA_GUI
 
         private void buttonConnectToIP_Click(object sender, EventArgs e)
         {
-
+            connectToIp();
         }
 
         private void connectToIp()
@@ -1660,7 +1668,7 @@ namespace ATA_GUI
 
             Invoke((Action)delegate
             {
-                ip = textBoxIP.Text.Trim();
+                ip = comboBoxIP.Text.Trim();
             });
 
             if (ip.Length > 1)
@@ -1681,9 +1689,18 @@ namespace ATA_GUI
 
                 if (deviceCountTmp < devices.Count)
                 {
+                    IPList.Add(ip);
+
+                    using (StreamWriter writer = new StreamWriter(IPFileName, true)) 
+                    {
+                        writer.WriteLine(ip);
+                    }
+
                     MessageShowBox("connected to " + ip, 2);
+
                     Invoke((Action)delegate
                     {
+                        comboBoxIP.Items.Add(ip);
                         buttonConnectToIP.Enabled = false;
                         buttonDisconnectIP.Enabled = true;
                     });
@@ -1704,7 +1721,7 @@ namespace ATA_GUI
 
             Invoke((Action)delegate
             {
-                ip = textBoxIP.Text.Trim();
+                ip = comboBoxIP.Text.Trim();
             });
 
             if (ip.Length > 1)

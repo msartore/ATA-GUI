@@ -154,5 +154,13 @@ namespace ATA_GUI
             }
             return false;
         }
+
+        private void buttonDeleteIPHistory_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(MainForm.IPFileName))
+            {
+                File.Delete(MainForm.IPFileName);
+            }
+        }
     }
 }

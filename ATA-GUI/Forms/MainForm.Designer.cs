@@ -94,7 +94,6 @@ namespace ATA_GUI
             this.groupBoxADBNet = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonDisconnectIP = new System.Windows.Forms.Button();
-            this.textBoxIP = new System.Windows.Forms.TextBox();
             this.buttonConnectToIP = new System.Windows.Forms.Button();
             this.groupBoxRebootMenu = new System.Windows.Forms.GroupBox();
             this.buttonRS = new System.Windows.Forms.Button();
@@ -191,6 +190,7 @@ namespace ATA_GUI
             this.buttonTaskManager = new System.Windows.Forms.Button();
             this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
+            this.comboBoxIP = new System.Windows.Forms.ComboBox();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -807,9 +807,9 @@ namespace ATA_GUI
             // 
             // groupBoxADBNet
             // 
+            this.groupBoxADBNet.Controls.Add(this.comboBoxIP);
             this.groupBoxADBNet.Controls.Add(this.label2);
             this.groupBoxADBNet.Controls.Add(this.buttonDisconnectIP);
-            this.groupBoxADBNet.Controls.Add(this.textBoxIP);
             this.groupBoxADBNet.Controls.Add(this.buttonConnectToIP);
             this.groupBoxADBNet.Location = new System.Drawing.Point(157, 170);
             this.groupBoxADBNet.Name = "groupBoxADBNet";
@@ -839,15 +839,6 @@ namespace ATA_GUI
             this.buttonDisconnectIP.Text = "Disconnect";
             this.buttonDisconnectIP.UseVisualStyleBackColor = false;
             this.buttonDisconnectIP.Click += new System.EventHandler(this.buttonDisconnectIP_Click);
-            // 
-            // textBoxIP
-            // 
-            this.textBoxIP.Location = new System.Drawing.Point(29, 26);
-            this.textBoxIP.Name = "textBoxIP";
-            this.textBoxIP.Size = new System.Drawing.Size(129, 20);
-            this.textBoxIP.TabIndex = 37;
-            this.textBoxIP.Text = "192.168.";
-            this.textBoxIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxIP_KeyPress);
             // 
             // buttonConnectToIP
             // 
@@ -1785,6 +1776,14 @@ namespace ATA_GUI
             // 
             this.backgroundWorkerADBDisconnect.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerADBDisconnect_DoWork);
             // 
+            // comboBoxIP
+            // 
+            this.comboBoxIP.FormattingEnabled = true;
+            this.comboBoxIP.Location = new System.Drawing.Point(32, 25);
+            this.comboBoxIP.Name = "comboBoxIP";
+            this.comboBoxIP.Size = new System.Drawing.Size(129, 21);
+            this.comboBoxIP.TabIndex = 40;
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1885,7 +1884,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Label labelIP;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBoxADBNet;
-        private System.Windows.Forms.TextBox textBoxIP;
         private System.Windows.Forms.Button buttonConnectToIP;
         private System.Windows.Forms.Button buttonDisconnectIP;
         private System.Windows.Forms.Label label2;
@@ -2012,6 +2010,7 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownInstallApkButton;
         private System.Windows.Forms.ToolStripMenuItem installAppToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downgradeAppToolStripMenuItem;
+        private System.Windows.Forms.ComboBox comboBoxIP;
     }
 }
 
