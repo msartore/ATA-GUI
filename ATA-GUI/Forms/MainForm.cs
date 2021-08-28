@@ -1523,7 +1523,7 @@ namespace ATA_GUI
             this.openFileDialogZip.Title = "Select Zip";
 
             DialogResult dr = this.openFileDialogZip.ShowDialog();
-            if (dr == System.Windows.Forms.DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
                 textBoxDirFile.Text = this.openFileDialogZip.FileName;
             }
@@ -1800,6 +1800,35 @@ namespace ATA_GUI
             if (e.KeyChar == (char)13)
             {
                 connectToIp();
+            }
+        }
+
+        private void grantSYSTEMALERTWINDOWToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            appFunc("shell pm grant ", " android.permission.SYSTEM_ALERT_WINDOW", 0);
+        }
+
+        private void revokeSYSTEMALERTWINDOWToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            appFunc("shell pm revoke ", " android.permission.SYSTEM_ALERT_WINDOW", 0);
+        }
+
+        private void toolStripButtonSetDefault_Click(object sender, EventArgs e)
+        {
+            var checkedItems = checkedListBoxApp.CheckedItems;
+
+            switch (checkedItems.Count)
+            {
+                case 0:
+                    MessageShowBox("No app seleted", 1);
+                    break;
+                case 1:
+                    foreach (Object current in checkedItems)
+                        new DefaultApp(current.ToString()).ShowDialog();
+                    break;
+                default:
+                    MessageShowBox("Too much app seleted", 1);
+                    break;
             }
         }
     }

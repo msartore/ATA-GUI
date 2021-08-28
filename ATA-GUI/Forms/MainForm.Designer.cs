@@ -81,17 +81,20 @@ namespace ATA_GUI
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonPermissionMenu = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonSetDefault = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonBloatwareDetecter = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownInstallApkButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.installAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downgradeAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
             this.groupBoxADBNet = new System.Windows.Forms.GroupBox();
+            this.comboBoxIP = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonDisconnectIP = new System.Windows.Forms.Button();
             this.buttonConnectToIP = new System.Windows.Forms.Button();
@@ -151,6 +154,9 @@ namespace ATA_GUI
             this.grantDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grantDUMPToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.revokeDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grantRevokeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grantSYSTEMALERTWINDOWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.revokeSYSTEMALERTWINDOWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkGrantedPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorkerAdbDownloader = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerExeDownloader = new System.ComponentModel.BackgroundWorker();
@@ -190,7 +196,6 @@ namespace ATA_GUI
             this.buttonTaskManager = new System.Windows.Forms.Button();
             this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
-            this.comboBoxIP = new System.Windows.Forms.ComboBox();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -602,12 +607,14 @@ namespace ATA_GUI
             this.toolStripSeparator3,
             this.toolStripButtonPermissionMenu,
             this.toolStripSeparator4,
+            this.toolStripButtonSetDefault,
+            this.toolStripSeparator8,
             this.toolStripButtonBloatwareDetecter,
             this.toolStripSeparator10,
             this.toolStripButtonSearch,
             this.toolStripSeparator9,
             this.toolStripLabelTotalApps,
-            this.toolStripSeparator8,
+            this.toolStripSeparator11,
             this.toolStripDropDownInstallApkButton});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
@@ -725,6 +732,21 @@ namespace ATA_GUI
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 23);
             // 
+            // toolStripButtonSetDefault
+            // 
+            this.toolStripButtonSetDefault.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSetDefault.Image = global::ATA_GUI.Properties.Resources.icons8_operating_system_48;
+            this.toolStripButtonSetDefault.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSetDefault.Name = "toolStripButtonSetDefault";
+            this.toolStripButtonSetDefault.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonSetDefault.Text = "Set default app";
+            this.toolStripButtonSetDefault.Click += new System.EventHandler(this.toolStripButtonSetDefault_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 23);
+            // 
             // toolStripButtonBloatwareDetecter
             // 
             this.toolStripButtonBloatwareDetecter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -743,7 +765,7 @@ namespace ATA_GUI
             // toolStripButtonSearch
             // 
             this.toolStripButtonSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSearch.Image = global::ATA_GUI.Properties.Resources.icons8_search_48;
+            this.toolStripButtonSearch.Image = global::ATA_GUI.Properties.Resources.icons8_search_in_browser_48;
             this.toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSearch.Name = "toolStripButtonSearch";
             this.toolStripButtonSearch.Size = new System.Drawing.Size(23, 20);
@@ -761,10 +783,10 @@ namespace ATA_GUI
             this.toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 15);
             this.toolStripLabelTotalApps.Text = "Total: 0";
             // 
-            // toolStripSeparator8
+            // toolStripSeparator11
             // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripDropDownInstallApkButton
             // 
@@ -817,6 +839,14 @@ namespace ATA_GUI
             this.groupBoxADBNet.TabIndex = 37;
             this.groupBoxADBNet.TabStop = false;
             this.groupBoxADBNet.Text = "ADB OVER NETWORK MENU";
+            // 
+            // comboBoxIP
+            // 
+            this.comboBoxIP.FormattingEnabled = true;
+            this.comboBoxIP.Location = new System.Drawing.Point(32, 25);
+            this.comboBoxIP.Name = "comboBoxIP";
+            this.comboBoxIP.Size = new System.Drawing.Size(129, 21);
+            this.comboBoxIP.TabIndex = 40;
             // 
             // label2
             // 
@@ -1362,9 +1392,10 @@ namespace ATA_GUI
             this.contextMenuStripPermissionMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.grantWriteSecureSettingsToolStripMenuItem,
             this.grantDUMPToolStripMenuItem,
+            this.grantRevokeToolStripMenuItem,
             this.checkGrantedPermissionsToolStripMenuItem});
             this.contextMenuStripPermissionMenu.Name = "contextMenuStripPermissionMenu";
-            this.contextMenuStripPermissionMenu.Size = new System.Drawing.Size(265, 70);
+            this.contextMenuStripPermissionMenu.Size = new System.Drawing.Size(285, 92);
             // 
             // grantWriteSecureSettingsToolStripMenuItem
             // 
@@ -1372,7 +1403,7 @@ namespace ATA_GUI
             this.grantWriteSecureSettingsToolStripMenuItem1,
             this.revokeWriteSecureSettingsToolStripMenuItem});
             this.grantWriteSecureSettingsToolStripMenuItem.Name = "grantWriteSecureSettingsToolStripMenuItem";
-            this.grantWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.grantWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
             this.grantWriteSecureSettingsToolStripMenuItem.Text = "Grant/Revoke Write_Secure_Settings";
             // 
             // grantWriteSecureSettingsToolStripMenuItem1
@@ -1395,7 +1426,7 @@ namespace ATA_GUI
             this.grantDUMPToolStripMenuItem1,
             this.revokeDUMPToolStripMenuItem});
             this.grantDUMPToolStripMenuItem.Name = "grantDUMPToolStripMenuItem";
-            this.grantDUMPToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.grantDUMPToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
             this.grantDUMPToolStripMenuItem.Text = "Grant/Revoke DUMP";
             // 
             // grantDUMPToolStripMenuItem1
@@ -1412,11 +1443,34 @@ namespace ATA_GUI
             this.revokeDUMPToolStripMenuItem.Text = "Revoke DUMP";
             this.revokeDUMPToolStripMenuItem.Click += new System.EventHandler(this.revokeDUMPToolStripMenuItem_Click);
             // 
+            // grantRevokeToolStripMenuItem
+            // 
+            this.grantRevokeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.grantSYSTEMALERTWINDOWToolStripMenuItem,
+            this.revokeSYSTEMALERTWINDOWToolStripMenuItem});
+            this.grantRevokeToolStripMenuItem.Name = "grantRevokeToolStripMenuItem";
+            this.grantRevokeToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
+            this.grantRevokeToolStripMenuItem.Text = "Grant/Revoke SYSTEM_ALERT_WINDOW";
+            // 
+            // grantSYSTEMALERTWINDOWToolStripMenuItem
+            // 
+            this.grantSYSTEMALERTWINDOWToolStripMenuItem.Name = "grantSYSTEMALERTWINDOWToolStripMenuItem";
+            this.grantSYSTEMALERTWINDOWToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.grantSYSTEMALERTWINDOWToolStripMenuItem.Text = "Grant SYSTEM_ALERT_WINDOW";
+            this.grantSYSTEMALERTWINDOWToolStripMenuItem.Click += new System.EventHandler(this.grantSYSTEMALERTWINDOWToolStripMenuItem_Click);
+            // 
+            // revokeSYSTEMALERTWINDOWToolStripMenuItem
+            // 
+            this.revokeSYSTEMALERTWINDOWToolStripMenuItem.Name = "revokeSYSTEMALERTWINDOWToolStripMenuItem";
+            this.revokeSYSTEMALERTWINDOWToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.revokeSYSTEMALERTWINDOWToolStripMenuItem.Text = "Revoke SYSTEM_ALERT_WINDOW";
+            this.revokeSYSTEMALERTWINDOWToolStripMenuItem.Click += new System.EventHandler(this.revokeSYSTEMALERTWINDOWToolStripMenuItem_Click);
+            // 
             // checkGrantedPermissionsToolStripMenuItem
             // 
             this.checkGrantedPermissionsToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_privacy_policy_48;
             this.checkGrantedPermissionsToolStripMenuItem.Name = "checkGrantedPermissionsToolStripMenuItem";
-            this.checkGrantedPermissionsToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.checkGrantedPermissionsToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
             this.checkGrantedPermissionsToolStripMenuItem.Text = "Check granted permissions";
             this.checkGrantedPermissionsToolStripMenuItem.Click += new System.EventHandler(this.checkGrantedPermissionsToolStripMenuItem_Click);
             // 
@@ -1776,14 +1830,6 @@ namespace ATA_GUI
             // 
             this.backgroundWorkerADBDisconnect.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerADBDisconnect_DoWork);
             // 
-            // comboBoxIP
-            // 
-            this.comboBoxIP.FormattingEnabled = true;
-            this.comboBoxIP.Location = new System.Drawing.Point(32, 25);
-            this.comboBoxIP.Name = "comboBoxIP";
-            this.comboBoxIP.Size = new System.Drawing.Size(129, 21);
-            this.comboBoxIP.TabIndex = 40;
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2011,6 +2057,11 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem installAppToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downgradeAppToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBoxIP;
+        private System.Windows.Forms.ToolStripMenuItem grantRevokeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem grantSYSTEMALERTWINDOWToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem revokeSYSTEMALERTWINDOWToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSetDefault;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
     }
 }
 
