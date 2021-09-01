@@ -24,7 +24,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v1.9.3";
+        public static readonly string CURRENTVERSION = "v1.9.3_HotFix";
         public static readonly List<string> arrayApks = new List<string>();
         public static readonly string IPFileName = "IPList.txt";
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
@@ -37,7 +37,7 @@ namespace ATA_GUI
         public static string currentDeviceSelected = string.Empty;
         private readonly string FILEADB = "adb.exe";
         private readonly List<Device> devices = new List<Device>();
-        private readonly List<string> IPList = new List<string>();
+        private readonly HashSet<string> IPList = new HashSet<string>();
         private string stringApk;
         private string user;
 
@@ -303,7 +303,7 @@ namespace ATA_GUI
                                            "-s "+ currentDeviceSelected +" shell getprop ro.product.board", "-s "+ currentDeviceSelected +" shell getprop ro.product.device", "-s "+ currentDeviceSelected +" shell ip route"};
                                     string deviceinfo = adbFastbootCommandR(arrayDeviceInfoCommands, 0);
                                     string[] arrayDeviceInfo = deviceinfo.Split('\n');
-                                    if (arrayDeviceInfo.Length > 5)
+                                    if (arrayDeviceInfo.Length > 6)
                                     {
                                         disableSystem(false);
                                         Invoke((Action)delegate
@@ -612,7 +612,10 @@ namespace ATA_GUI
 
             if (File.Exists(IPFileName))
             {
-                IPList.AddRange(File.ReadAllLines(IPFileName));
+                foreach(string ip in File.ReadAllLines(IPFileName))
+                {
+                    IPList.Add(ip.Trim());
+                }
                 comboBoxIP.Items.AddRange(IPList.ToArray());
             }
 
@@ -1696,21 +1699,22 @@ namespace ATA_GUI
 
                 if (deviceCountTmp < devices.Count)
                 {
-                    IPList.Add(ip);
-
-                    using (StreamWriter writer = new StreamWriter(IPFileName, true)) 
-                    {
-                        writer.WriteLine(ip);
-                    }
-
-                    MessageShowBox("connected to " + ip, 2);
-
                     Invoke((Action)delegate
                     {
-                        comboBoxIP.Items.Add(ip);
+                        if (!IPList.Contains(ip))
+                        {
+                            IPList.Add(ip);
+                            comboBoxIP.Items.Add(ip);
+
+                            using (StreamWriter writer = new StreamWriter(IPFileName, true))
+                            {
+                                writer.WriteLine(ip);
+                            }
+                        }
                         buttonConnectToIP.Enabled = false;
                         buttonDisconnectIP.Enabled = true;
                     });
+                    MessageShowBox("connected to " + ip, 2);
                 }
                 else
                 {
