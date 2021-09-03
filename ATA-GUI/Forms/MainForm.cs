@@ -14,6 +14,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ATA_GUI
 {
@@ -221,7 +222,7 @@ namespace ATA_GUI
             }
         }
 
-        private async void updateCheckAsync()
+        private async Task updateCheckAsync()
         {
             Release currentRelease = new Release();
             Release latestRelease = new Release();
@@ -692,7 +693,10 @@ namespace ATA_GUI
                     return true;
                 }
             }
-            catch {}
+            catch 
+            {
+                MessageShowBox("Error during connection check", 0);
+            }
             return false;
         }
 
@@ -791,7 +795,7 @@ namespace ATA_GUI
                 foreach (Object current in checkedListBoxApp.CheckedItems)
                 {
                     string log;
-                    if((log = adbFastbootCommandR(new [] { " -s " + currentDeviceSelected + " " + command1 + "--user " + user + " " + current.ToString() + command2 }, 0))!=null)
+                    if((log = adbFastbootCommandR(new [] { " -s " + currentDeviceSelected + " " + command1 + "--user " + user + " " + current + command2 }, 0))!=null)
                     {
                         if (type == 1)
                         {

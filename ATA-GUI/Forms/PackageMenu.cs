@@ -46,7 +46,10 @@ namespace ATA_GUI
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (!closedByMe) dialogResult = -1;
+            if (!closedByMe)
+            {
+                dialogResult = -1;
+            }
         }
     }
 }

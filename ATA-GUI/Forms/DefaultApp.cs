@@ -13,7 +13,7 @@ namespace ATA_GUI
     public partial class DefaultApp : Form
     {
 
-        string apk = string.Empty;
+        readonly string apk = string.Empty;
 
         public DefaultApp(string apk)
         {

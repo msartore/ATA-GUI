@@ -8,7 +8,7 @@ namespace ATA_GUI
 {
     public partial class DeviceLogs : Form
     {
-        private string currentDevice = string.Empty;
+        private readonly string currentDevice = string.Empty;
         private string poolString = string.Empty;
         private string line = string.Empty;
         private readonly System.Timers.Timer timer;
@@ -35,13 +35,17 @@ namespace ATA_GUI
         private void buttonLogcat_Click(object sender, EventArgs e)
         {
             if (!backgroundWorkerLog.IsBusy)
+            {
                 backgroundWorkerLog.RunWorkerAsync(" -s " + currentDevice + " shell logcat");
+            }
         }
 
         private void buttonGetEvent_Click(object sender, EventArgs e)
         {
             if (!backgroundWorkerLog.IsBusy)
+            {
                 backgroundWorkerLog.RunWorkerAsync(" -s " + currentDevice + " shell getevent");
+            }
         }
 
         private void backgroundWorkerLog_ProgressChanged(object sender, ProgressChangedEventArgs e)

@@ -1,23 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,600;1,300&display=swap');
 
 .center {
-    text-align:center;
+    text-align: center;
 }
 
 .basic {
     margin-left: 20px;
     margin-right: 20px;
     color: white; 
+    
     font-family: 'Open Sans', sans-serif;
 }
 
-.main{
-    margin-top:50px;
+.main {
+    margin-top: 50px;
     margin-bottom: 50px;
 }
 
 .dcr {
-    font-style: italic;
+    font-style:  italic;
     font-size: small;
 }
 
@@ -31,26 +32,19 @@ footer {
 
 .btn {
     position: relative;
-  
     display: flex;
     margin: 30px auto;
-    align-items:center;
+    align-items: center;
     padding: 0;
-  
     overflow: hidden;
-  
     border-width: 0;
     outline: none;
     border-radius: 15px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-    
     color: #ecf0f1;
     font-family: 'Open Sans', sans-serif;
-    
-    transition: background-color .3s;
-
+    transition: background-color 0.3s;
     padding: 12px 24px;
-
     text-align: center;
 }
 
@@ -60,19 +54,14 @@ footer {
 
 .btn:before {
     content: "";
-
     position: absolute;
     top: 50%;
     left: 50%;
-
     display: block;
     width: 0;
     padding-top: 0;
-        
     border-radius: 100%;
-
-    background-color: rgba(236, 240, 241, .3);
-
+    background-color: rgba(236, 240, 241, 0.3);
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -83,11 +72,11 @@ footer {
 .btn:active:before {
     width: 120%;
     padding-top: 120%;
-
-    transition: width .2s ease-out, padding-top .2s ease-out;
+    transition: width 0.2s ease-out, padding-top 0.2s ease-out;
 }
 
-.btn:hover, .btn:focus {
+.btn:hover, 
+.btn:focus {
     cursor: pointer;
 }
 
@@ -119,7 +108,7 @@ footer {
 }
 
 .sliding-middle-out {
-    text-decoration: none;
+  text-decoration: none;
   display: inline-block;
   position: relative;
   padding-bottom: 3px;
@@ -131,21 +120,26 @@ footer {
   display: block;
   margin: auto;
   height: 3px;
-  width: 0px;
+  width: 0;
   background: transparent;
-  transition: width .5s ease, background-color .5s ease;
+  transition: width 0.5s ease, background-color 0.5s ease;
 }
 
-.sliding-middle-out:hover:after {
+.sliding-middle-out:hover::after {
   width: 100%;
-  background: -webkit-linear-gradient(#fa5521, #5128a5);
+  background: -moz-linear-gradient(#fa5521, #5128a5); /* FF3.6+ */
+  background: -webkit-gradient(#fa5521, #5128a5); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(#fa5521, #5128a5); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(#fa5521, #5128a5); /* Opera 11.10+ */
+  background: -ms-linear-gradient(#fa5521, #5128a5); /* IE10+ */
 }
 
 .twitterButton {
     background-color: #1ca0ee;
 }
 
-.twitterButton:hover, .twitterButton:focus {
+.twitterButton:hover, 
+.twitterButton:focus {
     background-color: #1888c8;
 }
 
@@ -153,7 +147,8 @@ footer {
     background-color: #1b1e23;
 }
 
-.githubButton:hover, .githubButton:focus {
+.githubButton:hover, 
+.githubButton:focus {
     background-color: #101114;
 }
 
@@ -161,7 +156,8 @@ footer {
     background-color: #a239ca;
 }
 
-.changelogButton:hover, .changelogButton:focus {
+.changelogButton:hover,
+.changelogButton:focus {
     background-color: #7f2ea0;
 }
 
@@ -169,6 +165,7 @@ footer {
     background-color: #4717f6;
 }
 
-.supportButton:hover, .supportButton:focus {
+.supportButton:hover,
+.supportButton:focus {
     background-color: #3712bd;
 }

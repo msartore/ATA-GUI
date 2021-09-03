@@ -7,7 +7,7 @@ namespace ATA_GUI
 {
     public partial class TaskManager : Form
     {
-        private int mode = 0;
+        private int mode;
 
         public TaskManager()
         {
@@ -73,45 +73,45 @@ namespace ATA_GUI
             List<string> tasks = MainForm.adbFastbootCommandR(new string[] { " -s " + MainForm.currentDeviceSelected + " shell ps" }, 0).Split('\n').ToList();
 
             richTextBoxTasks.Clear();
-            switch (mode)
+
+            if (mode == 0)
             {
-                case 0:
+                foreach (string task in tasks)
+                {
+                    richTextBoxTasks.Text += task;
+                }
+                toolStripLabelTotalTasks.Text = "Active Tasks: " + tasks.Count.ToString();
+                buttonKillProcess.Enabled = false;
+            }
+            else
+            {
+                int taskCounter = 0;
+                bool found = false;
+
+                richTextBoxTasks.Text = tasks[0];
+                foreach (string app in MainForm.arrayApks)
+                {
                     foreach (string task in tasks)
                     {
-                        richTextBoxTasks.Text += task;
-                    }
-                    toolStripLabelTotalTasks.Text = "Active Tasks: " + tasks.Count.ToString();
-                    buttonKillProcess.Enabled = false;  
-                    break;
-                case 1:
-                    int taskCounter = 0;
-                    bool found = false;
-
-                    richTextBoxTasks.Text = tasks[0];
-                    foreach (string app in MainForm.arrayApks)
-                    {
-                        foreach (string task in tasks)
+                        if (task.Contains(app))
                         {
-                            if (task.Contains(app))
-                            {
-                                found = true;
-                                taskCounter++;
-                                richTextBoxTasks.Text += task;
-                            }
+                            found = true;
+                            taskCounter++;
+                            richTextBoxTasks.Text += task;
                         }
                     }
+                }
 
-                    if (!found)
-                    {
-                        MainForm.MessageShowBox(textBoxTaskName.Text + " not found!", 0);
-                        toolStripLabelTotalTasks.Text = "Active Tasks: 0";
-                    }
-                    else
-                    {
-                        toolStripLabelTotalTasks.Text = "Active Tasks: " + taskCounter.ToString();
-                    }
-                    buttonKillProcess.Enabled = true;
-                    break;
+                if (!found)
+                {
+                    MainForm.MessageShowBox(textBoxTaskName.Text + " not found!", 0);
+                    toolStripLabelTotalTasks.Text = "Active Tasks: 0";
+                }
+                else
+                {
+                    toolStripLabelTotalTasks.Text = "Active Tasks: " + taskCounter.ToString();
+                }
+                buttonKillProcess.Enabled = true;
             }
         }
     }
