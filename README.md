@@ -1,15 +1,15 @@
-# ATA-GUI
+# ATA GUI
 
-<img src="Resources/ATA_logo.png">
+<img src="Resources/banner.png">
+
+![Codacy grade](https://img.shields.io/codacy/grade/27d499575ce84ce683866adf5645e9b5) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/msartore/ATA-GUI/.NET%20Core%20Desktop) ![GitHub all releases](https://img.shields.io/github/downloads/msartore/ATA-GUI/total) ![GitHub](https://img.shields.io/github/license/msartore/ATA-GUI) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/msartore/ATA-GUI)
 
 ## 💡Introduction
 ATA-GUI is a project to port ATA to all the users. ATA-GUI is an Advance Tool for Android™ powered by SDK Platform Tools. 
 
-> **Last version:**  v1.9.3
-
 ## ✨Interface
 
-<img src="Resources/interface.jpg">
+<img src="Resources/interfaces.png">
 
 
 ## ATA License
