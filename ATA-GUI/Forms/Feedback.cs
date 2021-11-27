@@ -83,13 +83,6 @@ namespace ATA_GUI
             Process.Start("https://msartore.dev/donation/");
         }
 
-        private void Feedback_Load(object sender, EventArgs e)
-        {
-            pictureBox1.Visible = false;
-            pictureBox4.Visible = false;
-            pictureBox3.Visible = false;
-        }
-
         private void pictureBox2_Click(object sender, EventArgs e)
         {
 

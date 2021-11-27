@@ -253,16 +253,11 @@
     <None Include="Resources\icons8-search-48.png" />
     <None Include="Resources\icons8-bitcoin-48.png" />
     <None Include="Resources\icons8-paypal-48.png" />
-    <None Include="Resources\icons8-ethereum-48.png" />
-    <None Include="Resources\dogecoin.png" />
     <None Include="Resources\icons8-folder-48.png" />
-    <None Include="Resources\icons8-loading-bar.gif" />
     <None Include="Resources\icons8-box-important-48.png" />
     <None Include="Resources\icons8-cancel-48.png" />
     <None Include="Resources\icons8-close-window-48.png" />
-    <None Include="Resources\icons8-reduce-48.png" />
     <None Include="Resources\icons8-flash-on-48.png" />
-    <None Include="Resources\icons8-synchronize-48.png" />
     <None Include="Resources\icons8-screensharing-48.png" />
     <None Include="Resources\icons8-drag-and-drop-48.png" />
     <None Include="Resources\icons8-refresh-48.png" />

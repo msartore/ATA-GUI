@@ -113,16 +113,6 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dogecoin {
-            get {
-                object obj = ResourceManager.GetObject("dogecoin", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap fdroidlogo {
             get {
                 object obj = ResourceManager.GetObject("fdroidlogo", resourceCulture);
@@ -186,16 +176,6 @@ namespace ATA_GUI.Properties {
         internal static System.Drawing.Bitmap icons8_duckduckgo_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-duckduckgo-48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_ethereum_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-ethereum-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
