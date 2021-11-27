@@ -131,7 +131,7 @@ namespace ATA_GUI
             this.tabPageRecovery = new System.Windows.Forms.TabPage();
             this.pictureBoxSearchFile = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.buttonInstallZip = new System.Windows.Forms.Button();
+            this.buttonFlashZip = new System.Windows.Forms.Button();
             this.textBoxDirFile = new System.Windows.Forms.TextBox();
             this.openFileDialogAPK = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogZip = new System.Windows.Forms.OpenFileDialog();
@@ -1238,7 +1238,7 @@ namespace ATA_GUI
             // 
             this.tabPageRecovery.Controls.Add(this.pictureBoxSearchFile);
             this.tabPageRecovery.Controls.Add(this.label6);
-            this.tabPageRecovery.Controls.Add(this.buttonInstallZip);
+            this.tabPageRecovery.Controls.Add(this.buttonFlashZip);
             this.tabPageRecovery.Controls.Add(this.textBoxDirFile);
             this.tabPageRecovery.Location = new System.Drawing.Point(4, 22);
             this.tabPageRecovery.Name = "tabPageRecovery";
@@ -1271,17 +1271,17 @@ namespace ATA_GUI
             this.label6.TabIndex = 35;
             this.label6.Text = "YOUR SMARTPHONE MUST BE IN RECOVERY MODE";
             // 
-            // buttonInstallZip
+            // buttonFlashZip
             // 
-            this.buttonInstallZip.BackColor = System.Drawing.Color.White;
-            this.buttonInstallZip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInstallZip.Location = new System.Drawing.Point(372, 153);
-            this.buttonInstallZip.Name = "buttonInstallZip";
-            this.buttonInstallZip.Size = new System.Drawing.Size(87, 23);
-            this.buttonInstallZip.TabIndex = 34;
-            this.buttonInstallZip.Text = "Install";
-            this.buttonInstallZip.UseVisualStyleBackColor = false;
-            this.buttonInstallZip.Click += new System.EventHandler(this.buttonInstallZip_Click);
+            this.buttonFlashZip.BackColor = System.Drawing.Color.White;
+            this.buttonFlashZip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonFlashZip.Location = new System.Drawing.Point(372, 153);
+            this.buttonFlashZip.Name = "buttonFlashZip";
+            this.buttonFlashZip.Size = new System.Drawing.Size(87, 23);
+            this.buttonFlashZip.TabIndex = 34;
+            this.buttonFlashZip.Text = "Flash";
+            this.buttonFlashZip.UseVisualStyleBackColor = false;
+            this.buttonFlashZip.Click += new System.EventHandler(this.buttonFlashZip_Click);
             // 
             // textBoxDirFile
             // 
@@ -1935,7 +1935,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonConnectToIP;
         private System.Windows.Forms.Button buttonDisconnectIP;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button buttonInstallZip;
+        private System.Windows.Forms.Button buttonFlashZip;
         private System.Windows.Forms.TextBox textBoxDirFile;
         private System.Windows.Forms.OpenFileDialog openFileDialogZip;
         private System.ComponentModel.BackgroundWorker backgroundWorkerZip;

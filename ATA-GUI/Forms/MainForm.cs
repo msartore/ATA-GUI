@@ -816,7 +816,7 @@ namespace ATA_GUI
             }
         }
 
-        private void buttonInstallZip_Click(object sender, EventArgs e)
+        private void buttonFlashZip_Click(object sender, EventArgs e)
         {
             if (!backgroundWorkerZip.IsBusy)
             {
