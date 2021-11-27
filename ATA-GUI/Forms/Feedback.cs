@@ -89,5 +89,10 @@ namespace ATA_GUI
             pictureBox4.Visible = false;
             pictureBox3.Visible = false;
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 
 namespace ATA_GUI
@@ -23,7 +23,7 @@ namespace ATA_GUI
 
         private async void buttonCheckLastVersion_ClickAsync(object sender, EventArgs e)
         {
-            if(!runningCheck)
+            if (!runningCheck)
             {
                 runningCheck = true;
                 if (MainForm.pingCheck())
@@ -95,7 +95,7 @@ namespace ATA_GUI
             labelCurrentRelease.Text = CURRENTVERSION;
 
             if (!Feedback.checkFeedbackFile())
-            { 
+            {
                 checkBoxInitPopUp.Checked = true;
             }
             starting = false;
@@ -108,11 +108,11 @@ namespace ATA_GUI
 
         private void checkBoxInitPopUp_CheckedChanged(object sender, EventArgs e)
         {
-            if(starting)
+            if (starting)
             {
                 return;
             }
-            if(checkBoxInitPopUp.Checked)
+            if (checkBoxInitPopUp.Checked)
             {
                 Feedback.changeFeedbackFile(false);
                 return;
@@ -129,13 +129,13 @@ namespace ATA_GUI
 
             foreach (string program in programs)
             {
-                if(!deleter(program))
+                if (!deleter(program))
                 {
                     nFound = true;
                 }
             }
 
-            if(nFound)
+            if (nFound)
             {
                 MainForm.MessageShowBox("SDK not found", 1);
             }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Text;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -122,7 +121,7 @@ namespace ATA_GUI
 
         private void buttonCopyText_Click(object sender, EventArgs e)
         {
-            if(richTextBoxLog.Text.Length <= 0)
+            if (richTextBoxLog.Text.Length <= 0)
             {
                 return;
             }

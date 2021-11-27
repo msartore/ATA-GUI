@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -60,7 +56,7 @@ namespace ATA_GUI
                     MainForm.MessageShowBox("Error, this value can't be set", 0);
                     break;
             }
-            string temp; 
+            string temp;
             foreach (string app in packageList)
             {
                 temp = RemoveWhitespace(app);
@@ -84,10 +80,10 @@ namespace ATA_GUI
             AppFinder();
         }
 
-         public string RemoveWhitespace(string input)
-         {
+        public string RemoveWhitespace(string input)
+        {
             return new string(input.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
-         }
+        }
 
         private void BloatwareDetecter_Shown(object sender, EventArgs e)
         {
@@ -98,7 +94,7 @@ namespace ATA_GUI
 
         private void buttonDisable_Click(object sender, EventArgs e)
         {
-            if(checkedListBoxBloatwareList.CheckedItems.Count> 0)
+            if (checkedListBoxBloatwareList.CheckedItems.Count > 0)
             {
                 List<string> apks = new List<string>();
                 foreach (Object list in checkedListBoxBloatwareList.CheckedItems)

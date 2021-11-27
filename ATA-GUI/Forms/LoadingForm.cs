@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Forms;
-using System.Threading;
 using System.IO;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace ATA_GUI
 {
@@ -25,7 +25,7 @@ namespace ATA_GUI
             fileTransfer = false;
         }
 
-        public LoadingForm(string [] array, string deviceSerialTmp)
+        public LoadingForm(string[] array, string deviceSerialTmp)
         {
             InitializeComponent();
             fileArray = array;
@@ -62,7 +62,7 @@ namespace ATA_GUI
             {
                 if (fileTransfer)
                 {
-                    MainForm.systemCommand("adb -s "+ deviceSerial + " shell mkdir sdcard/ATA");
+                    MainForm.systemCommand("adb -s " + deviceSerial + " shell mkdir sdcard/ATA");
                     progressBar1.Maximum = fileArray.Length;
                     int i = 0;
                     foreach (string file in fileArray)

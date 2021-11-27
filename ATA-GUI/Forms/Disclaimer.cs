@@ -35,7 +35,8 @@ namespace ATA_GUI
                 {
                     return true;
                 }
-            }catch
+            }
+            catch
             {
                 File.Delete(fileName);
             }
@@ -69,7 +70,7 @@ namespace ATA_GUI
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             if (!closedByMe)
-            { 
+            {
                 Application.Exit();
             }
         }

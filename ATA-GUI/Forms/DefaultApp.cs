@@ -34,9 +34,9 @@ namespace ATA_GUI
 
         private void buttonSetDefault_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText("-s " + MainForm.currentDeviceSelected + " shell cmd role add-role-holder android.app.role." + comboBoxType.Text + " " + apk);
+            Clipboard.SetText("-s " + MainForm.CurrentDeviceSelected + " shell cmd role add-role-holder android.app.role." + comboBoxType.Text + " " + apk);
 
-            MainForm.systemCommand("adb -s " + MainForm.currentDeviceSelected + " shell cmd role add-role-holder android.app.role." + comboBoxType.Text + " " + apk);
+            MainForm.systemCommand("adb -s " + MainForm.CurrentDeviceSelected + " shell cmd role add-role-holder android.app.role." + comboBoxType.Text + " " + apk);
 
             MainForm.MessageShowBox("Command injected", 1);
         }
