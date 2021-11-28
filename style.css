@@ -23,7 +23,7 @@
 }
 
 body {
-    background-color: rgb(15, 15, 15);
+    background-color: rgb(8, 10, 23);
 }
 
 footer {
@@ -127,11 +127,11 @@ footer {
 
 .sliding-middle-out:hover::after {
   width: 100%;
-  background: -moz-linear-gradient(#fa5521, #5128a5); /* FF3.6+ */
-  background: -webkit-gradient(#fa5521, #5128a5); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(#fa5521, #5128a5); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(#fa5521, #5128a5); /* Opera 11.10+ */
-  background: -ms-linear-gradient(#fa5521, #5128a5); /* IE10+ */
+  background: -moz-linear-gradient(#fa5521, #5C5BB2); /* FF3.6+ */
+  background: -webkit-gradient(#fa5521, #5C5BB2); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(#fa5521, #5C5BB2); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(#fa5521, #5C5BB2); /* Opera 11.10+ */
+  background: -ms-linear-gradient(#fa5521, #5C5BB2); /* IE10+ */
 }
 
 .twitterButton {
@@ -162,10 +162,10 @@ footer {
 }
 
 .supportButton {
-    background-color: #4717f6;
+    background-color: #5C5BB2;
 }
 
 .supportButton:hover,
 .supportButton:focus {
-    background-color: #3712bd;
+    background-color: #5C5BB2;
 }
