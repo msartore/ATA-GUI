@@ -1465,7 +1465,7 @@ namespace ATA_GUI
                     {
                         try
                         {
-                            client.DownloadFile("https://github.com/Genymobile/scrcpy/releases/download/v1.17/scrcpy-win32-v1.17.zip", "scrcpy.zip");
+                            client.DownloadFile("https://github.com/Genymobile/scrcpy/releases/download/v1.20/scrcpy-win64-v1.20.zip", "scrcpy.zip");
                             LogWriteLine("scrcpy downloaded!");
                             LogWriteLine("unzipping scrcpy...");
                             using (ZipFile zip = ZipFile.Read("scrcpy.zip"))
