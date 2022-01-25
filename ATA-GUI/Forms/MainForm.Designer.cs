@@ -847,6 +847,7 @@ namespace ATA_GUI
             this.comboBoxIP.Name = "comboBoxIP";
             this.comboBoxIP.Size = new System.Drawing.Size(129, 21);
             this.comboBoxIP.TabIndex = 40;
+            this.comboBoxIP.TextUpdate += new System.EventHandler(this.comboBoxIP_TextUpdate);
             this.comboBoxIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxIP_KeyPress);
             // 
             // label2

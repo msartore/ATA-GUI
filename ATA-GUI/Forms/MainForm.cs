@@ -786,7 +786,7 @@ namespace ATA_GUI
 
         private void buttonDisconnectIP_Click(object sender, EventArgs e)
         {
-            if (!backgroundWorkerADBConnect.IsBusy)
+            if (!backgroundWorkerADBDisconnect.IsBusy)
             {
                 backgroundWorkerADBDisconnect.RunWorkerAsync();
             }
@@ -1888,6 +1888,11 @@ namespace ATA_GUI
             {
                 connectToIp();
             }
+        }
+
+        private void comboBoxIP_TextUpdate(object sender, EventArgs e)
+        {
+            buttonConnectToIP.Enabled = buttonDisconnectIP.Enabled = true
         }
     }
 }
