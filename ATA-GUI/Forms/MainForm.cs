@@ -25,7 +25,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v1.9.4";
+        public static readonly string CURRENTVERSION = "v1.9.5";
         public static readonly List<string> arrayApks = new List<string>();
         public static readonly string IPFileName = "IPList.txt";
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
@@ -1892,7 +1892,7 @@ namespace ATA_GUI
 
         private void comboBoxIP_TextUpdate(object sender, EventArgs e)
         {
-            buttonConnectToIP.Enabled = buttonDisconnectIP.Enabled = true
+            buttonConnectToIP.Enabled = buttonDisconnectIP.Enabled = true;
         }
     }
 }
