@@ -75,7 +75,7 @@ namespace ATA_GUI
             this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(197, 14);
+            this.label1.Size = new System.Drawing.Size(198, 14);
             this.label1.TabIndex = 0;
             this.label1.Text = "ATA-GUI (Advance Tool for Android™)";
             // 
@@ -163,11 +163,11 @@ namespace ATA_GUI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(265, 16);
+            this.label4.Location = new System.Drawing.Point(238, 16);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 13);
+            this.label4.Size = new System.Drawing.Size(117, 13);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Copyright © 2021";
+            this.label4.Text = "Copyright © 2021-2022";
             // 
             // linkLabelRepo
             // 
