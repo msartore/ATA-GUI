@@ -1,4 +1,4 @@
-﻿using Ionic.Zip;
+using Ionic.Zip;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -600,6 +600,8 @@ namespace ATA_GUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            radioButtonBoot.Checked = true;
+
             ToolTipGenerator(buttonConnectToIP, "Connect device", "Connect to your device with this IP");
             ToolTipGenerator(buttonDisconnectIP, "Disconnect device", "Disconnect from your device with this IP");
             ToolTipGenerator(buttonMobileScreenShare, "Share Device Screen", "Your device screen will be shared on your PC");
@@ -908,7 +910,6 @@ namespace ATA_GUI
                 {
                     flash(7);
                 }
-                MessageShowBox("Please select where to flash the img", 1);
             }
             else
             {
@@ -930,7 +931,7 @@ namespace ATA_GUI
 
         private void backgroundWorkerFlashImg_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            string command = string.Empty;
+            string command;
             string log;
 
             switch (sender.ToString())
