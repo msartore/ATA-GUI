@@ -5,7 +5,7 @@
         <meta charset="utf-8">
 		<title>Massimiliano Sartore</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="css/style.css">
         <script src="script.js"></script>
         <meta property="og:locale" content="en_US" />
 		<meta property="og:type" content="website" />
@@ -13,7 +13,7 @@
 		<meta property="og:description" content="Developer. I'm a tech enthusiast who loves to learn about new technologies and leverage them to solve real-life problems">
 		<meta property="og:url" content="https://msartore.dev/" />
 		<meta property="og:site_name" content="Massimiliano Sartore" />
-		<meta property="og:image" content="/resources/favicon.png">
+		<meta property="og:image" content="../resources/favicon.png">
 		<meta property="og:image:width" content="454" />
 		<meta property="og:image:height" content="450" />
 		<meta name="twitter:card" content="summary">
@@ -21,21 +21,21 @@
 		<meta name="twitter:creator" content="@msartore_">
 		<meta name="twitter:title" content="Massimiliano Sartore">
 		<meta name="twitter:description" content="Developer. I'm a tech enthusiast who loves to learn about new technologies and leverage them to solve real-life problems">
-		<meta name="twitter:image" content="/resources/favicon.png">
+		<meta name="twitter:image" content="../resources/favicon.png">
 		<meta name="twitter:image:alt" content="Massimiliano Sartore">
-		<link rel="apple-touch-icon-precomposed" href="/resources/favicon.png">
-		<link rel="icon" href="/resources/favicon.png">
+		<link rel="apple-touch-icon-precomposed" href="../resources/favicon.png">
+		<link rel="icon" href="../resources/favicon.png">
     </head>
     <body> 
         <header class="sticky">
-            <a href="https://msartore.dev/"><img src="/resources/favicon.png" alt="logo" width="50" height="50"></a>
+            <a href="https://msartore.dev/"><img src="../resources/favicon.png" alt="logo" width="50" height="50"></a>
             <h1 id="title">Massimiliano Sartore</h1>
             <nav class="navbar">
                 <ul>
                     <li><a href="https://msartore.dev/">Home</a></li>
                     <li><a href="https://msartore.dev/#about">About</a></li>
                     <li><a href="https://msartore.dev/#projects">Projects</a></li>
-                    <li><a href="https://msartore.dev/donation/">Support</a></li>
+                    <li><a href="https://msartore.dev/donation">Support</a></li>
                     <li><a href="https://msartore.dev/#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -54,7 +54,7 @@
                         <li><a href="https://msartore.dev/" onclick="openAndCloseNav()">Home</a></li>
                         <li><a href="https://msartore.dev/#about" onclick="openAndCloseNav()">About</a></li>
                         <li><a href="https://msartore.dev/#projects" onclick="openAndCloseNav()">Projects</a></li>
-                        <li><a href="https://msartore.dev/donation/" onclick="openAndCloseNav()">Support</a></li>
+                        <li><a href="https://msartore.dev/donation" onclick="openAndCloseNav()">Support</a></li>
                         <li><a href="https://msartore.dev/#contact" onclick="openAndCloseNav()">Contact</a></li>
                     </ul>
                 </nav>
@@ -62,61 +62,11 @@
         </div>
         <main>
             <article>
-				<section>
-					<img class="banner" src="/resources/banner.png">
-                    <button type="button" onClick="parent.open('https://github.com/msartore/ATA-GUI')" value='click here to visit the github repository page'>
-						<img src="https://img.icons8.com/ios-glyphs/30/ffffff/github.png"/>
-						<a>Github repository</a>
-					</button>
-					<button type="button" onClick="parent.open('https://github.com/msartore/ATA-GUI/releases/latest')" value='click here to visit latest release page'>
-						<img src="https://img.icons8.com/ios-glyphs/30/ffffff/document--v1.png"/>
-						<a>Changelog</a>
-					</button>
-					<button type="button" onClick="parent.open('https://github.com/msartore/ATA-GUI/releases/download/v1.9.4/ATA-GUI_v1.9.4.zip')" value='click here to download the zip'>
-						<img src="https://img.icons8.com/ios-glyphs/30/ffffff/download--v1.png"/>
-						<a>Download ATA-GUI</a>
-					</button>
-					<button type="button" onClick="parent.open('https://msartore.dev/donation/')" value='click here to visit the donation page'>
-						<img src="https://img.icons8.com/ios-glyphs/30/ffffff/donate.png"/>
-						<a>Support the project</a>
-					</button>
-				</section>
-                <section>
-                    <h2>Description</h2>
-					<p>ATA GUI is a project to make ATA available to all users. ATA GUI is an Advance Tool for Android™ powered by SDK Platform Tools.
-					This software is fully open-source so you can check all the code, you can find on Github.</p>
-                </section>
-                <section>
-					<h2>Features</h2>
-					<ul>
-						<li>Uninstall, data cleaning and disable/enable system/user applications without root</li>
-						<li>Install applications, Uploading files</li>
-						<li>Grant WRITE_SECURE_SETTINGS permission</li>
-						<li>Grant DUMP permission</li>
-						<li>Check for granted permissions</li>
-						<li>ADB over network</li>
-						<li>Bloatware Detector</li>
-						<li>REBOOT INTO THE RECOVERY, REBOOT SMARTPHONE</li>
-						<li>REBOOT INTO THE Fastboot/Bootloader</li>
-						<li>FLASH BOOT , BOOTLOADER, RADIO, RECOVERY, SYSTEM, VENDOR, CACHE, ROM</li>
-						<li>Erase user data and cache</li>
-						<li>UNLOCK BOOTLOADER (Not all device supported)</li>
-						<li>LOCK BOOTLOADER (Not all device supported)</li>
-						<li>OEM device-id</li>
-						<li>Get device info</li>
-						<li>Sideload a zip</li>
-						<li>Screen Share</li>
-						<li>GetEvent and Logcat</li>
-						<li>Task manager</li>
-						<li>Support to Multiple user device</li>
-					</ul>
-                </section>
-                <section>
-					<h2>Terms of Use</h2>
-					<p>ATA-GUI is licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the 
-						License at<br><br><a style="color:#7f2ea0" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a><br><br>Unless required 
-						by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-						See the License for the specific language governing permissions and limitations under the License.<br><br>Android is a trademark of Google LLC.<br><br></p>
+                <section id="404">
+                    <img src="../resources/404.svg" width="50%" height="50%">
+                    <h2>Page not found</h2>
+                    <p>The page you are looking for does not exist.</p>
+                    <a href="https://msartore.dev/">Go back to the homepage</a>    
                 </section>
             </article>
         </main>
@@ -132,6 +82,7 @@
                     <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
                 </svg></a>
             </div>
+            <a href="https://storyset.com/web">Web illustrations by Storyset</a>
             <p>© Made by Massimiliano Sartore 2022</p>
         </footer>
     </body>
