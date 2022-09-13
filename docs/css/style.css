@@ -181,6 +181,7 @@ h3, h2 {
 }
 
 .banner {
+    margin-top: 50px;
     width: 100%;
     height: auto;
 }
@@ -204,6 +205,12 @@ button:hover {
 
 button a:hover {
     color: white;
+}
+
+button svg {
+    height: 24px;
+    width: 24px;
+    padding-right: 5px;
 }
 
 @media (min-width: 70em) {
