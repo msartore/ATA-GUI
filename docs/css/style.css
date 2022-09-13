@@ -207,7 +207,7 @@ button a:hover {
     color: white;
 }
 
-button svg {
+.icon {
     height: 24px;
     width: 24px;
     padding-right: 5px;
