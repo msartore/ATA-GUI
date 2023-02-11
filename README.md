@@ -5,7 +5,7 @@
 ![Codacy grade](https://img.shields.io/codacy/grade/27d499575ce84ce683866adf5645e9b5) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/msartore/ATA-GUI/.NET%20Core%20Desktop) ![GitHub all releases](https://img.shields.io/github/downloads/msartore/ATA-GUI/total) ![GitHub](https://img.shields.io/github/license/msartore/ATA-GUI) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/msartore/ATA-GUI)
 
 ## 💡Introduction
-ATA-GUI is a project to port ATA to all the users. ATA-GUI is an Advance Tool for Android™ powered by SDK Platform Tools. 
+ATA-GUI is an app that lets you perform advanced tasks on your Android™ device with ease. You can use ATA-GUI to access and modify your device's system settings, files, and features. You can also use ATA-GUI to install, uninstall, and restore apps on your device. ATA-GUI is powered by SDK Platform Tools, which are a set of command-line tools that allow you to communicate with your device and execute various operations. ATA-GUI is the app for advanced Android™ users who want to have more control over their device.
 
 
 ## ATA License
