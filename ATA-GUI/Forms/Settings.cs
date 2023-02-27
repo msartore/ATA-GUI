@@ -66,12 +66,15 @@ namespace ATA_GUI
                             labelLog.Text = "ATA is up to date!";
                         }
                         labelLatestRelease.Text = latestReleaseName;
+                        linkLabelChangelog.Visible = true;
                     }
                     catch
                     {
                         labelLog.Text = string.Empty;
                         MainForm.MessageShowBox("Timeout Error occurred while connecting to the Server", 0);
                     }
+
+                    labelCurrentRelease.Visible = MainForm.CURRENTVERSION != "UNKNOWN";
                 }
                 else
                 {
@@ -93,6 +96,7 @@ namespace ATA_GUI
         private void Settings_Load(object sender, EventArgs e)
         {
             labelCurrentRelease.Text = CURRENTVERSION;
+            linkLabelChangelog.Visible = false;
 
             if (!Feedback.checkFeedbackFile())
             {
