@@ -167,7 +167,7 @@ namespace ATA_GUI
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(117, 13);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Copyright © 2021-2022";
+            this.label4.Text = "Copyright © 2021-2023";
             // 
             // linkLabelRepo
             // 
