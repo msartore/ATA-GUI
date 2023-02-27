@@ -1318,7 +1318,7 @@ namespace ATA_GUI
                     {
                         try
                         {
-                            client.DownloadFile("https://dl.google.com/android/repository/platform-tools-latest-windows.zip?authuser=2", "sdkplatformtool.zip");
+                            client.DownloadFile("https://dl.google.com/android/repository/platform-tools-latest-windows.zip", "sdkplatformtool.zip");
                             LogWriteLine("sdk platform tool downloaded!");
                             LogWriteLine("unzipping sdk platform tool...");
                             using (ZipFile zip = ZipFile.Read("sdkplatformtool.zip"))
@@ -1353,7 +1353,7 @@ namespace ATA_GUI
                     disableSystem(true);
                     break;
                 case DialogResult.OK:
-                    Process.Start("https://developer.android.com/license?authuser=2");
+                    Process.Start("https://developer.android.com/license");
                     disableSystem(true);
                     break;
                 default:
