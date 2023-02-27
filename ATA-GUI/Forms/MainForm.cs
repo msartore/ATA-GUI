@@ -1466,15 +1466,17 @@ namespace ATA_GUI
                     {
                         try
                         {
-                            client.DownloadFile("https://github.com/Genymobile/scrcpy/releases/download/v1.20/scrcpy-win64-v1.20.zip", "scrcpy.zip");
+                            client.DownloadFile("https://github.com/Genymobile/scrcpy/releases/download/v1.25/scrcpy-win64-v1.25.zip", "scrcpy.zip");
                             LogWriteLine("scrcpy downloaded!");
                             LogWriteLine("unzipping scrcpy...");
                             using (ZipFile zip = ZipFile.Read("scrcpy.zip"))
                             {
                                 zip.ExtractAll(Path.GetDirectoryName(Application.ExecutablePath), ExtractExistingFileAction.DoNotOverwrite);
                             }
+                            systemCommand("robocopy " + Path.GetDirectoryName(Application.ExecutablePath) + "\\scrcpy-win64-v1.25 " + Path.GetDirectoryName(Application.ExecutablePath) + " /E /XC /XN /XO");
                             LogWriteLine("scrcpy Extracted!");
                             LogWriteLine("Getting things ready...");
+                            systemCommand("rmdir /s /q scrcpy-win64-v1.25");
                             systemCommand("del scrcpy.zip");
                             LogWriteLine("scrcpy ready!");
                         }
@@ -1497,12 +1499,12 @@ namespace ATA_GUI
 
         private void labelHelp_MouseLeave(object sender, EventArgs e)
         {
-            labelHelp.BackColor = System.Drawing.Color.Black;
+            labelHelp.BackColor = Color.Black;
         }
 
         private void labelSettings_MouseLeave(object sender, EventArgs e)
         {
-            labelSettings.BackColor = System.Drawing.Color.Black;
+            labelSettings.BackColor = Color.Black;
         }
 
         private void labelSettings_Click(object sender, EventArgs e)
