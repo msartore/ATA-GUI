@@ -44,6 +44,8 @@ namespace ATA_GUI
             this.linkLabelRepo = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
+            this.linkLabelGithub = new System.Windows.Forms.LinkLabel();
+            this.linkLabelWebsite = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -86,7 +88,7 @@ namespace ATA_GUI
             this.groupBox2.Controls.Add(this.linkLabelNewtonsoft);
             this.groupBox2.Controls.Add(this.linkLabelSDK);
             this.groupBox2.Controls.Add(this.linkLabelDNZ);
-            this.groupBox2.Location = new System.Drawing.Point(12, 129);
+            this.groupBox2.Location = new System.Drawing.Point(12, 169);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(361, 123);
             this.groupBox2.TabIndex = 1;
@@ -150,12 +152,14 @@ namespace ATA_GUI
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.linkLabelWebsite);
+            this.groupBox3.Controls.Add(this.linkLabelGithub);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.linkLabelRepo);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Location = new System.Drawing.Point(12, 70);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(361, 53);
+            this.groupBox3.Size = new System.Drawing.Size(361, 93);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Developer Info";
@@ -192,7 +196,7 @@ namespace ATA_GUI
             // buttonClose
             // 
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClose.Location = new System.Drawing.Point(298, 258);
+            this.buttonClose.Location = new System.Drawing.Point(298, 298);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 3;
@@ -200,12 +204,34 @@ namespace ATA_GUI
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
+            // linkLabelGithub
+            // 
+            this.linkLabelGithub.AutoSize = true;
+            this.linkLabelGithub.Location = new System.Drawing.Point(12, 49);
+            this.linkLabelGithub.Name = "linkLabelGithub";
+            this.linkLabelGithub.Size = new System.Drawing.Size(38, 13);
+            this.linkLabelGithub.TabIndex = 3;
+            this.linkLabelGithub.TabStop = true;
+            this.linkLabelGithub.Text = "Github";
+            this.linkLabelGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGithub_LinkClicked);
+            // 
+            // linkLabelWebsite
+            // 
+            this.linkLabelWebsite.AutoSize = true;
+            this.linkLabelWebsite.Location = new System.Drawing.Point(12, 67);
+            this.linkLabelWebsite.Name = "linkLabelWebsite";
+            this.linkLabelWebsite.Size = new System.Drawing.Size(46, 13);
+            this.linkLabelWebsite.TabIndex = 4;
+            this.linkLabelWebsite.TabStop = true;
+            this.linkLabelWebsite.Text = "Website";
+            this.linkLabelWebsite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelWebsite_LinkClicked);
+            // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(385, 293);
+            this.ClientSize = new System.Drawing.Size(385, 330);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -244,5 +270,7 @@ namespace ATA_GUI
         private System.Windows.Forms.LinkLabel linkLabelNewtonsoft;
         private System.Windows.Forms.LinkLabel linkLabelScrcpy;
         private System.Windows.Forms.LinkLabel linkLabelIcons;
+        private System.Windows.Forms.LinkLabel linkLabelWebsite;
+        private System.Windows.Forms.LinkLabel linkLabelGithub;
     }
 }

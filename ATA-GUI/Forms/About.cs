@@ -60,5 +60,15 @@ namespace ATA_GUI
         {
             labelVersion.Text = "Version: " + MainForm.CURRENTVERSION;
         }
+
+        private void linkLabelGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/msartore");
+        }
+
+        private void linkLabelWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://msartore.dev");
+        }
     }
 }

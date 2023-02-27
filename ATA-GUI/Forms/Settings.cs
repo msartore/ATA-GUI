@@ -73,8 +73,6 @@ namespace ATA_GUI
                         labelLog.Text = string.Empty;
                         MainForm.MessageShowBox("Timeout Error occurred while connecting to the Server", 0);
                     }
-
-                    labelCurrentRelease.Visible = MainForm.CURRENTVERSION != "UNKNOWN";
                 }
                 else
                 {

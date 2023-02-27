@@ -36,6 +36,7 @@ namespace ATA_GUI
             this.buttonStop = new System.Windows.Forms.Button();
             this.buttonClearLog = new System.Windows.Forms.Button();
             this.buttonCopyText = new System.Windows.Forms.Button();
+            this.buttonKeepScrolling = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonGetEvent
@@ -44,12 +45,13 @@ namespace ATA_GUI
             this.buttonGetEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonGetEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonGetEvent.ForeColor = System.Drawing.Color.Black;
-            this.buttonGetEvent.Location = new System.Drawing.Point(557, 461);
+            this.buttonGetEvent.Location = new System.Drawing.Point(471, 461);
             this.buttonGetEvent.Name = "buttonGetEvent";
             this.buttonGetEvent.Size = new System.Drawing.Size(82, 23);
             this.buttonGetEvent.TabIndex = 33;
             this.buttonGetEvent.Text = "GetEvent";
             this.buttonGetEvent.UseVisualStyleBackColor = false;
+            this.buttonGetEvent.Visible = false;
             this.buttonGetEvent.Click += new System.EventHandler(this.buttonGetEvent_Click);
             // 
             // buttonLogcat
@@ -58,7 +60,7 @@ namespace ATA_GUI
             this.buttonLogcat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogcat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogcat.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogcat.Location = new System.Drawing.Point(469, 461);
+            this.buttonLogcat.Location = new System.Drawing.Point(559, 461);
             this.buttonLogcat.Name = "buttonLogcat";
             this.buttonLogcat.Size = new System.Drawing.Size(82, 23);
             this.buttonLogcat.TabIndex = 35;
@@ -82,7 +84,6 @@ namespace ATA_GUI
             this.backgroundWorkerLog.WorkerReportsProgress = true;
             this.backgroundWorkerLog.WorkerSupportsCancellation = true;
             this.backgroundWorkerLog.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerLog_DoWorkAsync);
-            this.backgroundWorkerLog.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerLog_ProgressChanged);
             // 
             // buttonStop
             // 
@@ -90,7 +91,7 @@ namespace ATA_GUI
             this.buttonStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonStop.ForeColor = System.Drawing.Color.Black;
-            this.buttonStop.Location = new System.Drawing.Point(363, 461);
+            this.buttonStop.Location = new System.Drawing.Point(383, 461);
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.Size = new System.Drawing.Size(82, 23);
             this.buttonStop.TabIndex = 37;
@@ -126,12 +127,24 @@ namespace ATA_GUI
             this.buttonCopyText.UseVisualStyleBackColor = false;
             this.buttonCopyText.Click += new System.EventHandler(this.buttonCopyText_Click);
             // 
+            // buttonKeepScrolling
+            // 
+            this.buttonKeepScrolling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonKeepScrolling.Location = new System.Drawing.Point(233, 461);
+            this.buttonKeepScrolling.Name = "buttonKeepScrolling";
+            this.buttonKeepScrolling.Size = new System.Drawing.Size(106, 23);
+            this.buttonKeepScrolling.TabIndex = 40;
+            this.buttonKeepScrolling.Text = "Stop scrolling";
+            this.buttonKeepScrolling.UseVisualStyleBackColor = true;
+            this.buttonKeepScrolling.Click += new System.EventHandler(this.buttonKeepScrolling_Click);
+            // 
             // DeviceLogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(653, 491);
+            this.Controls.Add(this.buttonKeepScrolling);
             this.Controls.Add(this.buttonCopyText);
             this.Controls.Add(this.buttonClearLog);
             this.Controls.Add(this.buttonStop);
@@ -159,5 +172,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Button buttonClearLog;
         private System.Windows.Forms.Button buttonCopyText;
+        private System.Windows.Forms.Button buttonKeepScrolling;
     }
 }
