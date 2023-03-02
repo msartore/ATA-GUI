@@ -54,8 +54,7 @@ jobs:
     - name: Prepare package
       shell: bash
       run: |
-        tag=$(git describe --tags --abbrev=0)
-        release_name="ATA-GUI_$tag"
+        release_name="ATA-GUI"
         release_path="D:/a/ATA-GUI/ATA-GUI/ATA-GUI/bin/Release/"
         7z a -tzip "${release_name}.zip" "${release_path}Newtonsoft.Json.dll" "${release_path}ATA-GUI.exe" "${release_path}DotNetZip.dll" "D:/a/ATA-GUI/ATA-GUI/LICENSE"
       
@@ -67,7 +66,7 @@ jobs:
     - name: Create Release
       uses: ncipollo/release-action@v1.8.6
       with:
-        artifacts: ATA-GUI_*
+        artifacts: ATA-GUI*
         name: ${{steps.previoustag.outputs.tag}}
         tag: ${{steps.previoustag.outputs.tag}}
         token: ${{ secrets.GITHUB_TOKEN }}
