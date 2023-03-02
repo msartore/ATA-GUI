@@ -20,7 +20,7 @@ jobs:
       
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3.3.0
       with:
         fetch-depth: 0
         
@@ -28,16 +28,16 @@ jobs:
     - name: Install .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: 7.0.x
         
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1
+      uses: microsoft/setup-msbuild@v1.1
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
     - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
+      uses: NuGet/setup-nuget@v1.1.1
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
     
@@ -61,12 +61,12 @@ jobs:
   
     - name: Get Previous tag
       id: previoustag
-      uses: "WyriHaximus/github-action-get-previous-tag@v1"
+      uses: "WyriHaximus/github-action-get-previous-tag@v1.3.0"
       
     - name: Create Release
-      uses: ncipollo/release-action@v1.8.6
+      uses: ncipollo/release-action@v1.12.0
       with:
-        artifacts: ATA-GUI*
+        artifacts: ATA-GUI.zip
         name: ${{steps.previoustag.outputs.tag}}
         tag: ${{steps.previoustag.outputs.tag}}
         token: ${{ secrets.GITHUB_TOKEN }}
