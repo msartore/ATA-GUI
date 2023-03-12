@@ -25,7 +25,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v1.9.6";
+        public static readonly string CURRENTVERSION = "v1.9.7";
         public static readonly List<string> arrayApks = new List<string>();
         public static readonly string IPFileName = "IPList.txt";
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
@@ -1466,19 +1466,29 @@ namespace ATA_GUI
                     {
                         try
                         {
-                            client.DownloadFile("https://github.com/Genymobile/scrcpy/releases/download/v1.25/scrcpy-win64-v1.25.zip", "scrcpy.zip");
+                            client.DownloadFile("https://msartore.dev/scrcpy", "scrcpy.zip");
                             LogWriteLine("scrcpy downloaded!");
                             LogWriteLine("unzipping scrcpy...");
+                            var directories = Directory.GetDirectories(Path.GetDirectoryName(Application.ExecutablePath));
                             using (ZipFile zip = ZipFile.Read("scrcpy.zip"))
                             {
                                 zip.ExtractAll(Path.GetDirectoryName(Application.ExecutablePath), ExtractExistingFileAction.DoNotOverwrite);
                             }
-                            systemCommand("robocopy " + Path.GetDirectoryName(Application.ExecutablePath) + "\\scrcpy-win64-v1.25 " + Path.GetDirectoryName(Application.ExecutablePath) + " /E /XC /XN /XO");
-                            LogWriteLine("scrcpy Extracted!");
-                            LogWriteLine("Getting things ready...");
-                            systemCommand("rmdir /s /q scrcpy-win64-v1.25");
-                            systemCommand("del scrcpy.zip");
-                            LogWriteLine("scrcpy ready!");
+                            var newDirectories = Directory.GetDirectories(Path.GetDirectoryName(Application.ExecutablePath));
+                            
+                            for (int i = 0; i < newDirectories.Length; i++)
+                            {
+                                if (i == directories.Length || newDirectories.Length == directories.Length || newDirectories[i] != directories[i])
+                                {
+                                    systemCommand("robocopy " + newDirectories[i] + " " + Path.GetDirectoryName(Application.ExecutablePath) + " /E");
+                                    LogWriteLine("scrcpy Extracted!");
+                                    LogWriteLine("Getting things ready...");
+                                    systemCommand("rmdir /s /q " + newDirectories[i]);
+                                    systemCommand("del scrcpy.zip");
+                                    LogWriteLine("scrcpy ready!");
+                                    break;
+                                }
+                            }
                         }
                         catch (Exception ex)
                         {
