@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -60,22 +59,25 @@ namespace ATA_GUI
             {
                 line = process.StandardOutput.ReadLine() + "\n";
 
-                try 
+                if (line.ToLower().Contains(textBoxFilter.Text.ToLower()) || string.IsNullOrEmpty(textBoxFilter.Text))
                 {
-                    Invoke((Action)delegate
+                    try
                     {
-                        richTextBoxLog.Text += line;
-                        richTextBoxLog.SelectionStart = richTextBoxLog.Text.Length;
-                        if (keepScrolling) richTextBoxLog.ScrollToCaret();
-                    });
+                        Invoke((Action)delegate
+                        {
+                            richTextBoxLog.Text += line;
+                            richTextBoxLog.SelectionStart = richTextBoxLog.Text.Length;
+                            if (keepScrolling) richTextBoxLog.ScrollToCaret();
+                        });
 
-                    await Task.Delay(10);
-                }
-                catch { }
+                        await Task.Delay(10);
+                    }
+                    catch { }
 
-                if (backgroundWorkerLog.CancellationPending)
-                {
-                    break;
+                    if (backgroundWorkerLog.CancellationPending)
+                    {
+                        break;
+                    }
                 }
             }
             processBusy = false;
@@ -127,6 +129,7 @@ namespace ATA_GUI
         private void buttonLogcatClear_Click(object sender, EventArgs e)
         {
             checkAndStop();
+            buttonLogcat.Text = "Start";
             MainForm.adbFastbootCommandR(new[] { "-s " + MainForm.CurrentDeviceSelected + " logcat -c" }, 0);
         }
     }

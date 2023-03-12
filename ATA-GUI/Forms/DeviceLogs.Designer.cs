@@ -38,6 +38,7 @@ namespace ATA_GUI
             this.buttonKeepScrolling = new System.Windows.Forms.Button();
             this.buttonLogcatClear = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxFilter = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,7 +65,7 @@ namespace ATA_GUI
             this.buttonLogcat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogcat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogcat.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogcat.Location = new System.Drawing.Point(89, 15);
+            this.buttonLogcat.Location = new System.Drawing.Point(199, 15);
             this.buttonLogcat.Name = "buttonLogcat";
             this.buttonLogcat.Size = new System.Drawing.Size(82, 23);
             this.buttonLogcat.TabIndex = 35;
@@ -138,7 +139,7 @@ namespace ATA_GUI
             // 
             this.buttonLogcatClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonLogcatClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLogcatClear.Location = new System.Drawing.Point(8, 15);
+            this.buttonLogcatClear.Location = new System.Drawing.Point(118, 15);
             this.buttonLogcatClear.Name = "buttonLogcatClear";
             this.buttonLogcatClear.Size = new System.Drawing.Size(75, 23);
             this.buttonLogcatClear.TabIndex = 41;
@@ -149,14 +150,23 @@ namespace ATA_GUI
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.textBoxFilter);
             this.groupBox1.Controls.Add(this.buttonLogcatClear);
             this.groupBox1.Controls.Add(this.buttonLogcat);
-            this.groupBox1.Location = new System.Drawing.Point(601, 399);
+            this.groupBox1.Location = new System.Drawing.Point(491, 399);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(177, 44);
+            this.groupBox1.Size = new System.Drawing.Size(287, 44);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Logcat";
+            // 
+            // textBoxFilter
+            // 
+            this.textBoxFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxFilter.Location = new System.Drawing.Point(12, 17);
+            this.textBoxFilter.Name = "textBoxFilter";
+            this.textBoxFilter.Size = new System.Drawing.Size(100, 20);
+            this.textBoxFilter.TabIndex = 43;
             // 
             // DeviceLogs
             // 
@@ -179,6 +189,7 @@ namespace ATA_GUI
             this.Text = "Device Logs";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeviceLogs_FormClosing);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -194,5 +205,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonKeepScrolling;
         private System.Windows.Forms.Button buttonLogcatClear;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textBoxFilter;
     }
 }

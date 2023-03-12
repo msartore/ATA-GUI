@@ -25,7 +25,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v1.9.7";
+        public static readonly string CURRENTVERSION = "v2.0.0";
         public static readonly List<string> arrayApks = new List<string>();
         public static readonly string IPFileName = "IPList.txt";
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
