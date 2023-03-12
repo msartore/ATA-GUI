@@ -11,7 +11,6 @@ namespace ATA_GUI
         private readonly string currentDevice = string.Empty;
         private string line = string.Empty;
         private readonly System.Diagnostics.Process process = new System.Diagnostics.Process();
-        private readonly SynchronizationContext synchronizationContext;
         private readonly System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
         private bool keepScrolling = true;
         private bool processBusy = false;
@@ -19,9 +18,7 @@ namespace ATA_GUI
         public DeviceLogs(string CurrentDevice)
         {
             this.currentDevice = CurrentDevice;
-            InitializeComponent();
-
-            synchronizationContext = SynchronizationContext.Current;   
+            InitializeComponent(); 
 
             startInfo.UseShellExecute = false;
             startInfo.CreateNoWindow = true;
@@ -37,6 +34,12 @@ namespace ATA_GUI
             if (!processBusy)
             {
                 backgroundWorkerLog.RunWorkerAsync(" -s " + currentDevice + " shell logcat");
+                buttonLogcat.Text = "Stop";
+            }
+            else
+            {
+                checkAndStop();
+                buttonLogcat.Text = "Start";
             }
         }
 
@@ -66,7 +69,7 @@ namespace ATA_GUI
                         if (keepScrolling) richTextBoxLog.ScrollToCaret();
                     });
 
-                    await Task.Delay(50);
+                    await Task.Delay(10);
                 }
                 catch { }
 
@@ -80,11 +83,6 @@ namespace ATA_GUI
         }
 
         private void DeviceLogs_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            checkAndStop();
-        }
-
-        private void buttonStop_Click(object sender, EventArgs e)
         {
             checkAndStop();
         }
@@ -124,6 +122,12 @@ namespace ATA_GUI
             {
                 buttonKeepScrolling.Text = "Keep scrolling";
             }
+        }
+
+        private void buttonLogcatClear_Click(object sender, EventArgs e)
+        {
+            checkAndStop();
+            MainForm.adbFastbootCommandR(new[] { "-s " + MainForm.CurrentDeviceSelected + " logcat -c" }, 0);
         }
     }
 }

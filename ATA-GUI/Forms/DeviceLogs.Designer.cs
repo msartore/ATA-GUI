@@ -33,19 +33,22 @@ namespace ATA_GUI
             this.buttonLogcat = new System.Windows.Forms.Button();
             this.richTextBoxLog = new System.Windows.Forms.RichTextBox();
             this.backgroundWorkerLog = new System.ComponentModel.BackgroundWorker();
-            this.buttonStop = new System.Windows.Forms.Button();
             this.buttonClearLog = new System.Windows.Forms.Button();
             this.buttonCopyText = new System.Windows.Forms.Button();
             this.buttonKeepScrolling = new System.Windows.Forms.Button();
+            this.buttonLogcatClear = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonGetEvent
             // 
+            this.buttonGetEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonGetEvent.BackColor = System.Drawing.Color.White;
             this.buttonGetEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonGetEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonGetEvent.ForeColor = System.Drawing.Color.Black;
-            this.buttonGetEvent.Location = new System.Drawing.Point(471, 461);
+            this.buttonGetEvent.Location = new System.Drawing.Point(372, 414);
             this.buttonGetEvent.Name = "buttonGetEvent";
             this.buttonGetEvent.Size = new System.Drawing.Size(82, 23);
             this.buttonGetEvent.TabIndex = 33;
@@ -56,26 +59,30 @@ namespace ATA_GUI
             // 
             // buttonLogcat
             // 
+            this.buttonLogcat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonLogcat.BackColor = System.Drawing.Color.White;
             this.buttonLogcat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogcat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogcat.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogcat.Location = new System.Drawing.Point(559, 461);
+            this.buttonLogcat.Location = new System.Drawing.Point(89, 15);
             this.buttonLogcat.Name = "buttonLogcat";
             this.buttonLogcat.Size = new System.Drawing.Size(82, 23);
             this.buttonLogcat.TabIndex = 35;
-            this.buttonLogcat.Text = "Logcat";
+            this.buttonLogcat.Text = "Start";
             this.buttonLogcat.UseVisualStyleBackColor = false;
             this.buttonLogcat.Click += new System.EventHandler(this.buttonLogcat_Click);
             // 
             // richTextBoxLog
             // 
+            this.richTextBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxLog.BackColor = System.Drawing.Color.Black;
             this.richTextBoxLog.ForeColor = System.Drawing.Color.White;
             this.richTextBoxLog.Location = new System.Drawing.Point(12, 12);
             this.richTextBoxLog.Name = "richTextBoxLog";
             this.richTextBoxLog.ReadOnly = true;
-            this.richTextBoxLog.Size = new System.Drawing.Size(629, 443);
+            this.richTextBoxLog.Size = new System.Drawing.Size(766, 381);
             this.richTextBoxLog.TabIndex = 36;
             this.richTextBoxLog.Text = "";
             // 
@@ -85,27 +92,14 @@ namespace ATA_GUI
             this.backgroundWorkerLog.WorkerSupportsCancellation = true;
             this.backgroundWorkerLog.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerLog_DoWorkAsync);
             // 
-            // buttonStop
-            // 
-            this.buttonStop.BackColor = System.Drawing.Color.White;
-            this.buttonStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonStop.ForeColor = System.Drawing.Color.Black;
-            this.buttonStop.Location = new System.Drawing.Point(383, 461);
-            this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(82, 23);
-            this.buttonStop.TabIndex = 37;
-            this.buttonStop.Text = "Stop";
-            this.buttonStop.UseVisualStyleBackColor = false;
-            this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
-            // 
             // buttonClearLog
             // 
+            this.buttonClearLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonClearLog.BackColor = System.Drawing.Color.White;
             this.buttonClearLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonClearLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonClearLog.ForeColor = System.Drawing.Color.Black;
-            this.buttonClearLog.Location = new System.Drawing.Point(12, 461);
+            this.buttonClearLog.Location = new System.Drawing.Point(12, 414);
             this.buttonClearLog.Name = "buttonClearLog";
             this.buttonClearLog.Size = new System.Drawing.Size(82, 23);
             this.buttonClearLog.TabIndex = 38;
@@ -115,11 +109,12 @@ namespace ATA_GUI
             // 
             // buttonCopyText
             // 
+            this.buttonCopyText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonCopyText.BackColor = System.Drawing.Color.White;
             this.buttonCopyText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCopyText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCopyText.ForeColor = System.Drawing.Color.Black;
-            this.buttonCopyText.Location = new System.Drawing.Point(101, 461);
+            this.buttonCopyText.Location = new System.Drawing.Point(101, 414);
             this.buttonCopyText.Name = "buttonCopyText";
             this.buttonCopyText.Size = new System.Drawing.Size(82, 23);
             this.buttonCopyText.TabIndex = 39;
@@ -129,8 +124,9 @@ namespace ATA_GUI
             // 
             // buttonKeepScrolling
             // 
+            this.buttonKeepScrolling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonKeepScrolling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonKeepScrolling.Location = new System.Drawing.Point(233, 461);
+            this.buttonKeepScrolling.Location = new System.Drawing.Point(189, 414);
             this.buttonKeepScrolling.Name = "buttonKeepScrolling";
             this.buttonKeepScrolling.Size = new System.Drawing.Size(106, 23);
             this.buttonKeepScrolling.TabIndex = 40;
@@ -138,27 +134,51 @@ namespace ATA_GUI
             this.buttonKeepScrolling.UseVisualStyleBackColor = true;
             this.buttonKeepScrolling.Click += new System.EventHandler(this.buttonKeepScrolling_Click);
             // 
+            // buttonLogcatClear
+            // 
+            this.buttonLogcatClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonLogcatClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLogcatClear.Location = new System.Drawing.Point(8, 15);
+            this.buttonLogcatClear.Name = "buttonLogcatClear";
+            this.buttonLogcatClear.Size = new System.Drawing.Size(75, 23);
+            this.buttonLogcatClear.TabIndex = 41;
+            this.buttonLogcatClear.Text = "Clear";
+            this.buttonLogcatClear.UseVisualStyleBackColor = true;
+            this.buttonLogcatClear.Click += new System.EventHandler(this.buttonLogcatClear_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.buttonLogcatClear);
+            this.groupBox1.Controls.Add(this.buttonLogcat);
+            this.groupBox1.Location = new System.Drawing.Point(601, 399);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(177, 44);
+            this.groupBox1.TabIndex = 42;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Logcat";
+            // 
             // DeviceLogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(653, 491);
+            this.ClientSize = new System.Drawing.Size(790, 448);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonKeepScrolling);
             this.Controls.Add(this.buttonCopyText);
             this.Controls.Add(this.buttonClearLog);
-            this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.richTextBoxLog);
-            this.Controls.Add(this.buttonLogcat);
             this.Controls.Add(this.buttonGetEvent);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(700, 400);
             this.Name = "DeviceLogs";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Device Logs";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeviceLogs_FormClosing);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -169,9 +189,10 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonLogcat;
         private System.Windows.Forms.RichTextBox richTextBoxLog;
         private System.ComponentModel.BackgroundWorker backgroundWorkerLog;
-        private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Button buttonClearLog;
         private System.Windows.Forms.Button buttonCopyText;
         private System.Windows.Forms.Button buttonKeepScrolling;
+        private System.Windows.Forms.Button buttonLogcatClear;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
