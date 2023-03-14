@@ -77,12 +77,12 @@ namespace ATA_GUI
                             {
                                 MainForm.MessageShowBox(labelFileName.Text + " not transfered", 0);
                             }
-                            reportProgress(++i);
+                            reportProgress();
                             Thread.Sleep(500);
                         }
                         else
                         {
-                            reportProgress(++i);
+                            reportProgress();
                             Thread.Sleep(500);
                         }
                     }
@@ -98,7 +98,7 @@ namespace ATA_GUI
                         labelFileName.Text = apk;
                         this.Refresh();
                         MainForm.systemCommand(command + apk);
-                        reportProgress(++i);
+                        reportProgress();
                         Thread.Sleep(500);
                     }
                 }
@@ -113,7 +113,6 @@ namespace ATA_GUI
                 progressBar1.Refresh();
                 Application.DoEvents();
             });
-            
         }
     }
 }
