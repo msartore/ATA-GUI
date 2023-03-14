@@ -105,7 +105,7 @@ namespace ATA_GUI
             });
         }
 
-        private void reportProgress(int a)
+        private void reportProgress()
         {
             Invoke((MethodInvoker)delegate
             {
