@@ -64,6 +64,8 @@ namespace ATA_GUI
                 {
                     MainForm.systemCommand("adb -s " + deviceSerial + " shell mkdir sdcard/ATA");
                     progressBar1.Maximum = fileArray.Length;
+                    progressBar1.Minimum = 1;
+                    progressBar1.Step = 1;
                     int i = 0;
                     foreach (string file in fileArray)
                     {
@@ -75,37 +77,43 @@ namespace ATA_GUI
                             {
                                 MainForm.MessageShowBox(labelFileName.Text + " not transfered", 0);
                             }
-                            backgroundWorker.ReportProgress(++i);
+                            reportProgress(++i);
+                            Thread.Sleep(500);
                         }
                         else
                         {
-                            backgroundWorker.ReportProgress(++i);
+                            reportProgress(++i);
+                            Thread.Sleep(500);
                         }
                     }
                 }
                 else
                 {
                     progressBar1.Maximum = arrayApk.Count;
+                    progressBar1.Minimum = 1;
+                    progressBar1.Step = 1;
                     int i = 0;
                     foreach (string apk in arrayApk)
                     {
                         labelFileName.Text = apk;
                         this.Refresh();
                         MainForm.systemCommand(command + apk);
-                        backgroundWorker.ReportProgress(++i);
+                        reportProgress(++i);
+                        Thread.Sleep(500);
                     }
                 }
             });
         }
 
-        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void reportProgress(int a)
         {
-            progressBar1.Value = e.ProgressPercentage;
-            progressBar1.Value = e.ProgressPercentage - 1;
-            progressBar1.Value = e.ProgressPercentage;
-            Thread.Sleep(1000);
-            progressBar1.Update();
-            progressBar1.Refresh();
+            Invoke((MethodInvoker)delegate
+            {
+                progressBar1.PerformStep();
+                progressBar1.Refresh();
+                Application.DoEvents();
+            });
+            
         }
     }
 }

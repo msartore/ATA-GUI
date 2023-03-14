@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -59,7 +60,7 @@ namespace ATA_GUI
             {
                 line = process.StandardOutput.ReadLine() + "\n";
 
-                if (line.ToLower().Contains(textBoxFilter.Text.ToLower()) || string.IsNullOrEmpty(textBoxFilter.Text))
+                if (line.ToLowerInvariant().Contains(textBoxFilter.Text.ToLowerInvariant()) || string.IsNullOrEmpty(textBoxFilter.Text))
                 {
                     try
                     {
@@ -67,7 +68,10 @@ namespace ATA_GUI
                         {
                             richTextBoxLog.Text += line;
                             richTextBoxLog.SelectionStart = richTextBoxLog.Text.Length;
-                            if (keepScrolling) richTextBoxLog.ScrollToCaret();
+                            if (keepScrolling)
+                            {
+                                richTextBoxLog.ScrollToCaret();
+                            }
                         });
 
                         await Task.Delay(10);

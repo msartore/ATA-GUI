@@ -25,7 +25,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v2.0.0";
+        public static readonly string CURRENTVERSION = "v2.0.1";
         public static readonly List<string> arrayApks = new List<string>();
         public static readonly string IPFileName = "IPList.txt";
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
@@ -727,7 +727,7 @@ namespace ATA_GUI
 
             DevicesListUpdate();
             syncFun(3);
-            updateCheckAsync();
+            _ = updateCheckAsync();
         }
 
         private void checkBoxSelectAll_CheckedChanged(object sender, EventArgs e)
@@ -1466,7 +1466,7 @@ namespace ATA_GUI
                     {
                         try
                         {
-                            client.DownloadFile("https://msartore.dev/scrcpy", "scrcpy.zip");
+                            client.DownloadFile("https://ata.msartore.dev/scrcpy/download", "scrcpy.zip");
                             LogWriteLine("scrcpy downloaded!");
                             LogWriteLine("unzipping scrcpy...");
                             var directories = Directory.GetDirectories(Path.GetDirectoryName(Application.ExecutablePath));
@@ -1887,7 +1887,9 @@ namespace ATA_GUI
                     break;
                 case 1:
                     foreach (Object current in checkedItems)
+                    {
                         new DefaultApp(current.ToString()).ShowDialog();
+                    }
                     break;
                 default:
                     MessageShowBox("Too much app seleted", 1);

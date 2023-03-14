@@ -82,10 +82,5 @@ namespace ATA_GUI
         {
             Process.Start("https://msartore.dev/donation/");
         }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
