@@ -64,7 +64,7 @@ namespace ATA_GUI
                 {
                     if (appInstalled.Contains(temp))
                     {
-                        foundPackageList.Add(temp);
+                        _ = foundPackageList.Add(temp);
                     }
                 }
             }
@@ -82,7 +82,7 @@ namespace ATA_GUI
 
         public string RemoveWhitespace(string input)
         {
-            return new string(input.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
+            return new string(input.ToCharArray().Where(c => !char.IsWhiteSpace(c)).ToArray());
         }
 
         private void BloatwareDetecter_Shown(object sender, EventArgs e)
@@ -97,12 +97,12 @@ namespace ATA_GUI
             if (checkedListBoxBloatwareList.CheckedItems.Count > 0)
             {
                 List<string> apks = new List<string>();
-                foreach (Object list in checkedListBoxBloatwareList.CheckedItems)
+                foreach (object list in checkedListBoxBloatwareList.CheckedItems)
                 {
                     apks.Add(list.ToString());
                 }
                 mainForm.loadMethod(apks, "adb -s " + CurrentDevice + " shell pm disable-user --user 0 ", "Disabled:");
-                this.Close();
+                Close();
             }
             else
             {

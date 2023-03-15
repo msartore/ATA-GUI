@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,8 +16,8 @@ namespace ATA_GUI
 
         public DeviceLogs(string CurrentDevice)
         {
-            this.currentDevice = CurrentDevice;
-            InitializeComponent(); 
+            currentDevice = CurrentDevice;
+            InitializeComponent();
 
             startInfo.UseShellExecute = false;
             startInfo.CreateNoWindow = true;
@@ -54,7 +53,7 @@ namespace ATA_GUI
         private async void backgroundWorkerLog_DoWorkAsync(object sender, DoWorkEventArgs e)
         {
             startInfo.Arguments = e.Argument as string;
-            process.Start();
+            _ = process.Start();
             processBusy = true;
             while (!process.HasExited)
             {
@@ -64,7 +63,7 @@ namespace ATA_GUI
                 {
                     try
                     {
-                        Invoke((Action)delegate
+                        _ = Invoke((Action)delegate
                         {
                             richTextBoxLog.Text += line;
                             richTextBoxLog.SelectionStart = richTextBoxLog.Text.Length;
@@ -120,21 +119,14 @@ namespace ATA_GUI
         private void buttonKeepScrolling_Click(object sender, EventArgs e)
         {
             keepScrolling = !keepScrolling;
-            if (keepScrolling)
-            {
-                buttonKeepScrolling.Text = "Stop scrolling";
-            }
-            else
-            {
-                buttonKeepScrolling.Text = "Keep scrolling";
-            }
+            buttonKeepScrolling.Text = keepScrolling ? "Stop scrolling" : "Keep scrolling";
         }
 
         private void buttonLogcatClear_Click(object sender, EventArgs e)
         {
             checkAndStop();
             buttonLogcat.Text = "Start";
-            MainForm.adbFastbootCommandR(new[] { "-s " + MainForm.CurrentDeviceSelected + " logcat -c" }, 0);
+            _ = MainForm.adbFastbootCommandR(new[] { "-s " + MainForm.CurrentDeviceSelected + " logcat -c" }, 0);
         }
     }
 }

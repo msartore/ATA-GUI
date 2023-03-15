@@ -24,14 +24,7 @@ namespace ATA_GUI
             XmlDocument doc = new XmlDocument();
             doc.Load(fileName);
             XmlNode node = doc.DocumentElement.SelectSingleNode("/ATA/initialPopUpFeedback");
-            if (node.InnerText == "yes")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return node.InnerText == "yes";
         }
 
         public static bool changeFeedbackFile(bool popUp)
@@ -46,41 +39,34 @@ namespace ATA_GUI
             XmlNode root = doc.DocumentElement;
             XmlNode myNode = root.SelectSingleNode("/ATA/initialPopUpFeedback");
 
-            if (popUp)
-            {
-                myNode.FirstChild.Value = "yes";
-            }
-            else
-            {
-                myNode.FirstChild.Value = "no";
-            }
+            myNode.FirstChild.Value = popUp ? "yes" : "no";
             doc.Save(fileName);
             return false;
         }
 
         private void buttonSendFeedback_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/issues/new/choose");
+            _ = Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/issues/new/choose");
         }
 
         private void buttonShareTwitter_Click(object sender, EventArgs e)
         {
-            Process.Start("https://twitter.com/intent/tweet?text=Check+out+this+cool+Android™+tool+that+I+found!+https://github.com/MassimilianoSartore/ATA-GUI");
+            _ = Process.Start("https://twitter.com/intent/tweet?text=Check+out+this+cool+Android™+tool+that+I+found!+https://github.com/MassimilianoSartore/ATA-GUI");
         }
 
         private void buttonSGF_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=%5BFEATURE%5D");
+            _ = Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=%5BFEATURE%5D");
         }
 
         private void buttonSGI_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBUG%5D");
+            _ = Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBUG%5D");
         }
 
         private void buttonDonate_Click(object sender, EventArgs e)
         {
-            Process.Start("https://msartore.dev/donation/");
+            _ = Process.Start("https://msartore.dev/donation/");
         }
     }
 }

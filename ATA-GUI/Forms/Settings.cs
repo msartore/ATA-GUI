@@ -34,8 +34,10 @@ namespace ATA_GUI
                     try
                     {
                         labelLog.Text = "Checking for new ATA version...";
-                        HttpClient _client = new HttpClient();
-                        _client.Timeout = TimeSpan.FromSeconds(60);
+                        HttpClient _client = new HttpClient
+                        {
+                            Timeout = TimeSpan.FromSeconds(60)
+                        };
                         _client.DefaultRequestHeaders.Add("User-Agent", "ATA");
                         json = await _client.GetStringAsync("https://ata.msartore.dev/api/links.json");
                         dynamic jsonMirror = JsonConvert.DeserializeObject(json);
@@ -48,13 +50,13 @@ namespace ATA_GUI
                         if (CURRENTVERSION.Contains("Pre")) { currentRelease.Pre = true; }
                         string linkString = jsonReal[0]["assets"][0]["browser_download_url"];
                         changelog = jsonReal[0]["body"];
-                        if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && (currentRelease.Pre && !latestRelease.Pre)))
+                        if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && currentRelease.Pre && !latestRelease.Pre))
                         {
                             if (MessageBox.Show("New version found: " + latestReleaseName + "\nCurrent Version: " + CURRENTVERSION + "\n\nDo you want to update it?", "Update found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                Process.Start((string)jsonReal[0]["html_url"]);
+                                _ = Process.Start((string)jsonReal[0]["html_url"]);
                                 UpdateForm update = new UpdateForm(linkString);
-                                update.ShowDialog();
+                                _ = update.ShowDialog();
                             }
                             else
                             {
@@ -88,7 +90,7 @@ namespace ATA_GUI
 
         private void buttonCredits_Click(object sender, EventArgs e)
         {
-            (new About()).ShowDialog();
+            _ = new About().ShowDialog();
         }
 
         private void Settings_Load(object sender, EventArgs e)
@@ -116,10 +118,10 @@ namespace ATA_GUI
             }
             if (checkBoxInitPopUp.Checked)
             {
-                Feedback.changeFeedbackFile(false);
+                _ = Feedback.changeFeedbackFile(false);
                 return;
             }
-            Feedback.changeFeedbackFile(true);
+            _ = Feedback.changeFeedbackFile(true);
         }
 
         private void buttonRemoveLocalSDK_Click(object sender, EventArgs e)
@@ -127,7 +129,7 @@ namespace ATA_GUI
             string[] programs = { "adb.exe", "fastboot.exe", "AdbWinUsbApi.dll", "AdbWinApi.dll" };
             bool nFound = false;
 
-            MainForm.systemCommand("taskkill /f /im " + programs[0]);
+            _ = MainForm.systemCommand("taskkill /f /im " + programs[0]);
 
             foreach (string program in programs)
             {

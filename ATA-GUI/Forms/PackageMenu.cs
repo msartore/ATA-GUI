@@ -6,10 +6,9 @@ namespace ATA_GUI
 {
     public partial class PackageMenu : Form
     {
-        private int dialogResult;
         private bool closedByMe;
 
-        public int DialogResult1 { get => dialogResult; }
+        public int DialogResult1 { get; private set; }
 
         public PackageMenu(List<string> apklist)
         {
@@ -39,16 +38,16 @@ namespace ATA_GUI
 
         private void SetResults(int d)
         {
-            dialogResult = d;
+            DialogResult1 = d;
             closedByMe = true;
-            this.Close();
+            Close();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             if (!closedByMe)
             {
-                dialogResult = -1;
+                DialogResult1 = -1;
             }
         }
     }

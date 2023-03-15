@@ -196,6 +196,8 @@ namespace ATA_GUI
             this.buttonTaskManager = new System.Windows.Forms.Button();
             this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
+            this.toolStripButtonExtract = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -613,13 +615,15 @@ namespace ATA_GUI
             this.toolStripSeparator10,
             this.toolStripButtonSearch,
             this.toolStripSeparator9,
+            this.toolStripButtonExtract,
+            this.toolStripSeparator12,
             this.toolStripLabelTotalApps,
             this.toolStripSeparator11,
             this.toolStripDropDownInstallApkButton});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(550, 23);
+            this.toolStrip1.Size = new System.Drawing.Size(550, 42);
             this.toolStrip1.TabIndex = 42;
             this.toolStrip1.Text = "toolStripAPKMenu";
             // 
@@ -1833,6 +1837,21 @@ namespace ATA_GUI
             // 
             this.backgroundWorkerADBDisconnect.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerADBDisconnect_DoWork);
             // 
+            // toolStripButtonExtract
+            // 
+            this.toolStripButtonExtract.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonExtract.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonExtract.Image")));
+            this.toolStripButtonExtract.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonExtract.Name = "toolStripButtonExtract";
+            this.toolStripButtonExtract.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonExtract.Text = "Extract";
+            this.toolStripButtonExtract.Click += new System.EventHandler(this.toolStripButtonExtract_Click);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 23);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2065,6 +2084,8 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem revokeSYSTEMALERTWINDOWToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonSetDefault;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripButton toolStripButtonExtract;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
     }
 }
 

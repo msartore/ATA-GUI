@@ -20,25 +20,25 @@ namespace ATA_GUI
         private void adbMissingForm_Load(object sender, EventArgs e)
         {
             label1.Text = message;
-            this.Text = title;
+            Text = title;
         }
 
         private void buttonInfo_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            this.Close();
+            Close();
         }
 
         private void buttonNo_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.No;
-            this.Close();
+            Close();
         }
 
         private void buttonYes_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Yes;
-            this.Close();
+            Close();
         }
     }
 }

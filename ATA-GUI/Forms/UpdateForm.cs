@@ -22,7 +22,9 @@ namespace ATA_GUI
         public new void Update()
         {
             progressBar1.Maximum = 2;
-            using (var client = new WebClient())
+            progressBar1.Value = 0;
+            progressBar1.Step = 1;
+            using (WebClient client = new WebClient())
             {
                 try
                 {
@@ -34,36 +36,36 @@ namespace ATA_GUI
                         }
                     }
                     labelLog.Text = "Downloading update...";
-                    MainForm.systemCommand("rmdir /s /q ATAUpdate");
-                    this.Refresh();
+                    _ = MainForm.systemCommand("rmdir /s /q ATAUpdate");
+                    Refresh();
                     if (!File.Exists(ataUFileName))
                     {
                         labelLog.Text = "Failed to update, missing " + ataUFileName;
                         labelLog.BackColor = System.Drawing.Color.Red;
-                        this.Close();
-                        this.Refresh();
-                        Thread.Sleep(2000);
+                        Close();
+                        Refresh();
+                        Thread.Sleep(500);
                         return;
                     }
                     if (File.Exists(ataZipFileName)) { File.Delete(ataZipFileName); }
                     labelWarning.Text = "Don't close this program!";
                     labelWarning.BackColor = System.Drawing.Color.Red;
-                    this.Refresh();
+                    Refresh();
                     client.DownloadFile(link, ataZipFileName);
-                    UpdateProgressBar(1);
+                    reportProgress();
                     labelLog.Text = "Unzipping update...";
-                    this.Refresh();
+                    Refresh();
                     using (ZipFile zip = ZipFile.Read(ataZipFileName))
                     {
-                        MainForm.systemCommand("mkdir ATAUpdate");
+                        _ = MainForm.systemCommand("mkdir ATAUpdate");
                         zip.ExtractAll(Application.ExecutablePath.Replace("\\ATA-GUI.exe", "") + "\\ATAUpdate");
                     }
-                    UpdateProgressBar(2);
+                    reportProgress();
                     labelLog.Text = "Starting to update...";
-                    this.Refresh();
+                    Refresh();
                     labelLog.Text = "Closing App...";
-                    this.Refresh();
-                    MainForm.systemCommand("start \"\" " + ataUFileName);
+                    Refresh();
+                    _ = MainForm.systemCommand("start \"\" " + ataUFileName);
                     Application.Exit();
                 }
                 catch (Exception ex)
@@ -73,7 +75,7 @@ namespace ATA_GUI
                     labelLog.BackColor = System.Drawing.Color.Red;
                 }
             }
-            this.Close();
+            Close();
         }
 
         private void UpdateForm_Shown(object sender, EventArgs e)
@@ -81,14 +83,15 @@ namespace ATA_GUI
             Update();
         }
 
-        private void UpdateProgressBar(int value)
+        private void reportProgress()
         {
-            progressBar1.Value = value;
-            progressBar1.Value = value - 1;
-            progressBar1.Value = value;
-            Thread.Sleep(1000);
-            progressBar1.Update();
-            progressBar1.Refresh();
+            _ = Invoke((MethodInvoker)delegate
+            {
+                progressBar1.PerformStep();
+                progressBar1.Refresh();
+                Application.DoEvents();
+            });
+            Thread.Sleep(500);
         }
     }
 }

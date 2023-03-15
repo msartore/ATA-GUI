@@ -53,7 +53,7 @@ namespace ATA_GUI
 
         private void buttonKillProcess_Click(object sender, EventArgs e)
         {
-            MainForm.adbFastbootCommandR(new string[] { " -s " + MainForm.CurrentDeviceSelected + " shell am force-stop " + textBoxPackage.Text }, 0);
+            _ = MainForm.adbFastbootCommandR(new string[] { " -s " + MainForm.CurrentDeviceSelected + " shell am force-stop " + textBoxPackage.Text }, 0);
         }
 
         private void allToolStripMenuItem_Click(object sender, EventArgs e)

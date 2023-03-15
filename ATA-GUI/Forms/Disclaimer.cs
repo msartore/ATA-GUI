@@ -59,7 +59,7 @@ namespace ATA_GUI
         {
             createDiscalimer("yes");
             closedByMe = true;
-            this.Close();
+            Close();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
