@@ -25,7 +25,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v2.0.1";
+        public static readonly string CURRENTVERSION = "v2.1.0";
         public static readonly List<string> arrayApks = new List<string>();
         public static readonly string IPFileName = "IPList.txt";
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
@@ -1911,7 +1911,10 @@ namespace ATA_GUI
                 }
                 LoadingForm loadingForm = new LoadingForm(CurrentDeviceSelected, arrayApkSelect);
                 _ = loadingForm.ShowDialog();
-                checkedListBoxApp.ClearSelected();
+                for (int i = 0; i < checkedListBoxApp.Items.Count; i++)
+                {
+                    checkedListBoxApp.SetItemChecked(i, false);
+                }
             }
             else
             {
