@@ -114,7 +114,7 @@ namespace ATA_GUI
                             string[] pathList = MainForm.systemCommand("adb.exe " + "-s " + deviceSerial + " shell pm path " + x).Split('\n').Where(it => it.Contains("package")).ToArray();
                             foreach (string path in pathList)
                             {
-                                _ = MainForm.systemCommand("adb.exe " + "-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "\\APKS\\" + x + "_base.apk");
+                                _ = MainForm.systemCommand("adb.exe " + "-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "\\APKS\\" + x + "_" + path.Substring(path.LastIndexOf('/') + 1));
                             }
                             ReportProgress();
                         });
