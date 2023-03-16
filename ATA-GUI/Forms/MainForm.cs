@@ -749,9 +749,10 @@ namespace ATA_GUI
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
             checkedListBoxApp.Items.Clear();
+            string text = textBoxSearch.Text.ToLowerInvariant();
             foreach (string str in arrayApks)
             {
-                if (str.Contains(textBoxSearch.Text))
+                if (str.Contains(text))
                 {
                     _ = checkedListBoxApp.Items.Add(str);
                 }
