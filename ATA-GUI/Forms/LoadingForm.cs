@@ -78,7 +78,7 @@ namespace ATA_GUI
                         {
                             labelFileName.Text = x;
                             Refresh();
-                            _ = MainForm.systemCommand(command + x);
+                            _ = MainForm.systemCommandAsync(command + x);
                             ReportProgress();
                         });
                         break;
@@ -105,16 +105,16 @@ namespace ATA_GUI
                     case OperationType.Extraction:
                         if (!Directory.Exists("APKS"))
                         {
-                            _ = MainForm.systemCommand("mkdir APKS");
+                            _ = MainForm.systemCommandAsync("mkdir APKS");
                         }
-                        array.ForEach(x =>
+                        array.ForEach(async x =>
                         {
                             labelFileName.Text = x;
                             Refresh();
-                            string[] pathList = MainForm.systemCommand("adb.exe " + "-s " + deviceSerial + " shell pm path " + x).Split('\n').Where(it => it.Contains("package")).ToArray();
+                            string[] pathList = (await MainForm.systemCommandAsync("adb.exe " + "-s " + deviceSerial + " shell pm path " + x)).Split('\n').Where(it => it.Contains("package")).ToArray();
                             foreach (string path in pathList)
                             {
-                                _ = MainForm.systemCommand("adb.exe " + "-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "\\APKS\\" + x + "_" + path.Substring(path.LastIndexOf('/') + 1));
+                                _ = MainForm.systemCommandAsync("adb.exe " + "-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "\\APKS\\" + x + "_" + path.Substring(path.LastIndexOf('/') + 1));
                             }
                             ReportProgress();
                         });

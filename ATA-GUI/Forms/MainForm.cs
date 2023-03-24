@@ -25,7 +25,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v2.1.1";
+        public static readonly string CURRENTVERSION = "v2.1.2";
         public static readonly List<string> arrayApks = new List<string>();
         public static readonly string IPFileName = "IPList.txt";
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
@@ -140,20 +140,24 @@ namespace ATA_GUI
             });
         }
 
-        public static string systemCommand(string command)
+        public static async Task<string> systemCommandAsync(string command)
         {
-            Process cmd = new Process();
-            cmd.StartInfo.FileName = "cmd.exe";
-            cmd.StartInfo.RedirectStandardInput = true;
-            cmd.StartInfo.RedirectStandardOutput = true;
-            cmd.StartInfo.CreateNoWindow = true;
-            cmd.StartInfo.UseShellExecute = false;
-            _ = cmd.Start();
-            cmd.StandardInput.WriteLine(command);
-            cmd.StandardInput.Flush();
-            cmd.StandardInput.Close();
-            cmd.WaitForExit();
-            return cmd.StandardOutput.ReadToEnd();
+            return await Task.Run(() =>
+                {
+                    Process cmd = new Process();
+                    cmd.StartInfo.FileName = "cmd.exe";
+                    cmd.StartInfo.RedirectStandardInput = true;
+                    cmd.StartInfo.RedirectStandardOutput = true;
+                    cmd.StartInfo.CreateNoWindow = true;
+                    cmd.StartInfo.UseShellExecute = false;
+                    _ = cmd.Start();
+                    cmd.StandardInput.WriteLine(command);
+                    cmd.StandardInput.Flush();
+                    cmd.StandardInput.Close();
+                    cmd.WaitForExit();
+                    return cmd.StandardOutput.ReadToEnd();
+                }
+            );
         }
 
         public static string adbFastbootCommandR(string[] args, int type)
@@ -565,7 +569,7 @@ namespace ATA_GUI
         {
             if (!deviceWireless || MessageBox.Show("Adb is not able to check if the device rebooted via wireless mode, do you want to continue?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _ = systemCommand("adb -s " + CurrentDeviceSelected + " reboot recovery");
+                _ = systemCommandAsync("adb -s " + CurrentDeviceSelected + " reboot recovery");
                 LogWriteLine("Rebooted!");
             }
         }
@@ -574,7 +578,7 @@ namespace ATA_GUI
         {
             if (!deviceWireless || MessageBox.Show("Adb is not able to check if the device rebooted via wireless mode, do you want to continue?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _ = systemCommand("adb -s " + CurrentDeviceSelected + " reboot-bootloader");
+                _ = systemCommandAsync("adb -s " + CurrentDeviceSelected + " reboot-bootloader");
                 LogWriteLine("Rebooted!");
             }
         }
@@ -986,7 +990,7 @@ namespace ATA_GUI
         {
             if (checkAdbFastboot(1))
             {
-                _ = systemCommand("fastboot reboot");
+                _ = systemCommandAsync("fastboot reboot");
                 LogWriteLine("Rebooted!");
             }
             else
@@ -1003,7 +1007,7 @@ namespace ATA_GUI
                 if (checkAdbFastboot(1))
                 {
                     LogWriteLine("Erasing process started...");
-                    _ = systemCommand("fastboot erase userdata && fastboot erase cache");
+                    _ = systemCommandAsync("fastboot erase userdata && fastboot erase cache");
                     LogWriteLine("Erasing process finished!!");
                 }
                 else
@@ -1016,14 +1020,14 @@ namespace ATA_GUI
         private void rebootSmartphone()
         {
             LogWriteLine("Rebooting smartphone...");
-            _ = systemCommand("adb -s " + CurrentDeviceSelected + " reboot");
+            _ = systemCommandAsync("adb -s " + CurrentDeviceSelected + " reboot");
             LogWriteLine("Smartphone rebooted");
         }
 
         private void buttonRebootRecovery_Click(object sender, EventArgs e)
         {
             LogWriteLine("Rebooting smartphone...");
-            _ = systemCommand("fastboot reboot recovery");
+            _ = systemCommandAsync("fastboot reboot recovery");
             LogWriteLine("Smartphone rebooted");
         }
 
@@ -1314,18 +1318,18 @@ namespace ATA_GUI
                             }
                             LogWriteLine("sdk platform tool extraced!");
                             LogWriteLine("Getting things ready...");
-                            _ = systemCommand("taskkill /f /im adb.exe");
-                            _ = systemCommand("taskkill /f /im fastboot.exe");
-                            _ = systemCommand("del adb.exe");
-                            _ = systemCommand("del AdbWinUsbApi.dll");
-                            _ = systemCommand("del AdbWinApi.dll");
-                            _ = systemCommand("del fastboot.exe");
-                            _ = systemCommand("move platform-tools\\adb.exe \"%cd%\"");
-                            _ = systemCommand("move platform-tools\\AdbWinUsbApi.dll \"%cd%\"");
-                            _ = systemCommand("move platform-tools\\AdbWinApi.dll \"%cd%\"");
-                            _ = systemCommand("move platform-tools\\fastboot.exe \"%cd%\"");
+                            _ = systemCommandAsync("taskkill /f /im adb.exe");
+                            _ = systemCommandAsync("taskkill /f /im fastboot.exe");
+                            _ = systemCommandAsync("del adb.exe");
+                            _ = systemCommandAsync("del AdbWinUsbApi.dll");
+                            _ = systemCommandAsync("del AdbWinApi.dll");
+                            _ = systemCommandAsync("del fastboot.exe");
+                            _ = systemCommandAsync("move platform-tools\\adb.exe \"%cd%\"");
+                            _ = systemCommandAsync("move platform-tools\\AdbWinUsbApi.dll \"%cd%\"");
+                            _ = systemCommandAsync("move platform-tools\\AdbWinApi.dll \"%cd%\"");
+                            _ = systemCommandAsync("move platform-tools\\fastboot.exe \"%cd%\"");
                             File.Delete("sdkplatformtool.zip");
-                            _ = systemCommand("rmdir /Q /S platform-tools");
+                            _ = systemCommandAsync("rmdir /Q /S platform-tools");
                             LogWriteLine("ATA ready!");
                         }
                         catch
@@ -1423,7 +1427,7 @@ namespace ATA_GUI
         {
             if (File.Exists("scrcpy.exe"))
             {
-                _ = systemCommand("start scrcpy");
+                _ = systemCommandAsync("start scrcpy");
             }
             else
             {
@@ -1439,7 +1443,7 @@ namespace ATA_GUI
 
         }
 
-        private void backgroundWorkerExeDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private async void backgroundWorkerExeDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             if (!connected)
             {
@@ -1470,11 +1474,11 @@ namespace ATA_GUI
                             {
                                 if (i == directories.Length || newDirectories.Length == directories.Length || newDirectories[i] != directories[i])
                                 {
-                                    _ = systemCommand("robocopy " + newDirectories[i] + " " + Path.GetDirectoryName(Application.ExecutablePath) + " /E");
+                                    _ = await systemCommandAsync("robocopy " + newDirectories[i] + " " + Path.GetDirectoryName(Application.ExecutablePath) + " /E");
                                     LogWriteLine("scrcpy Extracted!");
                                     LogWriteLine("Getting things ready...");
-                                    _ = systemCommand("rmdir /s /q " + newDirectories[i]);
-                                    _ = systemCommand("del scrcpy.zip");
+                                    _ = systemCommandAsync("rmdir /s /q " + newDirectories[i]);
+                                    _ = systemCommandAsync("del scrcpy.zip");
                                     LogWriteLine("scrcpy ready!");
                                     break;
                                 }
@@ -1535,7 +1539,7 @@ namespace ATA_GUI
                 DialogResult dialogResult = MessageBox.Show("Do you want to kill ADB?", "Kill ADB", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    _ = systemCommand("taskkill /f /im " + FILEADB);
+                    _ = systemCommandAsync("taskkill /f /im " + FILEADB);
                 }
             }
             Application.Exit();
@@ -1680,7 +1684,7 @@ namespace ATA_GUI
 
         private void toolStripMenuItemADBKill_Click(object sender, EventArgs e)
         {
-            _ = systemCommand("taskkill /f /im " + FILEADB);
+            _ = systemCommandAsync("taskkill /f /im " + FILEADB);
             MessageShowBox("Adb.exe killed!", 2);
         }
 
@@ -1731,7 +1735,7 @@ namespace ATA_GUI
                     _ = adbFastbootCommandR(new[] { " -s " + CurrentDeviceSelected + " tcpip 5555 " }, 0);
                 }
 
-                _ = systemCommand("adb connect " + ip);
+                _ = systemCommandAsync("adb connect " + ip);
 
                 Thread.Sleep(1000);
 
@@ -1780,7 +1784,7 @@ namespace ATA_GUI
 
             if (ip.Length > 1)
             {
-                _ = systemCommand("adb disconnect " + ip);
+                _ = systemCommandAsync("adb disconnect " + ip);
 
                 Thread.Sleep(1000);
 

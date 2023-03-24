@@ -36,7 +36,7 @@ namespace ATA_GUI
                         }
                     }
                     labelLog.Text = "Downloading update...";
-                    _ = MainForm.systemCommand("rmdir /s /q ATAUpdate");
+                    _ = MainForm.systemCommandAsync("rmdir /s /q ATAUpdate");
                     Refresh();
                     if (!File.Exists(ataUFileName))
                     {
@@ -57,7 +57,7 @@ namespace ATA_GUI
                     Refresh();
                     using (ZipFile zip = ZipFile.Read(ataZipFileName))
                     {
-                        _ = MainForm.systemCommand("mkdir ATAUpdate");
+                        _ = MainForm.systemCommandAsync("mkdir ATAUpdate");
                         zip.ExtractAll(Application.ExecutablePath.Replace("\\ATA-GUI.exe", "") + "\\ATAUpdate");
                     }
                     reportProgress();
@@ -65,7 +65,7 @@ namespace ATA_GUI
                     Refresh();
                     labelLog.Text = "Closing App...";
                     Refresh();
-                    _ = MainForm.systemCommand("start \"\" " + ataUFileName);
+                    _ = MainForm.systemCommandAsync("start \"\" " + ataUFileName);
                     Application.Exit();
                 }
                 catch (Exception ex)

@@ -28,7 +28,7 @@ namespace ATA_GUI
         {
             Clipboard.SetText("-s " + MainForm.CurrentDeviceSelected + " shell cmd role add-role-holder android.app.role." + comboBoxType.Text + " " + apk);
 
-            _ = MainForm.systemCommand("adb -s " + MainForm.CurrentDeviceSelected + " shell cmd role add-role-holder android.app.role." + comboBoxType.Text + " " + apk);
+            _ = MainForm.systemCommandAsync("adb -s " + MainForm.CurrentDeviceSelected + " shell cmd role add-role-holder android.app.role." + comboBoxType.Text + " " + apk);
 
             MainForm.MessageShowBox("Command injected", 1);
         }
