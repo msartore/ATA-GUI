@@ -1,69 +1,65 @@
 body {
     background-color: #080A17;
+    margin: 0;
     color: white;
-    max-width: 1140px;
-    width: 90%;
     height: 100vh;
-    margin: 0em auto;
-    padding: 0px;
     display: grid;
-    grid-gap: 1em;
-    grid: 'header' 
-          'main' 1fr
-          'footer' auto; 
-    grid-template-columns: 100%;
+    grid-template-areas:
+        'header'
+        'main'
+        'footer';
+    grid-template-rows: auto 1fr auto;
     font-family: acumin-pro,sans-serif;
-    font-size: 1.125rem;
+    font-size: 1.100rem;
+    line-height: 1.5;
 }
 
 header { 
-    padding-left: 10px;
-    padding-right: 10px;
-    position: sticky;
-    top: 0px;
-    left: 10px;
-    height: 100px;
+    padding: 0 15px;
+    position: fixed;
+    top: 0;
+    height: 70px;
+    width: 100%;
     background-color: #080A17;
-    grid-area: header; 
+    grid-area: header;
     display: flex;
     align-items: center;
 }
 
 main { 
+    margin: 0 auto;
+    max-width: 800px;
+    padding-top: 30px;
     padding-left: 10px;
     padding-right: 10px;
-    grid-area: main; 
+    grid-area: main;
 }
 
 footer { 
-    margin-top: 10%;
-    margin-left: 10px;
-    margin-bottom: 30px;
+    margin: 0 auto;
     height: 100px;
-    grid-area: footer; 
+    grid-area: footer;
+    text-align: center;
 }
 
 ul[id="sidenavul"], header nav ul {
     list-style: none;
 }
 
+header a {
+    height: 32px;
+}
+
 header nav ul {
     display: flex;
     padding: 0;
-    text-align: center;
-    
+    text-align: center;   
 }
 
-ul[id="sidenavul"] li {
+div[id="social"] a {
     margin: 30px;
-}
-
-div[id="social"] a  {
     display: inline-block;
-}
-
-section[id="about"] a, div[id="social"] a {
-    margin-right: 30px;
+    margin: 0 15px;
 }
 
 section[id="404"] {
@@ -73,8 +69,8 @@ section[id="404"] {
 
 header nav ul a {
     text-decoration: none;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 0 5px;
+    font-size: 0.90rem;
 }
 
 a {
@@ -96,7 +92,6 @@ a:hover {
 
 #title {
     visibility: collapse;
-    font-size: 2em;
     margin-left: 1em;
 }
 
@@ -117,7 +112,6 @@ a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    vertical-align: middle;
 }
 
 #navButtonClose {
@@ -130,51 +124,18 @@ a:hover {
 #navButtonOpen {
     visibility: visible;
     position: absolute;
-    right: 5px;
-}
-
-h1, h2, h3 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    right: 40px;
 }
 
 h3, h2 {
     padding-top: 25px;
     clear: left;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.navbar {
-    position: absolute;
-    right: 0px;
+.nav-menu {
     visibility: collapse;
-}
-
-@media (min-width: 50em) {
-    body {
-        grid: 
-            'header header' 50px 
-            'main main' auto
-            'footer footer' auto
-        / 1fr;
-    }
-
-    .sticky {
-        position: sticky;
-        top: 0px;
-        left: 10px;
-    }
-
-    #navButtonClose {
-        visibility: collapse;
-    }
-
-    #navButtonOpen {
-        visibility: collapse;
-    }
-
-    .navbar {
-        visibility: visible;
-    }
+    position: absolute;
+    right: 40px;
 }
 
 .banner {
@@ -210,6 +171,28 @@ button a:hover {
     padding-right: 5px;
 }
 
+@media (min-width: 50em) {
+    body {
+        grid: 
+            'header header' 50px 
+            'main main' auto
+            'footer footer' auto
+        / 1fr;
+    }
+
+    #navButtonClose, #navButtonOpen {
+        visibility: collapse;
+    }
+
+    .nav-menu {
+        visibility: visible;
+    }
+
+    header {
+        height: 50px;
+    }
+}
+
 @media (min-width: 70em) {
     #title {
         visibility: visible;
@@ -219,7 +202,4 @@ button a:hover {
         float: left;
     }
 }
-  
-  
-  
   
