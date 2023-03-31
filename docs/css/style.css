@@ -42,6 +42,10 @@ footer {
     text-align: center;
 }
 
+footer p {
+    font-size: small;
+}
+
 ul[id="sidenavul"], header nav ul {
     list-style: none;
 }
