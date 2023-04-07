@@ -10,7 +10,7 @@ ATA-GUI is an app that lets you perform advanced tasks on your Android™ device
 
 ## ATA License
 
-    Copyright (C) 2021-2023 SwayWasTaken
+    Copyright (C) 2021-2023 Massimiliano Sartore
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
