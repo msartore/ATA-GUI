@@ -25,7 +25,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v2.1.2";
+        public static readonly string CURRENTVERSION = "v2.1.3";
         public static readonly List<string> arrayApks = new List<string>();
         public static readonly string IPFileName = "IPList.txt";
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
@@ -228,7 +228,7 @@ namespace ATA_GUI
                     _ = MessageBox.Show(message, "Info!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 default:
-                    MessageShowBox("Error in MessageShowBox", 0);
+                    MessageShowBox("MessageShowBox generic error", 0);
                     break;
             }
         }
@@ -266,7 +266,7 @@ namespace ATA_GUI
                     }
                     else
                     {
-                        LogWriteLine("ATA is not up to date, update it as soon as you can!");
+                        LogWriteLine("[WARNING] Your ATA is not up to date. It is recommended that you update it as soon as possible to ensure optimal performance and security");
                     }
                 }
                 else
@@ -276,8 +276,8 @@ namespace ATA_GUI
             }
             catch
             {
-                LogWriteLine("Timeout Error occurred while connecting to the Server!");
-                LogWriteLine("Open settings to check if a new version is avaiable!");
+                LogWriteLine("[ERROR] A timeout error occurred while attempting to connect to the server. Please check your network connection and try again");
+                LogWriteLine("Please open the settings menu to check if a new version of the software is available for download");
             }
         }
 
@@ -379,7 +379,7 @@ namespace ATA_GUI
                                             disableEnableSystem(false);
                                             buttonDisconnectIP.Enabled = false;
                                         });
-                                        LogWriteLine("Error: failed to extract device info!");
+                                        LogWriteLine("[ERROR] failed to extract device info!");
                                     }
                                     break;
                                 case "2":
@@ -481,7 +481,7 @@ namespace ATA_GUI
                         {
                             disableEnableSystem(false);
                             buttonDisconnectIP.Enabled = false;
-                            LogWriteLine("Error device not found!");
+                            LogWriteLine("[ERROR] Device not found. If the issue persists, please check if the USB debugging option is enabled. For more information on how to solve this issue, please watch this video tutorial: https://www.youtube.com/watch?v=W7nkxS9LMXs");
                             if (paramObjTmp == "0")
                             {
                                 MessageShowBox("Device not found!", 0);
@@ -495,7 +495,7 @@ namespace ATA_GUI
                     {
                         disableEnableSystem(false);
                         buttonDisconnectIP.Enabled = false;
-                        LogWriteLine("Error device not found!");
+                        LogWriteLine("[ERROR] Device not found. If the issue persists, please check if the USB debugging option is enabled. For more information on how to solve this issue, please watch this video tutorial: https://www.youtube.com/watch?v=W7nkxS9LMXs");
                         if (paramObjTmp == "0")
                         {
                             MessageShowBox("Device not found!", 0);
@@ -716,7 +716,7 @@ namespace ATA_GUI
 
             if (!pingCheck())
             {
-                LogWriteLine("You are offline");
+                LogWriteLine("[WARNING] You are offline");
                 disableSystem(true);
             }
             else
@@ -814,11 +814,11 @@ namespace ATA_GUI
                             ScrollableMessageBox.show(log, "Granted permissions");
                             continue;
                         }
-                        LogWriteLine("Command injected!");
+                        LogWriteLine("The command has been injected");
                     }
                     else
                     {
-                        LogWriteLine("Command failed!");
+                        LogWriteLine("[ERROR] The command injection has failed");
                     }
                 }
             }
@@ -854,7 +854,7 @@ namespace ATA_GUI
             string log = adbFastbootCommandR(new[] { "sideload \"" + textBoxDirFile.Text + "\"" }, 0);
             if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log == "")
             {
-                LogWriteLine(fileName + " failed to flash");
+                LogWriteLine("[ERROR]" + fileName + " failed to flash");
             }
             else
             {
@@ -1334,8 +1334,8 @@ namespace ATA_GUI
                         }
                         catch
                         {
-                            LogWriteLine("Error during sdk platform tool download!");
-                            MessageShowBox("Error during sdk platform tool download!", 0);
+                            LogWriteLine("[ERROR] An error occurred while attempting to download the SDK Platform Tools");
+                            MessageShowBox("An error occurred while attempting to download the SDK Platform Tools", 0);
                             disableSystem(true);
                         }
                     }
@@ -1925,6 +1925,18 @@ namespace ATA_GUI
             {
                 MessageShowBox("No app selected!", 1);
             }
+        }
+
+        private void buttonTurnOffAdb_Click(object sender, EventArgs e)
+        {
+            adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell settings put global adb_enabled 0" }, 0);
+            LogWriteLine("The command has been ejected");
+            syncFun(3);
+        }
+
+        private void richTextBoxLog_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            Process.Start(e.LinkText);
         }
     }
 }

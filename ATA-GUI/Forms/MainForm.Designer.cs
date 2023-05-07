@@ -87,6 +87,8 @@ namespace ATA_GUI
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonExtract = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownInstallApkButton = new System.Windows.Forms.ToolStripDropDownButton();
@@ -196,8 +198,7 @@ namespace ATA_GUI
             this.buttonTaskManager = new System.Windows.Forms.Button();
             this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
-            this.toolStripButtonExtract = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.buttonTurnOffAdb = new System.Windows.Forms.Button();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -259,6 +260,7 @@ namespace ATA_GUI
             // 
             // groupBoxDeviceInfo
             // 
+            this.groupBoxDeviceInfo.Controls.Add(this.buttonTurnOffAdb);
             this.groupBoxDeviceInfo.Controls.Add(this.labelUser);
             this.groupBoxDeviceInfo.Controls.Add(this.label12);
             this.groupBoxDeviceInfo.Controls.Add(this.labelStatus);
@@ -623,7 +625,7 @@ namespace ATA_GUI
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(550, 42);
+            this.toolStrip1.Size = new System.Drawing.Size(550, 23);
             this.toolStrip1.TabIndex = 42;
             this.toolStrip1.Text = "toolStripAPKMenu";
             // 
@@ -780,6 +782,21 @@ namespace ATA_GUI
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripButtonExtract
+            // 
+            this.toolStripButtonExtract.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonExtract.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonExtract.Image")));
+            this.toolStripButtonExtract.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonExtract.Name = "toolStripButtonExtract";
+            this.toolStripButtonExtract.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonExtract.Text = "Extract";
+            this.toolStripButtonExtract.Click += new System.EventHandler(this.toolStripButtonExtract_Click);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripLabelTotalApps
             // 
@@ -1323,6 +1340,7 @@ namespace ATA_GUI
             this.richTextBoxLog.TabIndex = 38;
             this.richTextBoxLog.TabStop = false;
             this.richTextBoxLog.Text = "";
+            this.richTextBoxLog.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBoxLog_LinkClicked);
             // 
             // systemAppToolStripMenuItem
             // 
@@ -1837,20 +1855,16 @@ namespace ATA_GUI
             // 
             this.backgroundWorkerADBDisconnect.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerADBDisconnect_DoWork);
             // 
-            // toolStripButtonExtract
+            // buttonTurnOffAdb
             // 
-            this.toolStripButtonExtract.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonExtract.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonExtract.Image")));
-            this.toolStripButtonExtract.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonExtract.Name = "toolStripButtonExtract";
-            this.toolStripButtonExtract.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonExtract.Text = "Extract";
-            this.toolStripButtonExtract.Click += new System.EventHandler(this.toolStripButtonExtract_Click);
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 23);
+            this.buttonTurnOffAdb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonTurnOffAdb.Location = new System.Drawing.Point(240, 127);
+            this.buttonTurnOffAdb.Name = "buttonTurnOffAdb";
+            this.buttonTurnOffAdb.Size = new System.Drawing.Size(75, 23);
+            this.buttonTurnOffAdb.TabIndex = 20;
+            this.buttonTurnOffAdb.Text = "Turn off adb";
+            this.buttonTurnOffAdb.UseVisualStyleBackColor = true;
+            this.buttonTurnOffAdb.Click += new System.EventHandler(this.buttonTurnOffAdb_Click);
             // 
             // MainForm
             // 
@@ -2086,6 +2100,7 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripButton toolStripButtonExtract;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.Button buttonTurnOffAdb;
     }
 }
 
