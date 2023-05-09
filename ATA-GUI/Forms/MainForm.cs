@@ -25,7 +25,7 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v2.1.3";
+        public static readonly string CURRENTVERSION = "v2.2.0";
         public static readonly List<string> arrayApks = new List<string>();
         public static readonly string IPFileName = "IPList.txt";
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
@@ -286,6 +286,8 @@ namespace ATA_GUI
             object paramObj = e.Argument;
             string paramObjTmp = "0";
 
+            textBoxPort.Text = "5555";
+
             if (paramObj.ToString() == "3")
             {
                 paramObjTmp = "1";
@@ -528,6 +530,7 @@ namespace ATA_GUI
 
         private void disableEnableSystem(bool enable)
         {
+            textBoxPort.Enabled = !enable;
             buttonMobileScreenShare.Enabled = enable;
             groupBoxDeviceInfo.Enabled = enable;
             groupBoxRebootMenu.Enabled = enable;
@@ -1722,20 +1725,18 @@ namespace ATA_GUI
         {
             int deviceCountTmp = devices.Count;
             string ip = string.Empty;
+            string port = textBoxPort.Text.Trim();
 
-            _ = Invoke((Action)delegate
-            {
-                ip = comboBoxIP.Text.Trim();
-            });
+            ip = comboBoxIP.Text.Trim();
 
             if (ip.Length > 1)
             {
                 if (CurrentDeviceSelected.Length > 0)
                 {
-                    _ = adbFastbootCommandR(new[] { " -s " + CurrentDeviceSelected + " tcpip 5555 " }, 0);
+                    _ = adbFastbootCommandR(new[] { " -s " + CurrentDeviceSelected + " tcpip " + port }, 0);
                 }
 
-                _ = systemCommandAsync("adb connect " + ip);
+                _ = systemCommandAsync("adb connect " + ip + ":" + port);
 
                 Thread.Sleep(1000);
 
@@ -1804,7 +1805,7 @@ namespace ATA_GUI
                 }
                 else
                 {
-                    MessageShowBox(ip + "Failed to disconnect", 0);
+                    MessageShowBox(ip + " failed to disconnect", 0);
                 }
 
                 syncFun(3);
@@ -1937,6 +1938,13 @@ namespace ATA_GUI
         private void richTextBoxLog_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             Process.Start(e.LinkText);
+        }
+
+        private void buttonUnlockButtons_Click(object sender, EventArgs e)
+        {
+            textBoxPort.Enabled = true;
+            buttonConnectToIP.Enabled = true;
+            buttonDisconnectIP.Enabled = true;
         }
     }
 }

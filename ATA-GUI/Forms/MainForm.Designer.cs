@@ -35,6 +35,7 @@ namespace ATA_GUI
             this.buttonLogClear = new System.Windows.Forms.Button();
             this.backgroundWorkerSync = new System.ComponentModel.BackgroundWorker();
             this.groupBoxDeviceInfo = new System.Windows.Forms.GroupBox();
+            this.buttonTurnOffAdb = new System.Windows.Forms.Button();
             this.labelUser = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.labelStatus = new System.Windows.Forms.Label();
@@ -198,7 +199,9 @@ namespace ATA_GUI
             this.buttonTaskManager = new System.Windows.Forms.Button();
             this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
-            this.buttonTurnOffAdb = new System.Windows.Forms.Button();
+            this.textBoxPort = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.buttonUnlockNetworkMenu = new System.Windows.Forms.Button();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -287,6 +290,17 @@ namespace ATA_GUI
             this.groupBoxDeviceInfo.TabIndex = 32;
             this.groupBoxDeviceInfo.TabStop = false;
             this.groupBoxDeviceInfo.Text = "Device Info";
+            // 
+            // buttonTurnOffAdb
+            // 
+            this.buttonTurnOffAdb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonTurnOffAdb.Location = new System.Drawing.Point(240, 127);
+            this.buttonTurnOffAdb.Name = "buttonTurnOffAdb";
+            this.buttonTurnOffAdb.Size = new System.Drawing.Size(75, 23);
+            this.buttonTurnOffAdb.TabIndex = 20;
+            this.buttonTurnOffAdb.Text = "Turn off adb";
+            this.buttonTurnOffAdb.UseVisualStyleBackColor = true;
+            this.buttonTurnOffAdb.Click += new System.EventHandler(this.buttonTurnOffAdb_Click);
             // 
             // labelUser
             // 
@@ -850,23 +864,26 @@ namespace ATA_GUI
             // 
             // groupBoxADBNet
             // 
+            this.groupBoxADBNet.Controls.Add(this.buttonUnlockNetworkMenu);
+            this.groupBoxADBNet.Controls.Add(this.label11);
+            this.groupBoxADBNet.Controls.Add(this.textBoxPort);
             this.groupBoxADBNet.Controls.Add(this.comboBoxIP);
             this.groupBoxADBNet.Controls.Add(this.label2);
             this.groupBoxADBNet.Controls.Add(this.buttonDisconnectIP);
             this.groupBoxADBNet.Controls.Add(this.buttonConnectToIP);
-            this.groupBoxADBNet.Location = new System.Drawing.Point(157, 170);
+            this.groupBoxADBNet.Location = new System.Drawing.Point(149, 170);
             this.groupBoxADBNet.Name = "groupBoxADBNet";
-            this.groupBoxADBNet.Size = new System.Drawing.Size(170, 119);
+            this.groupBoxADBNet.Size = new System.Drawing.Size(178, 119);
             this.groupBoxADBNet.TabIndex = 37;
             this.groupBoxADBNet.TabStop = false;
-            this.groupBoxADBNet.Text = "ADB OVER NETWORK MENU";
+            this.groupBoxADBNet.Text = "ADB over Network Menu";
             // 
             // comboBoxIP
             // 
             this.comboBoxIP.FormattingEnabled = true;
-            this.comboBoxIP.Location = new System.Drawing.Point(32, 25);
+            this.comboBoxIP.Location = new System.Drawing.Point(9, 35);
             this.comboBoxIP.Name = "comboBoxIP";
-            this.comboBoxIP.Size = new System.Drawing.Size(129, 21);
+            this.comboBoxIP.Size = new System.Drawing.Size(113, 21);
             this.comboBoxIP.TabIndex = 40;
             this.comboBoxIP.TextUpdate += new System.EventHandler(this.comboBoxIP_TextUpdate);
             this.comboBoxIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxIP_KeyPress);
@@ -874,7 +891,7 @@ namespace ATA_GUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 29);
+            this.label2.Location = new System.Drawing.Point(6, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 39;
@@ -885,9 +902,9 @@ namespace ATA_GUI
             this.buttonDisconnectIP.BackColor = System.Drawing.Color.White;
             this.buttonDisconnectIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDisconnectIP.ForeColor = System.Drawing.Color.Black;
-            this.buttonDisconnectIP.Location = new System.Drawing.Point(89, 52);
+            this.buttonDisconnectIP.Location = new System.Drawing.Point(88, 61);
             this.buttonDisconnectIP.Name = "buttonDisconnectIP";
-            this.buttonDisconnectIP.Size = new System.Drawing.Size(73, 23);
+            this.buttonDisconnectIP.Size = new System.Drawing.Size(81, 23);
             this.buttonDisconnectIP.TabIndex = 38;
             this.buttonDisconnectIP.Text = "Disconnect";
             this.buttonDisconnectIP.UseVisualStyleBackColor = false;
@@ -898,7 +915,7 @@ namespace ATA_GUI
             this.buttonConnectToIP.BackColor = System.Drawing.Color.White;
             this.buttonConnectToIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonConnectToIP.ForeColor = System.Drawing.Color.Black;
-            this.buttonConnectToIP.Location = new System.Drawing.Point(8, 52);
+            this.buttonConnectToIP.Location = new System.Drawing.Point(9, 61);
             this.buttonConnectToIP.Name = "buttonConnectToIP";
             this.buttonConnectToIP.Size = new System.Drawing.Size(73, 23);
             this.buttonConnectToIP.TabIndex = 35;
@@ -913,7 +930,7 @@ namespace ATA_GUI
             this.groupBoxRebootMenu.Controls.Add(this.buttonRF);
             this.groupBoxRebootMenu.Location = new System.Drawing.Point(6, 170);
             this.groupBoxRebootMenu.Name = "groupBoxRebootMenu";
-            this.groupBoxRebootMenu.Size = new System.Drawing.Size(148, 119);
+            this.groupBoxRebootMenu.Size = new System.Drawing.Size(137, 119);
             this.groupBoxRebootMenu.TabIndex = 35;
             this.groupBoxRebootMenu.TabStop = false;
             this.groupBoxRebootMenu.Text = "Reboot Menu";
@@ -925,7 +942,7 @@ namespace ATA_GUI
             this.buttonRS.ForeColor = System.Drawing.Color.Black;
             this.buttonRS.Location = new System.Drawing.Point(6, 28);
             this.buttonRS.Name = "buttonRS";
-            this.buttonRS.Size = new System.Drawing.Size(131, 23);
+            this.buttonRS.Size = new System.Drawing.Size(124, 23);
             this.buttonRS.TabIndex = 1;
             this.buttonRS.Text = "Reboot Smartphone";
             this.buttonRS.UseVisualStyleBackColor = false;
@@ -938,7 +955,7 @@ namespace ATA_GUI
             this.buttonRR.ForeColor = System.Drawing.Color.Black;
             this.buttonRR.Location = new System.Drawing.Point(6, 57);
             this.buttonRR.Name = "buttonRR";
-            this.buttonRR.Size = new System.Drawing.Size(131, 23);
+            this.buttonRR.Size = new System.Drawing.Size(124, 23);
             this.buttonRR.TabIndex = 2;
             this.buttonRR.Text = "Reboot Into Recovery";
             this.buttonRR.UseVisualStyleBackColor = false;
@@ -951,7 +968,7 @@ namespace ATA_GUI
             this.buttonRF.ForeColor = System.Drawing.Color.Black;
             this.buttonRF.Location = new System.Drawing.Point(6, 86);
             this.buttonRF.Name = "buttonRF";
-            this.buttonRF.Size = new System.Drawing.Size(131, 23);
+            this.buttonRF.Size = new System.Drawing.Size(124, 23);
             this.buttonRF.TabIndex = 3;
             this.buttonRF.Text = "Reboot into Fastboot";
             this.buttonRF.UseVisualStyleBackColor = false;
@@ -1855,16 +1872,32 @@ namespace ATA_GUI
             // 
             this.backgroundWorkerADBDisconnect.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerADBDisconnect_DoWork);
             // 
-            // buttonTurnOffAdb
+            // textBoxPort
             // 
-            this.buttonTurnOffAdb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonTurnOffAdb.Location = new System.Drawing.Point(240, 127);
-            this.buttonTurnOffAdb.Name = "buttonTurnOffAdb";
-            this.buttonTurnOffAdb.Size = new System.Drawing.Size(75, 23);
-            this.buttonTurnOffAdb.TabIndex = 20;
-            this.buttonTurnOffAdb.Text = "Turn off adb";
-            this.buttonTurnOffAdb.UseVisualStyleBackColor = true;
-            this.buttonTurnOffAdb.Click += new System.EventHandler(this.buttonTurnOffAdb_Click);
+            this.textBoxPort.Location = new System.Drawing.Point(128, 35);
+            this.textBoxPort.Name = "textBoxPort";
+            this.textBoxPort.Size = new System.Drawing.Size(41, 20);
+            this.textBoxPort.TabIndex = 41;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(125, 19);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(40, 13);
+            this.label11.TabIndex = 42;
+            this.label11.Text = "PORT:";
+            // 
+            // buttonUnlockNetworkMenu
+            // 
+            this.buttonUnlockNetworkMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUnlockNetworkMenu.Location = new System.Drawing.Point(88, 90);
+            this.buttonUnlockNetworkMenu.Name = "buttonUnlockNetworkMenu";
+            this.buttonUnlockNetworkMenu.Size = new System.Drawing.Size(81, 23);
+            this.buttonUnlockNetworkMenu.TabIndex = 43;
+            this.buttonUnlockNetworkMenu.Text = "Unlock";
+            this.buttonUnlockNetworkMenu.UseVisualStyleBackColor = true;
+            this.buttonUnlockNetworkMenu.Click += new System.EventHandler(this.buttonUnlockButtons_Click);
             // 
             // MainForm
             // 
@@ -2101,6 +2134,9 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripButton toolStripButtonExtract;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.Button buttonTurnOffAdb;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBoxPort;
+        private System.Windows.Forms.Button buttonUnlockNetworkMenu;
     }
 }
 
