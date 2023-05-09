@@ -34,6 +34,7 @@ namespace ATA_GUI
         private bool textboxClear;
         private bool isConnected = true;
         private bool systemApp;
+        private bool isRotationFreeEnabled;
         private bool isLogViewVisibile = true;
         private bool deviceWireless;
         private readonly string FILEADB = "adb.exe";
@@ -211,7 +212,7 @@ namespace ATA_GUI
                 default:
                     break;
             }
-            return ret.ToString();
+            return ret.ToString().Trim();
         }
 
         /* Type 0 Error, Type 1 Warning, Type 2 Info */
@@ -291,7 +292,6 @@ namespace ATA_GUI
             {
                 textBoxPort.Text = "5555";
             });
-
 
             if (paramObj.ToString() == "3")
             {
@@ -375,6 +375,19 @@ namespace ATA_GUI
                                             {
                                                 MessageShowBox("Feature currently not avaiable for device under android 8", 2);
                                             }
+
+                                            _ = int.TryParse(adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell cmd display get - displays" }, 0), out int maxDisplay);
+
+                                            groupBoxFreeRotation.Enabled = true;
+
+                                            for (int i = maxDisplay; i > -1; i--)
+                                            {
+                                                _ = domainUpDownFreeRotation.Items.Add(i);
+                                            }
+
+                                            isRotationFreeEnabled = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell wm get-ignore-orientation-request" }, 0).Contains("true");
+                                            buttonSetRotation.Text = isRotationFreeEnabled ? "Unset" : "Set";
+
                                             LogWriteLine("Device info extracted");
                                             disableEnableSystem(true);
                                         });
@@ -542,6 +555,7 @@ namespace ATA_GUI
             groupBoxAPKMenu.Enabled = enable;
             buttonDeviceLogs.Enabled = enable;
             buttonTaskManager.Enabled = enable;
+            groupBoxFreeRotation.Enabled = enable;
         }
 
         private void adbDownload()
@@ -1938,14 +1952,14 @@ namespace ATA_GUI
 
         private void buttonTurnOffAdb_Click(object sender, EventArgs e)
         {
-            adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell settings put global adb_enabled 0" }, 0);
+            _ = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell settings put global adb_enabled 0" }, 0);
             LogWriteLine("The command has been ejected");
             syncFun(3);
         }
 
         private void richTextBoxLog_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            Process.Start(e.LinkText);
+            _ = Process.Start(e.LinkText);
         }
 
         private void buttonUnlockButtons_Click(object sender, EventArgs e)
@@ -1968,6 +1982,35 @@ namespace ATA_GUI
                 buttonLogView.Text = "Hide log";
             }
             isLogViewVisibile = !isLogViewVisibile;
+        }
+
+        private void buttonSetRotation_Click(object sender, EventArgs e)
+        {
+            string commandRun = " shell wm set-ignore-orientation-request ";
+
+            if (domainUpDownFreeRotation.Items.Count > 1)
+            {
+                commandRun += " -d " + domainUpDownFreeRotation.Text;
+            }
+
+            commandRun += (!isRotationFreeEnabled).ToString().ToLowerInvariant();
+
+            _ = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + commandRun }, 0);
+            isRotationFreeEnabled = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell wm get-ignore-orientation-request" }, 0).Contains("true");
+            LogWriteLine("Free rotation " + buttonSetRotation.Text.ToLowerInvariant() + "ed");
+            buttonSetRotation.Text = isRotationFreeEnabled ? "Unset" : "Set";
+        }
+
+        private void buttonCommandInject_Click(object sender, EventArgs e)
+        {
+            if (richTextBoxCommand.Text.Trim().Length == 0)
+            {
+                MessageShowBox("You have to enter a command!", 1);
+            }
+            else
+            {
+                LogWriteLine(adbFastbootCommandR(new[] { richTextBoxCommand.Text.Trim() }, radioButtonADB.Checked ? 0 : 1));
+            }
         }
     }
 }

@@ -203,6 +203,14 @@ namespace ATA_GUI
             this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
             this.buttonLogView = new System.Windows.Forms.Button();
+            this.domainUpDownFreeRotation = new System.Windows.Forms.DomainUpDown();
+            this.groupBoxFreeRotation = new System.Windows.Forms.GroupBox();
+            this.buttonSetRotation = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.richTextBoxCommand = new System.Windows.Forms.RichTextBox();
+            this.buttonCommandInject = new System.Windows.Forms.Button();
+            this.radioButtonADB = new System.Windows.Forms.RadioButton();
+            this.radioButtonFastboot = new System.Windows.Forms.RadioButton();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -230,6 +238,8 @@ namespace ATA_GUI
             this.groupBox1.SuspendLayout();
             this.contextMenuStripSearch.SuspendLayout();
             this.contextMenuStripTools.SuspendLayout();
+            this.groupBoxFreeRotation.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelLog
@@ -1776,7 +1786,7 @@ namespace ATA_GUI
             this.buttonReloadDevicesList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonReloadDevicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonReloadDevicesList.ForeColor = System.Drawing.Color.Black;
-            this.buttonReloadDevicesList.Location = new System.Drawing.Point(172, 48);
+            this.buttonReloadDevicesList.Location = new System.Drawing.Point(172, 53);
             this.buttonReloadDevicesList.Name = "buttonReloadDevicesList";
             this.buttonReloadDevicesList.Size = new System.Drawing.Size(152, 23);
             this.buttonReloadDevicesList.TabIndex = 2;
@@ -1788,7 +1798,7 @@ namespace ATA_GUI
             // 
             this.comboBoxDevices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxDevices.FormattingEnabled = true;
-            this.comboBoxDevices.Location = new System.Drawing.Point(172, 26);
+            this.comboBoxDevices.Location = new System.Drawing.Point(172, 19);
             this.comboBoxDevices.Name = "comboBoxDevices";
             this.comboBoxDevices.Size = new System.Drawing.Size(152, 21);
             this.comboBoxDevices.TabIndex = 1;
@@ -1800,10 +1810,10 @@ namespace ATA_GUI
             this.buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSyncApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
             this.buttonSyncApp.ForeColor = System.Drawing.Color.Black;
-            this.buttonSyncApp.Location = new System.Drawing.Point(17, 26);
+            this.buttonSyncApp.Location = new System.Drawing.Point(17, 20);
             this.buttonSyncApp.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSyncApp.Name = "buttonSyncApp";
-            this.buttonSyncApp.Size = new System.Drawing.Size(131, 45);
+            this.buttonSyncApp.Size = new System.Drawing.Size(145, 56);
             this.buttonSyncApp.TabIndex = 0;
             this.buttonSyncApp.Text = "Sync Smartphone";
             this.buttonSyncApp.UseVisualStyleBackColor = false;
@@ -1915,6 +1925,92 @@ namespace ATA_GUI
             this.buttonLogView.UseVisualStyleBackColor = true;
             this.buttonLogView.Click += new System.EventHandler(this.buttonLogView_Click);
             // 
+            // domainUpDownFreeRotation
+            // 
+            this.domainUpDownFreeRotation.Location = new System.Drawing.Point(8, 20);
+            this.domainUpDownFreeRotation.Name = "domainUpDownFreeRotation";
+            this.domainUpDownFreeRotation.ReadOnly = true;
+            this.domainUpDownFreeRotation.Size = new System.Drawing.Size(71, 20);
+            this.domainUpDownFreeRotation.TabIndex = 44;
+            this.domainUpDownFreeRotation.Text = "0";
+            // 
+            // groupBoxFreeRotation
+            // 
+            this.groupBoxFreeRotation.Controls.Add(this.buttonSetRotation);
+            this.groupBoxFreeRotation.Controls.Add(this.domainUpDownFreeRotation);
+            this.groupBoxFreeRotation.Location = new System.Drawing.Point(423, 369);
+            this.groupBoxFreeRotation.Name = "groupBoxFreeRotation";
+            this.groupBoxFreeRotation.Size = new System.Drawing.Size(85, 84);
+            this.groupBoxFreeRotation.TabIndex = 45;
+            this.groupBoxFreeRotation.TabStop = false;
+            this.groupBoxFreeRotation.Text = "Free Rotation";
+            // 
+            // buttonSetRotation
+            // 
+            this.buttonSetRotation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSetRotation.Location = new System.Drawing.Point(8, 53);
+            this.buttonSetRotation.Name = "buttonSetRotation";
+            this.buttonSetRotation.Size = new System.Drawing.Size(71, 23);
+            this.buttonSetRotation.TabIndex = 45;
+            this.buttonSetRotation.Text = "Set";
+            this.buttonSetRotation.UseVisualStyleBackColor = true;
+            this.buttonSetRotation.Click += new System.EventHandler(this.buttonSetRotation_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radioButtonFastboot);
+            this.groupBox3.Controls.Add(this.radioButtonADB);
+            this.groupBox3.Controls.Add(this.buttonCommandInject);
+            this.groupBox3.Controls.Add(this.richTextBoxCommand);
+            this.groupBox3.Location = new System.Drawing.Point(514, 369);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 84);
+            this.groupBox3.TabIndex = 46;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Command injection";
+            // 
+            // richTextBoxCommand
+            // 
+            this.richTextBoxCommand.Location = new System.Drawing.Point(6, 19);
+            this.richTextBoxCommand.Name = "richTextBoxCommand";
+            this.richTextBoxCommand.Size = new System.Drawing.Size(100, 57);
+            this.richTextBoxCommand.TabIndex = 47;
+            this.richTextBoxCommand.Text = "";
+            // 
+            // buttonCommandInject
+            // 
+            this.buttonCommandInject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCommandInject.Location = new System.Drawing.Point(112, 19);
+            this.buttonCommandInject.Name = "buttonCommandInject";
+            this.buttonCommandInject.Size = new System.Drawing.Size(75, 23);
+            this.buttonCommandInject.TabIndex = 48;
+            this.buttonCommandInject.Text = "Inject";
+            this.buttonCommandInject.UseVisualStyleBackColor = true;
+            this.buttonCommandInject.Click += new System.EventHandler(this.buttonCommandInject_Click);
+            // 
+            // radioButtonADB
+            // 
+            this.radioButtonADB.AutoSize = true;
+            this.radioButtonADB.Checked = true;
+            this.radioButtonADB.Location = new System.Drawing.Point(112, 45);
+            this.radioButtonADB.Name = "radioButtonADB";
+            this.radioButtonADB.Size = new System.Drawing.Size(43, 17);
+            this.radioButtonADB.TabIndex = 49;
+            this.radioButtonADB.TabStop = true;
+            this.radioButtonADB.Text = "adb";
+            this.radioButtonADB.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonFastboot
+            // 
+            this.radioButtonFastboot.AutoSize = true;
+            this.radioButtonFastboot.Location = new System.Drawing.Point(112, 61);
+            this.radioButtonFastboot.Name = "radioButtonFastboot";
+            this.radioButtonFastboot.Size = new System.Drawing.Size(63, 17);
+            this.radioButtonFastboot.TabIndex = 50;
+            this.radioButtonFastboot.TabStop = true;
+            this.radioButtonFastboot.Text = "fastboot";
+            this.radioButtonFastboot.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1922,6 +2018,8 @@ namespace ATA_GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1126, 457);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBoxFreeRotation);
             this.Controls.Add(this.buttonLogView);
             this.Controls.Add(this.buttonTaskManager);
             this.Controls.Add(this.buttonDeviceLogs);
@@ -1977,6 +2075,9 @@ namespace ATA_GUI
             this.groupBox1.ResumeLayout(false);
             this.contextMenuStripSearch.ResumeLayout(false);
             this.contextMenuStripTools.ResumeLayout(false);
+            this.groupBoxFreeRotation.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2155,6 +2256,14 @@ namespace ATA_GUI
         private System.Windows.Forms.TextBox textBoxPort;
         private System.Windows.Forms.Button buttonUnlockNetworkMenu;
         private System.Windows.Forms.Button buttonLogView;
+        private System.Windows.Forms.DomainUpDown domainUpDownFreeRotation;
+        private System.Windows.Forms.GroupBox groupBoxFreeRotation;
+        private System.Windows.Forms.Button buttonSetRotation;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button buttonCommandInject;
+        private System.Windows.Forms.RichTextBox richTextBoxCommand;
+        private System.Windows.Forms.RadioButton radioButtonFastboot;
+        private System.Windows.Forms.RadioButton radioButtonADB;
     }
 }
 
