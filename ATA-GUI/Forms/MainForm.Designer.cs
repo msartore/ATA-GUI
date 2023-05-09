@@ -97,6 +97,9 @@ namespace ATA_GUI
             this.downgradeAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
             this.groupBoxADBNet = new System.Windows.Forms.GroupBox();
+            this.buttonUnlockNetworkMenu = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxPort = new System.Windows.Forms.TextBox();
             this.comboBoxIP = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonDisconnectIP = new System.Windows.Forms.Button();
@@ -199,9 +202,7 @@ namespace ATA_GUI
             this.buttonTaskManager = new System.Windows.Forms.Button();
             this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
-            this.textBoxPort = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.buttonUnlockNetworkMenu = new System.Windows.Forms.Button();
+            this.buttonLogView = new System.Windows.Forms.Button();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -235,7 +236,7 @@ namespace ATA_GUI
             // 
             this.labelLog.AutoSize = true;
             this.labelLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLog.Location = new System.Drawing.Point(513, 372);
+            this.labelLog.Location = new System.Drawing.Point(914, 70);
             this.labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLog.Name = "labelLog";
             this.labelLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -249,7 +250,7 @@ namespace ATA_GUI
             this.buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogClear.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogClear.Location = new System.Drawing.Point(423, 431);
+            this.buttonLogClear.Location = new System.Drawing.Point(1036, 376);
             this.buttonLogClear.Name = "buttonLogClear";
             this.buttonLogClear.Size = new System.Drawing.Size(87, 23);
             this.buttonLogClear.TabIndex = 31;
@@ -878,6 +879,33 @@ namespace ATA_GUI
             this.groupBoxADBNet.TabStop = false;
             this.groupBoxADBNet.Text = "ADB over Network Menu";
             // 
+            // buttonUnlockNetworkMenu
+            // 
+            this.buttonUnlockNetworkMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUnlockNetworkMenu.Location = new System.Drawing.Point(88, 90);
+            this.buttonUnlockNetworkMenu.Name = "buttonUnlockNetworkMenu";
+            this.buttonUnlockNetworkMenu.Size = new System.Drawing.Size(81, 23);
+            this.buttonUnlockNetworkMenu.TabIndex = 43;
+            this.buttonUnlockNetworkMenu.Text = "Unlock";
+            this.buttonUnlockNetworkMenu.UseVisualStyleBackColor = true;
+            this.buttonUnlockNetworkMenu.Click += new System.EventHandler(this.buttonUnlockButtons_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(125, 19);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(40, 13);
+            this.label11.TabIndex = 42;
+            this.label11.Text = "PORT:";
+            // 
+            // textBoxPort
+            // 
+            this.textBoxPort.Location = new System.Drawing.Point(128, 35);
+            this.textBoxPort.Name = "textBoxPort";
+            this.textBoxPort.Size = new System.Drawing.Size(41, 20);
+            this.textBoxPort.TabIndex = 41;
+            // 
             // comboBoxIP
             // 
             this.comboBoxIP.FormattingEnabled = true;
@@ -1350,10 +1378,10 @@ namespace ATA_GUI
             this.richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
             this.richTextBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
-            this.richTextBoxLog.Location = new System.Drawing.Point(516, 390);
+            this.richTextBoxLog.Location = new System.Drawing.Point(915, 86);
             this.richTextBoxLog.Name = "richTextBoxLog";
             this.richTextBoxLog.ReadOnly = true;
-            this.richTextBoxLog.Size = new System.Drawing.Size(393, 64);
+            this.richTextBoxLog.Size = new System.Drawing.Size(208, 281);
             this.richTextBoxLog.TabIndex = 38;
             this.richTextBoxLog.TabStop = false;
             this.richTextBoxLog.Text = "";
@@ -1558,6 +1586,8 @@ namespace ATA_GUI
             // 
             // panelTopBar
             // 
+            this.panelTopBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTopBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panelTopBar.Controls.Add(this.labelTools);
             this.panelTopBar.Controls.Add(this.pictureBoxClose);
@@ -1567,7 +1597,7 @@ namespace ATA_GUI
             this.panelTopBar.Controls.Add(this.pictureBoxLogo);
             this.panelTopBar.Location = new System.Drawing.Point(0, -3);
             this.panelTopBar.Name = "panelTopBar";
-            this.panelTopBar.Size = new System.Drawing.Size(919, 44);
+            this.panelTopBar.Size = new System.Drawing.Size(1126, 44);
             this.panelTopBar.TabIndex = 0;
             this.panelTopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseMove);
             // 
@@ -1587,8 +1617,9 @@ namespace ATA_GUI
             // 
             // pictureBoxClose
             // 
+            this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxClose.Image = global::ATA_GUI.Properties.Resources.icons8_close_window_48;
-            this.pictureBoxClose.Location = new System.Drawing.Point(870, 2);
+            this.pictureBoxClose.Location = new System.Drawing.Point(1082, 3);
             this.pictureBoxClose.Name = "pictureBoxClose";
             this.pictureBoxClose.Size = new System.Drawing.Size(46, 42);
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -1600,8 +1631,9 @@ namespace ATA_GUI
             // 
             // pictureBoxMinimize
             // 
+            this.pictureBoxMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxMinimize.Image = global::ATA_GUI.Properties.Resources._;
-            this.pictureBoxMinimize.Location = new System.Drawing.Point(828, 3);
+            this.pictureBoxMinimize.Location = new System.Drawing.Point(1040, 4);
             this.pictureBoxMinimize.Name = "pictureBoxMinimize";
             this.pictureBoxMinimize.Size = new System.Drawing.Size(43, 41);
             this.pictureBoxMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -1718,7 +1750,7 @@ namespace ATA_GUI
             this.buttonDeviceLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDeviceLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDeviceLogs.ForeColor = System.Drawing.Color.Black;
-            this.buttonDeviceLogs.Location = new System.Drawing.Point(423, 402);
+            this.buttonDeviceLogs.Location = new System.Drawing.Point(822, 403);
             this.buttonDeviceLogs.Name = "buttonDeviceLogs";
             this.buttonDeviceLogs.Size = new System.Drawing.Size(87, 23);
             this.buttonDeviceLogs.TabIndex = 41;
@@ -1856,7 +1888,7 @@ namespace ATA_GUI
             this.buttonTaskManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTaskManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonTaskManager.ForeColor = System.Drawing.Color.Black;
-            this.buttonTaskManager.Location = new System.Drawing.Point(423, 373);
+            this.buttonTaskManager.Location = new System.Drawing.Point(822, 376);
             this.buttonTaskManager.Name = "buttonTaskManager";
             this.buttonTaskManager.Size = new System.Drawing.Size(87, 23);
             this.buttonTaskManager.TabIndex = 42;
@@ -1872,32 +1904,16 @@ namespace ATA_GUI
             // 
             this.backgroundWorkerADBDisconnect.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerADBDisconnect_DoWork);
             // 
-            // textBoxPort
+            // buttonLogView
             // 
-            this.textBoxPort.Location = new System.Drawing.Point(128, 35);
-            this.textBoxPort.Name = "textBoxPort";
-            this.textBoxPort.Size = new System.Drawing.Size(41, 20);
-            this.textBoxPort.TabIndex = 41;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(125, 19);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 13);
-            this.label11.TabIndex = 42;
-            this.label11.Text = "PORT:";
-            // 
-            // buttonUnlockNetworkMenu
-            // 
-            this.buttonUnlockNetworkMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonUnlockNetworkMenu.Location = new System.Drawing.Point(88, 90);
-            this.buttonUnlockNetworkMenu.Name = "buttonUnlockNetworkMenu";
-            this.buttonUnlockNetworkMenu.Size = new System.Drawing.Size(81, 23);
-            this.buttonUnlockNetworkMenu.TabIndex = 43;
-            this.buttonUnlockNetworkMenu.Text = "Unlock";
-            this.buttonUnlockNetworkMenu.UseVisualStyleBackColor = true;
-            this.buttonUnlockNetworkMenu.Click += new System.EventHandler(this.buttonUnlockButtons_Click);
+            this.buttonLogView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLogView.Location = new System.Drawing.Point(822, 430);
+            this.buttonLogView.Name = "buttonLogView";
+            this.buttonLogView.Size = new System.Drawing.Size(87, 23);
+            this.buttonLogView.TabIndex = 43;
+            this.buttonLogView.Text = "Hide log";
+            this.buttonLogView.UseVisualStyleBackColor = true;
+            this.buttonLogView.Click += new System.EventHandler(this.buttonLogView_Click);
             // 
             // MainForm
             // 
@@ -1905,7 +1921,8 @@ namespace ATA_GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(914, 457);
+            this.ClientSize = new System.Drawing.Size(1126, 457);
+            this.Controls.Add(this.buttonLogView);
             this.Controls.Add(this.buttonTaskManager);
             this.Controls.Add(this.buttonDeviceLogs);
             this.Controls.Add(this.label9);
@@ -2137,6 +2154,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBoxPort;
         private System.Windows.Forms.Button buttonUnlockNetworkMenu;
+        private System.Windows.Forms.Button buttonLogView;
     }
 }
 

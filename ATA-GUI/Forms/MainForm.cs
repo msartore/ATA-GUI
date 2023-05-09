@@ -25,15 +25,16 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public static readonly string CURRENTVERSION = "v2.2.0";
+        public static readonly string CURRENTVERSION = "v2.3.0";
         public static readonly List<string> arrayApks = new List<string>();
         public static readonly string IPFileName = "IPList.txt";
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
         private static readonly int HT_CAPTION = 0x2;
         private static readonly Regex regex = new Regex(@"\s+");
         private bool textboxClear;
-        private bool connected = true;
+        private bool isConnected = true;
         private bool systemApp;
+        private bool isLogViewVisibile = true;
         private bool deviceWireless;
         private readonly string FILEADB = "adb.exe";
         private readonly List<Device> devices = new List<Device>();
@@ -286,7 +287,11 @@ namespace ATA_GUI
             object paramObj = e.Argument;
             string paramObjTmp = "0";
 
-            textBoxPort.Text = "5555";
+            _ = Invoke((Action)delegate
+            {
+                textBoxPort.Text = "5555";
+            });
+
 
             if (paramObj.ToString() == "3")
             {
@@ -724,7 +729,7 @@ namespace ATA_GUI
             }
             else
             {
-                connected = true;
+                isConnected = true;
             }
 
             LogWriteLine("Connection checked!");
@@ -1292,7 +1297,7 @@ namespace ATA_GUI
 
         private void backgroundWorkerAdbDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            if (!connected)
+            if (!isConnected)
             {
                 MessageShowBox("You are offline, ATA can't download ADB", 0);
                 return;
@@ -1448,7 +1453,7 @@ namespace ATA_GUI
 
         private async void backgroundWorkerExeDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            if (!connected)
+            if (!isConnected)
             {
                 MessageShowBox("You are offline, ATA can't download scrcpy", 0);
                 return;
@@ -1727,7 +1732,10 @@ namespace ATA_GUI
             string ip = string.Empty;
             string port = textBoxPort.Text.Trim();
 
-            ip = comboBoxIP.Text.Trim();
+            _ = Invoke((Action)delegate
+            {
+                ip = comboBoxIP.Text.Trim();
+            });
 
             if (ip.Length > 1)
             {
@@ -1945,6 +1953,21 @@ namespace ATA_GUI
             textBoxPort.Enabled = true;
             buttonConnectToIP.Enabled = true;
             buttonDisconnectIP.Enabled = true;
+        }
+
+        private void buttonLogView_Click(object sender, EventArgs e)
+        {
+            if (isLogViewVisibile)
+            {
+                Size = new Size(915, 457);
+                buttonLogView.Text = "Show log";
+            }
+            else
+            {
+                Size = new Size(1126, 457);
+                buttonLogView.Text = "Hide log";
+            }
+            isLogViewVisibile = !isLogViewVisibile;
         }
     }
 }
