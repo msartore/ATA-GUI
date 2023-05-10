@@ -139,6 +139,10 @@ namespace ATA_GUI
             this.label6 = new System.Windows.Forms.Label();
             this.buttonFlashZip = new System.Windows.Forms.Button();
             this.textBoxDirFile = new System.Windows.Forms.TextBox();
+            this.tabPageTools = new System.Windows.Forms.TabPage();
+            this.groupBoxFreeRotation = new System.Windows.Forms.GroupBox();
+            this.buttonSetRotation = new System.Windows.Forms.Button();
+            this.domainUpDownFreeRotation = new System.Windows.Forms.DomainUpDown();
             this.openFileDialogAPK = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogZip = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorkerZip = new System.ComponentModel.BackgroundWorker();
@@ -203,15 +207,15 @@ namespace ATA_GUI
             this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
             this.buttonLogView = new System.Windows.Forms.Button();
-            this.domainUpDownFreeRotation = new System.Windows.Forms.DomainUpDown();
-            this.groupBoxFreeRotation = new System.Windows.Forms.GroupBox();
-            this.buttonSetRotation = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioButtonFastboot = new System.Windows.Forms.RadioButton();
             this.radioButtonADB = new System.Windows.Forms.RadioButton();
             this.buttonCommandInject = new System.Windows.Forms.Button();
             this.richTextBoxCommand = new System.Windows.Forms.RichTextBox();
-            this.tabPageTools = new System.Windows.Forms.TabPage();
+            this.groupBoxTextInject = new System.Windows.Forms.GroupBox();
+            this.richTextBoxSend = new System.Windows.Forms.RichTextBox();
+            this.buttonInjectText = new System.Windows.Forms.Button();
+            this.buttonClearTextSend = new System.Windows.Forms.Button();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControls.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -229,6 +233,8 @@ namespace ATA_GUI
             this.groupBox4.SuspendLayout();
             this.tabPageRecovery.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchFile)).BeginInit();
+            this.tabPageTools.SuspendLayout();
+            this.groupBoxFreeRotation.SuspendLayout();
             this.contextMenuStripFilterBy.SuspendLayout();
             this.contextMenuStripPermissionMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
@@ -239,9 +245,8 @@ namespace ATA_GUI
             this.groupBox1.SuspendLayout();
             this.contextMenuStripSearch.SuspendLayout();
             this.contextMenuStripTools.SuspendLayout();
-            this.groupBoxFreeRotation.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.tabPageTools.SuspendLayout();
+            this.groupBoxTextInject.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelLog
@@ -1370,6 +1375,49 @@ namespace ATA_GUI
             this.textBoxDirFile.Size = new System.Drawing.Size(245, 20);
             this.textBoxDirFile.TabIndex = 33;
             // 
+            // tabPageTools
+            // 
+            this.tabPageTools.Controls.Add(this.groupBoxTextInject);
+            this.tabPageTools.Controls.Add(this.groupBoxFreeRotation);
+            this.tabPageTools.Location = new System.Drawing.Point(4, 22);
+            this.tabPageTools.Name = "tabPageTools";
+            this.tabPageTools.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTools.Size = new System.Drawing.Size(893, 295);
+            this.tabPageTools.TabIndex = 3;
+            this.tabPageTools.Text = "Tools";
+            this.tabPageTools.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxFreeRotation
+            // 
+            this.groupBoxFreeRotation.Controls.Add(this.buttonSetRotation);
+            this.groupBoxFreeRotation.Controls.Add(this.domainUpDownFreeRotation);
+            this.groupBoxFreeRotation.Location = new System.Drawing.Point(6, 6);
+            this.groupBoxFreeRotation.Name = "groupBoxFreeRotation";
+            this.groupBoxFreeRotation.Size = new System.Drawing.Size(85, 84);
+            this.groupBoxFreeRotation.TabIndex = 45;
+            this.groupBoxFreeRotation.TabStop = false;
+            this.groupBoxFreeRotation.Text = "Free Rotation";
+            // 
+            // buttonSetRotation
+            // 
+            this.buttonSetRotation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSetRotation.Location = new System.Drawing.Point(8, 53);
+            this.buttonSetRotation.Name = "buttonSetRotation";
+            this.buttonSetRotation.Size = new System.Drawing.Size(71, 23);
+            this.buttonSetRotation.TabIndex = 45;
+            this.buttonSetRotation.Text = "Set";
+            this.buttonSetRotation.UseVisualStyleBackColor = true;
+            this.buttonSetRotation.Click += new System.EventHandler(this.buttonSetRotation_Click);
+            // 
+            // domainUpDownFreeRotation
+            // 
+            this.domainUpDownFreeRotation.Location = new System.Drawing.Point(8, 20);
+            this.domainUpDownFreeRotation.Name = "domainUpDownFreeRotation";
+            this.domainUpDownFreeRotation.ReadOnly = true;
+            this.domainUpDownFreeRotation.Size = new System.Drawing.Size(71, 20);
+            this.domainUpDownFreeRotation.TabIndex = 44;
+            this.domainUpDownFreeRotation.Text = "0";
+            // 
             // openFileDialogAPK
             // 
             this.openFileDialogAPK.FileName = "openFileDialog";
@@ -1928,37 +1976,6 @@ namespace ATA_GUI
             this.buttonLogView.UseVisualStyleBackColor = true;
             this.buttonLogView.Click += new System.EventHandler(this.buttonLogView_Click);
             // 
-            // domainUpDownFreeRotation
-            // 
-            this.domainUpDownFreeRotation.Location = new System.Drawing.Point(8, 20);
-            this.domainUpDownFreeRotation.Name = "domainUpDownFreeRotation";
-            this.domainUpDownFreeRotation.ReadOnly = true;
-            this.domainUpDownFreeRotation.Size = new System.Drawing.Size(71, 20);
-            this.domainUpDownFreeRotation.TabIndex = 44;
-            this.domainUpDownFreeRotation.Text = "0";
-            // 
-            // groupBoxFreeRotation
-            // 
-            this.groupBoxFreeRotation.Controls.Add(this.buttonSetRotation);
-            this.groupBoxFreeRotation.Controls.Add(this.domainUpDownFreeRotation);
-            this.groupBoxFreeRotation.Location = new System.Drawing.Point(6, 6);
-            this.groupBoxFreeRotation.Name = "groupBoxFreeRotation";
-            this.groupBoxFreeRotation.Size = new System.Drawing.Size(85, 84);
-            this.groupBoxFreeRotation.TabIndex = 45;
-            this.groupBoxFreeRotation.TabStop = false;
-            this.groupBoxFreeRotation.Text = "Free Rotation";
-            // 
-            // buttonSetRotation
-            // 
-            this.buttonSetRotation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSetRotation.Location = new System.Drawing.Point(8, 53);
-            this.buttonSetRotation.Name = "buttonSetRotation";
-            this.buttonSetRotation.Size = new System.Drawing.Size(71, 23);
-            this.buttonSetRotation.TabIndex = 45;
-            this.buttonSetRotation.Text = "Set";
-            this.buttonSetRotation.UseVisualStyleBackColor = true;
-            this.buttonSetRotation.Click += new System.EventHandler(this.buttonSetRotation_Click);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.radioButtonFastboot);
@@ -2014,16 +2031,47 @@ namespace ATA_GUI
             this.richTextBoxCommand.TabIndex = 47;
             this.richTextBoxCommand.Text = "";
             // 
-            // tabPageTools
+            // groupBoxTextInject
             // 
-            this.tabPageTools.Controls.Add(this.groupBoxFreeRotation);
-            this.tabPageTools.Location = new System.Drawing.Point(4, 22);
-            this.tabPageTools.Name = "tabPageTools";
-            this.tabPageTools.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTools.Size = new System.Drawing.Size(893, 295);
-            this.tabPageTools.TabIndex = 3;
-            this.tabPageTools.Text = "Tools";
-            this.tabPageTools.UseVisualStyleBackColor = true;
+            this.groupBoxTextInject.Controls.Add(this.buttonClearTextSend);
+            this.groupBoxTextInject.Controls.Add(this.buttonInjectText);
+            this.groupBoxTextInject.Controls.Add(this.richTextBoxSend);
+            this.groupBoxTextInject.Location = new System.Drawing.Point(97, 6);
+            this.groupBoxTextInject.Name = "groupBoxTextInject";
+            this.groupBoxTextInject.Size = new System.Drawing.Size(230, 84);
+            this.groupBoxTextInject.TabIndex = 46;
+            this.groupBoxTextInject.TabStop = false;
+            this.groupBoxTextInject.Text = "Inject Text";
+            // 
+            // richTextBoxSend
+            // 
+            this.richTextBoxSend.Location = new System.Drawing.Point(6, 20);
+            this.richTextBoxSend.Name = "richTextBoxSend";
+            this.richTextBoxSend.Size = new System.Drawing.Size(134, 56);
+            this.richTextBoxSend.TabIndex = 0;
+            this.richTextBoxSend.Text = "";
+            // 
+            // buttonInjectText
+            // 
+            this.buttonInjectText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInjectText.Location = new System.Drawing.Point(149, 20);
+            this.buttonInjectText.Name = "buttonInjectText";
+            this.buttonInjectText.Size = new System.Drawing.Size(75, 23);
+            this.buttonInjectText.TabIndex = 1;
+            this.buttonInjectText.Text = "Inject";
+            this.buttonInjectText.UseVisualStyleBackColor = true;
+            this.buttonInjectText.Click += new System.EventHandler(this.buttonInjectText_Click);
+            // 
+            // buttonClearTextSend
+            // 
+            this.buttonClearTextSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClearTextSend.Location = new System.Drawing.Point(149, 53);
+            this.buttonClearTextSend.Name = "buttonClearTextSend";
+            this.buttonClearTextSend.Size = new System.Drawing.Size(75, 23);
+            this.buttonClearTextSend.TabIndex = 2;
+            this.buttonClearTextSend.Text = "Clear";
+            this.buttonClearTextSend.UseVisualStyleBackColor = true;
+            this.buttonClearTextSend.Click += new System.EventHandler(this.buttonClearTextSend_Click);
             // 
             // MainForm
             // 
@@ -2077,6 +2125,8 @@ namespace ATA_GUI
             this.tabPageRecovery.ResumeLayout(false);
             this.tabPageRecovery.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchFile)).EndInit();
+            this.tabPageTools.ResumeLayout(false);
+            this.groupBoxFreeRotation.ResumeLayout(false);
             this.contextMenuStripFilterBy.ResumeLayout(false);
             this.contextMenuStripPermissionMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
@@ -2088,10 +2138,9 @@ namespace ATA_GUI
             this.groupBox1.ResumeLayout(false);
             this.contextMenuStripSearch.ResumeLayout(false);
             this.contextMenuStripTools.ResumeLayout(false);
-            this.groupBoxFreeRotation.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.tabPageTools.ResumeLayout(false);
+            this.groupBoxTextInject.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2279,6 +2328,10 @@ namespace ATA_GUI
         private System.Windows.Forms.RadioButton radioButtonFastboot;
         private System.Windows.Forms.RadioButton radioButtonADB;
         private System.Windows.Forms.TabPage tabPageTools;
+        private System.Windows.Forms.GroupBox groupBoxTextInject;
+        private System.Windows.Forms.Button buttonInjectText;
+        private System.Windows.Forms.RichTextBox richTextBoxSend;
+        private System.Windows.Forms.Button buttonClearTextSend;
     }
 }
 

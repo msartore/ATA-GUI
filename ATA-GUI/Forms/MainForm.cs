@@ -57,7 +57,7 @@ namespace ATA_GUI
 
         private void buttonSyncApp_Click(object sender, EventArgs e)
         {
-            if (tabControls.SelectedTab.Name.Contains("System"))
+            if (tabControls.SelectedTab.Name.Contains("System") || tabControls.SelectedTab.Name.Contains("Tools"))
             {
                 syncFun(3);
                 return;
@@ -100,7 +100,7 @@ namespace ATA_GUI
                 }
                 return;
             }
-            MessageShowBox("Can't sync your device in this page", 1);
+            MessageShowBox("Can not sync your device in this page", 1);
         }
 
         private void syncFun(object paramObj)
@@ -547,6 +547,7 @@ namespace ATA_GUI
             buttonDeviceLogs.Enabled = enable;
             buttonTaskManager.Enabled = enable;
             groupBoxFreeRotation.Enabled = enable;
+            groupBoxTextInject.Enabled = enable;
         }
 
         private void adbDownload()
@@ -1291,7 +1292,7 @@ namespace ATA_GUI
             comboBoxDevices.Enabled = true;
             buttonReloadDevicesList.Enabled = true;
 
-            if (tabControls.SelectedTab.Text != "System")
+            if (tabControls.SelectedTab.Text != "System" && tabControls.SelectedTab.Text != "Tools")
             {
                 comboBoxDevices.Enabled = false;
                 buttonReloadDevicesList.Enabled = false;
@@ -1306,7 +1307,7 @@ namespace ATA_GUI
         {
             if (!ata.IsConnected)
             {
-                MessageShowBox("You are offline, ATA can't download ADB", 0);
+                MessageShowBox("You are offline, ATA can not download ADB", 0);
                 return;
             }
             _ = Invoke((Action)delegate
@@ -1462,7 +1463,7 @@ namespace ATA_GUI
         {
             if (!ata.IsConnected)
             {
-                MessageShowBox("You are offline, ATA can't download scrcpy", 0);
+                MessageShowBox("You are offline, ATA can not download scrcpy", 0);
                 return;
             }
             ExeMissingForm scrcpyError = new ExeMissingForm("scrcpy.exe not found\n\nDo you want to download scrcpy?\n\n[By pressing YES you agree scrcpy terms and conditions]\nfor more info press info button", "Error, scrcpy Missing!");
@@ -2004,6 +2005,24 @@ namespace ATA_GUI
             {
                 LogWriteLine(adbFastbootCommandR(new[] { richTextBoxCommand.Text.Trim() }, radioButtonADB.Checked ? 0 : 1));
             }
+        }
+
+        private void buttonInjectText_Click(object sender, EventArgs e)
+        {
+            _ = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell input text \"" + richTextBoxSend.Text + "\"" }, 0);
+            if (richTextBoxCommand.Text.Length == 0)
+            {
+                MessageShowBox("You have to enter a text to inject!", 1);
+            }
+            else
+            {
+                LogWriteLine("Text injected");
+            }
+        }
+
+        private void buttonClearTextSend_Click(object sender, EventArgs e)
+        {
+            richTextBoxSend.Clear();
         }
     }
 }
