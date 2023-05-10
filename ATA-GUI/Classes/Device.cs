@@ -2,13 +2,12 @@
 {
     internal class Device
     {
-        public Device()
-        {
-            Name = "";
-            Serial = "";
-        }
+        public Device() { }
 
-        public string Serial { get; set; }
-        public string Name { get; set; }
+        public bool SystemApp { get; set; }
+        public bool IsRotationFreeEnabled { get; set; }
+        public bool DeviceWireless { get; set; }
+        public string StringApk { get; set; }
+        public string User { get; set; }
     }
 }

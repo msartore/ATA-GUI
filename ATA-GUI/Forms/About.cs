@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATA_GUI.Classes;
+using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -58,7 +59,7 @@ namespace ATA_GUI
 
         private void About_Load(object sender, EventArgs e)
         {
-            labelVersion.Text = "Version: " + MainForm.CURRENTVERSION;
+            labelVersion.Text = "Version: " + ATA.CURRENTVERSION;
         }
 
         private void linkLabelGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ATA_GUI.Classes;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -12,7 +13,7 @@ namespace ATA_GUI
     public partial class Settings : Form
     {
         private string changelog = string.Empty;
-        private static readonly string CURRENTVERSION = MainForm.CURRENTVERSION;
+        private static readonly string CURRENTVERSION = ATA.CURRENTVERSION;
         private bool runningCheck;
         private bool starting = true;
 
@@ -161,9 +162,9 @@ namespace ATA_GUI
 
         private void buttonDeleteIPHistory_Click(object sender, EventArgs e)
         {
-            if (File.Exists(MainForm.IPFileName))
+            if (File.Exists(ATA.IPFileName))
             {
-                File.Delete(MainForm.IPFileName);
+                File.Delete(ATA.IPFileName);
             }
         }
     }

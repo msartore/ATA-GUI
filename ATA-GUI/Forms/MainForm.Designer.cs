@@ -57,7 +57,7 @@ namespace ATA_GUI
             this.labelCpuAbilitis = new System.Windows.Forms.Label();
             this.labelBuildUser = new System.Windows.Forms.Label();
             this.checkBoxSelectAll = new System.Windows.Forms.CheckBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControls = new System.Windows.Forms.TabControl();
             this.tabPageSystem = new System.Windows.Forms.TabPage();
             this.groupBoxAPKMenu = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -207,12 +207,13 @@ namespace ATA_GUI
             this.groupBoxFreeRotation = new System.Windows.Forms.GroupBox();
             this.buttonSetRotation = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.richTextBoxCommand = new System.Windows.Forms.RichTextBox();
-            this.buttonCommandInject = new System.Windows.Forms.Button();
-            this.radioButtonADB = new System.Windows.Forms.RadioButton();
             this.radioButtonFastboot = new System.Windows.Forms.RadioButton();
+            this.radioButtonADB = new System.Windows.Forms.RadioButton();
+            this.buttonCommandInject = new System.Windows.Forms.Button();
+            this.richTextBoxCommand = new System.Windows.Forms.RichTextBox();
+            this.tabPageTools = new System.Windows.Forms.TabPage();
             this.groupBoxDeviceInfo.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabControls.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
             this.groupBoxAPKMenu.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -240,6 +241,7 @@ namespace ATA_GUI
             this.contextMenuStripTools.SuspendLayout();
             this.groupBoxFreeRotation.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.tabPageTools.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelLog
@@ -506,17 +508,18 @@ namespace ATA_GUI
             this.checkBoxSelectAll.UseVisualStyleBackColor = true;
             this.checkBoxSelectAll.CheckedChanged += new System.EventHandler(this.checkBoxSelectAll_CheckedChanged);
             // 
-            // tabControl1
+            // tabControls
             // 
-            this.tabControl1.Controls.Add(this.tabPageSystem);
-            this.tabControl1.Controls.Add(this.tabPageFastboot);
-            this.tabControl1.Controls.Add(this.tabPageRecovery);
-            this.tabControl1.Location = new System.Drawing.Point(8, 46);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(901, 321);
-            this.tabControl1.TabIndex = 33;
-            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
+            this.tabControls.Controls.Add(this.tabPageSystem);
+            this.tabControls.Controls.Add(this.tabPageFastboot);
+            this.tabControls.Controls.Add(this.tabPageRecovery);
+            this.tabControls.Controls.Add(this.tabPageTools);
+            this.tabControls.Location = new System.Drawing.Point(8, 46);
+            this.tabControls.Name = "tabControls";
+            this.tabControls.SelectedIndex = 0;
+            this.tabControls.Size = new System.Drawing.Size(901, 321);
+            this.tabControls.TabIndex = 33;
+            this.tabControls.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPageSystem
             // 
@@ -1938,7 +1941,7 @@ namespace ATA_GUI
             // 
             this.groupBoxFreeRotation.Controls.Add(this.buttonSetRotation);
             this.groupBoxFreeRotation.Controls.Add(this.domainUpDownFreeRotation);
-            this.groupBoxFreeRotation.Location = new System.Drawing.Point(423, 369);
+            this.groupBoxFreeRotation.Location = new System.Drawing.Point(6, 6);
             this.groupBoxFreeRotation.Name = "groupBoxFreeRotation";
             this.groupBoxFreeRotation.Size = new System.Drawing.Size(85, 84);
             this.groupBoxFreeRotation.TabIndex = 45;
@@ -1962,37 +1965,29 @@ namespace ATA_GUI
             this.groupBox3.Controls.Add(this.radioButtonADB);
             this.groupBox3.Controls.Add(this.buttonCommandInject);
             this.groupBox3.Controls.Add(this.richTextBoxCommand);
-            this.groupBox3.Location = new System.Drawing.Point(514, 369);
+            this.groupBox3.Location = new System.Drawing.Point(423, 369);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 84);
+            this.groupBox3.Size = new System.Drawing.Size(393, 84);
             this.groupBox3.TabIndex = 46;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Command injection";
             // 
-            // richTextBoxCommand
+            // radioButtonFastboot
             // 
-            this.richTextBoxCommand.Location = new System.Drawing.Point(6, 19);
-            this.richTextBoxCommand.Name = "richTextBoxCommand";
-            this.richTextBoxCommand.Size = new System.Drawing.Size(100, 57);
-            this.richTextBoxCommand.TabIndex = 47;
-            this.richTextBoxCommand.Text = "";
-            // 
-            // buttonCommandInject
-            // 
-            this.buttonCommandInject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCommandInject.Location = new System.Drawing.Point(112, 19);
-            this.buttonCommandInject.Name = "buttonCommandInject";
-            this.buttonCommandInject.Size = new System.Drawing.Size(75, 23);
-            this.buttonCommandInject.TabIndex = 48;
-            this.buttonCommandInject.Text = "Inject";
-            this.buttonCommandInject.UseVisualStyleBackColor = true;
-            this.buttonCommandInject.Click += new System.EventHandler(this.buttonCommandInject_Click);
+            this.radioButtonFastboot.AutoSize = true;
+            this.radioButtonFastboot.Location = new System.Drawing.Point(312, 61);
+            this.radioButtonFastboot.Name = "radioButtonFastboot";
+            this.radioButtonFastboot.Size = new System.Drawing.Size(63, 17);
+            this.radioButtonFastboot.TabIndex = 50;
+            this.radioButtonFastboot.TabStop = true;
+            this.radioButtonFastboot.Text = "fastboot";
+            this.radioButtonFastboot.UseVisualStyleBackColor = true;
             // 
             // radioButtonADB
             // 
             this.radioButtonADB.AutoSize = true;
             this.radioButtonADB.Checked = true;
-            this.radioButtonADB.Location = new System.Drawing.Point(112, 45);
+            this.radioButtonADB.Location = new System.Drawing.Point(312, 45);
             this.radioButtonADB.Name = "radioButtonADB";
             this.radioButtonADB.Size = new System.Drawing.Size(43, 17);
             this.radioButtonADB.TabIndex = 49;
@@ -2000,16 +1995,35 @@ namespace ATA_GUI
             this.radioButtonADB.Text = "adb";
             this.radioButtonADB.UseVisualStyleBackColor = true;
             // 
-            // radioButtonFastboot
+            // buttonCommandInject
             // 
-            this.radioButtonFastboot.AutoSize = true;
-            this.radioButtonFastboot.Location = new System.Drawing.Point(112, 61);
-            this.radioButtonFastboot.Name = "radioButtonFastboot";
-            this.radioButtonFastboot.Size = new System.Drawing.Size(63, 17);
-            this.radioButtonFastboot.TabIndex = 50;
-            this.radioButtonFastboot.TabStop = true;
-            this.radioButtonFastboot.Text = "fastboot";
-            this.radioButtonFastboot.UseVisualStyleBackColor = true;
+            this.buttonCommandInject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCommandInject.Location = new System.Drawing.Point(312, 19);
+            this.buttonCommandInject.Name = "buttonCommandInject";
+            this.buttonCommandInject.Size = new System.Drawing.Size(75, 23);
+            this.buttonCommandInject.TabIndex = 48;
+            this.buttonCommandInject.Text = "Inject";
+            this.buttonCommandInject.UseVisualStyleBackColor = true;
+            this.buttonCommandInject.Click += new System.EventHandler(this.buttonCommandInject_Click);
+            // 
+            // richTextBoxCommand
+            // 
+            this.richTextBoxCommand.Location = new System.Drawing.Point(6, 19);
+            this.richTextBoxCommand.Name = "richTextBoxCommand";
+            this.richTextBoxCommand.Size = new System.Drawing.Size(300, 57);
+            this.richTextBoxCommand.TabIndex = 47;
+            this.richTextBoxCommand.Text = "";
+            // 
+            // tabPageTools
+            // 
+            this.tabPageTools.Controls.Add(this.groupBoxFreeRotation);
+            this.tabPageTools.Location = new System.Drawing.Point(4, 22);
+            this.tabPageTools.Name = "tabPageTools";
+            this.tabPageTools.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTools.Size = new System.Drawing.Size(893, 295);
+            this.tabPageTools.TabIndex = 3;
+            this.tabPageTools.Text = "Tools";
+            this.tabPageTools.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -2019,7 +2033,6 @@ namespace ATA_GUI
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1126, 457);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBoxFreeRotation);
             this.Controls.Add(this.buttonLogView);
             this.Controls.Add(this.buttonTaskManager);
             this.Controls.Add(this.buttonDeviceLogs);
@@ -2027,7 +2040,7 @@ namespace ATA_GUI
             this.Controls.Add(this.buttonMobileScreenShare);
             this.Controls.Add(this.buttonLogClear);
             this.Controls.Add(this.richTextBoxLog);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControls);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelLog);
             this.Controls.Add(this.panelTopBar);
@@ -2040,7 +2053,7 @@ namespace ATA_GUI
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.groupBoxDeviceInfo.ResumeLayout(false);
             this.groupBoxDeviceInfo.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.tabControls.ResumeLayout(false);
             this.tabPageSystem.ResumeLayout(false);
             this.groupBoxAPKMenu.ResumeLayout(false);
             this.groupBoxAPKMenu.PerformLayout();
@@ -2078,6 +2091,7 @@ namespace ATA_GUI
             this.groupBoxFreeRotation.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.tabPageTools.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2101,7 +2115,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Label labelManufacturer;
         private System.Windows.Forms.Label labelCpuAbilitis;
         private System.Windows.Forms.Label labelBuildUser;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControls;
         private System.Windows.Forms.TabPage tabPageSystem;
         private System.Windows.Forms.TabPage tabPageFastboot;
         private System.Windows.Forms.TabPage tabPageRecovery;
@@ -2264,6 +2278,7 @@ namespace ATA_GUI
         private System.Windows.Forms.RichTextBox richTextBoxCommand;
         private System.Windows.Forms.RadioButton radioButtonFastboot;
         private System.Windows.Forms.RadioButton radioButtonADB;
+        private System.Windows.Forms.TabPage tabPageTools;
     }
 }
 

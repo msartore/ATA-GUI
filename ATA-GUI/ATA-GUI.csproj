@@ -81,6 +81,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ATA.cs" />
     <Compile Include="Forms\DefaultApp.cs">
       <SubType>Form</SubType>
     </Compile>
