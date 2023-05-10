@@ -66,6 +66,7 @@ jobs:
     - name: Create Release
       uses: ncipollo/release-action@v1.12.0
       with:
+        generateReleaseNotes: true
         artifacts: ATA-GUI.zip
         name: ${{steps.previoustag.outputs.tag}}
         tag: ${{steps.previoustag.outputs.tag}}
