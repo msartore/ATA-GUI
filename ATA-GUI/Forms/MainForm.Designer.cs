@@ -140,6 +140,10 @@ namespace ATA_GUI
             this.buttonFlashZip = new System.Windows.Forms.Button();
             this.textBoxDirFile = new System.Windows.Forms.TextBox();
             this.tabPageTools = new System.Windows.Forms.TabPage();
+            this.groupBoxTextInject = new System.Windows.Forms.GroupBox();
+            this.buttonClearTextSend = new System.Windows.Forms.Button();
+            this.buttonInjectText = new System.Windows.Forms.Button();
+            this.richTextBoxSend = new System.Windows.Forms.RichTextBox();
             this.groupBoxFreeRotation = new System.Windows.Forms.GroupBox();
             this.buttonSetRotation = new System.Windows.Forms.Button();
             this.domainUpDownFreeRotation = new System.Windows.Forms.DomainUpDown();
@@ -212,10 +216,6 @@ namespace ATA_GUI
             this.radioButtonADB = new System.Windows.Forms.RadioButton();
             this.buttonCommandInject = new System.Windows.Forms.Button();
             this.richTextBoxCommand = new System.Windows.Forms.RichTextBox();
-            this.groupBoxTextInject = new System.Windows.Forms.GroupBox();
-            this.richTextBoxSend = new System.Windows.Forms.RichTextBox();
-            this.buttonInjectText = new System.Windows.Forms.Button();
-            this.buttonClearTextSend = new System.Windows.Forms.Button();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControls.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -234,6 +234,7 @@ namespace ATA_GUI
             this.tabPageRecovery.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchFile)).BeginInit();
             this.tabPageTools.SuspendLayout();
+            this.groupBoxTextInject.SuspendLayout();
             this.groupBoxFreeRotation.SuspendLayout();
             this.contextMenuStripFilterBy.SuspendLayout();
             this.contextMenuStripPermissionMenu.SuspendLayout();
@@ -246,7 +247,6 @@ namespace ATA_GUI
             this.contextMenuStripSearch.SuspendLayout();
             this.contextMenuStripTools.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBoxTextInject.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelLog
@@ -1387,6 +1387,48 @@ namespace ATA_GUI
             this.tabPageTools.Text = "Tools";
             this.tabPageTools.UseVisualStyleBackColor = true;
             // 
+            // groupBoxTextInject
+            // 
+            this.groupBoxTextInject.Controls.Add(this.buttonClearTextSend);
+            this.groupBoxTextInject.Controls.Add(this.buttonInjectText);
+            this.groupBoxTextInject.Controls.Add(this.richTextBoxSend);
+            this.groupBoxTextInject.Location = new System.Drawing.Point(97, 6);
+            this.groupBoxTextInject.Name = "groupBoxTextInject";
+            this.groupBoxTextInject.Size = new System.Drawing.Size(230, 84);
+            this.groupBoxTextInject.TabIndex = 46;
+            this.groupBoxTextInject.TabStop = false;
+            this.groupBoxTextInject.Text = "Text Injection";
+            // 
+            // buttonClearTextSend
+            // 
+            this.buttonClearTextSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClearTextSend.Location = new System.Drawing.Point(149, 53);
+            this.buttonClearTextSend.Name = "buttonClearTextSend";
+            this.buttonClearTextSend.Size = new System.Drawing.Size(75, 23);
+            this.buttonClearTextSend.TabIndex = 2;
+            this.buttonClearTextSend.Text = "Clear";
+            this.buttonClearTextSend.UseVisualStyleBackColor = true;
+            this.buttonClearTextSend.Click += new System.EventHandler(this.buttonClearTextSend_Click);
+            // 
+            // buttonInjectText
+            // 
+            this.buttonInjectText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInjectText.Location = new System.Drawing.Point(149, 20);
+            this.buttonInjectText.Name = "buttonInjectText";
+            this.buttonInjectText.Size = new System.Drawing.Size(75, 23);
+            this.buttonInjectText.TabIndex = 1;
+            this.buttonInjectText.Text = "Inject";
+            this.buttonInjectText.UseVisualStyleBackColor = true;
+            this.buttonInjectText.Click += new System.EventHandler(this.buttonInjectText_Click);
+            // 
+            // richTextBoxSend
+            // 
+            this.richTextBoxSend.Location = new System.Drawing.Point(6, 20);
+            this.richTextBoxSend.Name = "richTextBoxSend";
+            this.richTextBoxSend.Size = new System.Drawing.Size(134, 56);
+            this.richTextBoxSend.TabIndex = 0;
+            this.richTextBoxSend.Text = "";
+            // 
             // groupBoxFreeRotation
             // 
             this.groupBoxFreeRotation.Controls.Add(this.buttonSetRotation);
@@ -2031,48 +2073,6 @@ namespace ATA_GUI
             this.richTextBoxCommand.TabIndex = 47;
             this.richTextBoxCommand.Text = "";
             // 
-            // groupBoxTextInject
-            // 
-            this.groupBoxTextInject.Controls.Add(this.buttonClearTextSend);
-            this.groupBoxTextInject.Controls.Add(this.buttonInjectText);
-            this.groupBoxTextInject.Controls.Add(this.richTextBoxSend);
-            this.groupBoxTextInject.Location = new System.Drawing.Point(97, 6);
-            this.groupBoxTextInject.Name = "groupBoxTextInject";
-            this.groupBoxTextInject.Size = new System.Drawing.Size(230, 84);
-            this.groupBoxTextInject.TabIndex = 46;
-            this.groupBoxTextInject.TabStop = false;
-            this.groupBoxTextInject.Text = "Inject Text";
-            // 
-            // richTextBoxSend
-            // 
-            this.richTextBoxSend.Location = new System.Drawing.Point(6, 20);
-            this.richTextBoxSend.Name = "richTextBoxSend";
-            this.richTextBoxSend.Size = new System.Drawing.Size(134, 56);
-            this.richTextBoxSend.TabIndex = 0;
-            this.richTextBoxSend.Text = "";
-            // 
-            // buttonInjectText
-            // 
-            this.buttonInjectText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInjectText.Location = new System.Drawing.Point(149, 20);
-            this.buttonInjectText.Name = "buttonInjectText";
-            this.buttonInjectText.Size = new System.Drawing.Size(75, 23);
-            this.buttonInjectText.TabIndex = 1;
-            this.buttonInjectText.Text = "Inject";
-            this.buttonInjectText.UseVisualStyleBackColor = true;
-            this.buttonInjectText.Click += new System.EventHandler(this.buttonInjectText_Click);
-            // 
-            // buttonClearTextSend
-            // 
-            this.buttonClearTextSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClearTextSend.Location = new System.Drawing.Point(149, 53);
-            this.buttonClearTextSend.Name = "buttonClearTextSend";
-            this.buttonClearTextSend.Size = new System.Drawing.Size(75, 23);
-            this.buttonClearTextSend.TabIndex = 2;
-            this.buttonClearTextSend.Text = "Clear";
-            this.buttonClearTextSend.UseVisualStyleBackColor = true;
-            this.buttonClearTextSend.Click += new System.EventHandler(this.buttonClearTextSend_Click);
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2126,6 +2126,7 @@ namespace ATA_GUI
             this.tabPageRecovery.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchFile)).EndInit();
             this.tabPageTools.ResumeLayout(false);
+            this.groupBoxTextInject.ResumeLayout(false);
             this.groupBoxFreeRotation.ResumeLayout(false);
             this.contextMenuStripFilterBy.ResumeLayout(false);
             this.contextMenuStripPermissionMenu.ResumeLayout(false);
@@ -2140,7 +2141,6 @@ namespace ATA_GUI
             this.contextMenuStripTools.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBoxTextInject.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -2010,7 +2010,7 @@ namespace ATA_GUI
         private void buttonInjectText_Click(object sender, EventArgs e)
         {
             _ = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell input text \"" + richTextBoxSend.Text + "\"" }, 0);
-            if (richTextBoxCommand.Text.Length == 0)
+            if (richTextBoxSend.Text.Length == 0)
             {
                 MessageShowBox("You have to enter a text to inject!", 1);
             }
