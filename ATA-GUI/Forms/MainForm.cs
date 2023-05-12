@@ -64,7 +64,7 @@ namespace ATA_GUI
             }
             if (tabControls.SelectedTab.Name.Contains("Fastboot"))
             {
-                if (checkAdbFastboot(1))
+                if (checkAdbFastboot(false))
                 {
                     if (adbFastbootCommandR(new[] { "devices" }, 1).Contains("fastboot"))
                     {
@@ -95,7 +95,6 @@ namespace ATA_GUI
                 }
                 else
                 {
-                    MessageShowBox("Fastboot not found", 0);
                     panelFastboot.Enabled = false;
                 }
                 return;
@@ -151,6 +150,11 @@ namespace ATA_GUI
                     return cmd.StandardOutput.ReadToEnd();
                 }
             );
+        }
+
+        public static string adbFastbootCommandR(string command, int type)
+        {
+            return adbFastbootCommandR(new[] { command }, type);
         }
 
         public static string adbFastbootCommandR(string[] args, int type)
@@ -288,10 +292,10 @@ namespace ATA_GUI
             {
                 paramObjTmp = "1";
             }
-            if (checkAdbFastboot(0))
+            if (checkAdbFastboot(true))
             {
                 LogWriteLine("Checking device...");
-                string version = adbFastbootCommandR(new[] { "-s " + Regex.Replace(CurrentDeviceSelected, @"\s", "") + " shell getprop ro.build.version.release" }, 0);
+                string version = adbFastbootCommandR("-s " + Regex.Replace(CurrentDeviceSelected, @"\s", "") + " shell getprop ro.build.version.release", 0);
                 if (version != null)
                 {
                     if (version.Any(char.IsDigit))
@@ -360,14 +364,14 @@ namespace ATA_GUI
                                             }
                                             if (int.Parse(labelAV.Text) > 7)
                                             {
-                                                labelUser.Text = device.User = Regex.Replace(adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell am get-current-user" }, 0), @"\t|\n|\r", "");
+                                                labelUser.Text = device.User = Regex.Replace(adbFastbootCommandR("-s " + CurrentDeviceSelected + " shell am get-current-user", 0), @"\t|\n|\r", "");
                                             }
                                             else
                                             {
                                                 MessageShowBox("Feature currently not avaiable for device under android 8", 2);
                                             }
 
-                                            _ = int.TryParse(adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell cmd display get - displays" }, 0), out int maxDisplay);
+                                            _ = int.TryParse(adbFastbootCommandR("-s " + CurrentDeviceSelected + " shell cmd display get - displays", 0), out int maxDisplay);
 
                                             groupBoxFreeRotation.Enabled = true;
 
@@ -376,7 +380,7 @@ namespace ATA_GUI
                                                 _ = domainUpDownFreeRotation.Items.Add(i);
                                             }
 
-                                            device.IsRotationFreeEnabled = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell wm get-ignore-orientation-request" }, 0).Contains("true");
+                                            device.IsRotationFreeEnabled = adbFastbootCommandR("-s " + CurrentDeviceSelected + " shell wm get-ignore-orientation-request", 0).Contains("true");
                                             buttonSetRotation.Text = device.IsRotationFreeEnabled ? "Unset" : "Set";
 
                                             LogWriteLine("Device info extracted");
@@ -424,7 +428,7 @@ namespace ATA_GUI
                                         checkedListBoxApp.Items.Clear();
                                     });
                                     LogWriteLine("Loading apps...");
-                                    if ((device.StringApk = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell pm list packages -3 --user " + device.User }, 0)) != null)
+                                    if ((device.StringApk = adbFastbootCommandR("-s " + CurrentDeviceSelected + " shell pm list packages -3 --user " + device.User, 0)) != null)
                                     {
                                         arrayApkTmp.AddRange(device.StringApk.Split('\n'));
                                     }
@@ -433,7 +437,7 @@ namespace ATA_GUI
                                         MessageShowBox("Error during apk loading", 0);
                                         break;
                                     }
-                                    if ((device.StringApk = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell pm list packages -s --user " + device.User }, 0)) != null)
+                                    if ((device.StringApk = adbFastbootCommandR("-s " + CurrentDeviceSelected + " shell pm list packages -s --user " + device.User, 0)) != null)
                                     {
                                         arrayApkTmp.AddRange(device.StringApk.Split('\n'));
                                         sortApks(arrayApkTmp.ToArray());
@@ -455,9 +459,9 @@ namespace ATA_GUI
                                         checkedListBoxApp.Items.Clear();
                                     });
                                     LogWriteLine("Loading apps...");
-                                    if ((device.StringApk = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell pm list packages -u --user " + device.User }, 0)) != null)
+                                    if ((device.StringApk = adbFastbootCommandR("-s " + CurrentDeviceSelected + " shell pm list packages -u --user " + device.User, 0)) != null)
                                     {
-                                        if ((stringInstalledApk = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell pm list packages --user " + device.User }, 0)) != null)
+                                        if ((stringInstalledApk = adbFastbootCommandR("-s " + CurrentDeviceSelected + " shell pm list packages --user " + device.User, 0)) != null)
                                         {
                                             List<string> diff;
                                             IEnumerable<string> set1 = device.StringApk.Split('\n').Distinct();
@@ -548,6 +552,7 @@ namespace ATA_GUI
             buttonTaskManager.Enabled = enable;
             groupBoxFreeRotation.Enabled = enable;
             groupBoxTextInject.Enabled = enable;
+            groupBoxCommandInjection.Enabled = enable;
         }
 
         private void adbDownload()
@@ -660,13 +665,13 @@ namespace ATA_GUI
 
         private void DevicesListUpdate()
         {
-            if (checkAdbFastboot(0))
+            if (checkAdbFastboot(true))
             {
                 List<string> devicesTmp;
                 int deviceCounter = 0;
                 Tuple<string, string> devices;
 
-                string dev = adbFastbootCommandR(new[] { "devices" }, 0);
+                string dev = adbFastbootCommandR("devices", 0);
                 if (dev != null)
                 {
                     ata.Devices.Clear();
@@ -679,7 +684,7 @@ namespace ATA_GUI
                         {
                             devices = new Tuple<string, string>(
                                 devicesTmp[i],
-                                adbFastbootCommandR(new[] { "-s " + Regex.Replace(devicesTmp[i], @"\s", "") + " shell getprop ro.product.model" }, 0)
+                                adbFastbootCommandR("-s " + Regex.Replace(devicesTmp[i], @"\s", "") + " shell getprop ro.product.model", 0)
                             );
 
                             deviceCounter++;
@@ -823,7 +828,7 @@ namespace ATA_GUI
                 foreach (object current in checkedListBoxApp.CheckedItems)
                 {
                     string log;
-                    if ((log = adbFastbootCommandR(new[] { " -s " + CurrentDeviceSelected + " " + command1 + "--user " + device.User + " " + current + command2 }, 0)) != null)
+                    if ((log = adbFastbootCommandR(" -s " + CurrentDeviceSelected + " " + command1 + "--user " + device.User + " " + current + command2, 0)) != null)
                     {
                         if (type == 1)
                         {
@@ -867,8 +872,8 @@ namespace ATA_GUI
         {
             string fileName = textBoxDirFile.Text.Substring(textBoxDirFile.Text.LastIndexOf('\\') + 1);
             LogWriteLine("Installing " + fileName);
-            string log = adbFastbootCommandR(new[] { "sideload \"" + textBoxDirFile.Text + "\"" }, 0);
-            if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log == "")
+            string log = adbFastbootCommandR("sideload \"" + textBoxDirFile.Text + "\"", 0);
+            if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log.Trim() == "")
             {
                 LogWriteLine("[ERROR]" + fileName + " failed to flash");
             }
@@ -982,7 +987,7 @@ namespace ATA_GUI
                     return;
             }
 
-            if ((log = adbFastbootCommandR(new[] { command + textBoxDirImg.Text }, 1)) != null)
+            if ((log = adbFastbootCommandR(command + textBoxDirImg.Text, 1)) != null)
             {
                 LogWriteLine(log);
             }
@@ -992,27 +997,20 @@ namespace ATA_GUI
             }
         }
 
-        private bool checkAdbFastboot(int exeN)
+        private bool checkAdbFastboot(bool isAdb)
         {
-            string exeTmp = "adb.exe";
-            if (exeN == 1)
+            string exeTmp = isAdb ? "adb.exe" : "fastboot.exe";
+            bool exist = File.Exists(exeTmp) && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll");
+            if (!exist)
             {
-                exeTmp = "fastboot.exe";
+                MessageShowBox(exeTmp + " not found!", 0);
             }
-            return File.Exists(exeTmp) && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll");
+            return exist;
         }
 
         private void buttonRebootToSystem_Click(object sender, EventArgs e)
         {
-            if (checkAdbFastboot(1))
-            {
-                _ = systemCommandAsync("fastboot reboot");
-                LogWriteLine("Rebooted!");
-            }
-            else
-            {
-                MessageShowBox("Fastboot not found!", 0);
-            }
+            LogWriteLine(adbFastbootCommandR("reboot", 1));
         }
 
         private void buttonHardReset_Click(object sender, EventArgs e)
@@ -1020,15 +1018,11 @@ namespace ATA_GUI
             DialogResult dialogResult = MessageBox.Show("Do you want to erase your phone?", "Erase Phone", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                if (checkAdbFastboot(1))
+                if (checkAdbFastboot(false))
                 {
                     LogWriteLine("Erasing process started...");
                     _ = systemCommandAsync("fastboot erase userdata && fastboot erase cache");
                     LogWriteLine("Erasing process finished!!");
-                }
-                else
-                {
-                    MessageShowBox("Fastboot not found!", 0);
                 }
             }
         }
@@ -1216,7 +1210,7 @@ namespace ATA_GUI
                     {
                         if (File.Exists(fileLoc))
                         {
-                            if (adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " install -r --user " + device.User + " \"" + fileLoc + "\"" }, 0) != null)
+                            if (adbFastbootCommandR("-s " + CurrentDeviceSelected + " install -r --user " + device.User + " \"" + fileLoc + "\"", 0) != null)
                             {
                                 LogWriteLine(fileName + " installed!");
                                 MessageShowBox(fileName + " installed", 2);
@@ -1278,7 +1272,7 @@ namespace ATA_GUI
 
         private void reloadList()
         {
-            if (!checkAdbFastboot(0))
+            if (!checkAdbFastboot(true))
             {
                 adbDownload();
             }
@@ -1749,7 +1743,7 @@ namespace ATA_GUI
             {
                 if (CurrentDeviceSelected.Length > 0)
                 {
-                    _ = adbFastbootCommandR(new[] { " -s " + CurrentDeviceSelected + " tcpip " + port }, 0);
+                    _ = adbFastbootCommandR(" -s " + CurrentDeviceSelected + " tcpip " + port, 0);
                 }
 
                 _ = systemCommandAsync("adb connect " + ip + ":" + port);
@@ -1853,7 +1847,7 @@ namespace ATA_GUI
                     try
                     {
                         LogWriteLine("Installing " + file.Substring(file.LastIndexOf('\\') + 1));
-                        if (adbFastbootCommandR(new[] { "install -r " + command + " --user " + device.User + " \"" + file + "\"" }, 0).Contains("Success"))
+                        if (adbFastbootCommandR("install -r " + command + " --user " + device.User + " \"" + file + "\"", 0).Contains("Success"))
                         {
                             LogWriteLine(file.Substring(file.LastIndexOf('\\') + 1) + " installed");
                         }
@@ -1946,7 +1940,7 @@ namespace ATA_GUI
 
         private void buttonTurnOffAdb_Click(object sender, EventArgs e)
         {
-            _ = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell settings put global adb_enabled 0" }, 0);
+            _ = adbFastbootCommandR("-s " + CurrentDeviceSelected + " shell settings put global adb_enabled 0", 0);
             LogWriteLine("The command has been ejected");
             syncFun(3);
         }
@@ -1989,8 +1983,8 @@ namespace ATA_GUI
 
             commandRun += (!device.IsRotationFreeEnabled).ToString().ToLowerInvariant();
 
-            _ = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + commandRun }, 0);
-            device.IsRotationFreeEnabled = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell wm get-ignore-orientation-request" }, 0).Contains("true");
+            _ = adbFastbootCommandR("-s " + CurrentDeviceSelected + commandRun, 0);
+            device.IsRotationFreeEnabled = adbFastbootCommandR("-s " + CurrentDeviceSelected + " shell wm get-ignore-orientation-request", 0).Contains("true");
             LogWriteLine("Free rotation " + buttonSetRotation.Text.ToLowerInvariant() + "ed");
             buttonSetRotation.Text = device.IsRotationFreeEnabled ? "Unset" : "Set";
         }
@@ -2003,13 +1997,13 @@ namespace ATA_GUI
             }
             else
             {
-                LogWriteLine(adbFastbootCommandR(new[] { richTextBoxCommand.Text.Trim() }, radioButtonADB.Checked ? 0 : 1));
+                LogWriteLine(adbFastbootCommandR(richTextBoxCommand.Text.Trim(), radioButtonADB.Checked ? 0 : 1));
             }
         }
 
         private void buttonInjectText_Click(object sender, EventArgs e)
         {
-            _ = adbFastbootCommandR(new[] { "-s " + CurrentDeviceSelected + " shell input text \"" + richTextBoxSend.Text + "\"" }, 0);
+            _ = adbFastbootCommandR("-s " + CurrentDeviceSelected + " shell input text \"" + richTextBoxSend.Text + "\"", 0);
             if (richTextBoxSend.Text.Length == 0)
             {
                 MessageShowBox("You have to enter a text to inject!", 1);

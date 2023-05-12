@@ -211,7 +211,7 @@ namespace ATA_GUI
             this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
             this.buttonLogView = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBoxCommandInjection = new System.Windows.Forms.GroupBox();
             this.radioButtonFastboot = new System.Windows.Forms.RadioButton();
             this.radioButtonADB = new System.Windows.Forms.RadioButton();
             this.buttonCommandInject = new System.Windows.Forms.Button();
@@ -246,7 +246,7 @@ namespace ATA_GUI
             this.groupBox1.SuspendLayout();
             this.contextMenuStripSearch.SuspendLayout();
             this.contextMenuStripTools.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.groupBoxCommandInjection.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelLog
@@ -658,7 +658,8 @@ namespace ATA_GUI
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(550, 23);
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStrip1.Size = new System.Drawing.Size(550, 42);
             this.toolStrip1.TabIndex = 42;
             this.toolStrip1.Text = "toolStripAPKMenu";
             // 
@@ -2018,18 +2019,18 @@ namespace ATA_GUI
             this.buttonLogView.UseVisualStyleBackColor = true;
             this.buttonLogView.Click += new System.EventHandler(this.buttonLogView_Click);
             // 
-            // groupBox3
+            // groupBoxCommandInjection
             // 
-            this.groupBox3.Controls.Add(this.radioButtonFastboot);
-            this.groupBox3.Controls.Add(this.radioButtonADB);
-            this.groupBox3.Controls.Add(this.buttonCommandInject);
-            this.groupBox3.Controls.Add(this.richTextBoxCommand);
-            this.groupBox3.Location = new System.Drawing.Point(423, 369);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(393, 84);
-            this.groupBox3.TabIndex = 46;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Command injection";
+            this.groupBoxCommandInjection.Controls.Add(this.radioButtonFastboot);
+            this.groupBoxCommandInjection.Controls.Add(this.radioButtonADB);
+            this.groupBoxCommandInjection.Controls.Add(this.buttonCommandInject);
+            this.groupBoxCommandInjection.Controls.Add(this.richTextBoxCommand);
+            this.groupBoxCommandInjection.Location = new System.Drawing.Point(423, 369);
+            this.groupBoxCommandInjection.Name = "groupBoxCommandInjection";
+            this.groupBoxCommandInjection.Size = new System.Drawing.Size(393, 84);
+            this.groupBoxCommandInjection.TabIndex = 46;
+            this.groupBoxCommandInjection.TabStop = false;
+            this.groupBoxCommandInjection.Text = "Command injection";
             // 
             // radioButtonFastboot
             // 
@@ -2080,7 +2081,7 @@ namespace ATA_GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1126, 457);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBoxCommandInjection);
             this.Controls.Add(this.buttonLogView);
             this.Controls.Add(this.buttonTaskManager);
             this.Controls.Add(this.buttonDeviceLogs);
@@ -2139,8 +2140,8 @@ namespace ATA_GUI
             this.groupBox1.ResumeLayout(false);
             this.contextMenuStripSearch.ResumeLayout(false);
             this.contextMenuStripTools.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBoxCommandInjection.ResumeLayout(false);
+            this.groupBoxCommandInjection.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2322,7 +2323,7 @@ namespace ATA_GUI
         private System.Windows.Forms.DomainUpDown domainUpDownFreeRotation;
         private System.Windows.Forms.GroupBox groupBoxFreeRotation;
         private System.Windows.Forms.Button buttonSetRotation;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBoxCommandInjection;
         private System.Windows.Forms.Button buttonCommandInject;
         private System.Windows.Forms.RichTextBox richTextBoxCommand;
         private System.Windows.Forms.RadioButton radioButtonFastboot;

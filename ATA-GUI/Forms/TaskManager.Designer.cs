@@ -51,6 +51,9 @@ namespace ATA_GUI
             // 
             // richTextBoxTasks
             // 
+            this.richTextBoxTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxTasks.Location = new System.Drawing.Point(0, 21);
             this.richTextBoxTasks.Name = "richTextBoxTasks";
             this.richTextBoxTasks.ReadOnly = true;
@@ -60,17 +63,19 @@ namespace ATA_GUI
             // 
             // textBoxPackage
             // 
+            this.textBoxPackage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.textBoxPackage.Location = new System.Drawing.Point(99, 314);
             this.textBoxPackage.Name = "textBoxPackage";
-            this.textBoxPackage.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPackage.Size = new System.Drawing.Size(211, 20);
             this.textBoxPackage.TabIndex = 45;
             // 
             // buttonKillProcess
             // 
+            this.buttonKillProcess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonKillProcess.BackColor = System.Drawing.Color.White;
             this.buttonKillProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonKillProcess.ForeColor = System.Drawing.Color.Black;
-            this.buttonKillProcess.Location = new System.Drawing.Point(208, 313);
+            this.buttonKillProcess.Location = new System.Drawing.Point(316, 311);
             this.buttonKillProcess.Name = "buttonKillProcess";
             this.buttonKillProcess.Size = new System.Drawing.Size(73, 23);
             this.buttonKillProcess.TabIndex = 46;
@@ -93,6 +98,7 @@ namespace ATA_GUI
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(568, 23);
             this.toolStrip1.TabIndex = 47;
             this.toolStrip1.Text = "toolStripAPKMenu";
@@ -174,6 +180,7 @@ namespace ATA_GUI
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 316);
             this.label1.Name = "label1";
@@ -183,9 +190,10 @@ namespace ATA_GUI
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(136, 339);
+            this.label2.Location = new System.Drawing.Point(137, 337);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(145, 13);
             this.label2.TabIndex = 49;
@@ -203,9 +211,8 @@ namespace ATA_GUI
             this.Controls.Add(this.buttonKillProcess);
             this.Controls.Add(this.textBoxPackage);
             this.Controls.Add(this.richTextBoxTasks);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TaskManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "TaskManager";

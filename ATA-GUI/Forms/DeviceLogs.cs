@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -127,6 +128,11 @@ namespace ATA_GUI
             checkAndStop();
             buttonLogcat.Text = "Start";
             _ = MainForm.adbFastbootCommandR(new[] { "-s " + MainForm.CurrentDeviceSelected + " logcat -c" }, 0);
+        }
+
+        private void richTextBoxLog_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            _ = Process.Start(e.LinkText);
         }
     }
 }

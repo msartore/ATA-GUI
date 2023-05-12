@@ -38,6 +38,7 @@ namespace ATA_GUI
             this.buttonKeepScrolling = new System.Windows.Forms.Button();
             this.buttonLogcatClear = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.textBoxFilter = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +50,7 @@ namespace ATA_GUI
             this.buttonGetEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonGetEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonGetEvent.ForeColor = System.Drawing.Color.Black;
-            this.buttonGetEvent.Location = new System.Drawing.Point(372, 414);
+            this.buttonGetEvent.Location = new System.Drawing.Point(301, 414);
             this.buttonGetEvent.Name = "buttonGetEvent";
             this.buttonGetEvent.Size = new System.Drawing.Size(82, 23);
             this.buttonGetEvent.TabIndex = 33;
@@ -65,7 +66,7 @@ namespace ATA_GUI
             this.buttonLogcat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogcat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogcat.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogcat.Location = new System.Drawing.Point(199, 15);
+            this.buttonLogcat.Location = new System.Drawing.Point(240, 15);
             this.buttonLogcat.Name = "buttonLogcat";
             this.buttonLogcat.Size = new System.Drawing.Size(82, 23);
             this.buttonLogcat.TabIndex = 35;
@@ -75,8 +76,8 @@ namespace ATA_GUI
             // 
             // richTextBoxLog
             // 
-            this.richTextBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.richTextBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxLog.BackColor = System.Drawing.Color.Black;
             this.richTextBoxLog.ForeColor = System.Drawing.Color.White;
@@ -86,6 +87,7 @@ namespace ATA_GUI
             this.richTextBoxLog.Size = new System.Drawing.Size(766, 381);
             this.richTextBoxLog.TabIndex = 36;
             this.richTextBoxLog.Text = "";
+            this.richTextBoxLog.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBoxLog_LinkClicked);
             // 
             // backgroundWorkerLog
             // 
@@ -139,7 +141,7 @@ namespace ATA_GUI
             // 
             this.buttonLogcatClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonLogcatClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLogcatClear.Location = new System.Drawing.Point(118, 15);
+            this.buttonLogcatClear.Location = new System.Drawing.Point(159, 15);
             this.buttonLogcatClear.Name = "buttonLogcatClear";
             this.buttonLogcatClear.Size = new System.Drawing.Size(75, 23);
             this.buttonLogcatClear.TabIndex = 41;
@@ -150,20 +152,31 @@ namespace ATA_GUI
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBoxFilter);
             this.groupBox1.Controls.Add(this.buttonLogcatClear);
             this.groupBox1.Controls.Add(this.buttonLogcat);
-            this.groupBox1.Location = new System.Drawing.Point(491, 399);
+            this.groupBox1.Location = new System.Drawing.Point(450, 399);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(287, 44);
+            this.groupBox1.Size = new System.Drawing.Size(328, 44);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Logcat";
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "Filter:";
+            // 
             // textBoxFilter
             // 
             this.textBoxFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxFilter.Location = new System.Drawing.Point(12, 17);
+            this.textBoxFilter.Location = new System.Drawing.Point(53, 17);
             this.textBoxFilter.Name = "textBoxFilter";
             this.textBoxFilter.Size = new System.Drawing.Size(100, 20);
             this.textBoxFilter.TabIndex = 43;
@@ -180,7 +193,6 @@ namespace ATA_GUI
             this.Controls.Add(this.buttonClearLog);
             this.Controls.Add(this.richTextBoxLog);
             this.Controls.Add(this.buttonGetEvent);
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(700, 400);
             this.Name = "DeviceLogs";
@@ -206,5 +218,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonLogcatClear;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBoxFilter;
+        private System.Windows.Forms.Label label1;
     }
 }

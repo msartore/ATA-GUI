@@ -70,18 +70,14 @@ namespace ATA_GUI
 
         private void loadTasks()
         {
-            List<string> tasks = MainForm.adbFastbootCommandR(new string[] { " -s " + MainForm.CurrentDeviceSelected + " shell ps" }, 0).Split('\n').ToList();
+            string[] tasks = MainForm.adbFastbootCommandR(new string[] { " -s " + MainForm.CurrentDeviceSelected + " shell ps" }, 0).Split('\n');
 
             richTextBoxTasks.Clear();
 
             if (mode == 0)
             {
-                foreach (string task in tasks)
-                {
-                    richTextBoxTasks.Text += task;
-                }
-                toolStripLabelTotalTasks.Text = "Active Tasks: " + tasks.Count.ToString();
-                buttonKillProcess.Enabled = false;
+                toolStripLabelTotalTasks.Text = "Active Tasks: " + tasks.Length.ToString();
+                richTextBoxTasks.Text = string.Join("\n", tasks);
             }
             else
             {
@@ -111,7 +107,6 @@ namespace ATA_GUI
                 {
                     toolStripLabelTotalTasks.Text = "Active Tasks: " + taskCounter.ToString();
                 }
-                buttonKillProcess.Enabled = true;
             }
         }
     }
