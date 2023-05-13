@@ -178,6 +178,7 @@ namespace ATA_GUI
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelTopBar = new System.Windows.Forms.Panel();
+            this.pictureBoxMaximize = new System.Windows.Forms.PictureBox();
             this.labelTools = new System.Windows.Forms.Label();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.pictureBoxMinimize = new System.Windows.Forms.PictureBox();
@@ -210,12 +211,11 @@ namespace ATA_GUI
             this.buttonTaskManager = new System.Windows.Forms.Button();
             this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
-            this.buttonLogView = new System.Windows.Forms.Button();
-            this.groupBoxCommandInjection = new System.Windows.Forms.GroupBox();
+            this.groupBoxTerminal = new System.Windows.Forms.GroupBox();
             this.radioButtonFastboot = new System.Windows.Forms.RadioButton();
             this.radioButtonADB = new System.Windows.Forms.RadioButton();
-            this.buttonCommandInject = new System.Windows.Forms.Button();
-            this.richTextBoxCommand = new System.Windows.Forms.RichTextBox();
+            this.buttonTerminalRun = new System.Windows.Forms.Button();
+            this.richTextBoxTerminal = new System.Windows.Forms.RichTextBox();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControls.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -240,17 +240,19 @@ namespace ATA_GUI
             this.contextMenuStripPermissionMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelTopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).BeginInit();
             this.contextMenuStripHelp.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.contextMenuStripSearch.SuspendLayout();
             this.contextMenuStripTools.SuspendLayout();
-            this.groupBoxCommandInjection.SuspendLayout();
+            this.groupBoxTerminal.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelLog
             // 
+            this.labelLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelLog.AutoSize = true;
             this.labelLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelLog.Location = new System.Drawing.Point(914, 70);
@@ -263,6 +265,7 @@ namespace ATA_GUI
             // 
             // buttonLogClear
             // 
+            this.buttonLogClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonLogClear.BackColor = System.Drawing.Color.White;
             this.buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -502,9 +505,12 @@ namespace ATA_GUI
             // 
             // checkBoxSelectAll
             // 
+            this.checkBoxSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxSelectAll.AutoSize = true;
             this.checkBoxSelectAll.ForeColor = System.Drawing.Color.Black;
-            this.checkBoxSelectAll.Location = new System.Drawing.Point(8, 56);
+            this.checkBoxSelectAll.Location = new System.Drawing.Point(8, 69);
             this.checkBoxSelectAll.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxSelectAll.Name = "checkBoxSelectAll";
             this.checkBoxSelectAll.Size = new System.Drawing.Size(70, 17);
@@ -515,6 +521,9 @@ namespace ATA_GUI
             // 
             // tabControls
             // 
+            this.tabControls.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControls.Controls.Add(this.tabPageSystem);
             this.tabControls.Controls.Add(this.tabPageFastboot);
             this.tabControls.Controls.Add(this.tabPageRecovery);
@@ -542,6 +551,9 @@ namespace ATA_GUI
             // 
             // groupBoxAPKMenu
             // 
+            this.groupBoxAPKMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxAPKMenu.Controls.Add(this.groupBox2);
             this.groupBoxAPKMenu.Controls.Add(this.labelSelectedAppCount);
             this.groupBoxAPKMenu.Controls.Add(this.groupBox6);
@@ -557,11 +569,12 @@ namespace ATA_GUI
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.pictureBox3);
-            this.groupBox2.Location = new System.Drawing.Point(396, 173);
+            this.groupBox2.Location = new System.Drawing.Point(396, 184);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(155, 102);
+            this.groupBox2.Size = new System.Drawing.Size(155, 90);
             this.groupBox2.TabIndex = 44;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "File Transfer";
@@ -588,8 +601,11 @@ namespace ATA_GUI
             // 
             // labelSelectedAppCount
             // 
+            this.labelSelectedAppCount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSelectedAppCount.AutoSize = true;
-            this.labelSelectedAppCount.Location = new System.Drawing.Point(251, 57);
+            this.labelSelectedAppCount.Location = new System.Drawing.Point(279, 70);
             this.labelSelectedAppCount.Name = "labelSelectedAppCount";
             this.labelSelectedAppCount.Size = new System.Drawing.Size(83, 13);
             this.labelSelectedAppCount.TabIndex = 44;
@@ -597,11 +613,12 @@ namespace ATA_GUI
             // 
             // groupBox6
             // 
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.label3);
             this.groupBox6.Controls.Add(this.pictureBox2);
-            this.groupBox6.Location = new System.Drawing.Point(396, 68);
+            this.groupBox6.Location = new System.Drawing.Point(396, 90);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(155, 103);
+            this.groupBox6.Size = new System.Drawing.Size(155, 90);
             this.groupBox6.TabIndex = 43;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Apk Installer";
@@ -659,7 +676,7 @@ namespace ATA_GUI
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(550, 42);
+            this.toolStrip1.Size = new System.Drawing.Size(550, 23);
             this.toolStrip1.TabIndex = 42;
             this.toolStrip1.Text = "toolStripAPKMenu";
             // 
@@ -871,14 +888,17 @@ namespace ATA_GUI
             // 
             // checkedListBoxApp
             // 
+            this.checkedListBoxApp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkedListBoxApp.BackColor = System.Drawing.Color.White;
             this.checkedListBoxApp.ForeColor = System.Drawing.Color.Black;
             this.checkedListBoxApp.FormattingEnabled = true;
-            this.checkedListBoxApp.Location = new System.Drawing.Point(5, 75);
+            this.checkedListBoxApp.Location = new System.Drawing.Point(5, 90);
             this.checkedListBoxApp.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBoxApp.Name = "checkedListBoxApp";
             this.checkedListBoxApp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.checkedListBoxApp.Size = new System.Drawing.Size(386, 199);
+            this.checkedListBoxApp.Size = new System.Drawing.Size(386, 184);
             this.checkedListBoxApp.TabIndex = 37;
             this.checkedListBoxApp.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxApp_SelectedIndexChanged);
             // 
@@ -1034,13 +1054,16 @@ namespace ATA_GUI
             // 
             // panelFastboot
             // 
+            this.panelFastboot.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelFastboot.Controls.Add(this.buttonBootloaderMenu);
             this.panelFastboot.Controls.Add(this.buttonRebootRecovery);
             this.panelFastboot.Controls.Add(this.groupBox5);
             this.panelFastboot.Controls.Add(this.buttonHardReset);
             this.panelFastboot.Controls.Add(this.buttonRebootToSystem);
             this.panelFastboot.Controls.Add(this.groupBox4);
-            this.panelFastboot.Location = new System.Drawing.Point(1, 3);
+            this.panelFastboot.Location = new System.Drawing.Point(0, 3);
             this.panelFastboot.Name = "panelFastboot";
             this.panelFastboot.Size = new System.Drawing.Size(819, 285);
             this.panelFastboot.TabIndex = 49;
@@ -1075,6 +1098,8 @@ namespace ATA_GUI
             // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.labelUDT);
             this.groupBox5.Controls.Add(this.labelCDT);
             this.groupBox5.Controls.Add(this.labelBootloaderStatus);
@@ -1172,6 +1197,8 @@ namespace ATA_GUI
             // 
             // groupBox4
             // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.textBoxDirImg);
             this.groupBox4.Controls.Add(this.radioButtonRom);
@@ -1194,7 +1221,7 @@ namespace ATA_GUI
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(124, 123);
+            this.label10.Location = new System.Drawing.Point(127, 202);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(55, 13);
             this.label10.TabIndex = 49;
@@ -1244,10 +1271,10 @@ namespace ATA_GUI
             // buttonFlashImg
             // 
             this.buttonFlashImg.BackColor = System.Drawing.Color.White;
-            this.buttonFlashImg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonFlashImg.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonFlashImg.ForeColor = System.Drawing.Color.Transparent;
             this.buttonFlashImg.Image = global::ATA_GUI.Properties.Resources.icons8_flash_on_48;
-            this.buttonFlashImg.Location = new System.Drawing.Point(114, 140);
+            this.buttonFlashImg.Location = new System.Drawing.Point(120, 131);
             this.buttonFlashImg.Name = "buttonFlashImg";
             this.buttonFlashImg.Size = new System.Drawing.Size(69, 63);
             this.buttonFlashImg.TabIndex = 38;
@@ -1479,6 +1506,8 @@ namespace ATA_GUI
             // 
             // richTextBoxLog
             // 
+            this.richTextBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
             this.richTextBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
@@ -1658,6 +1687,7 @@ namespace ATA_GUI
             // 
             // buttonMobileScreenShare
             // 
+            this.buttonMobileScreenShare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonMobileScreenShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonMobileScreenShare.ForeColor = System.Drawing.Color.Transparent;
             this.buttonMobileScreenShare.Image = global::ATA_GUI.Properties.Resources.icons8_screensharing_48;
@@ -1670,6 +1700,7 @@ namespace ATA_GUI
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(345, 376);
@@ -1690,9 +1721,10 @@ namespace ATA_GUI
             // 
             // panelTopBar
             // 
-            this.panelTopBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelTopBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTopBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelTopBar.Controls.Add(this.pictureBoxMaximize);
             this.panelTopBar.Controls.Add(this.labelTools);
             this.panelTopBar.Controls.Add(this.pictureBoxClose);
             this.panelTopBar.Controls.Add(this.pictureBoxMinimize);
@@ -1703,7 +1735,23 @@ namespace ATA_GUI
             this.panelTopBar.Name = "panelTopBar";
             this.panelTopBar.Size = new System.Drawing.Size(1126, 44);
             this.panelTopBar.TabIndex = 0;
+            this.panelTopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseDown);
             this.panelTopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseMove);
+            // 
+            // pictureBoxMaximize
+            // 
+            this.pictureBoxMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxMaximize.Image = global::ATA_GUI.Properties.Resources.icons8_maximize_button_16;
+            this.pictureBoxMaximize.Location = new System.Drawing.Point(1041, 4);
+            this.pictureBoxMaximize.Name = "pictureBoxMaximize";
+            this.pictureBoxMaximize.Size = new System.Drawing.Size(38, 38);
+            this.pictureBoxMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxMaximize.TabIndex = 43;
+            this.pictureBoxMaximize.TabStop = false;
+            this.pictureBoxMaximize.Click += new System.EventHandler(this.pictureBoxMaximize_Click);
+            this.pictureBoxMaximize.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMaximize_MouseClick);
+            this.pictureBoxMaximize.MouseEnter += new System.EventHandler(this.pictureBoxMaximize_MouseEnter);
+            this.pictureBoxMaximize.MouseLeave += new System.EventHandler(this.pictureBoxMaximize_MouseLeave);
             // 
             // labelTools
             // 
@@ -1722,10 +1770,10 @@ namespace ATA_GUI
             // pictureBoxClose
             // 
             this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxClose.Image = global::ATA_GUI.Properties.Resources.icons8_close_window_48;
-            this.pictureBoxClose.Location = new System.Drawing.Point(1082, 3);
+            this.pictureBoxClose.Image = global::ATA_GUI.Properties.Resources.close_16;
+            this.pictureBoxClose.Location = new System.Drawing.Point(1085, 4);
             this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(46, 42);
+            this.pictureBoxClose.Size = new System.Drawing.Size(38, 38);
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxClose.TabIndex = 41;
             this.pictureBoxClose.TabStop = false;
@@ -1736,10 +1784,10 @@ namespace ATA_GUI
             // pictureBoxMinimize
             // 
             this.pictureBoxMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMinimize.Image = global::ATA_GUI.Properties.Resources._;
-            this.pictureBoxMinimize.Location = new System.Drawing.Point(1040, 4);
+            this.pictureBoxMinimize.Image = global::ATA_GUI.Properties.Resources.subtract_16;
+            this.pictureBoxMinimize.Location = new System.Drawing.Point(997, 4);
             this.pictureBoxMinimize.Name = "pictureBoxMinimize";
-            this.pictureBoxMinimize.Size = new System.Drawing.Size(43, 41);
+            this.pictureBoxMinimize.Size = new System.Drawing.Size(38, 38);
             this.pictureBoxMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxMinimize.TabIndex = 6;
             this.pictureBoxMinimize.TabStop = false;
@@ -1850,6 +1898,7 @@ namespace ATA_GUI
             // 
             // buttonDeviceLogs
             // 
+            this.buttonDeviceLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDeviceLogs.BackColor = System.Drawing.Color.White;
             this.buttonDeviceLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDeviceLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1864,6 +1913,7 @@ namespace ATA_GUI
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.buttonReloadDevicesList);
             this.groupBox1.Controls.Add(this.comboBoxDevices);
             this.groupBox1.Controls.Add(this.buttonSyncApp);
@@ -1988,6 +2038,7 @@ namespace ATA_GUI
             // 
             // buttonTaskManager
             // 
+            this.buttonTaskManager.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonTaskManager.BackColor = System.Drawing.Color.White;
             this.buttonTaskManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTaskManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2008,32 +2059,24 @@ namespace ATA_GUI
             // 
             this.backgroundWorkerADBDisconnect.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerADBDisconnect_DoWork);
             // 
-            // buttonLogView
+            // groupBoxTerminal
             // 
-            this.buttonLogView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLogView.Location = new System.Drawing.Point(822, 430);
-            this.buttonLogView.Name = "buttonLogView";
-            this.buttonLogView.Size = new System.Drawing.Size(87, 23);
-            this.buttonLogView.TabIndex = 43;
-            this.buttonLogView.Text = "Hide log";
-            this.buttonLogView.UseVisualStyleBackColor = true;
-            this.buttonLogView.Click += new System.EventHandler(this.buttonLogView_Click);
-            // 
-            // groupBoxCommandInjection
-            // 
-            this.groupBoxCommandInjection.Controls.Add(this.radioButtonFastboot);
-            this.groupBoxCommandInjection.Controls.Add(this.radioButtonADB);
-            this.groupBoxCommandInjection.Controls.Add(this.buttonCommandInject);
-            this.groupBoxCommandInjection.Controls.Add(this.richTextBoxCommand);
-            this.groupBoxCommandInjection.Location = new System.Drawing.Point(423, 369);
-            this.groupBoxCommandInjection.Name = "groupBoxCommandInjection";
-            this.groupBoxCommandInjection.Size = new System.Drawing.Size(393, 84);
-            this.groupBoxCommandInjection.TabIndex = 46;
-            this.groupBoxCommandInjection.TabStop = false;
-            this.groupBoxCommandInjection.Text = "Command injection";
+            this.groupBoxTerminal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxTerminal.Controls.Add(this.radioButtonFastboot);
+            this.groupBoxTerminal.Controls.Add(this.radioButtonADB);
+            this.groupBoxTerminal.Controls.Add(this.buttonTerminalRun);
+            this.groupBoxTerminal.Controls.Add(this.richTextBoxTerminal);
+            this.groupBoxTerminal.Location = new System.Drawing.Point(423, 369);
+            this.groupBoxTerminal.Name = "groupBoxTerminal";
+            this.groupBoxTerminal.Size = new System.Drawing.Size(393, 84);
+            this.groupBoxTerminal.TabIndex = 46;
+            this.groupBoxTerminal.TabStop = false;
+            this.groupBoxTerminal.Text = "Terminal";
             // 
             // radioButtonFastboot
             // 
+            this.radioButtonFastboot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonFastboot.AutoSize = true;
             this.radioButtonFastboot.Location = new System.Drawing.Point(312, 61);
             this.radioButtonFastboot.Name = "radioButtonFastboot";
@@ -2045,6 +2088,7 @@ namespace ATA_GUI
             // 
             // radioButtonADB
             // 
+            this.radioButtonADB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonADB.AutoSize = true;
             this.radioButtonADB.Checked = true;
             this.radioButtonADB.Location = new System.Drawing.Point(312, 45);
@@ -2055,24 +2099,27 @@ namespace ATA_GUI
             this.radioButtonADB.Text = "adb";
             this.radioButtonADB.UseVisualStyleBackColor = true;
             // 
-            // buttonCommandInject
+            // buttonTerminalRun
             // 
-            this.buttonCommandInject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCommandInject.Location = new System.Drawing.Point(312, 19);
-            this.buttonCommandInject.Name = "buttonCommandInject";
-            this.buttonCommandInject.Size = new System.Drawing.Size(75, 23);
-            this.buttonCommandInject.TabIndex = 48;
-            this.buttonCommandInject.Text = "Inject";
-            this.buttonCommandInject.UseVisualStyleBackColor = true;
-            this.buttonCommandInject.Click += new System.EventHandler(this.buttonCommandInject_Click);
+            this.buttonTerminalRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonTerminalRun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonTerminalRun.Location = new System.Drawing.Point(312, 19);
+            this.buttonTerminalRun.Name = "buttonTerminalRun";
+            this.buttonTerminalRun.Size = new System.Drawing.Size(75, 23);
+            this.buttonTerminalRun.TabIndex = 48;
+            this.buttonTerminalRun.Text = "Run";
+            this.buttonTerminalRun.UseVisualStyleBackColor = true;
+            this.buttonTerminalRun.Click += new System.EventHandler(this.buttonCommandInject_Click);
             // 
-            // richTextBoxCommand
+            // richTextBoxTerminal
             // 
-            this.richTextBoxCommand.Location = new System.Drawing.Point(6, 19);
-            this.richTextBoxCommand.Name = "richTextBoxCommand";
-            this.richTextBoxCommand.Size = new System.Drawing.Size(300, 57);
-            this.richTextBoxCommand.TabIndex = 47;
-            this.richTextBoxCommand.Text = "";
+            this.richTextBoxTerminal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBoxTerminal.Location = new System.Drawing.Point(6, 19);
+            this.richTextBoxTerminal.Name = "richTextBoxTerminal";
+            this.richTextBoxTerminal.Size = new System.Drawing.Size(300, 57);
+            this.richTextBoxTerminal.TabIndex = 47;
+            this.richTextBoxTerminal.Text = "";
             // 
             // MainForm
             // 
@@ -2081,8 +2128,7 @@ namespace ATA_GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1126, 457);
-            this.Controls.Add(this.groupBoxCommandInjection);
-            this.Controls.Add(this.buttonLogView);
+            this.Controls.Add(this.groupBoxTerminal);
             this.Controls.Add(this.buttonTaskManager);
             this.Controls.Add(this.buttonDeviceLogs);
             this.Controls.Add(this.label9);
@@ -2134,14 +2180,15 @@ namespace ATA_GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelTopBar.ResumeLayout(false);
             this.panelTopBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaximize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).EndInit();
             this.contextMenuStripHelp.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.contextMenuStripSearch.ResumeLayout(false);
             this.contextMenuStripTools.ResumeLayout(false);
-            this.groupBoxCommandInjection.ResumeLayout(false);
-            this.groupBoxCommandInjection.PerformLayout();
+            this.groupBoxTerminal.ResumeLayout(false);
+            this.groupBoxTerminal.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2319,13 +2366,12 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBoxPort;
         private System.Windows.Forms.Button buttonUnlockNetworkMenu;
-        private System.Windows.Forms.Button buttonLogView;
         private System.Windows.Forms.DomainUpDown domainUpDownFreeRotation;
         private System.Windows.Forms.GroupBox groupBoxFreeRotation;
         private System.Windows.Forms.Button buttonSetRotation;
-        private System.Windows.Forms.GroupBox groupBoxCommandInjection;
-        private System.Windows.Forms.Button buttonCommandInject;
-        private System.Windows.Forms.RichTextBox richTextBoxCommand;
+        private System.Windows.Forms.GroupBox groupBoxTerminal;
+        private System.Windows.Forms.Button buttonTerminalRun;
+        private System.Windows.Forms.RichTextBox richTextBoxTerminal;
         private System.Windows.Forms.RadioButton radioButtonFastboot;
         private System.Windows.Forms.RadioButton radioButtonADB;
         private System.Windows.Forms.TabPage tabPageTools;
@@ -2333,6 +2379,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonInjectText;
         private System.Windows.Forms.RichTextBox richTextBoxSend;
         private System.Windows.Forms.Button buttonClearTextSend;
+        private System.Windows.Forms.PictureBox pictureBoxMaximize;
     }
 }
 

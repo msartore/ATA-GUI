@@ -106,6 +106,7 @@ namespace ATA_GUI
         {
             try
             {
+                textBoxSearch.Text = "Search";
                 backgroundWorkerSync.RunWorkerAsync(paramObj);
             }
             catch (Exception ex)
@@ -552,7 +553,7 @@ namespace ATA_GUI
             buttonTaskManager.Enabled = enable;
             groupBoxFreeRotation.Enabled = enable;
             groupBoxTextInject.Enabled = enable;
-            groupBoxCommandInjection.Enabled = enable;
+            groupBoxTerminal.Enabled = enable;
         }
 
         private void adbDownload()
@@ -768,13 +769,17 @@ namespace ATA_GUI
                     checkedListBoxApp.SetItemCheckState(i, CheckState.Unchecked);
                 }
             }
-            labelSelectedAppCount.Text = "Selected App: " + checkedListBoxApp.CheckedItems.Count;
+            updateAppCount();
         }
 
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            checkedListBoxApp.Items.Clear();
             string text = textBoxSearch.Text.ToLowerInvariant();
+
+            checkedListBoxApp.Items.Clear();
+            updateAppCount();
+            checkBoxSelectAll.Checked = false;
+
             foreach (string str in arrayApks)
             {
                 if (str.Contains(text))
@@ -782,6 +787,11 @@ namespace ATA_GUI
                     _ = checkedListBoxApp.Items.Add(str);
                 }
             }
+        }
+
+        private void updateAppCount()
+        {
+            labelSelectedAppCount.Text = "Selected App: " + checkedListBoxApp.CheckedItems.Count;
         }
 
         private void buttonConnectToIP_Click(object sender, EventArgs e)
@@ -1237,7 +1247,7 @@ namespace ATA_GUI
 
         private void checkedListBoxApp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            labelSelectedAppCount.Text = "Selected App: " + checkedListBoxApp.CheckedItems.Count;
+            updateAppCount();
         }
 
         private void checkGrantedPermissionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1957,21 +1967,6 @@ namespace ATA_GUI
             buttonDisconnectIP.Enabled = true;
         }
 
-        private void buttonLogView_Click(object sender, EventArgs e)
-        {
-            if (ata.IsLogViewVisibile)
-            {
-                Size = new Size(915, 457);
-                buttonLogView.Text = "Show log";
-            }
-            else
-            {
-                Size = new Size(1126, 457);
-                buttonLogView.Text = "Hide log";
-            }
-            ata.IsLogViewVisibile = !ata.IsLogViewVisibile;
-        }
-
         private void buttonSetRotation_Click(object sender, EventArgs e)
         {
             string commandRun = " shell wm set-ignore-orientation-request ";
@@ -1991,13 +1986,13 @@ namespace ATA_GUI
 
         private void buttonCommandInject_Click(object sender, EventArgs e)
         {
-            if (richTextBoxCommand.Text.Trim().Length == 0)
+            if (richTextBoxTerminal.Text.Trim().Length == 0)
             {
                 MessageShowBox("You have to enter a command!", 1);
             }
             else
             {
-                LogWriteLine(adbFastbootCommandR(richTextBoxCommand.Text.Trim(), radioButtonADB.Checked ? 0 : 1));
+                LogWriteLine(adbFastbootCommandR(richTextBoxTerminal.Text.Trim(), radioButtonADB.Checked ? 0 : 1));
             }
         }
 
@@ -2017,6 +2012,46 @@ namespace ATA_GUI
         private void buttonClearTextSend_Click(object sender, EventArgs e)
         {
             richTextBoxSend.Clear();
+        }
+
+        private void pictureBoxMaximize_Click(object sender, EventArgs e)
+        {
+            if (ata.IsMaximize)
+            {
+                Size = new Size(1126, 457);
+                CenterToScreen();
+            }
+            else
+            {
+                Size = new Size(Screen.GetWorkingArea(this).Width, Screen.GetWorkingArea(this).Height);
+                Location = Screen.GetWorkingArea(this).Location;
+            }
+            ata.IsMaximize = !ata.IsMaximize;
+        }
+
+        private void pictureBoxMaximize_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBoxMaximize.BackColor = ColorTranslator.FromHtml("#1f2121");
+        }
+
+        private void pictureBoxMaximize_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBoxMaximize.BackColor = Color.Black;
+        }
+
+        private void pictureBoxMaximize_MouseClick(object sender, MouseEventArgs e)
+        {
+            pictureBoxMaximize.Image = ata.IsMaximize ? Properties.Resources.icons8_restore_down_16 : Properties.Resources.icons8_maximize_button_16;
+        }
+
+        private void panelTopBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (ata.IsMaximize)
+            {
+                ata.IsMaximize = false;
+                pictureBoxMaximize.Image = Properties.Resources.icons8_maximize_button_16;
+                Size = new Size(1126, 457);
+            }
         }
     }
 }

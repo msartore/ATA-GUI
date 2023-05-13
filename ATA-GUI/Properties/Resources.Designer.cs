@@ -63,16 +63,6 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap _ {
-            get {
-                object obj = ResourceManager.GetObject("-", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap apkmirror {
             get {
                 object obj = ResourceManager.GetObject("apkmirror", resourceCulture);
@@ -101,12 +91,22 @@ namespace ATA_GUI.Properties {
         ///    ru.auto.ara
         ///  &lt;/basic&gt;
         ///  &lt;medium&gt;
-        ///    com.miui.videoplayer
-        ///    com.miui. [rest of string was truncated]&quot;;.
+        ///    com.mobitv.client.tmobiletvhd
+        ///     [rest of string was truncated]&quot;;.
         /// </summary>
         public static string bloatwareList {
             get {
                 return ResourceManager.GetString("bloatwareList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap close_16 {
+            get {
+                object obj = ResourceManager.GetObject("close_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -146,16 +146,6 @@ namespace ATA_GUI.Properties {
         public static System.Drawing.Bitmap icons8_cancel_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-cancel-48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap icons8_close_window_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-close-window-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,6 +233,16 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icons8_maximize_button_16 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_maximize_button_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icons8_operating_system_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-operating-system-48", resourceCulture);
@@ -296,6 +296,16 @@ namespace ATA_GUI.Properties {
         public static System.Drawing.Bitmap icons8_restart_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-restart-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_restore_down_16 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_restore_down_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -376,6 +386,16 @@ namespace ATA_GUI.Properties {
         public static System.Drawing.Bitmap playmarketicon {
             get {
                 object obj = ResourceManager.GetObject("playmarketicon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap subtract_16 {
+            get {
+                object obj = ResourceManager.GetObject("subtract_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

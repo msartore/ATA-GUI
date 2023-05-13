@@ -256,6 +256,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ATALogoGUI.ico" />
+    <None Include="Resources\close-16.png" />
+    <None Include="Resources\subtract-16.png" />
+    <None Include="Resources\icons8-maximize-button-16.png" />
+    <None Include="Resources\icons8-restore-down-16.png" />
     <None Include="Resources\icons8-operating-system-48.png" />
     <None Include="Resources\icons8-search-in-browser-48.png" />
     <None Include="Resources\icons8-get-help-48.png" />
