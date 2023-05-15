@@ -73,9 +73,9 @@ namespace ATA_GUI
             // 
             this.buttonKillProcess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonKillProcess.BackColor = System.Drawing.Color.White;
-            this.buttonKillProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonKillProcess.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonKillProcess.ForeColor = System.Drawing.Color.Black;
-            this.buttonKillProcess.Location = new System.Drawing.Point(316, 311);
+            this.buttonKillProcess.Location = new System.Drawing.Point(316, 313);
             this.buttonKillProcess.Name = "buttonKillProcess";
             this.buttonKillProcess.Size = new System.Drawing.Size(73, 23);
             this.buttonKillProcess.TabIndex = 46;
@@ -133,14 +133,14 @@ namespace ATA_GUI
             // allToolStripMenuItem
             // 
             this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.allToolStripMenuItem.Text = "All";
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
             // 
             // appsToolStripMenuItem
             // 
             this.appsToolStripMenuItem.Name = "appsToolStripMenuItem";
-            this.appsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.appsToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.appsToolStripMenuItem.Text = "Apps";
             this.appsToolStripMenuItem.Click += new System.EventHandler(this.appsToolStripMenuItem_Click);
             // 

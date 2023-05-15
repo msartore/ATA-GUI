@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace ATA_GUI
 {
@@ -17,6 +18,11 @@ namespace ATA_GUI
             };
             scrollableMessageBox.richTextBox.Text = text;
             scrollableMessageBox.Show();
+        }
+
+        private void richTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            _ = Process.Start(e.LinkText);
         }
     }
 }

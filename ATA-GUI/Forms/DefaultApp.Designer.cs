@@ -57,7 +57,7 @@ namespace ATA_GUI
             // 
             // buttonSetDefault
             // 
-            this.buttonSetDefault.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSetDefault.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonSetDefault.Location = new System.Drawing.Point(198, 86);
             this.buttonSetDefault.Name = "buttonSetDefault";
             this.buttonSetDefault.Size = new System.Drawing.Size(75, 23);
@@ -96,7 +96,7 @@ namespace ATA_GUI
             // 
             // buttonClose
             // 
-            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonClose.Location = new System.Drawing.Point(279, 86);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);

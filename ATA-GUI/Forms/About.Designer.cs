@@ -40,12 +40,12 @@ namespace ATA_GUI
             this.linkLabelSDK = new System.Windows.Forms.LinkLabel();
             this.linkLabelDNZ = new System.Windows.Forms.LinkLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.linkLabelWebsite = new System.Windows.Forms.LinkLabel();
+            this.linkLabelGithub = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.linkLabelRepo = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.linkLabelGithub = new System.Windows.Forms.LinkLabel();
-            this.linkLabelWebsite = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -164,6 +164,28 @@ namespace ATA_GUI
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Developer Info";
             // 
+            // linkLabelWebsite
+            // 
+            this.linkLabelWebsite.AutoSize = true;
+            this.linkLabelWebsite.Location = new System.Drawing.Point(12, 67);
+            this.linkLabelWebsite.Name = "linkLabelWebsite";
+            this.linkLabelWebsite.Size = new System.Drawing.Size(46, 13);
+            this.linkLabelWebsite.TabIndex = 4;
+            this.linkLabelWebsite.TabStop = true;
+            this.linkLabelWebsite.Text = "Website";
+            this.linkLabelWebsite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelWebsite_LinkClicked);
+            // 
+            // linkLabelGithub
+            // 
+            this.linkLabelGithub.AutoSize = true;
+            this.linkLabelGithub.Location = new System.Drawing.Point(12, 49);
+            this.linkLabelGithub.Name = "linkLabelGithub";
+            this.linkLabelGithub.Size = new System.Drawing.Size(38, 13);
+            this.linkLabelGithub.TabIndex = 3;
+            this.linkLabelGithub.TabStop = true;
+            this.linkLabelGithub.Text = "Github";
+            this.linkLabelGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGithub_LinkClicked);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -195,7 +217,7 @@ namespace ATA_GUI
             // 
             // buttonClose
             // 
-            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonClose.Location = new System.Drawing.Point(298, 298);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
@@ -203,28 +225,6 @@ namespace ATA_GUI
             this.buttonClose.Text = "Close";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            // 
-            // linkLabelGithub
-            // 
-            this.linkLabelGithub.AutoSize = true;
-            this.linkLabelGithub.Location = new System.Drawing.Point(12, 49);
-            this.linkLabelGithub.Name = "linkLabelGithub";
-            this.linkLabelGithub.Size = new System.Drawing.Size(38, 13);
-            this.linkLabelGithub.TabIndex = 3;
-            this.linkLabelGithub.TabStop = true;
-            this.linkLabelGithub.Text = "Github";
-            this.linkLabelGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGithub_LinkClicked);
-            // 
-            // linkLabelWebsite
-            // 
-            this.linkLabelWebsite.AutoSize = true;
-            this.linkLabelWebsite.Location = new System.Drawing.Point(12, 67);
-            this.linkLabelWebsite.Name = "linkLabelWebsite";
-            this.linkLabelWebsite.Size = new System.Drawing.Size(46, 13);
-            this.linkLabelWebsite.TabIndex = 4;
-            this.linkLabelWebsite.TabStop = true;
-            this.linkLabelWebsite.Text = "Website";
-            this.linkLabelWebsite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelWebsite_LinkClicked);
             // 
             // About
             // 

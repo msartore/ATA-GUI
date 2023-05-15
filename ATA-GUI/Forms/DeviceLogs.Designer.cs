@@ -47,7 +47,7 @@ namespace ATA_GUI
             // 
             this.buttonGetEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonGetEvent.BackColor = System.Drawing.Color.White;
-            this.buttonGetEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonGetEvent.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonGetEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonGetEvent.ForeColor = System.Drawing.Color.Black;
             this.buttonGetEvent.Location = new System.Drawing.Point(301, 414);
@@ -63,7 +63,7 @@ namespace ATA_GUI
             // 
             this.buttonLogcat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonLogcat.BackColor = System.Drawing.Color.White;
-            this.buttonLogcat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLogcat.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonLogcat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogcat.ForeColor = System.Drawing.Color.Black;
             this.buttonLogcat.Location = new System.Drawing.Point(240, 15);
@@ -76,8 +76,8 @@ namespace ATA_GUI
             // 
             // richTextBoxLog
             // 
-            this.richTextBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.richTextBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxLog.BackColor = System.Drawing.Color.Black;
             this.richTextBoxLog.ForeColor = System.Drawing.Color.White;
@@ -99,7 +99,7 @@ namespace ATA_GUI
             // 
             this.buttonClearLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonClearLog.BackColor = System.Drawing.Color.White;
-            this.buttonClearLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClearLog.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonClearLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonClearLog.ForeColor = System.Drawing.Color.Black;
             this.buttonClearLog.Location = new System.Drawing.Point(12, 414);
@@ -114,7 +114,7 @@ namespace ATA_GUI
             // 
             this.buttonCopyText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonCopyText.BackColor = System.Drawing.Color.White;
-            this.buttonCopyText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCopyText.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonCopyText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCopyText.ForeColor = System.Drawing.Color.Black;
             this.buttonCopyText.Location = new System.Drawing.Point(101, 414);
@@ -128,7 +128,7 @@ namespace ATA_GUI
             // buttonKeepScrolling
             // 
             this.buttonKeepScrolling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonKeepScrolling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonKeepScrolling.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonKeepScrolling.Location = new System.Drawing.Point(189, 414);
             this.buttonKeepScrolling.Name = "buttonKeepScrolling";
             this.buttonKeepScrolling.Size = new System.Drawing.Size(106, 23);
@@ -140,7 +140,7 @@ namespace ATA_GUI
             // buttonLogcatClear
             // 
             this.buttonLogcatClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLogcatClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLogcatClear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonLogcatClear.Location = new System.Drawing.Point(159, 15);
             this.buttonLogcatClear.Name = "buttonLogcatClear";
             this.buttonLogcatClear.Size = new System.Drawing.Size(75, 23);

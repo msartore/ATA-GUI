@@ -73,7 +73,7 @@ namespace ATA_GUI
             // buttonCredits
             // 
             this.buttonCredits.BackColor = System.Drawing.Color.White;
-            this.buttonCredits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCredits.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonCredits.ForeColor = System.Drawing.Color.Black;
             this.buttonCredits.Location = new System.Drawing.Point(104, 248);
             this.buttonCredits.Margin = new System.Windows.Forms.Padding(2);
@@ -87,7 +87,7 @@ namespace ATA_GUI
             // buttonCheckLastVersion
             // 
             this.buttonCheckLastVersion.BackColor = System.Drawing.Color.White;
-            this.buttonCheckLastVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCheckLastVersion.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonCheckLastVersion.ForeColor = System.Drawing.Color.Black;
             this.buttonCheckLastVersion.Location = new System.Drawing.Point(104, 93);
             this.buttonCheckLastVersion.Margin = new System.Windows.Forms.Padding(2);
@@ -130,7 +130,7 @@ namespace ATA_GUI
             // checkBoxInitPopUp
             // 
             this.checkBoxInitPopUp.AutoSize = true;
-            this.checkBoxInitPopUp.Location = new System.Drawing.Point(104, 226);
+            this.checkBoxInitPopUp.Location = new System.Drawing.Point(104, 225);
             this.checkBoxInitPopUp.Name = "checkBoxInitPopUp";
             this.checkBoxInitPopUp.Size = new System.Drawing.Size(145, 17);
             this.checkBoxInitPopUp.TabIndex = 41;
@@ -141,7 +141,7 @@ namespace ATA_GUI
             // buttonRemoveLocalSDK
             // 
             this.buttonRemoveLocalSDK.BackColor = System.Drawing.Color.White;
-            this.buttonRemoveLocalSDK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRemoveLocalSDK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonRemoveLocalSDK.ForeColor = System.Drawing.Color.Black;
             this.buttonRemoveLocalSDK.Location = new System.Drawing.Point(104, 167);
             this.buttonRemoveLocalSDK.Margin = new System.Windows.Forms.Padding(2);
@@ -155,7 +155,7 @@ namespace ATA_GUI
             // buttonDeleteIPHistory
             // 
             this.buttonDeleteIPHistory.BackColor = System.Drawing.Color.White;
-            this.buttonDeleteIPHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDeleteIPHistory.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonDeleteIPHistory.ForeColor = System.Drawing.Color.Black;
             this.buttonDeleteIPHistory.Location = new System.Drawing.Point(104, 197);
             this.buttonDeleteIPHistory.Margin = new System.Windows.Forms.Padding(2);

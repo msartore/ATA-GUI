@@ -65,7 +65,7 @@ namespace ATA_GUI
             // buttonLB2014
             // 
             this.buttonLB2014.BackColor = System.Drawing.Color.White;
-            this.buttonLB2014.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLB2014.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonLB2014.ForeColor = System.Drawing.Color.Black;
             this.buttonLB2014.Location = new System.Drawing.Point(43, 45);
             this.buttonLB2014.Margin = new System.Windows.Forms.Padding(2);
@@ -79,7 +79,7 @@ namespace ATA_GUI
             // buttonUB2014
             // 
             this.buttonUB2014.BackColor = System.Drawing.Color.White;
-            this.buttonUB2014.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUB2014.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonUB2014.ForeColor = System.Drawing.Color.Black;
             this.buttonUB2014.Location = new System.Drawing.Point(43, 18);
             this.buttonUB2014.Margin = new System.Windows.Forms.Padding(2);
@@ -104,7 +104,7 @@ namespace ATA_GUI
             // buttonLB2015
             // 
             this.buttonLB2015.BackColor = System.Drawing.Color.White;
-            this.buttonLB2015.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLB2015.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonLB2015.ForeColor = System.Drawing.Color.Black;
             this.buttonLB2015.Location = new System.Drawing.Point(42, 45);
             this.buttonLB2015.Margin = new System.Windows.Forms.Padding(2);
@@ -118,7 +118,7 @@ namespace ATA_GUI
             // buttonUB2015
             // 
             this.buttonUB2015.BackColor = System.Drawing.Color.White;
-            this.buttonUB2015.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUB2015.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonUB2015.ForeColor = System.Drawing.Color.Black;
             this.buttonUB2015.Location = new System.Drawing.Point(42, 18);
             this.buttonUB2015.Margin = new System.Windows.Forms.Padding(2);
@@ -173,7 +173,7 @@ namespace ATA_GUI
             // buttonVivoLock
             // 
             this.buttonVivoLock.BackColor = System.Drawing.Color.White;
-            this.buttonVivoLock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonVivoLock.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonVivoLock.ForeColor = System.Drawing.Color.Black;
             this.buttonVivoLock.Location = new System.Drawing.Point(43, 45);
             this.buttonVivoLock.Margin = new System.Windows.Forms.Padding(2);
@@ -187,7 +187,7 @@ namespace ATA_GUI
             // buttonVivoUnlock
             // 
             this.buttonVivoUnlock.BackColor = System.Drawing.Color.White;
-            this.buttonVivoUnlock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonVivoUnlock.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonVivoUnlock.ForeColor = System.Drawing.Color.Black;
             this.buttonVivoUnlock.Location = new System.Drawing.Point(43, 18);
             this.buttonVivoUnlock.Margin = new System.Windows.Forms.Padding(2);
@@ -212,7 +212,7 @@ namespace ATA_GUI
             // buttonDID
             // 
             this.buttonDID.BackColor = System.Drawing.Color.White;
-            this.buttonDID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDID.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonDID.ForeColor = System.Drawing.Color.Black;
             this.buttonDID.Location = new System.Drawing.Point(42, 45);
             this.buttonDID.Margin = new System.Windows.Forms.Padding(2);
@@ -226,7 +226,7 @@ namespace ATA_GUI
             // buttonDI
             // 
             this.buttonDI.BackColor = System.Drawing.Color.White;
-            this.buttonDI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDI.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonDI.ForeColor = System.Drawing.Color.Black;
             this.buttonDI.Location = new System.Drawing.Point(42, 18);
             this.buttonDI.Margin = new System.Windows.Forms.Padding(2);

@@ -1,4 +1,4 @@
-﻿using ATA_GUI.Classes;
+using ATA_GUI.Classes;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
@@ -66,7 +66,7 @@ namespace ATA_GUI
                         }
                         else
                         {
-                            labelLog.Text = "ATA is up to date!";
+                                    labelLog.Text = currentRelease.Number == latestRelease.Number ? "ATA is up to date!" : "Cool, you are a developer :)";
                         }
                         labelLatestRelease.Text = latestReleaseName;
                         linkLabelChangelog.Visible = true;

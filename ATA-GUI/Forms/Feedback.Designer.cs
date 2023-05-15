@@ -37,7 +37,6 @@ namespace ATA_GUI
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.buttonSGF = new System.Windows.Forms.Button();
             this.buttonSGI = new System.Windows.Forms.Button();
             this.buttonSendFeedback = new System.Windows.Forms.Button();
@@ -46,7 +45,6 @@ namespace ATA_GUI
             this.buttonDonate = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -113,28 +111,17 @@ namespace ATA_GUI
             // pictureBox2
             // 
             this.pictureBox2.Image = global::ATA_GUI.Properties.Resources.icons8_paypal_48;
-            this.pictureBox2.Location = new System.Drawing.Point(73, 288);
+            this.pictureBox2.Location = new System.Drawing.Point(16, 288);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(42, 49);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox4.Image = global::ATA_GUI.Properties.Resources.icons8_bitcoin_48;
-            this.pictureBox4.Location = new System.Drawing.Point(16, 288);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(51, 49);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 9;
-            this.pictureBox4.TabStop = false;
-            // 
             // buttonSGF
             // 
             this.buttonSGF.BackColor = System.Drawing.Color.White;
-            this.buttonSGF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSGF.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonSGF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSGF.ForeColor = System.Drawing.Color.Black;
             this.buttonSGF.Location = new System.Drawing.Point(16, 161);
@@ -148,7 +135,7 @@ namespace ATA_GUI
             // buttonSGI
             // 
             this.buttonSGI.BackColor = System.Drawing.Color.White;
-            this.buttonSGI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSGI.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonSGI.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSGI.ForeColor = System.Drawing.Color.Black;
             this.buttonSGI.Location = new System.Drawing.Point(168, 161);
@@ -162,7 +149,7 @@ namespace ATA_GUI
             // buttonSendFeedback
             // 
             this.buttonSendFeedback.BackColor = System.Drawing.Color.White;
-            this.buttonSendFeedback.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSendFeedback.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonSendFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSendFeedback.ForeColor = System.Drawing.Color.Black;
             this.buttonSendFeedback.Location = new System.Drawing.Point(16, 76);
@@ -176,7 +163,7 @@ namespace ATA_GUI
             // buttonShareTwitter
             // 
             this.buttonShareTwitter.BackColor = System.Drawing.Color.White;
-            this.buttonShareTwitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonShareTwitter.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonShareTwitter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonShareTwitter.ForeColor = System.Drawing.Color.Black;
             this.buttonShareTwitter.Location = new System.Drawing.Point(121, 76);
@@ -199,7 +186,7 @@ namespace ATA_GUI
             // buttonDonate
             // 
             this.buttonDonate.BackColor = System.Drawing.Color.White;
-            this.buttonDonate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDonate.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonDonate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDonate.ForeColor = System.Drawing.Color.Black;
             this.buttonDonate.Location = new System.Drawing.Point(16, 246);
@@ -233,7 +220,6 @@ namespace ATA_GUI
             this.Controls.Add(this.buttonSendFeedback);
             this.Controls.Add(this.buttonSGI);
             this.Controls.Add(this.buttonSGF);
-            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
@@ -249,7 +235,6 @@ namespace ATA_GUI
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Send Feedback ";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,7 +249,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button buttonSGF;
         private System.Windows.Forms.Button buttonSGI;
         private System.Windows.Forms.Button buttonSendFeedback;

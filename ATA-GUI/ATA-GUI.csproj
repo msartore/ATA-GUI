@@ -256,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ATALogoGUI.ico" />
+    <None Include="Resources\icons8-unlock-16.png" />
     <None Include="Resources\close-16.png" />
     <None Include="Resources\subtract-16.png" />
     <None Include="Resources\icons8-maximize-button-16.png" />

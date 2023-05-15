@@ -112,7 +112,7 @@ namespace ATA_GUI
             // 
             // buttonDisable
             // 
-            this.buttonDisable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDisable.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonDisable.Location = new System.Drawing.Point(165, 262);
             this.buttonDisable.Name = "buttonDisable";
             this.buttonDisable.Size = new System.Drawing.Size(75, 23);

@@ -15,6 +15,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace ATA_GUI
@@ -52,6 +53,13 @@ namespace ATA_GUI
             {
                 _ = ReleaseCapture();
                 _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+
+                if (ata.IsMaximize)
+                {
+                    ata.IsMaximize = false;
+                    pictureBoxMaximize.Image = Properties.Resources.icons8_maximize_button_16;
+                    Size = new Size(1126, 457);
+                }
             }
         }
 
@@ -863,7 +871,7 @@ namespace ATA_GUI
         {
             if (!backgroundWorkerZip.IsBusy)
             {
-                if (textBoxDirFile.TextLength > 0)
+                if (textBoxDirFile.Text.Contains(".zip"))
                 {
                     backgroundWorkerZip.RunWorkerAsync();
                 }
@@ -885,7 +893,7 @@ namespace ATA_GUI
             string log = adbFastbootCommandR("sideload \"" + textBoxDirFile.Text + "\"", 0);
             if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log.Trim() == "")
             {
-                LogWriteLine("[ERROR]" + fileName + " failed to flash");
+                LogWriteLine("[ERROR] " + fileName + " failed to flash");
             }
             else
             {
@@ -904,49 +912,6 @@ namespace ATA_GUI
             if (dr == DialogResult.OK)
             {
                 textBoxDirImg.Text = openFileDialogZip.FileName;
-            }
-        }
-
-        private void buttonFlashImg_Click(object sender, EventArgs e)
-        {
-            if (textBoxDirImg.Text.Length > 0)
-            {
-                if (radioButtonBoot.Checked)
-                {
-                    flash(0);
-                }
-                if (radioButtonBootloader.Checked)
-                {
-                    flash(1);
-                }
-                if (radioButtonCache.Checked)
-                {
-                    flash(2);
-                }
-                if (radioButtonRadio.Checked)
-                {
-                    flash(3);
-                }
-                if (radioButtonRecovery.Checked)
-                {
-                    flash(4);
-                }
-                if (radioButtonRom.Checked)
-                {
-                    flash(5);
-                }
-                if (radioButtonSystem.Checked)
-                {
-                    flash(6);
-                }
-                if (radioButtonVendor.Checked)
-                {
-                    flash(7);
-                }
-            }
-            else
-            {
-                MessageShowBox("Please select a img file", 1);
             }
         }
 
@@ -1591,30 +1556,6 @@ namespace ATA_GUI
             deviceLog.Show();
         }
 
-        private void pictureBoxSearchFile_Click(object sender, EventArgs e)
-        {
-            openFileDialogZip.Filter = "Zip files *.zip|*.zip;";
-            openFileDialogZip.FileName = "";
-            openFileDialogZip.Multiselect = false;
-            openFileDialogZip.Title = "Select Zip";
-
-            DialogResult dr = openFileDialogZip.ShowDialog();
-            if (dr == DialogResult.OK)
-            {
-                textBoxDirFile.Text = openFileDialogZip.FileName;
-            }
-        }
-
-        private void pictureBoxSearchFile_MouseEnter(object sender, EventArgs e)
-        {
-            pictureBoxSearchFile.BackColor = Color.DarkGray;
-        }
-
-        private void pictureBoxSearchFile_MouseLeave(object sender, EventArgs e)
-        {
-            pictureBoxSearchFile.BackColor = Color.Transparent;
-        }
-
         private void submitFeedbackToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Feedback feedback = new Feedback();
@@ -2016,17 +1957,7 @@ namespace ATA_GUI
 
         private void pictureBoxMaximize_Click(object sender, EventArgs e)
         {
-            if (ata.IsMaximize)
-            {
-                Size = new Size(1126, 457);
-                CenterToScreen();
-            }
-            else
-            {
-                Size = new Size(Screen.GetWorkingArea(this).Width, Screen.GetWorkingArea(this).Height);
-                Location = Screen.GetWorkingArea(this).Location;
-            }
-            ata.IsMaximize = !ata.IsMaximize;
+            maximizeWindow();
         }
 
         private void pictureBoxMaximize_MouseEnter(object sender, EventArgs e)
@@ -2044,13 +1975,80 @@ namespace ATA_GUI
             pictureBoxMaximize.Image = ata.IsMaximize ? Properties.Resources.icons8_restore_down_16 : Properties.Resources.icons8_maximize_button_16;
         }
 
-        private void panelTopBar_MouseDown(object sender, MouseEventArgs e)
+        private void panelTopBar_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            maximizeWindow();
+        }
+
+        private void maximizeWindow()
         {
             if (ata.IsMaximize)
             {
-                ata.IsMaximize = false;
-                pictureBoxMaximize.Image = Properties.Resources.icons8_maximize_button_16;
                 Size = new Size(1126, 457);
+                CenterToScreen();
+            }
+            else
+            {
+                Size = new Size(Screen.GetWorkingArea(this).Width, Screen.GetWorkingArea(this).Height);
+                Location = Screen.GetWorkingArea(this).Location;
+            }
+            ata.IsMaximize = !ata.IsMaximize;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBoxDirImg.Text.Length > 0)
+            {
+                if (radioButtonBoot.Checked)
+                {
+                    flash(0);
+                }
+                if (radioButtonBootloader.Checked)
+                {
+                    flash(1);
+                }
+                if (radioButtonCache.Checked)
+                {
+                    flash(2);
+                }
+                if (radioButtonRadio.Checked)
+                {
+                    flash(3);
+                }
+                if (radioButtonRecovery.Checked)
+                {
+                    flash(4);
+                }
+                if (radioButtonRom.Checked)
+                {
+                    flash(5);
+                }
+                if (radioButtonSystem.Checked)
+                {
+                    flash(6);
+                }
+                if (radioButtonVendor.Checked)
+                {
+                    flash(7);
+                }
+            }
+            else
+            {
+                MessageShowBox("Please select a img file", 1);
+            }
+        }
+
+        private void buttonBrowseFile_Click(object sender, EventArgs e)
+        {
+            openFileDialogZip.Filter = "Zip files *.zip|*.zip;";
+            openFileDialogZip.FileName = "";
+            openFileDialogZip.Multiselect = false;
+            openFileDialogZip.Title = "Select Zip";
+
+            DialogResult dr = openFileDialogZip.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                textBoxDirFile.Text = openFileDialogZip.FileName;
             }
         }
     }

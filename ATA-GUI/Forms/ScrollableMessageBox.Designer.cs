@@ -43,6 +43,7 @@ namespace ATA_GUI
             this.richTextBox.Size = new System.Drawing.Size(430, 416);
             this.richTextBox.TabIndex = 0;
             this.richTextBox.Text = "";
+            this.richTextBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox_LinkClicked);
             // 
             // ScrollableMessageBox
             // 

@@ -43,7 +43,6 @@ namespace ATA_GUI
             // buttonYes
             // 
             this.buttonYes.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonYes.Location = new System.Drawing.Point(168, 18);
             this.buttonYes.Name = "buttonYes";
             this.buttonYes.Size = new System.Drawing.Size(75, 23);
@@ -54,7 +53,6 @@ namespace ATA_GUI
             // 
             // buttonNo
             // 
-            this.buttonNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonNo.Location = new System.Drawing.Point(249, 18);
             this.buttonNo.Name = "buttonNo";
             this.buttonNo.Size = new System.Drawing.Size(75, 23);
@@ -65,7 +63,6 @@ namespace ATA_GUI
             // 
             // buttonInfo
             // 
-            this.buttonInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonInfo.Location = new System.Drawing.Point(330, 18);
             this.buttonInfo.Name = "buttonInfo";
             this.buttonInfo.Size = new System.Drawing.Size(75, 23);

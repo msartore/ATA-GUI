@@ -122,12 +122,12 @@ namespace ATA_GUI
             this.buttonHardReset = new System.Windows.Forms.Button();
             this.buttonRebootToSystem = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxDirImg = new System.Windows.Forms.TextBox();
             this.radioButtonRom = new System.Windows.Forms.RadioButton();
             this.buttonSearchFileFastboot = new System.Windows.Forms.Button();
             this.radioButtonCache = new System.Windows.Forms.RadioButton();
-            this.buttonFlashImg = new System.Windows.Forms.Button();
             this.radioButtonVendor = new System.Windows.Forms.RadioButton();
             this.radioButtonSystem = new System.Windows.Forms.RadioButton();
             this.radioButtonBoot = new System.Windows.Forms.RadioButton();
@@ -135,7 +135,6 @@ namespace ATA_GUI
             this.radioButtonBootloader = new System.Windows.Forms.RadioButton();
             this.radioButtonRadio = new System.Windows.Forms.RadioButton();
             this.tabPageRecovery = new System.Windows.Forms.TabPage();
-            this.pictureBoxSearchFile = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonFlashZip = new System.Windows.Forms.Button();
             this.textBoxDirFile = new System.Windows.Forms.TextBox();
@@ -216,6 +215,7 @@ namespace ATA_GUI
             this.radioButtonADB = new System.Windows.Forms.RadioButton();
             this.buttonTerminalRun = new System.Windows.Forms.Button();
             this.richTextBoxTerminal = new System.Windows.Forms.RichTextBox();
+            this.buttonBrowseFile = new System.Windows.Forms.Button();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControls.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -232,7 +232,6 @@ namespace ATA_GUI
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabPageRecovery.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchFile)).BeginInit();
             this.tabPageTools.SuspendLayout();
             this.groupBoxTextInject.SuspendLayout();
             this.groupBoxFreeRotation.SuspendLayout();
@@ -267,7 +266,7 @@ namespace ATA_GUI
             // 
             this.buttonLogClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonLogClear.BackColor = System.Drawing.Color.White;
-            this.buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonLogClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogClear.ForeColor = System.Drawing.Color.Black;
             this.buttonLogClear.Location = new System.Drawing.Point(1036, 376);
@@ -314,7 +313,7 @@ namespace ATA_GUI
             // 
             // buttonTurnOffAdb
             // 
-            this.buttonTurnOffAdb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonTurnOffAdb.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonTurnOffAdb.Location = new System.Drawing.Point(240, 127);
             this.buttonTurnOffAdb.Name = "buttonTurnOffAdb";
             this.buttonTurnOffAdb.Size = new System.Drawing.Size(75, 23);
@@ -920,12 +919,11 @@ namespace ATA_GUI
             // 
             // buttonUnlockNetworkMenu
             // 
-            this.buttonUnlockNetworkMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonUnlockNetworkMenu.Location = new System.Drawing.Point(88, 90);
+            this.buttonUnlockNetworkMenu.Image = global::ATA_GUI.Properties.Resources.icons8_unlock_16;
+            this.buttonUnlockNetworkMenu.Location = new System.Drawing.Point(141, 90);
             this.buttonUnlockNetworkMenu.Name = "buttonUnlockNetworkMenu";
-            this.buttonUnlockNetworkMenu.Size = new System.Drawing.Size(81, 23);
+            this.buttonUnlockNetworkMenu.Size = new System.Drawing.Size(28, 23);
             this.buttonUnlockNetworkMenu.TabIndex = 43;
-            this.buttonUnlockNetworkMenu.Text = "Unlock";
             this.buttonUnlockNetworkMenu.UseVisualStyleBackColor = true;
             this.buttonUnlockNetworkMenu.Click += new System.EventHandler(this.buttonUnlockButtons_Click);
             // 
@@ -967,7 +965,7 @@ namespace ATA_GUI
             // buttonDisconnectIP
             // 
             this.buttonDisconnectIP.BackColor = System.Drawing.Color.White;
-            this.buttonDisconnectIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDisconnectIP.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonDisconnectIP.ForeColor = System.Drawing.Color.Black;
             this.buttonDisconnectIP.Location = new System.Drawing.Point(88, 61);
             this.buttonDisconnectIP.Name = "buttonDisconnectIP";
@@ -980,7 +978,7 @@ namespace ATA_GUI
             // buttonConnectToIP
             // 
             this.buttonConnectToIP.BackColor = System.Drawing.Color.White;
-            this.buttonConnectToIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonConnectToIP.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonConnectToIP.ForeColor = System.Drawing.Color.Black;
             this.buttonConnectToIP.Location = new System.Drawing.Point(9, 61);
             this.buttonConnectToIP.Name = "buttonConnectToIP";
@@ -1005,7 +1003,7 @@ namespace ATA_GUI
             // buttonRS
             // 
             this.buttonRS.BackColor = System.Drawing.Color.White;
-            this.buttonRS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRS.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonRS.ForeColor = System.Drawing.Color.Black;
             this.buttonRS.Location = new System.Drawing.Point(6, 28);
             this.buttonRS.Name = "buttonRS";
@@ -1018,7 +1016,7 @@ namespace ATA_GUI
             // buttonRR
             // 
             this.buttonRR.BackColor = System.Drawing.Color.White;
-            this.buttonRR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRR.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonRR.ForeColor = System.Drawing.Color.Black;
             this.buttonRR.Location = new System.Drawing.Point(6, 57);
             this.buttonRR.Name = "buttonRR";
@@ -1031,7 +1029,7 @@ namespace ATA_GUI
             // buttonRF
             // 
             this.buttonRF.BackColor = System.Drawing.Color.White;
-            this.buttonRF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRF.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonRF.ForeColor = System.Drawing.Color.Black;
             this.buttonRF.Location = new System.Drawing.Point(6, 86);
             this.buttonRF.Name = "buttonRF";
@@ -1071,7 +1069,7 @@ namespace ATA_GUI
             // buttonBootloaderMenu
             // 
             this.buttonBootloaderMenu.BackColor = System.Drawing.Color.White;
-            this.buttonBootloaderMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBootloaderMenu.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonBootloaderMenu.ForeColor = System.Drawing.Color.Black;
             this.buttonBootloaderMenu.Location = new System.Drawing.Point(448, 220);
             this.buttonBootloaderMenu.Margin = new System.Windows.Forms.Padding(2);
@@ -1085,7 +1083,7 @@ namespace ATA_GUI
             // buttonRebootRecovery
             // 
             this.buttonRebootRecovery.BackColor = System.Drawing.Color.White;
-            this.buttonRebootRecovery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRebootRecovery.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonRebootRecovery.ForeColor = System.Drawing.Color.Black;
             this.buttonRebootRecovery.Location = new System.Drawing.Point(448, 193);
             this.buttonRebootRecovery.Margin = new System.Windows.Forms.Padding(2);
@@ -1170,7 +1168,7 @@ namespace ATA_GUI
             // buttonHardReset
             // 
             this.buttonHardReset.BackColor = System.Drawing.Color.White;
-            this.buttonHardReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonHardReset.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonHardReset.ForeColor = System.Drawing.Color.Black;
             this.buttonHardReset.Location = new System.Drawing.Point(677, 166);
             this.buttonHardReset.Margin = new System.Windows.Forms.Padding(2);
@@ -1184,7 +1182,7 @@ namespace ATA_GUI
             // buttonRebootToSystem
             // 
             this.buttonRebootToSystem.BackColor = System.Drawing.Color.White;
-            this.buttonRebootToSystem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRebootToSystem.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonRebootToSystem.ForeColor = System.Drawing.Color.Black;
             this.buttonRebootToSystem.Location = new System.Drawing.Point(448, 166);
             this.buttonRebootToSystem.Margin = new System.Windows.Forms.Padding(2);
@@ -1199,12 +1197,12 @@ namespace ATA_GUI
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.textBoxDirImg);
             this.groupBox4.Controls.Add(this.radioButtonRom);
             this.groupBox4.Controls.Add(this.buttonSearchFileFastboot);
             this.groupBox4.Controls.Add(this.radioButtonCache);
-            this.groupBox4.Controls.Add(this.buttonFlashImg);
             this.groupBox4.Controls.Add(this.radioButtonVendor);
             this.groupBox4.Controls.Add(this.radioButtonSystem);
             this.groupBox4.Controls.Add(this.radioButtonBoot);
@@ -1217,6 +1215,16 @@ namespace ATA_GUI
             this.groupBox4.TabIndex = 48;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Flash img";
+            // 
+            // button1
+            // 
+            this.button1.Image = global::ATA_GUI.Properties.Resources.icons8_flash_on_48;
+            this.button1.Location = new System.Drawing.Point(115, 129);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 70);
+            this.button1.TabIndex = 50;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label10
             // 
@@ -1248,7 +1256,7 @@ namespace ATA_GUI
             // buttonSearchFileFastboot
             // 
             this.buttonSearchFileFastboot.BackColor = System.Drawing.Color.White;
-            this.buttonSearchFileFastboot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSearchFileFastboot.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonSearchFileFastboot.Location = new System.Drawing.Point(277, 39);
             this.buttonSearchFileFastboot.Name = "buttonSearchFileFastboot";
             this.buttonSearchFileFastboot.Size = new System.Drawing.Size(87, 23);
@@ -1267,19 +1275,6 @@ namespace ATA_GUI
             this.radioButtonCache.TabStop = true;
             this.radioButtonCache.Text = "Cache";
             this.radioButtonCache.UseVisualStyleBackColor = true;
-            // 
-            // buttonFlashImg
-            // 
-            this.buttonFlashImg.BackColor = System.Drawing.Color.White;
-            this.buttonFlashImg.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonFlashImg.ForeColor = System.Drawing.Color.Transparent;
-            this.buttonFlashImg.Image = global::ATA_GUI.Properties.Resources.icons8_flash_on_48;
-            this.buttonFlashImg.Location = new System.Drawing.Point(120, 131);
-            this.buttonFlashImg.Name = "buttonFlashImg";
-            this.buttonFlashImg.Size = new System.Drawing.Size(69, 63);
-            this.buttonFlashImg.TabIndex = 38;
-            this.buttonFlashImg.UseVisualStyleBackColor = false;
-            this.buttonFlashImg.Click += new System.EventHandler(this.buttonFlashImg_Click);
             // 
             // radioButtonVendor
             // 
@@ -1349,7 +1344,7 @@ namespace ATA_GUI
             // 
             // tabPageRecovery
             // 
-            this.tabPageRecovery.Controls.Add(this.pictureBoxSearchFile);
+            this.tabPageRecovery.Controls.Add(this.buttonBrowseFile);
             this.tabPageRecovery.Controls.Add(this.label6);
             this.tabPageRecovery.Controls.Add(this.buttonFlashZip);
             this.tabPageRecovery.Controls.Add(this.textBoxDirFile);
@@ -1360,25 +1355,12 @@ namespace ATA_GUI
             this.tabPageRecovery.Text = "Recovery";
             this.tabPageRecovery.UseVisualStyleBackColor = true;
             // 
-            // pictureBoxSearchFile
-            // 
-            this.pictureBoxSearchFile.Image = global::ATA_GUI.Properties.Resources.icons8_folder_48;
-            this.pictureBoxSearchFile.Location = new System.Drawing.Point(533, 106);
-            this.pictureBoxSearchFile.Name = "pictureBoxSearchFile";
-            this.pictureBoxSearchFile.Size = new System.Drawing.Size(28, 20);
-            this.pictureBoxSearchFile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxSearchFile.TabIndex = 36;
-            this.pictureBoxSearchFile.TabStop = false;
-            this.pictureBoxSearchFile.Click += new System.EventHandler(this.pictureBoxSearchFile_Click);
-            this.pictureBoxSearchFile.MouseEnter += new System.EventHandler(this.pictureBoxSearchFile_MouseEnter);
-            this.pictureBoxSearchFile.MouseLeave += new System.EventHandler(this.pictureBoxSearchFile_MouseLeave);
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Red;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(282, 73);
+            this.label6.Location = new System.Drawing.Point(270, 73);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(279, 13);
             this.label6.TabIndex = 35;
@@ -1387,10 +1369,10 @@ namespace ATA_GUI
             // buttonFlashZip
             // 
             this.buttonFlashZip.BackColor = System.Drawing.Color.White;
-            this.buttonFlashZip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonFlashZip.Location = new System.Drawing.Point(372, 153);
+            this.buttonFlashZip.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.buttonFlashZip.Location = new System.Drawing.Point(535, 134);
             this.buttonFlashZip.Name = "buttonFlashZip";
-            this.buttonFlashZip.Size = new System.Drawing.Size(87, 23);
+            this.buttonFlashZip.Size = new System.Drawing.Size(75, 23);
             this.buttonFlashZip.TabIndex = 34;
             this.buttonFlashZip.Text = "Flash";
             this.buttonFlashZip.UseVisualStyleBackColor = false;
@@ -1429,7 +1411,7 @@ namespace ATA_GUI
             // 
             // buttonClearTextSend
             // 
-            this.buttonClearTextSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClearTextSend.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonClearTextSend.Location = new System.Drawing.Point(149, 53);
             this.buttonClearTextSend.Name = "buttonClearTextSend";
             this.buttonClearTextSend.Size = new System.Drawing.Size(75, 23);
@@ -1440,7 +1422,7 @@ namespace ATA_GUI
             // 
             // buttonInjectText
             // 
-            this.buttonInjectText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInjectText.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonInjectText.Location = new System.Drawing.Point(149, 20);
             this.buttonInjectText.Name = "buttonInjectText";
             this.buttonInjectText.Size = new System.Drawing.Size(75, 23);
@@ -1470,7 +1452,7 @@ namespace ATA_GUI
             // 
             // buttonSetRotation
             // 
-            this.buttonSetRotation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSetRotation.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonSetRotation.Location = new System.Drawing.Point(8, 53);
             this.buttonSetRotation.Name = "buttonSetRotation";
             this.buttonSetRotation.Size = new System.Drawing.Size(71, 23);
@@ -1735,16 +1717,16 @@ namespace ATA_GUI
             this.panelTopBar.Name = "panelTopBar";
             this.panelTopBar.Size = new System.Drawing.Size(1126, 44);
             this.panelTopBar.TabIndex = 0;
-            this.panelTopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseDown);
+            this.panelTopBar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseDoubleClick);
             this.panelTopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseMove);
             // 
             // pictureBoxMaximize
             // 
             this.pictureBoxMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxMaximize.Image = global::ATA_GUI.Properties.Resources.icons8_maximize_button_16;
-            this.pictureBoxMaximize.Location = new System.Drawing.Point(1041, 4);
+            this.pictureBoxMaximize.Location = new System.Drawing.Point(1049, 3);
             this.pictureBoxMaximize.Name = "pictureBoxMaximize";
-            this.pictureBoxMaximize.Size = new System.Drawing.Size(38, 38);
+            this.pictureBoxMaximize.Size = new System.Drawing.Size(38, 40);
             this.pictureBoxMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxMaximize.TabIndex = 43;
             this.pictureBoxMaximize.TabStop = false;
@@ -1771,9 +1753,9 @@ namespace ATA_GUI
             // 
             this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxClose.Image = global::ATA_GUI.Properties.Resources.close_16;
-            this.pictureBoxClose.Location = new System.Drawing.Point(1085, 4);
+            this.pictureBoxClose.Location = new System.Drawing.Point(1088, 3);
             this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(38, 38);
+            this.pictureBoxClose.Size = new System.Drawing.Size(38, 40);
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxClose.TabIndex = 41;
             this.pictureBoxClose.TabStop = false;
@@ -1785,9 +1767,9 @@ namespace ATA_GUI
             // 
             this.pictureBoxMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxMinimize.Image = global::ATA_GUI.Properties.Resources.subtract_16;
-            this.pictureBoxMinimize.Location = new System.Drawing.Point(997, 4);
+            this.pictureBoxMinimize.Location = new System.Drawing.Point(1010, 3);
             this.pictureBoxMinimize.Name = "pictureBoxMinimize";
-            this.pictureBoxMinimize.Size = new System.Drawing.Size(38, 38);
+            this.pictureBoxMinimize.Size = new System.Drawing.Size(38, 40);
             this.pictureBoxMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxMinimize.TabIndex = 6;
             this.pictureBoxMinimize.TabStop = false;
@@ -1900,7 +1882,7 @@ namespace ATA_GUI
             // 
             this.buttonDeviceLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDeviceLogs.BackColor = System.Drawing.Color.White;
-            this.buttonDeviceLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDeviceLogs.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonDeviceLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDeviceLogs.ForeColor = System.Drawing.Color.Black;
             this.buttonDeviceLogs.Location = new System.Drawing.Point(822, 403);
@@ -1927,7 +1909,7 @@ namespace ATA_GUI
             // 
             // buttonReloadDevicesList
             // 
-            this.buttonReloadDevicesList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReloadDevicesList.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonReloadDevicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonReloadDevicesList.ForeColor = System.Drawing.Color.Black;
             this.buttonReloadDevicesList.Location = new System.Drawing.Point(172, 53);
@@ -1951,7 +1933,7 @@ namespace ATA_GUI
             // buttonSyncApp
             // 
             this.buttonSyncApp.BackColor = System.Drawing.Color.White;
-            this.buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonSyncApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
             this.buttonSyncApp.ForeColor = System.Drawing.Color.Black;
             this.buttonSyncApp.Location = new System.Drawing.Point(17, 20);
@@ -2040,7 +2022,7 @@ namespace ATA_GUI
             // 
             this.buttonTaskManager.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonTaskManager.BackColor = System.Drawing.Color.White;
-            this.buttonTaskManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonTaskManager.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonTaskManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonTaskManager.ForeColor = System.Drawing.Color.Black;
             this.buttonTaskManager.Location = new System.Drawing.Point(822, 376);
@@ -2102,7 +2084,7 @@ namespace ATA_GUI
             // buttonTerminalRun
             // 
             this.buttonTerminalRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonTerminalRun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonTerminalRun.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonTerminalRun.Location = new System.Drawing.Point(312, 19);
             this.buttonTerminalRun.Name = "buttonTerminalRun";
             this.buttonTerminalRun.Size = new System.Drawing.Size(75, 23);
@@ -2120,6 +2102,16 @@ namespace ATA_GUI
             this.richTextBoxTerminal.Size = new System.Drawing.Size(300, 57);
             this.richTextBoxTerminal.TabIndex = 47;
             this.richTextBoxTerminal.Text = "";
+            // 
+            // buttonBrowseFile
+            // 
+            this.buttonBrowseFile.Location = new System.Drawing.Point(535, 105);
+            this.buttonBrowseFile.Name = "buttonBrowseFile";
+            this.buttonBrowseFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseFile.TabIndex = 36;
+            this.buttonBrowseFile.Text = "Browse file";
+            this.buttonBrowseFile.UseVisualStyleBackColor = true;
+            this.buttonBrowseFile.Click += new System.EventHandler(this.buttonBrowseFile_Click);
             // 
             // MainForm
             // 
@@ -2171,7 +2163,6 @@ namespace ATA_GUI
             this.groupBox4.PerformLayout();
             this.tabPageRecovery.ResumeLayout(false);
             this.tabPageRecovery.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchFile)).EndInit();
             this.tabPageTools.ResumeLayout(false);
             this.groupBoxTextInject.ResumeLayout(false);
             this.groupBoxFreeRotation.ResumeLayout(false);
@@ -2239,7 +2230,6 @@ namespace ATA_GUI
         private System.Windows.Forms.TextBox textBoxDirImg;
         private System.Windows.Forms.RadioButton radioButtonRom;
         private System.Windows.Forms.RadioButton radioButtonCache;
-        private System.Windows.Forms.Button buttonFlashImg;
         private System.Windows.Forms.RadioButton radioButtonVendor;
         private System.Windows.Forms.RadioButton radioButtonSystem;
         private System.Windows.Forms.RadioButton radioButtonBoot;
@@ -2327,7 +2317,6 @@ namespace ATA_GUI
         private System.Windows.Forms.ComboBox comboBoxDevices;
         private System.Windows.Forms.Button buttonSyncApp;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.PictureBox pictureBoxSearchFile;
         private System.Windows.Forms.Button buttonSearchFileFastboot;
         private System.Windows.Forms.ToolStripMenuItem grantWriteSecureSettingsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem revokeWriteSecureSettingsToolStripMenuItem;
@@ -2380,6 +2369,8 @@ namespace ATA_GUI
         private System.Windows.Forms.RichTextBox richTextBoxSend;
         private System.Windows.Forms.Button buttonClearTextSend;
         private System.Windows.Forms.PictureBox pictureBoxMaximize;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonBrowseFile;
     }
 }
 

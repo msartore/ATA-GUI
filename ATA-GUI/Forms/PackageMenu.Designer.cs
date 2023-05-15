@@ -59,7 +59,7 @@ namespace ATA_GUI
             // 
             // buttonEnable
             // 
-            this.buttonEnable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEnable.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonEnable.Location = new System.Drawing.Point(283, 115);
             this.buttonEnable.Name = "buttonEnable";
             this.buttonEnable.Size = new System.Drawing.Size(75, 23);
@@ -70,7 +70,7 @@ namespace ATA_GUI
             // 
             // buttonCancel
             // 
-            this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonCancel.Location = new System.Drawing.Point(374, 115);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
@@ -81,7 +81,7 @@ namespace ATA_GUI
             // 
             // buttonDisable
             // 
-            this.buttonDisable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDisable.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonDisable.Location = new System.Drawing.Point(202, 115);
             this.buttonDisable.Name = "buttonDisable";
             this.buttonDisable.Size = new System.Drawing.Size(75, 23);
@@ -92,7 +92,7 @@ namespace ATA_GUI
             // 
             // buttonClearData
             // 
-            this.buttonClearData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClearData.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonClearData.Location = new System.Drawing.Point(121, 115);
             this.buttonClearData.Name = "buttonClearData";
             this.buttonClearData.Size = new System.Drawing.Size(75, 23);
