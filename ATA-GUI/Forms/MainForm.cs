@@ -893,7 +893,7 @@ namespace ATA_GUI
             string log = adbFastbootCommandR("sideload \"" + textBoxDirFile.Text + "\"", 0);
             if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log.Trim() == "")
             {
-                LogWriteLine("[ERROR] " + fileName + " failed to flash");
+                LogWriteLine("[ERROR] " + fileName + " failed to flash, try restarting the sideload process or unplugging and replugging the device to resolve the issue.");
             }
             else
             {
