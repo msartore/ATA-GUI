@@ -885,7 +885,7 @@ namespace ATA_GUI
             bool exist = File.Exists(exeTmp) && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll");
             if (!exist)
             {
-                MessageShowBox(exeTmp + " not found!", 0);
+                LogWriteLine(exeTmp + " not found!");
             }
             return exist;
         }
