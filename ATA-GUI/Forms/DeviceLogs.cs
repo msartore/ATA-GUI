@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ATA_GUI.Classes;
+using ATA_GUI.Utils;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -127,7 +129,7 @@ namespace ATA_GUI
         {
             checkAndStop();
             buttonLogcat.Text = "Start";
-            _ = MainForm.adbFastbootCommandR(new[] { "-s " + MainForm.CurrentDeviceSelected + " logcat -c" }, 0);
+            _ = ConsoleProcess.adbFastbootCommandR(new[] { "-s " + ATA.CurrentDeviceSelected + " logcat -c" }, 0);
         }
 
         private void richTextBoxLog_LinkClicked(object sender, LinkClickedEventArgs e)

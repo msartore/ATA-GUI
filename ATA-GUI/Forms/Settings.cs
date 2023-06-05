@@ -1,10 +1,8 @@
-using ATA_GUI.Classes;
-using Newtonsoft.Json;
+﻿using ATA_GUI.Classes;
+using ATA_GUI.Utils;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Net.Http;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 
@@ -29,47 +27,38 @@ namespace ATA_GUI
                 runningCheck = true;
                 if (MainForm.pingCheck())
                 {
-                    Release currentRelease = new Release();
-                    Release latestRelease = new Release();
-                    string json;
                     try
                     {
                         labelLog.Text = "Checking for new ATA version...";
-                        HttpClient _client = new HttpClient
+
+                        _ = await ATA.CheckVersion((currentRelease, latestRelease, jsonReal) =>
                         {
-                            Timeout = TimeSpan.FromSeconds(60)
-                        };
-                        _client.DefaultRequestHeaders.Add("User-Agent", "ATA");
-                        json = await _client.GetStringAsync("https://ata.msartore.dev/api/links.json");
-                        dynamic jsonMirror = JsonConvert.DeserializeObject(json);
-                        json = await _client.GetStringAsync(jsonMirror[0]["url"].ToString());
-                        dynamic jsonReal = JsonConvert.DeserializeObject(json);
-                        string latestReleaseName = jsonReal[0]["tag_name"];
-                        latestRelease.Number = int.Parse(Regex.Replace(latestReleaseName, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
-                        if (latestReleaseName.Contains("Pre")) { latestRelease.Pre = true; }
-                        currentRelease.Number = int.Parse(Regex.Replace(CURRENTVERSION, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
-                        if (CURRENTVERSION.Contains("Pre")) { currentRelease.Pre = true; }
-                        string linkString = jsonReal[0]["assets"][0]["browser_download_url"];
-                        changelog = jsonReal[0]["body"];
-                        if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && currentRelease.Pre && !latestRelease.Pre))
-                        {
-                            if (MessageBox.Show("New version found: " + latestReleaseName + "\nCurrent Version: " + CURRENTVERSION + "\n\nDo you want to update it?", "Update found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            _ = Invoke((Action)delegate
                             {
-                                _ = Process.Start((string)jsonReal[0]["html_url"]);
-                                UpdateForm update = new UpdateForm(linkString);
-                                _ = update.ShowDialog();
-                            }
-                            else
-                            {
-                                labelLog.Text = "ATA is not up to date, update\nit as soon as you can!";
-                            }
-                        }
-                        else
-                        {
+                                changelog = jsonReal[0]["body"];
+
+                                if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && currentRelease.Pre && !latestRelease.Pre))
+                                {
+                                    if (MessageBox.Show("New version found: " + latestRelease.Name + "\nCurrent Version: " + CURRENTVERSION + "\n\nDo you want to update it?", "Update found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        _ = Process.Start((string)jsonReal[0]["html_url"]);
+                                        UpdateForm update = new UpdateForm(jsonReal[0]["assets"][0]["browser_download_url"]);
+                                        _ = update.ShowDialog();
+                                    }
+                                    else
+                                    {
+                                        labelLog.Text = "ATA is not up to date, update\nit as soon as you can!";
+                                    }
+                                }
+                                else
+                                {
                                     labelLog.Text = currentRelease.Number == latestRelease.Number ? "ATA is up to date!" : "Cool, you are a developer :)";
-                        }
-                        labelLatestRelease.Text = latestReleaseName;
-                        linkLabelChangelog.Visible = true;
+                                }
+                                labelLatestRelease.Text = latestRelease.Name;
+                                linkLabelChangelog.Visible = true;
+                            });
+                            return true;
+                        });
                     }
                     catch
                     {
@@ -130,7 +119,7 @@ namespace ATA_GUI
             string[] programs = { "adb.exe", "fastboot.exe", "AdbWinUsbApi.dll", "AdbWinApi.dll" };
             bool nFound = false;
 
-            _ = MainForm.systemCommandAsync("taskkill /f /im " + programs[0]);
+            _ = ConsoleProcess.systemCommandAsync("taskkill /f /im " + programs[0]);
 
             foreach (string program in programs)
             {

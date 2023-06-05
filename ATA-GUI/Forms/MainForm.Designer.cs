@@ -135,6 +135,7 @@ namespace ATA_GUI
             this.radioButtonBootloader = new System.Windows.Forms.RadioButton();
             this.radioButtonRadio = new System.Windows.Forms.RadioButton();
             this.tabPageRecovery = new System.Windows.Forms.TabPage();
+            this.buttonBrowseFile = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonFlashZip = new System.Windows.Forms.Button();
             this.textBoxDirFile = new System.Windows.Forms.TextBox();
@@ -215,7 +216,8 @@ namespace ATA_GUI
             this.radioButtonADB = new System.Windows.Forms.RadioButton();
             this.buttonTerminalRun = new System.Windows.Forms.Button();
             this.richTextBoxTerminal = new System.Windows.Forms.RichTextBox();
-            this.buttonBrowseFile = new System.Windows.Forms.Button();
+            this.backgroundWorkerAPKinstall = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerFileTransfer = new System.ComponentModel.BackgroundWorker();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControls.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -1355,6 +1357,16 @@ namespace ATA_GUI
             this.tabPageRecovery.Text = "Recovery";
             this.tabPageRecovery.UseVisualStyleBackColor = true;
             // 
+            // buttonBrowseFile
+            // 
+            this.buttonBrowseFile.Location = new System.Drawing.Point(535, 105);
+            this.buttonBrowseFile.Name = "buttonBrowseFile";
+            this.buttonBrowseFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseFile.TabIndex = 36;
+            this.buttonBrowseFile.Text = "Browse file";
+            this.buttonBrowseFile.UseVisualStyleBackColor = true;
+            this.buttonBrowseFile.Click += new System.EventHandler(this.buttonBrowseFile_Click);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -1924,7 +1936,7 @@ namespace ATA_GUI
             // 
             this.comboBoxDevices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxDevices.FormattingEnabled = true;
-            this.comboBoxDevices.Location = new System.Drawing.Point(172, 19);
+            this.comboBoxDevices.Location = new System.Drawing.Point(172, 22);
             this.comboBoxDevices.Name = "comboBoxDevices";
             this.comboBoxDevices.Size = new System.Drawing.Size(152, 21);
             this.comboBoxDevices.TabIndex = 1;
@@ -2103,15 +2115,13 @@ namespace ATA_GUI
             this.richTextBoxTerminal.TabIndex = 47;
             this.richTextBoxTerminal.Text = "";
             // 
-            // buttonBrowseFile
+            // backgroundWorkerAPKinstall
             // 
-            this.buttonBrowseFile.Location = new System.Drawing.Point(535, 105);
-            this.buttonBrowseFile.Name = "buttonBrowseFile";
-            this.buttonBrowseFile.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowseFile.TabIndex = 36;
-            this.buttonBrowseFile.Text = "Browse file";
-            this.buttonBrowseFile.UseVisualStyleBackColor = true;
-            this.buttonBrowseFile.Click += new System.EventHandler(this.buttonBrowseFile_Click);
+            this.backgroundWorkerAPKinstall.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAPKinstall_DoWork);
+            // 
+            // backgroundWorkerFileTransfer
+            // 
+            this.backgroundWorkerFileTransfer.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerFileTransfer_DoWork);
             // 
             // MainForm
             // 
@@ -2371,6 +2381,8 @@ namespace ATA_GUI
         private System.Windows.Forms.PictureBox pictureBoxMaximize;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonBrowseFile;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerAPKinstall;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerFileTransfer;
     }
 }
 

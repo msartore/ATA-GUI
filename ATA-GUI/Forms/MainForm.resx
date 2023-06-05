@@ -127,26 +127,26 @@
   <data name="toolStripButtonExtract.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
   </data>
   <metadata name="openFileDialogAPK.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -187,6 +187,12 @@
   </metadata>
   <metadata name="backgroundWorkerADBDisconnect.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 58</value>
+  </metadata>
+  <metadata name="backgroundWorkerAPKinstall.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>195, 97</value>
+  </metadata>
+  <metadata name="backgroundWorkerFileTransfer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>406, 97</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>149</value>

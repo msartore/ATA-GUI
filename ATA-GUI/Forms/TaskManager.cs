@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ATA_GUI.Classes;
+using ATA_GUI.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -29,7 +31,7 @@ namespace ATA_GUI
             bool found = false;
             int taskCounter = 0;
 
-            List<string> tasks = MainForm.adbFastbootCommandR(new string[] { " -s " + MainForm.CurrentDeviceSelected + " shell ps" }, 0).Split('\n').ToList();
+            List<string> tasks = ConsoleProcess.adbFastbootCommandR(new string[] { " -s " + ATA.CurrentDeviceSelected + " shell ps" }, 0).Split('\n').ToList();
             richTextBoxTasks.Text = tasks[0];
             foreach (string task in tasks)
             {
@@ -53,7 +55,7 @@ namespace ATA_GUI
 
         private void buttonKillProcess_Click(object sender, EventArgs e)
         {
-            _ = MainForm.adbFastbootCommandR(new string[] { " -s " + MainForm.CurrentDeviceSelected + " shell am force-stop " + textBoxPackage.Text }, 0);
+            _ = ConsoleProcess.adbFastbootCommandR(new string[] { " -s " + ATA.CurrentDeviceSelected + " shell am force-stop " + textBoxPackage.Text }, 0);
         }
 
         private void allToolStripMenuItem_Click(object sender, EventArgs e)
@@ -70,7 +72,7 @@ namespace ATA_GUI
 
         private void loadTasks()
         {
-            string[] tasks = MainForm.adbFastbootCommandR(new string[] { " -s " + MainForm.CurrentDeviceSelected + " shell ps" }, 0).Split('\n');
+            string[] tasks = ConsoleProcess.adbFastbootCommandR(new string[] { " -s " + ATA.CurrentDeviceSelected + " shell ps" }, 0).Split('\n');
 
             richTextBoxTasks.Clear();
 

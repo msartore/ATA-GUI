@@ -176,6 +176,8 @@
     <Compile Include="Forms\TaskManager.Designer.cs">
       <DependentUpon>TaskManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\APK.cs" />
+    <Compile Include="Utils\ConsoleProcess.cs" />
     <EmbeddedResource Include="Forms\DefaultApp.resx">
       <DependentUpon>DefaultApp.cs</DependentUpon>
     </EmbeddedResource>

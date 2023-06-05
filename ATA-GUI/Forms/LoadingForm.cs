@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATA_GUI.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -78,19 +79,19 @@ namespace ATA_GUI
                         {
                             labelFileName.Text = x;
                             Refresh();
-                            _ = MainForm.systemCommandAsync(command + x);
+                            _ = ConsoleProcess.systemCommandAsync(command + x);
                             ReportProgress();
                         });
                         break;
                     case OperationType.Transfer:
-                        _ = MainForm.adbFastbootCommandR(new[] { "-s " + deviceSerial + " shell mkdir sdcard/ATA" }, 0);
+                        _ = ConsoleProcess.adbFastbootCommandR(new[] { "-s " + deviceSerial + " shell mkdir sdcard/ATA" }, 0);
                         array.ForEach(file =>
                         {
                             if (File.Exists(file))
                             {
                                 labelFileName.Text = file.Substring(file.LastIndexOf('\\') + 1);
                                 Refresh();
-                                if (MainForm.adbFastbootCommandR(new[] { "-s " + deviceSerial + " push " + file + " sdcard/ATA " }, 0) == null)
+                                if (ConsoleProcess.adbFastbootCommandR(new[] { "-s " + deviceSerial + " push " + file + " sdcard/ATA " }, 0) == null)
                                 {
                                     MainForm.MessageShowBox(labelFileName.Text + " not transfered", 0);
                                 }
@@ -105,16 +106,16 @@ namespace ATA_GUI
                     case OperationType.Extraction:
                         if (!Directory.Exists("APKS"))
                         {
-                            _ = MainForm.systemCommandAsync("mkdir APKS");
+                            _ = ConsoleProcess.systemCommandAsync("mkdir APKS");
                         }
                         array.ForEach(async x =>
                         {
                             labelFileName.Text = x;
                             Refresh();
-                            string[] pathList = (await MainForm.systemCommandAsync("adb.exe " + "-s " + deviceSerial + " shell pm path " + x)).Split('\n').Where(it => it.Contains("package")).ToArray();
+                            string[] pathList = (await ConsoleProcess.systemCommandAsync("adb.exe " + "-s " + deviceSerial + " shell pm path " + x)).Split('\n').Where(it => it.Contains("package")).ToArray();
                             foreach (string path in pathList)
                             {
-                                _ = MainForm.systemCommandAsync("adb.exe " + "-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "\\APKS\\" + x + "_" + path.Substring(path.LastIndexOf('/') + 1));
+                                _ = ConsoleProcess.systemCommandAsync("adb.exe " + "-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "\\APKS\\" + x + "_" + path.Substring(path.LastIndexOf('/') + 1));
                             }
                             ReportProgress();
                         });
