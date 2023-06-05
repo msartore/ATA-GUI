@@ -47,7 +47,7 @@ namespace ATA_GUI.Classes
                 currentRelease.Number = int.Parse(Regex.Replace(CURRENTVERSION, @"[^\d]+(\d*:abc$)|[^\d]+", ""));
                 if (CURRENTVERSION.Contains("Pre")) { currentRelease.Pre = true; }
 
-                command(currentRelease, latestRelease, jsonReal[0]);
+                command(currentRelease, latestRelease, jsonReal);
             }
 
             return true;

@@ -60,10 +60,10 @@ namespace ATA_GUI
                             return true;
                         });
                     }
-                    catch
+                    catch (Exception err)
                     {
                         labelLog.Text = string.Empty;
-                        MainForm.MessageShowBox("Timeout Error occurred while connecting to the Server", 0);
+                        MainForm.MessageShowBox(err.Message + "\nError: " + err.StackTrace, 0);
                     }
                 }
                 else
