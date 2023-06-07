@@ -1,4 +1,5 @@
 ﻿using ATA_GUI.Classes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -6,7 +7,7 @@ namespace ATA_GUI.Utils
 {
     internal class APK
     {
-        public static void installApk(string[] apksPath, string user)
+        public static void installApk(string[] apksPath, string user, Action<string> log)
         {
             string message = "";
             List<bool> r = new List<bool>();
@@ -17,8 +18,8 @@ namespace ATA_GUI.Utils
                 {
                     if (File.Exists(fileLoc))
                     {
+                        log.Invoke(fileLoc.Substring(fileLoc.LastIndexOf('\\') + 1));
                         r.Add(ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected + " install -r --user " + user + " \"" + fileLoc + "\"", 0).Contains("Success"));
-
                     }
                 }
             }

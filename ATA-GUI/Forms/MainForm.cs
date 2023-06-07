@@ -1916,7 +1916,13 @@ namespace ATA_GUI
 
         private void backgroundWorkerAPKinstall_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            APK.installApk((string[])e.Argument, device.User);
+            APK.installApk((string[])e.Argument, device.User, (name) =>  
+            {
+                Invoke((Action)delegate
+                {
+                    LogWriteLine("Installing " + name + " ...");
+                });
+            });
         }
 
         private void backgroundWorkerFileTransfer_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
