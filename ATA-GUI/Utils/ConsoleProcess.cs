@@ -81,8 +81,7 @@ namespace ATA_GUI.Utils
                 cmd.StandardInput.Close();
                 cmd.WaitForExit();
                 return cmd.StandardOutput.ReadToEnd();
-            }
-            );
+            });
         }
     }
 }

@@ -1,7 +1,3 @@
-using ATA_GUI.Classes;
-using ATA_GUI.Utils;
-using Ionic.Zip;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,6 +12,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using ATA_GUI.Classes;
+using ATA_GUI.Utils;
+using Ionic.Zip;
+using Newtonsoft.Json.Linq;
 
 namespace ATA_GUI
 {
@@ -171,8 +171,7 @@ namespace ATA_GUI
                                 if (MessageBox.Show("New version found: " + latestRelease.Name + "\nCurrent Version: " + ATA.CURRENTVERSION + "\n\nDo you want to update it?", "Update found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
                                     _ = Process.Start((string)jsonReal[0]["html_url"]);
-                                    JToken urlDownload;
-                                    jsonReal[0]["assets"][0].TryGetValue("browser_download_url", out urlDownload);
+                                    jsonReal[0]["assets"][0].TryGetValue("browser_download_url", out JToken urlDownload);
                                     UpdateForm update = new UpdateForm(urlDownload.ToString());
                                     _ = update.ShowDialog();
                                 }
@@ -886,10 +885,6 @@ namespace ATA_GUI
         {
             string exeTmp = isAdb ? "adb.exe" : "fastboot.exe";
             bool exist = File.Exists(exeTmp) && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll");
-            if (!exist)
-            {
-                LogWriteLine(exeTmp + " not found!");
-            }
             return exist;
         }
 
@@ -1152,7 +1147,7 @@ namespace ATA_GUI
             }
         }
 
-        private void backgroundWorkerAdbDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private async void backgroundWorkerAdbDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             if (!ata.IsConnected)
             {
@@ -1164,8 +1159,10 @@ namespace ATA_GUI
                 disableEnableSystem(false);
                 buttonDisconnectIP.Enabled = false;
             });
+
             ExeMissingForm adbError = new ExeMissingForm("adb.exe not found\n\nDo you want to download sdk platform tool?\n\n[By pressing YES you agree sdk platform tool terms and conditions]\nfor more info press info button", "Error, ADB Missing!");
             _ = adbError.ShowDialog();
+
             switch (adbError.DialogResult)
             {
                 case DialogResult.Yes:
@@ -1183,18 +1180,23 @@ namespace ATA_GUI
                             }
                             LogWriteLine("sdk platform tool extraced!");
                             LogWriteLine("Getting things ready...");
-                            _ = ConsoleProcess.systemCommandAsync("taskkill /f /im adb.exe");
-                            _ = ConsoleProcess.systemCommandAsync("taskkill /f /im fastboot.exe");
-                            _ = ConsoleProcess.systemCommandAsync("del adb.exe");
-                            _ = ConsoleProcess.systemCommandAsync("del AdbWinUsbApi.dll");
-                            _ = ConsoleProcess.systemCommandAsync("del AdbWinApi.dll");
-                            _ = ConsoleProcess.systemCommandAsync("del fastboot.exe");
-                            _ = ConsoleProcess.systemCommandAsync("move platform-tools\\adb.exe \"%cd%\"");
-                            _ = ConsoleProcess.systemCommandAsync("move platform-tools\\AdbWinUsbApi.dll \"%cd%\"");
-                            _ = ConsoleProcess.systemCommandAsync("move platform-tools\\AdbWinApi.dll \"%cd%\"");
-                            _ = ConsoleProcess.systemCommandAsync("move platform-tools\\fastboot.exe \"%cd%\"");
+                            _ = await ConsoleProcess.systemCommandAsync("taskkill /f /im adb.exe");
+                            _ = await ConsoleProcess.systemCommandAsync("taskkill /f /im fastboot.exe");
+                            _ = await ConsoleProcess.systemCommandAsync("del adb.exe");
+                            _ = await ConsoleProcess.systemCommandAsync("del AdbWinUsbApi.dll");
+                            _ = await ConsoleProcess.systemCommandAsync("del AdbWinApi.dll");
+                            _ = await ConsoleProcess.systemCommandAsync("del fastboot.exe");
+                            _ = await ConsoleProcess.systemCommandAsync("move platform-tools\\adb.exe \"%cd%\"");
+                            _ = await ConsoleProcess.systemCommandAsync("move platform-tools\\AdbWinUsbApi.dll \"%cd%\"");
+                            _ = await ConsoleProcess.systemCommandAsync("move platform-tools\\AdbWinApi.dll \"%cd%\"");
+                            _ = await ConsoleProcess.systemCommandAsync("move platform-tools\\fastboot.exe \"%cd%\"");
+                            Directory.Delete("platform-tools", true);
                             File.Delete("sdkplatformtool.zip");
-                            _ = ConsoleProcess.systemCommandAsync("rmdir /Q /S platform-tools");
+                            if (!checkAdbFastboot(true))
+                            {
+                                throw new Exception();
+                            }
+
                             LogWriteLine("ATA ready!");
                         }
                         catch
@@ -1916,9 +1918,9 @@ namespace ATA_GUI
 
         private void backgroundWorkerAPKinstall_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            APK.installApk((string[])e.Argument, device.User, (name) =>  
+            APK.installApk((string[])e.Argument, device.User, (name) =>
             {
-                Invoke((Action)delegate
+                _ = Invoke((Action)delegate
                 {
                     LogWriteLine("Installing " + name + " ...");
                 });

@@ -1,10 +1,10 @@
-﻿using ATA_GUI.Utils;
-using Ionic.Zip;
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
+using ATA_GUI.Utils;
+using Ionic.Zip;
 
 namespace ATA_GUI
 {

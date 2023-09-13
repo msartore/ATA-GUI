@@ -1,11 +1,10 @@
-﻿using ATA_GUI.Classes;
-using ATA_GUI.Utils;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-
+using ATA_GUI.Classes;
+using ATA_GUI.Utils;
+using Newtonsoft.Json.Linq;
 
 namespace ATA_GUI
 {
@@ -43,8 +42,7 @@ namespace ATA_GUI
                                     if (MessageBox.Show("New version found: " + latestRelease.Name + "\nCurrent Version: " + CURRENTVERSION + "\n\nDo you want to update it?", "Update found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         _ = Process.Start((string)jsonReal[0]["html_url"]);
-                                        JToken urlDownload;
-                                        jsonReal[0]["assets"][0].TryGetValue("browser_download_url", out urlDownload);
+                                        jsonReal[0]["assets"][0].TryGetValue("browser_download_url", out JToken urlDownload);
                                         UpdateForm update = new UpdateForm(urlDownload.ToString());
                                         _ = update.ShowDialog();
                                     }
