@@ -28,11 +28,11 @@ namespace ATA_GUI
 
         private void buttonSetDefault_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText("-s " + ATA.CurrentDeviceSelected + " shell cmd role add-role-holder android.app.role." + comboBoxType.Text + " " + apk);
+            Clipboard.SetText("-s " + ATA.CurrentDeviceSelected.ID + " shell cmd role add-role-holder android.app.role." + comboBoxType.Text + " " + apk);
 
-            _ = ConsoleProcess.systemCommandAsync("adb -s " + ATA.CurrentDeviceSelected + " shell cmd role add-role-holder android.app.role." + comboBoxType.Text + " " + apk);
+            _ = ConsoleProcess.systemCommand("adb -s " + ATA.CurrentDeviceSelected.ID + " shell cmd role add-role-holder android.app.role." + comboBoxType.Text + " " + apk);
 
-            MainForm.MessageShowBox("Command injected", 1);
+            MainForm.MessageShowBox("Command injected", 2);
         }
     }
 }

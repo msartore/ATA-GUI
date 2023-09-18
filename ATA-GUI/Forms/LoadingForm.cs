@@ -79,7 +79,7 @@ namespace ATA_GUI
                         {
                             labelFileName.Text = x;
                             Refresh();
-                            _ = ConsoleProcess.systemCommandAsync(command + x);
+                            _ = ConsoleProcess.systemCommand(command + x);
                             ReportProgress();
                         });
                         break;
@@ -106,16 +106,16 @@ namespace ATA_GUI
                     case OperationType.Extraction:
                         if (!Directory.Exists("APKS"))
                         {
-                            _ = ConsoleProcess.systemCommandAsync("mkdir APKS");
+                            _ = ConsoleProcess.systemCommand("mkdir APKS");
                         }
-                        array.ForEach(async x =>
+                        array.ForEach(x =>
                         {
                             labelFileName.Text = x;
                             Refresh();
-                            string[] pathList = (await ConsoleProcess.systemCommandAsync("adb.exe " + "-s " + deviceSerial + " shell pm path " + x)).Split('\n').Where(it => it.Contains("package")).ToArray();
+                            string[] pathList = ConsoleProcess.systemCommand("adb.exe " + "-s " + deviceSerial + " shell pm path " + x).Split('\n').Where(it => it.Contains("package")).ToArray();
                             foreach (string path in pathList)
                             {
-                                _ = ConsoleProcess.systemCommandAsync("adb.exe " + "-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "\\APKS\\" + x + "_" + path.Substring(path.LastIndexOf('/') + 1));
+                                _ = ConsoleProcess.systemCommand("adb.exe " + "-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "\\APKS\\" + x + "_" + path.Substring(path.LastIndexOf('/') + 1));
                             }
                             ReportProgress();
                         });

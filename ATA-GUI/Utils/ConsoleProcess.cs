@@ -65,22 +65,27 @@ namespace ATA_GUI.Utils
             return ret.ToString().Trim();
         }
 
-        public static async Task<string> systemCommandAsync(string command)
+        public static string systemCommand(string command)
         {
-            return await Task.Run(() =>
+            Process cmd = new Process();
+            cmd.StartInfo.FileName = "cmd.exe";
+            cmd.StartInfo.RedirectStandardInput = true;
+            cmd.StartInfo.RedirectStandardOutput = true;
+            cmd.StartInfo.CreateNoWindow = true;
+            cmd.StartInfo.UseShellExecute = false;
+            _ = cmd.Start();
+            cmd.StandardInput.WriteLine(command);
+            cmd.StandardInput.Flush();
+            cmd.StandardInput.Close();
+            cmd.WaitForExit();
+            return cmd.StandardOutput.ReadToEnd();
+        }
+
+        public static Task<string> systemCommandAsync(string command)
+        {
+            return Task.Run(() =>
             {
-                Process cmd = new Process();
-                cmd.StartInfo.FileName = "cmd.exe";
-                cmd.StartInfo.RedirectStandardInput = true;
-                cmd.StartInfo.RedirectStandardOutput = true;
-                cmd.StartInfo.CreateNoWindow = true;
-                cmd.StartInfo.UseShellExecute = false;
-                _ = cmd.Start();
-                cmd.StandardInput.WriteLine(command);
-                cmd.StandardInput.Flush();
-                cmd.StandardInput.Close();
-                cmd.WaitForExit();
-                return cmd.StandardOutput.ReadToEnd();
+                return systemCommand(command);
             });
         }
     }

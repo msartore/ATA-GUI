@@ -9,7 +9,7 @@ namespace ATA_GUI.Classes
 {
     internal class ATA
     {
-        public static readonly string CURRENTVERSION = "v2.5.4";
+        public static readonly string CURRENTVERSION = "v2.6.0";
         public static readonly string IPFileName = "IPList.txt";
 
         public ATA()
@@ -20,13 +20,13 @@ namespace ATA_GUI.Classes
         }
 
         public HashSet<string> IPList { get; } = new HashSet<string>();
-        public List<Tuple<string, string>> Devices { get; } = new List<Tuple<string, string>>();
+        public List<DeviceData> Devices { get; } = new List<DeviceData>();
         public string FILEADB { get; }
 
         public bool TextboxClear { get; set; }
         public bool IsConnected { get; set; }
         public bool IsMaximize { get; set; }
-        public static string CurrentDeviceSelected { get; set; } = string.Empty;
+        public static DeviceData CurrentDeviceSelected { get; set; }
 
         public static async Task<bool> CheckVersion(Func<Release, Release, dynamic, bool> command)
         {

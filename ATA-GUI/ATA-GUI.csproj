@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\ATA.cs" />
+    <Compile Include="Classes\DeviceData.cs" />
     <Compile Include="Forms\DefaultApp.cs">
       <SubType>Form</SubType>
     </Compile>

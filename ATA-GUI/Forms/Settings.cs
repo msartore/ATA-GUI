@@ -120,7 +120,7 @@ namespace ATA_GUI
             string[] programs = { "adb.exe", "fastboot.exe", "AdbWinUsbApi.dll", "AdbWinApi.dll" };
             bool nFound = false;
 
-            _ = ConsoleProcess.systemCommandAsync("taskkill /f /im " + programs[0]);
+            _ = ConsoleProcess.systemCommand("taskkill /f /im " + programs[0]);
 
             foreach (string program in programs)
             {

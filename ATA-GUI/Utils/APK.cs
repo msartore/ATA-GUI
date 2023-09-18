@@ -19,7 +19,7 @@ namespace ATA_GUI.Utils
                     if (File.Exists(fileLoc))
                     {
                         log.Invoke(fileLoc.Substring(fileLoc.LastIndexOf('\\') + 1));
-                        r.Add(ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected + " install -r --user " + user + " \"" + fileLoc + "\"", 0).Contains("Success"));
+                        r.Add(ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " install -r --user " + user + " \"" + fileLoc + "\"", 0).Contains("Success"));
                     }
                 }
             }
