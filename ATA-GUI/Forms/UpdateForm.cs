@@ -33,11 +33,11 @@ namespace ATA_GUI
                     {
                         using (StreamWriter sw = File.CreateText(ataUFileName))
                         {
-                            sw.WriteLine("@echo off\nTITLE ATA-GUI Updater\ntaskkill /f /im \"ATA-GUI.exe\"\ndel \"ATA-GUI.exe\"\ndel ATAUpdate.zip\ncd ATAUpdate\ndel ATAUpdater.bat\nmove /y * ../\ncd ..\nrmdir ATAUpdate\nstart \"\" \"ATA-GUI.exe\"\nexit");
+                            sw.WriteLine("@echo off\nTITLE ATA-GUI Updater\ntaskkill /f /im \"ATA-GUI.exe\"\ndel \"ATA-GUI.exe\"\ndel ATAUpdate.zip\ncd ATAUpdate\nmove /y * \"" + Path.GetDirectoryName(Application.ExecutablePath) + "\"\ncd ..\nrmdir ATAUpdate\nstart \"\" \"ATA-GUI.exe\"\nexit");
                         }
                     }
                     labelLog.Text = "Downloading update...";
-                    _ = ConsoleProcess.systemCommand("rmdir /s /q ATAUpdate");
+                    _ = ConsoleProcess.systemCommandAsync("rmdir /s /q ATAUpdate");
                     Refresh();
                     if (!File.Exists(ataUFileName))
                     {
@@ -59,14 +59,14 @@ namespace ATA_GUI
                     using (ZipFile zip = ZipFile.Read(ataZipFileName))
                     {
                         _ = ConsoleProcess.systemCommand("mkdir ATAUpdate");
-                        zip.ExtractAll(Application.ExecutablePath.Replace("\\ATA-GUI.exe", "") + "\\ATAUpdate");
+                        zip.ExtractAll(Path.GetDirectoryName(Application.ExecutablePath) + "\\ATAUpdate");
                     }
                     reportProgress();
                     labelLog.Text = "Starting to update...";
                     Refresh();
                     labelLog.Text = "Closing App...";
                     Refresh();
-                    _ = ConsoleProcess.systemCommand("start \"\" " + ataUFileName);
+                    _ = ConsoleProcess.systemCommandAsync("start " + ataUFileName);
                     Application.Exit();
                 }
                 catch (Exception ex)
