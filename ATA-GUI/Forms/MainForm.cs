@@ -1956,6 +1956,7 @@ namespace ATA_GUI
                     LogWriteLine("Installing " + name + " ...");
                 });
             });
+            syncFun(3);
         }
 
         private void backgroundWorkerFileTransfer_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)

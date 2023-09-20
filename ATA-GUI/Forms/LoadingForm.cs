@@ -23,6 +23,8 @@ namespace ATA_GUI
             command = commandTemp;
             labelText.Text = label;
             operation = OperationType.Install;
+            Text = label.Replace(":", "");
+            Update();
         }
 
         public LoadingForm(List<string> arrayFile, string deviceSerialTmp)
@@ -32,6 +34,8 @@ namespace ATA_GUI
             labelText.Text = "Transfering file:";
             deviceSerial = deviceSerialTmp;
             operation = OperationType.Transfer;
+            Text = "Transfering";
+            Update();
         }
 
         public LoadingForm(string deviceSerialTmp, List<string> arrayApp)
@@ -41,6 +45,8 @@ namespace ATA_GUI
             labelText.Text = "Extracting file:";
             deviceSerial = deviceSerialTmp;
             operation = OperationType.Extraction;
+            Text = "Extracting";
+            Update();
         }
 
         private void LoadingForm_Shown(object sender, EventArgs e)
@@ -95,12 +101,8 @@ namespace ATA_GUI
                                 {
                                     MainForm.MessageShowBox(labelFileName.Text + " not transfered", 0);
                                 }
-                                ReportProgress();
                             }
-                            else
-                            {
-                                ReportProgress();
-                            }
+                            ReportProgress();
                         });
                         break;
                     case OperationType.Extraction:

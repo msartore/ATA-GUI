@@ -123,6 +123,9 @@
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>853, 19</value>
   </metadata>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>853, 19</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="toolStripButtonExtract.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -141,12 +144,12 @@
         ImTr68srL1wVZEdKBEZOXtvw0Ayh6omQrS9sOFQOcvKqXggRWEb3LO6nb0D+mQtBdqRE4CFovIfeWVT1
         RMjWV881TJAdKRF4qAy/fgmyI6XqiZCtr/BdREB2pL4oP/3HD07X8OdXnv1NdqRUPRGy9aW4F3PIjtTx
         yy8mjpc38pxLyLP8iYvPtd6PqnoiZOtLPAKEITs2qXoiZOtr7yEsCNmxSdUTIVtf6meS+AdQ9UTI1pe8
-        GZEhOzapeiJk60tsCcOQHZtUPRGy9dWzKSfIjk2qngjZ+grtjHzIjk2qngjZ+hr9ofpv4O0aQXZsUvXE
-        LGTr6/Qte6vnHSdAdmxS9QRaZOtrzLR/kt8yC2DfWmL5Wol93yzB3rjEZu8BKyXYI0usvQPpGFyDa7EG
-        1sKaUFvVEwb4kWLpK1V/edRYsv/g7/gl2PSiC81cNtOEzf0ybMjvu2xuxdvk4wYd4Zt9742FB/1b+Hgs
-        rsG1WANrYU2oHe7HM5gvP6FY/09jzc1jRt1Zl7+6xD2A3Gu07vyZvd35jOK8n/gQDWddfPeKewDp+9r+
-        wwt5Q2yv49fHuAfgXznr2wcXXkgMEfsAcYQXmqi1P01MLRYT+VoxMWMVE+fuFhOz94AHxUThIbCmCRyL
-        a3At1sBaWBNqYw9q91EfFb8GBv4DKkyV/w+O0HgAAAAASUVORK5CYII=
+        GZEhOzapeiJk60tsCcOQHZtUPRGy9dWzKSfIjk2qngjZ+grtjHzIjk2qngjZ+hr9YenfwNs1guzYpOqJ
+        WcjW1+lb9lbPO06A7Nik6gm0yNbXmGn/JL9lFsC+tcTytRL7vlmCvXGJzd4DVkqwR5ZYewfSMbgG12IN
+        rIU1obaqJwzwI8XSV6r+8qixZP/B3/FLsOlFF5q5bKYJm/tl2JDfd9ncirfJxw06wjf73hsLD/q38PFY
+        XINrsQbWwppQO9yPZzBffkKx/p/GmpvHjLqzLn91iXsAuddo3fkze7vzGcV5P/EhGs66+O4V9wDS97X9
+        hxfyhthex6+PcQ/Av3LWtw8uvJAYIvYB4ggvNFFrf5qYWiwm8rViYsYqJs7dLSZm7wEPionCQ2BNEzgW
+        1+BarIG1sCbUxh7U7qM+Kn4NDPwHGPaV/cndoloAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="openFileDialogAPK.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
