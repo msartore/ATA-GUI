@@ -620,32 +620,35 @@ namespace ATA_GUI
                         ata.Devices.Add(deviceData);
                     });
 
-                    if (ata.Devices.Count == 0)
+                    if (ata.Devices.Count > 0)
                     {
-                        disableEnableSystem(false);
-                        return;
+                        foreach (DeviceData device in ata.Devices)
+                        {
+                            _ = comboBoxDevices.Items.Add(device.Name);
+                        }
+
+                        comboBoxDevices.SelectedIndex = 0;
+                        ATA.CurrentDeviceSelected = ata.Devices[0];
+                        buttonSyncApp.Enabled = true;
                     }
 
-                    foreach (DeviceData device in ata.Devices)
+                    switch (ata.Devices.Count)
                     {
-                        _ = comboBoxDevices.Items.Add(device.Name);
-                    }
-
-                    comboBoxDevices.SelectedIndex = 0;
-                    ATA.CurrentDeviceSelected = ata.Devices[0];
-
-                    if (ata.Devices.Count > 1)
-                    {
-                        LogWriteLine("More than one device has been found");
-                    }
-                    else
-                    {
-                        LogWriteLine("One device has been found");
+                        case 0:
+                            disableEnableSystem(false);
+                            LogWriteLine("No device found");
+                            break;
+                        case 1:
+                            LogWriteLine("One device has been found");
+                            break;
+                        default:
+                            LogWriteLine("More than one device has been found");
+                            break;
                     }
                 }
                 else
                 {
-                    MessageShowBox("No device found", 1);
+                    MessageShowBox("Something went wrong with adb", 1);
                 }
             }
         }
@@ -1166,6 +1169,11 @@ namespace ATA_GUI
             comboBoxDevices.Enabled = true;
             buttonReloadDevicesList.Enabled = true;
 
+            if (ata.CurrentTab == "Fastboot" || ata.CurrentTab == "Recovery" || (ata.CurrentTab == "Tools" && tabControls.SelectedTab.Text != "System") || (ata.CurrentTab == "System" && tabControls.SelectedTab.Text != "Tools"))
+            {
+                buttonSyncApp.Enabled = tabControls.SelectedTab.Text == "Fastboot";
+            }
+
             if (tabControls.SelectedTab.Text != "System" && tabControls.SelectedTab.Text != "Tools")
             {
                 comboBoxDevices.Enabled = false;
@@ -1174,7 +1182,11 @@ namespace ATA_GUI
                 buttonTaskManager.Enabled = false;
                 buttonMobileScreenShare.Enabled = false;
                 disableEnableSystem(false);
+                ata.Devices.Clear();
+                comboBoxDevices.Items.Clear();
             }
+
+            ata.CurrentTab = tabControls.SelectedTab.Text;
         }
 
         private void backgroundWorkerAdbDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -1439,7 +1451,7 @@ namespace ATA_GUI
                 DialogResult dialogResult = MessageBox.Show("Do you want to kill ADB?", "Kill ADB", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    _ = ConsoleProcess.systemCommand("taskkill /f /im " + ata.FILEADB);
+                    _ = ConsoleProcess.systemCommand("adb.exe kill-server");
                 }
             }
             Application.Exit();

@@ -40,6 +40,8 @@ namespace ATA_GUI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxFilter = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.labelCCount = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -181,12 +183,32 @@ namespace ATA_GUI
             this.textBoxFilter.Size = new System.Drawing.Size(100, 20);
             this.textBoxFilter.TabIndex = 43;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 396);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 13);
+            this.label2.TabIndex = 43;
+            this.label2.Text = "Character count:";
+            // 
+            // labelCCount
+            // 
+            this.labelCCount.AutoSize = true;
+            this.labelCCount.Location = new System.Drawing.Point(98, 396);
+            this.labelCCount.Name = "labelCCount";
+            this.labelCCount.Size = new System.Drawing.Size(13, 13);
+            this.labelCCount.TabIndex = 44;
+            this.labelCCount.Text = "0";
+            // 
             // DeviceLogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(790, 448);
+            this.Controls.Add(this.labelCCount);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonKeepScrolling);
             this.Controls.Add(this.buttonCopyText);
@@ -203,6 +225,7 @@ namespace ATA_GUI
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -219,5 +242,7 @@ namespace ATA_GUI
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBoxFilter;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelCCount;
     }
 }

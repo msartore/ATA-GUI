@@ -9,7 +9,7 @@ namespace ATA_GUI.Classes
 {
     internal class ATA
     {
-        public static readonly string CURRENTVERSION = "v2.6.1";
+        public static readonly string CURRENTVERSION = "v2.7.0";
         public static readonly string IPFileName = "IPList.txt";
 
         public ATA()
@@ -26,6 +26,7 @@ namespace ATA_GUI.Classes
         public bool TextboxClear { get; set; }
         public bool IsConnected { get; set; }
         public bool IsMaximize { get; set; }
+        public string CurrentTab { get; set; }
         public static DeviceData CurrentDeviceSelected { get; set; }
 
         public static async Task<bool> CheckVersion(Func<Release, Release, dynamic, bool> command)

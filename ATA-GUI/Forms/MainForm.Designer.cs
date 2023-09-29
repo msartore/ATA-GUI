@@ -1946,6 +1946,7 @@ namespace ATA_GUI
             // 
             this.buttonSyncApp.BackColor = System.Drawing.Color.White;
             this.buttonSyncApp.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.buttonSyncApp.Enabled = false;
             this.buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonSyncApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
             this.buttonSyncApp.ForeColor = System.Drawing.Color.Black;

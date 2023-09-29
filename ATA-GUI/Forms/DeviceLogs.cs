@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ATA_GUI.Classes;
 using ATA_GUI.Utils;
@@ -12,8 +11,8 @@ namespace ATA_GUI
     {
         private readonly string currentDevice = string.Empty;
         private string line = string.Empty;
-        private readonly System.Diagnostics.Process process = new System.Diagnostics.Process();
-        private readonly System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+        private readonly Process process = new Process();
+        private readonly ProcessStartInfo startInfo = new ProcessStartInfo();
         private bool keepScrolling = true;
         private bool processBusy = false;
 
@@ -53,7 +52,7 @@ namespace ATA_GUI
             }
         }
 
-        private async void backgroundWorkerLog_DoWorkAsync(object sender, DoWorkEventArgs e)
+        private void backgroundWorkerLog_DoWorkAsync(object sender, DoWorkEventArgs e)
         {
             startInfo.Arguments = e.Argument as string;
             _ = process.Start();
@@ -64,21 +63,16 @@ namespace ATA_GUI
 
                 if (line.ToLowerInvariant().Contains(textBoxFilter.Text.ToLowerInvariant()) || string.IsNullOrEmpty(textBoxFilter.Text))
                 {
-                    try
+                    _ = Invoke((Action)delegate
                     {
-                        _ = Invoke((Action)delegate
+                        richTextBoxLog.Text += line;
+                        richTextBoxLog.SelectionStart = richTextBoxLog.TextLength;
+                        if (keepScrolling)
                         {
-                            richTextBoxLog.Text += line;
-                            richTextBoxLog.SelectionStart = richTextBoxLog.Text.Length;
-                            if (keepScrolling)
-                            {
-                                richTextBoxLog.ScrollToCaret();
-                            }
-                        });
-
-                        await Task.Delay(10);
-                    }
-                    catch { }
+                            richTextBoxLog.ScrollToCaret();
+                        }
+                        labelCCount.Text = richTextBoxLog.Text.Length.ToString();
+                    });
 
                     if (backgroundWorkerLog.CancellationPending)
                     {
@@ -107,6 +101,7 @@ namespace ATA_GUI
         private void buttonClearLog_Click(object sender, EventArgs e)
         {
             richTextBoxLog.Clear();
+            labelCCount.Text = "0";
         }
 
         private void buttonCopyText_Click(object sender, EventArgs e)
