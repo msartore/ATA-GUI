@@ -17,6 +17,7 @@ namespace ATA_GUI.Classes
             FILEADB = "adb.exe";
             IsConnected = true;
             IsMaximize = false;
+            CurrentTab = "System";
         }
 
         public HashSet<string> IPList { get; } = new HashSet<string>();
