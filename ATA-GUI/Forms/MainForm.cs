@@ -60,7 +60,7 @@ namespace ATA_GUI
             }
         }
 
-        private void buttonSyncApp_Click(object sender, EventArgs e)
+        private async void buttonSyncApp_Click(object sender, EventArgs e)
         {
             if (tabControls.SelectedTab.Name.Contains("System") || tabControls.SelectedTab.Name.Contains("Tools"))
             {
@@ -73,7 +73,7 @@ namespace ATA_GUI
                 {
                     if (ConsoleProcess.adbFastbootCommandR("devices", 1).Contains("fastboot"))
                     {
-                        string[] log = ConsoleProcess.adbFastbootCommandR("getvar all", 1).Split(' ', '\n');
+                        string[] log = (await ConsoleProcess.systemCommandAsync("fastboot getvar all")).Split(' ', '\n');
                         for (int a = 0; a < log.Count(); a++)
                         {
                             if (log[a].Contains("partition-type:userdata:"))
@@ -613,9 +613,20 @@ namespace ATA_GUI
                             deviceConnection = DeviceConnection.WIRELESS;
                         }
 
-                        deviceData = it.Contains("recovery")
-                            ? new DeviceData(name, id, DeviceMode.RECOVERY, deviceConnection)
-                            : new DeviceData(name, id, DeviceMode.SYSTEM, deviceConnection);
+                        deviceData = new DeviceData(name, id, DeviceMode.UNKNOWN, deviceConnection);
+
+                        if (it.Contains("recovery"))
+                        {
+                            deviceData.Mode = DeviceMode.RECOVERY;
+                        }
+                        else if (it.Contains("device"))
+                        {
+                            deviceData.Mode = DeviceMode.SYSTEM;
+                        }
+                        else if (it.Contains("unauthorized"))
+                        {
+                            deviceData.Mode = DeviceMode.UNAUTHORIZED;
+                        }
 
                         ata.Devices.Add(deviceData);
                     });
@@ -624,12 +635,11 @@ namespace ATA_GUI
                     {
                         foreach (DeviceData device in ata.Devices)
                         {
-                            _ = comboBoxDevices.Items.Add(device.Name);
+                            _ = comboBoxDevices.Items.Add(string.Format("{0} [{1}] [{2}]", device.Mode == DeviceMode.RECOVERY || device.Mode == DeviceMode.SYSTEM ? device.Name : device.ID, device.Mode.ToString(), device.getConnectionSymbol()));
                         }
 
                         comboBoxDevices.SelectedIndex = 0;
                         ATA.CurrentDeviceSelected = ata.Devices[0];
-                        buttonSyncApp.Enabled = true;
                     }
 
                     switch (ata.Devices.Count)
@@ -1143,6 +1153,10 @@ namespace ATA_GUI
         private void comboBoxDevices_SelectedIndexChanged(object sender, EventArgs e)
         {
             ATA.CurrentDeviceSelected = ata.Devices[comboBoxDevices.SelectedIndex];
+
+            buttonSyncApp.Enabled = ATA.CurrentDeviceSelected.Mode == DeviceMode.SYSTEM;
+
+            disableEnableSystem(false);
         }
 
         private void buttonReloadDevicesList_Click(object sender, EventArgs e)

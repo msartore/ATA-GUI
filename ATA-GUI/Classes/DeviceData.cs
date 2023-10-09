@@ -12,17 +12,24 @@
 
         public string Name { get; }
 
-        public DeviceMode Mode { get; }
+        public DeviceMode Mode { get; set; }
 
         public DeviceConnection Connection { get; }
 
         public string ID { get; }
+
+        public char getConnectionSymbol()
+        {
+            return Connection.ToString()[0];
+        }
     }
 
     internal enum DeviceMode
     {
         RECOVERY,
-        SYSTEM
+        SYSTEM,
+        UNAUTHORIZED,
+        UNKNOWN
     }
 
     internal enum DeviceConnection
