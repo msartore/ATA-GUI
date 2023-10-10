@@ -1367,7 +1367,7 @@ namespace ATA_GUI
         {
             if (File.Exists("scrcpy.exe"))
             {
-                _ = ConsoleProcess.systemCommandAsync("start scrcpy");
+                _ = ConsoleProcess.systemCommandAsync("start scrcpy -s " + ATA.CurrentDeviceSelected.ID);
             }
             else
             {
