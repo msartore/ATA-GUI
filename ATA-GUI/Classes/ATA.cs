@@ -9,7 +9,7 @@ namespace ATA_GUI.Classes
 {
     internal class ATA
     {
-        public static readonly string CURRENTVERSION = "v2.7.1";
+        public static readonly string CURRENTVERSION = "v2.8.0";
         public static readonly string IPFileName = "IPList.txt";
 
         public ATA()
@@ -17,7 +17,7 @@ namespace ATA_GUI.Classes
             FILEADB = "adb.exe";
             IsConnected = true;
             IsMaximize = false;
-            CurrentTab = "System";
+            CurrentTab = Tab.SYSTEM;
         }
 
         public HashSet<string> IPList { get; } = new HashSet<string>();
@@ -27,7 +27,7 @@ namespace ATA_GUI.Classes
         public bool TextboxClear { get; set; }
         public bool IsConnected { get; set; }
         public bool IsMaximize { get; set; }
-        public string CurrentTab { get; set; }
+        public Tab CurrentTab { get; private set; }
         public static DeviceData CurrentDeviceSelected { get; set; }
 
         public static async Task<bool> CheckVersion(Func<Release, Release, dynamic, bool> command)
@@ -54,5 +54,33 @@ namespace ATA_GUI.Classes
 
             return true;
         }
+
+        public void setCurrentTab(string currentTab)
+        {
+            switch (currentTab.ToLowerInvariant())
+            {
+                case "system":
+                case "tools":
+                    CurrentTab = Tab.SYSTEM;
+                    break;
+                case "recovery":
+                    CurrentTab = Tab.RECOVERY;
+                    break;
+                case "fastboot":
+                    CurrentTab = Tab.FASTBOOT;
+                    break;
+                default:
+                    CurrentTab = Tab.UNKNOWN;
+                    break;
+            }
+        }
+    }
+
+    internal enum Tab
+    {
+        SYSTEM,
+        FASTBOOT,
+        RECOVERY,
+        UNKNOWN
     }
 }

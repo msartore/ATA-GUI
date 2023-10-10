@@ -60,43 +60,35 @@ namespace ATA_GUI
             }
         }
 
-        private async void buttonSyncApp_Click(object sender, EventArgs e)
+        private void buttonSyncApp_Click(object sender, EventArgs e)
         {
-            if (tabControls.SelectedTab.Name.Contains("System") || tabControls.SelectedTab.Name.Contains("Tools"))
+            if (ata.CurrentTab == Tab.SYSTEM)
             {
                 syncFun(3);
                 return;
             }
-            if (tabControls.SelectedTab.Name.Contains("Fastboot"))
+            if (ata.CurrentTab == Tab.FASTBOOT)
             {
                 if (checkAdbFastboot(false))
                 {
-                    if (ConsoleProcess.adbFastbootCommandR("devices", 1).Contains("fastboot"))
+                    string[] log = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("getvar all"), 1).Split(' ', '\n');
+                    for (int a = 0; a < log.Count(); a++)
                     {
-                        string[] log = (await ConsoleProcess.systemCommandAsync("fastboot getvar all")).Split(' ', '\n');
-                        for (int a = 0; a < log.Count(); a++)
+                        if (log[a].Contains("partition-type:userdata:"))
                         {
-                            if (log[a].Contains("partition-type:userdata:"))
-                            {
-                                labelUDT.Text = log[a].Substring("partition-type:userdata:".Length);
-                            }
-                            else if (log[a].Contains("partition-type:cache:"))
-                            {
-                                labelCDT.Text = log[a].Substring("partition-type:cache:".Length);
-                            }
-                            else if (log[a].Contains("unlocked:"))
-                            {
-                                labelBootloaderStatus.Text = log[a].Contains("yes") ? "Yes" : "No";
-                            }
+                            labelUDT.Text = log[a].Substring("partition-type:userdata:".Length);
                         }
-                        panelFastboot.Enabled = true;
-                        LogWriteLine("Device found!");
+                        else if (log[a].Contains("partition-type:cache:"))
+                        {
+                            labelCDT.Text = log[a].Substring("partition-type:cache:".Length);
+                        }
+                        else if (log[a].Contains("unlocked:"))
+                        {
+                            labelBootloaderStatus.Text = log[a].Contains("yes") ? "Yes" : "No";
+                        }
                     }
-                    else
-                    {
-                        MessageShowBox("Device not found!", 0);
-                        panelFastboot.Enabled = false;
-                    }
+                    panelFastboot.Enabled = true;
+                    LogWriteLine("Device found!");
                 }
                 else
                 {
@@ -105,6 +97,16 @@ namespace ATA_GUI
                 return;
             }
             MessageShowBox("Can not sync your device in this page", 1);
+        }
+
+        public static string commandAssembler(bool isAdb, string command)
+        {
+            return string.Format("{0} -s {1} {2}", isAdb ? "adb" : "fastboot", ATA.CurrentDeviceSelected.ID, command);
+        }
+
+        public static string commandAssemblerF(string command)
+        {
+            return string.Format("-s {0} {1}", ATA.CurrentDeviceSelected.ID, command);
         }
 
         private void syncFun(object paramObj)
@@ -589,10 +591,16 @@ namespace ATA_GUI
 
         private void DevicesListUpdate()
         {
-            if (checkAdbFastboot(true))
+            deviceListExtractor(ata.CurrentTab == Tab.SYSTEM);
+        }
+
+        private void deviceListExtractor(bool isAdb)
+        {
+            List<string> devicesTmp;
+
+            if (checkAdbFastboot(isAdb))
             {
-                List<string> devicesTmp;
-                string dev = ConsoleProcess.systemCommand("adb.exe devices");
+                string dev = ConsoleProcess.adbFastbootCommandR("devices", isAdb ? 0 : 1);
 
                 LogWriteLine("Searching for devices...");
 
@@ -604,13 +612,18 @@ namespace ATA_GUI
                     devicesTmp.ForEach(it =>
                     {
                         string id = it.Split('\t')[0];
-                        string name = ConsoleProcess.adbFastbootCommandR("-s " + Regex.Replace(id, @"\s", "") + " shell getprop ro.product.model", 0);
+                        string name = "";
                         DeviceConnection deviceConnection = DeviceConnection.CABLE;
                         DeviceData deviceData;
 
-                        if (Regex.Match(id, "(\\b25[0-5]|\\b2[0-4][0-9]|\\b[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}").Success)
+                        if (isAdb)
                         {
-                            deviceConnection = DeviceConnection.WIRELESS;
+                            name = ConsoleProcess.adbFastbootCommandR("-s " + Regex.Replace(id, @"\s", "") + " shell getprop ro.product.model", 0);
+
+                            if (Regex.Match(id, "(\\b25[0-5]|\\b2[0-4][0-9]|\\b[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}").Success)
+                            {
+                                deviceConnection = DeviceConnection.WIRELESS;
+                            }
                         }
 
                         deviceData = new DeviceData(name, id, DeviceMode.UNKNOWN, deviceConnection);
@@ -626,6 +639,10 @@ namespace ATA_GUI
                         else if (it.Contains("unauthorized"))
                         {
                             deviceData.Mode = DeviceMode.UNAUTHORIZED;
+                        }
+                        else if (it.Contains("fastboot"))
+                        {
+                            deviceData.Mode = DeviceMode.FASTBOOT;
                         }
 
                         ata.Devices.Add(deviceData);
@@ -646,6 +663,7 @@ namespace ATA_GUI
                     {
                         case 0:
                             disableEnableSystem(false);
+                            panelFastboot.Enabled = false;
                             LogWriteLine("No device found");
                             break;
                         case 1:
@@ -911,7 +929,7 @@ namespace ATA_GUI
                     return;
             }
 
-            if ((log = ConsoleProcess.adbFastbootCommandR(command + textBoxDirImg.Text, 1)) != null)
+            if ((log = ConsoleProcess.adbFastbootCommandR(commandAssemblerF(command + textBoxDirImg.Text), 1)) != null)
             {
                 LogWriteLine(log);
             }
@@ -930,7 +948,9 @@ namespace ATA_GUI
 
         private void buttonRebootToSystem_Click(object sender, EventArgs e)
         {
-            LogWriteLine(ConsoleProcess.adbFastbootCommandR("reboot", 1));
+            LogWriteLine(ConsoleProcess.adbFastbootCommandR(commandAssemblerF("reboot"), 1));
+            Thread.Sleep(1000);
+            reloadList();
         }
 
         private void buttonHardReset_Click(object sender, EventArgs e)
@@ -941,7 +961,7 @@ namespace ATA_GUI
                 if (checkAdbFastboot(false))
                 {
                     LogWriteLine("Erasing process started...");
-                    _ = ConsoleProcess.systemCommand("fastboot erase userdata && fastboot erase cache");
+                    _ = ConsoleProcess.systemCommand(commandAssembler(false, "fastboot erase userdata && fastboot erase cache")); ;
                     LogWriteLine("Erasing process finished!!");
                 }
             }
@@ -956,9 +976,9 @@ namespace ATA_GUI
 
         private void buttonRebootRecovery_Click(object sender, EventArgs e)
         {
-            LogWriteLine("Rebooting smartphone...");
-            _ = ConsoleProcess.systemCommand("fastboot reboot recovery");
-            LogWriteLine("Smartphone rebooted");
+            LogWriteLine(ConsoleProcess.adbFastbootCommandR(commandAssemblerF("reboot recovery"), 1));
+            Thread.Sleep(1000);
+            reloadList();
         }
 
         private void buttonBootloaderMenu_Click(object sender, EventArgs e)
@@ -1154,7 +1174,7 @@ namespace ATA_GUI
         {
             ATA.CurrentDeviceSelected = ata.Devices[comboBoxDevices.SelectedIndex];
 
-            buttonSyncApp.Enabled = ATA.CurrentDeviceSelected.Mode == DeviceMode.SYSTEM;
+            buttonSyncApp.Enabled = ATA.CurrentDeviceSelected.Mode != DeviceMode.RECOVERY;
 
             disableEnableSystem(false);
         }
@@ -1183,15 +1203,9 @@ namespace ATA_GUI
             comboBoxDevices.Enabled = true;
             buttonReloadDevicesList.Enabled = true;
 
-            if (ata.CurrentTab == "Fastboot" || ata.CurrentTab == "Recovery" || (ata.CurrentTab == "Tools" && tabControls.SelectedTab.Text != "System") || (ata.CurrentTab == "System" && tabControls.SelectedTab.Text != "Tools"))
+            if ((ata.CurrentTab == Tab.SYSTEM && tabControls.SelectedTab.Text != "System" && ata.CurrentTab == Tab.SYSTEM && tabControls.SelectedTab.Text != "Tools") || ata.CurrentTab == Tab.FASTBOOT)
             {
-                buttonSyncApp.Enabled = tabControls.SelectedTab.Text == "Fastboot";
-            }
-
-            if (tabControls.SelectedTab.Text != "System" && tabControls.SelectedTab.Text != "Tools")
-            {
-                comboBoxDevices.Enabled = false;
-                buttonReloadDevicesList.Enabled = false;
+                buttonSyncApp.Enabled = false;
                 buttonDeviceLogs.Enabled = false;
                 buttonTaskManager.Enabled = false;
                 buttonMobileScreenShare.Enabled = false;
@@ -1200,7 +1214,10 @@ namespace ATA_GUI
                 comboBoxDevices.Items.Clear();
             }
 
-            ata.CurrentTab = tabControls.SelectedTab.Text;
+            ata.setCurrentTab(tabControls.SelectedTab.Text);
+
+            comboBoxDevices.Enabled = ata.CurrentTab != Tab.RECOVERY;
+            buttonReloadDevicesList.Enabled = ata.CurrentTab != Tab.RECOVERY;
         }
 
         private void backgroundWorkerAdbDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -1378,7 +1395,7 @@ namespace ATA_GUI
             switch (scrcpyError.DialogResult)
             {
                 case DialogResult.Yes:
-                    LogWriteLine("Downloading scrcpy...");
+                    LogWriteLine("downloading scrcpy...");
                     using (WebClient client = new WebClient())
                     {
                         try
@@ -1402,7 +1419,7 @@ namespace ATA_GUI
                                         File.Copy(item, Path.GetDirectoryName(Application.ExecutablePath) + "\\" + name, false);
                                     }
                                 }
-                                LogWriteLine("scrcpy Extracted!");
+                                LogWriteLine("scrcpy extracted!");
                                 LogWriteLine("Getting things ready...");
                                 Directory.Delete(directory, true);
                                 File.Delete("scrcpy.zip");

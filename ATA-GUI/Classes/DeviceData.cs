@@ -29,7 +29,8 @@
         RECOVERY,
         SYSTEM,
         UNAUTHORIZED,
-        UNKNOWN
+        UNKNOWN,
+        FASTBOOT
     }
 
     internal enum DeviceConnection

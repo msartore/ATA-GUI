@@ -40,7 +40,6 @@ namespace ATA_GUI.Utils
                         {
                             _ = ret.Append(line);
                         }
-                        process.Close();
                     }
                     break;
                 case 1:
@@ -51,17 +50,20 @@ namespace ATA_GUI.Utils
                     {
                         startInfo.Arguments = s;
                         _ = process.Start();
+                        line = process.StandardError.ReadToEnd();
+                        if (line.Length > 0) { _ = ret.Append(line); }
+
                         line = process.StandardOutput.ReadToEnd();
                         if (line.Length > 0)
                         {
                             _ = ret.Append(line);
                         }
-                        process.Close();
                     }
                     break;
                 default:
                     break;
             }
+            process.Close();
             return ret.ToString().Trim();
         }
 
@@ -77,8 +79,10 @@ namespace ATA_GUI.Utils
             cmd.StandardInput.WriteLine(command);
             cmd.StandardInput.Flush();
             cmd.StandardInput.Close();
+            string result = cmd.StandardOutput.ReadToEnd();
             cmd.WaitForExit();
-            return cmd.StandardOutput.ReadToEnd();
+            cmd.Close();
+            return result;
         }
 
         public static Task<string> systemCommandAsync(string command)
