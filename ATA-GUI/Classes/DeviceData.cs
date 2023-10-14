@@ -22,6 +22,11 @@
         {
             return Connection.ToString()[0];
         }
+
+        public bool sameMode(Tab tab)
+        {
+            return (Mode == DeviceMode.RECOVERY && tab == Tab.RECOVERY) || (Mode == DeviceMode.FASTBOOT && tab == Tab.FASTBOOT) || (Mode == DeviceMode.SYSTEM && tab == Tab.SYSTEM) || (Mode == DeviceMode.SIDELOAD && tab == Tab.RECOVERY);
+        }
     }
 
     internal enum DeviceMode
@@ -29,6 +34,7 @@
         RECOVERY,
         SYSTEM,
         UNAUTHORIZED,
+        SIDELOAD,
         UNKNOWN,
         FASTBOOT
     }

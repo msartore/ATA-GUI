@@ -135,10 +135,15 @@ namespace ATA_GUI
             this.radioButtonBootloader = new System.Windows.Forms.RadioButton();
             this.radioButtonRadio = new System.Windows.Forms.RadioButton();
             this.tabPageRecovery = new System.Windows.Forms.TabPage();
-            this.buttonBrowseFile = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.buttonFlashZip = new System.Windows.Forms.Button();
+            this.panelRecovery = new System.Windows.Forms.Panel();
+            this.groupBoxRecoveryRM = new System.Windows.Forms.GroupBox();
+            this.buttonrr_ = new System.Windows.Forms.Button();
+            this.buttonrf_ = new System.Windows.Forms.Button();
+            this.buttonrs_ = new System.Windows.Forms.Button();
+            this.groupBoxFlash = new System.Windows.Forms.GroupBox();
             this.textBoxDirFile = new System.Windows.Forms.TextBox();
+            this.buttonFlashZip = new System.Windows.Forms.Button();
+            this.buttonBrowseFile = new System.Windows.Forms.Button();
             this.tabPageTools = new System.Windows.Forms.TabPage();
             this.groupBoxTextInject = new System.Windows.Forms.GroupBox();
             this.buttonClearTextSend = new System.Windows.Forms.Button();
@@ -234,6 +239,9 @@ namespace ATA_GUI
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabPageRecovery.SuspendLayout();
+            this.panelRecovery.SuspendLayout();
+            this.groupBoxRecoveryRM.SuspendLayout();
+            this.groupBoxFlash.SuspendLayout();
             this.tabPageTools.SuspendLayout();
             this.groupBoxTextInject.SuspendLayout();
             this.groupBoxFreeRotation.SuspendLayout();
@@ -1065,7 +1073,7 @@ namespace ATA_GUI
             this.panelFastboot.Controls.Add(this.groupBox4);
             this.panelFastboot.Location = new System.Drawing.Point(0, 3);
             this.panelFastboot.Name = "panelFastboot";
-            this.panelFastboot.Size = new System.Drawing.Size(819, 285);
+            this.panelFastboot.Size = new System.Drawing.Size(890, 285);
             this.panelFastboot.TabIndex = 49;
             // 
             // buttonBootloaderMenu
@@ -1108,7 +1116,7 @@ namespace ATA_GUI
             this.groupBox5.Controls.Add(this.label8);
             this.groupBox5.Location = new System.Drawing.Point(428, 6);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(385, 155);
+            this.groupBox5.Size = new System.Drawing.Size(456, 155);
             this.groupBox5.TabIndex = 51;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Device Info";
@@ -1346,10 +1354,7 @@ namespace ATA_GUI
             // 
             // tabPageRecovery
             // 
-            this.tabPageRecovery.Controls.Add(this.buttonBrowseFile);
-            this.tabPageRecovery.Controls.Add(this.label6);
-            this.tabPageRecovery.Controls.Add(this.buttonFlashZip);
-            this.tabPageRecovery.Controls.Add(this.textBoxDirFile);
+            this.tabPageRecovery.Controls.Add(this.panelRecovery);
             this.tabPageRecovery.Location = new System.Drawing.Point(4, 22);
             this.tabPageRecovery.Name = "tabPageRecovery";
             this.tabPageRecovery.Size = new System.Drawing.Size(893, 295);
@@ -1357,32 +1362,81 @@ namespace ATA_GUI
             this.tabPageRecovery.Text = "Recovery";
             this.tabPageRecovery.UseVisualStyleBackColor = true;
             // 
-            // buttonBrowseFile
+            // panelRecovery
             // 
-            this.buttonBrowseFile.Location = new System.Drawing.Point(535, 105);
-            this.buttonBrowseFile.Name = "buttonBrowseFile";
-            this.buttonBrowseFile.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowseFile.TabIndex = 36;
-            this.buttonBrowseFile.Text = "Browse file";
-            this.buttonBrowseFile.UseVisualStyleBackColor = true;
-            this.buttonBrowseFile.Click += new System.EventHandler(this.buttonBrowseFile_Click);
+            this.panelRecovery.Controls.Add(this.groupBoxRecoveryRM);
+            this.panelRecovery.Controls.Add(this.groupBoxFlash);
+            this.panelRecovery.Location = new System.Drawing.Point(0, 3);
+            this.panelRecovery.Name = "panelRecovery";
+            this.panelRecovery.Size = new System.Drawing.Size(890, 289);
+            this.panelRecovery.TabIndex = 37;
             // 
-            // label6
+            // groupBoxRecoveryRM
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Red;
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(270, 73);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(279, 13);
-            this.label6.TabIndex = 35;
-            this.label6.Text = "YOUR SMARTPHONE MUST BE IN RECOVERY MODE";
+            this.groupBoxRecoveryRM.Controls.Add(this.buttonrr_);
+            this.groupBoxRecoveryRM.Controls.Add(this.buttonrf_);
+            this.groupBoxRecoveryRM.Controls.Add(this.buttonrs_);
+            this.groupBoxRecoveryRM.Location = new System.Drawing.Point(676, 15);
+            this.groupBoxRecoveryRM.Name = "groupBoxRecoveryRM";
+            this.groupBoxRecoveryRM.Size = new System.Drawing.Size(200, 260);
+            this.groupBoxRecoveryRM.TabIndex = 41;
+            this.groupBoxRecoveryRM.TabStop = false;
+            this.groupBoxRecoveryRM.Text = "Reboot menu";
+            // 
+            // buttonrr_
+            // 
+            this.buttonrr_.Location = new System.Drawing.Point(45, 89);
+            this.buttonrr_.Name = "buttonrr_";
+            this.buttonrr_.Size = new System.Drawing.Size(111, 23);
+            this.buttonrr_.TabIndex = 39;
+            this.buttonrr_.Text = "Reboot recovery";
+            this.buttonrr_.UseVisualStyleBackColor = true;
+            this.buttonrr_.Click += new System.EventHandler(this.buttonrr__Click);
+            // 
+            // buttonrf_
+            // 
+            this.buttonrf_.Location = new System.Drawing.Point(45, 147);
+            this.buttonrf_.Name = "buttonrf_";
+            this.buttonrf_.Size = new System.Drawing.Size(111, 23);
+            this.buttonrf_.TabIndex = 37;
+            this.buttonrf_.Text = "Reboot into fastboot";
+            this.buttonrf_.UseVisualStyleBackColor = true;
+            this.buttonrf_.Click += new System.EventHandler(this.buttonrf__Click);
+            // 
+            // buttonrs_
+            // 
+            this.buttonrs_.Location = new System.Drawing.Point(45, 118);
+            this.buttonrs_.Name = "buttonrs_";
+            this.buttonrs_.Size = new System.Drawing.Size(111, 23);
+            this.buttonrs_.TabIndex = 38;
+            this.buttonrs_.Text = "Reboot into system";
+            this.buttonrs_.UseVisualStyleBackColor = true;
+            this.buttonrs_.Click += new System.EventHandler(this.buttonrs__Click);
+            // 
+            // groupBoxFlash
+            // 
+            this.groupBoxFlash.Controls.Add(this.textBoxDirFile);
+            this.groupBoxFlash.Controls.Add(this.buttonFlashZip);
+            this.groupBoxFlash.Controls.Add(this.buttonBrowseFile);
+            this.groupBoxFlash.Location = new System.Drawing.Point(12, 15);
+            this.groupBoxFlash.Name = "groupBoxFlash";
+            this.groupBoxFlash.Size = new System.Drawing.Size(658, 260);
+            this.groupBoxFlash.TabIndex = 40;
+            this.groupBoxFlash.TabStop = false;
+            this.groupBoxFlash.Text = "Flash menu";
+            // 
+            // textBoxDirFile
+            // 
+            this.textBoxDirFile.Location = new System.Drawing.Point(175, 109);
+            this.textBoxDirFile.Name = "textBoxDirFile";
+            this.textBoxDirFile.Size = new System.Drawing.Size(245, 20);
+            this.textBoxDirFile.TabIndex = 33;
             // 
             // buttonFlashZip
             // 
             this.buttonFlashZip.BackColor = System.Drawing.Color.White;
             this.buttonFlashZip.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonFlashZip.Location = new System.Drawing.Point(535, 134);
+            this.buttonFlashZip.Location = new System.Drawing.Point(426, 136);
             this.buttonFlashZip.Name = "buttonFlashZip";
             this.buttonFlashZip.Size = new System.Drawing.Size(75, 23);
             this.buttonFlashZip.TabIndex = 34;
@@ -1390,12 +1444,15 @@ namespace ATA_GUI
             this.buttonFlashZip.UseVisualStyleBackColor = false;
             this.buttonFlashZip.Click += new System.EventHandler(this.buttonFlashZip_Click);
             // 
-            // textBoxDirFile
+            // buttonBrowseFile
             // 
-            this.textBoxDirFile.Location = new System.Drawing.Point(284, 106);
-            this.textBoxDirFile.Name = "textBoxDirFile";
-            this.textBoxDirFile.Size = new System.Drawing.Size(245, 20);
-            this.textBoxDirFile.TabIndex = 33;
+            this.buttonBrowseFile.Location = new System.Drawing.Point(426, 107);
+            this.buttonBrowseFile.Name = "buttonBrowseFile";
+            this.buttonBrowseFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseFile.TabIndex = 36;
+            this.buttonBrowseFile.Text = "Browse file";
+            this.buttonBrowseFile.UseVisualStyleBackColor = true;
+            this.buttonBrowseFile.Click += new System.EventHandler(this.buttonBrowseFile_Click);
             // 
             // tabPageTools
             // 
@@ -2174,7 +2231,10 @@ namespace ATA_GUI
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.tabPageRecovery.ResumeLayout(false);
-            this.tabPageRecovery.PerformLayout();
+            this.panelRecovery.ResumeLayout(false);
+            this.groupBoxRecoveryRM.ResumeLayout(false);
+            this.groupBoxFlash.ResumeLayout(false);
+            this.groupBoxFlash.PerformLayout();
             this.tabPageTools.ResumeLayout(false);
             this.groupBoxTextInject.ResumeLayout(false);
             this.groupBoxFreeRotation.ResumeLayout(false);
@@ -2300,7 +2360,6 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripButton toolStripButtonBloatwareDetecter;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripButton toolStripButtonRestoreApp;
         private System.Windows.Forms.ToolStripMenuItem uninstalledAppToolStripMenuItem;
@@ -2385,6 +2444,12 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonBrowseFile;
         private System.ComponentModel.BackgroundWorker backgroundWorkerAPKinstall;
         private System.ComponentModel.BackgroundWorker backgroundWorkerFileTransfer;
+        private System.Windows.Forms.Panel panelRecovery;
+        private System.Windows.Forms.Button buttonrf_;
+        private System.Windows.Forms.Button buttonrr_;
+        private System.Windows.Forms.Button buttonrs_;
+        private System.Windows.Forms.GroupBox groupBoxRecoveryRM;
+        private System.Windows.Forms.GroupBox groupBoxFlash;
     }
 }
 

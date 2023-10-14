@@ -62,41 +62,54 @@ namespace ATA_GUI
 
         private void buttonSyncApp_Click(object sender, EventArgs e)
         {
-            if (ata.CurrentTab == Tab.SYSTEM)
+            switch (ata.CurrentTab)
             {
-                syncFun(3);
-                return;
-            }
-            if (ata.CurrentTab == Tab.FASTBOOT)
-            {
-                if (checkAdbFastboot(false))
-                {
-                    string[] log = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("getvar all"), 1).Split(' ', '\n');
-                    for (int a = 0; a < log.Count(); a++)
+                case Tab.SYSTEM:
+                    syncFun(3);
+                    break;
+                case Tab.FASTBOOT:
+                    if (checkAdbFastboot(false))
                     {
-                        if (log[a].Contains("partition-type:userdata:"))
+                        string[] log = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("getvar all"), 1).Split(' ', '\n');
+                        for (int a = 0; a < log.Count(); a++)
                         {
-                            labelUDT.Text = log[a].Substring("partition-type:userdata:".Length);
+                            if (log[a].Contains("partition-type:userdata:"))
+                            {
+                                labelUDT.Text = log[a].Substring("partition-type:userdata:".Length);
+                            }
+                            else if (log[a].Contains("partition-type:cache:"))
+                            {
+                                labelCDT.Text = log[a].Substring("partition-type:cache:".Length);
+                            }
+                            else if (log[a].Contains("unlocked:"))
+                            {
+                                labelBootloaderStatus.Text = log[a].Contains("yes") ? "Yes" : "No";
+                            }
                         }
-                        else if (log[a].Contains("partition-type:cache:"))
-                        {
-                            labelCDT.Text = log[a].Substring("partition-type:cache:".Length);
-                        }
-                        else if (log[a].Contains("unlocked:"))
-                        {
-                            labelBootloaderStatus.Text = log[a].Contains("yes") ? "Yes" : "No";
-                        }
+                        panelFastboot.Enabled = true;
+                        LogWriteLine("Info extracted!");
                     }
-                    panelFastboot.Enabled = true;
-                    LogWriteLine("Device found!");
-                }
-                else
-                {
-                    panelFastboot.Enabled = false;
-                }
-                return;
+                    else
+                    {
+                        panelFastboot.Enabled = false;
+                    }
+                    break;
+                case Tab.RECOVERY:
+                    if (ATA.CurrentDeviceSelected.sameMode(Tab.RECOVERY))
+                    {
+                        panelRecovery.Enabled = true;
+                        groupBoxFlash.Enabled = ATA.CurrentDeviceSelected.Mode == DeviceMode.SIDELOAD;
+                        groupBoxRecoveryRM.Enabled = ATA.CurrentDeviceSelected.Mode != DeviceMode.SIDELOAD;
+                    }
+                    else
+                    {
+                        panelRecovery.Enabled = false;
+                    }
+                    break;
+                default:
+                    MessageShowBox("Can not sync your device in this page", 1);
+                    break;
             }
-            MessageShowBox("Can not sync your device in this page", 1);
         }
 
         public static string commandAssembler(bool isAdb, string command)
@@ -510,7 +523,7 @@ namespace ATA_GUI
         {
             if (!device.DeviceWireless || MessageBox.Show("Adb is not able to check if the device rebooted via wireless mode, do you want to continue?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _ = ConsoleProcess.systemCommand("adb -s " + ATA.CurrentDeviceSelected.ID + " reboot recovery");
+                _ = ConsoleProcess.systemCommand(commandAssembler(true, "reboot recovery"));
                 LogWriteLine("Rebooted!");
                 reloadList();
                 syncFun(3);
@@ -521,7 +534,7 @@ namespace ATA_GUI
         {
             if (!device.DeviceWireless || MessageBox.Show("Adb is not able to check if the device rebooted via wireless mode, do you want to continue?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _ = ConsoleProcess.systemCommand("adb -s " + ATA.CurrentDeviceSelected.ID + " reboot-bootloader");
+                _ = ConsoleProcess.systemCommand(commandAssembler(true, "reboot-bootloader"));
                 LogWriteLine("Rebooted!");
                 reloadList();
                 syncFun(3);
@@ -591,25 +604,26 @@ namespace ATA_GUI
 
         private void DevicesListUpdate()
         {
-            deviceListExtractor(ata.CurrentTab == Tab.SYSTEM);
+            deviceListExtractor(ata.CurrentTab != Tab.FASTBOOT);
         }
 
         private void deviceListExtractor(bool isAdb)
         {
-            List<string> devicesTmp;
+            List<string> devicesRaw;
 
             if (checkAdbFastboot(isAdb))
             {
-                string dev = ConsoleProcess.adbFastbootCommandR("devices", isAdb ? 0 : 1);
-
                 LogWriteLine("Searching for devices...");
+
+                string dev = ConsoleProcess.adbFastbootCommandR("devices", isAdb ? 0 : 1);
 
                 if (dev != null)
                 {
                     ata.Devices.Clear();
-                    devicesTmp = dev.Split('\n').Where(it => it.Contains('\t')).ToList();
+                    List<DeviceData> devices = new List<DeviceData>();
+                    devicesRaw = dev.Split('\n').Where(it => it.Contains('\t')).ToList();
 
-                    devicesTmp.ForEach(it =>
+                    devicesRaw.ForEach(it =>
                     {
                         string id = it.Split('\t')[0];
                         string name = "";
@@ -644,26 +658,34 @@ namespace ATA_GUI
                         {
                             deviceData.Mode = DeviceMode.FASTBOOT;
                         }
-
-                        ata.Devices.Add(deviceData);
-                    });
-
-                    if (ata.Devices.Count > 0)
-                    {
-                        foreach (DeviceData device in ata.Devices)
+                        else if (it.Contains("sideload"))
                         {
-                            _ = comboBoxDevices.Items.Add(string.Format("{0} [{1}] [{2}]", device.Mode == DeviceMode.RECOVERY || device.Mode == DeviceMode.SYSTEM ? device.Name : device.ID, device.Mode.ToString(), device.getConnectionSymbol()));
+                            deviceData.Mode = DeviceMode.SIDELOAD;
                         }
 
+                        devices.Add(deviceData);
+                    });
+
+                    foreach (DeviceData device in devices.Where(iterator => iterator.sameMode(ata.CurrentTab)))
+                    {
+                        _ = comboBoxDevices.Items.Add(string.Format("{0} [{1}] [{2}]", device.Mode == DeviceMode.RECOVERY || device.Mode == DeviceMode.SYSTEM ? device.Name : device.ID, device.Mode.ToString(), device.getConnectionSymbol()));
+                        ata.Devices.Add(device);
+                    }
+
+                    if (comboBoxDevices.Items.Count > 0)
+                    {
                         comboBoxDevices.SelectedIndex = 0;
                         ATA.CurrentDeviceSelected = ata.Devices[0];
                     }
+
+                    buttonSyncApp.Enabled = comboBoxDevices.Items.Count > 0;
 
                     switch (ata.Devices.Count)
                     {
                         case 0:
                             disableEnableSystem(false);
                             panelFastboot.Enabled = false;
+                            panelRecovery.Enabled = false;
                             LogWriteLine("No device found");
                             break;
                         case 1:
@@ -856,8 +878,8 @@ namespace ATA_GUI
         private void backgroundWorkerZip_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             string fileName = textBoxDirFile.Text.Substring(textBoxDirFile.Text.LastIndexOf('\\') + 1);
-            LogWriteLine("Installing " + fileName);
-            string log = ConsoleProcess.adbFastbootCommandR("sideload \"" + textBoxDirFile.Text + "\"", 0);
+            LogWriteLine("Flashing " + fileName + "...");
+            string log = ConsoleProcess.adbFastbootCommandR(commandAssemblerF(string.Format("sideload \"{0}\"", textBoxDirFile.Text)), 0);
             if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log.Trim() == "")
             {
                 LogWriteLine("[ERROR] " + fileName + " failed to flash, try restarting the sideload process or unplugging and replugging the device to resolve the issue.");
@@ -1173,10 +1195,11 @@ namespace ATA_GUI
         private void comboBoxDevices_SelectedIndexChanged(object sender, EventArgs e)
         {
             ATA.CurrentDeviceSelected = ata.Devices[comboBoxDevices.SelectedIndex];
-
-            buttonSyncApp.Enabled = ATA.CurrentDeviceSelected.Mode != DeviceMode.RECOVERY;
+            buttonSyncApp.Enabled = false;
 
             disableEnableSystem(false);
+            panelFastboot.Enabled = false;
+            panelRecovery.Enabled = false;
         }
 
         private void buttonReloadDevicesList_Click(object sender, EventArgs e)
@@ -1200,24 +1223,26 @@ namespace ATA_GUI
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-            comboBoxDevices.Enabled = true;
-            buttonReloadDevicesList.Enabled = true;
+            Tab oldTabTmp = ata.CurrentTab;
+            ata.setCurrentTab(tabControls.SelectedTab.Text);
 
-            if ((ata.CurrentTab == Tab.SYSTEM && tabControls.SelectedTab.Text != "System" && ata.CurrentTab == Tab.SYSTEM && tabControls.SelectedTab.Text != "Tools") || ata.CurrentTab == Tab.FASTBOOT)
+            if (ata.CurrentTab != oldTabTmp)
             {
-                buttonSyncApp.Enabled = false;
+                ata.Devices.Clear();
+                comboBoxDevices.Items.Clear();
                 buttonDeviceLogs.Enabled = false;
                 buttonTaskManager.Enabled = false;
                 buttonMobileScreenShare.Enabled = false;
                 disableEnableSystem(false);
-                ata.Devices.Clear();
-                comboBoxDevices.Items.Clear();
             }
 
-            ata.setCurrentTab(tabControls.SelectedTab.Text);
+            if (ata.CurrentTab != Tab.SYSTEM)
+            {
+                buttonSyncApp.Enabled = false;
+            }
 
-            comboBoxDevices.Enabled = ata.CurrentTab != Tab.RECOVERY;
-            buttonReloadDevicesList.Enabled = ata.CurrentTab != Tab.RECOVERY;
+            panelRecovery.Enabled = false;
+            panelFastboot.Enabled = false;
         }
 
         private void backgroundWorkerAdbDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -2010,6 +2035,27 @@ namespace ATA_GUI
                 LoadingForm loading = new LoadingForm(filePaths.ToList(), ATA.CurrentDeviceSelected.ID);
                 _ = loading.ShowDialog();
             }
+        }
+
+        private void buttonrr__Click(object sender, EventArgs e)
+        {
+            _ = ConsoleProcess.systemCommand(commandAssembler(true, "reboot recovery"));
+            LogWriteLine("Rebooted!");
+            reloadList();
+        }
+
+        private void buttonrs__Click(object sender, EventArgs e)
+        {
+            rebootSmartphone();
+            LogWriteLine("Rebooted!");
+            reloadList();
+        }
+
+        private void buttonrf__Click(object sender, EventArgs e)
+        {
+            _ = ConsoleProcess.systemCommand(commandAssembler(true, "reboot-bootloader"));
+            LogWriteLine("Rebooted!");
+            reloadList();
         }
     }
 }
