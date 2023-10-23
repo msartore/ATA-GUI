@@ -7,6 +7,29 @@
 ## 💡Introduction
 ATA-GUI is an app that lets you perform advanced tasks on your Android™ device with ease. You can use ATA-GUI to access and modify your device's system settings, files, and features. You can also use ATA-GUI to install, uninstall, and restore apps on your device. ATA-GUI is powered by SDK Platform Tools, which are a set of command-line tools that allow you to communicate with your device and execute various operations. ATA-GUI is the app for advanced Android™ users who want to have more control over their device.
 
+## ✨Features
+* Uninstall, data cleaning and disable/enable system/user applications without root
+* Install applications, Uploading files
+* Grant WRITE_SECURE_SETTINGS permission
+* Grant DUMP permission
+* Check for granted permissions
+* ADB over network
+* Bloatware Detector
+* REBOOT INTO THE RECOVERY, REBOOT SMARTPHONE
+* REBOOT INTO THE Fastboot/Bootloader
+* FLASH BOOT , BOOTLOADER, RADIO, RECOVERY, SYSTEM, VENDOR, CACHE, ROM
+* Erase user data and cache
+* UNLOCK BOOTLOADER (Not all device supported)
+* LOCK BOOTLOADER (Not all device supported)
+* OEM device-id
+* Get device info
+* Sideload a zip
+* Command injection
+* Text injection
+* Screen Share
+* Logcat
+* Task manager
+* Support to Multiple user device
 
 ## ATA License
 
