@@ -1195,7 +1195,6 @@ namespace ATA_GUI
         private void comboBoxDevices_SelectedIndexChanged(object sender, EventArgs e)
         {
             ATA.CurrentDeviceSelected = ata.Devices[comboBoxDevices.SelectedIndex];
-            buttonSyncApp.Enabled = false;
 
             disableEnableSystem(false);
             panelFastboot.Enabled = false;
@@ -1675,14 +1674,17 @@ namespace ATA_GUI
 
             if (ip.Length > 1)
             {
-                if (ATA.CurrentDeviceSelected.ID.Length > 0)
+                if (ATA.CurrentDeviceSelected != null)
                 {
-                    _ = ConsoleProcess.adbFastbootCommandR(" -s " + ATA.CurrentDeviceSelected.ID + " tcpip " + port, 0);
+                    if (ATA.CurrentDeviceSelected.ID.Length > 0)
+                    {
+                        _ = ConsoleProcess.adbFastbootCommandR(" -s " + ATA.CurrentDeviceSelected.ID + " tcpip " + port, 0);
+                    }
                 }
 
-                string result = ConsoleProcess.systemCommand("adb connect " + ip + ":" + port);
+                string result = ConsoleProcess.adbFastbootCommandR("connect " + ip + ":" + port, 0);
 
-                if (result.Contains("connected"))
+                if (!result.Contains("cannot connect"))
                 {
                     if (result.Contains("already"))
                     {
@@ -1715,7 +1717,7 @@ namespace ATA_GUI
                 }
                 else
                 {
-                    MessageShowBox("Failed to connect to " + ip, 0);
+                    MessageShowBox(string.Format("Failed to connect to {0}\nError message: {1}", ip, result), 0);
                 }
             }
         }
