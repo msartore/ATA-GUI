@@ -4,14 +4,11 @@ on:
   push:
     tags:
       - '*'
+  workflow_dispatch: # This allows you to trigger the workflow manually from the GitHub UI
 
 jobs:
   build:
     runs-on: windows-latest
-
-    env:
-      Solution_Name: ATA-GUI.sln
-      Configuration: Release
 
     steps:
     - name: Checkout
@@ -23,13 +20,13 @@ jobs:
         dotnet-version: '6.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore ${{ env.Solution_Name }}
+      run: dotnet restore
 
     - name: Build the solution
-      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ env.Configuration }} --no-restore
+      run: dotnet build --configuration Release --no-restore
 
     - name: Publish the application
-      run: dotnet publish ${{ env.Solution_Name }} --configuration ${{ env.Configuration }} --no-build --output ./publish
+      run: dotnet publish --configuration Release --runtime win-x64 --self-contained false --output ./publish --no-build --publish-single-file true --readytorun true
 
     - name: Zip the published output
       run: Compress-Archive -Path ./publish/* -DestinationPath ATA-GUI.zip
