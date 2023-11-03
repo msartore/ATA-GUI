@@ -67,14 +67,20 @@ namespace ATA_GUI.Utils
             return ret.ToString().Trim();
         }
 
-        public static string systemCommand(string command)
+        public static string scrcpyProcess(string arguments)
+        {
+            return systemProcess("", "scrcpy.exe", arguments);
+        }
+
+        public static string systemProcess(string command, string exe, string arguments)
         {
             Process cmd = new Process();
-            cmd.StartInfo.FileName = "cmd.exe";
+            cmd.StartInfo.FileName = exe;
             cmd.StartInfo.RedirectStandardInput = true;
             cmd.StartInfo.RedirectStandardOutput = true;
             cmd.StartInfo.CreateNoWindow = true;
             cmd.StartInfo.UseShellExecute = false;
+            cmd.StartInfo.Arguments = arguments;
             _ = cmd.Start();
             cmd.StandardInput.WriteLine(command);
             cmd.StandardInput.Flush();
@@ -83,6 +89,11 @@ namespace ATA_GUI.Utils
             cmd.WaitForExit();
             cmd.Close();
             return result;
+        }
+
+        public static string systemCommand(string command)
+        {
+            return systemProcess(command, "cmd.exe", "");
         }
 
         public static Task<string> systemCommandAsync(string command)

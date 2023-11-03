@@ -145,6 +145,8 @@ namespace ATA_GUI
             this.buttonFlashZip = new System.Windows.Forms.Button();
             this.buttonBrowseFile = new System.Windows.Forms.Button();
             this.tabPageTools = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.buttonCamera = new System.Windows.Forms.Button();
             this.groupBoxTextInject = new System.Windows.Forms.GroupBox();
             this.buttonClearTextSend = new System.Windows.Forms.Button();
             this.buttonInjectText = new System.Windows.Forms.Button();
@@ -223,6 +225,7 @@ namespace ATA_GUI
             this.richTextBoxTerminal = new System.Windows.Forms.RichTextBox();
             this.backgroundWorkerAPKinstall = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerFileTransfer = new System.ComponentModel.BackgroundWorker();
+            this.comboBoxCameraModes = new System.Windows.Forms.ComboBox();
             this.groupBoxDeviceInfo.SuspendLayout();
             this.tabControls.SuspendLayout();
             this.tabPageSystem.SuspendLayout();
@@ -243,6 +246,7 @@ namespace ATA_GUI
             this.groupBoxRecoveryRM.SuspendLayout();
             this.groupBoxFlash.SuspendLayout();
             this.tabPageTools.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBoxTextInject.SuspendLayout();
             this.groupBoxFreeRotation.SuspendLayout();
             this.contextMenuStripFilterBy.SuspendLayout();
@@ -1456,6 +1460,7 @@ namespace ATA_GUI
             // 
             // tabPageTools
             // 
+            this.tabPageTools.Controls.Add(this.groupBox3);
             this.tabPageTools.Controls.Add(this.groupBoxTextInject);
             this.tabPageTools.Controls.Add(this.groupBoxFreeRotation);
             this.tabPageTools.Location = new System.Drawing.Point(4, 22);
@@ -1465,6 +1470,27 @@ namespace ATA_GUI
             this.tabPageTools.TabIndex = 3;
             this.tabPageTools.Text = "Tools";
             this.tabPageTools.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.comboBoxCameraModes);
+            this.groupBox3.Controls.Add(this.buttonCamera);
+            this.groupBox3.Location = new System.Drawing.Point(333, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 84);
+            this.groupBox3.TabIndex = 47;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Live Camera";
+            // 
+            // buttonCamera
+            // 
+            this.buttonCamera.Image = global::ATA_GUI.Properties.Resources.camera_live;
+            this.buttonCamera.Location = new System.Drawing.Point(129, 20);
+            this.buttonCamera.Name = "buttonCamera";
+            this.buttonCamera.Size = new System.Drawing.Size(65, 56);
+            this.buttonCamera.TabIndex = 0;
+            this.buttonCamera.UseVisualStyleBackColor = true;
+            this.buttonCamera.Click += new System.EventHandler(this.buttonCamera_Click);
             // 
             // groupBoxTextInject
             // 
@@ -2182,6 +2208,18 @@ namespace ATA_GUI
             // 
             this.backgroundWorkerFileTransfer.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerFileTransfer_DoWork);
             // 
+            // comboBoxCameraModes
+            // 
+            this.comboBoxCameraModes.FormattingEnabled = true;
+            this.comboBoxCameraModes.Items.AddRange(new object[] {
+            "front",
+            "back",
+            "external"});
+            this.comboBoxCameraModes.Location = new System.Drawing.Point(6, 39);
+            this.comboBoxCameraModes.Name = "comboBoxCameraModes";
+            this.comboBoxCameraModes.Size = new System.Drawing.Size(117, 21);
+            this.comboBoxCameraModes.TabIndex = 48;
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2236,6 +2274,7 @@ namespace ATA_GUI
             this.groupBoxFlash.ResumeLayout(false);
             this.groupBoxFlash.PerformLayout();
             this.tabPageTools.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.groupBoxTextInject.ResumeLayout(false);
             this.groupBoxFreeRotation.ResumeLayout(false);
             this.contextMenuStripFilterBy.ResumeLayout(false);
@@ -2450,6 +2489,9 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonrs_;
         private System.Windows.Forms.GroupBox groupBoxRecoveryRM;
         private System.Windows.Forms.GroupBox groupBoxFlash;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button buttonCamera;
+        private System.Windows.Forms.ComboBox comboBoxCameraModes;
     }
 }
 

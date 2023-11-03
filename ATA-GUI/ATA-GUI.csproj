@@ -150,7 +150,6 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Release.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\ScrollableMessageBox.cs">
@@ -179,6 +178,7 @@
     </Compile>
     <Compile Include="Utils\APK.cs" />
     <Compile Include="Utils\ConsoleProcess.cs" />
+    <Compile Include="Utils\Version.cs" />
     <EmbeddedResource Include="Forms\DefaultApp.resx">
       <DependentUpon>DefaultApp.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,6 +259,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ATALogoGUI.ico" />
+    <None Include="Resources\camera_live.png" />
     <None Include="Resources\icons8-unlock-16.png" />
     <None Include="Resources\close-16.png" />
     <None Include="Resources\subtract-16.png" />

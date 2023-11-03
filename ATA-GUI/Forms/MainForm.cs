@@ -181,9 +181,9 @@ namespace ATA_GUI
                     {
                         _ = Invoke((Action)delegate
                         {
-                            if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && currentRelease.Pre && !latestRelease.Pre))
+                            if (Utils.Version.CompareVersions(latestRelease, currentRelease) == Utils.Version.VersionComparisonResult.GreaterThan)
                             {
-                                if (MessageBox.Show("New version found: " + latestRelease.Name + "\nCurrent Version: " + ATA.CURRENTVERSION + "\n\nDo you want to update it?", "Update found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                if (MessageBox.Show("New version found: " + latestRelease + "\nCurrent Version: " + ATA.CURRENTVERSION + "\n\nDo you want to update it?", "Update found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
                                     _ = Process.Start((string)jsonReal[0]["html_url"]);
                                     jsonReal[0]["assets"][0].TryGetValue("browser_download_url", out JToken urlDownload);
@@ -320,8 +320,6 @@ namespace ATA_GUI
                                             }
 
                                             _ = int.TryParse(ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " shell cmd display get - displays", 0), out int maxDisplay);
-
-                                            groupBoxFreeRotation.Enabled = true;
 
                                             for (int i = maxDisplay; i > -1; i--)
                                             {
@@ -485,8 +483,7 @@ namespace ATA_GUI
             groupBoxAPKMenu.Enabled = enable;
             buttonDeviceLogs.Enabled = enable;
             buttonTaskManager.Enabled = enable;
-            groupBoxFreeRotation.Enabled = enable;
-            groupBoxTextInject.Enabled = enable;
+            tabPageTools.Enabled = enable;
             groupBoxTerminal.Enabled = enable;
         }
 
@@ -584,6 +581,8 @@ namespace ATA_GUI
             }
 
             comboBoxDevices.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxCameraModes.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxCameraModes.SelectedIndex = 0;
             groupBox6.AllowDrop = true;
             groupBox2.AllowDrop = true;
             if (!File.Exists("DotNetZip.dll"))
@@ -1391,7 +1390,7 @@ namespace ATA_GUI
         {
             if (File.Exists("scrcpy.exe"))
             {
-                _ = ConsoleProcess.systemCommandAsync("start scrcpy -s " + ATA.CurrentDeviceSelected.ID);
+                _ = ConsoleProcess.scrcpyProcess("-s " + ATA.CurrentDeviceSelected.ID);
             }
             else
             {
@@ -1404,7 +1403,6 @@ namespace ATA_GUI
                     MessageShowBox(ex.Message, 0);
                 }
             }
-
         }
 
         private void backgroundWorkerExeDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -2058,6 +2056,60 @@ namespace ATA_GUI
             _ = ConsoleProcess.systemCommand(commandAssembler(true, "reboot-bootloader"));
             LogWriteLine("Rebooted!");
             reloadList();
+        }
+
+        private void buttonCamera_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists("scrcpy.exe"))
+                {
+                    string[] result = ConsoleProcess.scrcpyProcess("--version").Split(' ');
+                    foreach (string item in result)
+                    {
+                        if (item.Contains("."))
+                        {
+                            string nTmp = "";
+
+                            for (int i = 0; i < item.Length; i++)
+                            {
+                                if (char.IsDigit(item[i]))
+                                {
+                                    nTmp += item[i];
+                                    if (nTmp.Length == 2)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (nTmp.Length < 0)
+                            {
+                                continue;
+                            }
+
+                            if (int.Parse(nTmp) < 22)
+                            {
+                                MessageShowBox("scrcpy is not up-to-date, update it to use this feature", 1);
+                                return;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    _ = ConsoleProcess.systemCommandAsync(string.Format("scrcpy -s {0} --video-source=camera --camera-size=1920x1080 --camera-facing={1}", ATA.CurrentDeviceSelected.ID, comboBoxCameraModes.Text));
+                }
+                else
+                {
+                    backgroundWorkerExeDownloader.RunWorkerAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageShowBox(ex.Message, 0);
+            }
         }
     }
 }

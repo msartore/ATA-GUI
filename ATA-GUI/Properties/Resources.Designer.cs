@@ -91,12 +91,22 @@ namespace ATA_GUI.Properties {
         ///    ru.auto.ara
         ///  &lt;/basic&gt;
         ///  &lt;medium&gt;
-        ///    com.mobitv.client.tmobiletvhd
-        ///     [rest of string was truncated]&quot;;.
+        ///    com.miui.videoplayer
+        ///    com.miui. [rest of string was truncated]&quot;;.
         /// </summary>
         public static string bloatwareList {
             get {
                 return ResourceManager.GetString("bloatwareList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap camera_live {
+            get {
+                object obj = ResourceManager.GetObject("camera_live", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

@@ -37,9 +37,9 @@ namespace ATA_GUI
                             {
                                 changelog = jsonReal[0]["body"];
 
-                                if ((latestRelease.Number > currentRelease.Number) || ((latestRelease.Number == currentRelease.Number) && currentRelease.Pre && !latestRelease.Pre))
+                                if (Utils.Version.CompareVersions(latestRelease, currentRelease) == Utils.Version.VersionComparisonResult.GreaterThan)
                                 {
-                                    if (MessageBox.Show("New version found: " + latestRelease.Name + "\nCurrent Version: " + CURRENTVERSION + "\n\nDo you want to update it?", "Update found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    if (MessageBox.Show("New version found: " + latestRelease + "\nCurrent Version: " + CURRENTVERSION + "\n\nDo you want to update it?", "Update found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         _ = Process.Start((string)jsonReal[0]["html_url"]);
                                         jsonReal[0]["assets"][0].TryGetValue("browser_download_url", out JToken urlDownload);
@@ -53,9 +53,20 @@ namespace ATA_GUI
                                 }
                                 else
                                 {
-                                    labelLog.Text = currentRelease.Number == latestRelease.Number ? "ATA is up to date!" : "Cool, you are a developer :)";
+                                    switch (Utils.Version.CompareVersions(currentRelease, latestRelease))
+                                    {
+                                        case Utils.Version.VersionComparisonResult.EqualTo:
+                                            labelLog.Text = "ATA is up to date!";
+                                            break;
+                                        case Utils.Version.VersionComparisonResult.LessThan:
+                                            labelLog.Text = "ATA is not up to date!";
+                                            break;
+                                        case Utils.Version.VersionComparisonResult.GreaterThan:
+                                            labelLog.Text = "Cool, you are a developer :)";
+                                            break;
+                                    }
                                 }
-                                labelLatestRelease.Text = latestRelease.Name;
+                                labelLatestRelease.Text = latestRelease;
                                 linkLabelChangelog.Visible = true;
                             });
                             return true;
