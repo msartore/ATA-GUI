@@ -20,8 +20,8 @@ jobs:
         dotnet-version: '6.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore
-
+      run: dotnet restore --runtime win-x64 /p:PublishReadyToRun=true
+      
     - name: Build the solution
       run: dotnet build --configuration Release --no-restore
 
