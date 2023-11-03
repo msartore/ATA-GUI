@@ -12,7 +12,7 @@ namespace ATA_GUI
 
         public static void show(string text, string title)
         {
-            ScrollableMessageBox scrollableMessageBox = new ScrollableMessageBox
+            ScrollableMessageBox scrollableMessageBox = new()
             {
                 Text = title
             };

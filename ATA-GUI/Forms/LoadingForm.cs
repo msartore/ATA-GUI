@@ -73,7 +73,7 @@ namespace ATA_GUI
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            _ = Invoke((Action)delegate
+            Invoke(delegate
             {
                 progressBar1.Minimum = 1;
                 progressBar1.Step = 1;
@@ -95,7 +95,7 @@ namespace ATA_GUI
                         {
                             if (File.Exists(file))
                             {
-                                labelFileName.Text = file.Substring(file.LastIndexOf('\\') + 1);
+                                labelFileName.Text = file[(file.LastIndexOf('\\') + 1)..];
                                 Refresh();
                                 if (ConsoleProcess.adbFastbootCommandR(new[] { "-s " + deviceSerial + " push " + file + " sdcard/ATA " }, 0) == null)
                                 {
@@ -117,7 +117,7 @@ namespace ATA_GUI
                             string[] pathList = ConsoleProcess.systemCommand("adb.exe " + "-s " + deviceSerial + " shell pm path " + x).Split('\n').Where(it => it.Contains("package")).ToArray();
                             foreach (string path in pathList)
                             {
-                                _ = ConsoleProcess.systemCommand("adb.exe " + "-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "\\APKS\\" + x + "_" + path.Substring(path.LastIndexOf('/') + 1));
+                                _ = ConsoleProcess.systemCommand("adb.exe " + "-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "\\APKS\\" + x + "_" + path[(path.LastIndexOf('/') + 1)..]);
                             }
                             ReportProgress();
                         });

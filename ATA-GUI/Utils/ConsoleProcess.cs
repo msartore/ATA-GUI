@@ -14,11 +14,11 @@ namespace ATA_GUI.Utils
 
         public static string adbFastbootCommandR(string[] args, int type)
         {
-            StringBuilder ret = new StringBuilder();
+            StringBuilder ret = new();
             string line;
             Cursor.Current = Cursors.WaitCursor;
-            Process process = new Process();
-            ProcessStartInfo startInfo = new ProcessStartInfo
+            Process process = new();
+            ProcessStartInfo startInfo = new()
             {
                 UseShellExecute = false,
                 CreateNoWindow = true,
@@ -74,7 +74,7 @@ namespace ATA_GUI.Utils
 
         public static string systemProcess(string command, string exe, string arguments)
         {
-            Process cmd = new Process();
+            Process cmd = new();
             cmd.StartInfo.FileName = exe;
             cmd.StartInfo.RedirectStandardInput = true;
             cmd.StartInfo.RedirectStandardOutput = true;

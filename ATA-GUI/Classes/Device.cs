@@ -1,4 +1,4 @@
-﻿namespace ATA_GUI
+﻿namespace ATA_GUI.Classes
 {
     internal class Device
     {

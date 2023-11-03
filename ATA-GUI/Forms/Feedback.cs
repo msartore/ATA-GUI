@@ -21,7 +21,7 @@ namespace ATA_GUI
             {
                 return false;
             }
-            XmlDocument doc = new XmlDocument();
+            XmlDocument doc = new();
             doc.Load(fileName);
             XmlNode node = doc.DocumentElement.SelectSingleNode("/ATA/initialPopUpFeedback");
             return node.InnerText == "yes";
@@ -34,7 +34,7 @@ namespace ATA_GUI
                 MainForm.MessageShowBox("Error: InfoCache.xml has been deleted", 0);
                 return false;
             }
-            XmlDocument doc = new XmlDocument();
+            XmlDocument doc = new();
             doc.Load(fileName);
             XmlNode root = doc.DocumentElement;
             XmlNode myNode = root.SelectSingleNode("/ATA/initialPopUpFeedback");

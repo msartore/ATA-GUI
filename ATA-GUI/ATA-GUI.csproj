@@ -1,310 +1,49 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{21B03755-439E-47E7-B115-DACFA87D8079}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>ATA_GUI</RootNamespace>
-    <AssemblyName>ATA-GUI</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>ATALogoGUI.ico</ApplicationIcon>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="DotNetZip, Version=1.16.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNetZip.1.16.0\lib\net40\DotNetZip.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Classes\ATA.cs" />
-    <Compile Include="Classes\DeviceData.cs" />
-    <Compile Include="Forms\DefaultApp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DefaultApp.Designer.cs">
-      <DependentUpon>DefaultApp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DeviceLogs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DeviceLogs.Designer.cs">
-      <DependentUpon>DeviceLogs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Feedback.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Feedback.Designer.cs">
-      <DependentUpon>Feedback.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\BloatwareDetecter.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\BloatwareDetecter.Designer.cs">
-      <DependentUpon>BloatwareDetecter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\Device.cs" />
-    <Compile Include="Forms\About.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\About.Designer.cs">
-      <DependentUpon>About.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ExeMissingForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ExeMissingForm.Designer.cs">
-      <DependentUpon>ExeMissingForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\BootloaderMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\BootloaderMenu.Designer.cs">
-      <DependentUpon>BootloaderMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\PackageMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\PackageMenu.Designer.cs">
-      <DependentUpon>PackageMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Disclaimer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Disclaimer.Designer.cs">
-      <DependentUpon>Disclaimer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\LoadingForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\LoadingForm.Designer.cs">
-      <DependentUpon>LoadingForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\ScrollableMessageBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ScrollableMessageBox.Designer.cs">
-      <DependentUpon>ScrollableMessageBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Settings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Settings.Designer.cs">
-      <DependentUpon>Settings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UpdateForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UpdateForm.Designer.cs">
-      <DependentUpon>UpdateForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\TaskManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\TaskManager.Designer.cs">
-      <DependentUpon>TaskManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Utils\APK.cs" />
-    <Compile Include="Utils\ConsoleProcess.cs" />
-    <Compile Include="Utils\Version.cs" />
-    <EmbeddedResource Include="Forms\DefaultApp.resx">
-      <DependentUpon>DefaultApp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DeviceLogs.resx">
-      <DependentUpon>DeviceLogs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Feedback.resx">
-      <DependentUpon>Feedback.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BloatwareDetecter.resx">
-      <DependentUpon>BloatwareDetecter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\About.resx">
-      <DependentUpon>About.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ExeMissingForm.resx">
-      <DependentUpon>ExeMissingForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BootloaderMenu.resx">
-      <DependentUpon>BootloaderMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PackageMenu.resx">
-      <DependentUpon>PackageMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Disclaimer.resx">
-      <DependentUpon>Disclaimer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LoadingForm.resx">
-      <DependentUpon>LoadingForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ScrollableMessageBox.resx">
-      <DependentUpon>ScrollableMessageBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings.resx">
-      <DependentUpon>Settings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UpdateForm.resx">
-      <DependentUpon>UpdateForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TaskManager.resx">
-      <DependentUpon>TaskManager.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\-.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ATALogoGUI.ico" />
-    <None Include="Resources\camera_live.png" />
-    <None Include="Resources\icons8-unlock-16.png" />
-    <None Include="Resources\close-16.png" />
-    <None Include="Resources\subtract-16.png" />
-    <None Include="Resources\icons8-maximize-button-16.png" />
-    <None Include="Resources\icons8-restore-down-16.png" />
-    <None Include="Resources\icons8-operating-system-48.png" />
-    <None Include="Resources\icons8-search-in-browser-48.png" />
-    <None Include="Resources\icons8-get-help-48.png" />
-    <None Include="Resources\icons8-help-48.png" />
-    <None Include="Resources\icons8-privacy-policy-48.png" />
-    <None Include="Resources\fdroidlogo.png" />
-    <None Include="Resources\apkmirror.png" />
-    <None Include="Resources\playmarketicon.png" />
-    <None Include="Resources\icons8-google-48.png" />
-    <None Include="Resources\icons8-duckduckgo-48.png" />
-    <None Include="Resources\icons8-search-48.png" />
-    <None Include="Resources\icons8-bitcoin-48.png" />
-    <None Include="Resources\icons8-paypal-48.png" />
-    <None Include="Resources\icons8-folder-48.png" />
-    <None Include="Resources\icons8-box-important-48.png" />
-    <None Include="Resources\icons8-cancel-48.png" />
-    <None Include="Resources\icons8-close-window-48.png" />
-    <None Include="Resources\icons8-flash-on-48.png" />
-    <None Include="Resources\icons8-screensharing-48.png" />
-    <None Include="Resources\icons8-drag-and-drop-48.png" />
-    <None Include="Resources\icons8-refresh-48.png" />
-    <None Include="Resources\icons8-filter-48.png" />
-    <None Include="Resources\icons8-support-48.png" />
-    <None Include="Resources\icons8-remove-48.png" />
-    <None Include="Resources\icons8-restart-48.png" />
-    <None Include="Resources\icons8-services-48.png" />
-    <None Include="Resources\icons8-software-installer-48.png" />
-    <None Include="Resources\bloatwareList.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<RootNamespace>ATA_GUI</RootNamespace>
+		<UseWindowsForms>true</UseWindowsForms>
+		<GenerateAssemblyInfo>True</GenerateAssemblyInfo>
+		<ApplicationIcon>ATALogoGUI.ico</ApplicationIcon>
+
+		<!-- Versioning -->
+		<Version>3.0.0.0</Version>
+		<FileVersion>3.0.0.0</FileVersion>
+		<AssemblyVersion>3.0.0.0</AssemblyVersion>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Copyright>© 2021-2023 Massimiliano Sartore</Copyright>
+
+		<!-- Publish settings -->
+		<PublishUrl>publish\</PublishUrl>
+		<Install>true</Install>
+		<UpdateEnabled>false</UpdateEnabled>
+		<IsWebBootstrapper>false</IsWebBootstrapper>
+		<BootstrapperEnabled>true</BootstrapperEnabled>
+		<Title>ATA GUI</Title>
+		<Authors>Massimiliano Sartore</Authors>
+		<PackageIcon></PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="ATALogoGUI.ico" />
+		<BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+			<Visible>False</Visible>
+			<ProductName>Microsoft .NET Framework 4.7.2 (x86 and x64)</ProductName>
+			<Install>true</Install>
+		</BootstrapperPackage>
+		<PackageReference Include="DotNetZip" Version="1.16.0" />
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+		<PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters" Version="1.1.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="ATALogoGUI.ico">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 </Project>

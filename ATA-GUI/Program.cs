@@ -13,7 +13,7 @@ namespace ATA_GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new();
             Application.Run(mainForm);
         }
     }

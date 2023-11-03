@@ -28,7 +28,7 @@ namespace ATA_GUI
                 {
                     return false;
                 }
-                XmlDocument doc = new XmlDocument();
+                XmlDocument doc = new();
                 doc.Load(fileName);
                 XmlNode node = doc.DocumentElement.SelectSingleNode("/ATA/license");
                 if (node.InnerText == "yes")
@@ -45,14 +45,12 @@ namespace ATA_GUI
 
         private void createDiscalimer(string agreed)
         {
-            using (XmlWriter writer = XmlWriter.Create(fileName))
-            {
-                writer.WriteStartElement("ATA");
-                writer.WriteElementString("license", agreed);
-                writer.WriteElementString("initialPopUpFeedback", "yes");
-                writer.WriteEndElement();
-                writer.Flush();
-            }
+            using XmlWriter writer = XmlWriter.Create(fileName);
+            writer.WriteStartElement("ATA");
+            writer.WriteElementString("license", agreed);
+            writer.WriteElementString("initialPopUpFeedback", "yes");
+            writer.WriteEndElement();
+            writer.Flush();
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)

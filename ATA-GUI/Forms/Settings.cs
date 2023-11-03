@@ -33,7 +33,7 @@ namespace ATA_GUI
 
                         _ = await ATA.CheckVersion((currentRelease, latestRelease, jsonReal) =>
                         {
-                            _ = Invoke((Action)delegate
+                            Invoke(delegate
                             {
                                 changelog = jsonReal[0]["body"];
 
@@ -43,7 +43,7 @@ namespace ATA_GUI
                                     {
                                         _ = Process.Start((string)jsonReal[0]["html_url"]);
                                         jsonReal[0]["assets"][0].TryGetValue("browser_download_url", out JToken urlDownload);
-                                        UpdateForm update = new UpdateForm(urlDownload.ToString());
+                                        UpdateForm update = new(urlDownload.ToString());
                                         _ = update.ShowDialog();
                                     }
                                     else

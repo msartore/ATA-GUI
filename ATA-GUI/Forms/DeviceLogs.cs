@@ -11,8 +11,8 @@ namespace ATA_GUI
     {
         private readonly string currentDevice = string.Empty;
         private string line = string.Empty;
-        private readonly Process process = new Process();
-        private readonly ProcessStartInfo startInfo = new ProcessStartInfo();
+        private readonly Process process = new();
+        private readonly ProcessStartInfo startInfo = new();
         private bool keepScrolling = true;
         private bool processBusy = false;
 
@@ -63,7 +63,7 @@ namespace ATA_GUI
 
                 if (line.ToLowerInvariant().Contains(textBoxFilter.Text.ToLowerInvariant()) || string.IsNullOrEmpty(textBoxFilter.Text))
                 {
-                    _ = Invoke((Action)delegate
+                    Invoke(delegate
                     {
                         richTextBoxLog.Text += line;
                         richTextBoxLog.SelectionStart = richTextBoxLog.TextLength;

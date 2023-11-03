@@ -8,7 +8,7 @@ namespace ATA_GUI.Classes
 {
     internal class ATA
     {
-        public static readonly string CURRENTVERSION = "v2.10.0";
+        public static readonly string CURRENTVERSION = "v3.0.0";
         public static readonly string IPFileName = "IPList.txt";
 
         public ATA()
@@ -33,41 +33,30 @@ namespace ATA_GUI.Classes
             string currentRelease;
             string latestRelease;
 
-            using (HttpClient _client = new HttpClient())
-            {
-                _client.Timeout = TimeSpan.FromSeconds(60);
-                _client.DefaultRequestHeaders.Add("User-Agent", "ATA");
-                string json = await _client.GetStringAsync("https://ata.msartore.dev/api/links.json");
-                dynamic jsonMirror = JsonConvert.DeserializeObject(json);
-                json = await _client.GetStringAsync(jsonMirror[0]["url"].ToString());
-                dynamic jsonReal = JsonConvert.DeserializeObject(json);
-                latestRelease = jsonReal[0]["tag_name"];
-                currentRelease = CURRENTVERSION;
+            using HttpClient _client = new();
+            _client.Timeout = TimeSpan.FromSeconds(60);
+            _client.DefaultRequestHeaders.Add("User-Agent", "ATA");
+            string json = await _client.GetStringAsync("https://ata.msartore.dev/api/links.json");
+            dynamic jsonMirror = JsonConvert.DeserializeObject(json);
+            json = await _client.GetStringAsync(jsonMirror[0]["url"].ToString());
+            dynamic jsonReal = JsonConvert.DeserializeObject(json);
+            latestRelease = jsonReal[0]["tag_name"];
+            currentRelease = CURRENTVERSION;
 
-                command(currentRelease, latestRelease, jsonReal);
-            }
+            command(currentRelease, latestRelease, jsonReal);
 
             return true;
         }
 
         public void setCurrentTab(string currentTab)
         {
-            switch (currentTab.ToLowerInvariant())
+            CurrentTab = currentTab.ToLowerInvariant() switch
             {
-                case "system":
-                case "tools":
-                    CurrentTab = Tab.SYSTEM;
-                    break;
-                case "recovery":
-                    CurrentTab = Tab.RECOVERY;
-                    break;
-                case "fastboot":
-                    CurrentTab = Tab.FASTBOOT;
-                    break;
-                default:
-                    CurrentTab = Tab.UNKNOWN;
-                    break;
-            }
+                "system" or "tools" => Tab.SYSTEM,
+                "recovery" => Tab.RECOVERY,
+                "fastboot" => Tab.FASTBOOT,
+                _ => Tab.UNKNOWN,
+            };
         }
     }
 

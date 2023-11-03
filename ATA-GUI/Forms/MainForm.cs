@@ -5,12 +5,12 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using ATA_GUI.Classes;
 using ATA_GUI.Utils;
@@ -26,13 +26,13 @@ namespace ATA_GUI
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        private readonly ATA ata = new ATA();
-        private readonly Device device = new Device();
+        private readonly ATA ata = new();
+        private readonly Device device = new();
 
-        public static readonly List<string> arrayApks = new List<string>();
+        public static readonly List<string> arrayApks = new();
         private static readonly int WM_NCLBUTTONDOWN = 0xA1;
         private static readonly int HT_CAPTION = 0x2;
-        private static readonly Regex regex = new Regex(@"\s+");
+        private static readonly Regex regex = new(@"\s+");
 
         public static string RemoveWhiteSpaces(string str)
         {
@@ -75,11 +75,11 @@ namespace ATA_GUI
                         {
                             if (log[a].Contains("partition-type:userdata:"))
                             {
-                                labelUDT.Text = log[a].Substring("partition-type:userdata:".Length);
+                                labelUDT.Text = log[a]["partition-type:userdata:".Length..];
                             }
                             else if (log[a].Contains("partition-type:cache:"))
                             {
-                                labelCDT.Text = log[a].Substring("partition-type:cache:".Length);
+                                labelCDT.Text = log[a]["partition-type:cache:".Length..];
                             }
                             else if (log[a].Contains("unlocked:"))
                             {
@@ -131,10 +131,7 @@ namespace ATA_GUI
             }
             catch (Exception ex)
             {
-                if (ex.ToString().Contains("DotNetZip"))
-                {
-                    MessageShowBox("DotNetZip.dll not found!", 0);
-                }
+                MessageShowBox(ex.Message, 0);
             }
         }
 
@@ -145,7 +142,7 @@ namespace ATA_GUI
 
         private void LogWriteLine(string str)
         {
-            _ = Invoke((Action)delegate
+            Invoke(delegate
             {
                 richTextBoxLog.Text += str + "\n";
                 richTextBoxLog.SelectionStart = richTextBoxLog.Text.Length;
@@ -179,7 +176,7 @@ namespace ATA_GUI
             {
                 _ = await ATA.CheckVersion((currentRelease, latestRelease, jsonReal) =>
                     {
-                        _ = Invoke((Action)delegate
+                        Invoke(delegate
                         {
                             if (Utils.Version.CompareVersions(latestRelease, currentRelease) == Utils.Version.VersionComparisonResult.GreaterThan)
                             {
@@ -187,7 +184,7 @@ namespace ATA_GUI
                                 {
                                     _ = Process.Start((string)jsonReal[0]["html_url"]);
                                     jsonReal[0]["assets"][0].TryGetValue("browser_download_url", out JToken urlDownload);
-                                    UpdateForm update = new UpdateForm(urlDownload.ToString());
+                                    UpdateForm update = new(urlDownload.ToString());
                                     _ = update.ShowDialog();
                                 }
                                 else
@@ -216,7 +213,7 @@ namespace ATA_GUI
             object paramObj = e.Argument;
             string paramObjTmp = "0";
 
-            _ = Invoke((Action)delegate
+            Invoke(delegate
             {
                 textBoxPort.Text = "5555";
             });
@@ -270,7 +267,7 @@ namespace ATA_GUI
                                         string localIp = ConsoleProcess.systemCommand("adb.exe -s " + ATA.CurrentDeviceSelected.ID + " shell ip route").Split(' ').Where(it => Regex.Match(it, "(\\b25[0-5]|\\b2[0-4][0-9]|\\b[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}").Success).Last();
 
                                         disableSystem(false);
-                                        _ = Invoke((Action)delegate
+                                        Invoke(delegate
                                         {
                                             toolStripLabelTotalApps.Text = "Total: 0";
                                             checkedListBoxApp.Items.Clear();
@@ -335,7 +332,7 @@ namespace ATA_GUI
                                     }
                                     else
                                     {
-                                        _ = Invoke((Action)delegate
+                                        Invoke(delegate
                                         {
                                             disableEnableSystem(false);
                                             buttonDisconnectIP.Enabled = false;
@@ -345,7 +342,7 @@ namespace ATA_GUI
                                     break;
                                 case "2":
                                     arrayApks.Clear();
-                                    _ = Invoke((Action)delegate
+                                    Invoke(delegate
                                     {
                                         labelSelectedAppCount.Text = "Selected App: 0";
                                         checkedListBoxApp.Items.Clear();
@@ -367,9 +364,9 @@ namespace ATA_GUI
                                     }
                                     break;
                                 case "4":
-                                    List<string> arrayApkTmp = new List<string>();
+                                    List<string> arrayApkTmp = new();
                                     arrayApks.Clear();
-                                    _ = Invoke((Action)delegate
+                                    Invoke(delegate
                                     {
                                         checkedListBoxApp.Items.Clear();
                                     });
@@ -400,7 +397,7 @@ namespace ATA_GUI
                                     string stringInstalledApk;
 
                                     arrayApks.Clear();
-                                    _ = Invoke((Action)delegate
+                                    Invoke(delegate
                                     {
                                         checkedListBoxApp.Items.Clear();
                                     });
@@ -439,7 +436,7 @@ namespace ATA_GUI
                 }
                 catch (Exception)
                 {
-                    _ = Invoke((Action)delegate
+                    Invoke(delegate
                     {
                         disableEnableSystem(false);
                         buttonDisconnectIP.Enabled = false;
@@ -463,11 +460,11 @@ namespace ATA_GUI
             {
                 if (line.Contains("package:"))
                 {
-                    arrayApks.Add(line.Substring(8));
+                    arrayApks.Add(line[8..]);
                 }
             }
             arrayApks.Sort();
-            _ = Invoke((Action)delegate
+            Invoke(delegate
             {
                 checkedListBoxApp.Items.AddRange(arrayApks.ToArray());
                 checkedListBoxApp.CheckOnClick = true;
@@ -540,7 +537,7 @@ namespace ATA_GUI
 
         public void ToolTipGenerator(Control button, string title, string message)
         {
-            ToolTip buttonToolTip = new ToolTip
+            ToolTip buttonToolTip = new()
             {
                 ToolTipTitle = title,
                 UseFading = true,
@@ -585,12 +582,7 @@ namespace ATA_GUI
             comboBoxCameraModes.SelectedIndex = 0;
             groupBox6.AllowDrop = true;
             groupBox2.AllowDrop = true;
-            if (!File.Exists("DotNetZip.dll"))
-            {
-                MessageShowBox("DotNetZip.dll not found!", 0);
-                Application.Exit();
-            }
-            Disclaimer disclaimer = new Disclaimer();
+            Disclaimer disclaimer = new();
             if (!disclaimer.checkDiscalimer())
             {
                 _ = disclaimer.ShowDialog();
@@ -619,7 +611,7 @@ namespace ATA_GUI
                 if (dev != null)
                 {
                     ata.Devices.Clear();
-                    List<DeviceData> devices = new List<DeviceData>();
+                    List<DeviceData> devices = new();
                     devicesRaw = dev.Split('\n').Where(it => it.Contains('\t')).ToList();
 
                     devicesRaw.ForEach(it =>
@@ -667,7 +659,7 @@ namespace ATA_GUI
 
                     foreach (DeviceData device in devices.Where(iterator => iterator.sameMode(ata.CurrentTab)))
                     {
-                        _ = comboBoxDevices.Items.Add(string.Format("{0} [{1}] [{2}]", device.Mode == DeviceMode.RECOVERY || device.Mode == DeviceMode.SYSTEM ? device.Name : device.ID, device.Mode.ToString(), device.getConnectionSymbol()));
+                        _ = comboBoxDevices.Items.Add(string.Format("{0} [{1}] [{2}]", device.Mode is DeviceMode.RECOVERY or DeviceMode.SYSTEM ? device.Name : device.ID, device.Mode.ToString(), device.getConnectionSymbol()));
                         ata.Devices.Add(device);
                     }
 
@@ -704,7 +696,7 @@ namespace ATA_GUI
 
         public static bool pingCheck()
         {
-            Ping myPing = new Ping();
+            Ping myPing = new();
             PingReply reply;
             try
             {
@@ -876,7 +868,7 @@ namespace ATA_GUI
 
         private void backgroundWorkerZip_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            string fileName = textBoxDirFile.Text.Substring(textBoxDirFile.Text.LastIndexOf('\\') + 1);
+            string fileName = textBoxDirFile.Text[(textBoxDirFile.Text.LastIndexOf('\\') + 1)..];
             LogWriteLine("Flashing " + fileName + "...");
             string log = ConsoleProcess.adbFastbootCommandR(commandAssemblerF(string.Format("sideload \"{0}\"", textBoxDirFile.Text)), 0);
             if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log.Trim() == "")
@@ -1004,7 +996,7 @@ namespace ATA_GUI
 
         private void buttonBootloaderMenu_Click(object sender, EventArgs e)
         {
-            BootloaderMenu bootloaderMenu = new BootloaderMenu();
+            BootloaderMenu bootloaderMenu = new();
             _ = bootloaderMenu.ShowDialog();
         }
 
@@ -1024,7 +1016,7 @@ namespace ATA_GUI
         {
             string command = "adb -s " + ATA.CurrentDeviceSelected.ID + " shell pm uninstall -k --user " + device.User + " ";
             LoadingForm load;
-            List<string> arrayApkSelect = new List<string>();
+            List<string> arrayApkSelect = new();
             foreach (object list in foundPackageList)
             {
                 arrayApkSelect.Add(list.ToString());
@@ -1055,13 +1047,13 @@ namespace ATA_GUI
         {
             if (checkedListBoxApp.CheckedItems.Count > 0)
             {
-                List<string> arrayApkSelect = new List<string>();
+                List<string> arrayApkSelect = new();
                 foreach (object list in checkedListBoxApp.CheckedItems)
                 {
                     arrayApkSelect.Add(list.ToString());
                 }
 
-                PackageMenu packageMenu = new PackageMenu(arrayApkSelect);
+                PackageMenu packageMenu = new(arrayApkSelect);
                 _ = packageMenu.ShowDialog();
                 string command;
                 string commandName;
@@ -1096,7 +1088,7 @@ namespace ATA_GUI
 
         public void loadMethod(List<string> arrayApkSelect, string command, string commandName)
         {
-            LoadingForm load = new LoadingForm(arrayApkSelect, command, commandName);
+            LoadingForm load = new(arrayApkSelect, command, commandName);
             _ = load.ShowDialog();
             if (load.DialogResult == DialogResult.OK)
             {
@@ -1207,7 +1199,7 @@ namespace ATA_GUI
 
         private void reloadList()
         {
-            _ = Invoke((Action)delegate
+            Invoke(delegate
             {
                 if (!checkAdbFastboot(true))
                 {
@@ -1243,31 +1235,38 @@ namespace ATA_GUI
             panelFastboot.Enabled = false;
         }
 
-        private void backgroundWorkerAdbDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private async void backgroundWorkerAdbDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             if (!ata.IsConnected)
             {
                 MessageShowBox("You are offline, ATA can not download ADB", 0);
                 return;
             }
-            _ = Invoke((Action)delegate
+            Invoke(delegate
             {
                 disableEnableSystem(false);
                 buttonDisconnectIP.Enabled = false;
             });
 
-            ExeMissingForm adbError = new ExeMissingForm("adb.exe not found\n\nDo you want to download sdk platform tool?\n\n[By pressing YES you agree sdk platform tool terms and conditions]\nfor more info press info button", "Error, ADB Missing!");
+            ExeMissingForm adbError = new("adb.exe not found\n\nDo you want to download sdk platform tool?\n\n[By pressing YES you agree sdk platform tool terms and conditions]\nfor more info press info button", "Error, ADB Missing!");
             _ = adbError.ShowDialog();
 
             switch (adbError.DialogResult)
             {
                 case DialogResult.Yes:
                     LogWriteLine("Downloading sdk platform tool...");
-                    using (WebClient client = new WebClient())
+                    using (HttpClient client = new())
                     {
                         try
                         {
-                            client.DownloadFile("https://dl.google.com/android/repository/platform-tools-latest-windows.zip", "sdkplatformtool.zip");
+                            string url = "https://dl.google.com/android/repository/platform-tools-latest-windows.zip";
+                            string filePath = "sdkplatformtool.zip";
+                            using (HttpResponseMessage response = await client.GetAsync(url))
+                            {
+                                _ = response.EnsureSuccessStatusCode();
+                                using FileStream fs = new(filePath, FileMode.Create);
+                                await response.Content.CopyToAsync(fs);
+                            }
                             LogWriteLine("sdk platform tool downloaded!");
                             LogWriteLine("unzipping sdk platform tool...");
                             using (ZipFile zip = ZipFile.Read("sdkplatformtool.zip"))
@@ -1318,7 +1317,7 @@ namespace ATA_GUI
 
         private void disableSystem(bool a)
         {
-            _ = Invoke((Action)delegate
+            Invoke(delegate
             {
                 tabPageSystem.Enabled = !a;
                 buttonMobileScreenShare.Enabled = !a;
@@ -1329,12 +1328,12 @@ namespace ATA_GUI
         {
             if (checkedListBoxApp.Items.Count > 0)
             {
-                List<string> listOfApps = new List<string>();
+                List<string> listOfApps = new();
                 foreach (object list in checkedListBoxApp.Items)
                 {
                     listOfApps.Add(list.ToString());
                 }
-                BloatwareDetecter bloatwareDetecter = new BloatwareDetecter(listOfApps, this)
+                BloatwareDetecter bloatwareDetecter = new(listOfApps, this)
                 {
                     CurrentDevice = ATA.CurrentDeviceSelected.ID
                 };
@@ -1350,12 +1349,12 @@ namespace ATA_GUI
         {
             if (checkedListBoxApp.CheckedItems.Count > 0)
             {
-                List<string> apps = new List<string>();
+                List<string> apps = new();
                 foreach (object app in checkedListBoxApp.CheckedItems)
                 {
                     apps.Add(app.ToString());
                 }
-                LoadingForm load = new LoadingForm(apps, "adb -s " + ATA.CurrentDeviceSelected.ID + " shell cmd package install-existing --user " + device.User + " ", "Restored:");
+                LoadingForm load = new(apps, "adb -s " + ATA.CurrentDeviceSelected.ID + " shell cmd package install-existing --user " + device.User + " ", "Restored:");
                 _ = load.ShowDialog();
                 if (load.DialogResult != DialogResult.OK)
                 {
@@ -1405,24 +1404,31 @@ namespace ATA_GUI
             }
         }
 
-        private void backgroundWorkerExeDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private async void backgroundWorkerExeDownloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             if (!ata.IsConnected)
             {
                 MessageShowBox("You are offline, ATA can not download scrcpy", 0);
                 return;
             }
-            ExeMissingForm scrcpyError = new ExeMissingForm("scrcpy.exe not found\n\nDo you want to download scrcpy?\n\n[By pressing YES you agree scrcpy terms and conditions]\nfor more info press info button", "Error, scrcpy Missing!");
+            ExeMissingForm scrcpyError = new("scrcpy.exe not found\n\nDo you want to download scrcpy?\n\n[By pressing YES you agree scrcpy terms and conditions]\nfor more info press info button", "Error, scrcpy Missing!");
             _ = scrcpyError.ShowDialog();
             switch (scrcpyError.DialogResult)
             {
                 case DialogResult.Yes:
                     LogWriteLine("downloading scrcpy...");
-                    using (WebClient client = new WebClient())
+                    using (HttpClient client = new())
                     {
                         try
                         {
-                            client.DownloadFile("https://ata.msartore.dev/scrcpy/download", "scrcpy.zip");
+                            string url = "https://ata.msartore.dev/scrcpy/download";
+                            string filePath = "scrcpy.zip";
+                            using (HttpResponseMessage response = await client.GetAsync(url))
+                            {
+                                _ = response.EnsureSuccessStatusCode();
+                                using FileStream fs = new(filePath, FileMode.Create);
+                                await response.Content.CopyToAsync(fs);
+                            }
                             LogWriteLine("scrcpy downloaded!");
                             LogWriteLine("unzipping scrcpy...");
                             using (ZipFile zip = ZipFile.Read("scrcpy.zip"))
@@ -1435,7 +1441,7 @@ namespace ATA_GUI
                             {
                                 foreach (string item in Directory.EnumerateFiles(directory))
                                 {
-                                    string name = item.Substring(item.LastIndexOf('\\') + 1);
+                                    string name = item[(item.LastIndexOf('\\') + 1)..];
                                     if (!File.Exists(name))
                                     {
                                         File.Copy(item, Path.GetDirectoryName(Application.ExecutablePath) + "\\" + name, false);
@@ -1478,7 +1484,7 @@ namespace ATA_GUI
 
         private void labelSettings_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings();
+            Settings settings = new();
             _ = settings.ShowDialog();
         }
 
@@ -1532,13 +1538,13 @@ namespace ATA_GUI
 
         private void buttonDeviceLogs_Click(object sender, EventArgs e)
         {
-            DeviceLogs deviceLog = new DeviceLogs(ATA.CurrentDeviceSelected.ID);
+            DeviceLogs deviceLog = new(ATA.CurrentDeviceSelected.ID);
             deviceLog.Show();
         }
 
         private void submitFeedbackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Feedback feedback = new Feedback();
+            Feedback feedback = new();
             _ = feedback.ShowDialog();
         }
 
@@ -1665,7 +1671,7 @@ namespace ATA_GUI
             string ip = string.Empty;
             string port = textBoxPort.Text.Trim();
 
-            _ = Invoke((Action)delegate
+            Invoke(delegate
             {
                 ip = comboBoxIP.Text.Trim();
             });
@@ -1690,17 +1696,15 @@ namespace ATA_GUI
                     }
                     else
                     {
-                        _ = Invoke((Action)delegate
+                        Invoke(delegate
                         {
                             if (!ata.IPList.Contains(ip))
                             {
                                 _ = ata.IPList.Add(ip);
                                 _ = comboBoxIP.Items.Add(ip);
 
-                                using (StreamWriter writer = new StreamWriter(ATA.IPFileName, true))
-                                {
-                                    writer.WriteLine(ip);
-                                }
+                                using StreamWriter writer = new(ATA.IPFileName, true);
+                                writer.WriteLine(ip);
                             }
                             buttonConnectToIP.Enabled = false;
                             buttonDisconnectIP.Enabled = true;
@@ -1725,7 +1729,7 @@ namespace ATA_GUI
             int deviceCountTmp = ata.Devices.Count;
             string ip = string.Empty;
 
-            _ = Invoke((Action)delegate
+            Invoke(delegate
             {
                 ip = comboBoxIP.Text.Trim();
             });
@@ -1737,7 +1741,7 @@ namespace ATA_GUI
                 if (result)
                 {
                     MessageShowBox(ip + " disconnected", 2);
-                    _ = Invoke((Action)delegate
+                    Invoke(delegate
                     {
                         buttonConnectToIP.Enabled = true;
                         buttonDisconnectIP.Enabled = false;
@@ -1834,12 +1838,12 @@ namespace ATA_GUI
         {
             if (checkedListBoxApp.CheckedItems.Count > 0)
             {
-                List<string> arrayApkSelect = new List<string>();
+                List<string> arrayApkSelect = new();
                 foreach (object list in checkedListBoxApp.CheckedItems)
                 {
                     arrayApkSelect.Add(list.ToString());
                 }
-                LoadingForm loadingForm = new LoadingForm(ATA.CurrentDeviceSelected.ID, arrayApkSelect);
+                LoadingForm loadingForm = new(ATA.CurrentDeviceSelected.ID, arrayApkSelect);
                 _ = loadingForm.ShowDialog();
                 for (int i = 0; i < checkedListBoxApp.Items.Count; i++)
                 {
@@ -1947,7 +1951,7 @@ namespace ATA_GUI
         {
             if (ata.IsMaximize)
             {
-                Size = new Size(1126, 457);
+                Size = new Size(1314, 527);
                 CenterToScreen();
             }
             else
@@ -2019,7 +2023,7 @@ namespace ATA_GUI
         {
             APK.installApk((string[])e.Argument, device.User, (name) =>
             {
-                _ = Invoke((Action)delegate
+                Invoke(delegate
                 {
                     LogWriteLine("Installing " + name + " ...");
                 });
@@ -2032,7 +2036,7 @@ namespace ATA_GUI
             if (((DragEventArgs)e.Argument).Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] filePaths = (string[])((DragEventArgs)e.Argument).Data.GetData(DataFormats.FileDrop);
-                LoadingForm loading = new LoadingForm(filePaths.ToList(), ATA.CurrentDeviceSelected.ID);
+                LoadingForm loading = new(filePaths.ToList(), ATA.CurrentDeviceSelected.ID);
                 _ = loading.ShowDialog();
             }
         }

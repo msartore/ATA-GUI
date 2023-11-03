@@ -10,9 +10,9 @@ namespace ATA_GUI
 {
     public partial class BloatwareDetecter : Form
     {
-        private readonly List<string> packageList = new List<string>();
+        private readonly List<string> packageList = new();
         private readonly List<string> installedPackageList;
-        private readonly HashSet<string> foundPackageList = new HashSet<string>();
+        private readonly HashSet<string> foundPackageList = new();
         private readonly MainForm mainForm;
 
         public string CurrentDevice { get; set; }
@@ -26,7 +26,7 @@ namespace ATA_GUI
 
         private void AppFinder()
         {
-            XmlDocument doc = new XmlDocument();
+            XmlDocument doc = new();
             doc.LoadXml(Properties.Resources.bloatwareList);
             packageList.Clear();
             foundPackageList.Clear();
@@ -96,7 +96,7 @@ namespace ATA_GUI
         {
             if (checkedListBoxBloatwareList.CheckedItems.Count > 0)
             {
-                List<string> apks = new List<string>();
+                List<string> apks = new();
                 foreach (object list in checkedListBoxBloatwareList.CheckedItems)
                 {
                     apks.Add(list.ToString());

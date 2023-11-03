@@ -14,8 +14,8 @@ namespace ATA_GUI.Utils
 
         public static VersionComparisonResult CompareVersions(string versionA, string versionB)
         {
-            var partsA = versionA.TrimStart('v').Split(new[] { "_Pre-release" }, StringSplitOptions.None);
-            var partsB = versionB.TrimStart('v').Split(new[] { "_Pre-release" }, StringSplitOptions.None);
+            string[] partsA = versionA.TrimStart('v').Split(new[] { "_Pre-release" }, StringSplitOptions.None);
+            string[] partsB = versionB.TrimStart('v').Split(new[] { "_Pre-release" }, StringSplitOptions.None);
 
             int[] verA = partsA[0].Split('.').Select(int.Parse).ToArray();
             int[] verB = partsB[0].Split('.').Select(int.Parse).ToArray();
