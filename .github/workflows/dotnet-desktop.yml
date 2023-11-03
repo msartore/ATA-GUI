@@ -1,4 +1,4 @@
-name: .NET Core Desktop
+name: .NET 6.0 Desktop Build and Publish
 
 on:
   push:
@@ -7,67 +7,43 @@ on:
 
 jobs:
   build:
-    environment: NuGet
+    runs-on: windows-latest
 
-    strategy:
-      matrix:
-        configuration: [Release]
-
-    runs-on: windows-latest  
-                            
     env:
       Solution_Name: ATA-GUI.sln
-      
+      Configuration: Release
+
     steps:
     - name: Checkout
       uses: actions/checkout@v3.3.0
-      with:
-        fetch-depth: 0
-        
-    # Install the .NET Core workload
-    - name: Install .NET Core
+
+    - name: Setup .NET 6.0
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.x
-        
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.1
-      env:
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+        dotnet-version: '6.0.x'
 
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.1.1
-      env:
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-    
-    - name: Restore NuGet packages
-      run: nuget restore $env:Solution_Name
-      env:
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-      
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.Solution_Name }}
+
     - name: Build the solution
-      run: msbuild $env:Solution_Name /p:Configuration=$env:Configuration
-      env:
-        Configuration: ${{ matrix.configuration }}
-        
-    - name: Prepare package
-      shell: bash
-      run: |
-        release_name="ATA-GUI"
-        release_path="D:/a/ATA-GUI/ATA-GUI/ATA-GUI/bin/Release/"
-        7z a -tzip "${release_name}.zip" "${release_path}Newtonsoft.Json.dll" "${release_path}ATA-GUI.exe" "${release_path}DotNetZip.dll" "D:/a/ATA-GUI/ATA-GUI/LICENSE"
-      
-  
+      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ env.Configuration }} --no-restore
+
+    - name: Publish the application
+      run: dotnet publish ${{ env.Solution_Name }} --configuration ${{ env.Configuration }} --no-build --output ./publish
+
+    - name: Zip the published output
+      run: Compress-Archive -Path ./publish/* -DestinationPath ATA-GUI.zip
+      shell: pwsh
+
     - name: Get Previous tag
       id: previoustag
       uses: "WyriHaximus/github-action-get-previous-tag@v1.3.0"
-      
+
     - name: Create Release
       uses: ncipollo/release-action@v1.12.0
       with:
         generateReleaseNotes: true
         artifacts: ATA-GUI.zip
-        name: ${{steps.previoustag.outputs.tag}}
-        tag: ${{steps.previoustag.outputs.tag}}
+        name: ${{ steps.previoustag.outputs.tag }}
+        tag: ${{ steps.previoustag.outputs.tag }}
         token: ${{ secrets.GITHUB_TOKEN }}
