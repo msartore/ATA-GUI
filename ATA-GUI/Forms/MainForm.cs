@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -182,7 +183,7 @@ namespace ATA_GUI
                             {
                                 if (MessageBox.Show("New version found: " + latestRelease + "\nCurrent Version: " + ATA.CURRENTVERSION + "\n\nDo you want to update it?", "Update found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
-                                    _ = Process.Start((string)jsonReal[0]["html_url"]);
+                                    ConsoleProcess.openLink((string)jsonReal[0]["html_url"]);
                                     jsonReal[0]["assets"][0].TryGetValue("browser_download_url", out JToken urlDownload);
                                     UpdateForm update = new(urlDownload.ToString());
                                     _ = update.ShowDialog();
@@ -554,7 +555,7 @@ namespace ATA_GUI
         private void MainForm_Load(object sender, EventArgs e)
         {
             radioButtonBoot.Checked = true;
-
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             ToolTipGenerator(buttonConnectToIP, "Connect device", "Connect to your device with this IP");
             ToolTipGenerator(buttonDisconnectIP, "Disconnect device", "Disconnect from your device with this IP");
             ToolTipGenerator(buttonMobileScreenShare, "Share Device Screen", "Your device screen will be shared on your PC");
@@ -1269,6 +1270,10 @@ namespace ATA_GUI
                             }
                             LogWriteLine("sdk platform tool downloaded!");
                             LogWriteLine("unzipping sdk platform tool...");
+                            if (Directory.Exists("platform-tools"))
+                            {
+                                Directory.Delete("platform-tools", true);
+                            }
                             using (ZipFile zip = ZipFile.Read("sdkplatformtool.zip"))
                             {
                                 zip.ExtractAll(Path.GetDirectoryName(Application.ExecutablePath));
@@ -1294,10 +1299,10 @@ namespace ATA_GUI
 
                             LogWriteLine("ATA ready!");
                         }
-                        catch
+                        catch (Exception ex)
                         {
                             LogWriteLine("[ERROR] An error occurred while attempting to download the SDK Platform Tools");
-                            MessageShowBox("An error occurred while attempting to download the SDK Platform Tools", 0);
+                            MessageShowBox("An error occurred while attempting to download the SDK Platform Tools\nError message:" + ex, 0);
                             disableSystem(true);
                         }
                     }

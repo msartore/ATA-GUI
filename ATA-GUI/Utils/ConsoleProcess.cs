@@ -90,6 +90,10 @@ namespace ATA_GUI.Utils
             cmd.Close();
             return result;
         }
+        public static void openLink(string link)
+        {
+            _ = Process.Start(new ProcessStartInfo(link) { UseShellExecute = true });
+        }
 
         public static string systemCommand(string command)
         {

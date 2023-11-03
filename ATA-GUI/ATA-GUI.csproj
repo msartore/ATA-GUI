@@ -9,10 +9,9 @@
 		<ApplicationIcon>ATALogoGUI.ico</ApplicationIcon>
 
 		<!-- Versioning -->
-		<Version>3.0.1.0</Version>
-		<FileVersion>3.0.1.0</FileVersion>
-		<AssemblyVersion>3.0.1.0</AssemblyVersion>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Version>3.0.2.0</Version>
+		<FileVersion>3.0.2.0</FileVersion>
+		<AssemblyVersion>3.0.2.0</AssemblyVersion>
 		<Copyright>© 2021-2023 Massimiliano Sartore</Copyright>
 
 		<!-- Publish settings -->
@@ -40,6 +39,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters" Version="1.2.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="ATALogoGUI.ico">
