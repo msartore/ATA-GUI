@@ -29,2271 +29,2321 @@ namespace ATA_GUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.labelLog = new System.Windows.Forms.Label();
-            this.buttonLogClear = new System.Windows.Forms.Button();
-            this.backgroundWorkerSync = new System.ComponentModel.BackgroundWorker();
-            this.groupBoxDeviceInfo = new System.Windows.Forms.GroupBox();
-            this.buttonTurnOffAdb = new System.Windows.Forms.Button();
-            this.labelUser = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.labelStatus = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.labelIP = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelAV = new System.Windows.Forms.Label();
-            this.labelD = new System.Windows.Forms.Label();
-            this.labelB = new System.Windows.Forms.Label();
-            this.labelModel = new System.Windows.Forms.Label();
-            this.labelManu = new System.Windows.Forms.Label();
-            this.labelCA = new System.Windows.Forms.Label();
-            this.labelBU = new System.Windows.Forms.Label();
-            this.labelAndroidVersion = new System.Windows.Forms.Label();
-            this.labelProductDevice = new System.Windows.Forms.Label();
-            this.labelProductBoard = new System.Windows.Forms.Label();
-            this.labelProductModel = new System.Windows.Forms.Label();
-            this.labelManufacturer = new System.Windows.Forms.Label();
-            this.labelCpuAbilitis = new System.Windows.Forms.Label();
-            this.labelBuildUser = new System.Windows.Forms.Label();
-            this.checkBoxSelectAll = new System.Windows.Forms.CheckBox();
-            this.tabControls = new System.Windows.Forms.TabControl();
-            this.tabPageSystem = new System.Windows.Forms.TabPage();
-            this.groupBoxAPKMenu = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.labelSelectedAppCount = new System.Windows.Forms.Label();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonReloadApps = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonFilter = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.textBoxSearch = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonRestoreApp = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonUninstallApp = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonPackageManager = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonPermissionMenu = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonSetDefault = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonBloatwareDetecter = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonExtract = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripDropDownInstallApkButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.installAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.downgradeAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
-            this.groupBoxADBNet = new System.Windows.Forms.GroupBox();
-            this.buttonUnlockNetworkMenu = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBoxPort = new System.Windows.Forms.TextBox();
-            this.comboBoxIP = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.buttonDisconnectIP = new System.Windows.Forms.Button();
-            this.buttonConnectToIP = new System.Windows.Forms.Button();
-            this.groupBoxRebootMenu = new System.Windows.Forms.GroupBox();
-            this.buttonRS = new System.Windows.Forms.Button();
-            this.buttonRR = new System.Windows.Forms.Button();
-            this.buttonRF = new System.Windows.Forms.Button();
-            this.tabPageFastboot = new System.Windows.Forms.TabPage();
-            this.panelFastboot = new System.Windows.Forms.Panel();
-            this.buttonBootloaderMenu = new System.Windows.Forms.Button();
-            this.buttonRebootRecovery = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.labelUDT = new System.Windows.Forms.Label();
-            this.labelCDT = new System.Windows.Forms.Label();
-            this.labelBootloaderStatus = new System.Windows.Forms.Label();
-            this.labelDataType = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.buttonHardReset = new System.Windows.Forms.Button();
-            this.buttonRebootToSystem = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBoxDirImg = new System.Windows.Forms.TextBox();
-            this.radioButtonRom = new System.Windows.Forms.RadioButton();
-            this.buttonSearchFileFastboot = new System.Windows.Forms.Button();
-            this.radioButtonCache = new System.Windows.Forms.RadioButton();
-            this.radioButtonVendor = new System.Windows.Forms.RadioButton();
-            this.radioButtonSystem = new System.Windows.Forms.RadioButton();
-            this.radioButtonBoot = new System.Windows.Forms.RadioButton();
-            this.radioButtonRecovery = new System.Windows.Forms.RadioButton();
-            this.radioButtonBootloader = new System.Windows.Forms.RadioButton();
-            this.radioButtonRadio = new System.Windows.Forms.RadioButton();
-            this.tabPageRecovery = new System.Windows.Forms.TabPage();
-            this.panelRecovery = new System.Windows.Forms.Panel();
-            this.groupBoxRecoveryRM = new System.Windows.Forms.GroupBox();
-            this.buttonrr_ = new System.Windows.Forms.Button();
-            this.buttonrf_ = new System.Windows.Forms.Button();
-            this.buttonrs_ = new System.Windows.Forms.Button();
-            this.groupBoxFlash = new System.Windows.Forms.GroupBox();
-            this.textBoxDirFile = new System.Windows.Forms.TextBox();
-            this.buttonFlashZip = new System.Windows.Forms.Button();
-            this.buttonBrowseFile = new System.Windows.Forms.Button();
-            this.tabPageTools = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.buttonCamera = new System.Windows.Forms.Button();
-            this.groupBoxTextInject = new System.Windows.Forms.GroupBox();
-            this.buttonClearTextSend = new System.Windows.Forms.Button();
-            this.buttonInjectText = new System.Windows.Forms.Button();
-            this.richTextBoxSend = new System.Windows.Forms.RichTextBox();
-            this.groupBoxFreeRotation = new System.Windows.Forms.GroupBox();
-            this.buttonSetRotation = new System.Windows.Forms.Button();
-            this.domainUpDownFreeRotation = new System.Windows.Forms.DomainUpDown();
-            this.openFileDialogAPK = new System.Windows.Forms.OpenFileDialog();
-            this.openFileDialogZip = new System.Windows.Forms.OpenFileDialog();
-            this.backgroundWorkerZip = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerFlashImg = new System.ComponentModel.BackgroundWorker();
-            this.richTextBoxLog = new System.Windows.Forms.RichTextBox();
-            this.systemAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nonSystemAppToolStripMenuItem = new System.Windows.Forms.ToolStripComboBox();
-            this.filterByToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStripFilterBy = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.systemAppToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.nonSystemAppToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.uninstalledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.disabledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStripPermissionMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.grantWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grantWriteSecureSettingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.revokeWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grantDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grantDUMPToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.revokeDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grantRevokeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grantSYSTEMALERTWINDOWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.revokeSYSTEMALERTWINDOWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkGrantedPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.backgroundWorkerAdbDownloader = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerExeDownloader = new System.ComponentModel.BackgroundWorker();
-            this.buttonMobileScreenShare = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
-            this.panelTopBar = new System.Windows.Forms.Panel();
-            this.pictureBoxMaximize = new System.Windows.Forms.PictureBox();
-            this.labelTools = new System.Windows.Forms.Label();
-            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-            this.pictureBoxMinimize = new System.Windows.Forms.PictureBox();
-            this.labelHelp = new System.Windows.Forms.Label();
-            this.labelSettings = new System.Windows.Forms.Label();
-            this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
-            this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
-            this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
-            this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
-            this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.contextMenuStripHelp = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.videoTutorialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.submitFeedbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.videoTutorialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonDeviceLogs = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonReloadDevicesList = new System.Windows.Forms.Button();
-            this.comboBoxDevices = new System.Windows.Forms.ComboBox();
-            this.buttonSyncApp = new System.Windows.Forms.Button();
-            this.contextMenuStripSearch = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.duckduckgoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.googleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.playMarketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.APKMirrorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fDroidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStripTools = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemADBKill = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonTaskManager = new System.Windows.Forms.Button();
-            this.backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
-            this.groupBoxTerminal = new System.Windows.Forms.GroupBox();
-            this.radioButtonFastboot = new System.Windows.Forms.RadioButton();
-            this.radioButtonADB = new System.Windows.Forms.RadioButton();
-            this.buttonTerminalRun = new System.Windows.Forms.Button();
-            this.richTextBoxTerminal = new System.Windows.Forms.RichTextBox();
-            this.backgroundWorkerAPKinstall = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerFileTransfer = new System.ComponentModel.BackgroundWorker();
-            this.comboBoxCameraModes = new System.Windows.Forms.ComboBox();
-            this.groupBoxDeviceInfo.SuspendLayout();
-            this.tabControls.SuspendLayout();
-            this.tabPageSystem.SuspendLayout();
-            this.groupBoxAPKMenu.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.toolStrip1.SuspendLayout();
-            this.groupBoxADBNet.SuspendLayout();
-            this.groupBoxRebootMenu.SuspendLayout();
-            this.tabPageFastboot.SuspendLayout();
-            this.panelFastboot.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.tabPageRecovery.SuspendLayout();
-            this.panelRecovery.SuspendLayout();
-            this.groupBoxRecoveryRM.SuspendLayout();
-            this.groupBoxFlash.SuspendLayout();
-            this.tabPageTools.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBoxTextInject.SuspendLayout();
-            this.groupBoxFreeRotation.SuspendLayout();
-            this.contextMenuStripFilterBy.SuspendLayout();
-            this.contextMenuStripPermissionMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
-            this.panelTopBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaximize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).BeginInit();
-            this.contextMenuStripHelp.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.contextMenuStripSearch.SuspendLayout();
-            this.contextMenuStripTools.SuspendLayout();
-            this.groupBoxTerminal.SuspendLayout();
-            this.SuspendLayout();
+            labelLog = new System.Windows.Forms.Label();
+            buttonLogClear = new System.Windows.Forms.Button();
+            backgroundWorkerSync = new System.ComponentModel.BackgroundWorker();
+            groupBoxDeviceInfo = new System.Windows.Forms.GroupBox();
+            buttonTurnOffAdb = new System.Windows.Forms.Button();
+            labelUser = new System.Windows.Forms.Label();
+            label12 = new System.Windows.Forms.Label();
+            labelStatus = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            labelIP = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            labelAV = new System.Windows.Forms.Label();
+            labelD = new System.Windows.Forms.Label();
+            labelB = new System.Windows.Forms.Label();
+            labelModel = new System.Windows.Forms.Label();
+            labelManu = new System.Windows.Forms.Label();
+            labelCA = new System.Windows.Forms.Label();
+            labelBU = new System.Windows.Forms.Label();
+            labelAndroidVersion = new System.Windows.Forms.Label();
+            labelProductDevice = new System.Windows.Forms.Label();
+            labelProductBoard = new System.Windows.Forms.Label();
+            labelProductModel = new System.Windows.Forms.Label();
+            labelManufacturer = new System.Windows.Forms.Label();
+            labelCpuAbilitis = new System.Windows.Forms.Label();
+            labelBuildUser = new System.Windows.Forms.Label();
+            checkBoxSelectAll = new System.Windows.Forms.CheckBox();
+            tabControls = new System.Windows.Forms.TabControl();
+            tabPageSystem = new System.Windows.Forms.TabPage();
+            groupBoxAPKMenu = new System.Windows.Forms.GroupBox();
+            groupBox2 = new System.Windows.Forms.GroupBox();
+            label5 = new System.Windows.Forms.Label();
+            pictureBox3 = new System.Windows.Forms.PictureBox();
+            labelSelectedAppCount = new System.Windows.Forms.Label();
+            groupBox6 = new System.Windows.Forms.GroupBox();
+            label3 = new System.Windows.Forms.Label();
+            pictureBox2 = new System.Windows.Forms.PictureBox();
+            toolStrip1 = new System.Windows.Forms.ToolStrip();
+            toolStripButtonReloadApps = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripButtonFilter = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            textBoxSearch = new System.Windows.Forms.ToolStripTextBox();
+            toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripButtonRestoreApp = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripButtonUninstallApp = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripButtonPackageManager = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripButtonPermissionMenu = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripButtonSetDefault = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripButtonBloatwareDetecter = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripButtonExtract = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
+            toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripDropDownInstallApkButton = new System.Windows.Forms.ToolStripDropDownButton();
+            installAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            downgradeAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
+            groupBoxADBNet = new System.Windows.Forms.GroupBox();
+            buttonUnlockNetworkMenu = new System.Windows.Forms.Button();
+            label11 = new System.Windows.Forms.Label();
+            textBoxPort = new System.Windows.Forms.TextBox();
+            comboBoxIP = new System.Windows.Forms.ComboBox();
+            label2 = new System.Windows.Forms.Label();
+            buttonDisconnectIP = new System.Windows.Forms.Button();
+            buttonConnectToIP = new System.Windows.Forms.Button();
+            groupBoxRebootMenu = new System.Windows.Forms.GroupBox();
+            buttonRS = new System.Windows.Forms.Button();
+            buttonRR = new System.Windows.Forms.Button();
+            buttonRF = new System.Windows.Forms.Button();
+            tabPageFastboot = new System.Windows.Forms.TabPage();
+            panelFastboot = new System.Windows.Forms.Panel();
+            buttonBootloaderMenu = new System.Windows.Forms.Button();
+            buttonRebootRecovery = new System.Windows.Forms.Button();
+            groupBox5 = new System.Windows.Forms.GroupBox();
+            labelUDT = new System.Windows.Forms.Label();
+            labelCDT = new System.Windows.Forms.Label();
+            labelBootloaderStatus = new System.Windows.Forms.Label();
+            labelDataType = new System.Windows.Forms.Label();
+            label7 = new System.Windows.Forms.Label();
+            label8 = new System.Windows.Forms.Label();
+            buttonHardReset = new System.Windows.Forms.Button();
+            buttonRebootToSystem = new System.Windows.Forms.Button();
+            groupBox4 = new System.Windows.Forms.GroupBox();
+            button1 = new System.Windows.Forms.Button();
+            label10 = new System.Windows.Forms.Label();
+            textBoxDirImg = new System.Windows.Forms.TextBox();
+            radioButtonRom = new System.Windows.Forms.RadioButton();
+            buttonSearchFileFastboot = new System.Windows.Forms.Button();
+            radioButtonCache = new System.Windows.Forms.RadioButton();
+            radioButtonVendor = new System.Windows.Forms.RadioButton();
+            radioButtonSystem = new System.Windows.Forms.RadioButton();
+            radioButtonBoot = new System.Windows.Forms.RadioButton();
+            radioButtonRecovery = new System.Windows.Forms.RadioButton();
+            radioButtonBootloader = new System.Windows.Forms.RadioButton();
+            radioButtonRadio = new System.Windows.Forms.RadioButton();
+            tabPageRecovery = new System.Windows.Forms.TabPage();
+            panelRecovery = new System.Windows.Forms.Panel();
+            groupBoxRecoveryRM = new System.Windows.Forms.GroupBox();
+            buttonrr_ = new System.Windows.Forms.Button();
+            buttonrf_ = new System.Windows.Forms.Button();
+            buttonrs_ = new System.Windows.Forms.Button();
+            groupBoxFlash = new System.Windows.Forms.GroupBox();
+            textBoxDirFile = new System.Windows.Forms.TextBox();
+            buttonFlashZip = new System.Windows.Forms.Button();
+            buttonBrowseFile = new System.Windows.Forms.Button();
+            tabPageTools = new System.Windows.Forms.TabPage();
+            groupBox3 = new System.Windows.Forms.GroupBox();
+            comboBoxCameraModes = new System.Windows.Forms.ComboBox();
+            buttonCamera = new System.Windows.Forms.Button();
+            groupBoxTextInject = new System.Windows.Forms.GroupBox();
+            buttonClearTextSend = new System.Windows.Forms.Button();
+            buttonInjectText = new System.Windows.Forms.Button();
+            richTextBoxSend = new System.Windows.Forms.RichTextBox();
+            groupBoxFreeRotation = new System.Windows.Forms.GroupBox();
+            buttonSetRotation = new System.Windows.Forms.Button();
+            domainUpDownFreeRotation = new System.Windows.Forms.DomainUpDown();
+            openFileDialogAPK = new System.Windows.Forms.OpenFileDialog();
+            openFileDialogZip = new System.Windows.Forms.OpenFileDialog();
+            backgroundWorkerZip = new System.ComponentModel.BackgroundWorker();
+            backgroundWorkerFlashImg = new System.ComponentModel.BackgroundWorker();
+            richTextBoxLog = new System.Windows.Forms.RichTextBox();
+            systemAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            nonSystemAppToolStripMenuItem = new System.Windows.Forms.ToolStripComboBox();
+            filterByToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            contextMenuStripFilterBy = new System.Windows.Forms.ContextMenuStrip(components);
+            allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            systemAppToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            nonSystemAppToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            uninstalledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            disabledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            contextMenuStripPermissionMenu = new System.Windows.Forms.ContextMenuStrip(components);
+            grantWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            grantWriteSecureSettingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            revokeWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            grantDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            grantDUMPToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            revokeDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            grantRevokeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            grantSYSTEMALERTWINDOWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            revokeSYSTEMALERTWINDOWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            checkGrantedPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            backgroundWorkerAdbDownloader = new System.ComponentModel.BackgroundWorker();
+            backgroundWorkerExeDownloader = new System.ComponentModel.BackgroundWorker();
+            buttonMobileScreenShare = new System.Windows.Forms.Button();
+            label9 = new System.Windows.Forms.Label();
+            pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            panelTopBar = new System.Windows.Forms.Panel();
+            pictureBoxMaximize = new System.Windows.Forms.PictureBox();
+            labelTools = new System.Windows.Forms.Label();
+            pictureBoxClose = new System.Windows.Forms.PictureBox();
+            pictureBoxMinimize = new System.Windows.Forms.PictureBox();
+            labelHelp = new System.Windows.Forms.Label();
+            labelSettings = new System.Windows.Forms.Label();
+            BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
+            contextMenuStripHelp = new System.Windows.Forms.ContextMenuStrip(components);
+            helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            videoTutorialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            submitFeedbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            videoTutorialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            buttonDeviceLogs = new System.Windows.Forms.Button();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            buttonReloadDevicesList = new System.Windows.Forms.Button();
+            comboBoxDevices = new System.Windows.Forms.ComboBox();
+            buttonSyncApp = new System.Windows.Forms.Button();
+            contextMenuStripSearch = new System.Windows.Forms.ContextMenuStrip(components);
+            duckduckgoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            googleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            playMarketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            APKMirrorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            fDroidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            contextMenuStripTools = new System.Windows.Forms.ContextMenuStrip(components);
+            toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripMenuItemADBKill = new System.Windows.Forms.ToolStripMenuItem();
+            buttonTaskManager = new System.Windows.Forms.Button();
+            backgroundWorkerADBConnect = new System.ComponentModel.BackgroundWorker();
+            backgroundWorkerADBDisconnect = new System.ComponentModel.BackgroundWorker();
+            groupBoxTerminal = new System.Windows.Forms.GroupBox();
+            radioButtonFastboot = new System.Windows.Forms.RadioButton();
+            radioButtonADB = new System.Windows.Forms.RadioButton();
+            buttonTerminalRun = new System.Windows.Forms.Button();
+            richTextBoxTerminal = new System.Windows.Forms.RichTextBox();
+            backgroundWorkerAPKinstall = new System.ComponentModel.BackgroundWorker();
+            backgroundWorkerFileTransfer = new System.ComponentModel.BackgroundWorker();
+            groupBoxDeviceInfo.SuspendLayout();
+            tabControls.SuspendLayout();
+            tabPageSystem.SuspendLayout();
+            groupBoxAPKMenu.SuspendLayout();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            toolStrip1.SuspendLayout();
+            groupBoxADBNet.SuspendLayout();
+            groupBoxRebootMenu.SuspendLayout();
+            tabPageFastboot.SuspendLayout();
+            panelFastboot.SuspendLayout();
+            groupBox5.SuspendLayout();
+            groupBox4.SuspendLayout();
+            tabPageRecovery.SuspendLayout();
+            panelRecovery.SuspendLayout();
+            groupBoxRecoveryRM.SuspendLayout();
+            groupBoxFlash.SuspendLayout();
+            tabPageTools.SuspendLayout();
+            groupBox3.SuspendLayout();
+            groupBoxTextInject.SuspendLayout();
+            groupBoxFreeRotation.SuspendLayout();
+            contextMenuStripFilterBy.SuspendLayout();
+            contextMenuStripPermissionMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).BeginInit();
+            panelTopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxMaximize).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxMinimize).BeginInit();
+            contextMenuStripHelp.SuspendLayout();
+            groupBox1.SuspendLayout();
+            contextMenuStripSearch.SuspendLayout();
+            contextMenuStripTools.SuspendLayout();
+            groupBoxTerminal.SuspendLayout();
+            SuspendLayout();
             // 
             // labelLog
             // 
-            this.labelLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelLog.AutoSize = true;
-            this.labelLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLog.Location = new System.Drawing.Point(914, 70);
-            this.labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelLog.Name = "labelLog";
-            this.labelLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.labelLog.Size = new System.Drawing.Size(28, 13);
-            this.labelLog.TabIndex = 24;
-            this.labelLog.Text = "Log:";
+            labelLog.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            labelLog.AutoSize = true;
+            labelLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelLog.Location = new System.Drawing.Point(1066, 81);
+            labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            labelLog.Name = "labelLog";
+            labelLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            labelLog.Size = new System.Drawing.Size(28, 13);
+            labelLog.TabIndex = 24;
+            labelLog.Text = "Log:";
             // 
             // buttonLogClear
             // 
-            this.buttonLogClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLogClear.BackColor = System.Drawing.Color.White;
-            this.buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonLogClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLogClear.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogClear.Location = new System.Drawing.Point(1036, 376);
-            this.buttonLogClear.Name = "buttonLogClear";
-            this.buttonLogClear.Size = new System.Drawing.Size(87, 23);
-            this.buttonLogClear.TabIndex = 31;
-            this.buttonLogClear.Text = "Clear log";
-            this.buttonLogClear.UseVisualStyleBackColor = false;
-            this.buttonLogClear.Click += new System.EventHandler(this.buttonLogClear_Click);
+            buttonLogClear.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            buttonLogClear.BackColor = System.Drawing.Color.White;
+            buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonLogClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonLogClear.ForeColor = System.Drawing.Color.Black;
+            buttonLogClear.Location = new System.Drawing.Point(1209, 434);
+            buttonLogClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonLogClear.Name = "buttonLogClear";
+            buttonLogClear.Size = new System.Drawing.Size(102, 27);
+            buttonLogClear.TabIndex = 31;
+            buttonLogClear.Text = "Clear log";
+            buttonLogClear.UseVisualStyleBackColor = false;
+            buttonLogClear.Click += buttonLogClear_Click;
             // 
             // backgroundWorkerSync
             // 
-            this.backgroundWorkerSync.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSync_DoWork);
+            backgroundWorkerSync.DoWork += backgroundWorkerSync_DoWork;
             // 
             // groupBoxDeviceInfo
             // 
-            this.groupBoxDeviceInfo.Controls.Add(this.buttonTurnOffAdb);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelUser);
-            this.groupBoxDeviceInfo.Controls.Add(this.label12);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelStatus);
-            this.groupBoxDeviceInfo.Controls.Add(this.label4);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelIP);
-            this.groupBoxDeviceInfo.Controls.Add(this.label1);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelAV);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelD);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelB);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelModel);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelManu);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelCA);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelBU);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelAndroidVersion);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelProductDevice);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelProductBoard);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelProductModel);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelManufacturer);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelCpuAbilitis);
-            this.groupBoxDeviceInfo.Controls.Add(this.labelBuildUser);
-            this.groupBoxDeviceInfo.Location = new System.Drawing.Point(6, 9);
-            this.groupBoxDeviceInfo.Name = "groupBoxDeviceInfo";
-            this.groupBoxDeviceInfo.Size = new System.Drawing.Size(321, 157);
-            this.groupBoxDeviceInfo.TabIndex = 32;
-            this.groupBoxDeviceInfo.TabStop = false;
-            this.groupBoxDeviceInfo.Text = "Device Info";
+            groupBoxDeviceInfo.Controls.Add(buttonTurnOffAdb);
+            groupBoxDeviceInfo.Controls.Add(labelUser);
+            groupBoxDeviceInfo.Controls.Add(label12);
+            groupBoxDeviceInfo.Controls.Add(labelStatus);
+            groupBoxDeviceInfo.Controls.Add(label4);
+            groupBoxDeviceInfo.Controls.Add(labelIP);
+            groupBoxDeviceInfo.Controls.Add(label1);
+            groupBoxDeviceInfo.Controls.Add(labelAV);
+            groupBoxDeviceInfo.Controls.Add(labelD);
+            groupBoxDeviceInfo.Controls.Add(labelB);
+            groupBoxDeviceInfo.Controls.Add(labelModel);
+            groupBoxDeviceInfo.Controls.Add(labelManu);
+            groupBoxDeviceInfo.Controls.Add(labelCA);
+            groupBoxDeviceInfo.Controls.Add(labelBU);
+            groupBoxDeviceInfo.Controls.Add(labelAndroidVersion);
+            groupBoxDeviceInfo.Controls.Add(labelProductDevice);
+            groupBoxDeviceInfo.Controls.Add(labelProductBoard);
+            groupBoxDeviceInfo.Controls.Add(labelProductModel);
+            groupBoxDeviceInfo.Controls.Add(labelManufacturer);
+            groupBoxDeviceInfo.Controls.Add(labelCpuAbilitis);
+            groupBoxDeviceInfo.Controls.Add(labelBuildUser);
+            groupBoxDeviceInfo.Location = new System.Drawing.Point(7, 10);
+            groupBoxDeviceInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxDeviceInfo.Name = "groupBoxDeviceInfo";
+            groupBoxDeviceInfo.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxDeviceInfo.Size = new System.Drawing.Size(374, 181);
+            groupBoxDeviceInfo.TabIndex = 32;
+            groupBoxDeviceInfo.TabStop = false;
+            groupBoxDeviceInfo.Text = "Device Info";
             // 
             // buttonTurnOffAdb
             // 
-            this.buttonTurnOffAdb.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonTurnOffAdb.Location = new System.Drawing.Point(240, 127);
-            this.buttonTurnOffAdb.Name = "buttonTurnOffAdb";
-            this.buttonTurnOffAdb.Size = new System.Drawing.Size(75, 23);
-            this.buttonTurnOffAdb.TabIndex = 20;
-            this.buttonTurnOffAdb.Text = "Turn off adb";
-            this.buttonTurnOffAdb.UseVisualStyleBackColor = true;
-            this.buttonTurnOffAdb.Click += new System.EventHandler(this.buttonTurnOffAdb_Click);
+            buttonTurnOffAdb.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonTurnOffAdb.Location = new System.Drawing.Point(280, 147);
+            buttonTurnOffAdb.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonTurnOffAdb.Name = "buttonTurnOffAdb";
+            buttonTurnOffAdb.Size = new System.Drawing.Size(88, 27);
+            buttonTurnOffAdb.TabIndex = 20;
+            buttonTurnOffAdb.Text = "Turn off adb";
+            buttonTurnOffAdb.UseVisualStyleBackColor = true;
+            buttonTurnOffAdb.Click += buttonTurnOffAdb_Click;
             // 
             // labelUser
             // 
-            this.labelUser.AutoSize = true;
-            this.labelUser.Location = new System.Drawing.Point(86, 133);
-            this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(65, 13);
-            this.labelUser.TabIndex = 19;
-            this.labelUser.Text = "UNKNOWN";
+            labelUser.AutoSize = true;
+            labelUser.Location = new System.Drawing.Point(100, 153);
+            labelUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelUser.Name = "labelUser";
+            labelUser.Size = new System.Drawing.Size(69, 15);
+            labelUser.TabIndex = 19;
+            labelUser.Text = "UNKNOWN";
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 133);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(35, 13);
-            this.label12.TabIndex = 18;
-            this.label12.Text = "User: ";
+            label12.AutoSize = true;
+            label12.Location = new System.Drawing.Point(7, 153);
+            label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label12.Name = "label12";
+            label12.Size = new System.Drawing.Size(36, 15);
+            label12.TabIndex = 18;
+            label12.Text = "User: ";
             // 
             // labelStatus
             // 
-            this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new System.Drawing.Point(86, 120);
-            this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(65, 13);
-            this.labelStatus.TabIndex = 17;
-            this.labelStatus.Text = "UNKNOWN";
+            labelStatus.AutoSize = true;
+            labelStatus.Location = new System.Drawing.Point(100, 138);
+            labelStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelStatus.Name = "labelStatus";
+            labelStatus.Size = new System.Drawing.Size(69, 15);
+            labelStatus.TabIndex = 17;
+            labelStatus.Text = "UNKNOWN";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 120);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 13);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Connected via: ";
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(7, 138);
+            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(89, 15);
+            label4.TabIndex = 16;
+            label4.Text = "Connected via: ";
             // 
             // labelIP
             // 
-            this.labelIP.AutoSize = true;
-            this.labelIP.Location = new System.Drawing.Point(86, 107);
-            this.labelIP.Name = "labelIP";
-            this.labelIP.Size = new System.Drawing.Size(44, 13);
-            this.labelIP.TabIndex = 15;
-            this.labelIP.Text = "EMPTY";
+            labelIP.AutoSize = true;
+            labelIP.Location = new System.Drawing.Point(100, 123);
+            labelIP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelIP.Name = "labelIP";
+            labelIP.Size = new System.Drawing.Size(44, 15);
+            labelIP.TabIndex = 15;
+            labelIP.Text = "EMPTY";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 107);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "IP: ";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(7, 123);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(23, 15);
+            label1.TabIndex = 14;
+            label1.Text = "IP: ";
             // 
             // labelAV
             // 
-            this.labelAV.AutoSize = true;
-            this.labelAV.Location = new System.Drawing.Point(86, 94);
-            this.labelAV.Name = "labelAV";
-            this.labelAV.Size = new System.Drawing.Size(44, 13);
-            this.labelAV.TabIndex = 13;
-            this.labelAV.Text = "EMPTY";
+            labelAV.AutoSize = true;
+            labelAV.Location = new System.Drawing.Point(100, 108);
+            labelAV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelAV.Name = "labelAV";
+            labelAV.Size = new System.Drawing.Size(44, 15);
+            labelAV.TabIndex = 13;
+            labelAV.Text = "EMPTY";
             // 
             // labelD
             // 
-            this.labelD.AutoSize = true;
-            this.labelD.Location = new System.Drawing.Point(86, 81);
-            this.labelD.Name = "labelD";
-            this.labelD.Size = new System.Drawing.Size(44, 13);
-            this.labelD.TabIndex = 12;
-            this.labelD.Text = "EMPTY";
+            labelD.AutoSize = true;
+            labelD.Location = new System.Drawing.Point(100, 93);
+            labelD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelD.Name = "labelD";
+            labelD.Size = new System.Drawing.Size(44, 15);
+            labelD.TabIndex = 12;
+            labelD.Text = "EMPTY";
             // 
             // labelB
             // 
-            this.labelB.AutoSize = true;
-            this.labelB.Location = new System.Drawing.Point(86, 68);
-            this.labelB.Name = "labelB";
-            this.labelB.Size = new System.Drawing.Size(44, 13);
-            this.labelB.TabIndex = 11;
-            this.labelB.Text = "EMPTY";
+            labelB.AutoSize = true;
+            labelB.Location = new System.Drawing.Point(100, 78);
+            labelB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelB.Name = "labelB";
+            labelB.Size = new System.Drawing.Size(44, 15);
+            labelB.TabIndex = 11;
+            labelB.Text = "EMPTY";
             // 
             // labelModel
             // 
-            this.labelModel.AutoSize = true;
-            this.labelModel.Location = new System.Drawing.Point(86, 55);
-            this.labelModel.Name = "labelModel";
-            this.labelModel.Size = new System.Drawing.Size(44, 13);
-            this.labelModel.TabIndex = 10;
-            this.labelModel.Text = "EMPTY";
+            labelModel.AutoSize = true;
+            labelModel.Location = new System.Drawing.Point(100, 63);
+            labelModel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelModel.Name = "labelModel";
+            labelModel.Size = new System.Drawing.Size(44, 15);
+            labelModel.TabIndex = 10;
+            labelModel.Text = "EMPTY";
             // 
             // labelManu
             // 
-            this.labelManu.AutoSize = true;
-            this.labelManu.Location = new System.Drawing.Point(86, 42);
-            this.labelManu.Name = "labelManu";
-            this.labelManu.Size = new System.Drawing.Size(44, 13);
-            this.labelManu.TabIndex = 9;
-            this.labelManu.Text = "EMPTY";
+            labelManu.AutoSize = true;
+            labelManu.Location = new System.Drawing.Point(100, 48);
+            labelManu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelManu.Name = "labelManu";
+            labelManu.Size = new System.Drawing.Size(44, 15);
+            labelManu.TabIndex = 9;
+            labelManu.Text = "EMPTY";
             // 
             // labelCA
             // 
-            this.labelCA.AutoSize = true;
-            this.labelCA.Location = new System.Drawing.Point(86, 29);
-            this.labelCA.Name = "labelCA";
-            this.labelCA.Size = new System.Drawing.Size(44, 13);
-            this.labelCA.TabIndex = 8;
-            this.labelCA.Text = "EMPTY";
+            labelCA.AutoSize = true;
+            labelCA.Location = new System.Drawing.Point(100, 33);
+            labelCA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelCA.Name = "labelCA";
+            labelCA.Size = new System.Drawing.Size(44, 15);
+            labelCA.TabIndex = 8;
+            labelCA.Text = "EMPTY";
             // 
             // labelBU
             // 
-            this.labelBU.AutoSize = true;
-            this.labelBU.Location = new System.Drawing.Point(86, 16);
-            this.labelBU.Name = "labelBU";
-            this.labelBU.Size = new System.Drawing.Size(44, 13);
-            this.labelBU.TabIndex = 7;
-            this.labelBU.Text = "EMPTY";
+            labelBU.AutoSize = true;
+            labelBU.Location = new System.Drawing.Point(100, 18);
+            labelBU.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelBU.Name = "labelBU";
+            labelBU.Size = new System.Drawing.Size(44, 15);
+            labelBU.TabIndex = 7;
+            labelBU.Text = "EMPTY";
             // 
             // labelAndroidVersion
             // 
-            this.labelAndroidVersion.AutoSize = true;
-            this.labelAndroidVersion.Location = new System.Drawing.Point(6, 94);
-            this.labelAndroidVersion.Name = "labelAndroidVersion";
-            this.labelAndroidVersion.Size = new System.Drawing.Size(84, 13);
-            this.labelAndroidVersion.TabIndex = 6;
-            this.labelAndroidVersion.Text = "Android Version:";
+            labelAndroidVersion.AutoSize = true;
+            labelAndroidVersion.Location = new System.Drawing.Point(7, 108);
+            labelAndroidVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelAndroidVersion.Name = "labelAndroidVersion";
+            labelAndroidVersion.Size = new System.Drawing.Size(94, 15);
+            labelAndroidVersion.TabIndex = 6;
+            labelAndroidVersion.Text = "Android Version:";
             // 
             // labelProductDevice
             // 
-            this.labelProductDevice.AutoSize = true;
-            this.labelProductDevice.Location = new System.Drawing.Point(6, 81);
-            this.labelProductDevice.Name = "labelProductDevice";
-            this.labelProductDevice.Size = new System.Drawing.Size(44, 13);
-            this.labelProductDevice.TabIndex = 5;
-            this.labelProductDevice.Text = "Device:";
+            labelProductDevice.AutoSize = true;
+            labelProductDevice.Location = new System.Drawing.Point(7, 93);
+            labelProductDevice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelProductDevice.Name = "labelProductDevice";
+            labelProductDevice.Size = new System.Drawing.Size(45, 15);
+            labelProductDevice.TabIndex = 5;
+            labelProductDevice.Text = "Device:";
             // 
             // labelProductBoard
             // 
-            this.labelProductBoard.AutoSize = true;
-            this.labelProductBoard.Location = new System.Drawing.Point(6, 68);
-            this.labelProductBoard.Name = "labelProductBoard";
-            this.labelProductBoard.Size = new System.Drawing.Size(38, 13);
-            this.labelProductBoard.TabIndex = 4;
-            this.labelProductBoard.Text = "Board:";
+            labelProductBoard.AutoSize = true;
+            labelProductBoard.Location = new System.Drawing.Point(7, 78);
+            labelProductBoard.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelProductBoard.Name = "labelProductBoard";
+            labelProductBoard.Size = new System.Drawing.Size(41, 15);
+            labelProductBoard.TabIndex = 4;
+            labelProductBoard.Text = "Board:";
             // 
             // labelProductModel
             // 
-            this.labelProductModel.AutoSize = true;
-            this.labelProductModel.Location = new System.Drawing.Point(6, 55);
-            this.labelProductModel.Name = "labelProductModel";
-            this.labelProductModel.Size = new System.Drawing.Size(39, 13);
-            this.labelProductModel.TabIndex = 3;
-            this.labelProductModel.Text = "Model:";
+            labelProductModel.AutoSize = true;
+            labelProductModel.Location = new System.Drawing.Point(7, 63);
+            labelProductModel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelProductModel.Name = "labelProductModel";
+            labelProductModel.Size = new System.Drawing.Size(44, 15);
+            labelProductModel.TabIndex = 3;
+            labelProductModel.Text = "Model:";
             // 
             // labelManufacturer
             // 
-            this.labelManufacturer.AutoSize = true;
-            this.labelManufacturer.Location = new System.Drawing.Point(6, 42);
-            this.labelManufacturer.Name = "labelManufacturer";
-            this.labelManufacturer.Size = new System.Drawing.Size(73, 13);
-            this.labelManufacturer.TabIndex = 2;
-            this.labelManufacturer.Text = "Manufacturer:";
+            labelManufacturer.AutoSize = true;
+            labelManufacturer.Location = new System.Drawing.Point(7, 48);
+            labelManufacturer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelManufacturer.Name = "labelManufacturer";
+            labelManufacturer.Size = new System.Drawing.Size(82, 15);
+            labelManufacturer.TabIndex = 2;
+            labelManufacturer.Text = "Manufacturer:";
             // 
             // labelCpuAbilitis
             // 
-            this.labelCpuAbilitis.AutoSize = true;
-            this.labelCpuAbilitis.Location = new System.Drawing.Point(6, 29);
-            this.labelCpuAbilitis.Name = "labelCpuAbilitis";
-            this.labelCpuAbilitis.Size = new System.Drawing.Size(61, 13);
-            this.labelCpuAbilitis.TabIndex = 1;
-            this.labelCpuAbilitis.Text = "Cpu Abilitis:";
+            labelCpuAbilitis.AutoSize = true;
+            labelCpuAbilitis.Location = new System.Drawing.Point(7, 33);
+            labelCpuAbilitis.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelCpuAbilitis.Name = "labelCpuAbilitis";
+            labelCpuAbilitis.Size = new System.Drawing.Size(71, 15);
+            labelCpuAbilitis.TabIndex = 1;
+            labelCpuAbilitis.Text = "Cpu Abilitis:";
             // 
             // labelBuildUser
             // 
-            this.labelBuildUser.AutoSize = true;
-            this.labelBuildUser.Location = new System.Drawing.Point(6, 16);
-            this.labelBuildUser.Name = "labelBuildUser";
-            this.labelBuildUser.Size = new System.Drawing.Size(58, 13);
-            this.labelBuildUser.TabIndex = 0;
-            this.labelBuildUser.Text = "Build User:";
+            labelBuildUser.AutoSize = true;
+            labelBuildUser.Location = new System.Drawing.Point(7, 18);
+            labelBuildUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelBuildUser.Name = "labelBuildUser";
+            labelBuildUser.Size = new System.Drawing.Size(63, 15);
+            labelBuildUser.TabIndex = 0;
+            labelBuildUser.Text = "Build User:";
             // 
             // checkBoxSelectAll
             // 
-            this.checkBoxSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxSelectAll.AutoSize = true;
-            this.checkBoxSelectAll.ForeColor = System.Drawing.Color.Black;
-            this.checkBoxSelectAll.Location = new System.Drawing.Point(8, 69);
-            this.checkBoxSelectAll.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBoxSelectAll.Name = "checkBoxSelectAll";
-            this.checkBoxSelectAll.Size = new System.Drawing.Size(70, 17);
-            this.checkBoxSelectAll.TabIndex = 37;
-            this.checkBoxSelectAll.Text = "Select All";
-            this.checkBoxSelectAll.UseVisualStyleBackColor = true;
-            this.checkBoxSelectAll.CheckedChanged += new System.EventHandler(this.checkBoxSelectAll_CheckedChanged);
+            checkBoxSelectAll.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            checkBoxSelectAll.AutoSize = true;
+            checkBoxSelectAll.ForeColor = System.Drawing.Color.Black;
+            checkBoxSelectAll.Location = new System.Drawing.Point(9, 80);
+            checkBoxSelectAll.Margin = new System.Windows.Forms.Padding(2);
+            checkBoxSelectAll.Name = "checkBoxSelectAll";
+            checkBoxSelectAll.Size = new System.Drawing.Size(74, 19);
+            checkBoxSelectAll.TabIndex = 37;
+            checkBoxSelectAll.Text = "Select All";
+            checkBoxSelectAll.UseVisualStyleBackColor = true;
+            checkBoxSelectAll.CheckedChanged += checkBoxSelectAll_CheckedChanged;
             // 
             // tabControls
             // 
-            this.tabControls.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControls.Controls.Add(this.tabPageSystem);
-            this.tabControls.Controls.Add(this.tabPageFastboot);
-            this.tabControls.Controls.Add(this.tabPageRecovery);
-            this.tabControls.Controls.Add(this.tabPageTools);
-            this.tabControls.Location = new System.Drawing.Point(8, 46);
-            this.tabControls.Name = "tabControls";
-            this.tabControls.SelectedIndex = 0;
-            this.tabControls.Size = new System.Drawing.Size(901, 321);
-            this.tabControls.TabIndex = 33;
-            this.tabControls.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
+            tabControls.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tabControls.Controls.Add(tabPageSystem);
+            tabControls.Controls.Add(tabPageFastboot);
+            tabControls.Controls.Add(tabPageRecovery);
+            tabControls.Controls.Add(tabPageTools);
+            tabControls.Location = new System.Drawing.Point(9, 53);
+            tabControls.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            tabControls.Name = "tabControls";
+            tabControls.SelectedIndex = 0;
+            tabControls.Size = new System.Drawing.Size(1051, 370);
+            tabControls.TabIndex = 33;
+            tabControls.Selected += tabControl1_Selected;
             // 
             // tabPageSystem
             // 
-            this.tabPageSystem.Controls.Add(this.groupBoxDeviceInfo);
-            this.tabPageSystem.Controls.Add(this.groupBoxAPKMenu);
-            this.tabPageSystem.Controls.Add(this.groupBoxADBNet);
-            this.tabPageSystem.Controls.Add(this.groupBoxRebootMenu);
-            this.tabPageSystem.Location = new System.Drawing.Point(4, 22);
-            this.tabPageSystem.Name = "tabPageSystem";
-            this.tabPageSystem.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSystem.Size = new System.Drawing.Size(893, 295);
-            this.tabPageSystem.TabIndex = 0;
-            this.tabPageSystem.Text = "System";
-            this.tabPageSystem.UseVisualStyleBackColor = true;
+            tabPageSystem.Controls.Add(groupBoxDeviceInfo);
+            tabPageSystem.Controls.Add(groupBoxAPKMenu);
+            tabPageSystem.Controls.Add(groupBoxADBNet);
+            tabPageSystem.Controls.Add(groupBoxRebootMenu);
+            tabPageSystem.Location = new System.Drawing.Point(4, 24);
+            tabPageSystem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            tabPageSystem.Name = "tabPageSystem";
+            tabPageSystem.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            tabPageSystem.Size = new System.Drawing.Size(1043, 342);
+            tabPageSystem.TabIndex = 0;
+            tabPageSystem.Text = "System";
+            tabPageSystem.UseVisualStyleBackColor = true;
             // 
             // groupBoxAPKMenu
             // 
-            this.groupBoxAPKMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxAPKMenu.Controls.Add(this.groupBox2);
-            this.groupBoxAPKMenu.Controls.Add(this.labelSelectedAppCount);
-            this.groupBoxAPKMenu.Controls.Add(this.groupBox6);
-            this.groupBoxAPKMenu.Controls.Add(this.toolStrip1);
-            this.groupBoxAPKMenu.Controls.Add(this.checkedListBoxApp);
-            this.groupBoxAPKMenu.Controls.Add(this.checkBoxSelectAll);
-            this.groupBoxAPKMenu.Location = new System.Drawing.Point(331, 9);
-            this.groupBoxAPKMenu.Name = "groupBoxAPKMenu";
-            this.groupBoxAPKMenu.Size = new System.Drawing.Size(556, 280);
-            this.groupBoxAPKMenu.TabIndex = 36;
-            this.groupBoxAPKMenu.TabStop = false;
-            this.groupBoxAPKMenu.Text = "APK Menu";
+            groupBoxAPKMenu.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            groupBoxAPKMenu.Controls.Add(groupBox2);
+            groupBoxAPKMenu.Controls.Add(labelSelectedAppCount);
+            groupBoxAPKMenu.Controls.Add(groupBox6);
+            groupBoxAPKMenu.Controls.Add(toolStrip1);
+            groupBoxAPKMenu.Controls.Add(checkedListBoxApp);
+            groupBoxAPKMenu.Controls.Add(checkBoxSelectAll);
+            groupBoxAPKMenu.Location = new System.Drawing.Point(386, 10);
+            groupBoxAPKMenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxAPKMenu.Name = "groupBoxAPKMenu";
+            groupBoxAPKMenu.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxAPKMenu.Size = new System.Drawing.Size(649, 323);
+            groupBoxAPKMenu.TabIndex = 36;
+            groupBoxAPKMenu.TabStop = false;
+            groupBoxAPKMenu.Text = "APK Menu";
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.pictureBox3);
-            this.groupBox2.Location = new System.Drawing.Point(396, 184);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(155, 90);
-            this.groupBox2.TabIndex = 44;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "File Transfer";
-            this.groupBox2.DragDrop += new System.Windows.Forms.DragEventHandler(this.groupBox2_DragDrop);
-            this.groupBox2.DragEnter += new System.Windows.Forms.DragEventHandler(this.groupBox2_DragEnter);
+            groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            groupBox2.Controls.Add(label5);
+            groupBox2.Controls.Add(pictureBox3);
+            groupBox2.Location = new System.Drawing.Point(462, 212);
+            groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox2.Size = new System.Drawing.Size(181, 104);
+            groupBox2.TabIndex = 44;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "File Transfer";
+            groupBox2.DragDrop += groupBox2_DragDrop;
+            groupBox2.DragEnter += groupBox2_DragEnter;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(55, 69);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Drop File";
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(64, 80);
+            label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(54, 15);
+            label5.TabIndex = 1;
+            label5.Text = "Drop File";
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::ATA_GUI.Properties.Resources.icons8_drag_and_drop_48;
-            this.pictureBox3.Location = new System.Drawing.Point(56, 19);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(51, 47);
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
+            pictureBox3.Image = Properties.Resources.icons8_drag_and_drop_48;
+            pictureBox3.Location = new System.Drawing.Point(65, 22);
+            pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new System.Drawing.Size(59, 54);
+            pictureBox3.TabIndex = 0;
+            pictureBox3.TabStop = false;
             // 
             // labelSelectedAppCount
             // 
-            this.labelSelectedAppCount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelSelectedAppCount.AutoSize = true;
-            this.labelSelectedAppCount.Location = new System.Drawing.Point(279, 70);
-            this.labelSelectedAppCount.Name = "labelSelectedAppCount";
-            this.labelSelectedAppCount.Size = new System.Drawing.Size(83, 13);
-            this.labelSelectedAppCount.TabIndex = 44;
-            this.labelSelectedAppCount.Text = "Selected App: 0";
+            labelSelectedAppCount.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            labelSelectedAppCount.AutoSize = true;
+            labelSelectedAppCount.Location = new System.Drawing.Point(326, 81);
+            labelSelectedAppCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelSelectedAppCount.Name = "labelSelectedAppCount";
+            labelSelectedAppCount.Size = new System.Drawing.Size(88, 15);
+            labelSelectedAppCount.TabIndex = 44;
+            labelSelectedAppCount.Text = "Selected App: 0";
             // 
             // groupBox6
             // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox6.Controls.Add(this.label3);
-            this.groupBox6.Controls.Add(this.pictureBox2);
-            this.groupBox6.Location = new System.Drawing.Point(396, 90);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(155, 90);
-            this.groupBox6.TabIndex = 43;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Apk Installer";
-            this.groupBox6.DragDrop += new System.Windows.Forms.DragEventHandler(this.groupBox6_DragDrop);
-            this.groupBox6.DragEnter += new System.Windows.Forms.DragEventHandler(this.groupBox6_DragEnter);
+            groupBox6.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            groupBox6.Controls.Add(label3);
+            groupBox6.Controls.Add(pictureBox2);
+            groupBox6.Location = new System.Drawing.Point(462, 104);
+            groupBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox6.Size = new System.Drawing.Size(181, 104);
+            groupBox6.TabIndex = 43;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Apk Installer";
+            groupBox6.DragDrop += groupBox6_DragDrop;
+            groupBox6.DragEnter += groupBox6_DragEnter;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(55, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Drop Apk";
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(64, 80);
+            label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(57, 15);
+            label3.TabIndex = 1;
+            label3.Text = "Drop Apk";
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::ATA_GUI.Properties.Resources.icons8_drag_and_drop_48;
-            this.pictureBox2.Location = new System.Drawing.Point(56, 19);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(51, 47);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
+            pictureBox2.Image = Properties.Resources.icons8_drag_and_drop_48;
+            pictureBox2.Location = new System.Drawing.Point(65, 22);
+            pictureBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new System.Drawing.Size(59, 54);
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonReloadApps,
-            this.toolStripSeparator2,
-            this.toolStripButtonFilter,
-            this.toolStripSeparator6,
-            this.textBoxSearch,
-            this.toolStripSeparator1,
-            this.toolStripButtonRestoreApp,
-            this.toolStripSeparator7,
-            this.toolStripButtonUninstallApp,
-            this.toolStripSeparator5,
-            this.toolStripButtonPackageManager,
-            this.toolStripSeparator3,
-            this.toolStripButtonPermissionMenu,
-            this.toolStripSeparator4,
-            this.toolStripButtonSetDefault,
-            this.toolStripSeparator8,
-            this.toolStripButtonBloatwareDetecter,
-            this.toolStripSeparator10,
-            this.toolStripButtonSearch,
-            this.toolStripSeparator9,
-            this.toolStripButtonExtract,
-            this.toolStripSeparator12,
-            this.toolStripLabelTotalApps,
-            this.toolStripSeparator11,
-            this.toolStripDropDownInstallApkButton});
-            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.toolStrip1.Location = new System.Drawing.Point(3, 16);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(550, 23);
-            this.toolStrip1.TabIndex = 42;
-            this.toolStrip1.Text = "toolStripAPKMenu";
+            toolStrip1.BackColor = System.Drawing.Color.White;
+            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripButtonReloadApps, toolStripSeparator2, toolStripButtonFilter, toolStripSeparator6, textBoxSearch, toolStripSeparator1, toolStripButtonRestoreApp, toolStripSeparator7, toolStripButtonUninstallApp, toolStripSeparator5, toolStripButtonPackageManager, toolStripSeparator3, toolStripButtonPermissionMenu, toolStripSeparator4, toolStripButtonSetDefault, toolStripSeparator8, toolStripButtonBloatwareDetecter, toolStripSeparator10, toolStripButtonSearch, toolStripSeparator9, toolStripButtonExtract, toolStripSeparator12, toolStripLabelTotalApps, toolStripSeparator11, toolStripDropDownInstallApkButton });
+            toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            toolStrip1.Location = new System.Drawing.Point(4, 19);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            toolStrip1.Size = new System.Drawing.Size(641, 23);
+            toolStrip1.TabIndex = 42;
+            toolStrip1.Text = "toolStripAPKMenu";
             // 
             // toolStripButtonReloadApps
             // 
-            this.toolStripButtonReloadApps.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonReloadApps.Image = global::ATA_GUI.Properties.Resources.icons8_refresh_48;
-            this.toolStripButtonReloadApps.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonReloadApps.Name = "toolStripButtonReloadApps";
-            this.toolStripButtonReloadApps.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonReloadApps.Text = "Reload Apps";
-            this.toolStripButtonReloadApps.Click += new System.EventHandler(this.toolStripButton1_Click);
+            toolStripButtonReloadApps.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButtonReloadApps.Image = Properties.Resources.icons8_refresh_48;
+            toolStripButtonReloadApps.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonReloadApps.Name = "toolStripButtonReloadApps";
+            toolStripButtonReloadApps.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonReloadApps.Text = "Reload Apps";
+            toolStripButtonReloadApps.Click += toolStripButton1_Click;
             // 
             // toolStripSeparator2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButtonFilter
             // 
-            this.toolStripButtonFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonFilter.Image = global::ATA_GUI.Properties.Resources.icons8_filter_48;
-            this.toolStripButtonFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonFilter.Name = "toolStripButtonFilter";
-            this.toolStripButtonFilter.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonFilter.Text = "Filter Apps";
-            this.toolStripButtonFilter.ToolTipText = "Apps Filter ";
-            this.toolStripButtonFilter.Click += new System.EventHandler(this.toolStripButtonFilter_Click);
+            toolStripButtonFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButtonFilter.Image = Properties.Resources.icons8_filter_48;
+            toolStripButtonFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonFilter.Name = "toolStripButtonFilter";
+            toolStripButtonFilter.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonFilter.Text = "Filter Apps";
+            toolStripButtonFilter.ToolTipText = "Apps Filter ";
+            toolStripButtonFilter.Click += toolStripButtonFilter_Click;
             // 
             // toolStripSeparator6
             // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator6.Name = "toolStripSeparator6";
+            toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.BackColor = System.Drawing.Color.White;
-            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(150, 23);
-            this.textBoxSearch.Text = "Search";
-            this.textBoxSearch.Click += new System.EventHandler(this.textBoxSearch_Click);
-            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
+            textBoxSearch.BackColor = System.Drawing.Color.White;
+            textBoxSearch.Name = "textBoxSearch";
+            textBoxSearch.Size = new System.Drawing.Size(174, 23);
+            textBoxSearch.Text = "Search";
+            textBoxSearch.Click += textBoxSearch_Click;
+            textBoxSearch.TextChanged += textBoxSearch_TextChanged;
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButtonRestoreApp
             // 
-            this.toolStripButtonRestoreApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonRestoreApp.Image = global::ATA_GUI.Properties.Resources.icons8_restart_48;
-            this.toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
-            this.toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonRestoreApp.Tag = "";
-            this.toolStripButtonRestoreApp.Text = "Restore App [Only system apps can be restored]";
-            this.toolStripButtonRestoreApp.Click += new System.EventHandler(this.toolStripButtonRestoreApp_Click);
+            toolStripButtonRestoreApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButtonRestoreApp.Image = Properties.Resources.icons8_restart_48;
+            toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
+            toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonRestoreApp.Tag = "";
+            toolStripButtonRestoreApp.Text = "Restore App [Only system apps can be restored]";
+            toolStripButtonRestoreApp.Click += toolStripButtonRestoreApp_Click;
             // 
             // toolStripSeparator7
             // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator7.Name = "toolStripSeparator7";
+            toolStripSeparator7.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButtonUninstallApp
             // 
-            this.toolStripButtonUninstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonUninstallApp.Image = global::ATA_GUI.Properties.Resources.icons8_remove_48;
-            this.toolStripButtonUninstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonUninstallApp.Name = "toolStripButtonUninstallApp";
-            this.toolStripButtonUninstallApp.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonUninstallApp.Text = "Uninstall App";
-            this.toolStripButtonUninstallApp.Click += new System.EventHandler(this.toolStripButton4_Click);
+            toolStripButtonUninstallApp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButtonUninstallApp.Image = Properties.Resources.icons8_remove_48;
+            toolStripButtonUninstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonUninstallApp.Name = "toolStripButtonUninstallApp";
+            toolStripButtonUninstallApp.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonUninstallApp.Text = "Uninstall App";
+            toolStripButtonUninstallApp.Click += toolStripButton4_Click;
             // 
             // toolStripSeparator5
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator5.Name = "toolStripSeparator5";
+            toolStripSeparator5.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButtonPackageManager
             // 
-            this.toolStripButtonPackageManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonPackageManager.Image = global::ATA_GUI.Properties.Resources.icons8_support_48;
-            this.toolStripButtonPackageManager.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonPackageManager.Name = "toolStripButtonPackageManager";
-            this.toolStripButtonPackageManager.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonPackageManager.Text = "Package Manager";
-            this.toolStripButtonPackageManager.ToolTipText = "Package Menu";
-            this.toolStripButtonPackageManager.Click += new System.EventHandler(this.toolStripButton5_Click);
+            toolStripButtonPackageManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButtonPackageManager.Image = Properties.Resources.icons8_support_48;
+            toolStripButtonPackageManager.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonPackageManager.Name = "toolStripButtonPackageManager";
+            toolStripButtonPackageManager.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonPackageManager.Text = "Package Manager";
+            toolStripButtonPackageManager.ToolTipText = "Package Menu";
+            toolStripButtonPackageManager.Click += toolStripButton5_Click;
             // 
             // toolStripSeparator3
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButtonPermissionMenu
             // 
-            this.toolStripButtonPermissionMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonPermissionMenu.Image = global::ATA_GUI.Properties.Resources.icons8_services_48;
-            this.toolStripButtonPermissionMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonPermissionMenu.Name = "toolStripButtonPermissionMenu";
-            this.toolStripButtonPermissionMenu.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonPermissionMenu.Text = "toolStripButton1";
-            this.toolStripButtonPermissionMenu.ToolTipText = "Permission Menu";
-            this.toolStripButtonPermissionMenu.Click += new System.EventHandler(this.toolStripButtonPermissionMenu_Click);
+            toolStripButtonPermissionMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButtonPermissionMenu.Image = Properties.Resources.icons8_services_48;
+            toolStripButtonPermissionMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonPermissionMenu.Name = "toolStripButtonPermissionMenu";
+            toolStripButtonPermissionMenu.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonPermissionMenu.Text = "toolStripButton1";
+            toolStripButtonPermissionMenu.ToolTipText = "Permission Menu";
+            toolStripButtonPermissionMenu.Click += toolStripButtonPermissionMenu_Click;
             // 
             // toolStripSeparator4
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButtonSetDefault
             // 
-            this.toolStripButtonSetDefault.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSetDefault.Image = global::ATA_GUI.Properties.Resources.icons8_operating_system_48;
-            this.toolStripButtonSetDefault.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSetDefault.Name = "toolStripButtonSetDefault";
-            this.toolStripButtonSetDefault.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonSetDefault.Text = "Set default app";
-            this.toolStripButtonSetDefault.Click += new System.EventHandler(this.toolStripButtonSetDefault_Click);
+            toolStripButtonSetDefault.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButtonSetDefault.Image = Properties.Resources.icons8_operating_system_48;
+            toolStripButtonSetDefault.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonSetDefault.Name = "toolStripButtonSetDefault";
+            toolStripButtonSetDefault.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonSetDefault.Text = "Set default app";
+            toolStripButtonSetDefault.Click += toolStripButtonSetDefault_Click;
             // 
             // toolStripSeparator8
             // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator8.Name = "toolStripSeparator8";
+            toolStripSeparator8.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButtonBloatwareDetecter
             // 
-            this.toolStripButtonBloatwareDetecter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonBloatwareDetecter.Image = global::ATA_GUI.Properties.Resources.icons8_box_important_48;
-            this.toolStripButtonBloatwareDetecter.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonBloatwareDetecter.Name = "toolStripButtonBloatwareDetecter";
-            this.toolStripButtonBloatwareDetecter.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonBloatwareDetecter.Text = "Bloatware Detecter";
-            this.toolStripButtonBloatwareDetecter.Click += new System.EventHandler(this.toolStripButtonBloatwareDetecter_Click);
+            toolStripButtonBloatwareDetecter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButtonBloatwareDetecter.Image = Properties.Resources.icons8_box_important_48;
+            toolStripButtonBloatwareDetecter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonBloatwareDetecter.Name = "toolStripButtonBloatwareDetecter";
+            toolStripButtonBloatwareDetecter.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonBloatwareDetecter.Text = "Bloatware Detecter";
+            toolStripButtonBloatwareDetecter.Click += toolStripButtonBloatwareDetecter_Click;
             // 
             // toolStripSeparator10
             // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator10.Name = "toolStripSeparator10";
+            toolStripSeparator10.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButtonSearch
             // 
-            this.toolStripButtonSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSearch.Image = global::ATA_GUI.Properties.Resources.icons8_search_in_browser_48;
-            this.toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSearch.Name = "toolStripButtonSearch";
-            this.toolStripButtonSearch.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonSearch.Text = "Search";
-            this.toolStripButtonSearch.Click += new System.EventHandler(this.toolStripButtonSearch_Click);
+            toolStripButtonSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButtonSearch.Image = Properties.Resources.icons8_search_in_browser_48;
+            toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonSearch.Name = "toolStripButtonSearch";
+            toolStripButtonSearch.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonSearch.Text = "Search";
+            toolStripButtonSearch.Click += toolStripButtonSearch_Click;
             // 
             // toolStripSeparator9
             // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator9.Name = "toolStripSeparator9";
+            toolStripSeparator9.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButtonExtract
             // 
-            this.toolStripButtonExtract.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonExtract.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonExtract.Image")));
-            this.toolStripButtonExtract.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonExtract.Name = "toolStripButtonExtract";
-            this.toolStripButtonExtract.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonExtract.Text = "Extract";
-            this.toolStripButtonExtract.Click += new System.EventHandler(this.toolStripButtonExtract_Click);
+            toolStripButtonExtract.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButtonExtract.Image = (System.Drawing.Image)resources.GetObject("toolStripButtonExtract.Image");
+            toolStripButtonExtract.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonExtract.Name = "toolStripButtonExtract";
+            toolStripButtonExtract.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonExtract.Text = "Extract";
+            toolStripButtonExtract.Click += toolStripButtonExtract_Click;
             // 
             // toolStripSeparator12
             // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator12.Name = "toolStripSeparator12";
+            toolStripSeparator12.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripLabelTotalApps
             // 
-            this.toolStripLabelTotalApps.Name = "toolStripLabelTotalApps";
-            this.toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 15);
-            this.toolStripLabelTotalApps.Text = "Total: 0";
+            toolStripLabelTotalApps.Name = "toolStripLabelTotalApps";
+            toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 15);
+            toolStripLabelTotalApps.Text = "Total: 0";
             // 
             // toolStripSeparator11
             // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator11.Name = "toolStripSeparator11";
+            toolStripSeparator11.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripDropDownInstallApkButton
             // 
-            this.toolStripDropDownInstallApkButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownInstallApkButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.installAppToolStripMenuItem,
-            this.downgradeAppToolStripMenuItem});
-            this.toolStripDropDownInstallApkButton.Image = global::ATA_GUI.Properties.Resources.icons8_software_installer_48;
-            this.toolStripDropDownInstallApkButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownInstallApkButton.Name = "toolStripDropDownInstallApkButton";
-            this.toolStripDropDownInstallApkButton.Size = new System.Drawing.Size(29, 20);
-            this.toolStripDropDownInstallApkButton.Text = "Install App";
+            toolStripDropDownInstallApkButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripDropDownInstallApkButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { installAppToolStripMenuItem, downgradeAppToolStripMenuItem });
+            toolStripDropDownInstallApkButton.Image = Properties.Resources.icons8_software_installer_48;
+            toolStripDropDownInstallApkButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripDropDownInstallApkButton.Name = "toolStripDropDownInstallApkButton";
+            toolStripDropDownInstallApkButton.Size = new System.Drawing.Size(29, 20);
+            toolStripDropDownInstallApkButton.Text = "Install App";
             // 
             // installAppToolStripMenuItem
             // 
-            this.installAppToolStripMenuItem.Name = "installAppToolStripMenuItem";
-            this.installAppToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.installAppToolStripMenuItem.Text = "Install App";
-            this.installAppToolStripMenuItem.Click += new System.EventHandler(this.installAppToolStripMenuItem_Click);
+            installAppToolStripMenuItem.Name = "installAppToolStripMenuItem";
+            installAppToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            installAppToolStripMenuItem.Text = "Install App";
+            installAppToolStripMenuItem.Click += installAppToolStripMenuItem_Click;
             // 
             // downgradeAppToolStripMenuItem
             // 
-            this.downgradeAppToolStripMenuItem.Name = "downgradeAppToolStripMenuItem";
-            this.downgradeAppToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.downgradeAppToolStripMenuItem.Text = "Downgrade App";
-            this.downgradeAppToolStripMenuItem.Click += new System.EventHandler(this.downgradeAppToolStripMenuItem_Click);
+            downgradeAppToolStripMenuItem.Name = "downgradeAppToolStripMenuItem";
+            downgradeAppToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            downgradeAppToolStripMenuItem.Text = "Downgrade App";
+            downgradeAppToolStripMenuItem.Click += downgradeAppToolStripMenuItem_Click;
             // 
             // checkedListBoxApp
             // 
-            this.checkedListBoxApp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkedListBoxApp.BackColor = System.Drawing.Color.White;
-            this.checkedListBoxApp.ForeColor = System.Drawing.Color.Black;
-            this.checkedListBoxApp.FormattingEnabled = true;
-            this.checkedListBoxApp.Location = new System.Drawing.Point(5, 90);
-            this.checkedListBoxApp.Margin = new System.Windows.Forms.Padding(2);
-            this.checkedListBoxApp.Name = "checkedListBoxApp";
-            this.checkedListBoxApp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.checkedListBoxApp.Size = new System.Drawing.Size(386, 184);
-            this.checkedListBoxApp.TabIndex = 37;
-            this.checkedListBoxApp.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxApp_SelectedIndexChanged);
+            checkedListBoxApp.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            checkedListBoxApp.BackColor = System.Drawing.Color.White;
+            checkedListBoxApp.ForeColor = System.Drawing.Color.Black;
+            checkedListBoxApp.FormattingEnabled = true;
+            checkedListBoxApp.Location = new System.Drawing.Point(6, 104);
+            checkedListBoxApp.Margin = new System.Windows.Forms.Padding(2);
+            checkedListBoxApp.Name = "checkedListBoxApp";
+            checkedListBoxApp.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            checkedListBoxApp.Size = new System.Drawing.Size(450, 202);
+            checkedListBoxApp.TabIndex = 37;
+            checkedListBoxApp.SelectedIndexChanged += checkedListBoxApp_SelectedIndexChanged;
             // 
             // groupBoxADBNet
             // 
-            this.groupBoxADBNet.Controls.Add(this.buttonUnlockNetworkMenu);
-            this.groupBoxADBNet.Controls.Add(this.label11);
-            this.groupBoxADBNet.Controls.Add(this.textBoxPort);
-            this.groupBoxADBNet.Controls.Add(this.comboBoxIP);
-            this.groupBoxADBNet.Controls.Add(this.label2);
-            this.groupBoxADBNet.Controls.Add(this.buttonDisconnectIP);
-            this.groupBoxADBNet.Controls.Add(this.buttonConnectToIP);
-            this.groupBoxADBNet.Location = new System.Drawing.Point(149, 170);
-            this.groupBoxADBNet.Name = "groupBoxADBNet";
-            this.groupBoxADBNet.Size = new System.Drawing.Size(178, 119);
-            this.groupBoxADBNet.TabIndex = 37;
-            this.groupBoxADBNet.TabStop = false;
-            this.groupBoxADBNet.Text = "ADB over Network Menu";
+            groupBoxADBNet.Controls.Add(buttonUnlockNetworkMenu);
+            groupBoxADBNet.Controls.Add(label11);
+            groupBoxADBNet.Controls.Add(textBoxPort);
+            groupBoxADBNet.Controls.Add(comboBoxIP);
+            groupBoxADBNet.Controls.Add(label2);
+            groupBoxADBNet.Controls.Add(buttonDisconnectIP);
+            groupBoxADBNet.Controls.Add(buttonConnectToIP);
+            groupBoxADBNet.Location = new System.Drawing.Point(174, 196);
+            groupBoxADBNet.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxADBNet.Name = "groupBoxADBNet";
+            groupBoxADBNet.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxADBNet.Size = new System.Drawing.Size(208, 137);
+            groupBoxADBNet.TabIndex = 37;
+            groupBoxADBNet.TabStop = false;
+            groupBoxADBNet.Text = "ADB over Network Menu";
             // 
             // buttonUnlockNetworkMenu
             // 
-            this.buttonUnlockNetworkMenu.Image = global::ATA_GUI.Properties.Resources.icons8_unlock_16;
-            this.buttonUnlockNetworkMenu.Location = new System.Drawing.Point(141, 90);
-            this.buttonUnlockNetworkMenu.Name = "buttonUnlockNetworkMenu";
-            this.buttonUnlockNetworkMenu.Size = new System.Drawing.Size(28, 23);
-            this.buttonUnlockNetworkMenu.TabIndex = 43;
-            this.buttonUnlockNetworkMenu.UseVisualStyleBackColor = true;
-            this.buttonUnlockNetworkMenu.Click += new System.EventHandler(this.buttonUnlockButtons_Click);
+            buttonUnlockNetworkMenu.Image = Properties.Resources.icons8_unlock_16;
+            buttonUnlockNetworkMenu.Location = new System.Drawing.Point(164, 104);
+            buttonUnlockNetworkMenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonUnlockNetworkMenu.Name = "buttonUnlockNetworkMenu";
+            buttonUnlockNetworkMenu.Size = new System.Drawing.Size(33, 27);
+            buttonUnlockNetworkMenu.TabIndex = 43;
+            buttonUnlockNetworkMenu.UseVisualStyleBackColor = true;
+            buttonUnlockNetworkMenu.Click += buttonUnlockButtons_Click;
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(125, 19);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 13);
-            this.label11.TabIndex = 42;
-            this.label11.Text = "PORT:";
+            label11.AutoSize = true;
+            label11.Location = new System.Drawing.Point(146, 22);
+            label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label11.Name = "label11";
+            label11.Size = new System.Drawing.Size(38, 15);
+            label11.TabIndex = 42;
+            label11.Text = "PORT:";
             // 
             // textBoxPort
             // 
-            this.textBoxPort.Location = new System.Drawing.Point(128, 35);
-            this.textBoxPort.Name = "textBoxPort";
-            this.textBoxPort.Size = new System.Drawing.Size(41, 20);
-            this.textBoxPort.TabIndex = 41;
+            textBoxPort.Location = new System.Drawing.Point(149, 40);
+            textBoxPort.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textBoxPort.Name = "textBoxPort";
+            textBoxPort.Size = new System.Drawing.Size(47, 23);
+            textBoxPort.TabIndex = 41;
             // 
             // comboBoxIP
             // 
-            this.comboBoxIP.FormattingEnabled = true;
-            this.comboBoxIP.Location = new System.Drawing.Point(9, 35);
-            this.comboBoxIP.Name = "comboBoxIP";
-            this.comboBoxIP.Size = new System.Drawing.Size(113, 21);
-            this.comboBoxIP.TabIndex = 40;
-            this.comboBoxIP.TextUpdate += new System.EventHandler(this.comboBoxIP_TextUpdate);
-            this.comboBoxIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxIP_KeyPress);
+            comboBoxIP.FormattingEnabled = true;
+            comboBoxIP.Location = new System.Drawing.Point(10, 40);
+            comboBoxIP.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            comboBoxIP.Name = "comboBoxIP";
+            comboBoxIP.Size = new System.Drawing.Size(131, 23);
+            comboBoxIP.TabIndex = 40;
+            comboBoxIP.TextUpdate += comboBoxIP_TextUpdate;
+            comboBoxIP.KeyPress += comboBoxIP_KeyPress;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 13);
-            this.label2.TabIndex = 39;
-            this.label2.Text = "IP:";
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(7, 22);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(20, 15);
+            label2.TabIndex = 39;
+            label2.Text = "IP:";
             // 
             // buttonDisconnectIP
             // 
-            this.buttonDisconnectIP.BackColor = System.Drawing.Color.White;
-            this.buttonDisconnectIP.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonDisconnectIP.ForeColor = System.Drawing.Color.Black;
-            this.buttonDisconnectIP.Location = new System.Drawing.Point(88, 61);
-            this.buttonDisconnectIP.Name = "buttonDisconnectIP";
-            this.buttonDisconnectIP.Size = new System.Drawing.Size(81, 23);
-            this.buttonDisconnectIP.TabIndex = 38;
-            this.buttonDisconnectIP.Text = "Disconnect";
-            this.buttonDisconnectIP.UseVisualStyleBackColor = false;
-            this.buttonDisconnectIP.Click += new System.EventHandler(this.buttonDisconnectIP_Click);
+            buttonDisconnectIP.BackColor = System.Drawing.Color.White;
+            buttonDisconnectIP.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonDisconnectIP.ForeColor = System.Drawing.Color.Black;
+            buttonDisconnectIP.Location = new System.Drawing.Point(103, 70);
+            buttonDisconnectIP.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonDisconnectIP.Name = "buttonDisconnectIP";
+            buttonDisconnectIP.Size = new System.Drawing.Size(94, 27);
+            buttonDisconnectIP.TabIndex = 38;
+            buttonDisconnectIP.Text = "Disconnect";
+            buttonDisconnectIP.UseVisualStyleBackColor = false;
+            buttonDisconnectIP.Click += buttonDisconnectIP_Click;
             // 
             // buttonConnectToIP
             // 
-            this.buttonConnectToIP.BackColor = System.Drawing.Color.White;
-            this.buttonConnectToIP.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonConnectToIP.ForeColor = System.Drawing.Color.Black;
-            this.buttonConnectToIP.Location = new System.Drawing.Point(9, 61);
-            this.buttonConnectToIP.Name = "buttonConnectToIP";
-            this.buttonConnectToIP.Size = new System.Drawing.Size(73, 23);
-            this.buttonConnectToIP.TabIndex = 35;
-            this.buttonConnectToIP.Text = "Connect";
-            this.buttonConnectToIP.UseVisualStyleBackColor = false;
-            this.buttonConnectToIP.Click += new System.EventHandler(this.buttonConnectToIP_Click);
+            buttonConnectToIP.BackColor = System.Drawing.Color.White;
+            buttonConnectToIP.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonConnectToIP.ForeColor = System.Drawing.Color.Black;
+            buttonConnectToIP.Location = new System.Drawing.Point(10, 70);
+            buttonConnectToIP.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonConnectToIP.Name = "buttonConnectToIP";
+            buttonConnectToIP.Size = new System.Drawing.Size(85, 27);
+            buttonConnectToIP.TabIndex = 35;
+            buttonConnectToIP.Text = "Connect";
+            buttonConnectToIP.UseVisualStyleBackColor = false;
+            buttonConnectToIP.Click += buttonConnectToIP_Click;
             // 
             // groupBoxRebootMenu
             // 
-            this.groupBoxRebootMenu.Controls.Add(this.buttonRS);
-            this.groupBoxRebootMenu.Controls.Add(this.buttonRR);
-            this.groupBoxRebootMenu.Controls.Add(this.buttonRF);
-            this.groupBoxRebootMenu.Location = new System.Drawing.Point(6, 170);
-            this.groupBoxRebootMenu.Name = "groupBoxRebootMenu";
-            this.groupBoxRebootMenu.Size = new System.Drawing.Size(137, 119);
-            this.groupBoxRebootMenu.TabIndex = 35;
-            this.groupBoxRebootMenu.TabStop = false;
-            this.groupBoxRebootMenu.Text = "Reboot Menu";
+            groupBoxRebootMenu.Controls.Add(buttonRS);
+            groupBoxRebootMenu.Controls.Add(buttonRR);
+            groupBoxRebootMenu.Controls.Add(buttonRF);
+            groupBoxRebootMenu.Location = new System.Drawing.Point(7, 196);
+            groupBoxRebootMenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxRebootMenu.Name = "groupBoxRebootMenu";
+            groupBoxRebootMenu.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxRebootMenu.Size = new System.Drawing.Size(160, 137);
+            groupBoxRebootMenu.TabIndex = 35;
+            groupBoxRebootMenu.TabStop = false;
+            groupBoxRebootMenu.Text = "Reboot Menu";
             // 
             // buttonRS
             // 
-            this.buttonRS.BackColor = System.Drawing.Color.White;
-            this.buttonRS.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonRS.ForeColor = System.Drawing.Color.Black;
-            this.buttonRS.Location = new System.Drawing.Point(6, 28);
-            this.buttonRS.Name = "buttonRS";
-            this.buttonRS.Size = new System.Drawing.Size(124, 23);
-            this.buttonRS.TabIndex = 1;
-            this.buttonRS.Text = "Reboot Smartphone";
-            this.buttonRS.UseVisualStyleBackColor = false;
-            this.buttonRS.Click += new System.EventHandler(this.buttonRS_Click);
+            buttonRS.BackColor = System.Drawing.Color.White;
+            buttonRS.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonRS.ForeColor = System.Drawing.Color.Black;
+            buttonRS.Location = new System.Drawing.Point(7, 32);
+            buttonRS.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonRS.Name = "buttonRS";
+            buttonRS.Size = new System.Drawing.Size(145, 27);
+            buttonRS.TabIndex = 1;
+            buttonRS.Text = "Reboot Smartphone";
+            buttonRS.UseVisualStyleBackColor = false;
+            buttonRS.Click += buttonRS_Click;
             // 
             // buttonRR
             // 
-            this.buttonRR.BackColor = System.Drawing.Color.White;
-            this.buttonRR.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonRR.ForeColor = System.Drawing.Color.Black;
-            this.buttonRR.Location = new System.Drawing.Point(6, 57);
-            this.buttonRR.Name = "buttonRR";
-            this.buttonRR.Size = new System.Drawing.Size(124, 23);
-            this.buttonRR.TabIndex = 2;
-            this.buttonRR.Text = "Reboot Into Recovery";
-            this.buttonRR.UseVisualStyleBackColor = false;
-            this.buttonRR.Click += new System.EventHandler(this.buttonRR_Click);
+            buttonRR.BackColor = System.Drawing.Color.White;
+            buttonRR.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonRR.ForeColor = System.Drawing.Color.Black;
+            buttonRR.Location = new System.Drawing.Point(7, 66);
+            buttonRR.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonRR.Name = "buttonRR";
+            buttonRR.Size = new System.Drawing.Size(145, 27);
+            buttonRR.TabIndex = 2;
+            buttonRR.Text = "Reboot Into Recovery";
+            buttonRR.UseVisualStyleBackColor = false;
+            buttonRR.Click += buttonRR_Click;
             // 
             // buttonRF
             // 
-            this.buttonRF.BackColor = System.Drawing.Color.White;
-            this.buttonRF.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonRF.ForeColor = System.Drawing.Color.Black;
-            this.buttonRF.Location = new System.Drawing.Point(6, 86);
-            this.buttonRF.Name = "buttonRF";
-            this.buttonRF.Size = new System.Drawing.Size(124, 23);
-            this.buttonRF.TabIndex = 3;
-            this.buttonRF.Text = "Reboot into Fastboot";
-            this.buttonRF.UseVisualStyleBackColor = false;
-            this.buttonRF.Click += new System.EventHandler(this.buttonRF_Click);
+            buttonRF.BackColor = System.Drawing.Color.White;
+            buttonRF.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonRF.ForeColor = System.Drawing.Color.Black;
+            buttonRF.Location = new System.Drawing.Point(7, 99);
+            buttonRF.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonRF.Name = "buttonRF";
+            buttonRF.Size = new System.Drawing.Size(145, 27);
+            buttonRF.TabIndex = 3;
+            buttonRF.Text = "Reboot into Fastboot";
+            buttonRF.UseVisualStyleBackColor = false;
+            buttonRF.Click += buttonRF_Click;
             // 
             // tabPageFastboot
             // 
-            this.tabPageFastboot.Controls.Add(this.panelFastboot);
-            this.tabPageFastboot.Location = new System.Drawing.Point(4, 22);
-            this.tabPageFastboot.Name = "tabPageFastboot";
-            this.tabPageFastboot.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageFastboot.Size = new System.Drawing.Size(893, 295);
-            this.tabPageFastboot.TabIndex = 1;
-            this.tabPageFastboot.Text = "Fastboot";
-            this.tabPageFastboot.UseVisualStyleBackColor = true;
+            tabPageFastboot.Controls.Add(panelFastboot);
+            tabPageFastboot.Location = new System.Drawing.Point(4, 24);
+            tabPageFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            tabPageFastboot.Name = "tabPageFastboot";
+            tabPageFastboot.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            tabPageFastboot.Size = new System.Drawing.Size(1043, 342);
+            tabPageFastboot.TabIndex = 1;
+            tabPageFastboot.Text = "Fastboot";
+            tabPageFastboot.UseVisualStyleBackColor = true;
             // 
             // panelFastboot
             // 
-            this.panelFastboot.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelFastboot.Controls.Add(this.buttonBootloaderMenu);
-            this.panelFastboot.Controls.Add(this.buttonRebootRecovery);
-            this.panelFastboot.Controls.Add(this.groupBox5);
-            this.panelFastboot.Controls.Add(this.buttonHardReset);
-            this.panelFastboot.Controls.Add(this.buttonRebootToSystem);
-            this.panelFastboot.Controls.Add(this.groupBox4);
-            this.panelFastboot.Location = new System.Drawing.Point(0, 3);
-            this.panelFastboot.Name = "panelFastboot";
-            this.panelFastboot.Size = new System.Drawing.Size(890, 285);
-            this.panelFastboot.TabIndex = 49;
+            panelFastboot.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelFastboot.Controls.Add(buttonBootloaderMenu);
+            panelFastboot.Controls.Add(buttonRebootRecovery);
+            panelFastboot.Controls.Add(groupBox5);
+            panelFastboot.Controls.Add(buttonHardReset);
+            panelFastboot.Controls.Add(buttonRebootToSystem);
+            panelFastboot.Controls.Add(groupBox4);
+            panelFastboot.Location = new System.Drawing.Point(0, 3);
+            panelFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            panelFastboot.Name = "panelFastboot";
+            panelFastboot.Size = new System.Drawing.Size(1038, 329);
+            panelFastboot.TabIndex = 49;
             // 
             // buttonBootloaderMenu
             // 
-            this.buttonBootloaderMenu.BackColor = System.Drawing.Color.White;
-            this.buttonBootloaderMenu.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonBootloaderMenu.ForeColor = System.Drawing.Color.Black;
-            this.buttonBootloaderMenu.Location = new System.Drawing.Point(448, 220);
-            this.buttonBootloaderMenu.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonBootloaderMenu.Name = "buttonBootloaderMenu";
-            this.buttonBootloaderMenu.Size = new System.Drawing.Size(118, 23);
-            this.buttonBootloaderMenu.TabIndex = 55;
-            this.buttonBootloaderMenu.Text = "Bootloader Menu";
-            this.buttonBootloaderMenu.UseVisualStyleBackColor = false;
-            this.buttonBootloaderMenu.Click += new System.EventHandler(this.buttonBootloaderMenu_Click);
+            buttonBootloaderMenu.BackColor = System.Drawing.Color.White;
+            buttonBootloaderMenu.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonBootloaderMenu.ForeColor = System.Drawing.Color.Black;
+            buttonBootloaderMenu.Location = new System.Drawing.Point(523, 254);
+            buttonBootloaderMenu.Margin = new System.Windows.Forms.Padding(2);
+            buttonBootloaderMenu.Name = "buttonBootloaderMenu";
+            buttonBootloaderMenu.Size = new System.Drawing.Size(138, 27);
+            buttonBootloaderMenu.TabIndex = 55;
+            buttonBootloaderMenu.Text = "Bootloader Menu";
+            buttonBootloaderMenu.UseVisualStyleBackColor = false;
+            buttonBootloaderMenu.Click += buttonBootloaderMenu_Click;
             // 
             // buttonRebootRecovery
             // 
-            this.buttonRebootRecovery.BackColor = System.Drawing.Color.White;
-            this.buttonRebootRecovery.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonRebootRecovery.ForeColor = System.Drawing.Color.Black;
-            this.buttonRebootRecovery.Location = new System.Drawing.Point(448, 193);
-            this.buttonRebootRecovery.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonRebootRecovery.Name = "buttonRebootRecovery";
-            this.buttonRebootRecovery.Size = new System.Drawing.Size(118, 23);
-            this.buttonRebootRecovery.TabIndex = 54;
-            this.buttonRebootRecovery.Text = "Reboot to Recovery";
-            this.buttonRebootRecovery.UseVisualStyleBackColor = false;
-            this.buttonRebootRecovery.Click += new System.EventHandler(this.buttonRebootRecovery_Click);
+            buttonRebootRecovery.BackColor = System.Drawing.Color.White;
+            buttonRebootRecovery.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonRebootRecovery.ForeColor = System.Drawing.Color.Black;
+            buttonRebootRecovery.Location = new System.Drawing.Point(523, 223);
+            buttonRebootRecovery.Margin = new System.Windows.Forms.Padding(2);
+            buttonRebootRecovery.Name = "buttonRebootRecovery";
+            buttonRebootRecovery.Size = new System.Drawing.Size(138, 27);
+            buttonRebootRecovery.TabIndex = 54;
+            buttonRebootRecovery.Text = "Reboot to Recovery";
+            buttonRebootRecovery.UseVisualStyleBackColor = false;
+            buttonRebootRecovery.Click += buttonRebootRecovery_Click;
             // 
             // groupBox5
             // 
-            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox5.Controls.Add(this.labelUDT);
-            this.groupBox5.Controls.Add(this.labelCDT);
-            this.groupBox5.Controls.Add(this.labelBootloaderStatus);
-            this.groupBox5.Controls.Add(this.labelDataType);
-            this.groupBox5.Controls.Add(this.label7);
-            this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Location = new System.Drawing.Point(428, 6);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(456, 155);
-            this.groupBox5.TabIndex = 51;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Device Info";
+            groupBox5.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            groupBox5.Controls.Add(labelUDT);
+            groupBox5.Controls.Add(labelCDT);
+            groupBox5.Controls.Add(labelBootloaderStatus);
+            groupBox5.Controls.Add(labelDataType);
+            groupBox5.Controls.Add(label7);
+            groupBox5.Controls.Add(label8);
+            groupBox5.Location = new System.Drawing.Point(499, 7);
+            groupBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox5.Size = new System.Drawing.Size(532, 179);
+            groupBox5.TabIndex = 51;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Device Info";
             // 
             // labelUDT
             // 
-            this.labelUDT.AutoSize = true;
-            this.labelUDT.Location = new System.Drawing.Point(132, 65);
-            this.labelUDT.Name = "labelUDT";
-            this.labelUDT.Size = new System.Drawing.Size(44, 13);
-            this.labelUDT.TabIndex = 15;
-            this.labelUDT.Text = "EMPTY";
+            labelUDT.AutoSize = true;
+            labelUDT.Location = new System.Drawing.Point(154, 75);
+            labelUDT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelUDT.Name = "labelUDT";
+            labelUDT.Size = new System.Drawing.Size(44, 15);
+            labelUDT.TabIndex = 15;
+            labelUDT.Text = "EMPTY";
             // 
             // labelCDT
             // 
-            this.labelCDT.AutoSize = true;
-            this.labelCDT.Location = new System.Drawing.Point(132, 52);
-            this.labelCDT.Name = "labelCDT";
-            this.labelCDT.Size = new System.Drawing.Size(44, 13);
-            this.labelCDT.TabIndex = 14;
-            this.labelCDT.Text = "EMPTY";
+            labelCDT.AutoSize = true;
+            labelCDT.Location = new System.Drawing.Point(154, 60);
+            labelCDT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelCDT.Name = "labelCDT";
+            labelCDT.Size = new System.Drawing.Size(44, 15);
+            labelCDT.TabIndex = 14;
+            labelCDT.Text = "EMPTY";
             // 
             // labelBootloaderStatus
             // 
-            this.labelBootloaderStatus.AutoSize = true;
-            this.labelBootloaderStatus.Location = new System.Drawing.Point(132, 39);
-            this.labelBootloaderStatus.Name = "labelBootloaderStatus";
-            this.labelBootloaderStatus.Size = new System.Drawing.Size(44, 13);
-            this.labelBootloaderStatus.TabIndex = 13;
-            this.labelBootloaderStatus.Text = "EMPTY";
+            labelBootloaderStatus.AutoSize = true;
+            labelBootloaderStatus.Location = new System.Drawing.Point(154, 45);
+            labelBootloaderStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelBootloaderStatus.Name = "labelBootloaderStatus";
+            labelBootloaderStatus.Size = new System.Drawing.Size(44, 15);
+            labelBootloaderStatus.TabIndex = 13;
+            labelBootloaderStatus.Text = "EMPTY";
             // 
             // labelDataType
             // 
-            this.labelDataType.AutoSize = true;
-            this.labelDataType.Location = new System.Drawing.Point(17, 65);
-            this.labelDataType.Name = "labelDataType";
-            this.labelDataType.Size = new System.Drawing.Size(60, 13);
-            this.labelDataType.TabIndex = 12;
-            this.labelDataType.Text = "Data Type:";
+            labelDataType.AutoSize = true;
+            labelDataType.Location = new System.Drawing.Point(20, 75);
+            labelDataType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelDataType.Name = "labelDataType";
+            labelDataType.Size = new System.Drawing.Size(61, 15);
+            labelDataType.TabIndex = 12;
+            labelDataType.Text = "Data Type:";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 13);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Cache Type";
+            label7.AutoSize = true;
+            label7.Location = new System.Drawing.Point(20, 60);
+            label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(67, 15);
+            label7.TabIndex = 11;
+            label7.Text = "Cache Type";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(17, 39);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(110, 13);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Bootloader Unlocked:";
+            label8.AutoSize = true;
+            label8.Location = new System.Drawing.Point(20, 45);
+            label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(121, 15);
+            label8.TabIndex = 10;
+            label8.Text = "Bootloader Unlocked:";
             // 
             // buttonHardReset
             // 
-            this.buttonHardReset.BackColor = System.Drawing.Color.White;
-            this.buttonHardReset.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonHardReset.ForeColor = System.Drawing.Color.Black;
-            this.buttonHardReset.Location = new System.Drawing.Point(677, 166);
-            this.buttonHardReset.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonHardReset.Name = "buttonHardReset";
-            this.buttonHardReset.Size = new System.Drawing.Size(118, 23);
-            this.buttonHardReset.TabIndex = 50;
-            this.buttonHardReset.Text = "Hard Reset";
-            this.buttonHardReset.UseVisualStyleBackColor = false;
-            this.buttonHardReset.Click += new System.EventHandler(this.buttonHardReset_Click);
+            buttonHardReset.BackColor = System.Drawing.Color.White;
+            buttonHardReset.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonHardReset.ForeColor = System.Drawing.Color.Black;
+            buttonHardReset.Location = new System.Drawing.Point(790, 192);
+            buttonHardReset.Margin = new System.Windows.Forms.Padding(2);
+            buttonHardReset.Name = "buttonHardReset";
+            buttonHardReset.Size = new System.Drawing.Size(138, 27);
+            buttonHardReset.TabIndex = 50;
+            buttonHardReset.Text = "Hard Reset";
+            buttonHardReset.UseVisualStyleBackColor = false;
+            buttonHardReset.Click += buttonHardReset_Click;
             // 
             // buttonRebootToSystem
             // 
-            this.buttonRebootToSystem.BackColor = System.Drawing.Color.White;
-            this.buttonRebootToSystem.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonRebootToSystem.ForeColor = System.Drawing.Color.Black;
-            this.buttonRebootToSystem.Location = new System.Drawing.Point(448, 166);
-            this.buttonRebootToSystem.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonRebootToSystem.Name = "buttonRebootToSystem";
-            this.buttonRebootToSystem.Size = new System.Drawing.Size(118, 23);
-            this.buttonRebootToSystem.TabIndex = 49;
-            this.buttonRebootToSystem.Text = "Reboot to System";
-            this.buttonRebootToSystem.UseVisualStyleBackColor = false;
-            this.buttonRebootToSystem.Click += new System.EventHandler(this.buttonRebootToSystem_Click);
+            buttonRebootToSystem.BackColor = System.Drawing.Color.White;
+            buttonRebootToSystem.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonRebootToSystem.ForeColor = System.Drawing.Color.Black;
+            buttonRebootToSystem.Location = new System.Drawing.Point(523, 192);
+            buttonRebootToSystem.Margin = new System.Windows.Forms.Padding(2);
+            buttonRebootToSystem.Name = "buttonRebootToSystem";
+            buttonRebootToSystem.Size = new System.Drawing.Size(138, 27);
+            buttonRebootToSystem.TabIndex = 49;
+            buttonRebootToSystem.Text = "Reboot to System";
+            buttonRebootToSystem.UseVisualStyleBackColor = false;
+            buttonRebootToSystem.Click += buttonRebootToSystem_Click;
             // 
             // groupBox4
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox4.Controls.Add(this.button1);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.textBoxDirImg);
-            this.groupBox4.Controls.Add(this.radioButtonRom);
-            this.groupBox4.Controls.Add(this.buttonSearchFileFastboot);
-            this.groupBox4.Controls.Add(this.radioButtonCache);
-            this.groupBox4.Controls.Add(this.radioButtonVendor);
-            this.groupBox4.Controls.Add(this.radioButtonSystem);
-            this.groupBox4.Controls.Add(this.radioButtonBoot);
-            this.groupBox4.Controls.Add(this.radioButtonRecovery);
-            this.groupBox4.Controls.Add(this.radioButtonBootloader);
-            this.groupBox4.Controls.Add(this.radioButtonRadio);
-            this.groupBox4.Location = new System.Drawing.Point(3, 6);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(419, 272);
-            this.groupBox4.TabIndex = 48;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Flash img";
+            groupBox4.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            groupBox4.Controls.Add(button1);
+            groupBox4.Controls.Add(label10);
+            groupBox4.Controls.Add(textBoxDirImg);
+            groupBox4.Controls.Add(radioButtonRom);
+            groupBox4.Controls.Add(buttonSearchFileFastboot);
+            groupBox4.Controls.Add(radioButtonCache);
+            groupBox4.Controls.Add(radioButtonVendor);
+            groupBox4.Controls.Add(radioButtonSystem);
+            groupBox4.Controls.Add(radioButtonBoot);
+            groupBox4.Controls.Add(radioButtonRecovery);
+            groupBox4.Controls.Add(radioButtonBootloader);
+            groupBox4.Controls.Add(radioButtonRadio);
+            groupBox4.Location = new System.Drawing.Point(4, 7);
+            groupBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox4.Size = new System.Drawing.Size(489, 314);
+            groupBox4.TabIndex = 48;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Flash img";
             // 
             // button1
             // 
-            this.button1.Image = global::ATA_GUI.Properties.Resources.icons8_flash_on_48;
-            this.button1.Location = new System.Drawing.Point(115, 129);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 70);
-            this.button1.TabIndex = 50;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            button1.Image = Properties.Resources.icons8_flash_on_48;
+            button1.Location = new System.Drawing.Point(134, 149);
+            button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(88, 81);
+            button1.TabIndex = 50;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(127, 202);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(55, 13);
-            this.label10.TabIndex = 49;
-            this.label10.Text = "Flash .Img";
+            label10.AutoSize = true;
+            label10.Location = new System.Drawing.Point(148, 233);
+            label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(61, 15);
+            label10.TabIndex = 49;
+            label10.Text = "Flash .Img";
             // 
             // textBoxDirImg
             // 
-            this.textBoxDirImg.Location = new System.Drawing.Point(26, 41);
-            this.textBoxDirImg.Name = "textBoxDirImg";
-            this.textBoxDirImg.Size = new System.Drawing.Size(245, 20);
-            this.textBoxDirImg.TabIndex = 37;
+            textBoxDirImg.Location = new System.Drawing.Point(30, 47);
+            textBoxDirImg.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textBoxDirImg.Name = "textBoxDirImg";
+            textBoxDirImg.Size = new System.Drawing.Size(285, 23);
+            textBoxDirImg.TabIndex = 37;
             // 
             // radioButtonRom
             // 
-            this.radioButtonRom.AutoSize = true;
-            this.radioButtonRom.Location = new System.Drawing.Point(279, 229);
-            this.radioButtonRom.Name = "radioButtonRom";
-            this.radioButtonRom.Size = new System.Drawing.Size(47, 17);
-            this.radioButtonRom.TabIndex = 47;
-            this.radioButtonRom.TabStop = true;
-            this.radioButtonRom.Text = "Rom";
-            this.radioButtonRom.UseVisualStyleBackColor = true;
+            radioButtonRom.AutoSize = true;
+            radioButtonRom.Location = new System.Drawing.Point(326, 264);
+            radioButtonRom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioButtonRom.Name = "radioButtonRom";
+            radioButtonRom.Size = new System.Drawing.Size(50, 19);
+            radioButtonRom.TabIndex = 47;
+            radioButtonRom.TabStop = true;
+            radioButtonRom.Text = "Rom";
+            radioButtonRom.UseVisualStyleBackColor = true;
             // 
             // buttonSearchFileFastboot
             // 
-            this.buttonSearchFileFastboot.BackColor = System.Drawing.Color.White;
-            this.buttonSearchFileFastboot.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonSearchFileFastboot.Location = new System.Drawing.Point(277, 39);
-            this.buttonSearchFileFastboot.Name = "buttonSearchFileFastboot";
-            this.buttonSearchFileFastboot.Size = new System.Drawing.Size(87, 23);
-            this.buttonSearchFileFastboot.TabIndex = 36;
-            this.buttonSearchFileFastboot.Text = "Search File";
-            this.buttonSearchFileFastboot.UseVisualStyleBackColor = false;
-            this.buttonSearchFileFastboot.Click += new System.EventHandler(this.buttonSearchFileFastboot_Click);
+            buttonSearchFileFastboot.BackColor = System.Drawing.Color.White;
+            buttonSearchFileFastboot.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonSearchFileFastboot.Location = new System.Drawing.Point(323, 45);
+            buttonSearchFileFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonSearchFileFastboot.Name = "buttonSearchFileFastboot";
+            buttonSearchFileFastboot.Size = new System.Drawing.Size(102, 27);
+            buttonSearchFileFastboot.TabIndex = 36;
+            buttonSearchFileFastboot.Text = "Search File";
+            buttonSearchFileFastboot.UseVisualStyleBackColor = false;
+            buttonSearchFileFastboot.Click += buttonSearchFileFastboot_Click;
             // 
             // radioButtonCache
             // 
-            this.radioButtonCache.AutoSize = true;
-            this.radioButtonCache.Location = new System.Drawing.Point(279, 206);
-            this.radioButtonCache.Name = "radioButtonCache";
-            this.radioButtonCache.Size = new System.Drawing.Size(56, 17);
-            this.radioButtonCache.TabIndex = 46;
-            this.radioButtonCache.TabStop = true;
-            this.radioButtonCache.Text = "Cache";
-            this.radioButtonCache.UseVisualStyleBackColor = true;
+            radioButtonCache.AutoSize = true;
+            radioButtonCache.Location = new System.Drawing.Point(326, 238);
+            radioButtonCache.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioButtonCache.Name = "radioButtonCache";
+            radioButtonCache.Size = new System.Drawing.Size(58, 19);
+            radioButtonCache.TabIndex = 46;
+            radioButtonCache.TabStop = true;
+            radioButtonCache.Text = "Cache";
+            radioButtonCache.UseVisualStyleBackColor = true;
             // 
             // radioButtonVendor
             // 
-            this.radioButtonVendor.AutoSize = true;
-            this.radioButtonVendor.Location = new System.Drawing.Point(279, 183);
-            this.radioButtonVendor.Name = "radioButtonVendor";
-            this.radioButtonVendor.Size = new System.Drawing.Size(59, 17);
-            this.radioButtonVendor.TabIndex = 45;
-            this.radioButtonVendor.TabStop = true;
-            this.radioButtonVendor.Text = "Vendor";
-            this.radioButtonVendor.UseVisualStyleBackColor = true;
+            radioButtonVendor.AutoSize = true;
+            radioButtonVendor.Location = new System.Drawing.Point(326, 211);
+            radioButtonVendor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioButtonVendor.Name = "radioButtonVendor";
+            radioButtonVendor.Size = new System.Drawing.Size(62, 19);
+            radioButtonVendor.TabIndex = 45;
+            radioButtonVendor.TabStop = true;
+            radioButtonVendor.Text = "Vendor";
+            radioButtonVendor.UseVisualStyleBackColor = true;
             // 
             // radioButtonSystem
             // 
-            this.radioButtonSystem.AutoSize = true;
-            this.radioButtonSystem.Location = new System.Drawing.Point(279, 160);
-            this.radioButtonSystem.Name = "radioButtonSystem";
-            this.radioButtonSystem.Size = new System.Drawing.Size(59, 17);
-            this.radioButtonSystem.TabIndex = 44;
-            this.radioButtonSystem.TabStop = true;
-            this.radioButtonSystem.Text = "System";
-            this.radioButtonSystem.UseVisualStyleBackColor = true;
+            radioButtonSystem.AutoSize = true;
+            radioButtonSystem.Location = new System.Drawing.Point(326, 185);
+            radioButtonSystem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioButtonSystem.Name = "radioButtonSystem";
+            radioButtonSystem.Size = new System.Drawing.Size(63, 19);
+            radioButtonSystem.TabIndex = 44;
+            radioButtonSystem.TabStop = true;
+            radioButtonSystem.Text = "System";
+            radioButtonSystem.UseVisualStyleBackColor = true;
             // 
             // radioButtonBoot
             // 
-            this.radioButtonBoot.AutoSize = true;
-            this.radioButtonBoot.Location = new System.Drawing.Point(279, 68);
-            this.radioButtonBoot.Name = "radioButtonBoot";
-            this.radioButtonBoot.Size = new System.Drawing.Size(47, 17);
-            this.radioButtonBoot.TabIndex = 40;
-            this.radioButtonBoot.TabStop = true;
-            this.radioButtonBoot.Text = "Boot";
-            this.radioButtonBoot.UseVisualStyleBackColor = true;
+            radioButtonBoot.AutoSize = true;
+            radioButtonBoot.Location = new System.Drawing.Point(326, 78);
+            radioButtonBoot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioButtonBoot.Name = "radioButtonBoot";
+            radioButtonBoot.Size = new System.Drawing.Size(50, 19);
+            radioButtonBoot.TabIndex = 40;
+            radioButtonBoot.TabStop = true;
+            radioButtonBoot.Text = "Boot";
+            radioButtonBoot.UseVisualStyleBackColor = true;
             // 
             // radioButtonRecovery
             // 
-            this.radioButtonRecovery.AutoSize = true;
-            this.radioButtonRecovery.Location = new System.Drawing.Point(279, 137);
-            this.radioButtonRecovery.Name = "radioButtonRecovery";
-            this.radioButtonRecovery.Size = new System.Drawing.Size(71, 17);
-            this.radioButtonRecovery.TabIndex = 43;
-            this.radioButtonRecovery.TabStop = true;
-            this.radioButtonRecovery.Text = "Recovery";
-            this.radioButtonRecovery.UseVisualStyleBackColor = true;
+            radioButtonRecovery.AutoSize = true;
+            radioButtonRecovery.Location = new System.Drawing.Point(326, 158);
+            radioButtonRecovery.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioButtonRecovery.Name = "radioButtonRecovery";
+            radioButtonRecovery.Size = new System.Drawing.Size(73, 19);
+            radioButtonRecovery.TabIndex = 43;
+            radioButtonRecovery.TabStop = true;
+            radioButtonRecovery.Text = "Recovery";
+            radioButtonRecovery.UseVisualStyleBackColor = true;
             // 
             // radioButtonBootloader
             // 
-            this.radioButtonBootloader.AutoSize = true;
-            this.radioButtonBootloader.Location = new System.Drawing.Point(279, 91);
-            this.radioButtonBootloader.Name = "radioButtonBootloader";
-            this.radioButtonBootloader.Size = new System.Drawing.Size(76, 17);
-            this.radioButtonBootloader.TabIndex = 41;
-            this.radioButtonBootloader.TabStop = true;
-            this.radioButtonBootloader.Text = "Bootloader";
-            this.radioButtonBootloader.UseVisualStyleBackColor = true;
+            radioButtonBootloader.AutoSize = true;
+            radioButtonBootloader.Location = new System.Drawing.Point(326, 105);
+            radioButtonBootloader.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioButtonBootloader.Name = "radioButtonBootloader";
+            radioButtonBootloader.Size = new System.Drawing.Size(83, 19);
+            radioButtonBootloader.TabIndex = 41;
+            radioButtonBootloader.TabStop = true;
+            radioButtonBootloader.Text = "Bootloader";
+            radioButtonBootloader.UseVisualStyleBackColor = true;
             // 
             // radioButtonRadio
             // 
-            this.radioButtonRadio.AutoSize = true;
-            this.radioButtonRadio.Location = new System.Drawing.Point(279, 114);
-            this.radioButtonRadio.Name = "radioButtonRadio";
-            this.radioButtonRadio.Size = new System.Drawing.Size(53, 17);
-            this.radioButtonRadio.TabIndex = 42;
-            this.radioButtonRadio.TabStop = true;
-            this.radioButtonRadio.Text = "Radio";
-            this.radioButtonRadio.UseVisualStyleBackColor = true;
+            radioButtonRadio.AutoSize = true;
+            radioButtonRadio.Location = new System.Drawing.Point(326, 132);
+            radioButtonRadio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioButtonRadio.Name = "radioButtonRadio";
+            radioButtonRadio.Size = new System.Drawing.Size(55, 19);
+            radioButtonRadio.TabIndex = 42;
+            radioButtonRadio.TabStop = true;
+            radioButtonRadio.Text = "Radio";
+            radioButtonRadio.UseVisualStyleBackColor = true;
             // 
             // tabPageRecovery
             // 
-            this.tabPageRecovery.Controls.Add(this.panelRecovery);
-            this.tabPageRecovery.Location = new System.Drawing.Point(4, 22);
-            this.tabPageRecovery.Name = "tabPageRecovery";
-            this.tabPageRecovery.Size = new System.Drawing.Size(893, 295);
-            this.tabPageRecovery.TabIndex = 2;
-            this.tabPageRecovery.Text = "Recovery";
-            this.tabPageRecovery.UseVisualStyleBackColor = true;
+            tabPageRecovery.Controls.Add(panelRecovery);
+            tabPageRecovery.Location = new System.Drawing.Point(4, 24);
+            tabPageRecovery.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            tabPageRecovery.Name = "tabPageRecovery";
+            tabPageRecovery.Size = new System.Drawing.Size(1043, 342);
+            tabPageRecovery.TabIndex = 2;
+            tabPageRecovery.Text = "Recovery";
+            tabPageRecovery.UseVisualStyleBackColor = true;
             // 
             // panelRecovery
             // 
-            this.panelRecovery.Controls.Add(this.groupBoxRecoveryRM);
-            this.panelRecovery.Controls.Add(this.groupBoxFlash);
-            this.panelRecovery.Location = new System.Drawing.Point(0, 3);
-            this.panelRecovery.Name = "panelRecovery";
-            this.panelRecovery.Size = new System.Drawing.Size(890, 289);
-            this.panelRecovery.TabIndex = 37;
+            panelRecovery.Controls.Add(groupBoxRecoveryRM);
+            panelRecovery.Controls.Add(groupBoxFlash);
+            panelRecovery.Location = new System.Drawing.Point(0, 3);
+            panelRecovery.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            panelRecovery.Name = "panelRecovery";
+            panelRecovery.Size = new System.Drawing.Size(1038, 333);
+            panelRecovery.TabIndex = 37;
             // 
             // groupBoxRecoveryRM
             // 
-            this.groupBoxRecoveryRM.Controls.Add(this.buttonrr_);
-            this.groupBoxRecoveryRM.Controls.Add(this.buttonrf_);
-            this.groupBoxRecoveryRM.Controls.Add(this.buttonrs_);
-            this.groupBoxRecoveryRM.Location = new System.Drawing.Point(676, 15);
-            this.groupBoxRecoveryRM.Name = "groupBoxRecoveryRM";
-            this.groupBoxRecoveryRM.Size = new System.Drawing.Size(200, 260);
-            this.groupBoxRecoveryRM.TabIndex = 41;
-            this.groupBoxRecoveryRM.TabStop = false;
-            this.groupBoxRecoveryRM.Text = "Reboot menu";
+            groupBoxRecoveryRM.Controls.Add(buttonrr_);
+            groupBoxRecoveryRM.Controls.Add(buttonrf_);
+            groupBoxRecoveryRM.Controls.Add(buttonrs_);
+            groupBoxRecoveryRM.Location = new System.Drawing.Point(789, 17);
+            groupBoxRecoveryRM.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxRecoveryRM.Name = "groupBoxRecoveryRM";
+            groupBoxRecoveryRM.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxRecoveryRM.Size = new System.Drawing.Size(233, 300);
+            groupBoxRecoveryRM.TabIndex = 41;
+            groupBoxRecoveryRM.TabStop = false;
+            groupBoxRecoveryRM.Text = "Reboot menu";
             // 
             // buttonrr_
             // 
-            this.buttonrr_.Location = new System.Drawing.Point(45, 89);
-            this.buttonrr_.Name = "buttonrr_";
-            this.buttonrr_.Size = new System.Drawing.Size(111, 23);
-            this.buttonrr_.TabIndex = 39;
-            this.buttonrr_.Text = "Reboot recovery";
-            this.buttonrr_.UseVisualStyleBackColor = true;
-            this.buttonrr_.Click += new System.EventHandler(this.buttonrr__Click);
+            buttonrr_.Location = new System.Drawing.Point(52, 103);
+            buttonrr_.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonrr_.Name = "buttonrr_";
+            buttonrr_.Size = new System.Drawing.Size(130, 27);
+            buttonrr_.TabIndex = 39;
+            buttonrr_.Text = "Reboot recovery";
+            buttonrr_.UseVisualStyleBackColor = true;
+            buttonrr_.Click += buttonrr__Click;
             // 
             // buttonrf_
             // 
-            this.buttonrf_.Location = new System.Drawing.Point(45, 147);
-            this.buttonrf_.Name = "buttonrf_";
-            this.buttonrf_.Size = new System.Drawing.Size(111, 23);
-            this.buttonrf_.TabIndex = 37;
-            this.buttonrf_.Text = "Reboot into fastboot";
-            this.buttonrf_.UseVisualStyleBackColor = true;
-            this.buttonrf_.Click += new System.EventHandler(this.buttonrf__Click);
+            buttonrf_.Location = new System.Drawing.Point(52, 170);
+            buttonrf_.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonrf_.Name = "buttonrf_";
+            buttonrf_.Size = new System.Drawing.Size(130, 27);
+            buttonrf_.TabIndex = 37;
+            buttonrf_.Text = "Reboot into fastboot";
+            buttonrf_.UseVisualStyleBackColor = true;
+            buttonrf_.Click += buttonrf__Click;
             // 
             // buttonrs_
             // 
-            this.buttonrs_.Location = new System.Drawing.Point(45, 118);
-            this.buttonrs_.Name = "buttonrs_";
-            this.buttonrs_.Size = new System.Drawing.Size(111, 23);
-            this.buttonrs_.TabIndex = 38;
-            this.buttonrs_.Text = "Reboot into system";
-            this.buttonrs_.UseVisualStyleBackColor = true;
-            this.buttonrs_.Click += new System.EventHandler(this.buttonrs__Click);
+            buttonrs_.Location = new System.Drawing.Point(52, 136);
+            buttonrs_.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonrs_.Name = "buttonrs_";
+            buttonrs_.Size = new System.Drawing.Size(130, 27);
+            buttonrs_.TabIndex = 38;
+            buttonrs_.Text = "Reboot into system";
+            buttonrs_.UseVisualStyleBackColor = true;
+            buttonrs_.Click += buttonrs__Click;
             // 
             // groupBoxFlash
             // 
-            this.groupBoxFlash.Controls.Add(this.textBoxDirFile);
-            this.groupBoxFlash.Controls.Add(this.buttonFlashZip);
-            this.groupBoxFlash.Controls.Add(this.buttonBrowseFile);
-            this.groupBoxFlash.Location = new System.Drawing.Point(12, 15);
-            this.groupBoxFlash.Name = "groupBoxFlash";
-            this.groupBoxFlash.Size = new System.Drawing.Size(658, 260);
-            this.groupBoxFlash.TabIndex = 40;
-            this.groupBoxFlash.TabStop = false;
-            this.groupBoxFlash.Text = "Flash menu";
+            groupBoxFlash.Controls.Add(textBoxDirFile);
+            groupBoxFlash.Controls.Add(buttonFlashZip);
+            groupBoxFlash.Controls.Add(buttonBrowseFile);
+            groupBoxFlash.Location = new System.Drawing.Point(14, 17);
+            groupBoxFlash.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxFlash.Name = "groupBoxFlash";
+            groupBoxFlash.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxFlash.Size = new System.Drawing.Size(768, 300);
+            groupBoxFlash.TabIndex = 40;
+            groupBoxFlash.TabStop = false;
+            groupBoxFlash.Text = "Flash menu";
             // 
             // textBoxDirFile
             // 
-            this.textBoxDirFile.Location = new System.Drawing.Point(175, 109);
-            this.textBoxDirFile.Name = "textBoxDirFile";
-            this.textBoxDirFile.Size = new System.Drawing.Size(245, 20);
-            this.textBoxDirFile.TabIndex = 33;
+            textBoxDirFile.Location = new System.Drawing.Point(204, 126);
+            textBoxDirFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textBoxDirFile.Name = "textBoxDirFile";
+            textBoxDirFile.Size = new System.Drawing.Size(285, 23);
+            textBoxDirFile.TabIndex = 33;
             // 
             // buttonFlashZip
             // 
-            this.buttonFlashZip.BackColor = System.Drawing.Color.White;
-            this.buttonFlashZip.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonFlashZip.Location = new System.Drawing.Point(426, 136);
-            this.buttonFlashZip.Name = "buttonFlashZip";
-            this.buttonFlashZip.Size = new System.Drawing.Size(75, 23);
-            this.buttonFlashZip.TabIndex = 34;
-            this.buttonFlashZip.Text = "Flash";
-            this.buttonFlashZip.UseVisualStyleBackColor = false;
-            this.buttonFlashZip.Click += new System.EventHandler(this.buttonFlashZip_Click);
+            buttonFlashZip.BackColor = System.Drawing.Color.White;
+            buttonFlashZip.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonFlashZip.Location = new System.Drawing.Point(497, 157);
+            buttonFlashZip.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonFlashZip.Name = "buttonFlashZip";
+            buttonFlashZip.Size = new System.Drawing.Size(88, 27);
+            buttonFlashZip.TabIndex = 34;
+            buttonFlashZip.Text = "Flash";
+            buttonFlashZip.UseVisualStyleBackColor = false;
+            buttonFlashZip.Click += buttonFlashZip_Click;
             // 
             // buttonBrowseFile
             // 
-            this.buttonBrowseFile.Location = new System.Drawing.Point(426, 107);
-            this.buttonBrowseFile.Name = "buttonBrowseFile";
-            this.buttonBrowseFile.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowseFile.TabIndex = 36;
-            this.buttonBrowseFile.Text = "Browse file";
-            this.buttonBrowseFile.UseVisualStyleBackColor = true;
-            this.buttonBrowseFile.Click += new System.EventHandler(this.buttonBrowseFile_Click);
+            buttonBrowseFile.Location = new System.Drawing.Point(497, 123);
+            buttonBrowseFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonBrowseFile.Name = "buttonBrowseFile";
+            buttonBrowseFile.Size = new System.Drawing.Size(88, 27);
+            buttonBrowseFile.TabIndex = 36;
+            buttonBrowseFile.Text = "Browse file";
+            buttonBrowseFile.UseVisualStyleBackColor = true;
+            buttonBrowseFile.Click += buttonBrowseFile_Click;
             // 
             // tabPageTools
             // 
-            this.tabPageTools.Controls.Add(this.groupBox3);
-            this.tabPageTools.Controls.Add(this.groupBoxTextInject);
-            this.tabPageTools.Controls.Add(this.groupBoxFreeRotation);
-            this.tabPageTools.Location = new System.Drawing.Point(4, 22);
-            this.tabPageTools.Name = "tabPageTools";
-            this.tabPageTools.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTools.Size = new System.Drawing.Size(893, 295);
-            this.tabPageTools.TabIndex = 3;
-            this.tabPageTools.Text = "Tools";
-            this.tabPageTools.UseVisualStyleBackColor = true;
+            tabPageTools.Controls.Add(groupBox3);
+            tabPageTools.Controls.Add(groupBoxTextInject);
+            tabPageTools.Controls.Add(groupBoxFreeRotation);
+            tabPageTools.Location = new System.Drawing.Point(4, 24);
+            tabPageTools.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            tabPageTools.Name = "tabPageTools";
+            tabPageTools.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            tabPageTools.Size = new System.Drawing.Size(1043, 342);
+            tabPageTools.TabIndex = 3;
+            tabPageTools.Text = "Tools";
+            tabPageTools.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.comboBoxCameraModes);
-            this.groupBox3.Controls.Add(this.buttonCamera);
-            this.groupBox3.Location = new System.Drawing.Point(333, 6);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 84);
-            this.groupBox3.TabIndex = 47;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Live Camera";
-            // 
-            // buttonCamera
-            // 
-            this.buttonCamera.Image = global::ATA_GUI.Properties.Resources.camera_live;
-            this.buttonCamera.Location = new System.Drawing.Point(129, 20);
-            this.buttonCamera.Name = "buttonCamera";
-            this.buttonCamera.Size = new System.Drawing.Size(65, 56);
-            this.buttonCamera.TabIndex = 0;
-            this.buttonCamera.UseVisualStyleBackColor = true;
-            this.buttonCamera.Click += new System.EventHandler(this.buttonCamera_Click);
-            // 
-            // groupBoxTextInject
-            // 
-            this.groupBoxTextInject.Controls.Add(this.buttonClearTextSend);
-            this.groupBoxTextInject.Controls.Add(this.buttonInjectText);
-            this.groupBoxTextInject.Controls.Add(this.richTextBoxSend);
-            this.groupBoxTextInject.Location = new System.Drawing.Point(97, 6);
-            this.groupBoxTextInject.Name = "groupBoxTextInject";
-            this.groupBoxTextInject.Size = new System.Drawing.Size(230, 84);
-            this.groupBoxTextInject.TabIndex = 46;
-            this.groupBoxTextInject.TabStop = false;
-            this.groupBoxTextInject.Text = "Text Injection";
-            // 
-            // buttonClearTextSend
-            // 
-            this.buttonClearTextSend.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonClearTextSend.Location = new System.Drawing.Point(149, 53);
-            this.buttonClearTextSend.Name = "buttonClearTextSend";
-            this.buttonClearTextSend.Size = new System.Drawing.Size(75, 23);
-            this.buttonClearTextSend.TabIndex = 2;
-            this.buttonClearTextSend.Text = "Clear";
-            this.buttonClearTextSend.UseVisualStyleBackColor = true;
-            this.buttonClearTextSend.Click += new System.EventHandler(this.buttonClearTextSend_Click);
-            // 
-            // buttonInjectText
-            // 
-            this.buttonInjectText.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonInjectText.Location = new System.Drawing.Point(149, 20);
-            this.buttonInjectText.Name = "buttonInjectText";
-            this.buttonInjectText.Size = new System.Drawing.Size(75, 23);
-            this.buttonInjectText.TabIndex = 1;
-            this.buttonInjectText.Text = "Inject";
-            this.buttonInjectText.UseVisualStyleBackColor = true;
-            this.buttonInjectText.Click += new System.EventHandler(this.buttonInjectText_Click);
-            // 
-            // richTextBoxSend
-            // 
-            this.richTextBoxSend.Location = new System.Drawing.Point(6, 20);
-            this.richTextBoxSend.Name = "richTextBoxSend";
-            this.richTextBoxSend.Size = new System.Drawing.Size(134, 56);
-            this.richTextBoxSend.TabIndex = 0;
-            this.richTextBoxSend.Text = "";
-            // 
-            // groupBoxFreeRotation
-            // 
-            this.groupBoxFreeRotation.Controls.Add(this.buttonSetRotation);
-            this.groupBoxFreeRotation.Controls.Add(this.domainUpDownFreeRotation);
-            this.groupBoxFreeRotation.Location = new System.Drawing.Point(6, 6);
-            this.groupBoxFreeRotation.Name = "groupBoxFreeRotation";
-            this.groupBoxFreeRotation.Size = new System.Drawing.Size(85, 84);
-            this.groupBoxFreeRotation.TabIndex = 45;
-            this.groupBoxFreeRotation.TabStop = false;
-            this.groupBoxFreeRotation.Text = "Free Rotation";
-            // 
-            // buttonSetRotation
-            // 
-            this.buttonSetRotation.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonSetRotation.Location = new System.Drawing.Point(8, 53);
-            this.buttonSetRotation.Name = "buttonSetRotation";
-            this.buttonSetRotation.Size = new System.Drawing.Size(71, 23);
-            this.buttonSetRotation.TabIndex = 45;
-            this.buttonSetRotation.Text = "Set";
-            this.buttonSetRotation.UseVisualStyleBackColor = true;
-            this.buttonSetRotation.Click += new System.EventHandler(this.buttonSetRotation_Click);
-            // 
-            // domainUpDownFreeRotation
-            // 
-            this.domainUpDownFreeRotation.Location = new System.Drawing.Point(8, 20);
-            this.domainUpDownFreeRotation.Name = "domainUpDownFreeRotation";
-            this.domainUpDownFreeRotation.ReadOnly = true;
-            this.domainUpDownFreeRotation.Size = new System.Drawing.Size(71, 20);
-            this.domainUpDownFreeRotation.TabIndex = 44;
-            this.domainUpDownFreeRotation.Text = "0";
-            // 
-            // openFileDialogAPK
-            // 
-            this.openFileDialogAPK.FileName = "openFileDialog";
-            // 
-            // openFileDialogZip
-            // 
-            this.openFileDialogZip.FileName = "openFileDialogZip";
-            // 
-            // backgroundWorkerZip
-            // 
-            this.backgroundWorkerZip.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerZip_DoWork);
-            // 
-            // backgroundWorkerFlashImg
-            // 
-            this.backgroundWorkerFlashImg.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerFlashImg_DoWork);
-            // 
-            // richTextBoxLog
-            // 
-            this.richTextBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
-            this.richTextBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
-            this.richTextBoxLog.Location = new System.Drawing.Point(915, 86);
-            this.richTextBoxLog.Name = "richTextBoxLog";
-            this.richTextBoxLog.ReadOnly = true;
-            this.richTextBoxLog.Size = new System.Drawing.Size(208, 281);
-            this.richTextBoxLog.TabIndex = 38;
-            this.richTextBoxLog.TabStop = false;
-            this.richTextBoxLog.Text = "";
-            this.richTextBoxLog.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBoxLog_LinkClicked);
-            // 
-            // systemAppToolStripMenuItem
-            // 
-            this.systemAppToolStripMenuItem.Name = "systemAppToolStripMenuItem";
-            this.systemAppToolStripMenuItem.ShowShortcutKeys = false;
-            this.systemAppToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.systemAppToolStripMenuItem.Text = "System App";
-            // 
-            // nonSystemAppToolStripMenuItem
-            // 
-            this.nonSystemAppToolStripMenuItem.Name = "nonSystemAppToolStripMenuItem";
-            this.nonSystemAppToolStripMenuItem.Size = new System.Drawing.Size(180, 23);
-            this.nonSystemAppToolStripMenuItem.Text = "Non System App";
-            // 
-            // filterByToolStripMenuItem
-            // 
-            this.filterByToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.systemAppToolStripMenuItem,
-            this.nonSystemAppToolStripMenuItem});
-            this.filterByToolStripMenuItem.Name = "filterByToolStripMenuItem";
-            this.filterByToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.filterByToolStripMenuItem.Text = "Filter By";
-            // 
-            // contextMenuStripFilterBy
-            // 
-            this.contextMenuStripFilterBy.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.allToolStripMenuItem,
-            this.systemAppToolStripMenuItem1,
-            this.nonSystemAppToolStripMenuItem1,
-            this.uninstalledAppToolStripMenuItem,
-            this.disabledAppToolStripMenuItem});
-            this.contextMenuStripFilterBy.Name = "contextMenuStripFilterBy";
-            this.contextMenuStripFilterBy.Size = new System.Drawing.Size(164, 114);
-            // 
-            // allToolStripMenuItem
-            // 
-            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.allToolStripMenuItem.Text = "All";
-            this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
-            // 
-            // systemAppToolStripMenuItem1
-            // 
-            this.systemAppToolStripMenuItem1.Name = "systemAppToolStripMenuItem1";
-            this.systemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
-            this.systemAppToolStripMenuItem1.Text = "System App";
-            this.systemAppToolStripMenuItem1.Click += new System.EventHandler(this.systemAppToolStripMenuItem1_Click);
-            // 
-            // nonSystemAppToolStripMenuItem1
-            // 
-            this.nonSystemAppToolStripMenuItem1.Name = "nonSystemAppToolStripMenuItem1";
-            this.nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
-            this.nonSystemAppToolStripMenuItem1.Text = "Non System App";
-            this.nonSystemAppToolStripMenuItem1.Click += new System.EventHandler(this.nonSystemAppToolStripMenuItem1_Click);
-            // 
-            // uninstalledAppToolStripMenuItem
-            // 
-            this.uninstalledAppToolStripMenuItem.Name = "uninstalledAppToolStripMenuItem";
-            this.uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.uninstalledAppToolStripMenuItem.Text = "Uninstalled App";
-            this.uninstalledAppToolStripMenuItem.Click += new System.EventHandler(this.uninstalledAppToolStripMenuItem_Click);
-            // 
-            // disabledAppToolStripMenuItem
-            // 
-            this.disabledAppToolStripMenuItem.Name = "disabledAppToolStripMenuItem";
-            this.disabledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.disabledAppToolStripMenuItem.Text = "Disabled App";
-            this.disabledAppToolStripMenuItem.Visible = false;
-            this.disabledAppToolStripMenuItem.Click += new System.EventHandler(this.disabledAppToolStripMenuItem_Click);
-            // 
-            // contextMenuStripPermissionMenu
-            // 
-            this.contextMenuStripPermissionMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.grantWriteSecureSettingsToolStripMenuItem,
-            this.grantDUMPToolStripMenuItem,
-            this.grantRevokeToolStripMenuItem,
-            this.checkGrantedPermissionsToolStripMenuItem});
-            this.contextMenuStripPermissionMenu.Name = "contextMenuStripPermissionMenu";
-            this.contextMenuStripPermissionMenu.Size = new System.Drawing.Size(285, 92);
-            // 
-            // grantWriteSecureSettingsToolStripMenuItem
-            // 
-            this.grantWriteSecureSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.grantWriteSecureSettingsToolStripMenuItem1,
-            this.revokeWriteSecureSettingsToolStripMenuItem});
-            this.grantWriteSecureSettingsToolStripMenuItem.Name = "grantWriteSecureSettingsToolStripMenuItem";
-            this.grantWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
-            this.grantWriteSecureSettingsToolStripMenuItem.Text = "Grant/Revoke Write_Secure_Settings";
-            // 
-            // grantWriteSecureSettingsToolStripMenuItem1
-            // 
-            this.grantWriteSecureSettingsToolStripMenuItem1.Name = "grantWriteSecureSettingsToolStripMenuItem1";
-            this.grantWriteSecureSettingsToolStripMenuItem1.Size = new System.Drawing.Size(230, 22);
-            this.grantWriteSecureSettingsToolStripMenuItem1.Text = "Grant Write_Secure_Settings";
-            this.grantWriteSecureSettingsToolStripMenuItem1.Click += new System.EventHandler(this.grantWriteSecureSettingsToolStripMenuItem_Click);
-            // 
-            // revokeWriteSecureSettingsToolStripMenuItem
-            // 
-            this.revokeWriteSecureSettingsToolStripMenuItem.Name = "revokeWriteSecureSettingsToolStripMenuItem";
-            this.revokeWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
-            this.revokeWriteSecureSettingsToolStripMenuItem.Text = "Revoke Write_Secure_Settings";
-            this.revokeWriteSecureSettingsToolStripMenuItem.Click += new System.EventHandler(this.revokeWriteSecureSettingsToolStripMenuItem_Click);
-            // 
-            // grantDUMPToolStripMenuItem
-            // 
-            this.grantDUMPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.grantDUMPToolStripMenuItem1,
-            this.revokeDUMPToolStripMenuItem});
-            this.grantDUMPToolStripMenuItem.Name = "grantDUMPToolStripMenuItem";
-            this.grantDUMPToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
-            this.grantDUMPToolStripMenuItem.Text = "Grant/Revoke DUMP";
-            // 
-            // grantDUMPToolStripMenuItem1
-            // 
-            this.grantDUMPToolStripMenuItem1.Name = "grantDUMPToolStripMenuItem1";
-            this.grantDUMPToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
-            this.grantDUMPToolStripMenuItem1.Text = "Grant DUMP";
-            this.grantDUMPToolStripMenuItem1.Click += new System.EventHandler(this.grantDUMPToolStripMenuItem_Click);
-            // 
-            // revokeDUMPToolStripMenuItem
-            // 
-            this.revokeDUMPToolStripMenuItem.Name = "revokeDUMPToolStripMenuItem";
-            this.revokeDUMPToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.revokeDUMPToolStripMenuItem.Text = "Revoke DUMP";
-            this.revokeDUMPToolStripMenuItem.Click += new System.EventHandler(this.revokeDUMPToolStripMenuItem_Click);
-            // 
-            // grantRevokeToolStripMenuItem
-            // 
-            this.grantRevokeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.grantSYSTEMALERTWINDOWToolStripMenuItem,
-            this.revokeSYSTEMALERTWINDOWToolStripMenuItem});
-            this.grantRevokeToolStripMenuItem.Name = "grantRevokeToolStripMenuItem";
-            this.grantRevokeToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
-            this.grantRevokeToolStripMenuItem.Text = "Grant/Revoke SYSTEM_ALERT_WINDOW";
-            this.grantRevokeToolStripMenuItem.Visible = false;
-            // 
-            // grantSYSTEMALERTWINDOWToolStripMenuItem
-            // 
-            this.grantSYSTEMALERTWINDOWToolStripMenuItem.Name = "grantSYSTEMALERTWINDOWToolStripMenuItem";
-            this.grantSYSTEMALERTWINDOWToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
-            this.grantSYSTEMALERTWINDOWToolStripMenuItem.Text = "Grant SYSTEM_ALERT_WINDOW";
-            this.grantSYSTEMALERTWINDOWToolStripMenuItem.Click += new System.EventHandler(this.grantSYSTEMALERTWINDOWToolStripMenuItem_Click);
-            // 
-            // revokeSYSTEMALERTWINDOWToolStripMenuItem
-            // 
-            this.revokeSYSTEMALERTWINDOWToolStripMenuItem.Name = "revokeSYSTEMALERTWINDOWToolStripMenuItem";
-            this.revokeSYSTEMALERTWINDOWToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
-            this.revokeSYSTEMALERTWINDOWToolStripMenuItem.Text = "Revoke SYSTEM_ALERT_WINDOW";
-            this.revokeSYSTEMALERTWINDOWToolStripMenuItem.Click += new System.EventHandler(this.revokeSYSTEMALERTWINDOWToolStripMenuItem_Click);
-            // 
-            // checkGrantedPermissionsToolStripMenuItem
-            // 
-            this.checkGrantedPermissionsToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_privacy_policy_48;
-            this.checkGrantedPermissionsToolStripMenuItem.Name = "checkGrantedPermissionsToolStripMenuItem";
-            this.checkGrantedPermissionsToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
-            this.checkGrantedPermissionsToolStripMenuItem.Text = "Check granted permissions";
-            this.checkGrantedPermissionsToolStripMenuItem.Click += new System.EventHandler(this.checkGrantedPermissionsToolStripMenuItem_Click);
-            // 
-            // backgroundWorkerAdbDownloader
-            // 
-            this.backgroundWorkerAdbDownloader.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAdbDownloader_DoWork);
-            // 
-            // backgroundWorkerExeDownloader
-            // 
-            this.backgroundWorkerExeDownloader.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerExeDownloader_DoWork);
-            // 
-            // buttonMobileScreenShare
-            // 
-            this.buttonMobileScreenShare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonMobileScreenShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMobileScreenShare.ForeColor = System.Drawing.Color.Transparent;
-            this.buttonMobileScreenShare.Image = global::ATA_GUI.Properties.Resources.icons8_screensharing_48;
-            this.buttonMobileScreenShare.Location = new System.Drawing.Point(351, 391);
-            this.buttonMobileScreenShare.Name = "buttonMobileScreenShare";
-            this.buttonMobileScreenShare.Size = new System.Drawing.Size(60, 63);
-            this.buttonMobileScreenShare.TabIndex = 39;
-            this.buttonMobileScreenShare.UseVisualStyleBackColor = true;
-            this.buttonMobileScreenShare.Click += new System.EventHandler(this.buttonMobileScreenShare_Click);
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(345, 376);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(72, 13);
-            this.label9.TabIndex = 40;
-            this.label9.Text = "Screen Share";
-            // 
-            // pictureBoxLogo
-            // 
-            this.pictureBoxLogo.Image = global::ATA_GUI.Properties.Resources.logo;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(8, 9);
-            this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(79, 33);
-            this.pictureBoxLogo.TabIndex = 3;
-            this.pictureBoxLogo.TabStop = false;
-            this.pictureBoxLogo.Click += new System.EventHandler(this.pictureBoxLogo_Click);
-            // 
-            // panelTopBar
-            // 
-            this.panelTopBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelTopBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panelTopBar.Controls.Add(this.pictureBoxMaximize);
-            this.panelTopBar.Controls.Add(this.labelTools);
-            this.panelTopBar.Controls.Add(this.pictureBoxClose);
-            this.panelTopBar.Controls.Add(this.pictureBoxMinimize);
-            this.panelTopBar.Controls.Add(this.labelHelp);
-            this.panelTopBar.Controls.Add(this.labelSettings);
-            this.panelTopBar.Controls.Add(this.pictureBoxLogo);
-            this.panelTopBar.Location = new System.Drawing.Point(0, -3);
-            this.panelTopBar.Name = "panelTopBar";
-            this.panelTopBar.Size = new System.Drawing.Size(1126, 44);
-            this.panelTopBar.TabIndex = 0;
-            this.panelTopBar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseDoubleClick);
-            this.panelTopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseMove);
-            // 
-            // pictureBoxMaximize
-            // 
-            this.pictureBoxMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMaximize.Image = global::ATA_GUI.Properties.Resources.icons8_maximize_button_16;
-            this.pictureBoxMaximize.Location = new System.Drawing.Point(1049, 3);
-            this.pictureBoxMaximize.Name = "pictureBoxMaximize";
-            this.pictureBoxMaximize.Size = new System.Drawing.Size(38, 40);
-            this.pictureBoxMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBoxMaximize.TabIndex = 43;
-            this.pictureBoxMaximize.TabStop = false;
-            this.pictureBoxMaximize.Click += new System.EventHandler(this.pictureBoxMaximize_Click);
-            this.pictureBoxMaximize.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMaximize_MouseClick);
-            this.pictureBoxMaximize.MouseEnter += new System.EventHandler(this.pictureBoxMaximize_MouseEnter);
-            this.pictureBoxMaximize.MouseLeave += new System.EventHandler(this.pictureBoxMaximize_MouseLeave);
-            // 
-            // labelTools
-            // 
-            this.labelTools.AutoSize = true;
-            this.labelTools.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTools.ForeColor = System.Drawing.Color.White;
-            this.labelTools.Location = new System.Drawing.Point(212, 13);
-            this.labelTools.Name = "labelTools";
-            this.labelTools.Size = new System.Drawing.Size(37, 15);
-            this.labelTools.TabIndex = 42;
-            this.labelTools.Text = "Tools";
-            this.labelTools.Click += new System.EventHandler(this.labelTools_Click);
-            this.labelTools.MouseEnter += new System.EventHandler(this.labelTools_MouseEnter);
-            this.labelTools.MouseLeave += new System.EventHandler(this.labelTools_MouseLeave);
-            // 
-            // pictureBoxClose
-            // 
-            this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxClose.Image = global::ATA_GUI.Properties.Resources.close_16;
-            this.pictureBoxClose.Location = new System.Drawing.Point(1088, 3);
-            this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(38, 40);
-            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBoxClose.TabIndex = 41;
-            this.pictureBoxClose.TabStop = false;
-            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
-            this.pictureBoxClose.MouseEnter += new System.EventHandler(this.pictureBoxClose_MouseEnter);
-            this.pictureBoxClose.MouseLeave += new System.EventHandler(this.pictureBoxClose_MouseLeave);
-            // 
-            // pictureBoxMinimize
-            // 
-            this.pictureBoxMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMinimize.Image = global::ATA_GUI.Properties.Resources.subtract_16;
-            this.pictureBoxMinimize.Location = new System.Drawing.Point(1010, 3);
-            this.pictureBoxMinimize.Name = "pictureBoxMinimize";
-            this.pictureBoxMinimize.Size = new System.Drawing.Size(38, 40);
-            this.pictureBoxMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBoxMinimize.TabIndex = 6;
-            this.pictureBoxMinimize.TabStop = false;
-            this.pictureBoxMinimize.Click += new System.EventHandler(this.pictureBoxMinimize_Click);
-            this.pictureBoxMinimize.MouseEnter += new System.EventHandler(this.pictureBoxMinimize_MouseEnter);
-            this.pictureBoxMinimize.MouseLeave += new System.EventHandler(this.pictureBoxMinimize_MouseLeave);
-            // 
-            // labelHelp
-            // 
-            this.labelHelp.AutoSize = true;
-            this.labelHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHelp.ForeColor = System.Drawing.Color.White;
-            this.labelHelp.Location = new System.Drawing.Point(166, 13);
-            this.labelHelp.Name = "labelHelp";
-            this.labelHelp.Size = new System.Drawing.Size(33, 15);
-            this.labelHelp.TabIndex = 5;
-            this.labelHelp.Text = "Help";
-            this.labelHelp.Click += new System.EventHandler(this.labelHelp_Click);
-            this.labelHelp.MouseEnter += new System.EventHandler(this.labelHelp_MouseEnter);
-            this.labelHelp.MouseLeave += new System.EventHandler(this.labelHelp_MouseLeave);
-            // 
-            // labelSettings
-            // 
-            this.labelSettings.AutoSize = true;
-            this.labelSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSettings.ForeColor = System.Drawing.Color.White;
-            this.labelSettings.Location = new System.Drawing.Point(103, 13);
-            this.labelSettings.Name = "labelSettings";
-            this.labelSettings.Size = new System.Drawing.Size(51, 15);
-            this.labelSettings.TabIndex = 4;
-            this.labelSettings.Text = "Settings";
-            this.labelSettings.Click += new System.EventHandler(this.labelSettings_Click);
-            this.labelSettings.MouseEnter += new System.EventHandler(this.labelSettings_MouseEnter);
-            this.labelSettings.MouseLeave += new System.EventHandler(this.labelSettings_MouseLeave);
-            // 
-            // BottomToolStripPanel
-            // 
-            this.BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
-            this.BottomToolStripPanel.Name = "BottomToolStripPanel";
-            this.BottomToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.BottomToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.BottomToolStripPanel.Size = new System.Drawing.Size(0, 0);
-            // 
-            // TopToolStripPanel
-            // 
-            this.TopToolStripPanel.Location = new System.Drawing.Point(0, 0);
-            this.TopToolStripPanel.Name = "TopToolStripPanel";
-            this.TopToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.TopToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.TopToolStripPanel.Size = new System.Drawing.Size(0, 0);
-            // 
-            // RightToolStripPanel
-            // 
-            this.RightToolStripPanel.Location = new System.Drawing.Point(0, 0);
-            this.RightToolStripPanel.Name = "RightToolStripPanel";
-            this.RightToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.RightToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.RightToolStripPanel.Size = new System.Drawing.Size(0, 0);
-            // 
-            // LeftToolStripPanel
-            // 
-            this.LeftToolStripPanel.Location = new System.Drawing.Point(0, 0);
-            this.LeftToolStripPanel.Name = "LeftToolStripPanel";
-            this.LeftToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.LeftToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.LeftToolStripPanel.Size = new System.Drawing.Size(0, 0);
-            // 
-            // ContentPanel
-            // 
-            this.ContentPanel.Size = new System.Drawing.Size(150, 150);
-            // 
-            // contextMenuStripHelp
-            // 
-            this.contextMenuStripHelp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.helpToolStripMenuItem,
-            this.submitFeedbackToolStripMenuItem});
-            this.contextMenuStripHelp.Name = "contextMenuStripHelp";
-            this.contextMenuStripHelp.Size = new System.Drawing.Size(166, 48);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.videoTutorialToolStripMenuItem});
-            this.helpToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_help_48;
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.helpToolStripMenuItem.Text = "Open help";
-            // 
-            // videoTutorialToolStripMenuItem
-            // 
-            this.videoTutorialToolStripMenuItem.Name = "videoTutorialToolStripMenuItem";
-            this.videoTutorialToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.videoTutorialToolStripMenuItem.Text = "Video Tutorial";
-            this.videoTutorialToolStripMenuItem.Click += new System.EventHandler(this.videoTutorialToolStripMenuItem_Click);
-            // 
-            // submitFeedbackToolStripMenuItem
-            // 
-            this.submitFeedbackToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_get_help_48;
-            this.submitFeedbackToolStripMenuItem.Name = "submitFeedbackToolStripMenuItem";
-            this.submitFeedbackToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.submitFeedbackToolStripMenuItem.Text = "Submit Feedback";
-            this.submitFeedbackToolStripMenuItem.Click += new System.EventHandler(this.submitFeedbackToolStripMenuItem_Click);
-            // 
-            // videoTutorialsToolStripMenuItem
-            // 
-            this.videoTutorialsToolStripMenuItem.Name = "videoTutorialsToolStripMenuItem";
-            this.videoTutorialsToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // buttonDeviceLogs
-            // 
-            this.buttonDeviceLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDeviceLogs.BackColor = System.Drawing.Color.White;
-            this.buttonDeviceLogs.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonDeviceLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDeviceLogs.ForeColor = System.Drawing.Color.Black;
-            this.buttonDeviceLogs.Location = new System.Drawing.Point(822, 403);
-            this.buttonDeviceLogs.Name = "buttonDeviceLogs";
-            this.buttonDeviceLogs.Size = new System.Drawing.Size(87, 23);
-            this.buttonDeviceLogs.TabIndex = 41;
-            this.buttonDeviceLogs.Text = "Device Logs";
-            this.buttonDeviceLogs.UseVisualStyleBackColor = false;
-            this.buttonDeviceLogs.Click += new System.EventHandler(this.buttonDeviceLogs_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.buttonReloadDevicesList);
-            this.groupBox1.Controls.Add(this.comboBoxDevices);
-            this.groupBox1.Controls.Add(this.buttonSyncApp);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(7, 369);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(332, 84);
-            this.groupBox1.TabIndex = 31;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Device Sync Settings";
-            // 
-            // buttonReloadDevicesList
-            // 
-            this.buttonReloadDevicesList.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonReloadDevicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReloadDevicesList.ForeColor = System.Drawing.Color.Black;
-            this.buttonReloadDevicesList.Location = new System.Drawing.Point(172, 53);
-            this.buttonReloadDevicesList.Name = "buttonReloadDevicesList";
-            this.buttonReloadDevicesList.Size = new System.Drawing.Size(152, 23);
-            this.buttonReloadDevicesList.TabIndex = 2;
-            this.buttonReloadDevicesList.Text = "Refresh Device List";
-            this.buttonReloadDevicesList.UseVisualStyleBackColor = true;
-            this.buttonReloadDevicesList.Click += new System.EventHandler(this.buttonReloadDevicesList_Click);
-            // 
-            // comboBoxDevices
-            // 
-            this.comboBoxDevices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxDevices.FormattingEnabled = true;
-            this.comboBoxDevices.Location = new System.Drawing.Point(172, 22);
-            this.comboBoxDevices.Name = "comboBoxDevices";
-            this.comboBoxDevices.Size = new System.Drawing.Size(152, 21);
-            this.comboBoxDevices.TabIndex = 1;
-            this.comboBoxDevices.SelectedIndexChanged += new System.EventHandler(this.comboBoxDevices_SelectedIndexChanged);
-            // 
-            // buttonSyncApp
-            // 
-            this.buttonSyncApp.BackColor = System.Drawing.Color.White;
-            this.buttonSyncApp.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.buttonSyncApp.Enabled = false;
-            this.buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonSyncApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
-            this.buttonSyncApp.ForeColor = System.Drawing.Color.Black;
-            this.buttonSyncApp.Location = new System.Drawing.Point(17, 20);
-            this.buttonSyncApp.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonSyncApp.Name = "buttonSyncApp";
-            this.buttonSyncApp.Size = new System.Drawing.Size(145, 56);
-            this.buttonSyncApp.TabIndex = 0;
-            this.buttonSyncApp.Text = "Sync Smartphone";
-            this.buttonSyncApp.UseVisualStyleBackColor = false;
-            this.buttonSyncApp.Click += new System.EventHandler(this.buttonSyncApp_Click);
-            // 
-            // contextMenuStripSearch
-            // 
-            this.contextMenuStripSearch.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.duckduckgoToolStripMenuItem,
-            this.googleToolStripMenuItem,
-            this.playMarketToolStripMenuItem,
-            this.APKMirrorToolStripMenuItem,
-            this.fDroidToolStripMenuItem});
-            this.contextMenuStripSearch.Name = "contextMenuStripSearch";
-            this.contextMenuStripSearch.Size = new System.Drawing.Size(142, 114);
-            // 
-            // duckduckgoToolStripMenuItem
-            // 
-            this.duckduckgoToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_duckduckgo_48;
-            this.duckduckgoToolStripMenuItem.Name = "duckduckgoToolStripMenuItem";
-            this.duckduckgoToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.duckduckgoToolStripMenuItem.Text = "Duckduckgo";
-            this.duckduckgoToolStripMenuItem.Click += new System.EventHandler(this.duckduckgoToolStripMenuItem_Click);
-            // 
-            // googleToolStripMenuItem
-            // 
-            this.googleToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.icons8_google_48;
-            this.googleToolStripMenuItem.Name = "googleToolStripMenuItem";
-            this.googleToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.googleToolStripMenuItem.Text = "Google";
-            this.googleToolStripMenuItem.Click += new System.EventHandler(this.googleToolStripMenuItem_Click);
-            // 
-            // playMarketToolStripMenuItem
-            // 
-            this.playMarketToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.playmarketicon;
-            this.playMarketToolStripMenuItem.Name = "playMarketToolStripMenuItem";
-            this.playMarketToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.playMarketToolStripMenuItem.Text = "Play Market";
-            this.playMarketToolStripMenuItem.Click += new System.EventHandler(this.playMarketToolStripMenuItem_Click);
-            // 
-            // APKMirrorToolStripMenuItem
-            // 
-            this.APKMirrorToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.apkmirror;
-            this.APKMirrorToolStripMenuItem.Name = "APKMirrorToolStripMenuItem";
-            this.APKMirrorToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.APKMirrorToolStripMenuItem.Text = "APK Mirror";
-            this.APKMirrorToolStripMenuItem.Click += new System.EventHandler(this.APKMirrorToolStripMenuItem_Click);
-            // 
-            // fDroidToolStripMenuItem
-            // 
-            this.fDroidToolStripMenuItem.Image = global::ATA_GUI.Properties.Resources.fdroidlogo;
-            this.fDroidToolStripMenuItem.Name = "fDroidToolStripMenuItem";
-            this.fDroidToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.fDroidToolStripMenuItem.Text = "F-Droid";
-            this.fDroidToolStripMenuItem.Click += new System.EventHandler(this.fDroidToolStripMenuItem_Click);
-            // 
-            // contextMenuStripTools
-            // 
-            this.contextMenuStripTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.contextMenuStripTools.Name = "contextMenuStripHelp";
-            this.contextMenuStripTools.Size = new System.Drawing.Size(98, 26);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemADBKill});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(97, 22);
-            this.toolStripMenuItem1.Text = "ADB";
-            // 
-            // toolStripMenuItemADBKill
-            // 
-            this.toolStripMenuItemADBKill.Name = "toolStripMenuItemADBKill";
-            this.toolStripMenuItemADBKill.Size = new System.Drawing.Size(116, 22);
-            this.toolStripMenuItemADBKill.Text = "Kill ADB";
-            this.toolStripMenuItemADBKill.Click += new System.EventHandler(this.toolStripMenuItemADBKill_Click);
-            // 
-            // buttonTaskManager
-            // 
-            this.buttonTaskManager.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonTaskManager.BackColor = System.Drawing.Color.White;
-            this.buttonTaskManager.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonTaskManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTaskManager.ForeColor = System.Drawing.Color.Black;
-            this.buttonTaskManager.Location = new System.Drawing.Point(822, 376);
-            this.buttonTaskManager.Name = "buttonTaskManager";
-            this.buttonTaskManager.Size = new System.Drawing.Size(87, 23);
-            this.buttonTaskManager.TabIndex = 42;
-            this.buttonTaskManager.Text = "Task Manager";
-            this.buttonTaskManager.UseVisualStyleBackColor = false;
-            this.buttonTaskManager.Click += new System.EventHandler(this.buttonTaskManager_Click);
-            // 
-            // backgroundWorkerADBConnect
-            // 
-            this.backgroundWorkerADBConnect.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerADBConnect_DoWork);
-            // 
-            // backgroundWorkerADBDisconnect
-            // 
-            this.backgroundWorkerADBDisconnect.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerADBDisconnect_DoWork);
-            // 
-            // groupBoxTerminal
-            // 
-            this.groupBoxTerminal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxTerminal.Controls.Add(this.radioButtonFastboot);
-            this.groupBoxTerminal.Controls.Add(this.radioButtonADB);
-            this.groupBoxTerminal.Controls.Add(this.buttonTerminalRun);
-            this.groupBoxTerminal.Controls.Add(this.richTextBoxTerminal);
-            this.groupBoxTerminal.Location = new System.Drawing.Point(423, 369);
-            this.groupBoxTerminal.Name = "groupBoxTerminal";
-            this.groupBoxTerminal.Size = new System.Drawing.Size(393, 84);
-            this.groupBoxTerminal.TabIndex = 46;
-            this.groupBoxTerminal.TabStop = false;
-            this.groupBoxTerminal.Text = "Terminal";
-            // 
-            // radioButtonFastboot
-            // 
-            this.radioButtonFastboot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonFastboot.AutoSize = true;
-            this.radioButtonFastboot.Location = new System.Drawing.Point(312, 61);
-            this.radioButtonFastboot.Name = "radioButtonFastboot";
-            this.radioButtonFastboot.Size = new System.Drawing.Size(63, 17);
-            this.radioButtonFastboot.TabIndex = 50;
-            this.radioButtonFastboot.TabStop = true;
-            this.radioButtonFastboot.Text = "fastboot";
-            this.radioButtonFastboot.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonADB
-            // 
-            this.radioButtonADB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonADB.AutoSize = true;
-            this.radioButtonADB.Checked = true;
-            this.radioButtonADB.Location = new System.Drawing.Point(312, 45);
-            this.radioButtonADB.Name = "radioButtonADB";
-            this.radioButtonADB.Size = new System.Drawing.Size(43, 17);
-            this.radioButtonADB.TabIndex = 49;
-            this.radioButtonADB.TabStop = true;
-            this.radioButtonADB.Text = "adb";
-            this.radioButtonADB.UseVisualStyleBackColor = true;
-            // 
-            // buttonTerminalRun
-            // 
-            this.buttonTerminalRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonTerminalRun.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonTerminalRun.Location = new System.Drawing.Point(312, 19);
-            this.buttonTerminalRun.Name = "buttonTerminalRun";
-            this.buttonTerminalRun.Size = new System.Drawing.Size(75, 23);
-            this.buttonTerminalRun.TabIndex = 48;
-            this.buttonTerminalRun.Text = "Run";
-            this.buttonTerminalRun.UseVisualStyleBackColor = true;
-            this.buttonTerminalRun.Click += new System.EventHandler(this.buttonCommandInject_Click);
-            // 
-            // richTextBoxTerminal
-            // 
-            this.richTextBoxTerminal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBoxTerminal.Location = new System.Drawing.Point(6, 19);
-            this.richTextBoxTerminal.Name = "richTextBoxTerminal";
-            this.richTextBoxTerminal.Size = new System.Drawing.Size(300, 57);
-            this.richTextBoxTerminal.TabIndex = 47;
-            this.richTextBoxTerminal.Text = "";
-            // 
-            // backgroundWorkerAPKinstall
-            // 
-            this.backgroundWorkerAPKinstall.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAPKinstall_DoWork);
-            // 
-            // backgroundWorkerFileTransfer
-            // 
-            this.backgroundWorkerFileTransfer.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerFileTransfer_DoWork);
+            groupBox3.Controls.Add(comboBoxCameraModes);
+            groupBox3.Controls.Add(buttonCamera);
+            groupBox3.Location = new System.Drawing.Point(388, 7);
+            groupBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox3.Size = new System.Drawing.Size(233, 97);
+            groupBox3.TabIndex = 47;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Live Camera";
             // 
             // comboBoxCameraModes
             // 
-            this.comboBoxCameraModes.FormattingEnabled = true;
-            this.comboBoxCameraModes.Items.AddRange(new object[] {
-            "front",
-            "back",
-            "external"});
-            this.comboBoxCameraModes.Location = new System.Drawing.Point(6, 39);
-            this.comboBoxCameraModes.Name = "comboBoxCameraModes";
-            this.comboBoxCameraModes.Size = new System.Drawing.Size(117, 21);
-            this.comboBoxCameraModes.TabIndex = 48;
+            comboBoxCameraModes.FormattingEnabled = true;
+            comboBoxCameraModes.Items.AddRange(new object[] { "front", "back", "external" });
+            comboBoxCameraModes.Location = new System.Drawing.Point(7, 45);
+            comboBoxCameraModes.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            comboBoxCameraModes.Name = "comboBoxCameraModes";
+            comboBoxCameraModes.Size = new System.Drawing.Size(136, 23);
+            comboBoxCameraModes.TabIndex = 48;
+            // 
+            // buttonCamera
+            // 
+            buttonCamera.Image = Properties.Resources.camera_live;
+            buttonCamera.Location = new System.Drawing.Point(150, 23);
+            buttonCamera.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonCamera.Name = "buttonCamera";
+            buttonCamera.Size = new System.Drawing.Size(76, 65);
+            buttonCamera.TabIndex = 0;
+            buttonCamera.UseVisualStyleBackColor = true;
+            buttonCamera.Click += buttonCamera_Click;
+            // 
+            // groupBoxTextInject
+            // 
+            groupBoxTextInject.Controls.Add(buttonClearTextSend);
+            groupBoxTextInject.Controls.Add(buttonInjectText);
+            groupBoxTextInject.Controls.Add(richTextBoxSend);
+            groupBoxTextInject.Location = new System.Drawing.Point(113, 7);
+            groupBoxTextInject.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxTextInject.Name = "groupBoxTextInject";
+            groupBoxTextInject.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxTextInject.Size = new System.Drawing.Size(268, 97);
+            groupBoxTextInject.TabIndex = 46;
+            groupBoxTextInject.TabStop = false;
+            groupBoxTextInject.Text = "Text Injection";
+            // 
+            // buttonClearTextSend
+            // 
+            buttonClearTextSend.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonClearTextSend.Location = new System.Drawing.Point(174, 61);
+            buttonClearTextSend.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonClearTextSend.Name = "buttonClearTextSend";
+            buttonClearTextSend.Size = new System.Drawing.Size(88, 27);
+            buttonClearTextSend.TabIndex = 2;
+            buttonClearTextSend.Text = "Clear";
+            buttonClearTextSend.UseVisualStyleBackColor = true;
+            buttonClearTextSend.Click += buttonClearTextSend_Click;
+            // 
+            // buttonInjectText
+            // 
+            buttonInjectText.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonInjectText.Location = new System.Drawing.Point(174, 23);
+            buttonInjectText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonInjectText.Name = "buttonInjectText";
+            buttonInjectText.Size = new System.Drawing.Size(88, 27);
+            buttonInjectText.TabIndex = 1;
+            buttonInjectText.Text = "Inject";
+            buttonInjectText.UseVisualStyleBackColor = true;
+            buttonInjectText.Click += buttonInjectText_Click;
+            // 
+            // richTextBoxSend
+            // 
+            richTextBoxSend.Location = new System.Drawing.Point(7, 23);
+            richTextBoxSend.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            richTextBoxSend.Name = "richTextBoxSend";
+            richTextBoxSend.Size = new System.Drawing.Size(156, 64);
+            richTextBoxSend.TabIndex = 0;
+            richTextBoxSend.Text = "";
+            // 
+            // groupBoxFreeRotation
+            // 
+            groupBoxFreeRotation.Controls.Add(buttonSetRotation);
+            groupBoxFreeRotation.Controls.Add(domainUpDownFreeRotation);
+            groupBoxFreeRotation.Location = new System.Drawing.Point(7, 7);
+            groupBoxFreeRotation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxFreeRotation.Name = "groupBoxFreeRotation";
+            groupBoxFreeRotation.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxFreeRotation.Size = new System.Drawing.Size(99, 97);
+            groupBoxFreeRotation.TabIndex = 45;
+            groupBoxFreeRotation.TabStop = false;
+            groupBoxFreeRotation.Text = "Free Rotation";
+            // 
+            // buttonSetRotation
+            // 
+            buttonSetRotation.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonSetRotation.Location = new System.Drawing.Point(9, 61);
+            buttonSetRotation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonSetRotation.Name = "buttonSetRotation";
+            buttonSetRotation.Size = new System.Drawing.Size(83, 27);
+            buttonSetRotation.TabIndex = 45;
+            buttonSetRotation.Text = "Set";
+            buttonSetRotation.UseVisualStyleBackColor = true;
+            buttonSetRotation.Click += buttonSetRotation_Click;
+            // 
+            // domainUpDownFreeRotation
+            // 
+            domainUpDownFreeRotation.Location = new System.Drawing.Point(9, 23);
+            domainUpDownFreeRotation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            domainUpDownFreeRotation.Name = "domainUpDownFreeRotation";
+            domainUpDownFreeRotation.ReadOnly = true;
+            domainUpDownFreeRotation.Size = new System.Drawing.Size(83, 23);
+            domainUpDownFreeRotation.TabIndex = 44;
+            domainUpDownFreeRotation.Text = "0";
+            // 
+            // openFileDialogAPK
+            // 
+            openFileDialogAPK.FileName = "openFileDialog";
+            // 
+            // openFileDialogZip
+            // 
+            openFileDialogZip.FileName = "openFileDialogZip";
+            // 
+            // backgroundWorkerZip
+            // 
+            backgroundWorkerZip.DoWork += backgroundWorkerZip_DoWork;
+            // 
+            // backgroundWorkerFlashImg
+            // 
+            backgroundWorkerFlashImg.DoWork += backgroundWorkerFlashImg_DoWork;
+            // 
+            // richTextBoxLog
+            // 
+            richTextBoxLog.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
+            richTextBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
+            richTextBoxLog.Location = new System.Drawing.Point(1068, 99);
+            richTextBoxLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            richTextBoxLog.Name = "richTextBoxLog";
+            richTextBoxLog.ReadOnly = true;
+            richTextBoxLog.Size = new System.Drawing.Size(242, 324);
+            richTextBoxLog.TabIndex = 38;
+            richTextBoxLog.TabStop = false;
+            richTextBoxLog.Text = "";
+            richTextBoxLog.LinkClicked += richTextBoxLog_LinkClicked;
+            // 
+            // systemAppToolStripMenuItem
+            // 
+            systemAppToolStripMenuItem.Name = "systemAppToolStripMenuItem";
+            systemAppToolStripMenuItem.ShowShortcutKeys = false;
+            systemAppToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            systemAppToolStripMenuItem.Text = "System App";
+            // 
+            // nonSystemAppToolStripMenuItem
+            // 
+            nonSystemAppToolStripMenuItem.Name = "nonSystemAppToolStripMenuItem";
+            nonSystemAppToolStripMenuItem.Size = new System.Drawing.Size(180, 23);
+            nonSystemAppToolStripMenuItem.Text = "Non System App";
+            // 
+            // filterByToolStripMenuItem
+            // 
+            filterByToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { systemAppToolStripMenuItem, nonSystemAppToolStripMenuItem });
+            filterByToolStripMenuItem.Name = "filterByToolStripMenuItem";
+            filterByToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            filterByToolStripMenuItem.Text = "Filter By";
+            // 
+            // contextMenuStripFilterBy
+            // 
+            contextMenuStripFilterBy.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { allToolStripMenuItem, systemAppToolStripMenuItem1, nonSystemAppToolStripMenuItem1, uninstalledAppToolStripMenuItem, disabledAppToolStripMenuItem });
+            contextMenuStripFilterBy.Name = "contextMenuStripFilterBy";
+            contextMenuStripFilterBy.Size = new System.Drawing.Size(164, 114);
+            // 
+            // allToolStripMenuItem
+            // 
+            allToolStripMenuItem.Name = "allToolStripMenuItem";
+            allToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            allToolStripMenuItem.Text = "All";
+            allToolStripMenuItem.Click += allToolStripMenuItem_Click;
+            // 
+            // systemAppToolStripMenuItem1
+            // 
+            systemAppToolStripMenuItem1.Name = "systemAppToolStripMenuItem1";
+            systemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            systemAppToolStripMenuItem1.Text = "System App";
+            systemAppToolStripMenuItem1.Click += systemAppToolStripMenuItem1_Click;
+            // 
+            // nonSystemAppToolStripMenuItem1
+            // 
+            nonSystemAppToolStripMenuItem1.Name = "nonSystemAppToolStripMenuItem1";
+            nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            nonSystemAppToolStripMenuItem1.Text = "Non System App";
+            nonSystemAppToolStripMenuItem1.Click += nonSystemAppToolStripMenuItem1_Click;
+            // 
+            // uninstalledAppToolStripMenuItem
+            // 
+            uninstalledAppToolStripMenuItem.Name = "uninstalledAppToolStripMenuItem";
+            uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            uninstalledAppToolStripMenuItem.Text = "Uninstalled App";
+            uninstalledAppToolStripMenuItem.Click += uninstalledAppToolStripMenuItem_Click;
+            // 
+            // disabledAppToolStripMenuItem
+            // 
+            disabledAppToolStripMenuItem.Name = "disabledAppToolStripMenuItem";
+            disabledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            disabledAppToolStripMenuItem.Text = "Disabled App";
+            disabledAppToolStripMenuItem.Visible = false;
+            disabledAppToolStripMenuItem.Click += disabledAppToolStripMenuItem_Click;
+            // 
+            // contextMenuStripPermissionMenu
+            // 
+            contextMenuStripPermissionMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { grantWriteSecureSettingsToolStripMenuItem, grantDUMPToolStripMenuItem, grantRevokeToolStripMenuItem, checkGrantedPermissionsToolStripMenuItem });
+            contextMenuStripPermissionMenu.Name = "contextMenuStripPermissionMenu";
+            contextMenuStripPermissionMenu.Size = new System.Drawing.Size(285, 92);
+            // 
+            // grantWriteSecureSettingsToolStripMenuItem
+            // 
+            grantWriteSecureSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { grantWriteSecureSettingsToolStripMenuItem1, revokeWriteSecureSettingsToolStripMenuItem });
+            grantWriteSecureSettingsToolStripMenuItem.Name = "grantWriteSecureSettingsToolStripMenuItem";
+            grantWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
+            grantWriteSecureSettingsToolStripMenuItem.Text = "Grant/Revoke Write_Secure_Settings";
+            // 
+            // grantWriteSecureSettingsToolStripMenuItem1
+            // 
+            grantWriteSecureSettingsToolStripMenuItem1.Name = "grantWriteSecureSettingsToolStripMenuItem1";
+            grantWriteSecureSettingsToolStripMenuItem1.Size = new System.Drawing.Size(230, 22);
+            grantWriteSecureSettingsToolStripMenuItem1.Text = "Grant Write_Secure_Settings";
+            grantWriteSecureSettingsToolStripMenuItem1.Click += grantWriteSecureSettingsToolStripMenuItem_Click;
+            // 
+            // revokeWriteSecureSettingsToolStripMenuItem
+            // 
+            revokeWriteSecureSettingsToolStripMenuItem.Name = "revokeWriteSecureSettingsToolStripMenuItem";
+            revokeWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            revokeWriteSecureSettingsToolStripMenuItem.Text = "Revoke Write_Secure_Settings";
+            revokeWriteSecureSettingsToolStripMenuItem.Click += revokeWriteSecureSettingsToolStripMenuItem_Click;
+            // 
+            // grantDUMPToolStripMenuItem
+            // 
+            grantDUMPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { grantDUMPToolStripMenuItem1, revokeDUMPToolStripMenuItem });
+            grantDUMPToolStripMenuItem.Name = "grantDUMPToolStripMenuItem";
+            grantDUMPToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
+            grantDUMPToolStripMenuItem.Text = "Grant/Revoke DUMP";
+            // 
+            // grantDUMPToolStripMenuItem1
+            // 
+            grantDUMPToolStripMenuItem1.Name = "grantDUMPToolStripMenuItem1";
+            grantDUMPToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
+            grantDUMPToolStripMenuItem1.Text = "Grant DUMP";
+            grantDUMPToolStripMenuItem1.Click += grantDUMPToolStripMenuItem_Click;
+            // 
+            // revokeDUMPToolStripMenuItem
+            // 
+            revokeDUMPToolStripMenuItem.Name = "revokeDUMPToolStripMenuItem";
+            revokeDUMPToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            revokeDUMPToolStripMenuItem.Text = "Revoke DUMP";
+            revokeDUMPToolStripMenuItem.Click += revokeDUMPToolStripMenuItem_Click;
+            // 
+            // grantRevokeToolStripMenuItem
+            // 
+            grantRevokeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { grantSYSTEMALERTWINDOWToolStripMenuItem, revokeSYSTEMALERTWINDOWToolStripMenuItem });
+            grantRevokeToolStripMenuItem.Name = "grantRevokeToolStripMenuItem";
+            grantRevokeToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
+            grantRevokeToolStripMenuItem.Text = "Grant/Revoke SYSTEM_ALERT_WINDOW";
+            grantRevokeToolStripMenuItem.Visible = false;
+            // 
+            // grantSYSTEMALERTWINDOWToolStripMenuItem
+            // 
+            grantSYSTEMALERTWINDOWToolStripMenuItem.Name = "grantSYSTEMALERTWINDOWToolStripMenuItem";
+            grantSYSTEMALERTWINDOWToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+            grantSYSTEMALERTWINDOWToolStripMenuItem.Text = "Grant SYSTEM_ALERT_WINDOW";
+            grantSYSTEMALERTWINDOWToolStripMenuItem.Click += grantSYSTEMALERTWINDOWToolStripMenuItem_Click;
+            // 
+            // revokeSYSTEMALERTWINDOWToolStripMenuItem
+            // 
+            revokeSYSTEMALERTWINDOWToolStripMenuItem.Name = "revokeSYSTEMALERTWINDOWToolStripMenuItem";
+            revokeSYSTEMALERTWINDOWToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+            revokeSYSTEMALERTWINDOWToolStripMenuItem.Text = "Revoke SYSTEM_ALERT_WINDOW";
+            revokeSYSTEMALERTWINDOWToolStripMenuItem.Click += revokeSYSTEMALERTWINDOWToolStripMenuItem_Click;
+            // 
+            // checkGrantedPermissionsToolStripMenuItem
+            // 
+            checkGrantedPermissionsToolStripMenuItem.Image = Properties.Resources.icons8_privacy_policy_48;
+            checkGrantedPermissionsToolStripMenuItem.Name = "checkGrantedPermissionsToolStripMenuItem";
+            checkGrantedPermissionsToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
+            checkGrantedPermissionsToolStripMenuItem.Text = "Check granted permissions";
+            checkGrantedPermissionsToolStripMenuItem.Click += checkGrantedPermissionsToolStripMenuItem_Click;
+            // 
+            // backgroundWorkerAdbDownloader
+            // 
+            backgroundWorkerAdbDownloader.DoWork += backgroundWorkerAdbDownloader_DoWork;
+            // 
+            // backgroundWorkerExeDownloader
+            // 
+            backgroundWorkerExeDownloader.DoWork += backgroundWorkerExeDownloader_DoWork;
+            // 
+            // buttonMobileScreenShare
+            // 
+            buttonMobileScreenShare.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            buttonMobileScreenShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonMobileScreenShare.ForeColor = System.Drawing.Color.Transparent;
+            buttonMobileScreenShare.Image = Properties.Resources.icons8_screensharing_48;
+            buttonMobileScreenShare.Location = new System.Drawing.Point(410, 451);
+            buttonMobileScreenShare.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonMobileScreenShare.Name = "buttonMobileScreenShare";
+            buttonMobileScreenShare.Size = new System.Drawing.Size(70, 73);
+            buttonMobileScreenShare.TabIndex = 39;
+            buttonMobileScreenShare.UseVisualStyleBackColor = true;
+            buttonMobileScreenShare.Click += buttonMobileScreenShare_Click;
+            // 
+            // label9
+            // 
+            label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            label9.AutoSize = true;
+            label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label9.Location = new System.Drawing.Point(402, 434);
+            label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label9.Name = "label9";
+            label9.Size = new System.Drawing.Size(72, 13);
+            label9.TabIndex = 40;
+            label9.Text = "Screen Share";
+            // 
+            // pictureBoxLogo
+            // 
+            pictureBoxLogo.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            pictureBoxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            pictureBoxLogo.Image = Properties.Resources.logo;
+            pictureBoxLogo.Location = new System.Drawing.Point(9, 6);
+            pictureBoxLogo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            pictureBoxLogo.Name = "pictureBoxLogo";
+            pictureBoxLogo.Size = new System.Drawing.Size(94, 43);
+            pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            pictureBoxLogo.TabIndex = 3;
+            pictureBoxLogo.TabStop = false;
+            pictureBoxLogo.Click += pictureBoxLogo_Click;
+            // 
+            // panelTopBar
+            // 
+            panelTopBar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelTopBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            panelTopBar.Controls.Add(pictureBoxMaximize);
+            panelTopBar.Controls.Add(labelTools);
+            panelTopBar.Controls.Add(pictureBoxClose);
+            panelTopBar.Controls.Add(pictureBoxMinimize);
+            panelTopBar.Controls.Add(labelHelp);
+            panelTopBar.Controls.Add(labelSettings);
+            panelTopBar.Controls.Add(pictureBoxLogo);
+            panelTopBar.Location = new System.Drawing.Point(0, -3);
+            panelTopBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            panelTopBar.Name = "panelTopBar";
+            panelTopBar.Size = new System.Drawing.Size(1314, 51);
+            panelTopBar.TabIndex = 0;
+            panelTopBar.MouseDoubleClick += panelTopBar_MouseDoubleClick;
+            panelTopBar.MouseMove += panelTopBar_MouseMove;
+            // 
+            // pictureBoxMaximize
+            // 
+            pictureBoxMaximize.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            pictureBoxMaximize.Image = Properties.Resources.icons8_maximize_button_16;
+            pictureBoxMaximize.Location = new System.Drawing.Point(1224, 3);
+            pictureBoxMaximize.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            pictureBoxMaximize.Name = "pictureBoxMaximize";
+            pictureBoxMaximize.Size = new System.Drawing.Size(44, 48);
+            pictureBoxMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            pictureBoxMaximize.TabIndex = 43;
+            pictureBoxMaximize.TabStop = false;
+            pictureBoxMaximize.Click += pictureBoxMaximize_Click;
+            pictureBoxMaximize.MouseClick += pictureBoxMaximize_MouseClick;
+            pictureBoxMaximize.MouseEnter += pictureBoxMaximize_MouseEnter;
+            pictureBoxMaximize.MouseLeave += pictureBoxMaximize_MouseLeave;
+            // 
+            // labelTools
+            // 
+            labelTools.AutoSize = true;
+            labelTools.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelTools.ForeColor = System.Drawing.Color.White;
+            labelTools.Location = new System.Drawing.Point(245, 19);
+            labelTools.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelTools.Name = "labelTools";
+            labelTools.Size = new System.Drawing.Size(37, 15);
+            labelTools.TabIndex = 42;
+            labelTools.Text = "Tools";
+            labelTools.Click += labelTools_Click;
+            labelTools.MouseEnter += labelTools_MouseEnter;
+            labelTools.MouseLeave += labelTools_MouseLeave;
+            // 
+            // pictureBoxClose
+            // 
+            pictureBoxClose.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            pictureBoxClose.Image = Properties.Resources.close_16;
+            pictureBoxClose.Location = new System.Drawing.Point(1269, 3);
+            pictureBoxClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            pictureBoxClose.Name = "pictureBoxClose";
+            pictureBoxClose.Size = new System.Drawing.Size(45, 48);
+            pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            pictureBoxClose.TabIndex = 41;
+            pictureBoxClose.TabStop = false;
+            pictureBoxClose.Click += pictureBoxClose_Click;
+            pictureBoxClose.MouseEnter += pictureBoxClose_MouseEnter;
+            pictureBoxClose.MouseLeave += pictureBoxClose_MouseLeave;
+            // 
+            // pictureBoxMinimize
+            // 
+            pictureBoxMinimize.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            pictureBoxMinimize.Image = Properties.Resources.subtract_16;
+            pictureBoxMinimize.Location = new System.Drawing.Point(1179, 3);
+            pictureBoxMinimize.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            pictureBoxMinimize.Name = "pictureBoxMinimize";
+            pictureBoxMinimize.Size = new System.Drawing.Size(44, 48);
+            pictureBoxMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            pictureBoxMinimize.TabIndex = 6;
+            pictureBoxMinimize.TabStop = false;
+            pictureBoxMinimize.Click += pictureBoxMinimize_Click;
+            pictureBoxMinimize.MouseEnter += pictureBoxMinimize_MouseEnter;
+            pictureBoxMinimize.MouseLeave += pictureBoxMinimize_MouseLeave;
+            // 
+            // labelHelp
+            // 
+            labelHelp.AutoSize = true;
+            labelHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelHelp.ForeColor = System.Drawing.Color.White;
+            labelHelp.Location = new System.Drawing.Point(194, 19);
+            labelHelp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelHelp.Name = "labelHelp";
+            labelHelp.Size = new System.Drawing.Size(33, 15);
+            labelHelp.TabIndex = 5;
+            labelHelp.Text = "Help";
+            labelHelp.Click += labelHelp_Click;
+            labelHelp.MouseEnter += labelHelp_MouseEnter;
+            labelHelp.MouseLeave += labelHelp_MouseLeave;
+            // 
+            // labelSettings
+            // 
+            labelSettings.AutoSize = true;
+            labelSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelSettings.ForeColor = System.Drawing.Color.White;
+            labelSettings.Location = new System.Drawing.Point(120, 19);
+            labelSettings.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelSettings.Name = "labelSettings";
+            labelSettings.Size = new System.Drawing.Size(51, 15);
+            labelSettings.TabIndex = 4;
+            labelSettings.Text = "Settings";
+            labelSettings.Click += labelSettings_Click;
+            labelSettings.MouseEnter += labelSettings_MouseEnter;
+            labelSettings.MouseLeave += labelSettings_MouseLeave;
+            // 
+            // BottomToolStripPanel
+            // 
+            BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            BottomToolStripPanel.Name = "BottomToolStripPanel";
+            BottomToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            BottomToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            BottomToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // TopToolStripPanel
+            // 
+            TopToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            TopToolStripPanel.Name = "TopToolStripPanel";
+            TopToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            TopToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            TopToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // RightToolStripPanel
+            // 
+            RightToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            RightToolStripPanel.Name = "RightToolStripPanel";
+            RightToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            RightToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            RightToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // LeftToolStripPanel
+            // 
+            LeftToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            LeftToolStripPanel.Name = "LeftToolStripPanel";
+            LeftToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            LeftToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            LeftToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // ContentPanel
+            // 
+            ContentPanel.Size = new System.Drawing.Size(150, 150);
+            // 
+            // contextMenuStripHelp
+            // 
+            contextMenuStripHelp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { helpToolStripMenuItem, submitFeedbackToolStripMenuItem });
+            contextMenuStripHelp.Name = "contextMenuStripHelp";
+            contextMenuStripHelp.Size = new System.Drawing.Size(166, 48);
+            // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { videoTutorialToolStripMenuItem });
+            helpToolStripMenuItem.Image = Properties.Resources.icons8_help_48;
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            helpToolStripMenuItem.Text = "Open help";
+            // 
+            // videoTutorialToolStripMenuItem
+            // 
+            videoTutorialToolStripMenuItem.Name = "videoTutorialToolStripMenuItem";
+            videoTutorialToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            videoTutorialToolStripMenuItem.Text = "Video Tutorial";
+            videoTutorialToolStripMenuItem.Click += videoTutorialToolStripMenuItem_Click;
+            // 
+            // submitFeedbackToolStripMenuItem
+            // 
+            submitFeedbackToolStripMenuItem.Image = Properties.Resources.icons8_get_help_48;
+            submitFeedbackToolStripMenuItem.Name = "submitFeedbackToolStripMenuItem";
+            submitFeedbackToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            submitFeedbackToolStripMenuItem.Text = "Submit Feedback";
+            submitFeedbackToolStripMenuItem.Click += submitFeedbackToolStripMenuItem_Click;
+            // 
+            // videoTutorialsToolStripMenuItem
+            // 
+            videoTutorialsToolStripMenuItem.Name = "videoTutorialsToolStripMenuItem";
+            videoTutorialsToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // buttonDeviceLogs
+            // 
+            buttonDeviceLogs.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            buttonDeviceLogs.BackColor = System.Drawing.Color.White;
+            buttonDeviceLogs.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonDeviceLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonDeviceLogs.ForeColor = System.Drawing.Color.Black;
+            buttonDeviceLogs.Location = new System.Drawing.Point(959, 465);
+            buttonDeviceLogs.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonDeviceLogs.Name = "buttonDeviceLogs";
+            buttonDeviceLogs.Size = new System.Drawing.Size(102, 27);
+            buttonDeviceLogs.TabIndex = 41;
+            buttonDeviceLogs.Text = "Device Logs";
+            buttonDeviceLogs.UseVisualStyleBackColor = false;
+            buttonDeviceLogs.Click += buttonDeviceLogs_Click;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            groupBox1.Controls.Add(buttonReloadDevicesList);
+            groupBox1.Controls.Add(comboBoxDevices);
+            groupBox1.Controls.Add(buttonSyncApp);
+            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            groupBox1.Location = new System.Drawing.Point(8, 426);
+            groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox1.Size = new System.Drawing.Size(387, 97);
+            groupBox1.TabIndex = 31;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Device Sync Settings";
+            // 
+            // buttonReloadDevicesList
+            // 
+            buttonReloadDevicesList.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonReloadDevicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonReloadDevicesList.ForeColor = System.Drawing.Color.Black;
+            buttonReloadDevicesList.Location = new System.Drawing.Point(201, 61);
+            buttonReloadDevicesList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonReloadDevicesList.Name = "buttonReloadDevicesList";
+            buttonReloadDevicesList.Size = new System.Drawing.Size(177, 27);
+            buttonReloadDevicesList.TabIndex = 2;
+            buttonReloadDevicesList.Text = "Refresh Device List";
+            buttonReloadDevicesList.UseVisualStyleBackColor = true;
+            buttonReloadDevicesList.Click += buttonReloadDevicesList_Click;
+            // 
+            // comboBoxDevices
+            // 
+            comboBoxDevices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            comboBoxDevices.FormattingEnabled = true;
+            comboBoxDevices.Location = new System.Drawing.Point(201, 25);
+            comboBoxDevices.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            comboBoxDevices.Name = "comboBoxDevices";
+            comboBoxDevices.Size = new System.Drawing.Size(177, 21);
+            comboBoxDevices.TabIndex = 1;
+            comboBoxDevices.SelectedIndexChanged += comboBoxDevices_SelectedIndexChanged;
+            // 
+            // buttonSyncApp
+            // 
+            buttonSyncApp.BackColor = System.Drawing.Color.White;
+            buttonSyncApp.Enabled = false;
+            buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonSyncApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonSyncApp.ForeColor = System.Drawing.Color.Black;
+            buttonSyncApp.Location = new System.Drawing.Point(20, 23);
+            buttonSyncApp.Margin = new System.Windows.Forms.Padding(2);
+            buttonSyncApp.Name = "buttonSyncApp";
+            buttonSyncApp.Size = new System.Drawing.Size(169, 65);
+            buttonSyncApp.TabIndex = 0;
+            buttonSyncApp.Text = "Sync Smartphone";
+            buttonSyncApp.UseVisualStyleBackColor = false;
+            buttonSyncApp.Click += buttonSyncApp_Click;
+            // 
+            // contextMenuStripSearch
+            // 
+            contextMenuStripSearch.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { duckduckgoToolStripMenuItem, googleToolStripMenuItem, playMarketToolStripMenuItem, APKMirrorToolStripMenuItem, fDroidToolStripMenuItem });
+            contextMenuStripSearch.Name = "contextMenuStripSearch";
+            contextMenuStripSearch.Size = new System.Drawing.Size(142, 114);
+            // 
+            // duckduckgoToolStripMenuItem
+            // 
+            duckduckgoToolStripMenuItem.Image = Properties.Resources.icons8_duckduckgo_48;
+            duckduckgoToolStripMenuItem.Name = "duckduckgoToolStripMenuItem";
+            duckduckgoToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            duckduckgoToolStripMenuItem.Text = "Duckduckgo";
+            duckduckgoToolStripMenuItem.Click += duckduckgoToolStripMenuItem_Click;
+            // 
+            // googleToolStripMenuItem
+            // 
+            googleToolStripMenuItem.Image = Properties.Resources.icons8_google_48;
+            googleToolStripMenuItem.Name = "googleToolStripMenuItem";
+            googleToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            googleToolStripMenuItem.Text = "Google";
+            googleToolStripMenuItem.Click += googleToolStripMenuItem_Click;
+            // 
+            // playMarketToolStripMenuItem
+            // 
+            playMarketToolStripMenuItem.Image = Properties.Resources.playmarketicon;
+            playMarketToolStripMenuItem.Name = "playMarketToolStripMenuItem";
+            playMarketToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            playMarketToolStripMenuItem.Text = "Play Market";
+            playMarketToolStripMenuItem.Click += playMarketToolStripMenuItem_Click;
+            // 
+            // APKMirrorToolStripMenuItem
+            // 
+            APKMirrorToolStripMenuItem.Image = Properties.Resources.apkmirror;
+            APKMirrorToolStripMenuItem.Name = "APKMirrorToolStripMenuItem";
+            APKMirrorToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            APKMirrorToolStripMenuItem.Text = "APK Mirror";
+            APKMirrorToolStripMenuItem.Click += APKMirrorToolStripMenuItem_Click;
+            // 
+            // fDroidToolStripMenuItem
+            // 
+            fDroidToolStripMenuItem.Image = Properties.Resources.fdroidlogo;
+            fDroidToolStripMenuItem.Name = "fDroidToolStripMenuItem";
+            fDroidToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            fDroidToolStripMenuItem.Text = "F-Droid";
+            fDroidToolStripMenuItem.Click += fDroidToolStripMenuItem_Click;
+            // 
+            // contextMenuStripTools
+            // 
+            contextMenuStripTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItem1 });
+            contextMenuStripTools.Name = "contextMenuStripHelp";
+            contextMenuStripTools.Size = new System.Drawing.Size(98, 26);
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItemADBKill });
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new System.Drawing.Size(97, 22);
+            toolStripMenuItem1.Text = "ADB";
+            // 
+            // toolStripMenuItemADBKill
+            // 
+            toolStripMenuItemADBKill.Name = "toolStripMenuItemADBKill";
+            toolStripMenuItemADBKill.Size = new System.Drawing.Size(116, 22);
+            toolStripMenuItemADBKill.Text = "Kill ADB";
+            toolStripMenuItemADBKill.Click += toolStripMenuItemADBKill_Click;
+            // 
+            // buttonTaskManager
+            // 
+            buttonTaskManager.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            buttonTaskManager.BackColor = System.Drawing.Color.White;
+            buttonTaskManager.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonTaskManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonTaskManager.ForeColor = System.Drawing.Color.Black;
+            buttonTaskManager.Location = new System.Drawing.Point(959, 434);
+            buttonTaskManager.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonTaskManager.Name = "buttonTaskManager";
+            buttonTaskManager.Size = new System.Drawing.Size(102, 27);
+            buttonTaskManager.TabIndex = 42;
+            buttonTaskManager.Text = "Task Manager";
+            buttonTaskManager.UseVisualStyleBackColor = false;
+            buttonTaskManager.Click += buttonTaskManager_Click;
+            // 
+            // backgroundWorkerADBConnect
+            // 
+            backgroundWorkerADBConnect.DoWork += backgroundWorkerADBConnect_DoWork;
+            // 
+            // backgroundWorkerADBDisconnect
+            // 
+            backgroundWorkerADBDisconnect.DoWork += backgroundWorkerADBDisconnect_DoWork;
+            // 
+            // groupBoxTerminal
+            // 
+            groupBoxTerminal.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            groupBoxTerminal.Controls.Add(radioButtonFastboot);
+            groupBoxTerminal.Controls.Add(radioButtonADB);
+            groupBoxTerminal.Controls.Add(buttonTerminalRun);
+            groupBoxTerminal.Controls.Add(richTextBoxTerminal);
+            groupBoxTerminal.Location = new System.Drawing.Point(493, 426);
+            groupBoxTerminal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxTerminal.Name = "groupBoxTerminal";
+            groupBoxTerminal.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBoxTerminal.Size = new System.Drawing.Size(458, 97);
+            groupBoxTerminal.TabIndex = 46;
+            groupBoxTerminal.TabStop = false;
+            groupBoxTerminal.Text = "Terminal";
+            // 
+            // radioButtonFastboot
+            // 
+            radioButtonFastboot.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            radioButtonFastboot.AutoSize = true;
+            radioButtonFastboot.Location = new System.Drawing.Point(368, 71);
+            radioButtonFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioButtonFastboot.Name = "radioButtonFastboot";
+            radioButtonFastboot.Size = new System.Drawing.Size(69, 19);
+            radioButtonFastboot.TabIndex = 50;
+            radioButtonFastboot.TabStop = true;
+            radioButtonFastboot.Text = "fastboot";
+            radioButtonFastboot.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonADB
+            // 
+            radioButtonADB.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            radioButtonADB.AutoSize = true;
+            radioButtonADB.Checked = true;
+            radioButtonADB.Location = new System.Drawing.Point(369, 53);
+            radioButtonADB.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioButtonADB.Name = "radioButtonADB";
+            radioButtonADB.Size = new System.Drawing.Size(45, 19);
+            radioButtonADB.TabIndex = 49;
+            radioButtonADB.TabStop = true;
+            radioButtonADB.Text = "adb";
+            radioButtonADB.UseVisualStyleBackColor = true;
+            // 
+            // buttonTerminalRun
+            // 
+            buttonTerminalRun.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            buttonTerminalRun.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonTerminalRun.Location = new System.Drawing.Point(364, 22);
+            buttonTerminalRun.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonTerminalRun.Name = "buttonTerminalRun";
+            buttonTerminalRun.Size = new System.Drawing.Size(88, 27);
+            buttonTerminalRun.TabIndex = 48;
+            buttonTerminalRun.Text = "Run";
+            buttonTerminalRun.UseVisualStyleBackColor = true;
+            buttonTerminalRun.Click += buttonCommandInject_Click;
+            // 
+            // richTextBoxTerminal
+            // 
+            richTextBoxTerminal.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            richTextBoxTerminal.Location = new System.Drawing.Point(7, 22);
+            richTextBoxTerminal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            richTextBoxTerminal.Name = "richTextBoxTerminal";
+            richTextBoxTerminal.Size = new System.Drawing.Size(349, 65);
+            richTextBoxTerminal.TabIndex = 47;
+            richTextBoxTerminal.Text = "";
+            // 
+            // backgroundWorkerAPKinstall
+            // 
+            backgroundWorkerAPKinstall.DoWork += backgroundWorkerAPKinstall_DoWork;
+            // 
+            // backgroundWorkerFileTransfer
+            // 
+            backgroundWorkerFileTransfer.DoWork += backgroundWorkerFileTransfer_DoWork;
             // 
             // MainForm
             // 
-            this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1126, 457);
-            this.Controls.Add(this.groupBoxTerminal);
-            this.Controls.Add(this.buttonTaskManager);
-            this.Controls.Add(this.buttonDeviceLogs);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.buttonMobileScreenShare);
-            this.Controls.Add(this.buttonLogClear);
-            this.Controls.Add(this.richTextBoxLog);
-            this.Controls.Add(this.tabControls);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.labelLog);
-            this.Controls.Add(this.panelTopBar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ATA-GUI";
-            this.Load += new System.EventHandler(this.MainForm_Load);
-            this.Shown += new System.EventHandler(this.MainForm_Shown);
-            this.groupBoxDeviceInfo.ResumeLayout(false);
-            this.groupBoxDeviceInfo.PerformLayout();
-            this.tabControls.ResumeLayout(false);
-            this.tabPageSystem.ResumeLayout(false);
-            this.groupBoxAPKMenu.ResumeLayout(false);
-            this.groupBoxAPKMenu.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.groupBoxADBNet.ResumeLayout(false);
-            this.groupBoxADBNet.PerformLayout();
-            this.groupBoxRebootMenu.ResumeLayout(false);
-            this.tabPageFastboot.ResumeLayout(false);
-            this.panelFastboot.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.tabPageRecovery.ResumeLayout(false);
-            this.panelRecovery.ResumeLayout(false);
-            this.groupBoxRecoveryRM.ResumeLayout(false);
-            this.groupBoxFlash.ResumeLayout(false);
-            this.groupBoxFlash.PerformLayout();
-            this.tabPageTools.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBoxTextInject.ResumeLayout(false);
-            this.groupBoxFreeRotation.ResumeLayout(false);
-            this.contextMenuStripFilterBy.ResumeLayout(false);
-            this.contextMenuStripPermissionMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
-            this.panelTopBar.ResumeLayout(false);
-            this.panelTopBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaximize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).EndInit();
-            this.contextMenuStripHelp.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.contextMenuStripSearch.ResumeLayout(false);
-            this.contextMenuStripTools.ResumeLayout(false);
-            this.groupBoxTerminal.ResumeLayout(false);
-            this.groupBoxTerminal.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AllowDrop = true;
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.SystemColors.ControlLightLight;
+            ClientSize = new System.Drawing.Size(1314, 527);
+            Controls.Add(groupBoxTerminal);
+            Controls.Add(buttonTaskManager);
+            Controls.Add(buttonDeviceLogs);
+            Controls.Add(label9);
+            Controls.Add(buttonMobileScreenShare);
+            Controls.Add(buttonLogClear);
+            Controls.Add(richTextBoxLog);
+            Controls.Add(tabControls);
+            Controls.Add(groupBox1);
+            Controls.Add(labelLog);
+            Controls.Add(panelTopBar);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            Name = "MainForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "ATA-GUI";
+            Load += MainForm_Load;
+            Shown += MainForm_Shown;
+            groupBoxDeviceInfo.ResumeLayout(false);
+            groupBoxDeviceInfo.PerformLayout();
+            tabControls.ResumeLayout(false);
+            tabPageSystem.ResumeLayout(false);
+            groupBoxAPKMenu.ResumeLayout(false);
+            groupBoxAPKMenu.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
+            groupBoxADBNet.ResumeLayout(false);
+            groupBoxADBNet.PerformLayout();
+            groupBoxRebootMenu.ResumeLayout(false);
+            tabPageFastboot.ResumeLayout(false);
+            panelFastboot.ResumeLayout(false);
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            tabPageRecovery.ResumeLayout(false);
+            panelRecovery.ResumeLayout(false);
+            groupBoxRecoveryRM.ResumeLayout(false);
+            groupBoxFlash.ResumeLayout(false);
+            groupBoxFlash.PerformLayout();
+            tabPageTools.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBoxTextInject.ResumeLayout(false);
+            groupBoxFreeRotation.ResumeLayout(false);
+            contextMenuStripFilterBy.ResumeLayout(false);
+            contextMenuStripPermissionMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).EndInit();
+            panelTopBar.ResumeLayout(false);
+            panelTopBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxMaximize).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxClose).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxMinimize).EndInit();
+            contextMenuStripHelp.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            contextMenuStripSearch.ResumeLayout(false);
+            contextMenuStripTools.ResumeLayout(false);
+            groupBoxTerminal.ResumeLayout(false);
+            groupBoxTerminal.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
