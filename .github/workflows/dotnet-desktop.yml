@@ -26,7 +26,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: Publish the application
-      run: dotnet publish --configuration Release --runtime win-x64 --self-contained false --output ./publish --no-build --publish-single-file true --readytorun true
+      run: dotnet publish --configuration Release --runtime win-x64 --self-contained false --output ./publish --no-build /p:PublishSingleFile=true /p:PublishReadyToRun=true
 
     - name: Zip the published output
       run: Compress-Archive -Path ./publish/* -DestinationPath ATA-GUI.zip
