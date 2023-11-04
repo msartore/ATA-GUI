@@ -1,18 +1,21 @@
-﻿using ATA_GUI.Classes;
-using ATA_GUI.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using ATA_GUI.Classes;
+using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
     public partial class TaskManager : Form
     {
-        private int mode;
+        private readonly List<string> arrayApks;
 
-        public TaskManager()
+        public TaskManager(List<string> arrayApks)
         {
+            this.arrayApks = arrayApks;
+
             InitializeComponent();
         }
 
@@ -26,90 +29,76 @@ namespace ATA_GUI
             loadTasks();
         }
 
-        private void toolStripButtonSearch_Click(object sender, EventArgs e)
-        {
-            bool found = false;
-            int taskCounter = 0;
-
-            List<string> tasks = ConsoleProcess.adbFastbootCommandR(" -s " + ATA.CurrentDeviceSelected.ID + " shell ps", 0).Split('\n').ToList();
-            richTextBoxTasks.Text = tasks[0];
-            foreach (string task in tasks)
-            {
-                if (task.Contains(textBoxTaskName.Text))
-                {
-                    found = true;
-                    taskCounter++;
-                    richTextBoxTasks.Text += "\n" + task;
-                }
-            }
-            if (!found)
-            {
-                MainForm.MessageShowBox(textBoxTaskName.Text + " not found!", 0);
-                toolStripLabelTotalTasks.Text = "Active Tasks: 0";
-            }
-            else
-            {
-                toolStripLabelTotalTasks.Text = "Active Tasks: " + taskCounter.ToString();
-            }
-        }
-
-        private void buttonKillProcess_Click(object sender, EventArgs e)
-        {
-            _ = ConsoleProcess.adbFastbootCommandR(new string[] { " -s " + ATA.CurrentDeviceSelected.ID + " shell am force-stop " + textBoxPackage.Text }, 0);
-        }
-
         private void allToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mode = 0;
-            loadTasks();
+            toolStripButtonKillProcess.Enabled = false;
+            noFilterDataGridView();
         }
 
         private void appsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mode = 1;
-            loadTasks();
+            toolStripButtonKillProcess.Enabled = true;
+
+            textBoxTaskName.Text = "";
+
+            foreach (DataGridViewRow row in dataGridViewTasks.Rows)
+            {
+                row.Visible = arrayApks.Contains(row.Cells[8].Value);
+            }
         }
 
         private void loadTasks()
         {
+            textBoxTaskName.Text = "";
+            dataGridViewTasks.Rows.Clear();
             string[] tasks = ConsoleProcess.adbFastbootCommandR(new string[] { " -s " + ATA.CurrentDeviceSelected.ID + " shell ps" }, 0).Split('\n');
 
-            richTextBoxTasks.Clear();
-
-            if (mode == 0)
+            for (int i = 1; i < tasks.Length; i++)
             {
-                toolStripLabelTotalTasks.Text = "Active Tasks: " + tasks.Length.ToString();
-                richTextBoxTasks.Text = string.Join("\n", tasks);
+                _ = dataGridViewTasks.Rows.Add(tasks[i].Split(' ').Where(it => it != string.Empty).ToArray());
+            }
+        }
+
+        private void filterDataGridView(int coloumn, string filter)
+        {
+            foreach (DataGridViewRow row in dataGridViewTasks.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    row.Visible = cell.Value != null && cell.Value.ToString().Contains(filter);
+                }
+            }
+        }
+
+        private void textBoxTaskName_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxTaskName.Text == string.Empty)
+            {
+                noFilterDataGridView();
             }
             else
             {
-                int taskCounter = 0;
-                bool found = false;
-
-                richTextBoxTasks.Text = tasks[0];
-                foreach (string app in MainForm.arrayApks)
-                {
-                    foreach (string task in tasks)
-                    {
-                        if (task.Contains(app))
-                        {
-                            found = true;
-                            taskCounter++;
-                            richTextBoxTasks.Text += task;
-                        }
-                    }
-                }
-
-                if (!found)
-                {
-                    MainForm.MessageShowBox(textBoxTaskName.Text + " not found!", 0);
-                    toolStripLabelTotalTasks.Text = "Active Tasks: 0";
-                }
-                else
-                {
-                    toolStripLabelTotalTasks.Text = "Active Tasks: " + taskCounter.ToString();
-                }
+                filterDataGridView(8, textBoxTaskName.Text);
             }
+        }
+
+        private void noFilterDataGridView()
+        {
+            textBoxTaskName.Text = "";
+            foreach (DataGridViewRow row in dataGridViewTasks.Rows)
+            {
+                row.Visible = true;
+            }
+        }
+
+        private void toolStripButtonKillProcess_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridViewTasks.SelectedRows)
+            {
+                _ = ConsoleProcess.adbFastbootCommandR(MainForm.commandAssemblerF(" shell am force-stop " + row.Cells[8].Value).Replace("\r", ""), 0);
+            }
+
+            loadTasks();
         }
     }
 }

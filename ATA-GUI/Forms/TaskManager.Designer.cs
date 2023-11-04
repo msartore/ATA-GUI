@@ -30,216 +30,241 @@ namespace ATA_GUI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskManager));
-            this.richTextBoxTasks = new System.Windows.Forms.RichTextBox();
-            this.textBoxPackage = new System.Windows.Forms.TextBox();
-            this.buttonKillProcess = new System.Windows.Forms.Button();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonReloadTasks = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.appsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.textBoxTaskName = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabelTotalTasks = new System.Windows.Forms.ToolStripLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.toolStrip1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // richTextBoxTasks
-            // 
-            this.richTextBoxTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBoxTasks.Location = new System.Drawing.Point(0, 21);
-            this.richTextBoxTasks.Name = "richTextBoxTasks";
-            this.richTextBoxTasks.ReadOnly = true;
-            this.richTextBoxTasks.Size = new System.Drawing.Size(570, 287);
-            this.richTextBoxTasks.TabIndex = 44;
-            this.richTextBoxTasks.Text = "";
-            // 
-            // textBoxPackage
-            // 
-            this.textBoxPackage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxPackage.Location = new System.Drawing.Point(99, 314);
-            this.textBoxPackage.Name = "textBoxPackage";
-            this.textBoxPackage.Size = new System.Drawing.Size(211, 20);
-            this.textBoxPackage.TabIndex = 45;
+            buttonKillProcess = new System.Windows.Forms.Button();
+            toolStrip1 = new System.Windows.Forms.ToolStrip();
+            toolStripButtonReloadTasks = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            textBoxTaskName = new System.Windows.Forms.ToolStripTextBox();
+            toolStripButtonKillProcess = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            appsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripLabelTotalTasks = new System.Windows.Forms.ToolStripLabel();
+            dataGridViewTasks = new System.Windows.Forms.DataGridView();
+            user = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            pid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ppid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            vsz = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            rss = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            wchan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            addr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            s = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewTasks).BeginInit();
+            SuspendLayout();
             // 
             // buttonKillProcess
             // 
-            this.buttonKillProcess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonKillProcess.BackColor = System.Drawing.Color.White;
-            this.buttonKillProcess.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonKillProcess.ForeColor = System.Drawing.Color.Black;
-            this.buttonKillProcess.Location = new System.Drawing.Point(316, 313);
-            this.buttonKillProcess.Name = "buttonKillProcess";
-            this.buttonKillProcess.Size = new System.Drawing.Size(73, 23);
-            this.buttonKillProcess.TabIndex = 46;
-            this.buttonKillProcess.Text = "Kill Process";
-            this.buttonKillProcess.UseVisualStyleBackColor = false;
-            this.buttonKillProcess.Click += new System.EventHandler(this.buttonKillProcess_Click);
+            buttonKillProcess.Location = new System.Drawing.Point(0, 0);
+            buttonKillProcess.Name = "buttonKillProcess";
+            buttonKillProcess.Size = new System.Drawing.Size(75, 23);
+            buttonKillProcess.TabIndex = 51;
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonReloadTasks,
-            this.toolStripSeparator2,
-            this.toolStripDropDownButton1,
-            this.toolStripSeparator6,
-            this.textBoxTaskName,
-            this.toolStripButtonSearch,
-            this.toolStripSeparator1,
-            this.toolStripLabelTotalTasks});
-            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(568, 23);
-            this.toolStrip1.TabIndex = 47;
-            this.toolStrip1.Text = "toolStripAPKMenu";
+            toolStrip1.BackColor = System.Drawing.Color.White;
+            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripButtonReloadTasks, toolStripSeparator3, textBoxTaskName, toolStripButtonKillProcess, toolStripSeparator6, toolStripDropDownButton1, toolStripSeparator1, toolStripLabelTotalTasks });
+            toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            toolStrip1.Location = new System.Drawing.Point(0, 0);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            toolStrip1.Size = new System.Drawing.Size(986, 23);
+            toolStrip1.TabIndex = 47;
+            toolStrip1.Text = "toolStripAPKMenu";
             // 
             // toolStripButtonReloadTasks
             // 
-            this.toolStripButtonReloadTasks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonReloadTasks.Image = global::ATA_GUI.Properties.Resources.icons8_refresh_48;
-            this.toolStripButtonReloadTasks.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonReloadTasks.Name = "toolStripButtonReloadTasks";
-            this.toolStripButtonReloadTasks.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonReloadTasks.Text = "Reload Apps";
-            this.toolStripButtonReloadTasks.Click += new System.EventHandler(this.toolStripButtonReloadTasks_Click);
+            toolStripButtonReloadTasks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButtonReloadTasks.Image = Properties.Resources.icons8_refresh_48;
+            toolStripButtonReloadTasks.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonReloadTasks.Name = "toolStripButtonReloadTasks";
+            toolStripButtonReloadTasks.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonReloadTasks.Text = "Reload Apps";
+            toolStripButtonReloadTasks.Click += toolStripButtonReloadTasks_Click;
             // 
-            // toolStripSeparator2
+            // toolStripSeparator3
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.allToolStripMenuItem,
-            this.appsToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = global::ATA_GUI.Properties.Resources.icons8_filter_48;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 20);
-            this.toolStripDropDownButton1.Text = "Filter";
-            // 
-            // allToolStripMenuItem
-            // 
-            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
-            this.allToolStripMenuItem.Text = "All";
-            this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
-            // 
-            // appsToolStripMenuItem
-            // 
-            this.appsToolStripMenuItem.Name = "appsToolStripMenuItem";
-            this.appsToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
-            this.appsToolStripMenuItem.Text = "Apps";
-            this.appsToolStripMenuItem.Click += new System.EventHandler(this.appsToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
             // 
             // textBoxTaskName
             // 
-            this.textBoxTaskName.BackColor = System.Drawing.Color.White;
-            this.textBoxTaskName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxTaskName.Name = "textBoxTaskName";
-            this.textBoxTaskName.Size = new System.Drawing.Size(150, 23);
-            this.textBoxTaskName.Text = "Search";
+            textBoxTaskName.BackColor = System.Drawing.Color.White;
+            textBoxTaskName.Name = "textBoxTaskName";
+            textBoxTaskName.Size = new System.Drawing.Size(174, 23);
+            textBoxTaskName.TextChanged += textBoxTaskName_TextChanged;
             // 
-            // toolStripButtonSearch
+            // toolStripButtonKillProcess
             // 
-            this.toolStripButtonSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSearch.Image = global::ATA_GUI.Properties.Resources.icons8_search_48;
-            this.toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSearch.Name = "toolStripButtonSearch";
-            this.toolStripButtonSearch.Size = new System.Drawing.Size(23, 20);
-            this.toolStripButtonSearch.Text = "Search";
-            this.toolStripButtonSearch.Click += new System.EventHandler(this.toolStripButtonSearch_Click);
+            toolStripButtonKillProcess.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButtonKillProcess.Enabled = false;
+            toolStripButtonKillProcess.Image = (System.Drawing.Image)resources.GetObject("toolStripButtonKillProcess.Image");
+            toolStripButtonKillProcess.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonKillProcess.Name = "toolStripButtonKillProcess";
+            toolStripButtonKillProcess.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonKillProcess.Text = "toolStripButton1";
+            toolStripButtonKillProcess.ToolTipText = "Kill process";
+            toolStripButtonKillProcess.Click += toolStripButtonKillProcess_Click;
+            // 
+            // toolStripSeparator6
+            // 
+            toolStripSeparator6.Name = "toolStripSeparator6";
+            toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripDropDownButton1
+            // 
+            toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { allToolStripMenuItem, appsToolStripMenuItem });
+            toolStripDropDownButton1.Image = Properties.Resources.icons8_filter_48;
+            toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            toolStripDropDownButton1.Size = new System.Drawing.Size(29, 20);
+            toolStripDropDownButton1.Text = "Filter";
+            // 
+            // allToolStripMenuItem
+            // 
+            allToolStripMenuItem.Name = "allToolStripMenuItem";
+            allToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            allToolStripMenuItem.Text = "All";
+            allToolStripMenuItem.Click += allToolStripMenuItem_Click;
+            // 
+            // appsToolStripMenuItem
+            // 
+            appsToolStripMenuItem.Name = "appsToolStripMenuItem";
+            appsToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            appsToolStripMenuItem.Text = "Apps";
+            appsToolStripMenuItem.Click += appsToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripLabelTotalTasks
             // 
-            this.toolStripLabelTotalTasks.Name = "toolStripLabelTotalTasks";
-            this.toolStripLabelTotalTasks.Size = new System.Drawing.Size(44, 15);
-            this.toolStripLabelTotalTasks.Text = "Total: 0";
+            toolStripLabelTotalTasks.Name = "toolStripLabelTotalTasks";
+            toolStripLabelTotalTasks.Size = new System.Drawing.Size(44, 15);
+            toolStripLabelTotalTasks.Text = "Total: 0";
             // 
-            // label1
+            // dataGridViewTasks
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 316);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
-            this.label1.TabIndex = 48;
-            this.label1.Text = "Package name:";
+            dataGridViewTasks.AllowUserToAddRows = false;
+            dataGridViewTasks.AllowUserToDeleteRows = false;
+            dataGridViewTasks.AllowUserToOrderColumns = true;
+            dataGridViewTasks.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dataGridViewTasks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewTasks.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewTasks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { user, pid, ppid, vsz, rss, wchan, addr, s, name });
+            dataGridViewTasks.Location = new System.Drawing.Point(12, 24);
+            dataGridViewTasks.Name = "dataGridViewTasks";
+            dataGridViewTasks.ReadOnly = true;
+            dataGridViewTasks.RowTemplate.Height = 25;
+            dataGridViewTasks.Size = new System.Drawing.Size(962, 326);
+            dataGridViewTasks.TabIndex = 50;
             // 
-            // label2
+            // user
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(137, 337);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(145, 13);
-            this.label2.TabIndex = 49;
-            this.label2.Text = "Pay attention on what you kill";
+            user.HeaderText = "USER";
+            user.Name = "user";
+            user.ReadOnly = true;
+            // 
+            // pid
+            // 
+            pid.HeaderText = "PID";
+            pid.Name = "pid";
+            pid.ReadOnly = true;
+            // 
+            // ppid
+            // 
+            ppid.HeaderText = "PPID";
+            ppid.Name = "ppid";
+            ppid.ReadOnly = true;
+            // 
+            // vsz
+            // 
+            vsz.HeaderText = "VSZ";
+            vsz.Name = "vsz";
+            vsz.ReadOnly = true;
+            // 
+            // rss
+            // 
+            rss.HeaderText = "RSS";
+            rss.Name = "rss";
+            rss.ReadOnly = true;
+            // 
+            // wchan
+            // 
+            wchan.HeaderText = "WCHAN";
+            wchan.Name = "wchan";
+            wchan.ReadOnly = true;
+            // 
+            // addr
+            // 
+            addr.HeaderText = "ADDR";
+            addr.Name = "addr";
+            addr.ReadOnly = true;
+            // 
+            // s
+            // 
+            s.HeaderText = "S";
+            s.Name = "s";
+            s.ReadOnly = true;
+            // 
+            // name
+            // 
+            name.HeaderText = "NAME";
+            name.Name = "name";
+            name.ReadOnly = true;
             // 
             // TaskManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(568, 358);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.buttonKillProcess);
-            this.Controls.Add(this.textBoxPackage);
-            this.Controls.Add(this.richTextBoxTasks);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimizeBox = false;
-            this.Name = "TaskManager";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "TaskManager";
-            this.Load += new System.EventHandler(this.TaskManager_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.White;
+            ClientSize = new System.Drawing.Size(986, 362);
+            Controls.Add(dataGridViewTasks);
+            Controls.Add(toolStrip1);
+            Controls.Add(buttonKillProcess);
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MinimizeBox = false;
+            Name = "TaskManager";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "TaskManager";
+            Load += TaskManager_Load;
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewTasks).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-        private System.Windows.Forms.RichTextBox richTextBoxTasks;
-        private System.Windows.Forms.TextBox textBoxPackage;
         private System.Windows.Forms.Button buttonKillProcess;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButtonReloadTasks;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripTextBox textBoxTaskName;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel toolStripLabelTotalTasks;
-        private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem appsToolStripMenuItem;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView dataGridViewTasks;
+        private System.Windows.Forms.DataGridViewTextBoxColumn user;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ppid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vsz;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rss;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wchan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn s;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton toolStripButtonKillProcess;
     }
 }

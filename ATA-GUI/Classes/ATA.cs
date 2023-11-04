@@ -1,14 +1,15 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ATA_GUI.Classes
 {
     internal class ATA
     {
-        public static readonly string CURRENTVERSION = "v3.0.3";
+        public static readonly string CURRENTVERSION = "v3.1.0";
         public static readonly string IPFileName = "IPList.txt";
 
         public ATA()
@@ -27,6 +28,8 @@ namespace ATA_GUI.Classes
         public bool IsMaximize { get; set; }
         public Tab CurrentTab { get; private set; }
         public static DeviceData CurrentDeviceSelected { get; set; }
+        public Size windowSize;
+
 
         public static async Task<bool> CheckVersion(Func<string, string, dynamic, bool> command)
         {

@@ -1,4 +1,6 @@
-﻿namespace ATA_GUI.Classes
+﻿using System.Collections.Generic;
+
+namespace ATA_GUI.Classes
 {
     internal class Device
     {
@@ -7,5 +9,6 @@
         public bool DeviceWireless { get; set; }
         public string StringApk { get; set; }
         public string User { get; set; }
+        public List<string> arrayApks = new();
     }
 }
