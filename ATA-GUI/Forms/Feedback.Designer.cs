@@ -30,214 +30,224 @@ namespace ATA_GUI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Feedback));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.buttonSGF = new System.Windows.Forms.Button();
-            this.buttonSGI = new System.Windows.Forms.Button();
-            this.buttonSendFeedback = new System.Windows.Forms.Button();
-            this.buttonShareTwitter = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.buttonDonate = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.SuspendLayout();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            pictureBox2 = new System.Windows.Forms.PictureBox();
+            buttonSGF = new System.Windows.Forms.Button();
+            buttonSGI = new System.Windows.Forms.Button();
+            buttonSendFeedback = new System.Windows.Forms.Button();
+            buttonShareTwitter = new System.Windows.Forms.Button();
+            label7 = new System.Windows.Forms.Label();
+            buttonDonate = new System.Windows.Forms.Button();
+            label8 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(210, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Thank you for using ATA!";
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label1.Location = new System.Drawing.Point(10, 12);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(239, 22);
+            label1.TabIndex = 0;
+            label1.Text = "Thank you for using ATA!";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(299, 39);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "If you found this free open-source tool useful, please consider \r\nspending a minu" +
-    "te to help out! Tell your frind about it, share it \r\non social media, give feedb" +
-    "ack. Everithing counts!";
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(15, 38);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(375, 51);
+            label2.TabIndex = 1;
+            label2.Text = "If you found this free open-source tool useful, please consider \r\nspending a minute to help out! Tell your frind about it, share it \r\non social media, give feedback. Everithing counts!";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 125);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(276, 26);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "If you had any issues with ATA, or if you want to suggest \r\na new feature, please" +
-    " chec these links:";
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(15, 163);
+            label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(338, 34);
+            label3.TabIndex = 3;
+            label3.Text = "If you had any issues with ATA, or if you want to suggest \r\na new feature, please chec these links:";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 105);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(285, 20);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Any problems or missing features?";
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label4.Location = new System.Drawing.Point(10, 137);
+            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(318, 22);
+            label4.TabIndex = 2;
+            label4.Text = "Any problems or missing features?";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 212);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(288, 26);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "You can donate to speed up the updates. All help is greatly \r\nappreciated, no mat" +
-    "ter how small!\r\n";
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(15, 277);
+            label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(357, 34);
+            label5.TabIndex = 5;
+            label5.Text = "You can donate to speed up the updates. All help is greatly \r\nappreciated, no matter how small!\r\n";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 192);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(178, 20);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Do you want to help?";
+            label6.AutoSize = true;
+            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label6.Location = new System.Drawing.Point(10, 251);
+            label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(199, 22);
+            label6.TabIndex = 4;
+            label6.Text = "Do you want to help?";
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::ATA_GUI.Properties.Resources.icons8_paypal_48;
-            this.pictureBox2.Location = new System.Drawing.Point(16, 288);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(42, 49);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
+            pictureBox2.Image = Properties.Resources.icons8_paypal_48;
+            pictureBox2.Location = new System.Drawing.Point(19, 377);
+            pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new System.Drawing.Size(49, 64);
+            pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 7;
+            pictureBox2.TabStop = false;
             // 
             // buttonSGF
             // 
-            this.buttonSGF.BackColor = System.Drawing.Color.White;
-            this.buttonSGF.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonSGF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSGF.ForeColor = System.Drawing.Color.Black;
-            this.buttonSGF.Location = new System.Drawing.Point(16, 161);
-            this.buttonSGF.Name = "buttonSGF";
-            this.buttonSGF.Size = new System.Drawing.Size(146, 23);
-            this.buttonSGF.TabIndex = 42;
-            this.buttonSGF.Text = "Submit on Github (Feature)";
-            this.buttonSGF.UseVisualStyleBackColor = false;
-            this.buttonSGF.Click += new System.EventHandler(this.buttonSGF_Click);
+            buttonSGF.BackColor = System.Drawing.Color.White;
+            buttonSGF.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonSGF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonSGF.ForeColor = System.Drawing.Color.Black;
+            buttonSGF.Location = new System.Drawing.Point(19, 211);
+            buttonSGF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            buttonSGF.Name = "buttonSGF";
+            buttonSGF.Size = new System.Drawing.Size(170, 30);
+            buttonSGF.TabIndex = 42;
+            buttonSGF.Text = "Submit on Github (Feature)";
+            buttonSGF.UseVisualStyleBackColor = false;
+            buttonSGF.Click += buttonSGF_Click;
             // 
             // buttonSGI
             // 
-            this.buttonSGI.BackColor = System.Drawing.Color.White;
-            this.buttonSGI.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonSGI.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSGI.ForeColor = System.Drawing.Color.Black;
-            this.buttonSGI.Location = new System.Drawing.Point(168, 161);
-            this.buttonSGI.Name = "buttonSGI";
-            this.buttonSGI.Size = new System.Drawing.Size(133, 23);
-            this.buttonSGI.TabIndex = 43;
-            this.buttonSGI.Text = "Submit on Github (Issue)";
-            this.buttonSGI.UseVisualStyleBackColor = false;
-            this.buttonSGI.Click += new System.EventHandler(this.buttonSGI_Click);
+            buttonSGI.BackColor = System.Drawing.Color.White;
+            buttonSGI.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonSGI.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonSGI.ForeColor = System.Drawing.Color.Black;
+            buttonSGI.Location = new System.Drawing.Point(196, 211);
+            buttonSGI.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            buttonSGI.Name = "buttonSGI";
+            buttonSGI.Size = new System.Drawing.Size(155, 30);
+            buttonSGI.TabIndex = 43;
+            buttonSGI.Text = "Submit on Github (Issue)";
+            buttonSGI.UseVisualStyleBackColor = false;
+            buttonSGI.Click += buttonSGI_Click;
             // 
             // buttonSendFeedback
             // 
-            this.buttonSendFeedback.BackColor = System.Drawing.Color.White;
-            this.buttonSendFeedback.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonSendFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSendFeedback.ForeColor = System.Drawing.Color.Black;
-            this.buttonSendFeedback.Location = new System.Drawing.Point(16, 76);
-            this.buttonSendFeedback.Name = "buttonSendFeedback";
-            this.buttonSendFeedback.Size = new System.Drawing.Size(99, 23);
-            this.buttonSendFeedback.TabIndex = 44;
-            this.buttonSendFeedback.Text = "Send feedback";
-            this.buttonSendFeedback.UseVisualStyleBackColor = false;
-            this.buttonSendFeedback.Click += new System.EventHandler(this.buttonSendFeedback_Click);
+            buttonSendFeedback.BackColor = System.Drawing.Color.White;
+            buttonSendFeedback.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonSendFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonSendFeedback.ForeColor = System.Drawing.Color.Black;
+            buttonSendFeedback.Location = new System.Drawing.Point(19, 99);
+            buttonSendFeedback.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            buttonSendFeedback.Name = "buttonSendFeedback";
+            buttonSendFeedback.Size = new System.Drawing.Size(115, 30);
+            buttonSendFeedback.TabIndex = 44;
+            buttonSendFeedback.Text = "Send feedback";
+            buttonSendFeedback.UseVisualStyleBackColor = false;
+            buttonSendFeedback.Click += buttonSendFeedback_Click;
             // 
             // buttonShareTwitter
             // 
-            this.buttonShareTwitter.BackColor = System.Drawing.Color.White;
-            this.buttonShareTwitter.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonShareTwitter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonShareTwitter.ForeColor = System.Drawing.Color.Black;
-            this.buttonShareTwitter.Location = new System.Drawing.Point(121, 76);
-            this.buttonShareTwitter.Name = "buttonShareTwitter";
-            this.buttonShareTwitter.Size = new System.Drawing.Size(98, 23);
-            this.buttonShareTwitter.TabIndex = 45;
-            this.buttonShareTwitter.Text = "Share on Twitter";
-            this.buttonShareTwitter.UseVisualStyleBackColor = false;
-            this.buttonShareTwitter.Click += new System.EventHandler(this.buttonShareTwitter_Click);
+            buttonShareTwitter.BackColor = System.Drawing.Color.White;
+            buttonShareTwitter.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonShareTwitter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonShareTwitter.ForeColor = System.Drawing.Color.Black;
+            buttonShareTwitter.Location = new System.Drawing.Point(141, 99);
+            buttonShareTwitter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            buttonShareTwitter.Name = "buttonShareTwitter";
+            buttonShareTwitter.Size = new System.Drawing.Size(114, 30);
+            buttonShareTwitter.TabIndex = 45;
+            buttonShareTwitter.Text = "Share on Twitter";
+            buttonShareTwitter.UseVisualStyleBackColor = false;
+            buttonShareTwitter.Click += buttonShareTwitter_Click;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 272);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(150, 13);
-            this.label7.TabIndex = 46;
-            this.label7.Text = "Currency or method accepted:";
+            label7.AutoSize = true;
+            label7.Location = new System.Drawing.Point(15, 356);
+            label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(185, 17);
+            label7.TabIndex = 46;
+            label7.Text = "Currency or method accepted:";
             // 
             // buttonDonate
             // 
-            this.buttonDonate.BackColor = System.Drawing.Color.White;
-            this.buttonDonate.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonDonate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDonate.ForeColor = System.Drawing.Color.Black;
-            this.buttonDonate.Location = new System.Drawing.Point(16, 246);
-            this.buttonDonate.Name = "buttonDonate";
-            this.buttonDonate.Size = new System.Drawing.Size(68, 23);
-            this.buttonDonate.TabIndex = 47;
-            this.buttonDonate.Text = "Donate";
-            this.buttonDonate.UseVisualStyleBackColor = false;
-            this.buttonDonate.Click += new System.EventHandler(this.buttonDonate_Click);
+            buttonDonate.BackColor = System.Drawing.Color.White;
+            buttonDonate.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonDonate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonDonate.ForeColor = System.Drawing.Color.Black;
+            buttonDonate.Location = new System.Drawing.Point(19, 322);
+            buttonDonate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            buttonDonate.Name = "buttonDonate";
+            buttonDonate.Size = new System.Drawing.Size(79, 30);
+            buttonDonate.TabIndex = 47;
+            buttonDonate.Text = "Donate";
+            buttonDonate.UseVisualStyleBackColor = false;
+            buttonDonate.Click += buttonDonate_Click;
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(13, 347);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(143, 7);
-            this.label8.TabIndex = 48;
-            this.label8.Text = "You can disable this pop up in the settings";
+            label8.AutoSize = true;
+            label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label8.Location = new System.Drawing.Point(15, 454);
+            label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(144, 9);
+            label8.TabIndex = 48;
+            label8.Text = "You can disable this pop up in the settings";
             // 
             // Feedback
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(313, 369);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.buttonDonate);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.buttonShareTwitter);
-            this.Controls.Add(this.buttonSendFeedback);
-            this.Controls.Add(this.buttonSGI);
-            this.Controls.Add(this.buttonSGF);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "Feedback";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Send Feedback ";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.White;
+            ClientSize = new System.Drawing.Size(401, 483);
+            Controls.Add(label8);
+            Controls.Add(buttonDonate);
+            Controls.Add(label7);
+            Controls.Add(buttonShareTwitter);
+            Controls.Add(buttonSendFeedback);
+            Controls.Add(buttonSGI);
+            Controls.Add(buttonSGF);
+            Controls.Add(pictureBox2);
+            Controls.Add(label5);
+            Controls.Add(label6);
+            Controls.Add(label3);
+            Controls.Add(label4);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "Feedback";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "Send Feedback ";
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

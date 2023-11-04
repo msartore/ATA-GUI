@@ -1,5 +1,5 @@
-﻿using System;
-using System.Diagnostics;
+﻿using ATA_GUI.Utils;
+using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
@@ -46,27 +46,27 @@ namespace ATA_GUI
 
         private void buttonSendFeedback_Click(object sender, EventArgs e)
         {
-            _ = Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/issues/new/choose");
+            ConsoleProcess.openLink("https://github.com/MassimilianoSartore/ATA-GUI/issues/new/choose");
         }
 
         private void buttonShareTwitter_Click(object sender, EventArgs e)
         {
-            _ = Process.Start("https://twitter.com/intent/tweet?text=Check+out+this+cool+Android™+tool+that+I+found!+https://github.com/MassimilianoSartore/ATA-GUI");
+            ConsoleProcess.openLink("https://twitter.com/intent/tweet?text=Check+out+this+cool+Android™+tool+that+I+found!+https://github.com/MassimilianoSartore/ATA-GUI");
         }
 
         private void buttonSGF_Click(object sender, EventArgs e)
         {
-            _ = Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=%5BFEATURE%5D");
+            ConsoleProcess.openLink("https://github.com/MassimilianoSartore/ATA-GUI/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=%5BFEATURE%5D");
         }
 
         private void buttonSGI_Click(object sender, EventArgs e)
         {
-            _ = Process.Start("https://github.com/MassimilianoSartore/ATA-GUI/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBUG%5D");
+            ConsoleProcess.openLink("https://github.com/MassimilianoSartore/ATA-GUI/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBUG%5D");
         }
 
         private void buttonDonate_Click(object sender, EventArgs e)
         {
-            _ = Process.Start("https://msartore.dev/donation/");
+            ConsoleProcess.openLink("https://msartore.dev/donation/");
         }
     }
 }

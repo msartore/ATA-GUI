@@ -30,228 +30,247 @@ namespace ATA_GUI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelVersion = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.linkLabelIcons = new System.Windows.Forms.LinkLabel();
-            this.linkLabelScrcpy = new System.Windows.Forms.LinkLabel();
-            this.linkLabelNewtonsoft = new System.Windows.Forms.LinkLabel();
-            this.linkLabelSDK = new System.Windows.Forms.LinkLabel();
-            this.linkLabelDNZ = new System.Windows.Forms.LinkLabel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.linkLabelWebsite = new System.Windows.Forms.LinkLabel();
-            this.linkLabelGithub = new System.Windows.Forms.LinkLabel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.linkLabelRepo = new System.Windows.Forms.LinkLabel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.buttonClose = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.SuspendLayout();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            labelVersion = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            groupBox2 = new System.Windows.Forms.GroupBox();
+            linkLabelIcons = new System.Windows.Forms.LinkLabel();
+            linkLabelScrcpy = new System.Windows.Forms.LinkLabel();
+            linkLabelNewtonsoft = new System.Windows.Forms.LinkLabel();
+            linkLabelSDK = new System.Windows.Forms.LinkLabel();
+            linkLabelDNZ = new System.Windows.Forms.LinkLabel();
+            groupBox3 = new System.Windows.Forms.GroupBox();
+            linkLabelWebsite = new System.Windows.Forms.LinkLabel();
+            linkLabelGithub = new System.Windows.Forms.LinkLabel();
+            label4 = new System.Windows.Forms.Label();
+            linkLabelRepo = new System.Windows.Forms.LinkLabel();
+            label3 = new System.Windows.Forms.Label();
+            buttonClose = new System.Windows.Forms.Button();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
+            SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.labelVersion);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(361, 52);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Program Version";
+            groupBox1.Controls.Add(labelVersion);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Location = new System.Drawing.Point(14, 16);
+            groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox1.Size = new System.Drawing.Size(421, 68);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Program Version";
             // 
             // labelVersion
             // 
-            this.labelVersion.AutoSize = true;
-            this.labelVersion.Location = new System.Drawing.Point(12, 32);
-            this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(106, 13);
-            this.labelVersion.TabIndex = 1;
-            this.labelVersion.Text = "Version: UNKNOWN";
+            labelVersion.AutoSize = true;
+            labelVersion.Location = new System.Drawing.Point(14, 42);
+            labelVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelVersion.Name = "labelVersion";
+            labelVersion.Size = new System.Drawing.Size(127, 17);
+            labelVersion.TabIndex = 1;
+            labelVersion.Text = "Version: UNKNOWN";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(198, 14);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ATA-GUI (Advance Tool for Android™)";
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label1.Location = new System.Drawing.Point(14, 21);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(229, 16);
+            label1.TabIndex = 0;
+            label1.Text = "ATA-GUI (Advance Tool for Android™)";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.linkLabelIcons);
-            this.groupBox2.Controls.Add(this.linkLabelScrcpy);
-            this.groupBox2.Controls.Add(this.linkLabelNewtonsoft);
-            this.groupBox2.Controls.Add(this.linkLabelSDK);
-            this.groupBox2.Controls.Add(this.linkLabelDNZ);
-            this.groupBox2.Location = new System.Drawing.Point(12, 169);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(361, 123);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Assest Used";
+            groupBox2.Controls.Add(linkLabelIcons);
+            groupBox2.Controls.Add(linkLabelScrcpy);
+            groupBox2.Controls.Add(linkLabelNewtonsoft);
+            groupBox2.Controls.Add(linkLabelSDK);
+            groupBox2.Controls.Add(linkLabelDNZ);
+            groupBox2.Location = new System.Drawing.Point(14, 221);
+            groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox2.Size = new System.Drawing.Size(421, 161);
+            groupBox2.TabIndex = 1;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Assest Used";
             // 
             // linkLabelIcons
             // 
-            this.linkLabelIcons.AutoSize = true;
-            this.linkLabelIcons.Location = new System.Drawing.Point(12, 93);
-            this.linkLabelIcons.Name = "linkLabelIcons";
-            this.linkLabelIcons.Size = new System.Drawing.Size(39, 13);
-            this.linkLabelIcons.TabIndex = 4;
-            this.linkLabelIcons.TabStop = true;
-            this.linkLabelIcons.Text = "Icons8";
-            this.linkLabelIcons.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelIcons_LinkClicked);
+            linkLabelIcons.AutoSize = true;
+            linkLabelIcons.Location = new System.Drawing.Point(14, 122);
+            linkLabelIcons.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            linkLabelIcons.Name = "linkLabelIcons";
+            linkLabelIcons.Size = new System.Drawing.Size(45, 17);
+            linkLabelIcons.TabIndex = 4;
+            linkLabelIcons.TabStop = true;
+            linkLabelIcons.Text = "Icons8";
+            linkLabelIcons.LinkClicked += linkLabelIcons_LinkClicked;
             // 
             // linkLabelScrcpy
             // 
-            this.linkLabelScrcpy.AutoSize = true;
-            this.linkLabelScrcpy.Location = new System.Drawing.Point(12, 74);
-            this.linkLabelScrcpy.Name = "linkLabelScrcpy";
-            this.linkLabelScrcpy.Size = new System.Drawing.Size(40, 13);
-            this.linkLabelScrcpy.TabIndex = 3;
-            this.linkLabelScrcpy.TabStop = true;
-            this.linkLabelScrcpy.Text = "Scrcpy";
-            this.linkLabelScrcpy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelScrcpy_LinkClicked);
+            linkLabelScrcpy.AutoSize = true;
+            linkLabelScrcpy.Location = new System.Drawing.Point(14, 97);
+            linkLabelScrcpy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            linkLabelScrcpy.Name = "linkLabelScrcpy";
+            linkLabelScrcpy.Size = new System.Drawing.Size(46, 17);
+            linkLabelScrcpy.TabIndex = 3;
+            linkLabelScrcpy.TabStop = true;
+            linkLabelScrcpy.Text = "Scrcpy";
+            linkLabelScrcpy.LinkClicked += linkLabelScrcpy_LinkClicked;
             // 
             // linkLabelNewtonsoft
             // 
-            this.linkLabelNewtonsoft.AutoSize = true;
-            this.linkLabelNewtonsoft.Location = new System.Drawing.Point(12, 54);
-            this.linkLabelNewtonsoft.Name = "linkLabelNewtonsoft";
-            this.linkLabelNewtonsoft.Size = new System.Drawing.Size(83, 13);
-            this.linkLabelNewtonsoft.TabIndex = 2;
-            this.linkLabelNewtonsoft.TabStop = true;
-            this.linkLabelNewtonsoft.Text = "Newtonsoft.json";
-            this.linkLabelNewtonsoft.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelNewtonsoft_LinkClicked);
+            linkLabelNewtonsoft.AutoSize = true;
+            linkLabelNewtonsoft.Location = new System.Drawing.Point(14, 71);
+            linkLabelNewtonsoft.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            linkLabelNewtonsoft.Name = "linkLabelNewtonsoft";
+            linkLabelNewtonsoft.Size = new System.Drawing.Size(102, 17);
+            linkLabelNewtonsoft.TabIndex = 2;
+            linkLabelNewtonsoft.TabStop = true;
+            linkLabelNewtonsoft.Text = "Newtonsoft.json";
+            linkLabelNewtonsoft.LinkClicked += linkLabelNewtonsoft_LinkClicked;
             // 
             // linkLabelSDK
             // 
-            this.linkLabelSDK.AutoSize = true;
-            this.linkLabelSDK.Location = new System.Drawing.Point(12, 35);
-            this.linkLabelSDK.Name = "linkLabelSDK";
-            this.linkLabelSDK.Size = new System.Drawing.Size(94, 13);
-            this.linkLabelSDK.TabIndex = 1;
-            this.linkLabelSDK.TabStop = true;
-            this.linkLabelSDK.Text = "SDK Platform Tool";
-            this.linkLabelSDK.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSDK_LinkClicked);
+            linkLabelSDK.AutoSize = true;
+            linkLabelSDK.Location = new System.Drawing.Point(14, 46);
+            linkLabelSDK.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            linkLabelSDK.Name = "linkLabelSDK";
+            linkLabelSDK.Size = new System.Drawing.Size(114, 17);
+            linkLabelSDK.TabIndex = 1;
+            linkLabelSDK.TabStop = true;
+            linkLabelSDK.Text = "SDK Platform Tool";
+            linkLabelSDK.LinkClicked += linkLabelSDK_LinkClicked;
             // 
             // linkLabelDNZ
             // 
-            this.linkLabelDNZ.AutoSize = true;
-            this.linkLabelDNZ.Location = new System.Drawing.Point(12, 16);
-            this.linkLabelDNZ.Name = "linkLabelDNZ";
-            this.linkLabelDNZ.Size = new System.Drawing.Size(56, 13);
-            this.linkLabelDNZ.TabIndex = 0;
-            this.linkLabelDNZ.TabStop = true;
-            this.linkLabelDNZ.Text = "DotNetZip";
-            this.linkLabelDNZ.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelDNZ_LinkClicked);
+            linkLabelDNZ.AutoSize = true;
+            linkLabelDNZ.Location = new System.Drawing.Point(14, 21);
+            linkLabelDNZ.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            linkLabelDNZ.Name = "linkLabelDNZ";
+            linkLabelDNZ.Size = new System.Drawing.Size(68, 17);
+            linkLabelDNZ.TabIndex = 0;
+            linkLabelDNZ.TabStop = true;
+            linkLabelDNZ.Text = "DotNetZip";
+            linkLabelDNZ.LinkClicked += linkLabelDNZ_LinkClicked;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.linkLabelWebsite);
-            this.groupBox3.Controls.Add(this.linkLabelGithub);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.linkLabelRepo);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Location = new System.Drawing.Point(12, 70);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(361, 93);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Developer Info";
+            groupBox3.Controls.Add(linkLabelWebsite);
+            groupBox3.Controls.Add(linkLabelGithub);
+            groupBox3.Controls.Add(label4);
+            groupBox3.Controls.Add(linkLabelRepo);
+            groupBox3.Controls.Add(label3);
+            groupBox3.Location = new System.Drawing.Point(14, 92);
+            groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox3.Size = new System.Drawing.Size(421, 122);
+            groupBox3.TabIndex = 2;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Developer Info";
             // 
             // linkLabelWebsite
             // 
-            this.linkLabelWebsite.AutoSize = true;
-            this.linkLabelWebsite.Location = new System.Drawing.Point(12, 67);
-            this.linkLabelWebsite.Name = "linkLabelWebsite";
-            this.linkLabelWebsite.Size = new System.Drawing.Size(46, 13);
-            this.linkLabelWebsite.TabIndex = 4;
-            this.linkLabelWebsite.TabStop = true;
-            this.linkLabelWebsite.Text = "Website";
-            this.linkLabelWebsite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelWebsite_LinkClicked);
+            linkLabelWebsite.AutoSize = true;
+            linkLabelWebsite.Location = new System.Drawing.Point(14, 88);
+            linkLabelWebsite.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            linkLabelWebsite.Name = "linkLabelWebsite";
+            linkLabelWebsite.Size = new System.Drawing.Size(54, 17);
+            linkLabelWebsite.TabIndex = 4;
+            linkLabelWebsite.TabStop = true;
+            linkLabelWebsite.Text = "Website";
+            linkLabelWebsite.LinkClicked += linkLabelWebsite_LinkClicked;
             // 
             // linkLabelGithub
             // 
-            this.linkLabelGithub.AutoSize = true;
-            this.linkLabelGithub.Location = new System.Drawing.Point(12, 49);
-            this.linkLabelGithub.Name = "linkLabelGithub";
-            this.linkLabelGithub.Size = new System.Drawing.Size(38, 13);
-            this.linkLabelGithub.TabIndex = 3;
-            this.linkLabelGithub.TabStop = true;
-            this.linkLabelGithub.Text = "Github";
-            this.linkLabelGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGithub_LinkClicked);
+            linkLabelGithub.AutoSize = true;
+            linkLabelGithub.Location = new System.Drawing.Point(14, 64);
+            linkLabelGithub.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            linkLabelGithub.Name = "linkLabelGithub";
+            linkLabelGithub.Size = new System.Drawing.Size(46, 17);
+            linkLabelGithub.TabIndex = 3;
+            linkLabelGithub.TabStop = true;
+            linkLabelGithub.Text = "Github";
+            linkLabelGithub.LinkClicked += linkLabelGithub_LinkClicked;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(238, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Copyright © 2021-2023";
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(264, 21);
+            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(146, 17);
+            label4.TabIndex = 2;
+            label4.Text = "Copyright © 2021-2023";
             // 
             // linkLabelRepo
             // 
-            this.linkLabelRepo.AutoSize = true;
-            this.linkLabelRepo.Location = new System.Drawing.Point(12, 31);
-            this.linkLabelRepo.Name = "linkLabelRepo";
-            this.linkLabelRepo.Size = new System.Drawing.Size(57, 13);
-            this.linkLabelRepo.TabIndex = 1;
-            this.linkLabelRepo.TabStop = true;
-            this.linkLabelRepo.Text = "Repository";
-            this.linkLabelRepo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRepo_LinkClicked);
+            linkLabelRepo.AutoSize = true;
+            linkLabelRepo.Location = new System.Drawing.Point(14, 41);
+            linkLabelRepo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            linkLabelRepo.Name = "linkLabelRepo";
+            linkLabelRepo.Size = new System.Drawing.Size(71, 17);
+            linkLabelRepo.TabIndex = 1;
+            linkLabelRepo.TabStop = true;
+            linkLabelRepo.Text = "Repository";
+            linkLabelRepo.LinkClicked += linkLabelRepo_LinkClicked;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Massimiliano Sartore";
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(14, 21);
+            label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(131, 17);
+            label3.TabIndex = 0;
+            label3.Text = "Massimiliano Sartore";
             // 
             // buttonClose
             // 
-            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonClose.Location = new System.Drawing.Point(298, 298);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(75, 23);
-            this.buttonClose.TabIndex = 3;
-            this.buttonClose.Text = "Close";
-            this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonClose.Location = new System.Drawing.Point(348, 390);
+            buttonClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            buttonClose.Name = "buttonClose";
+            buttonClose.Size = new System.Drawing.Size(88, 30);
+            buttonClose.TabIndex = 3;
+            buttonClose.Text = "Close";
+            buttonClose.UseVisualStyleBackColor = true;
+            buttonClose.Click += buttonClose_Click;
             // 
             // About
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(385, 330);
-            this.Controls.Add(this.buttonClose);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "About";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "About";
-            this.Load += new System.EventHandler(this.About_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.SystemColors.ControlLightLight;
+            ClientSize = new System.Drawing.Size(449, 432);
+            Controls.Add(buttonClose);
+            Controls.Add(groupBox3);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "About";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "About";
+            Load += About_Load;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion

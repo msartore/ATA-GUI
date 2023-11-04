@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace ATA_GUI.Classes
 {

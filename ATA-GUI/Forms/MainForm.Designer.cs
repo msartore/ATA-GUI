@@ -268,11 +268,11 @@ namespace ATA_GUI
             labelLog.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             labelLog.AutoSize = true;
             labelLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            labelLog.Location = new System.Drawing.Point(1066, 81);
+            labelLog.Location = new System.Drawing.Point(1066, 92);
             labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             labelLog.Name = "labelLog";
             labelLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            labelLog.Size = new System.Drawing.Size(28, 13);
+            labelLog.Size = new System.Drawing.Size(33, 16);
             labelLog.TabIndex = 24;
             labelLog.Text = "Log:";
             // 
@@ -283,10 +283,10 @@ namespace ATA_GUI
             buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonLogClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             buttonLogClear.ForeColor = System.Drawing.Color.Black;
-            buttonLogClear.Location = new System.Drawing.Point(1209, 434);
+            buttonLogClear.Location = new System.Drawing.Point(1209, 492);
             buttonLogClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonLogClear.Name = "buttonLogClear";
-            buttonLogClear.Size = new System.Drawing.Size(102, 27);
+            buttonLogClear.Size = new System.Drawing.Size(102, 31);
             buttonLogClear.TabIndex = 31;
             buttonLogClear.Text = "Clear log";
             buttonLogClear.UseVisualStyleBackColor = false;
@@ -319,11 +319,11 @@ namespace ATA_GUI
             groupBoxDeviceInfo.Controls.Add(labelManufacturer);
             groupBoxDeviceInfo.Controls.Add(labelCpuAbilitis);
             groupBoxDeviceInfo.Controls.Add(labelBuildUser);
-            groupBoxDeviceInfo.Location = new System.Drawing.Point(7, 10);
+            groupBoxDeviceInfo.Location = new System.Drawing.Point(7, 11);
             groupBoxDeviceInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxDeviceInfo.Name = "groupBoxDeviceInfo";
             groupBoxDeviceInfo.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxDeviceInfo.Size = new System.Drawing.Size(374, 181);
+            groupBoxDeviceInfo.Size = new System.Drawing.Size(374, 205);
             groupBoxDeviceInfo.TabIndex = 32;
             groupBoxDeviceInfo.TabStop = false;
             groupBoxDeviceInfo.Text = "Device Info";
@@ -331,10 +331,10 @@ namespace ATA_GUI
             // buttonTurnOffAdb
             // 
             buttonTurnOffAdb.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonTurnOffAdb.Location = new System.Drawing.Point(280, 147);
+            buttonTurnOffAdb.Location = new System.Drawing.Point(280, 167);
             buttonTurnOffAdb.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonTurnOffAdb.Name = "buttonTurnOffAdb";
-            buttonTurnOffAdb.Size = new System.Drawing.Size(88, 27);
+            buttonTurnOffAdb.Size = new System.Drawing.Size(88, 31);
             buttonTurnOffAdb.TabIndex = 20;
             buttonTurnOffAdb.Text = "Turn off adb";
             buttonTurnOffAdb.UseVisualStyleBackColor = true;
@@ -343,200 +343,200 @@ namespace ATA_GUI
             // labelUser
             // 
             labelUser.AutoSize = true;
-            labelUser.Location = new System.Drawing.Point(100, 153);
+            labelUser.Location = new System.Drawing.Point(115, 173);
             labelUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelUser.Name = "labelUser";
-            labelUser.Size = new System.Drawing.Size(69, 15);
+            labelUser.Size = new System.Drawing.Size(77, 17);
             labelUser.TabIndex = 19;
             labelUser.Text = "UNKNOWN";
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new System.Drawing.Point(7, 153);
+            label12.Location = new System.Drawing.Point(7, 173);
             label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label12.Name = "label12";
-            label12.Size = new System.Drawing.Size(36, 15);
+            label12.Size = new System.Drawing.Size(42, 17);
             label12.TabIndex = 18;
             label12.Text = "User: ";
             // 
             // labelStatus
             // 
             labelStatus.AutoSize = true;
-            labelStatus.Location = new System.Drawing.Point(100, 138);
+            labelStatus.Location = new System.Drawing.Point(115, 156);
             labelStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelStatus.Name = "labelStatus";
-            labelStatus.Size = new System.Drawing.Size(69, 15);
+            labelStatus.Size = new System.Drawing.Size(77, 17);
             labelStatus.TabIndex = 17;
             labelStatus.Text = "UNKNOWN";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(7, 138);
+            label4.Location = new System.Drawing.Point(7, 156);
             label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(89, 15);
+            label4.Size = new System.Drawing.Size(97, 17);
             label4.TabIndex = 16;
             label4.Text = "Connected via: ";
             // 
             // labelIP
             // 
             labelIP.AutoSize = true;
-            labelIP.Location = new System.Drawing.Point(100, 123);
+            labelIP.Location = new System.Drawing.Point(115, 139);
             labelIP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelIP.Name = "labelIP";
-            labelIP.Size = new System.Drawing.Size(44, 15);
+            labelIP.Size = new System.Drawing.Size(48, 17);
             labelIP.TabIndex = 15;
             labelIP.Text = "EMPTY";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(7, 123);
+            label1.Location = new System.Drawing.Point(7, 139);
             label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(23, 15);
+            label1.Size = new System.Drawing.Size(25, 17);
             label1.TabIndex = 14;
             label1.Text = "IP: ";
             // 
             // labelAV
             // 
             labelAV.AutoSize = true;
-            labelAV.Location = new System.Drawing.Point(100, 108);
+            labelAV.Location = new System.Drawing.Point(115, 122);
             labelAV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelAV.Name = "labelAV";
-            labelAV.Size = new System.Drawing.Size(44, 15);
+            labelAV.Size = new System.Drawing.Size(48, 17);
             labelAV.TabIndex = 13;
             labelAV.Text = "EMPTY";
             // 
             // labelD
             // 
             labelD.AutoSize = true;
-            labelD.Location = new System.Drawing.Point(100, 93);
+            labelD.Location = new System.Drawing.Point(115, 105);
             labelD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelD.Name = "labelD";
-            labelD.Size = new System.Drawing.Size(44, 15);
+            labelD.Size = new System.Drawing.Size(48, 17);
             labelD.TabIndex = 12;
             labelD.Text = "EMPTY";
             // 
             // labelB
             // 
             labelB.AutoSize = true;
-            labelB.Location = new System.Drawing.Point(100, 78);
+            labelB.Location = new System.Drawing.Point(115, 88);
             labelB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelB.Name = "labelB";
-            labelB.Size = new System.Drawing.Size(44, 15);
+            labelB.Size = new System.Drawing.Size(48, 17);
             labelB.TabIndex = 11;
             labelB.Text = "EMPTY";
             // 
             // labelModel
             // 
             labelModel.AutoSize = true;
-            labelModel.Location = new System.Drawing.Point(100, 63);
+            labelModel.Location = new System.Drawing.Point(115, 71);
             labelModel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelModel.Name = "labelModel";
-            labelModel.Size = new System.Drawing.Size(44, 15);
+            labelModel.Size = new System.Drawing.Size(48, 17);
             labelModel.TabIndex = 10;
             labelModel.Text = "EMPTY";
             // 
             // labelManu
             // 
             labelManu.AutoSize = true;
-            labelManu.Location = new System.Drawing.Point(100, 48);
+            labelManu.Location = new System.Drawing.Point(115, 54);
             labelManu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelManu.Name = "labelManu";
-            labelManu.Size = new System.Drawing.Size(44, 15);
+            labelManu.Size = new System.Drawing.Size(48, 17);
             labelManu.TabIndex = 9;
             labelManu.Text = "EMPTY";
             // 
             // labelCA
             // 
             labelCA.AutoSize = true;
-            labelCA.Location = new System.Drawing.Point(100, 33);
+            labelCA.Location = new System.Drawing.Point(115, 37);
             labelCA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelCA.Name = "labelCA";
-            labelCA.Size = new System.Drawing.Size(44, 15);
+            labelCA.Size = new System.Drawing.Size(48, 17);
             labelCA.TabIndex = 8;
             labelCA.Text = "EMPTY";
             // 
             // labelBU
             // 
             labelBU.AutoSize = true;
-            labelBU.Location = new System.Drawing.Point(100, 18);
+            labelBU.Location = new System.Drawing.Point(115, 20);
             labelBU.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelBU.Name = "labelBU";
-            labelBU.Size = new System.Drawing.Size(44, 15);
+            labelBU.Size = new System.Drawing.Size(48, 17);
             labelBU.TabIndex = 7;
             labelBU.Text = "EMPTY";
             // 
             // labelAndroidVersion
             // 
             labelAndroidVersion.AutoSize = true;
-            labelAndroidVersion.Location = new System.Drawing.Point(7, 108);
+            labelAndroidVersion.Location = new System.Drawing.Point(7, 122);
             labelAndroidVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelAndroidVersion.Name = "labelAndroidVersion";
-            labelAndroidVersion.Size = new System.Drawing.Size(94, 15);
+            labelAndroidVersion.Size = new System.Drawing.Size(105, 17);
             labelAndroidVersion.TabIndex = 6;
             labelAndroidVersion.Text = "Android Version:";
             // 
             // labelProductDevice
             // 
             labelProductDevice.AutoSize = true;
-            labelProductDevice.Location = new System.Drawing.Point(7, 93);
+            labelProductDevice.Location = new System.Drawing.Point(7, 105);
             labelProductDevice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelProductDevice.Name = "labelProductDevice";
-            labelProductDevice.Size = new System.Drawing.Size(45, 15);
+            labelProductDevice.Size = new System.Drawing.Size(49, 17);
             labelProductDevice.TabIndex = 5;
             labelProductDevice.Text = "Device:";
             // 
             // labelProductBoard
             // 
             labelProductBoard.AutoSize = true;
-            labelProductBoard.Location = new System.Drawing.Point(7, 78);
+            labelProductBoard.Location = new System.Drawing.Point(7, 88);
             labelProductBoard.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelProductBoard.Name = "labelProductBoard";
-            labelProductBoard.Size = new System.Drawing.Size(41, 15);
+            labelProductBoard.Size = new System.Drawing.Size(46, 17);
             labelProductBoard.TabIndex = 4;
             labelProductBoard.Text = "Board:";
             // 
             // labelProductModel
             // 
             labelProductModel.AutoSize = true;
-            labelProductModel.Location = new System.Drawing.Point(7, 63);
+            labelProductModel.Location = new System.Drawing.Point(7, 71);
             labelProductModel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelProductModel.Name = "labelProductModel";
-            labelProductModel.Size = new System.Drawing.Size(44, 15);
+            labelProductModel.Size = new System.Drawing.Size(49, 17);
             labelProductModel.TabIndex = 3;
             labelProductModel.Text = "Model:";
             // 
             // labelManufacturer
             // 
             labelManufacturer.AutoSize = true;
-            labelManufacturer.Location = new System.Drawing.Point(7, 48);
+            labelManufacturer.Location = new System.Drawing.Point(7, 54);
             labelManufacturer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelManufacturer.Name = "labelManufacturer";
-            labelManufacturer.Size = new System.Drawing.Size(82, 15);
+            labelManufacturer.Size = new System.Drawing.Size(89, 17);
             labelManufacturer.TabIndex = 2;
             labelManufacturer.Text = "Manufacturer:";
             // 
             // labelCpuAbilitis
             // 
             labelCpuAbilitis.AutoSize = true;
-            labelCpuAbilitis.Location = new System.Drawing.Point(7, 33);
+            labelCpuAbilitis.Location = new System.Drawing.Point(7, 37);
             labelCpuAbilitis.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelCpuAbilitis.Name = "labelCpuAbilitis";
-            labelCpuAbilitis.Size = new System.Drawing.Size(71, 15);
+            labelCpuAbilitis.Size = new System.Drawing.Size(76, 17);
             labelCpuAbilitis.TabIndex = 1;
             labelCpuAbilitis.Text = "Cpu Abilitis:";
             // 
             // labelBuildUser
             // 
             labelBuildUser.AutoSize = true;
-            labelBuildUser.Location = new System.Drawing.Point(7, 18);
+            labelBuildUser.Location = new System.Drawing.Point(7, 20);
             labelBuildUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelBuildUser.Name = "labelBuildUser";
-            labelBuildUser.Size = new System.Drawing.Size(63, 15);
+            labelBuildUser.Size = new System.Drawing.Size(70, 17);
             labelBuildUser.TabIndex = 0;
             labelBuildUser.Text = "Build User:";
             // 
@@ -545,10 +545,10 @@ namespace ATA_GUI
             checkBoxSelectAll.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             checkBoxSelectAll.AutoSize = true;
             checkBoxSelectAll.ForeColor = System.Drawing.Color.Black;
-            checkBoxSelectAll.Location = new System.Drawing.Point(9, 80);
+            checkBoxSelectAll.Location = new System.Drawing.Point(9, 91);
             checkBoxSelectAll.Margin = new System.Windows.Forms.Padding(2);
             checkBoxSelectAll.Name = "checkBoxSelectAll";
-            checkBoxSelectAll.Size = new System.Drawing.Size(74, 19);
+            checkBoxSelectAll.Size = new System.Drawing.Size(79, 21);
             checkBoxSelectAll.TabIndex = 37;
             checkBoxSelectAll.Text = "Select All";
             checkBoxSelectAll.UseVisualStyleBackColor = true;
@@ -561,11 +561,11 @@ namespace ATA_GUI
             tabControls.Controls.Add(tabPageFastboot);
             tabControls.Controls.Add(tabPageRecovery);
             tabControls.Controls.Add(tabPageTools);
-            tabControls.Location = new System.Drawing.Point(9, 53);
+            tabControls.Location = new System.Drawing.Point(9, 60);
             tabControls.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             tabControls.Name = "tabControls";
             tabControls.SelectedIndex = 0;
-            tabControls.Size = new System.Drawing.Size(1051, 370);
+            tabControls.Size = new System.Drawing.Size(1051, 419);
             tabControls.TabIndex = 33;
             tabControls.Selected += tabControl1_Selected;
             // 
@@ -575,11 +575,11 @@ namespace ATA_GUI
             tabPageSystem.Controls.Add(groupBoxAPKMenu);
             tabPageSystem.Controls.Add(groupBoxADBNet);
             tabPageSystem.Controls.Add(groupBoxRebootMenu);
-            tabPageSystem.Location = new System.Drawing.Point(4, 24);
+            tabPageSystem.Location = new System.Drawing.Point(4, 26);
             tabPageSystem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             tabPageSystem.Name = "tabPageSystem";
             tabPageSystem.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            tabPageSystem.Size = new System.Drawing.Size(1043, 342);
+            tabPageSystem.Size = new System.Drawing.Size(1043, 389);
             tabPageSystem.TabIndex = 0;
             tabPageSystem.Text = "System";
             tabPageSystem.UseVisualStyleBackColor = true;
@@ -593,11 +593,11 @@ namespace ATA_GUI
             groupBoxAPKMenu.Controls.Add(toolStrip1);
             groupBoxAPKMenu.Controls.Add(checkedListBoxApp);
             groupBoxAPKMenu.Controls.Add(checkBoxSelectAll);
-            groupBoxAPKMenu.Location = new System.Drawing.Point(386, 10);
+            groupBoxAPKMenu.Location = new System.Drawing.Point(386, 11);
             groupBoxAPKMenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxAPKMenu.Name = "groupBoxAPKMenu";
             groupBoxAPKMenu.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxAPKMenu.Size = new System.Drawing.Size(649, 323);
+            groupBoxAPKMenu.Size = new System.Drawing.Size(649, 366);
             groupBoxAPKMenu.TabIndex = 36;
             groupBoxAPKMenu.TabStop = false;
             groupBoxAPKMenu.Text = "APK Menu";
@@ -607,11 +607,11 @@ namespace ATA_GUI
             groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(pictureBox3);
-            groupBox2.Location = new System.Drawing.Point(462, 212);
+            groupBox2.Location = new System.Drawing.Point(462, 245);
             groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox2.Size = new System.Drawing.Size(181, 104);
+            groupBox2.Size = new System.Drawing.Size(181, 118);
             groupBox2.TabIndex = 44;
             groupBox2.TabStop = false;
             groupBox2.Text = "File Transfer";
@@ -621,20 +621,21 @@ namespace ATA_GUI
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(64, 80);
+            label5.Location = new System.Drawing.Point(64, 91);
             label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(54, 15);
+            label5.Size = new System.Drawing.Size(61, 17);
             label5.TabIndex = 1;
             label5.Text = "Drop File";
             // 
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.icons8_drag_and_drop_48;
-            pictureBox3.Location = new System.Drawing.Point(65, 22);
+            pictureBox3.Location = new System.Drawing.Point(65, 25);
             pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new System.Drawing.Size(59, 54);
+            pictureBox3.Size = new System.Drawing.Size(59, 61);
+            pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             pictureBox3.TabIndex = 0;
             pictureBox3.TabStop = false;
             // 
@@ -642,10 +643,10 @@ namespace ATA_GUI
             // 
             labelSelectedAppCount.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             labelSelectedAppCount.AutoSize = true;
-            labelSelectedAppCount.Location = new System.Drawing.Point(326, 81);
+            labelSelectedAppCount.Location = new System.Drawing.Point(326, 92);
             labelSelectedAppCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelSelectedAppCount.Name = "labelSelectedAppCount";
-            labelSelectedAppCount.Size = new System.Drawing.Size(88, 15);
+            labelSelectedAppCount.Size = new System.Drawing.Size(99, 17);
             labelSelectedAppCount.TabIndex = 44;
             labelSelectedAppCount.Text = "Selected App: 0";
             // 
@@ -654,11 +655,11 @@ namespace ATA_GUI
             groupBox6.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             groupBox6.Controls.Add(label3);
             groupBox6.Controls.Add(pictureBox2);
-            groupBox6.Location = new System.Drawing.Point(462, 104);
+            groupBox6.Location = new System.Drawing.Point(462, 118);
             groupBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox6.Name = "groupBox6";
             groupBox6.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox6.Size = new System.Drawing.Size(181, 104);
+            groupBox6.Size = new System.Drawing.Size(181, 121);
             groupBox6.TabIndex = 43;
             groupBox6.TabStop = false;
             groupBox6.Text = "Apk Installer";
@@ -668,32 +669,34 @@ namespace ATA_GUI
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(64, 80);
+            label3.Location = new System.Drawing.Point(64, 91);
             label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(57, 15);
+            label3.Size = new System.Drawing.Size(64, 17);
             label3.TabIndex = 1;
             label3.Text = "Drop Apk";
             // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.icons8_drag_and_drop_48;
-            pictureBox2.Location = new System.Drawing.Point(65, 22);
+            pictureBox2.Location = new System.Drawing.Point(65, 25);
             pictureBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new System.Drawing.Size(59, 54);
+            pictureBox2.Size = new System.Drawing.Size(59, 61);
+            pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
             // toolStrip1
             // 
             toolStrip1.BackColor = System.Drawing.Color.White;
+            toolStrip1.ImageScalingSize = new System.Drawing.Size(18, 18);
             toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripButtonReloadApps, toolStripSeparator2, toolStripButtonFilter, toolStripSeparator6, textBoxSearch, toolStripSeparator1, toolStripButtonRestoreApp, toolStripSeparator7, toolStripButtonUninstallApp, toolStripSeparator5, toolStripButtonPackageManager, toolStripSeparator3, toolStripButtonPermissionMenu, toolStripSeparator4, toolStripButtonSetDefault, toolStripSeparator8, toolStripButtonBloatwareDetecter, toolStripSeparator10, toolStripButtonSearch, toolStripSeparator9, toolStripButtonExtract, toolStripSeparator12, toolStripLabelTotalApps, toolStripSeparator11, toolStripDropDownInstallApkButton });
             toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            toolStrip1.Location = new System.Drawing.Point(4, 19);
+            toolStrip1.Location = new System.Drawing.Point(4, 21);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            toolStrip1.Size = new System.Drawing.Size(641, 23);
+            toolStrip1.Size = new System.Drawing.Size(641, 25);
             toolStrip1.TabIndex = 42;
             toolStrip1.Text = "toolStripAPKMenu";
             // 
@@ -703,7 +706,7 @@ namespace ATA_GUI
             toolStripButtonReloadApps.Image = Properties.Resources.icons8_refresh_48;
             toolStripButtonReloadApps.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripButtonReloadApps.Name = "toolStripButtonReloadApps";
-            toolStripButtonReloadApps.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonReloadApps.Size = new System.Drawing.Size(25, 22);
             toolStripButtonReloadApps.Text = "Reload Apps";
             toolStripButtonReloadApps.Click += toolStripButton1_Click;
             // 
@@ -718,7 +721,7 @@ namespace ATA_GUI
             toolStripButtonFilter.Image = Properties.Resources.icons8_filter_48;
             toolStripButtonFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripButtonFilter.Name = "toolStripButtonFilter";
-            toolStripButtonFilter.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonFilter.Size = new System.Drawing.Size(25, 22);
             toolStripButtonFilter.Text = "Filter Apps";
             toolStripButtonFilter.ToolTipText = "Apps Filter ";
             toolStripButtonFilter.Click += toolStripButtonFilter_Click;
@@ -732,7 +735,7 @@ namespace ATA_GUI
             // 
             textBoxSearch.BackColor = System.Drawing.Color.White;
             textBoxSearch.Name = "textBoxSearch";
-            textBoxSearch.Size = new System.Drawing.Size(174, 23);
+            textBoxSearch.Size = new System.Drawing.Size(174, 25);
             textBoxSearch.Text = "Search";
             textBoxSearch.Click += textBoxSearch_Click;
             textBoxSearch.TextChanged += textBoxSearch_TextChanged;
@@ -748,7 +751,7 @@ namespace ATA_GUI
             toolStripButtonRestoreApp.Image = Properties.Resources.icons8_restart_48;
             toolStripButtonRestoreApp.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripButtonRestoreApp.Name = "toolStripButtonRestoreApp";
-            toolStripButtonRestoreApp.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonRestoreApp.Size = new System.Drawing.Size(25, 22);
             toolStripButtonRestoreApp.Tag = "";
             toolStripButtonRestoreApp.Text = "Restore App [Only system apps can be restored]";
             toolStripButtonRestoreApp.Click += toolStripButtonRestoreApp_Click;
@@ -764,7 +767,7 @@ namespace ATA_GUI
             toolStripButtonUninstallApp.Image = Properties.Resources.icons8_remove_48;
             toolStripButtonUninstallApp.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripButtonUninstallApp.Name = "toolStripButtonUninstallApp";
-            toolStripButtonUninstallApp.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonUninstallApp.Size = new System.Drawing.Size(25, 22);
             toolStripButtonUninstallApp.Text = "Uninstall App";
             toolStripButtonUninstallApp.Click += toolStripButton4_Click;
             // 
@@ -779,7 +782,7 @@ namespace ATA_GUI
             toolStripButtonPackageManager.Image = Properties.Resources.icons8_support_48;
             toolStripButtonPackageManager.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripButtonPackageManager.Name = "toolStripButtonPackageManager";
-            toolStripButtonPackageManager.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonPackageManager.Size = new System.Drawing.Size(25, 22);
             toolStripButtonPackageManager.Text = "Package Manager";
             toolStripButtonPackageManager.ToolTipText = "Package Menu";
             toolStripButtonPackageManager.Click += toolStripButton5_Click;
@@ -795,7 +798,7 @@ namespace ATA_GUI
             toolStripButtonPermissionMenu.Image = Properties.Resources.icons8_services_48;
             toolStripButtonPermissionMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripButtonPermissionMenu.Name = "toolStripButtonPermissionMenu";
-            toolStripButtonPermissionMenu.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonPermissionMenu.Size = new System.Drawing.Size(25, 22);
             toolStripButtonPermissionMenu.Text = "toolStripButton1";
             toolStripButtonPermissionMenu.ToolTipText = "Permission Menu";
             toolStripButtonPermissionMenu.Click += toolStripButtonPermissionMenu_Click;
@@ -811,7 +814,7 @@ namespace ATA_GUI
             toolStripButtonSetDefault.Image = Properties.Resources.icons8_operating_system_48;
             toolStripButtonSetDefault.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripButtonSetDefault.Name = "toolStripButtonSetDefault";
-            toolStripButtonSetDefault.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonSetDefault.Size = new System.Drawing.Size(25, 22);
             toolStripButtonSetDefault.Text = "Set default app";
             toolStripButtonSetDefault.Click += toolStripButtonSetDefault_Click;
             // 
@@ -826,7 +829,7 @@ namespace ATA_GUI
             toolStripButtonBloatwareDetecter.Image = Properties.Resources.icons8_box_important_48;
             toolStripButtonBloatwareDetecter.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripButtonBloatwareDetecter.Name = "toolStripButtonBloatwareDetecter";
-            toolStripButtonBloatwareDetecter.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonBloatwareDetecter.Size = new System.Drawing.Size(25, 22);
             toolStripButtonBloatwareDetecter.Text = "Bloatware Detecter";
             toolStripButtonBloatwareDetecter.Click += toolStripButtonBloatwareDetecter_Click;
             // 
@@ -841,7 +844,7 @@ namespace ATA_GUI
             toolStripButtonSearch.Image = Properties.Resources.icons8_search_in_browser_48;
             toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripButtonSearch.Name = "toolStripButtonSearch";
-            toolStripButtonSearch.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonSearch.Size = new System.Drawing.Size(25, 22);
             toolStripButtonSearch.Text = "Search";
             toolStripButtonSearch.Click += toolStripButtonSearch_Click;
             // 
@@ -856,7 +859,7 @@ namespace ATA_GUI
             toolStripButtonExtract.Image = (System.Drawing.Image)resources.GetObject("toolStripButtonExtract.Image");
             toolStripButtonExtract.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripButtonExtract.Name = "toolStripButtonExtract";
-            toolStripButtonExtract.Size = new System.Drawing.Size(23, 20);
+            toolStripButtonExtract.Size = new System.Drawing.Size(25, 22);
             toolStripButtonExtract.Text = "Extract";
             toolStripButtonExtract.Click += toolStripButtonExtract_Click;
             // 
@@ -868,7 +871,7 @@ namespace ATA_GUI
             // toolStripLabelTotalApps
             // 
             toolStripLabelTotalApps.Name = "toolStripLabelTotalApps";
-            toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 15);
+            toolStripLabelTotalApps.Size = new System.Drawing.Size(50, 17);
             toolStripLabelTotalApps.Text = "Total: 0";
             // 
             // toolStripSeparator11
@@ -883,20 +886,20 @@ namespace ATA_GUI
             toolStripDropDownInstallApkButton.Image = Properties.Resources.icons8_software_installer_48;
             toolStripDropDownInstallApkButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripDropDownInstallApkButton.Name = "toolStripDropDownInstallApkButton";
-            toolStripDropDownInstallApkButton.Size = new System.Drawing.Size(29, 20);
+            toolStripDropDownInstallApkButton.Size = new System.Drawing.Size(32, 22);
             toolStripDropDownInstallApkButton.Text = "Install App";
             // 
             // installAppToolStripMenuItem
             // 
             installAppToolStripMenuItem.Name = "installAppToolStripMenuItem";
-            installAppToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            installAppToolStripMenuItem.Size = new System.Drawing.Size(178, 24);
             installAppToolStripMenuItem.Text = "Install App";
             installAppToolStripMenuItem.Click += installAppToolStripMenuItem_Click;
             // 
             // downgradeAppToolStripMenuItem
             // 
             downgradeAppToolStripMenuItem.Name = "downgradeAppToolStripMenuItem";
-            downgradeAppToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            downgradeAppToolStripMenuItem.Size = new System.Drawing.Size(178, 24);
             downgradeAppToolStripMenuItem.Text = "Downgrade App";
             downgradeAppToolStripMenuItem.Click += downgradeAppToolStripMenuItem_Click;
             // 
@@ -906,11 +909,11 @@ namespace ATA_GUI
             checkedListBoxApp.BackColor = System.Drawing.Color.White;
             checkedListBoxApp.ForeColor = System.Drawing.Color.Black;
             checkedListBoxApp.FormattingEnabled = true;
-            checkedListBoxApp.Location = new System.Drawing.Point(6, 104);
+            checkedListBoxApp.Location = new System.Drawing.Point(6, 118);
             checkedListBoxApp.Margin = new System.Windows.Forms.Padding(2);
             checkedListBoxApp.Name = "checkedListBoxApp";
             checkedListBoxApp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            checkedListBoxApp.Size = new System.Drawing.Size(450, 202);
+            checkedListBoxApp.Size = new System.Drawing.Size(450, 244);
             checkedListBoxApp.TabIndex = 37;
             checkedListBoxApp.SelectedIndexChanged += checkedListBoxApp_SelectedIndexChanged;
             // 
@@ -923,11 +926,11 @@ namespace ATA_GUI
             groupBoxADBNet.Controls.Add(label2);
             groupBoxADBNet.Controls.Add(buttonDisconnectIP);
             groupBoxADBNet.Controls.Add(buttonConnectToIP);
-            groupBoxADBNet.Location = new System.Drawing.Point(174, 196);
+            groupBoxADBNet.Location = new System.Drawing.Point(174, 222);
             groupBoxADBNet.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxADBNet.Name = "groupBoxADBNet";
             groupBoxADBNet.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxADBNet.Size = new System.Drawing.Size(208, 137);
+            groupBoxADBNet.Size = new System.Drawing.Size(208, 155);
             groupBoxADBNet.TabIndex = 37;
             groupBoxADBNet.TabStop = false;
             groupBoxADBNet.Text = "ADB over Network Menu";
@@ -935,10 +938,10 @@ namespace ATA_GUI
             // buttonUnlockNetworkMenu
             // 
             buttonUnlockNetworkMenu.Image = Properties.Resources.icons8_unlock_16;
-            buttonUnlockNetworkMenu.Location = new System.Drawing.Point(164, 104);
+            buttonUnlockNetworkMenu.Location = new System.Drawing.Point(164, 118);
             buttonUnlockNetworkMenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonUnlockNetworkMenu.Name = "buttonUnlockNetworkMenu";
-            buttonUnlockNetworkMenu.Size = new System.Drawing.Size(33, 27);
+            buttonUnlockNetworkMenu.Size = new System.Drawing.Size(33, 31);
             buttonUnlockNetworkMenu.TabIndex = 43;
             buttonUnlockNetworkMenu.UseVisualStyleBackColor = true;
             buttonUnlockNetworkMenu.Click += buttonUnlockButtons_Click;
@@ -946,28 +949,28 @@ namespace ATA_GUI
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new System.Drawing.Point(146, 22);
+            label11.Location = new System.Drawing.Point(146, 25);
             label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label11.Name = "label11";
-            label11.Size = new System.Drawing.Size(38, 15);
+            label11.Size = new System.Drawing.Size(42, 17);
             label11.TabIndex = 42;
             label11.Text = "PORT:";
             // 
             // textBoxPort
             // 
-            textBoxPort.Location = new System.Drawing.Point(149, 40);
+            textBoxPort.Location = new System.Drawing.Point(149, 45);
             textBoxPort.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             textBoxPort.Name = "textBoxPort";
-            textBoxPort.Size = new System.Drawing.Size(47, 23);
+            textBoxPort.Size = new System.Drawing.Size(47, 25);
             textBoxPort.TabIndex = 41;
             // 
             // comboBoxIP
             // 
             comboBoxIP.FormattingEnabled = true;
-            comboBoxIP.Location = new System.Drawing.Point(10, 40);
+            comboBoxIP.Location = new System.Drawing.Point(10, 45);
             comboBoxIP.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             comboBoxIP.Name = "comboBoxIP";
-            comboBoxIP.Size = new System.Drawing.Size(131, 23);
+            comboBoxIP.Size = new System.Drawing.Size(131, 25);
             comboBoxIP.TabIndex = 40;
             comboBoxIP.TextUpdate += comboBoxIP_TextUpdate;
             comboBoxIP.KeyPress += comboBoxIP_KeyPress;
@@ -975,10 +978,10 @@ namespace ATA_GUI
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(7, 22);
+            label2.Location = new System.Drawing.Point(7, 25);
             label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(20, 15);
+            label2.Size = new System.Drawing.Size(21, 17);
             label2.TabIndex = 39;
             label2.Text = "IP:";
             // 
@@ -987,10 +990,10 @@ namespace ATA_GUI
             buttonDisconnectIP.BackColor = System.Drawing.Color.White;
             buttonDisconnectIP.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonDisconnectIP.ForeColor = System.Drawing.Color.Black;
-            buttonDisconnectIP.Location = new System.Drawing.Point(103, 70);
+            buttonDisconnectIP.Location = new System.Drawing.Point(103, 79);
             buttonDisconnectIP.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonDisconnectIP.Name = "buttonDisconnectIP";
-            buttonDisconnectIP.Size = new System.Drawing.Size(94, 27);
+            buttonDisconnectIP.Size = new System.Drawing.Size(94, 31);
             buttonDisconnectIP.TabIndex = 38;
             buttonDisconnectIP.Text = "Disconnect";
             buttonDisconnectIP.UseVisualStyleBackColor = false;
@@ -1001,10 +1004,10 @@ namespace ATA_GUI
             buttonConnectToIP.BackColor = System.Drawing.Color.White;
             buttonConnectToIP.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonConnectToIP.ForeColor = System.Drawing.Color.Black;
-            buttonConnectToIP.Location = new System.Drawing.Point(10, 70);
+            buttonConnectToIP.Location = new System.Drawing.Point(10, 79);
             buttonConnectToIP.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonConnectToIP.Name = "buttonConnectToIP";
-            buttonConnectToIP.Size = new System.Drawing.Size(85, 27);
+            buttonConnectToIP.Size = new System.Drawing.Size(85, 31);
             buttonConnectToIP.TabIndex = 35;
             buttonConnectToIP.Text = "Connect";
             buttonConnectToIP.UseVisualStyleBackColor = false;
@@ -1015,11 +1018,11 @@ namespace ATA_GUI
             groupBoxRebootMenu.Controls.Add(buttonRS);
             groupBoxRebootMenu.Controls.Add(buttonRR);
             groupBoxRebootMenu.Controls.Add(buttonRF);
-            groupBoxRebootMenu.Location = new System.Drawing.Point(7, 196);
+            groupBoxRebootMenu.Location = new System.Drawing.Point(7, 222);
             groupBoxRebootMenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxRebootMenu.Name = "groupBoxRebootMenu";
             groupBoxRebootMenu.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxRebootMenu.Size = new System.Drawing.Size(160, 137);
+            groupBoxRebootMenu.Size = new System.Drawing.Size(160, 155);
             groupBoxRebootMenu.TabIndex = 35;
             groupBoxRebootMenu.TabStop = false;
             groupBoxRebootMenu.Text = "Reboot Menu";
@@ -1029,10 +1032,10 @@ namespace ATA_GUI
             buttonRS.BackColor = System.Drawing.Color.White;
             buttonRS.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonRS.ForeColor = System.Drawing.Color.Black;
-            buttonRS.Location = new System.Drawing.Point(7, 32);
+            buttonRS.Location = new System.Drawing.Point(7, 36);
             buttonRS.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonRS.Name = "buttonRS";
-            buttonRS.Size = new System.Drawing.Size(145, 27);
+            buttonRS.Size = new System.Drawing.Size(145, 31);
             buttonRS.TabIndex = 1;
             buttonRS.Text = "Reboot Smartphone";
             buttonRS.UseVisualStyleBackColor = false;
@@ -1043,10 +1046,10 @@ namespace ATA_GUI
             buttonRR.BackColor = System.Drawing.Color.White;
             buttonRR.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonRR.ForeColor = System.Drawing.Color.Black;
-            buttonRR.Location = new System.Drawing.Point(7, 66);
+            buttonRR.Location = new System.Drawing.Point(7, 75);
             buttonRR.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonRR.Name = "buttonRR";
-            buttonRR.Size = new System.Drawing.Size(145, 27);
+            buttonRR.Size = new System.Drawing.Size(145, 31);
             buttonRR.TabIndex = 2;
             buttonRR.Text = "Reboot Into Recovery";
             buttonRR.UseVisualStyleBackColor = false;
@@ -1057,10 +1060,10 @@ namespace ATA_GUI
             buttonRF.BackColor = System.Drawing.Color.White;
             buttonRF.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonRF.ForeColor = System.Drawing.Color.Black;
-            buttonRF.Location = new System.Drawing.Point(7, 99);
+            buttonRF.Location = new System.Drawing.Point(7, 112);
             buttonRF.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonRF.Name = "buttonRF";
-            buttonRF.Size = new System.Drawing.Size(145, 27);
+            buttonRF.Size = new System.Drawing.Size(145, 31);
             buttonRF.TabIndex = 3;
             buttonRF.Text = "Reboot into Fastboot";
             buttonRF.UseVisualStyleBackColor = false;
@@ -1069,11 +1072,11 @@ namespace ATA_GUI
             // tabPageFastboot
             // 
             tabPageFastboot.Controls.Add(panelFastboot);
-            tabPageFastboot.Location = new System.Drawing.Point(4, 24);
+            tabPageFastboot.Location = new System.Drawing.Point(4, 26);
             tabPageFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             tabPageFastboot.Name = "tabPageFastboot";
             tabPageFastboot.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            tabPageFastboot.Size = new System.Drawing.Size(1043, 342);
+            tabPageFastboot.Size = new System.Drawing.Size(1043, 389);
             tabPageFastboot.TabIndex = 1;
             tabPageFastboot.Text = "Fastboot";
             tabPageFastboot.UseVisualStyleBackColor = true;
@@ -1090,7 +1093,7 @@ namespace ATA_GUI
             panelFastboot.Location = new System.Drawing.Point(0, 3);
             panelFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             panelFastboot.Name = "panelFastboot";
-            panelFastboot.Size = new System.Drawing.Size(1038, 329);
+            panelFastboot.Size = new System.Drawing.Size(1038, 373);
             panelFastboot.TabIndex = 49;
             // 
             // buttonBootloaderMenu
@@ -1098,10 +1101,10 @@ namespace ATA_GUI
             buttonBootloaderMenu.BackColor = System.Drawing.Color.White;
             buttonBootloaderMenu.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonBootloaderMenu.ForeColor = System.Drawing.Color.Black;
-            buttonBootloaderMenu.Location = new System.Drawing.Point(523, 254);
+            buttonBootloaderMenu.Location = new System.Drawing.Point(523, 288);
             buttonBootloaderMenu.Margin = new System.Windows.Forms.Padding(2);
             buttonBootloaderMenu.Name = "buttonBootloaderMenu";
-            buttonBootloaderMenu.Size = new System.Drawing.Size(138, 27);
+            buttonBootloaderMenu.Size = new System.Drawing.Size(138, 31);
             buttonBootloaderMenu.TabIndex = 55;
             buttonBootloaderMenu.Text = "Bootloader Menu";
             buttonBootloaderMenu.UseVisualStyleBackColor = false;
@@ -1112,10 +1115,10 @@ namespace ATA_GUI
             buttonRebootRecovery.BackColor = System.Drawing.Color.White;
             buttonRebootRecovery.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonRebootRecovery.ForeColor = System.Drawing.Color.Black;
-            buttonRebootRecovery.Location = new System.Drawing.Point(523, 223);
+            buttonRebootRecovery.Location = new System.Drawing.Point(523, 253);
             buttonRebootRecovery.Margin = new System.Windows.Forms.Padding(2);
             buttonRebootRecovery.Name = "buttonRebootRecovery";
-            buttonRebootRecovery.Size = new System.Drawing.Size(138, 27);
+            buttonRebootRecovery.Size = new System.Drawing.Size(138, 31);
             buttonRebootRecovery.TabIndex = 54;
             buttonRebootRecovery.Text = "Reboot to Recovery";
             buttonRebootRecovery.UseVisualStyleBackColor = false;
@@ -1130,11 +1133,11 @@ namespace ATA_GUI
             groupBox5.Controls.Add(labelDataType);
             groupBox5.Controls.Add(label7);
             groupBox5.Controls.Add(label8);
-            groupBox5.Location = new System.Drawing.Point(499, 7);
+            groupBox5.Location = new System.Drawing.Point(499, 8);
             groupBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox5.Name = "groupBox5";
             groupBox5.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox5.Size = new System.Drawing.Size(532, 179);
+            groupBox5.Size = new System.Drawing.Size(532, 203);
             groupBox5.TabIndex = 51;
             groupBox5.TabStop = false;
             groupBox5.Text = "Device Info";
@@ -1142,60 +1145,60 @@ namespace ATA_GUI
             // labelUDT
             // 
             labelUDT.AutoSize = true;
-            labelUDT.Location = new System.Drawing.Point(154, 75);
+            labelUDT.Location = new System.Drawing.Point(154, 85);
             labelUDT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelUDT.Name = "labelUDT";
-            labelUDT.Size = new System.Drawing.Size(44, 15);
+            labelUDT.Size = new System.Drawing.Size(48, 17);
             labelUDT.TabIndex = 15;
             labelUDT.Text = "EMPTY";
             // 
             // labelCDT
             // 
             labelCDT.AutoSize = true;
-            labelCDT.Location = new System.Drawing.Point(154, 60);
+            labelCDT.Location = new System.Drawing.Point(154, 68);
             labelCDT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelCDT.Name = "labelCDT";
-            labelCDT.Size = new System.Drawing.Size(44, 15);
+            labelCDT.Size = new System.Drawing.Size(48, 17);
             labelCDT.TabIndex = 14;
             labelCDT.Text = "EMPTY";
             // 
             // labelBootloaderStatus
             // 
             labelBootloaderStatus.AutoSize = true;
-            labelBootloaderStatus.Location = new System.Drawing.Point(154, 45);
+            labelBootloaderStatus.Location = new System.Drawing.Point(154, 51);
             labelBootloaderStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelBootloaderStatus.Name = "labelBootloaderStatus";
-            labelBootloaderStatus.Size = new System.Drawing.Size(44, 15);
+            labelBootloaderStatus.Size = new System.Drawing.Size(48, 17);
             labelBootloaderStatus.TabIndex = 13;
             labelBootloaderStatus.Text = "EMPTY";
             // 
             // labelDataType
             // 
             labelDataType.AutoSize = true;
-            labelDataType.Location = new System.Drawing.Point(20, 75);
+            labelDataType.Location = new System.Drawing.Point(20, 85);
             labelDataType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelDataType.Name = "labelDataType";
-            labelDataType.Size = new System.Drawing.Size(61, 15);
+            labelDataType.Size = new System.Drawing.Size(69, 17);
             labelDataType.TabIndex = 12;
             labelDataType.Text = "Data Type:";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new System.Drawing.Point(20, 60);
+            label7.Location = new System.Drawing.Point(20, 68);
             label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(67, 15);
+            label7.Size = new System.Drawing.Size(74, 17);
             label7.TabIndex = 11;
             label7.Text = "Cache Type";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new System.Drawing.Point(20, 45);
+            label8.Location = new System.Drawing.Point(20, 51);
             label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(121, 15);
+            label8.Size = new System.Drawing.Size(134, 17);
             label8.TabIndex = 10;
             label8.Text = "Bootloader Unlocked:";
             // 
@@ -1204,10 +1207,10 @@ namespace ATA_GUI
             buttonHardReset.BackColor = System.Drawing.Color.White;
             buttonHardReset.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonHardReset.ForeColor = System.Drawing.Color.Black;
-            buttonHardReset.Location = new System.Drawing.Point(790, 192);
+            buttonHardReset.Location = new System.Drawing.Point(790, 218);
             buttonHardReset.Margin = new System.Windows.Forms.Padding(2);
             buttonHardReset.Name = "buttonHardReset";
-            buttonHardReset.Size = new System.Drawing.Size(138, 27);
+            buttonHardReset.Size = new System.Drawing.Size(138, 31);
             buttonHardReset.TabIndex = 50;
             buttonHardReset.Text = "Hard Reset";
             buttonHardReset.UseVisualStyleBackColor = false;
@@ -1218,10 +1221,10 @@ namespace ATA_GUI
             buttonRebootToSystem.BackColor = System.Drawing.Color.White;
             buttonRebootToSystem.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonRebootToSystem.ForeColor = System.Drawing.Color.Black;
-            buttonRebootToSystem.Location = new System.Drawing.Point(523, 192);
+            buttonRebootToSystem.Location = new System.Drawing.Point(523, 218);
             buttonRebootToSystem.Margin = new System.Windows.Forms.Padding(2);
             buttonRebootToSystem.Name = "buttonRebootToSystem";
-            buttonRebootToSystem.Size = new System.Drawing.Size(138, 27);
+            buttonRebootToSystem.Size = new System.Drawing.Size(138, 31);
             buttonRebootToSystem.TabIndex = 49;
             buttonRebootToSystem.Text = "Reboot to System";
             buttonRebootToSystem.UseVisualStyleBackColor = false;
@@ -1242,11 +1245,11 @@ namespace ATA_GUI
             groupBox4.Controls.Add(radioButtonRecovery);
             groupBox4.Controls.Add(radioButtonBootloader);
             groupBox4.Controls.Add(radioButtonRadio);
-            groupBox4.Location = new System.Drawing.Point(4, 7);
+            groupBox4.Location = new System.Drawing.Point(4, 8);
             groupBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox4.Size = new System.Drawing.Size(489, 314);
+            groupBox4.Size = new System.Drawing.Size(489, 356);
             groupBox4.TabIndex = 48;
             groupBox4.TabStop = false;
             groupBox4.Text = "Flash img";
@@ -1254,10 +1257,10 @@ namespace ATA_GUI
             // button1
             // 
             button1.Image = Properties.Resources.icons8_flash_on_48;
-            button1.Location = new System.Drawing.Point(134, 149);
+            button1.Location = new System.Drawing.Point(134, 169);
             button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(88, 81);
+            button1.Size = new System.Drawing.Size(88, 92);
             button1.TabIndex = 50;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -1265,28 +1268,28 @@ namespace ATA_GUI
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new System.Drawing.Point(148, 233);
+            label10.Location = new System.Drawing.Point(148, 264);
             label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(61, 15);
+            label10.Size = new System.Drawing.Size(66, 17);
             label10.TabIndex = 49;
             label10.Text = "Flash .Img";
             // 
             // textBoxDirImg
             // 
-            textBoxDirImg.Location = new System.Drawing.Point(30, 47);
+            textBoxDirImg.Location = new System.Drawing.Point(30, 53);
             textBoxDirImg.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             textBoxDirImg.Name = "textBoxDirImg";
-            textBoxDirImg.Size = new System.Drawing.Size(285, 23);
+            textBoxDirImg.Size = new System.Drawing.Size(285, 25);
             textBoxDirImg.TabIndex = 37;
             // 
             // radioButtonRom
             // 
             radioButtonRom.AutoSize = true;
-            radioButtonRom.Location = new System.Drawing.Point(326, 264);
+            radioButtonRom.Location = new System.Drawing.Point(326, 299);
             radioButtonRom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonRom.Name = "radioButtonRom";
-            radioButtonRom.Size = new System.Drawing.Size(50, 19);
+            radioButtonRom.Size = new System.Drawing.Size(53, 21);
             radioButtonRom.TabIndex = 47;
             radioButtonRom.TabStop = true;
             radioButtonRom.Text = "Rom";
@@ -1296,10 +1299,10 @@ namespace ATA_GUI
             // 
             buttonSearchFileFastboot.BackColor = System.Drawing.Color.White;
             buttonSearchFileFastboot.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonSearchFileFastboot.Location = new System.Drawing.Point(323, 45);
+            buttonSearchFileFastboot.Location = new System.Drawing.Point(323, 51);
             buttonSearchFileFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonSearchFileFastboot.Name = "buttonSearchFileFastboot";
-            buttonSearchFileFastboot.Size = new System.Drawing.Size(102, 27);
+            buttonSearchFileFastboot.Size = new System.Drawing.Size(102, 31);
             buttonSearchFileFastboot.TabIndex = 36;
             buttonSearchFileFastboot.Text = "Search File";
             buttonSearchFileFastboot.UseVisualStyleBackColor = false;
@@ -1308,10 +1311,10 @@ namespace ATA_GUI
             // radioButtonCache
             // 
             radioButtonCache.AutoSize = true;
-            radioButtonCache.Location = new System.Drawing.Point(326, 238);
+            radioButtonCache.Location = new System.Drawing.Point(326, 270);
             radioButtonCache.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonCache.Name = "radioButtonCache";
-            radioButtonCache.Size = new System.Drawing.Size(58, 19);
+            radioButtonCache.Size = new System.Drawing.Size(61, 21);
             radioButtonCache.TabIndex = 46;
             radioButtonCache.TabStop = true;
             radioButtonCache.Text = "Cache";
@@ -1320,10 +1323,10 @@ namespace ATA_GUI
             // radioButtonVendor
             // 
             radioButtonVendor.AutoSize = true;
-            radioButtonVendor.Location = new System.Drawing.Point(326, 211);
+            radioButtonVendor.Location = new System.Drawing.Point(326, 239);
             radioButtonVendor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonVendor.Name = "radioButtonVendor";
-            radioButtonVendor.Size = new System.Drawing.Size(62, 19);
+            radioButtonVendor.Size = new System.Drawing.Size(68, 21);
             radioButtonVendor.TabIndex = 45;
             radioButtonVendor.TabStop = true;
             radioButtonVendor.Text = "Vendor";
@@ -1332,10 +1335,10 @@ namespace ATA_GUI
             // radioButtonSystem
             // 
             radioButtonSystem.AutoSize = true;
-            radioButtonSystem.Location = new System.Drawing.Point(326, 185);
+            radioButtonSystem.Location = new System.Drawing.Point(326, 210);
             radioButtonSystem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonSystem.Name = "radioButtonSystem";
-            radioButtonSystem.Size = new System.Drawing.Size(63, 19);
+            radioButtonSystem.Size = new System.Drawing.Size(67, 21);
             radioButtonSystem.TabIndex = 44;
             radioButtonSystem.TabStop = true;
             radioButtonSystem.Text = "System";
@@ -1344,10 +1347,10 @@ namespace ATA_GUI
             // radioButtonBoot
             // 
             radioButtonBoot.AutoSize = true;
-            radioButtonBoot.Location = new System.Drawing.Point(326, 78);
+            radioButtonBoot.Location = new System.Drawing.Point(326, 88);
             radioButtonBoot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonBoot.Name = "radioButtonBoot";
-            radioButtonBoot.Size = new System.Drawing.Size(50, 19);
+            radioButtonBoot.Size = new System.Drawing.Size(53, 21);
             radioButtonBoot.TabIndex = 40;
             radioButtonBoot.TabStop = true;
             radioButtonBoot.Text = "Boot";
@@ -1356,10 +1359,10 @@ namespace ATA_GUI
             // radioButtonRecovery
             // 
             radioButtonRecovery.AutoSize = true;
-            radioButtonRecovery.Location = new System.Drawing.Point(326, 158);
+            radioButtonRecovery.Location = new System.Drawing.Point(326, 179);
             radioButtonRecovery.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonRecovery.Name = "radioButtonRecovery";
-            radioButtonRecovery.Size = new System.Drawing.Size(73, 19);
+            radioButtonRecovery.Size = new System.Drawing.Size(79, 21);
             radioButtonRecovery.TabIndex = 43;
             radioButtonRecovery.TabStop = true;
             radioButtonRecovery.Text = "Recovery";
@@ -1368,10 +1371,10 @@ namespace ATA_GUI
             // radioButtonBootloader
             // 
             radioButtonBootloader.AutoSize = true;
-            radioButtonBootloader.Location = new System.Drawing.Point(326, 105);
+            radioButtonBootloader.Location = new System.Drawing.Point(326, 119);
             radioButtonBootloader.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonBootloader.Name = "radioButtonBootloader";
-            radioButtonBootloader.Size = new System.Drawing.Size(83, 19);
+            radioButtonBootloader.Size = new System.Drawing.Size(91, 21);
             radioButtonBootloader.TabIndex = 41;
             radioButtonBootloader.TabStop = true;
             radioButtonBootloader.Text = "Bootloader";
@@ -1380,10 +1383,10 @@ namespace ATA_GUI
             // radioButtonRadio
             // 
             radioButtonRadio.AutoSize = true;
-            radioButtonRadio.Location = new System.Drawing.Point(326, 132);
+            radioButtonRadio.Location = new System.Drawing.Point(326, 150);
             radioButtonRadio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonRadio.Name = "radioButtonRadio";
-            radioButtonRadio.Size = new System.Drawing.Size(55, 19);
+            radioButtonRadio.Size = new System.Drawing.Size(60, 21);
             radioButtonRadio.TabIndex = 42;
             radioButtonRadio.TabStop = true;
             radioButtonRadio.Text = "Radio";
@@ -1392,10 +1395,10 @@ namespace ATA_GUI
             // tabPageRecovery
             // 
             tabPageRecovery.Controls.Add(panelRecovery);
-            tabPageRecovery.Location = new System.Drawing.Point(4, 24);
+            tabPageRecovery.Location = new System.Drawing.Point(4, 26);
             tabPageRecovery.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             tabPageRecovery.Name = "tabPageRecovery";
-            tabPageRecovery.Size = new System.Drawing.Size(1043, 342);
+            tabPageRecovery.Size = new System.Drawing.Size(1043, 389);
             tabPageRecovery.TabIndex = 2;
             tabPageRecovery.Text = "Recovery";
             tabPageRecovery.UseVisualStyleBackColor = true;
@@ -1407,7 +1410,7 @@ namespace ATA_GUI
             panelRecovery.Location = new System.Drawing.Point(0, 3);
             panelRecovery.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             panelRecovery.Name = "panelRecovery";
-            panelRecovery.Size = new System.Drawing.Size(1038, 333);
+            panelRecovery.Size = new System.Drawing.Size(1038, 377);
             panelRecovery.TabIndex = 37;
             // 
             // groupBoxRecoveryRM
@@ -1415,21 +1418,21 @@ namespace ATA_GUI
             groupBoxRecoveryRM.Controls.Add(buttonrr_);
             groupBoxRecoveryRM.Controls.Add(buttonrf_);
             groupBoxRecoveryRM.Controls.Add(buttonrs_);
-            groupBoxRecoveryRM.Location = new System.Drawing.Point(789, 17);
+            groupBoxRecoveryRM.Location = new System.Drawing.Point(789, 19);
             groupBoxRecoveryRM.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxRecoveryRM.Name = "groupBoxRecoveryRM";
             groupBoxRecoveryRM.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxRecoveryRM.Size = new System.Drawing.Size(233, 300);
+            groupBoxRecoveryRM.Size = new System.Drawing.Size(233, 340);
             groupBoxRecoveryRM.TabIndex = 41;
             groupBoxRecoveryRM.TabStop = false;
             groupBoxRecoveryRM.Text = "Reboot menu";
             // 
             // buttonrr_
             // 
-            buttonrr_.Location = new System.Drawing.Point(52, 103);
+            buttonrr_.Location = new System.Drawing.Point(52, 117);
             buttonrr_.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonrr_.Name = "buttonrr_";
-            buttonrr_.Size = new System.Drawing.Size(130, 27);
+            buttonrr_.Size = new System.Drawing.Size(130, 31);
             buttonrr_.TabIndex = 39;
             buttonrr_.Text = "Reboot recovery";
             buttonrr_.UseVisualStyleBackColor = true;
@@ -1437,10 +1440,10 @@ namespace ATA_GUI
             // 
             // buttonrf_
             // 
-            buttonrf_.Location = new System.Drawing.Point(52, 170);
+            buttonrf_.Location = new System.Drawing.Point(52, 193);
             buttonrf_.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonrf_.Name = "buttonrf_";
-            buttonrf_.Size = new System.Drawing.Size(130, 27);
+            buttonrf_.Size = new System.Drawing.Size(130, 31);
             buttonrf_.TabIndex = 37;
             buttonrf_.Text = "Reboot into fastboot";
             buttonrf_.UseVisualStyleBackColor = true;
@@ -1448,10 +1451,10 @@ namespace ATA_GUI
             // 
             // buttonrs_
             // 
-            buttonrs_.Location = new System.Drawing.Point(52, 136);
+            buttonrs_.Location = new System.Drawing.Point(52, 154);
             buttonrs_.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonrs_.Name = "buttonrs_";
-            buttonrs_.Size = new System.Drawing.Size(130, 27);
+            buttonrs_.Size = new System.Drawing.Size(130, 31);
             buttonrs_.TabIndex = 38;
             buttonrs_.Text = "Reboot into system";
             buttonrs_.UseVisualStyleBackColor = true;
@@ -1462,31 +1465,31 @@ namespace ATA_GUI
             groupBoxFlash.Controls.Add(textBoxDirFile);
             groupBoxFlash.Controls.Add(buttonFlashZip);
             groupBoxFlash.Controls.Add(buttonBrowseFile);
-            groupBoxFlash.Location = new System.Drawing.Point(14, 17);
+            groupBoxFlash.Location = new System.Drawing.Point(14, 19);
             groupBoxFlash.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxFlash.Name = "groupBoxFlash";
             groupBoxFlash.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxFlash.Size = new System.Drawing.Size(768, 300);
+            groupBoxFlash.Size = new System.Drawing.Size(768, 340);
             groupBoxFlash.TabIndex = 40;
             groupBoxFlash.TabStop = false;
             groupBoxFlash.Text = "Flash menu";
             // 
             // textBoxDirFile
             // 
-            textBoxDirFile.Location = new System.Drawing.Point(204, 126);
+            textBoxDirFile.Location = new System.Drawing.Point(204, 143);
             textBoxDirFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             textBoxDirFile.Name = "textBoxDirFile";
-            textBoxDirFile.Size = new System.Drawing.Size(285, 23);
+            textBoxDirFile.Size = new System.Drawing.Size(285, 25);
             textBoxDirFile.TabIndex = 33;
             // 
             // buttonFlashZip
             // 
             buttonFlashZip.BackColor = System.Drawing.Color.White;
             buttonFlashZip.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonFlashZip.Location = new System.Drawing.Point(497, 157);
+            buttonFlashZip.Location = new System.Drawing.Point(497, 178);
             buttonFlashZip.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonFlashZip.Name = "buttonFlashZip";
-            buttonFlashZip.Size = new System.Drawing.Size(88, 27);
+            buttonFlashZip.Size = new System.Drawing.Size(88, 31);
             buttonFlashZip.TabIndex = 34;
             buttonFlashZip.Text = "Flash";
             buttonFlashZip.UseVisualStyleBackColor = false;
@@ -1494,10 +1497,10 @@ namespace ATA_GUI
             // 
             // buttonBrowseFile
             // 
-            buttonBrowseFile.Location = new System.Drawing.Point(497, 123);
+            buttonBrowseFile.Location = new System.Drawing.Point(497, 139);
             buttonBrowseFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonBrowseFile.Name = "buttonBrowseFile";
-            buttonBrowseFile.Size = new System.Drawing.Size(88, 27);
+            buttonBrowseFile.Size = new System.Drawing.Size(88, 31);
             buttonBrowseFile.TabIndex = 36;
             buttonBrowseFile.Text = "Browse file";
             buttonBrowseFile.UseVisualStyleBackColor = true;
@@ -1508,11 +1511,11 @@ namespace ATA_GUI
             tabPageTools.Controls.Add(groupBox3);
             tabPageTools.Controls.Add(groupBoxTextInject);
             tabPageTools.Controls.Add(groupBoxFreeRotation);
-            tabPageTools.Location = new System.Drawing.Point(4, 24);
+            tabPageTools.Location = new System.Drawing.Point(4, 26);
             tabPageTools.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             tabPageTools.Name = "tabPageTools";
             tabPageTools.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            tabPageTools.Size = new System.Drawing.Size(1043, 342);
+            tabPageTools.Size = new System.Drawing.Size(1043, 389);
             tabPageTools.TabIndex = 3;
             tabPageTools.Text = "Tools";
             tabPageTools.UseVisualStyleBackColor = true;
@@ -1521,11 +1524,11 @@ namespace ATA_GUI
             // 
             groupBox3.Controls.Add(comboBoxCameraModes);
             groupBox3.Controls.Add(buttonCamera);
-            groupBox3.Location = new System.Drawing.Point(388, 7);
+            groupBox3.Location = new System.Drawing.Point(388, 8);
             groupBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox3.Size = new System.Drawing.Size(233, 97);
+            groupBox3.Size = new System.Drawing.Size(233, 110);
             groupBox3.TabIndex = 47;
             groupBox3.TabStop = false;
             groupBox3.Text = "Live Camera";
@@ -1534,19 +1537,19 @@ namespace ATA_GUI
             // 
             comboBoxCameraModes.FormattingEnabled = true;
             comboBoxCameraModes.Items.AddRange(new object[] { "front", "back", "external" });
-            comboBoxCameraModes.Location = new System.Drawing.Point(7, 45);
+            comboBoxCameraModes.Location = new System.Drawing.Point(7, 51);
             comboBoxCameraModes.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             comboBoxCameraModes.Name = "comboBoxCameraModes";
-            comboBoxCameraModes.Size = new System.Drawing.Size(136, 23);
+            comboBoxCameraModes.Size = new System.Drawing.Size(136, 25);
             comboBoxCameraModes.TabIndex = 48;
             // 
             // buttonCamera
             // 
             buttonCamera.Image = Properties.Resources.camera_live;
-            buttonCamera.Location = new System.Drawing.Point(150, 23);
+            buttonCamera.Location = new System.Drawing.Point(150, 26);
             buttonCamera.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonCamera.Name = "buttonCamera";
-            buttonCamera.Size = new System.Drawing.Size(76, 65);
+            buttonCamera.Size = new System.Drawing.Size(76, 74);
             buttonCamera.TabIndex = 0;
             buttonCamera.UseVisualStyleBackColor = true;
             buttonCamera.Click += buttonCamera_Click;
@@ -1556,11 +1559,11 @@ namespace ATA_GUI
             groupBoxTextInject.Controls.Add(buttonClearTextSend);
             groupBoxTextInject.Controls.Add(buttonInjectText);
             groupBoxTextInject.Controls.Add(richTextBoxSend);
-            groupBoxTextInject.Location = new System.Drawing.Point(113, 7);
+            groupBoxTextInject.Location = new System.Drawing.Point(113, 8);
             groupBoxTextInject.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxTextInject.Name = "groupBoxTextInject";
             groupBoxTextInject.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxTextInject.Size = new System.Drawing.Size(268, 97);
+            groupBoxTextInject.Size = new System.Drawing.Size(268, 110);
             groupBoxTextInject.TabIndex = 46;
             groupBoxTextInject.TabStop = false;
             groupBoxTextInject.Text = "Text Injection";
@@ -1568,10 +1571,10 @@ namespace ATA_GUI
             // buttonClearTextSend
             // 
             buttonClearTextSend.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonClearTextSend.Location = new System.Drawing.Point(174, 61);
+            buttonClearTextSend.Location = new System.Drawing.Point(174, 69);
             buttonClearTextSend.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonClearTextSend.Name = "buttonClearTextSend";
-            buttonClearTextSend.Size = new System.Drawing.Size(88, 27);
+            buttonClearTextSend.Size = new System.Drawing.Size(88, 31);
             buttonClearTextSend.TabIndex = 2;
             buttonClearTextSend.Text = "Clear";
             buttonClearTextSend.UseVisualStyleBackColor = true;
@@ -1580,10 +1583,10 @@ namespace ATA_GUI
             // buttonInjectText
             // 
             buttonInjectText.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonInjectText.Location = new System.Drawing.Point(174, 23);
+            buttonInjectText.Location = new System.Drawing.Point(174, 26);
             buttonInjectText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonInjectText.Name = "buttonInjectText";
-            buttonInjectText.Size = new System.Drawing.Size(88, 27);
+            buttonInjectText.Size = new System.Drawing.Size(88, 31);
             buttonInjectText.TabIndex = 1;
             buttonInjectText.Text = "Inject";
             buttonInjectText.UseVisualStyleBackColor = true;
@@ -1591,10 +1594,10 @@ namespace ATA_GUI
             // 
             // richTextBoxSend
             // 
-            richTextBoxSend.Location = new System.Drawing.Point(7, 23);
+            richTextBoxSend.Location = new System.Drawing.Point(7, 26);
             richTextBoxSend.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             richTextBoxSend.Name = "richTextBoxSend";
-            richTextBoxSend.Size = new System.Drawing.Size(156, 64);
+            richTextBoxSend.Size = new System.Drawing.Size(156, 72);
             richTextBoxSend.TabIndex = 0;
             richTextBoxSend.Text = "";
             // 
@@ -1602,11 +1605,11 @@ namespace ATA_GUI
             // 
             groupBoxFreeRotation.Controls.Add(buttonSetRotation);
             groupBoxFreeRotation.Controls.Add(domainUpDownFreeRotation);
-            groupBoxFreeRotation.Location = new System.Drawing.Point(7, 7);
+            groupBoxFreeRotation.Location = new System.Drawing.Point(7, 8);
             groupBoxFreeRotation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxFreeRotation.Name = "groupBoxFreeRotation";
             groupBoxFreeRotation.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxFreeRotation.Size = new System.Drawing.Size(99, 97);
+            groupBoxFreeRotation.Size = new System.Drawing.Size(99, 110);
             groupBoxFreeRotation.TabIndex = 45;
             groupBoxFreeRotation.TabStop = false;
             groupBoxFreeRotation.Text = "Free Rotation";
@@ -1614,10 +1617,10 @@ namespace ATA_GUI
             // buttonSetRotation
             // 
             buttonSetRotation.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonSetRotation.Location = new System.Drawing.Point(9, 61);
+            buttonSetRotation.Location = new System.Drawing.Point(9, 69);
             buttonSetRotation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonSetRotation.Name = "buttonSetRotation";
-            buttonSetRotation.Size = new System.Drawing.Size(83, 27);
+            buttonSetRotation.Size = new System.Drawing.Size(83, 31);
             buttonSetRotation.TabIndex = 45;
             buttonSetRotation.Text = "Set";
             buttonSetRotation.UseVisualStyleBackColor = true;
@@ -1625,11 +1628,11 @@ namespace ATA_GUI
             // 
             // domainUpDownFreeRotation
             // 
-            domainUpDownFreeRotation.Location = new System.Drawing.Point(9, 23);
+            domainUpDownFreeRotation.Location = new System.Drawing.Point(9, 26);
             domainUpDownFreeRotation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             domainUpDownFreeRotation.Name = "domainUpDownFreeRotation";
             domainUpDownFreeRotation.ReadOnly = true;
-            domainUpDownFreeRotation.Size = new System.Drawing.Size(83, 23);
+            domainUpDownFreeRotation.Size = new System.Drawing.Size(83, 25);
             domainUpDownFreeRotation.TabIndex = 44;
             domainUpDownFreeRotation.Text = "0";
             // 
@@ -1655,11 +1658,11 @@ namespace ATA_GUI
             richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
             richTextBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
-            richTextBoxLog.Location = new System.Drawing.Point(1068, 99);
+            richTextBoxLog.Location = new System.Drawing.Point(1068, 112);
             richTextBoxLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             richTextBoxLog.Name = "richTextBoxLog";
             richTextBoxLog.ReadOnly = true;
-            richTextBoxLog.Size = new System.Drawing.Size(242, 324);
+            richTextBoxLog.Size = new System.Drawing.Size(242, 367);
             richTextBoxLog.TabIndex = 38;
             richTextBoxLog.TabStop = false;
             richTextBoxLog.Text = "";
@@ -1669,13 +1672,13 @@ namespace ATA_GUI
             // 
             systemAppToolStripMenuItem.Name = "systemAppToolStripMenuItem";
             systemAppToolStripMenuItem.ShowShortcutKeys = false;
-            systemAppToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            systemAppToolStripMenuItem.Size = new System.Drawing.Size(246, 24);
             systemAppToolStripMenuItem.Text = "System App";
             // 
             // nonSystemAppToolStripMenuItem
             // 
             nonSystemAppToolStripMenuItem.Name = "nonSystemAppToolStripMenuItem";
-            nonSystemAppToolStripMenuItem.Size = new System.Drawing.Size(180, 23);
+            nonSystemAppToolStripMenuItem.Size = new System.Drawing.Size(180, 25);
             nonSystemAppToolStripMenuItem.Text = "Non System App";
             // 
             // filterByToolStripMenuItem
@@ -1687,70 +1690,72 @@ namespace ATA_GUI
             // 
             // contextMenuStripFilterBy
             // 
+            contextMenuStripFilterBy.ImageScalingSize = new System.Drawing.Size(18, 18);
             contextMenuStripFilterBy.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { allToolStripMenuItem, systemAppToolStripMenuItem1, nonSystemAppToolStripMenuItem1, uninstalledAppToolStripMenuItem, disabledAppToolStripMenuItem });
             contextMenuStripFilterBy.Name = "contextMenuStripFilterBy";
-            contextMenuStripFilterBy.Size = new System.Drawing.Size(164, 114);
+            contextMenuStripFilterBy.Size = new System.Drawing.Size(175, 114);
             // 
             // allToolStripMenuItem
             // 
             allToolStripMenuItem.Name = "allToolStripMenuItem";
-            allToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            allToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             allToolStripMenuItem.Text = "All";
             allToolStripMenuItem.Click += allToolStripMenuItem_Click;
             // 
             // systemAppToolStripMenuItem1
             // 
             systemAppToolStripMenuItem1.Name = "systemAppToolStripMenuItem1";
-            systemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            systemAppToolStripMenuItem1.Size = new System.Drawing.Size(174, 22);
             systemAppToolStripMenuItem1.Text = "System App";
             systemAppToolStripMenuItem1.Click += systemAppToolStripMenuItem1_Click;
             // 
             // nonSystemAppToolStripMenuItem1
             // 
             nonSystemAppToolStripMenuItem1.Name = "nonSystemAppToolStripMenuItem1";
-            nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(174, 22);
             nonSystemAppToolStripMenuItem1.Text = "Non System App";
             nonSystemAppToolStripMenuItem1.Click += nonSystemAppToolStripMenuItem1_Click;
             // 
             // uninstalledAppToolStripMenuItem
             // 
             uninstalledAppToolStripMenuItem.Name = "uninstalledAppToolStripMenuItem";
-            uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             uninstalledAppToolStripMenuItem.Text = "Uninstalled App";
             uninstalledAppToolStripMenuItem.Click += uninstalledAppToolStripMenuItem_Click;
             // 
             // disabledAppToolStripMenuItem
             // 
             disabledAppToolStripMenuItem.Name = "disabledAppToolStripMenuItem";
-            disabledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            disabledAppToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             disabledAppToolStripMenuItem.Text = "Disabled App";
             disabledAppToolStripMenuItem.Visible = false;
             disabledAppToolStripMenuItem.Click += disabledAppToolStripMenuItem_Click;
             // 
             // contextMenuStripPermissionMenu
             // 
+            contextMenuStripPermissionMenu.ImageScalingSize = new System.Drawing.Size(18, 18);
             contextMenuStripPermissionMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { grantWriteSecureSettingsToolStripMenuItem, grantDUMPToolStripMenuItem, grantRevokeToolStripMenuItem, checkGrantedPermissionsToolStripMenuItem });
             contextMenuStripPermissionMenu.Name = "contextMenuStripPermissionMenu";
-            contextMenuStripPermissionMenu.Size = new System.Drawing.Size(285, 92);
+            contextMenuStripPermissionMenu.Size = new System.Drawing.Size(310, 100);
             // 
             // grantWriteSecureSettingsToolStripMenuItem
             // 
             grantWriteSecureSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { grantWriteSecureSettingsToolStripMenuItem1, revokeWriteSecureSettingsToolStripMenuItem });
             grantWriteSecureSettingsToolStripMenuItem.Name = "grantWriteSecureSettingsToolStripMenuItem";
-            grantWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
+            grantWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(309, 24);
             grantWriteSecureSettingsToolStripMenuItem.Text = "Grant/Revoke Write_Secure_Settings";
             // 
             // grantWriteSecureSettingsToolStripMenuItem1
             // 
             grantWriteSecureSettingsToolStripMenuItem1.Name = "grantWriteSecureSettingsToolStripMenuItem1";
-            grantWriteSecureSettingsToolStripMenuItem1.Size = new System.Drawing.Size(230, 22);
+            grantWriteSecureSettingsToolStripMenuItem1.Size = new System.Drawing.Size(254, 24);
             grantWriteSecureSettingsToolStripMenuItem1.Text = "Grant Write_Secure_Settings";
             grantWriteSecureSettingsToolStripMenuItem1.Click += grantWriteSecureSettingsToolStripMenuItem_Click;
             // 
             // revokeWriteSecureSettingsToolStripMenuItem
             // 
             revokeWriteSecureSettingsToolStripMenuItem.Name = "revokeWriteSecureSettingsToolStripMenuItem";
-            revokeWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            revokeWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(254, 24);
             revokeWriteSecureSettingsToolStripMenuItem.Text = "Revoke Write_Secure_Settings";
             revokeWriteSecureSettingsToolStripMenuItem.Click += revokeWriteSecureSettingsToolStripMenuItem_Click;
             // 
@@ -1758,20 +1763,20 @@ namespace ATA_GUI
             // 
             grantDUMPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { grantDUMPToolStripMenuItem1, revokeDUMPToolStripMenuItem });
             grantDUMPToolStripMenuItem.Name = "grantDUMPToolStripMenuItem";
-            grantDUMPToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
+            grantDUMPToolStripMenuItem.Size = new System.Drawing.Size(309, 24);
             grantDUMPToolStripMenuItem.Text = "Grant/Revoke DUMP";
             // 
             // grantDUMPToolStripMenuItem1
             // 
             grantDUMPToolStripMenuItem1.Name = "grantDUMPToolStripMenuItem1";
-            grantDUMPToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
+            grantDUMPToolStripMenuItem1.Size = new System.Drawing.Size(165, 24);
             grantDUMPToolStripMenuItem1.Text = "Grant DUMP";
             grantDUMPToolStripMenuItem1.Click += grantDUMPToolStripMenuItem_Click;
             // 
             // revokeDUMPToolStripMenuItem
             // 
             revokeDUMPToolStripMenuItem.Name = "revokeDUMPToolStripMenuItem";
-            revokeDUMPToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            revokeDUMPToolStripMenuItem.Size = new System.Drawing.Size(165, 24);
             revokeDUMPToolStripMenuItem.Text = "Revoke DUMP";
             revokeDUMPToolStripMenuItem.Click += revokeDUMPToolStripMenuItem_Click;
             // 
@@ -1779,21 +1784,21 @@ namespace ATA_GUI
             // 
             grantRevokeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { grantSYSTEMALERTWINDOWToolStripMenuItem, revokeSYSTEMALERTWINDOWToolStripMenuItem });
             grantRevokeToolStripMenuItem.Name = "grantRevokeToolStripMenuItem";
-            grantRevokeToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
+            grantRevokeToolStripMenuItem.Size = new System.Drawing.Size(309, 24);
             grantRevokeToolStripMenuItem.Text = "Grant/Revoke SYSTEM_ALERT_WINDOW";
             grantRevokeToolStripMenuItem.Visible = false;
             // 
             // grantSYSTEMALERTWINDOWToolStripMenuItem
             // 
             grantSYSTEMALERTWINDOWToolStripMenuItem.Name = "grantSYSTEMALERTWINDOWToolStripMenuItem";
-            grantSYSTEMALERTWINDOWToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+            grantSYSTEMALERTWINDOWToolStripMenuItem.Size = new System.Drawing.Size(276, 24);
             grantSYSTEMALERTWINDOWToolStripMenuItem.Text = "Grant SYSTEM_ALERT_WINDOW";
             grantSYSTEMALERTWINDOWToolStripMenuItem.Click += grantSYSTEMALERTWINDOWToolStripMenuItem_Click;
             // 
             // revokeSYSTEMALERTWINDOWToolStripMenuItem
             // 
             revokeSYSTEMALERTWINDOWToolStripMenuItem.Name = "revokeSYSTEMALERTWINDOWToolStripMenuItem";
-            revokeSYSTEMALERTWINDOWToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+            revokeSYSTEMALERTWINDOWToolStripMenuItem.Size = new System.Drawing.Size(276, 24);
             revokeSYSTEMALERTWINDOWToolStripMenuItem.Text = "Revoke SYSTEM_ALERT_WINDOW";
             revokeSYSTEMALERTWINDOWToolStripMenuItem.Click += revokeSYSTEMALERTWINDOWToolStripMenuItem_Click;
             // 
@@ -1801,7 +1806,7 @@ namespace ATA_GUI
             // 
             checkGrantedPermissionsToolStripMenuItem.Image = Properties.Resources.icons8_privacy_policy_48;
             checkGrantedPermissionsToolStripMenuItem.Name = "checkGrantedPermissionsToolStripMenuItem";
-            checkGrantedPermissionsToolStripMenuItem.Size = new System.Drawing.Size(284, 22);
+            checkGrantedPermissionsToolStripMenuItem.Size = new System.Drawing.Size(309, 24);
             checkGrantedPermissionsToolStripMenuItem.Text = "Check granted permissions";
             checkGrantedPermissionsToolStripMenuItem.Click += checkGrantedPermissionsToolStripMenuItem_Click;
             // 
@@ -1819,10 +1824,10 @@ namespace ATA_GUI
             buttonMobileScreenShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             buttonMobileScreenShare.ForeColor = System.Drawing.Color.Transparent;
             buttonMobileScreenShare.Image = Properties.Resources.icons8_screensharing_48;
-            buttonMobileScreenShare.Location = new System.Drawing.Point(410, 451);
+            buttonMobileScreenShare.Location = new System.Drawing.Point(410, 511);
             buttonMobileScreenShare.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonMobileScreenShare.Name = "buttonMobileScreenShare";
-            buttonMobileScreenShare.Size = new System.Drawing.Size(70, 73);
+            buttonMobileScreenShare.Size = new System.Drawing.Size(70, 83);
             buttonMobileScreenShare.TabIndex = 39;
             buttonMobileScreenShare.UseVisualStyleBackColor = true;
             buttonMobileScreenShare.Click += buttonMobileScreenShare_Click;
@@ -1832,10 +1837,10 @@ namespace ATA_GUI
             label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             label9.AutoSize = true;
             label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label9.Location = new System.Drawing.Point(402, 434);
+            label9.Location = new System.Drawing.Point(402, 492);
             label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new System.Drawing.Size(72, 13);
+            label9.Size = new System.Drawing.Size(89, 16);
             label9.TabIndex = 40;
             label9.Text = "Screen Share";
             // 
@@ -1844,10 +1849,10 @@ namespace ATA_GUI
             pictureBoxLogo.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             pictureBoxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             pictureBoxLogo.Image = Properties.Resources.logo;
-            pictureBoxLogo.Location = new System.Drawing.Point(9, 6);
+            pictureBoxLogo.Location = new System.Drawing.Point(9, 7);
             pictureBoxLogo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             pictureBoxLogo.Name = "pictureBoxLogo";
-            pictureBoxLogo.Size = new System.Drawing.Size(94, 43);
+            pictureBoxLogo.Size = new System.Drawing.Size(94, 49);
             pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             pictureBoxLogo.TabIndex = 3;
             pictureBoxLogo.TabStop = false;
@@ -1867,7 +1872,7 @@ namespace ATA_GUI
             panelTopBar.Location = new System.Drawing.Point(0, -3);
             panelTopBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             panelTopBar.Name = "panelTopBar";
-            panelTopBar.Size = new System.Drawing.Size(1314, 51);
+            panelTopBar.Size = new System.Drawing.Size(1314, 58);
             panelTopBar.TabIndex = 0;
             panelTopBar.MouseDoubleClick += panelTopBar_MouseDoubleClick;
             panelTopBar.MouseMove += panelTopBar_MouseMove;
@@ -1879,7 +1884,7 @@ namespace ATA_GUI
             pictureBoxMaximize.Location = new System.Drawing.Point(1224, 3);
             pictureBoxMaximize.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             pictureBoxMaximize.Name = "pictureBoxMaximize";
-            pictureBoxMaximize.Size = new System.Drawing.Size(44, 48);
+            pictureBoxMaximize.Size = new System.Drawing.Size(44, 54);
             pictureBoxMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             pictureBoxMaximize.TabIndex = 43;
             pictureBoxMaximize.TabStop = false;
@@ -1893,10 +1898,10 @@ namespace ATA_GUI
             labelTools.AutoSize = true;
             labelTools.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             labelTools.ForeColor = System.Drawing.Color.White;
-            labelTools.Location = new System.Drawing.Point(245, 19);
+            labelTools.Location = new System.Drawing.Point(245, 22);
             labelTools.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelTools.Name = "labelTools";
-            labelTools.Size = new System.Drawing.Size(37, 15);
+            labelTools.Size = new System.Drawing.Size(42, 16);
             labelTools.TabIndex = 42;
             labelTools.Text = "Tools";
             labelTools.Click += labelTools_Click;
@@ -1910,7 +1915,7 @@ namespace ATA_GUI
             pictureBoxClose.Location = new System.Drawing.Point(1269, 3);
             pictureBoxClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             pictureBoxClose.Name = "pictureBoxClose";
-            pictureBoxClose.Size = new System.Drawing.Size(45, 48);
+            pictureBoxClose.Size = new System.Drawing.Size(45, 54);
             pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             pictureBoxClose.TabIndex = 41;
             pictureBoxClose.TabStop = false;
@@ -1925,7 +1930,7 @@ namespace ATA_GUI
             pictureBoxMinimize.Location = new System.Drawing.Point(1179, 3);
             pictureBoxMinimize.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             pictureBoxMinimize.Name = "pictureBoxMinimize";
-            pictureBoxMinimize.Size = new System.Drawing.Size(44, 48);
+            pictureBoxMinimize.Size = new System.Drawing.Size(44, 54);
             pictureBoxMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             pictureBoxMinimize.TabIndex = 6;
             pictureBoxMinimize.TabStop = false;
@@ -1938,10 +1943,10 @@ namespace ATA_GUI
             labelHelp.AutoSize = true;
             labelHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             labelHelp.ForeColor = System.Drawing.Color.White;
-            labelHelp.Location = new System.Drawing.Point(194, 19);
+            labelHelp.Location = new System.Drawing.Point(194, 22);
             labelHelp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelHelp.Name = "labelHelp";
-            labelHelp.Size = new System.Drawing.Size(33, 15);
+            labelHelp.Size = new System.Drawing.Size(36, 16);
             labelHelp.TabIndex = 5;
             labelHelp.Text = "Help";
             labelHelp.Click += labelHelp_Click;
@@ -1953,10 +1958,10 @@ namespace ATA_GUI
             labelSettings.AutoSize = true;
             labelSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             labelSettings.ForeColor = System.Drawing.Color.White;
-            labelSettings.Location = new System.Drawing.Point(120, 19);
+            labelSettings.Location = new System.Drawing.Point(120, 22);
             labelSettings.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelSettings.Name = "labelSettings";
-            labelSettings.Size = new System.Drawing.Size(51, 15);
+            labelSettings.Size = new System.Drawing.Size(55, 16);
             labelSettings.TabIndex = 4;
             labelSettings.Text = "Settings";
             labelSettings.Click += labelSettings_Click;
@@ -2001,22 +2006,23 @@ namespace ATA_GUI
             // 
             // contextMenuStripHelp
             // 
+            contextMenuStripHelp.ImageScalingSize = new System.Drawing.Size(18, 18);
             contextMenuStripHelp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { helpToolStripMenuItem, submitFeedbackToolStripMenuItem });
             contextMenuStripHelp.Name = "contextMenuStripHelp";
-            contextMenuStripHelp.Size = new System.Drawing.Size(166, 48);
+            contextMenuStripHelp.Size = new System.Drawing.Size(178, 52);
             // 
             // helpToolStripMenuItem
             // 
             helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { videoTutorialToolStripMenuItem });
             helpToolStripMenuItem.Image = Properties.Resources.icons8_help_48;
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            helpToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
             helpToolStripMenuItem.Text = "Open help";
             // 
             // videoTutorialToolStripMenuItem
             // 
             videoTutorialToolStripMenuItem.Name = "videoTutorialToolStripMenuItem";
-            videoTutorialToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            videoTutorialToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
             videoTutorialToolStripMenuItem.Text = "Video Tutorial";
             videoTutorialToolStripMenuItem.Click += videoTutorialToolStripMenuItem_Click;
             // 
@@ -2024,7 +2030,7 @@ namespace ATA_GUI
             // 
             submitFeedbackToolStripMenuItem.Image = Properties.Resources.icons8_get_help_48;
             submitFeedbackToolStripMenuItem.Name = "submitFeedbackToolStripMenuItem";
-            submitFeedbackToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            submitFeedbackToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
             submitFeedbackToolStripMenuItem.Text = "Submit Feedback";
             submitFeedbackToolStripMenuItem.Click += submitFeedbackToolStripMenuItem_Click;
             // 
@@ -2040,10 +2046,10 @@ namespace ATA_GUI
             buttonDeviceLogs.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonDeviceLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             buttonDeviceLogs.ForeColor = System.Drawing.Color.Black;
-            buttonDeviceLogs.Location = new System.Drawing.Point(959, 465);
+            buttonDeviceLogs.Location = new System.Drawing.Point(959, 527);
             buttonDeviceLogs.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonDeviceLogs.Name = "buttonDeviceLogs";
-            buttonDeviceLogs.Size = new System.Drawing.Size(102, 27);
+            buttonDeviceLogs.Size = new System.Drawing.Size(102, 31);
             buttonDeviceLogs.TabIndex = 41;
             buttonDeviceLogs.Text = "Device Logs";
             buttonDeviceLogs.UseVisualStyleBackColor = false;
@@ -2056,11 +2062,11 @@ namespace ATA_GUI
             groupBox1.Controls.Add(comboBoxDevices);
             groupBox1.Controls.Add(buttonSyncApp);
             groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            groupBox1.Location = new System.Drawing.Point(8, 426);
+            groupBox1.Location = new System.Drawing.Point(8, 483);
             groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox1.Size = new System.Drawing.Size(387, 97);
+            groupBox1.Size = new System.Drawing.Size(387, 110);
             groupBox1.TabIndex = 31;
             groupBox1.TabStop = false;
             groupBox1.Text = "Device Sync Settings";
@@ -2070,10 +2076,10 @@ namespace ATA_GUI
             buttonReloadDevicesList.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonReloadDevicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             buttonReloadDevicesList.ForeColor = System.Drawing.Color.Black;
-            buttonReloadDevicesList.Location = new System.Drawing.Point(201, 61);
+            buttonReloadDevicesList.Location = new System.Drawing.Point(201, 69);
             buttonReloadDevicesList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonReloadDevicesList.Name = "buttonReloadDevicesList";
-            buttonReloadDevicesList.Size = new System.Drawing.Size(177, 27);
+            buttonReloadDevicesList.Size = new System.Drawing.Size(177, 31);
             buttonReloadDevicesList.TabIndex = 2;
             buttonReloadDevicesList.Text = "Refresh Device List";
             buttonReloadDevicesList.UseVisualStyleBackColor = true;
@@ -2083,10 +2089,10 @@ namespace ATA_GUI
             // 
             comboBoxDevices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             comboBoxDevices.FormattingEnabled = true;
-            comboBoxDevices.Location = new System.Drawing.Point(201, 25);
+            comboBoxDevices.Location = new System.Drawing.Point(201, 28);
             comboBoxDevices.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             comboBoxDevices.Name = "comboBoxDevices";
-            comboBoxDevices.Size = new System.Drawing.Size(177, 21);
+            comboBoxDevices.Size = new System.Drawing.Size(177, 23);
             comboBoxDevices.TabIndex = 1;
             comboBoxDevices.SelectedIndexChanged += comboBoxDevices_SelectedIndexChanged;
             // 
@@ -2097,10 +2103,10 @@ namespace ATA_GUI
             buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonSyncApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             buttonSyncApp.ForeColor = System.Drawing.Color.Black;
-            buttonSyncApp.Location = new System.Drawing.Point(20, 23);
+            buttonSyncApp.Location = new System.Drawing.Point(20, 26);
             buttonSyncApp.Margin = new System.Windows.Forms.Padding(2);
             buttonSyncApp.Name = "buttonSyncApp";
-            buttonSyncApp.Size = new System.Drawing.Size(169, 65);
+            buttonSyncApp.Size = new System.Drawing.Size(169, 74);
             buttonSyncApp.TabIndex = 0;
             buttonSyncApp.Text = "Sync Smartphone";
             buttonSyncApp.UseVisualStyleBackColor = false;
@@ -2108,15 +2114,16 @@ namespace ATA_GUI
             // 
             // contextMenuStripSearch
             // 
+            contextMenuStripSearch.ImageScalingSize = new System.Drawing.Size(18, 18);
             contextMenuStripSearch.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { duckduckgoToolStripMenuItem, googleToolStripMenuItem, playMarketToolStripMenuItem, APKMirrorToolStripMenuItem, fDroidToolStripMenuItem });
             contextMenuStripSearch.Name = "contextMenuStripSearch";
-            contextMenuStripSearch.Size = new System.Drawing.Size(142, 114);
+            contextMenuStripSearch.Size = new System.Drawing.Size(150, 124);
             // 
             // duckduckgoToolStripMenuItem
             // 
             duckduckgoToolStripMenuItem.Image = Properties.Resources.icons8_duckduckgo_48;
             duckduckgoToolStripMenuItem.Name = "duckduckgoToolStripMenuItem";
-            duckduckgoToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            duckduckgoToolStripMenuItem.Size = new System.Drawing.Size(149, 24);
             duckduckgoToolStripMenuItem.Text = "Duckduckgo";
             duckduckgoToolStripMenuItem.Click += duckduckgoToolStripMenuItem_Click;
             // 
@@ -2124,7 +2131,7 @@ namespace ATA_GUI
             // 
             googleToolStripMenuItem.Image = Properties.Resources.icons8_google_48;
             googleToolStripMenuItem.Name = "googleToolStripMenuItem";
-            googleToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            googleToolStripMenuItem.Size = new System.Drawing.Size(149, 24);
             googleToolStripMenuItem.Text = "Google";
             googleToolStripMenuItem.Click += googleToolStripMenuItem_Click;
             // 
@@ -2132,7 +2139,7 @@ namespace ATA_GUI
             // 
             playMarketToolStripMenuItem.Image = Properties.Resources.playmarketicon;
             playMarketToolStripMenuItem.Name = "playMarketToolStripMenuItem";
-            playMarketToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            playMarketToolStripMenuItem.Size = new System.Drawing.Size(149, 24);
             playMarketToolStripMenuItem.Text = "Play Market";
             playMarketToolStripMenuItem.Click += playMarketToolStripMenuItem_Click;
             // 
@@ -2140,7 +2147,7 @@ namespace ATA_GUI
             // 
             APKMirrorToolStripMenuItem.Image = Properties.Resources.apkmirror;
             APKMirrorToolStripMenuItem.Name = "APKMirrorToolStripMenuItem";
-            APKMirrorToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            APKMirrorToolStripMenuItem.Size = new System.Drawing.Size(149, 24);
             APKMirrorToolStripMenuItem.Text = "APK Mirror";
             APKMirrorToolStripMenuItem.Click += APKMirrorToolStripMenuItem_Click;
             // 
@@ -2148,27 +2155,28 @@ namespace ATA_GUI
             // 
             fDroidToolStripMenuItem.Image = Properties.Resources.fdroidlogo;
             fDroidToolStripMenuItem.Name = "fDroidToolStripMenuItem";
-            fDroidToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            fDroidToolStripMenuItem.Size = new System.Drawing.Size(149, 24);
             fDroidToolStripMenuItem.Text = "F-Droid";
             fDroidToolStripMenuItem.Click += fDroidToolStripMenuItem_Click;
             // 
             // contextMenuStripTools
             // 
+            contextMenuStripTools.ImageScalingSize = new System.Drawing.Size(18, 18);
             contextMenuStripTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItem1 });
             contextMenuStripTools.Name = "contextMenuStripHelp";
-            contextMenuStripTools.Size = new System.Drawing.Size(98, 26);
+            contextMenuStripTools.Size = new System.Drawing.Size(101, 26);
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItemADBKill });
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new System.Drawing.Size(97, 22);
+            toolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
             toolStripMenuItem1.Text = "ADB";
             // 
             // toolStripMenuItemADBKill
             // 
             toolStripMenuItemADBKill.Name = "toolStripMenuItemADBKill";
-            toolStripMenuItemADBKill.Size = new System.Drawing.Size(116, 22);
+            toolStripMenuItemADBKill.Size = new System.Drawing.Size(127, 24);
             toolStripMenuItemADBKill.Text = "Kill ADB";
             toolStripMenuItemADBKill.Click += toolStripMenuItemADBKill_Click;
             // 
@@ -2179,10 +2187,10 @@ namespace ATA_GUI
             buttonTaskManager.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonTaskManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             buttonTaskManager.ForeColor = System.Drawing.Color.Black;
-            buttonTaskManager.Location = new System.Drawing.Point(959, 434);
+            buttonTaskManager.Location = new System.Drawing.Point(959, 492);
             buttonTaskManager.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonTaskManager.Name = "buttonTaskManager";
-            buttonTaskManager.Size = new System.Drawing.Size(102, 27);
+            buttonTaskManager.Size = new System.Drawing.Size(102, 31);
             buttonTaskManager.TabIndex = 42;
             buttonTaskManager.Text = "Task Manager";
             buttonTaskManager.UseVisualStyleBackColor = false;
@@ -2203,11 +2211,11 @@ namespace ATA_GUI
             groupBoxTerminal.Controls.Add(radioButtonADB);
             groupBoxTerminal.Controls.Add(buttonTerminalRun);
             groupBoxTerminal.Controls.Add(richTextBoxTerminal);
-            groupBoxTerminal.Location = new System.Drawing.Point(493, 426);
+            groupBoxTerminal.Location = new System.Drawing.Point(493, 483);
             groupBoxTerminal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxTerminal.Name = "groupBoxTerminal";
             groupBoxTerminal.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxTerminal.Size = new System.Drawing.Size(458, 97);
+            groupBoxTerminal.Size = new System.Drawing.Size(458, 110);
             groupBoxTerminal.TabIndex = 46;
             groupBoxTerminal.TabStop = false;
             groupBoxTerminal.Text = "Terminal";
@@ -2216,10 +2224,10 @@ namespace ATA_GUI
             // 
             radioButtonFastboot.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             radioButtonFastboot.AutoSize = true;
-            radioButtonFastboot.Location = new System.Drawing.Point(368, 71);
+            radioButtonFastboot.Location = new System.Drawing.Point(364, 79);
             radioButtonFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonFastboot.Name = "radioButtonFastboot";
-            radioButtonFastboot.Size = new System.Drawing.Size(69, 19);
+            radioButtonFastboot.Size = new System.Drawing.Size(75, 21);
             radioButtonFastboot.TabIndex = 50;
             radioButtonFastboot.TabStop = true;
             radioButtonFastboot.Text = "fastboot";
@@ -2230,10 +2238,10 @@ namespace ATA_GUI
             radioButtonADB.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             radioButtonADB.AutoSize = true;
             radioButtonADB.Checked = true;
-            radioButtonADB.Location = new System.Drawing.Point(369, 53);
+            radioButtonADB.Location = new System.Drawing.Point(364, 62);
             radioButtonADB.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonADB.Name = "radioButtonADB";
-            radioButtonADB.Size = new System.Drawing.Size(45, 19);
+            radioButtonADB.Size = new System.Drawing.Size(49, 21);
             radioButtonADB.TabIndex = 49;
             radioButtonADB.TabStop = true;
             radioButtonADB.Text = "adb";
@@ -2243,10 +2251,10 @@ namespace ATA_GUI
             // 
             buttonTerminalRun.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             buttonTerminalRun.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonTerminalRun.Location = new System.Drawing.Point(364, 22);
+            buttonTerminalRun.Location = new System.Drawing.Point(364, 25);
             buttonTerminalRun.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonTerminalRun.Name = "buttonTerminalRun";
-            buttonTerminalRun.Size = new System.Drawing.Size(88, 27);
+            buttonTerminalRun.Size = new System.Drawing.Size(88, 31);
             buttonTerminalRun.TabIndex = 48;
             buttonTerminalRun.Text = "Run";
             buttonTerminalRun.UseVisualStyleBackColor = true;
@@ -2255,10 +2263,10 @@ namespace ATA_GUI
             // richTextBoxTerminal
             // 
             richTextBoxTerminal.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            richTextBoxTerminal.Location = new System.Drawing.Point(7, 22);
+            richTextBoxTerminal.Location = new System.Drawing.Point(7, 25);
             richTextBoxTerminal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             richTextBoxTerminal.Name = "richTextBoxTerminal";
-            richTextBoxTerminal.Size = new System.Drawing.Size(349, 65);
+            richTextBoxTerminal.Size = new System.Drawing.Size(349, 73);
             richTextBoxTerminal.TabIndex = 47;
             richTextBoxTerminal.Text = "";
             // 
@@ -2273,10 +2281,10 @@ namespace ATA_GUI
             // MainForm
             // 
             AllowDrop = true;
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.SystemColors.ControlLightLight;
-            ClientSize = new System.Drawing.Size(1314, 527);
+            ClientSize = new System.Drawing.Size(1314, 597);
             Controls.Add(groupBoxTerminal);
             Controls.Add(buttonTaskManager);
             Controls.Add(buttonDeviceLogs);

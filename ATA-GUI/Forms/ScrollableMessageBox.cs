@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using ATA_GUI.Utils;
 using System.Windows.Forms;
 
 namespace ATA_GUI
@@ -22,7 +22,7 @@ namespace ATA_GUI
 
         private void richTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            _ = Process.Start(e.LinkText);
+            ConsoleProcess.openLink(e.LinkText);
         }
     }
 }
