@@ -8,7 +8,7 @@ namespace ATA_GUI.Classes
 {
     internal class ATA
     {
-        public static readonly string CURRENTVERSION = "v3.0.2";
+        public static readonly string CURRENTVERSION = "v3.0.3";
         public static readonly string IPFileName = "IPList.txt";
 
         public ATA()
