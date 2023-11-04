@@ -57,6 +57,8 @@ namespace ATA_GUI
             {
                 _ = dataGridViewTasks.Rows.Add(tasks[i].Split(' ').Where(it => it != string.Empty).ToArray());
             }
+
+            toolStripLabelTotalTasks.Text = "Total: " + dataGridViewTasks.Rows.Count.ToString();
         }
 
         private void filterDataGridView(int coloumn, string filter)
