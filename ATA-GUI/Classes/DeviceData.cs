@@ -1,4 +1,6 @@
-﻿namespace ATA_GUI.Classes
+﻿using System.Collections.Generic;
+
+namespace ATA_GUI.Classes
 {
     internal class DeviceData
     {
@@ -8,13 +10,17 @@
             ID = id;
             Mode = mode;
             Connection = connection;
+            AppsString = new();
         }
 
         public string Name { get; }
-
         public DeviceMode Mode { get; set; }
-
         public DeviceConnection Connection { get; }
+        public bool IsRotationFreeEnabled { get; set; }
+        public string User { get; set; }
+        public List<string> AppsString { get; set; }
+        public AppMode AppMode { get; set; }
+        public int Version { get; set; }
 
         public string ID { get; }
 
@@ -43,5 +49,14 @@
     {
         CABLE,
         WIRELESS
+    }
+
+    internal enum AppMode
+    {
+        SYSTEM,
+        NONSYSTEM,
+        ALL,
+        DISABLE,
+        UNINSTALLED
     }
 }

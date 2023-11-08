@@ -33,7 +33,6 @@ namespace ATA_GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             labelLog = new System.Windows.Forms.Label();
             buttonLogClear = new System.Windows.Forms.Button();
-            backgroundWorkerSync = new System.ComponentModel.BackgroundWorker();
             groupBoxDeviceInfo = new System.Windows.Forms.GroupBox();
             buttonTurnOffAdb = new System.Windows.Forms.Button();
             labelUser = new System.Windows.Forms.Label();
@@ -180,7 +179,6 @@ namespace ATA_GUI
             grantSYSTEMALERTWINDOWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             revokeSYSTEMALERTWINDOWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             checkGrantedPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            backgroundWorkerAdbDownloader = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerExeDownloader = new System.ComponentModel.BackgroundWorker();
             buttonMobileScreenShare = new System.Windows.Forms.Button();
             label9 = new System.Windows.Forms.Label();
@@ -291,10 +289,6 @@ namespace ATA_GUI
             buttonLogClear.Text = "Clear log";
             buttonLogClear.UseVisualStyleBackColor = false;
             buttonLogClear.Click += buttonLogClear_Click;
-            // 
-            // backgroundWorkerSync
-            // 
-            backgroundWorkerSync.DoWork += backgroundWorkerSync_DoWork;
             // 
             // groupBoxDeviceInfo
             // 
@@ -1810,10 +1804,6 @@ namespace ATA_GUI
             checkGrantedPermissionsToolStripMenuItem.Text = "Check granted permissions";
             checkGrantedPermissionsToolStripMenuItem.Click += checkGrantedPermissionsToolStripMenuItem_Click;
             // 
-            // backgroundWorkerAdbDownloader
-            // 
-            backgroundWorkerAdbDownloader.DoWork += backgroundWorkerAdbDownloader_DoWork;
-            // 
             // backgroundWorkerExeDownloader
             // 
             backgroundWorkerExeDownloader.DoWork += backgroundWorkerExeDownloader_DoWork;
@@ -2356,7 +2346,6 @@ namespace ATA_GUI
 
         #endregion
         private System.Windows.Forms.Label labelLog;
-        private System.ComponentModel.BackgroundWorker backgroundWorkerSync;
         private System.Windows.Forms.GroupBox groupBoxDeviceInfo;
         private System.Windows.Forms.Label labelAV;
         private System.Windows.Forms.Label labelD;
@@ -2452,7 +2441,6 @@ namespace ATA_GUI
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.ComponentModel.BackgroundWorker backgroundWorkerAdbDownloader;
         private System.Windows.Forms.ToolStripLabel toolStripLabelTotalApps;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
