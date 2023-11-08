@@ -1497,7 +1497,7 @@ namespace ATA_GUI
                 DialogResult dialogResult = MessageBox.Show("Do you want to kill ADB?", "Kill ADB", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    _ = ConsoleProcess.systemCommand("adb.exe kill-server");
+                    _ = ConsoleProcess.adbFastbootCommandR("kill-server", 0);
                 }
             }
             Application.Exit();
