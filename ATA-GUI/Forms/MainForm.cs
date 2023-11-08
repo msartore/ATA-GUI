@@ -940,7 +940,10 @@ namespace ATA_GUI
             string exeTmp = isAdb ? "adb.exe" : "fastboot.exe";
             bool exist = File.Exists(exeTmp) && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll");
 
-            LogWriteLine("adb not found!");
+            if (!exist)
+            {
+                LogWriteLine("adb not found!");
+            }
 
             return exist || await ADBDownload();
         }
