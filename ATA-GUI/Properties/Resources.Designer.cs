@@ -22,7 +22,7 @@ namespace ATA_GUI.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ATA_GUI.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ATA_GUI.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace ATA_GUI.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap apkmirror {
+        internal static System.Drawing.Bitmap apkmirror {
             get {
                 object obj = ResourceManager.GetObject("apkmirror", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -74,27 +74,27 @@ namespace ATA_GUI.Properties {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;bloatware&gt;
         ///  &lt;basic&gt;
-        ///    com.facebook.katana
-        ///    com.facebook.system
-        ///    com.facebook.appmanager
-        ///    com.facebook.services
-        ///    cn.wps.xiaomi.abroad.lite
-        ///    com.netflix.partner.activation
-        ///    com.zhiliaoapp.musically
-        ///    ru.yandex.searchplugin
-        ///    com.yandex.zen
-        ///    com.ebay.mobile
+        ///    com.amazon.fv
+        ///    com.amazon.kindle
+        ///    com.amazon.mp3
+        ///    com.amazon.venezia
         ///    com.ebay.carrier
-        ///    ru.ozon.app.android
-        ///    com.alibaba.aliexpresshd
-        ///    sg.bigo.live
-        ///    ru.auto.ara
+        ///    com.ebay.mobile
+        ///    com.facebook.appmanager
+        ///    com.facebook.katana
+        ///    com.facebook.services
+        ///    com.facebook.system
+        ///    com.skype.raider
+        ///    flipboard.app
+        ///    flipboard.boxer.app
         ///  &lt;/basic&gt;
         ///  &lt;medium&gt;
-        ///    com.miui.videoplayer
-        ///    com.miui. [rest of string was truncated]&quot;;.
+        ///    com.google.android.apps.books
+        ///    com.google.android.apps.docs
+        ///    com.google.android.apps.magazines
+        ///    com.google [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string bloatwareList {
+        internal static string bloatwareList {
             get {
                 return ResourceManager.GetString("bloatwareList", resourceCulture);
             }
@@ -103,7 +103,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap camera_live {
+        internal static System.Drawing.Bitmap camera_live {
             get {
                 object obj = ResourceManager.GetObject("camera_live", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap close_16 {
+        internal static System.Drawing.Bitmap close_16 {
             get {
                 object obj = ResourceManager.GetObject("close_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap fdroidlogo {
+        internal static System.Drawing.Bitmap fdroidlogo {
             get {
                 object obj = ResourceManager.GetObject("fdroidlogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +133,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_bitcoin_48 {
+        internal static System.Drawing.Bitmap icons8_bitcoin_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-bitcoin-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +143,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_box_important_48 {
+        internal static System.Drawing.Bitmap icons8_box_important_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-box-important-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +153,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_cancel_48 {
+        internal static System.Drawing.Bitmap icons8_cancel_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-cancel-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +163,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_drag_and_drop_48 {
+        internal static System.Drawing.Bitmap icons8_drag_and_drop_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-drag-and-drop-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +173,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_duckduckgo_48 {
+        internal static System.Drawing.Bitmap icons8_duckduckgo_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-duckduckgo-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +183,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_filter_48 {
+        internal static System.Drawing.Bitmap icons8_filter_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-filter-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +193,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_flash_on_48 {
+        internal static System.Drawing.Bitmap icons8_flash_on_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-flash-on-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -203,7 +203,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_folder_48 {
+        internal static System.Drawing.Bitmap icons8_folder_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-folder-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +213,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_get_help_48 {
+        internal static System.Drawing.Bitmap icons8_get_help_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-get-help-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +223,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_google_48 {
+        internal static System.Drawing.Bitmap icons8_google_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-google-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -233,7 +233,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_help_48 {
+        internal static System.Drawing.Bitmap icons8_help_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-help-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -243,7 +243,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_maximize_button_16 {
+        internal static System.Drawing.Bitmap icons8_maximize_button_16 {
             get {
                 object obj = ResourceManager.GetObject("icons8_maximize_button_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -253,7 +253,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_operating_system_48 {
+        internal static System.Drawing.Bitmap icons8_operating_system_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-operating-system-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -263,7 +263,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_paypal_48 {
+        internal static System.Drawing.Bitmap icons8_paypal_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-paypal-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -273,7 +273,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_privacy_policy_48 {
+        internal static System.Drawing.Bitmap icons8_privacy_policy_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-privacy-policy-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -283,7 +283,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_refresh_48 {
+        internal static System.Drawing.Bitmap icons8_refresh_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-refresh-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -293,7 +293,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_remove_48 {
+        internal static System.Drawing.Bitmap icons8_remove_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-remove-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -303,7 +303,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_restart_48 {
+        internal static System.Drawing.Bitmap icons8_restart_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-restart-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -313,7 +313,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_restore_down_16 {
+        internal static System.Drawing.Bitmap icons8_restore_down_16 {
             get {
                 object obj = ResourceManager.GetObject("icons8_restore_down_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -323,7 +323,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_screensharing_48 {
+        internal static System.Drawing.Bitmap icons8_screensharing_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-screensharing-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -333,7 +333,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_search_48 {
+        internal static System.Drawing.Bitmap icons8_search_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-search-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -343,7 +343,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_search_in_browser_48 {
+        internal static System.Drawing.Bitmap icons8_search_in_browser_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-search-in-browser-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -353,7 +353,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_services_48 {
+        internal static System.Drawing.Bitmap icons8_services_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-services-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -363,7 +363,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_software_installer_48 {
+        internal static System.Drawing.Bitmap icons8_software_installer_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-software-installer-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -373,7 +373,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_support_48 {
+        internal static System.Drawing.Bitmap icons8_support_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-support-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -383,7 +383,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_unlock_16 {
+        internal static System.Drawing.Bitmap icons8_unlock_16 {
             get {
                 object obj = ResourceManager.GetObject("icons8-unlock-16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -393,7 +393,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap logo {
+        internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -403,7 +403,7 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap playmarketicon {
+        internal static System.Drawing.Bitmap playmarketicon {
             get {
                 object obj = ResourceManager.GetObject("playmarketicon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -413,7 +413,17 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap subtract_16 {
+        internal static System.Drawing.Bitmap stop {
+            get {
+                object obj = ResourceManager.GetObject("stop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap subtract_16 {
             get {
                 object obj = ResourceManager.GetObject("subtract_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -423,7 +433,17 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap x {
+        internal static System.Drawing.Bitmap user_shield_48 {
+            get {
+                object obj = ResourceManager.GetObject("user-shield-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap x {
             get {
                 object obj = ResourceManager.GetObject("x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

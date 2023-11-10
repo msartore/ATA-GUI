@@ -59,9 +59,8 @@ namespace ATA_GUI
             tabControls = new System.Windows.Forms.TabControl();
             tabPageSystem = new System.Windows.Forms.TabPage();
             groupBoxAPKMenu = new System.Windows.Forms.GroupBox();
-            groupBox2 = new System.Windows.Forms.GroupBox();
-            label5 = new System.Windows.Forms.Label();
-            pictureBox3 = new System.Windows.Forms.PictureBox();
+            buttonBloatwareRemover = new System.Windows.Forms.Button();
+            label6 = new System.Windows.Forms.Label();
             labelSelectedAppCount = new System.Windows.Forms.Label();
             groupBox6 = new System.Windows.Forms.GroupBox();
             label3 = new System.Windows.Forms.Label();
@@ -83,8 +82,6 @@ namespace ATA_GUI
             toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             toolStripButtonSetDefault = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            toolStripButtonBloatwareDetecter = new System.Windows.Forms.ToolStripButton();
-            toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             toolStripButtonExtract = new System.Windows.Forms.ToolStripButton();
@@ -144,6 +141,9 @@ namespace ATA_GUI
             buttonFlashZip = new System.Windows.Forms.Button();
             buttonBrowseFile = new System.Windows.Forms.Button();
             tabPageTools = new System.Windows.Forms.TabPage();
+            groupBox2 = new System.Windows.Forms.GroupBox();
+            label5 = new System.Windows.Forms.Label();
+            pictureBox3 = new System.Windows.Forms.PictureBox();
             groupBox3 = new System.Windows.Forms.GroupBox();
             comboBoxCameraModes = new System.Windows.Forms.ComboBox();
             buttonCamera = new System.Windows.Forms.Button();
@@ -228,8 +228,6 @@ namespace ATA_GUI
             tabControls.SuspendLayout();
             tabPageSystem.SuspendLayout();
             groupBoxAPKMenu.SuspendLayout();
-            groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             toolStrip1.SuspendLayout();
@@ -244,6 +242,8 @@ namespace ATA_GUI
             groupBoxRecoveryRM.SuspendLayout();
             groupBoxFlash.SuspendLayout();
             tabPageTools.SuspendLayout();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             groupBox3.SuspendLayout();
             groupBoxTextInject.SuspendLayout();
             groupBoxFreeRotation.SuspendLayout();
@@ -581,7 +581,8 @@ namespace ATA_GUI
             // groupBoxAPKMenu
             // 
             groupBoxAPKMenu.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            groupBoxAPKMenu.Controls.Add(groupBox2);
+            groupBoxAPKMenu.Controls.Add(buttonBloatwareRemover);
+            groupBoxAPKMenu.Controls.Add(label6);
             groupBoxAPKMenu.Controls.Add(labelSelectedAppCount);
             groupBoxAPKMenu.Controls.Add(groupBox6);
             groupBoxAPKMenu.Controls.Add(toolStrip1);
@@ -596,42 +597,24 @@ namespace ATA_GUI
             groupBoxAPKMenu.TabStop = false;
             groupBoxAPKMenu.Text = "APK Menu";
             // 
-            // groupBox2
+            // buttonBloatwareRemover
             // 
-            groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            groupBox2.Controls.Add(label5);
-            groupBox2.Controls.Add(pictureBox3);
-            groupBox2.Location = new System.Drawing.Point(462, 208);
-            groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox2.Size = new System.Drawing.Size(181, 112);
-            groupBox2.TabIndex = 44;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "File Transfer";
-            groupBox2.DragDrop += groupBox2_DragDrop;
-            groupBox2.DragEnter += groupBox2_DragEnter;
+            buttonBloatwareRemover.Image = Properties.Resources.user_shield_48;
+            buttonBloatwareRemover.Location = new System.Drawing.Point(521, 83);
+            buttonBloatwareRemover.Name = "buttonBloatwareRemover";
+            buttonBloatwareRemover.Size = new System.Drawing.Size(75, 80);
+            buttonBloatwareRemover.TabIndex = 46;
+            buttonBloatwareRemover.UseVisualStyleBackColor = true;
+            buttonBloatwareRemover.Click += buttonBloatwareRemover_Click;
             // 
-            // label5
+            // label6
             // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(64, 80);
-            label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(54, 15);
-            label5.TabIndex = 1;
-            label5.Text = "Drop File";
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = Properties.Resources.icons8_drag_and_drop_48;
-            pictureBox3.Location = new System.Drawing.Point(65, 22);
-            pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new System.Drawing.Size(59, 54);
-            pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            pictureBox3.TabIndex = 0;
-            pictureBox3.TabStop = false;
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(507, 166);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(103, 15);
+            label6.TabIndex = 45;
+            label6.Text = "Blotware Remover";
             // 
             // labelSelectedAppCount
             // 
@@ -649,7 +632,7 @@ namespace ATA_GUI
             groupBox6.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             groupBox6.Controls.Add(label3);
             groupBox6.Controls.Add(pictureBox2);
-            groupBox6.Location = new System.Drawing.Point(462, 82);
+            groupBox6.Location = new System.Drawing.Point(462, 208);
             groupBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox6.Name = "groupBox6";
             groupBox6.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -685,7 +668,7 @@ namespace ATA_GUI
             // 
             toolStrip1.BackColor = System.Drawing.Color.White;
             toolStrip1.ImageScalingSize = new System.Drawing.Size(18, 18);
-            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripButtonReloadApps, toolStripSeparator2, toolStripButtonFilter, toolStripSeparator6, textBoxSearch, toolStripSeparator1, toolStripButtonRestoreApp, toolStripSeparator7, toolStripButtonUninstallApp, toolStripSeparator5, toolStripButtonPackageManager, toolStripSeparator3, toolStripButtonPermissionMenu, toolStripSeparator4, toolStripButtonSetDefault, toolStripSeparator8, toolStripButtonBloatwareDetecter, toolStripSeparator10, toolStripButtonSearch, toolStripSeparator9, toolStripButtonExtract, toolStripSeparator12, toolStripLabelTotalApps, toolStripSeparator11, toolStripDropDownInstallApkButton });
+            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripButtonReloadApps, toolStripSeparator2, toolStripButtonFilter, toolStripSeparator6, textBoxSearch, toolStripSeparator1, toolStripButtonRestoreApp, toolStripSeparator7, toolStripButtonUninstallApp, toolStripSeparator5, toolStripButtonPackageManager, toolStripSeparator3, toolStripButtonPermissionMenu, toolStripSeparator4, toolStripButtonSetDefault, toolStripSeparator8, toolStripButtonSearch, toolStripSeparator9, toolStripButtonExtract, toolStripSeparator12, toolStripLabelTotalApps, toolStripSeparator11, toolStripDropDownInstallApkButton });
             toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             toolStrip1.Location = new System.Drawing.Point(4, 19);
             toolStrip1.Name = "toolStrip1";
@@ -816,21 +799,6 @@ namespace ATA_GUI
             // 
             toolStripSeparator8.Name = "toolStripSeparator8";
             toolStripSeparator8.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripButtonBloatwareDetecter
-            // 
-            toolStripButtonBloatwareDetecter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            toolStripButtonBloatwareDetecter.Image = Properties.Resources.icons8_box_important_48;
-            toolStripButtonBloatwareDetecter.ImageTransparentColor = System.Drawing.Color.Magenta;
-            toolStripButtonBloatwareDetecter.Name = "toolStripButtonBloatwareDetecter";
-            toolStripButtonBloatwareDetecter.Size = new System.Drawing.Size(23, 22);
-            toolStripButtonBloatwareDetecter.Text = "Bloatware Detecter";
-            toolStripButtonBloatwareDetecter.Click += toolStripButtonBloatwareDetecter_Click;
-            // 
-            // toolStripSeparator10
-            // 
-            toolStripSeparator10.Name = "toolStripSeparator10";
-            toolStripSeparator10.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButtonSearch
             // 
@@ -1502,6 +1470,7 @@ namespace ATA_GUI
             // 
             // tabPageTools
             // 
+            tabPageTools.Controls.Add(groupBox2);
             tabPageTools.Controls.Add(groupBox3);
             tabPageTools.Controls.Add(groupBoxTextInject);
             tabPageTools.Controls.Add(groupBoxFreeRotation);
@@ -1513,6 +1482,41 @@ namespace ATA_GUI
             tabPageTools.TabIndex = 3;
             tabPageTools.Text = "Tools";
             tabPageTools.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            groupBox2.Controls.Add(label5);
+            groupBox2.Controls.Add(pictureBox3);
+            groupBox2.Location = new System.Drawing.Point(8, 110);
+            groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox2.Size = new System.Drawing.Size(181, 112);
+            groupBox2.TabIndex = 48;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "File Transfer";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(65, 80);
+            label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(54, 15);
+            label5.TabIndex = 1;
+            label5.Text = "Drop File";
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.icons8_drag_and_drop_48;
+            pictureBox3.Location = new System.Drawing.Point(62, 22);
+            pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new System.Drawing.Size(59, 54);
+            pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            pictureBox3.TabIndex = 0;
+            pictureBox3.TabStop = false;
             // 
             // groupBox3
             // 
@@ -1687,42 +1691,41 @@ namespace ATA_GUI
             contextMenuStripFilterBy.ImageScalingSize = new System.Drawing.Size(18, 18);
             contextMenuStripFilterBy.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { allToolStripMenuItem, systemAppToolStripMenuItem1, nonSystemAppToolStripMenuItem1, uninstalledAppToolStripMenuItem, disabledAppToolStripMenuItem });
             contextMenuStripFilterBy.Name = "contextMenuStripFilterBy";
-            contextMenuStripFilterBy.Size = new System.Drawing.Size(164, 114);
+            contextMenuStripFilterBy.Size = new System.Drawing.Size(181, 136);
             // 
             // allToolStripMenuItem
             // 
             allToolStripMenuItem.Name = "allToolStripMenuItem";
-            allToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            allToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             allToolStripMenuItem.Text = "All";
             allToolStripMenuItem.Click += allToolStripMenuItem_Click;
             // 
             // systemAppToolStripMenuItem1
             // 
             systemAppToolStripMenuItem1.Name = "systemAppToolStripMenuItem1";
-            systemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            systemAppToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             systemAppToolStripMenuItem1.Text = "System App";
             systemAppToolStripMenuItem1.Click += systemAppToolStripMenuItem1_Click;
             // 
             // nonSystemAppToolStripMenuItem1
             // 
             nonSystemAppToolStripMenuItem1.Name = "nonSystemAppToolStripMenuItem1";
-            nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             nonSystemAppToolStripMenuItem1.Text = "Non System App";
             nonSystemAppToolStripMenuItem1.Click += nonSystemAppToolStripMenuItem1_Click;
             // 
             // uninstalledAppToolStripMenuItem
             // 
             uninstalledAppToolStripMenuItem.Name = "uninstalledAppToolStripMenuItem";
-            uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             uninstalledAppToolStripMenuItem.Text = "Uninstalled App";
             uninstalledAppToolStripMenuItem.Click += uninstalledAppToolStripMenuItem_Click;
             // 
             // disabledAppToolStripMenuItem
             // 
             disabledAppToolStripMenuItem.Name = "disabledAppToolStripMenuItem";
-            disabledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            disabledAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             disabledAppToolStripMenuItem.Text = "Disabled App";
-            disabledAppToolStripMenuItem.Visible = false;
             disabledAppToolStripMenuItem.Click += disabledAppToolStripMenuItem_Click;
             // 
             // contextMenuStripPermissionMenu
@@ -1811,13 +1814,12 @@ namespace ATA_GUI
             // buttonMobileScreenShare
             // 
             buttonMobileScreenShare.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            buttonMobileScreenShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             buttonMobileScreenShare.ForeColor = System.Drawing.Color.Transparent;
             buttonMobileScreenShare.Image = Properties.Resources.icons8_screensharing_48;
-            buttonMobileScreenShare.Location = new System.Drawing.Point(410, 451);
+            buttonMobileScreenShare.Location = new System.Drawing.Point(411, 431);
             buttonMobileScreenShare.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonMobileScreenShare.Name = "buttonMobileScreenShare";
-            buttonMobileScreenShare.Size = new System.Drawing.Size(70, 73);
+            buttonMobileScreenShare.Size = new System.Drawing.Size(70, 63);
             buttonMobileScreenShare.TabIndex = 39;
             buttonMobileScreenShare.UseVisualStyleBackColor = true;
             buttonMobileScreenShare.Click += buttonMobileScreenShare_Click;
@@ -1827,7 +1829,7 @@ namespace ATA_GUI
             label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             label9.AutoSize = true;
             label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label9.Location = new System.Drawing.Point(402, 434);
+            label9.Location = new System.Drawing.Point(410, 499);
             label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label9.Name = "label9";
             label9.Size = new System.Drawing.Size(72, 13);
@@ -2275,10 +2277,10 @@ namespace ATA_GUI
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.SystemColors.ControlLightLight;
             ClientSize = new System.Drawing.Size(1314, 527);
+            Controls.Add(label9);
             Controls.Add(groupBoxTerminal);
             Controls.Add(buttonTaskManager);
             Controls.Add(buttonDeviceLogs);
-            Controls.Add(label9);
             Controls.Add(buttonMobileScreenShare);
             Controls.Add(buttonLogClear);
             Controls.Add(richTextBoxLog);
@@ -2300,9 +2302,6 @@ namespace ATA_GUI
             tabPageSystem.ResumeLayout(false);
             groupBoxAPKMenu.ResumeLayout(false);
             groupBoxAPKMenu.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             groupBox6.ResumeLayout(false);
             groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -2323,6 +2322,9 @@ namespace ATA_GUI
             groupBoxFlash.ResumeLayout(false);
             groupBoxFlash.PerformLayout();
             tabPageTools.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             groupBox3.ResumeLayout(false);
             groupBoxTextInject.ResumeLayout(false);
             groupBoxFreeRotation.ResumeLayout(false);
@@ -2438,13 +2440,9 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem grantWriteSecureSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grantDUMPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkGrantedPermissionsToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.ToolStripLabel toolStripLabelTotalApps;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.ToolStripButton toolStripButtonBloatwareDetecter;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripButton toolStripButtonRestoreApp;
         private System.Windows.Forms.ToolStripMenuItem uninstalledAppToolStripMenuItem;
@@ -2478,7 +2476,6 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem revokeWriteSecureSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grantDUMPToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem revokeDUMPToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripSearch;
         private System.Windows.Forms.ToolStripMenuItem duckduckgoToolStripMenuItem;
@@ -2538,6 +2535,11 @@ namespace ATA_GUI
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button buttonCamera;
         private System.Windows.Forms.ComboBox comboBoxCameraModes;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button buttonBloatwareRemover;
     }
 }
 

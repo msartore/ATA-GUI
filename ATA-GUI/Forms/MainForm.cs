@@ -371,15 +371,15 @@ namespace ATA_GUI
                 case AppMode.NONSYSTEM:
                     command = commandAssemblerF("shell pm list packages -3 --user " + ATA.CurrentDeviceSelected.User);
                     break;
-                case AppMode.UNINSTALLED:
                 case AppMode.DISABLE:
+                    command = commandAssemblerF("shell pm list packages -d --user " + ATA.CurrentDeviceSelected.User);
+                    break;
+                case AppMode.UNINSTALLED:
                     string allAppString = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " shell pm list packages --user " + ATA.CurrentDeviceSelected.User, 0);
 
                     if (allAppString != null)
                     {
-                        command = appMode == AppMode.DISABLE
-                            ? commandAssemblerF("shell pm list packages -d --user " + ATA.CurrentDeviceSelected.User)
-                            : commandAssemblerF("shell pm list packages -u --user " + ATA.CurrentDeviceSelected.User);
+                        command = commandAssemblerF("shell pm list packages -u --user " + ATA.CurrentDeviceSelected.User);
 
                         string customAppString = ConsoleProcess.adbFastbootCommandR(command, 0);
 
@@ -399,7 +399,7 @@ namespace ATA_GUI
 
             LogWriteLine("Loading apps...");
 
-            if (ATA.CurrentDeviceSelected.AppMode is not AppMode.DISABLE and not AppMode.UNINSTALLED)
+            if (ATA.CurrentDeviceSelected.AppMode != AppMode.UNINSTALLED)
             {
                 appStringList = ConsoleProcess.adbFastbootCommandR(command, 0);
             }
@@ -1093,7 +1093,6 @@ namespace ATA_GUI
             toolStripButtonPermissionMenu.Enabled = true;
             toolStripButtonExtract.Enabled = true;
             toolStripButtonPackageManager.Enabled = true;
-            toolStripButtonBloatwareDetecter.Enabled = true;
             loadApps(AppMode.NONSYSTEM);
         }
 
@@ -1104,7 +1103,7 @@ namespace ATA_GUI
             toolStripButtonRestoreApp.Enabled = false;
             toolStripButtonPermissionMenu.Enabled = true;
             toolStripButtonPackageManager.Enabled = true;
-            toolStripButtonBloatwareDetecter.Enabled = true;
+
             loadApps(AppMode.SYSTEM);
         }
 
@@ -1115,7 +1114,7 @@ namespace ATA_GUI
             toolStripButtonExtract.Enabled = true;
             toolStripButtonPermissionMenu.Enabled = true;
             toolStripButtonPackageManager.Enabled = true;
-            toolStripButtonBloatwareDetecter.Enabled = true;
+
             loadApps(AppMode.ALL);
         }
 
@@ -1312,27 +1311,6 @@ namespace ATA_GUI
             });
         }
 
-        private void toolStripButtonBloatwareDetecter_Click(object sender, EventArgs e)
-        {
-            if (checkedListBoxApp.Items.Count > 0)
-            {
-                List<string> listOfApps = new();
-                foreach (object list in checkedListBoxApp.Items)
-                {
-                    listOfApps.Add(list.ToString());
-                }
-                BloatwareDetecter bloatwareDetecter = new(listOfApps, this)
-                {
-                    CurrentDevice = ATA.CurrentDeviceSelected.ID
-                };
-                _ = bloatwareDetecter.ShowDialog();
-            }
-            else
-            {
-                MessageShowBox("Apps not loaded!", 1);
-            }
-        }
-
         private void toolStripButtonRestoreApp_Click(object sender, EventArgs e)
         {
             if (checkedListBoxApp.CheckedItems.Count > 0)
@@ -1363,7 +1341,6 @@ namespace ATA_GUI
             toolStripButtonPermissionMenu.Enabled = false;
             toolStripButtonPackageManager.Enabled = false;
             toolStripButtonExtract.Enabled = false;
-            toolStripButtonBloatwareDetecter.Enabled = false;
             loadApps(AppMode.UNINSTALLED);
         }
 
@@ -1607,12 +1584,12 @@ namespace ATA_GUI
 
         private void disabledAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStripButtonUninstallApp.Enabled = true;
+            toolStripButtonUninstallApp.Enabled = false;
             toolStripButtonRestoreApp.Enabled = false;
             toolStripButtonPermissionMenu.Enabled = true;
             toolStripButtonPackageManager.Enabled = true;
             toolStripButtonExtract.Enabled = false;
-            toolStripButtonBloatwareDetecter.Enabled = true;
+
             loadApps(AppMode.DISABLE);
         }
 
@@ -2107,6 +2084,44 @@ namespace ATA_GUI
             else
             {
                 MessageShowBox("This device does not support camera mirroring", 0);
+            }
+        }
+
+        private void buttonBloatwareRemover_Click(object sender, EventArgs e)
+        {
+            List<string> appsSystem = new();
+            List<string> appsNonSystem = new();
+
+            try
+            {
+                string system = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell pm list packages -s --user " + ATA.CurrentDeviceSelected.User), 0);
+                string nonSystem = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell pm list packages -3 --user " + ATA.CurrentDeviceSelected.User), 0); ;
+
+                foreach (string line in system.Split("\n"))
+                {
+                    if (line.Contains("package:"))
+                    {
+                        appsSystem.Add(line[8..]);
+                    }
+                }
+
+                foreach (string line in nonSystem.Split("\n"))
+                {
+                    if (line.Contains("package:"))
+                    {
+                        appsNonSystem.Add(line[8..]);
+                    }
+                }
+
+                BloatwareRemover bloatwareDetecter = new(appsNonSystem, appsSystem)
+                {
+                    CurrentDevice = ATA.CurrentDeviceSelected.ID
+                };
+                _ = bloatwareDetecter.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageShowBox(ex.Message, 0);
             }
         }
     }
