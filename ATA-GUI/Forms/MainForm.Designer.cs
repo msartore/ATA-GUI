@@ -199,6 +199,7 @@ namespace ATA_GUI
             helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             videoTutorialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             submitFeedbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            driverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             videoTutorialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             buttonDeviceLogs = new System.Windows.Forms.Button();
             groupBox1 = new System.Windows.Forms.GroupBox();
@@ -1691,40 +1692,40 @@ namespace ATA_GUI
             contextMenuStripFilterBy.ImageScalingSize = new System.Drawing.Size(18, 18);
             contextMenuStripFilterBy.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { allToolStripMenuItem, systemAppToolStripMenuItem1, nonSystemAppToolStripMenuItem1, uninstalledAppToolStripMenuItem, disabledAppToolStripMenuItem });
             contextMenuStripFilterBy.Name = "contextMenuStripFilterBy";
-            contextMenuStripFilterBy.Size = new System.Drawing.Size(181, 136);
+            contextMenuStripFilterBy.Size = new System.Drawing.Size(164, 114);
             // 
             // allToolStripMenuItem
             // 
             allToolStripMenuItem.Name = "allToolStripMenuItem";
-            allToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            allToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             allToolStripMenuItem.Text = "All";
             allToolStripMenuItem.Click += allToolStripMenuItem_Click;
             // 
             // systemAppToolStripMenuItem1
             // 
             systemAppToolStripMenuItem1.Name = "systemAppToolStripMenuItem1";
-            systemAppToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            systemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             systemAppToolStripMenuItem1.Text = "System App";
             systemAppToolStripMenuItem1.Click += systemAppToolStripMenuItem1_Click;
             // 
             // nonSystemAppToolStripMenuItem1
             // 
             nonSystemAppToolStripMenuItem1.Name = "nonSystemAppToolStripMenuItem1";
-            nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            nonSystemAppToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             nonSystemAppToolStripMenuItem1.Text = "Non System App";
             nonSystemAppToolStripMenuItem1.Click += nonSystemAppToolStripMenuItem1_Click;
             // 
             // uninstalledAppToolStripMenuItem
             // 
             uninstalledAppToolStripMenuItem.Name = "uninstalledAppToolStripMenuItem";
-            uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            uninstalledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             uninstalledAppToolStripMenuItem.Text = "Uninstalled App";
             uninstalledAppToolStripMenuItem.Click += uninstalledAppToolStripMenuItem_Click;
             // 
             // disabledAppToolStripMenuItem
             // 
             disabledAppToolStripMenuItem.Name = "disabledAppToolStripMenuItem";
-            disabledAppToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            disabledAppToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             disabledAppToolStripMenuItem.Text = "Disabled App";
             disabledAppToolStripMenuItem.Click += disabledAppToolStripMenuItem_Click;
             // 
@@ -1999,17 +2000,17 @@ namespace ATA_GUI
             // contextMenuStripHelp
             // 
             contextMenuStripHelp.ImageScalingSize = new System.Drawing.Size(18, 18);
-            contextMenuStripHelp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { helpToolStripMenuItem, submitFeedbackToolStripMenuItem });
+            contextMenuStripHelp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { helpToolStripMenuItem, submitFeedbackToolStripMenuItem, driverToolStripMenuItem });
             contextMenuStripHelp.Name = "contextMenuStripHelp";
-            contextMenuStripHelp.Size = new System.Drawing.Size(168, 52);
+            contextMenuStripHelp.Size = new System.Drawing.Size(183, 98);
             // 
             // helpToolStripMenuItem
             // 
             helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { videoTutorialToolStripMenuItem });
             helpToolStripMenuItem.Image = Properties.Resources.icons8_help_48;
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
-            helpToolStripMenuItem.Text = "Open help";
+            helpToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
+            helpToolStripMenuItem.Text = "Tutorials";
             // 
             // videoTutorialToolStripMenuItem
             // 
@@ -2022,9 +2023,17 @@ namespace ATA_GUI
             // 
             submitFeedbackToolStripMenuItem.Image = Properties.Resources.icons8_get_help_48;
             submitFeedbackToolStripMenuItem.Name = "submitFeedbackToolStripMenuItem";
-            submitFeedbackToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
+            submitFeedbackToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
             submitFeedbackToolStripMenuItem.Text = "Submit Feedback";
             submitFeedbackToolStripMenuItem.Click += submitFeedbackToolStripMenuItem_Click;
+            // 
+            // driverToolStripMenuItem
+            // 
+            driverToolStripMenuItem.Image = Properties.Resources.tools_48;
+            driverToolStripMenuItem.Name = "driverToolStripMenuItem";
+            driverToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
+            driverToolStripMenuItem.Text = "OEM drivers";
+            driverToolStripMenuItem.Click += driverToolStripMenuItem_Click;
             // 
             // videoTutorialsToolStripMenuItem
             // 
@@ -2540,6 +2549,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button buttonBloatwareRemover;
+        private System.Windows.Forms.ToolStripMenuItem driverToolStripMenuItem;
     }
 }
 

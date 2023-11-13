@@ -125,25 +125,25 @@
     <value>
         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
-        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
+        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
 </value>
   </data>
   <metadata name="openFileDialogAPK.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -168,7 +168,7 @@
     <value>669, 58</value>
   </metadata>
   <metadata name="contextMenuStripHelp.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1157, 58</value>
+    <value>934, 58</value>
   </metadata>
   <metadata name="contextMenuStripSearch.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>484, 58</value>

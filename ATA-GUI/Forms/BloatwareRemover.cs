@@ -84,7 +84,7 @@ namespace ATA_GUI
 
         private void buttonAction_Click(object sender, EventArgs e)
         {
-            if (buttonAction.Enabled = checkedListBoxBloatwareList.CheckedItems.Count > 0)
+            if (checkedListBoxBloatwareList.CheckedItems.Count > 0)
             {
                 List<string> listFailed = new();
                 List<string> listSuccess = new();

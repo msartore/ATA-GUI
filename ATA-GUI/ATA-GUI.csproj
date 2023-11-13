@@ -9,9 +9,9 @@
 		<ApplicationIcon>ATALogoGUI.ico</ApplicationIcon>
 
 		<!-- Versioning -->
-		<Version>3.3.0.0</Version>
-		<FileVersion>3.3.0.0</FileVersion>
-		<AssemblyVersion>3.3.0.0</AssemblyVersion>
+		<Version>3.3.1.0</Version>
+		<FileVersion>3.3.1.0</FileVersion>
+		<AssemblyVersion>3.3.1.0</AssemblyVersion>
 		<Copyright>© 2021-2023 Massimiliano Sartore</Copyright>
 
 		<!-- Publish settings -->
@@ -27,11 +27,6 @@
 
 	<ItemGroup>
 		<Content Include="ATALogoGUI.ico" />
-		<BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
-			<Visible>False</Visible>
-			<ProductName>Microsoft .NET Framework 4.7.2 (x86 and x64)</ProductName>
-			<Install>true</Install>
-		</BootstrapperPackage>
 		<PackageReference Include="DotNetZip" Version="1.16.0" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />

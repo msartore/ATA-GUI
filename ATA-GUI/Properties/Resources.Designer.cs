@@ -87,12 +87,13 @@ namespace ATA_GUI.Properties {
         ///    com.skype.raider
         ///    flipboard.app
         ///    flipboard.boxer.app
+        ///    com.amazon.mShop.android
+        ///    sg.bigo.live
+        ///    com.tripadvisor.tripadvisor
+        ///    com.alibaba.aliexpresshd
         ///  &lt;/basic&gt;
         ///  &lt;medium&gt;
-        ///    com.google.android.apps.books
-        ///    com.google.android.apps.docs
-        ///    com.google.android.apps.magazines
-        ///    com.google [rest of string was truncated]&quot;;.
+        ///    com.goo [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string bloatwareList {
             get {
@@ -426,6 +427,16 @@ namespace ATA_GUI.Properties {
         internal static System.Drawing.Bitmap subtract_16 {
             get {
                 object obj = ResourceManager.GetObject("subtract_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tools_48 {
+            get {
+                object obj = ResourceManager.GetObject("tools-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

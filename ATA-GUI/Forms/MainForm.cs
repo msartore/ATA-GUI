@@ -339,7 +339,7 @@ namespace ATA_GUI
                 {
                     disableEnableSystem(false);
                     buttonDisconnectIP.Enabled = false;
-                    LogWriteLine("[ERROR] Device not found. If the issue persists, please check if the USB debugging option is enabled. For more information on how to solve this issue, please watch this video tutorial: https://www.youtube.com/watch?v=W7nkxS9LMXs");
+                    LogWriteLine("No device found");
                     MessageShowBox("Device not found!", 0);
                 });
             }
@@ -635,7 +635,7 @@ namespace ATA_GUI
                                 disableEnableSystem(false);
                                 panelFastboot.Enabled = false;
                                 panelRecovery.Enabled = false;
-                                LogWriteLine("No device found");
+                                LogWriteLine("[ERROR] No devices detected. If this problem continues, ensure that USB debugging is enabled on your device. Additionally, verify that the correct drivers are installed; you can find the necessary links under Help -> OEM Drivers. For detailed instructions on enabling USB debugging and more information, please refer to this video tutorial: https://www.youtube.com/watch?v=W7nkxS9LMXs.");
                                 break;
                             case 1:
                                 LogWriteLine("One device has been found");
@@ -2123,6 +2123,11 @@ namespace ATA_GUI
             {
                 MessageShowBox(ex.Message, 0);
             }
+        }
+
+        private void driverToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ScrollableMessageBox.show("Acer \thttps://www.acer.com/worldwide/support/\r\nAlcatel Mobile \thttps://www.alcatelmobile.com/support/\r\nAsus \thttps://www.asus.com/support/Download-Center/\r\nBlackberry \thttps://swdownloads.blackberry.com/Downloads/entry.do?code=4EE0932F46276313B51570F46266A608\r\nDell \thttps://support.dell.com/support/downloads/index.aspx?c=us&cs=19&l=en&s=dhs&~ck=anavml\r\nFCNT \thttps://www.fcnt.com/support/develop/#anc-03\r\nGoogle\thttps://developer.android.com/studio/run/win-usb\r\nHTC \thttps://www.htc.com/support\r\nHuawei \thttps://consumer.huawei.com/en/support/index.htm\r\nIntel \thttps://www.intel.com/software/android\r\nKyocera \thttps://kyoceramobile.com/support/drivers/\r\nLenovo \thttps://support.lenovo.com/us/en/GlobalProductSelector\r\nLGE \thttps://www.lg.com/us/support/software-firmware\r\nMotorola \thttps://motorola-global-portal.custhelp.com/app/answers/detail/a_id/88481/\r\nMTK \thttp://online.mediatek.com/Public%20Documents/MTK_Android_USB_Driver.zip (ZIP download)\r\nSamsung \thttps://developer.samsung.com/galaxy/others/android-usb-driver-for-windows\r\nSharp \thttp://k-tai.sharp.co.jp/support/\r\nSony Mobile Communications \thttps://developer.sonymobile.com/downloads/drivers/\r\nToshiba \thttps://support.toshiba.com/sscontent?docId=4001814\r\nXiaomi \thttps://web.vip.miui.com/page/info/mio/mio/detail?postId=18464849&app_version=dev.20051\r\nZTE \thttp://support.zte.com.cn/support/news/NewsDetail.aspx?newsId=1000442", "OEM drivers");
         }
     }
 }
