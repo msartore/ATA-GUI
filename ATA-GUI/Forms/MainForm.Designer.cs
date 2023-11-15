@@ -1497,6 +1497,8 @@ namespace ATA_GUI
             groupBox2.TabIndex = 48;
             groupBox2.TabStop = false;
             groupBox2.Text = "File Transfer";
+            groupBox2.DragDrop += groupBox2_DragDrop;
+            groupBox2.DragEnter += groupBox2_DragEnter;
             // 
             // label5
             // 
@@ -1655,7 +1657,7 @@ namespace ATA_GUI
             // 
             richTextBoxLog.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
-            richTextBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            richTextBoxLog.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
             richTextBoxLog.Location = new System.Drawing.Point(1068, 99);
             richTextBoxLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
