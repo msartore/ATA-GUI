@@ -537,7 +537,6 @@ namespace ATA_GUI
             // 
             // checkBoxSelectAll
             // 
-            checkBoxSelectAll.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             checkBoxSelectAll.AutoSize = true;
             checkBoxSelectAll.ForeColor = System.Drawing.Color.Black;
             checkBoxSelectAll.Location = new System.Drawing.Point(11, 59);
@@ -600,6 +599,7 @@ namespace ATA_GUI
             // 
             // buttonBloatwareRemover
             // 
+            buttonBloatwareRemover.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             buttonBloatwareRemover.Image = Properties.Resources.user_shield_48;
             buttonBloatwareRemover.Location = new System.Drawing.Point(521, 83);
             buttonBloatwareRemover.Name = "buttonBloatwareRemover";
@@ -610,6 +610,7 @@ namespace ATA_GUI
             // 
             // label6
             // 
+            label6.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Location = new System.Drawing.Point(507, 166);
             label6.Name = "label6";
@@ -619,7 +620,7 @@ namespace ATA_GUI
             // 
             // labelSelectedAppCount
             // 
-            labelSelectedAppCount.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            labelSelectedAppCount.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             labelSelectedAppCount.AutoSize = true;
             labelSelectedAppCount.Location = new System.Drawing.Point(334, 60);
             labelSelectedAppCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1486,7 +1487,6 @@ namespace ATA_GUI
             // 
             // groupBox2
             // 
-            groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(pictureBox3);
             groupBox2.Location = new System.Drawing.Point(8, 110);
@@ -2002,14 +2002,14 @@ namespace ATA_GUI
             contextMenuStripHelp.ImageScalingSize = new System.Drawing.Size(18, 18);
             contextMenuStripHelp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { helpToolStripMenuItem, submitFeedbackToolStripMenuItem, driverToolStripMenuItem });
             contextMenuStripHelp.Name = "contextMenuStripHelp";
-            contextMenuStripHelp.Size = new System.Drawing.Size(183, 98);
+            contextMenuStripHelp.Size = new System.Drawing.Size(168, 76);
             // 
             // helpToolStripMenuItem
             // 
             helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { videoTutorialToolStripMenuItem });
             helpToolStripMenuItem.Image = Properties.Resources.icons8_help_48;
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
+            helpToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
             helpToolStripMenuItem.Text = "Tutorials";
             // 
             // videoTutorialToolStripMenuItem
@@ -2023,7 +2023,7 @@ namespace ATA_GUI
             // 
             submitFeedbackToolStripMenuItem.Image = Properties.Resources.icons8_get_help_48;
             submitFeedbackToolStripMenuItem.Name = "submitFeedbackToolStripMenuItem";
-            submitFeedbackToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
+            submitFeedbackToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
             submitFeedbackToolStripMenuItem.Text = "Submit Feedback";
             submitFeedbackToolStripMenuItem.Click += submitFeedbackToolStripMenuItem_Click;
             // 
@@ -2031,7 +2031,7 @@ namespace ATA_GUI
             // 
             driverToolStripMenuItem.Image = Properties.Resources.tools_48;
             driverToolStripMenuItem.Name = "driverToolStripMenuItem";
-            driverToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
+            driverToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
             driverToolStripMenuItem.Text = "OEM drivers";
             driverToolStripMenuItem.Click += driverToolStripMenuItem_Click;
             // 
