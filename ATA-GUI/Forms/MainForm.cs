@@ -218,6 +218,8 @@ namespace ATA_GUI
 
         private void ExtractDeviceData()
         {
+            string errorMessage = null;
+
             if (ATA.CurrentDeviceSelected == null)
             {
                 return;
@@ -227,111 +229,135 @@ namespace ATA_GUI
 
             try
             {
+                string sdk = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell getprop ro.build.version.sdk"), 0);
                 string version = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell getprop ro.build.version.release"), 0);
 
-                if (version.Length < 0)
+                if (sdk.Length > 0)
                 {
-                    throw new Exception("android version not found");
-                }
-
-                if (version.Any(char.IsDigit))
-                {
-                    string[] arrayDeviceInfoCommands = { "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.build.version.release", "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.build.user",
+                    if (sdk.Any(char.IsDigit))
+                    {
+                        if (int.Parse(sdk) > 20)
+                        {
+                            string[] arrayDeviceInfoCommands = { "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.build.version.release", "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.build.user",
                                         "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.product.cpu.abilist", "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.product.manufacturer" , "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.product.model",
                                         "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.product.board", "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.product.device"};
-                    string deviceinfo = ConsoleProcess.adbFastbootCommandR(arrayDeviceInfoCommands, 0);
-                    string[] arrayDeviceInfo = deviceinfo.Split('\n');
-
-                    if (arrayDeviceInfo.Length > 6)
-                    {
-                        string localIp = "";
-
-                        try
-                        {
-                            localIp = ConsoleProcess.systemCommand("adb.exe -s " + ATA.CurrentDeviceSelected.ID + " shell ip route").Split(' ').Where(it => Regex.Match(it, "(\\b25[0-5]|\\b2[0-4][0-9]|\\b[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}").Success).Last();
-                        }
-                        catch
-                        {
-                            localIp = "";
-                        }
-
-                        Invoke(delegate
-                        {
-                            toolStripLabelTotalApps.Text = "Total: 0";
-                            checkedListBoxApp.Items.Clear();
-
-                            if (int.TryParse(Regex.Replace(arrayDeviceInfo[0], "([.][^.]*)", ""), out int version))
-                            {
-                                ATA.CurrentDeviceSelected.Version = version;
-                            }
-
-                            labelAV.Text = arrayDeviceInfo[0];
-                            labelBU.Text = arrayDeviceInfo[1];
-                            labelCA.Text = arrayDeviceInfo[2];
-                            labelManu.Text = arrayDeviceInfo[3];
-                            labelModel.Text = arrayDeviceInfo[4];
-                            labelB.Text = arrayDeviceInfo[5];
-                            labelD.Text = arrayDeviceInfo[6];
+                            string deviceinfo = ConsoleProcess.adbFastbootCommandR(arrayDeviceInfoCommands, 0);
+                            string[] arrayDeviceInfo = deviceinfo.Split('\n');
 
                             if (arrayDeviceInfo.Length > 6)
                             {
-                                if (localIp.Length > 4)
+                                string localIp = "";
+
+                                try
                                 {
-                                    comboBoxIP.Text = labelIP.Text = localIp;
+                                    localIp = ConsoleProcess.systemCommand("adb.exe -s " + ATA.CurrentDeviceSelected.ID + " shell ip route").Split(' ').Where(it => Regex.Match(it, "(\\b25[0-5]|\\b2[0-4][0-9]|\\b[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}").Success).Last();
                                 }
-                                if (labelIP.Text.Contains("t of devices attached") || localIp.Length == 0)
+                                catch
                                 {
-                                    labelIP.Text = "Not connected to a network";
-                                    comboBoxIP.ResetText();
-                                    buttonConnectToIP.Enabled = false;
-                                    buttonDisconnectIP.Enabled = false;
+                                    localIp = "";
                                 }
-                            }
-                            if (ATA.CurrentDeviceSelected.Connection == DeviceConnection.WIRELESS)
-                            {
-                                labelStatus.Text = "Wireless";
-                                buttonConnectToIP.Enabled = false;
-                                buttonDisconnectIP.Enabled = true;
+
+                                Invoke(delegate
+                                {
+                                    toolStripLabelTotalApps.Text = "Total: 0";
+                                    checkedListBoxApp.Items.Clear();
+
+                                    if (int.TryParse(Regex.Replace(arrayDeviceInfo[0], "([.][^.]*)", ""), out int version))
+                                    {
+                                        ATA.CurrentDeviceSelected.Version = version;
+                                    }
+
+                                    for (int i = 0; i < arrayDeviceInfo.Length; i++)
+                                    {
+                                        arrayDeviceInfo[i] = arrayDeviceInfo[i].Trim().Length > 0 ? arrayDeviceInfo[i] : "unknown";
+                                    }
+
+                                    labelAV.Text = arrayDeviceInfo[0];
+                                    labelBU.Text = arrayDeviceInfo[1];
+                                    labelCA.Text = arrayDeviceInfo[2];
+                                    labelManu.Text = arrayDeviceInfo[3];
+                                    labelModel.Text = arrayDeviceInfo[4];
+                                    labelB.Text = arrayDeviceInfo[5];
+                                    labelD.Text = arrayDeviceInfo[6];
+
+                                    if (arrayDeviceInfo.Length > 6)
+                                    {
+                                        if (localIp.Length > 4)
+                                        {
+                                            comboBoxIP.Text = labelIP.Text = localIp.Trim();
+                                        }
+                                        if (labelIP.Text.Contains("t of devices attached") || localIp.Length == 0)
+                                        {
+                                            labelIP.Text = "Not connected to a network";
+                                            comboBoxIP.ResetText();
+                                            buttonConnectToIP.Enabled = false;
+                                            buttonDisconnectIP.Enabled = false;
+                                        }
+                                    }
+                                    if (ATA.CurrentDeviceSelected.Connection == DeviceConnection.WIRELESS)
+                                    {
+                                        labelStatus.Text = "Wireless";
+                                        buttonConnectToIP.Enabled = false;
+                                        buttonDisconnectIP.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        labelStatus.Text = "Cable";
+                                        buttonConnectToIP.Enabled = true;
+                                        buttonDisconnectIP.Enabled = false;
+                                    }
+
+                                    if (ATA.CurrentDeviceSelected.Version > 0)
+                                    {
+                                        string[] usersList = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell pm list users"), 0).Split("\n");
+                                        string userTmp = usersList.Where(it => it.Contains("running")).FirstOrDefault();
+                                        userTmp ??= usersList[1];
+                                        int gPIndex = userTmp.IndexOf('{') + 1;
+                                        labelUser.Text = ATA.CurrentDeviceSelected.User = userTmp[gPIndex..userTmp.IndexOf(':')].Trim();
+                                    }
+
+                                    groupBoxFreeRotation.Enabled = int.TryParse(ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell cmd display get - displays"), 0), out int maxDisplay);
+
+                                    for (int i = maxDisplay; i > -1; i--)
+                                    {
+                                        _ = domainUpDownFreeRotation.Items.Add(i);
+                                    }
+
+                                    loadApps(AppMode.NONSYSTEM);
+
+                                    ATA.CurrentDeviceSelected.IsRotationFreeEnabled = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " shell wm get-ignore-orientation-request", 0).Contains("true");
+                                    buttonSetRotation.Text = ATA.CurrentDeviceSelected.IsRotationFreeEnabled ? "Unset" : "Set";
+
+                                    LogWriteLine("[ OK ] device info extracted");
+                                    disableEnableSystem(true);
+                                });
                             }
                             else
                             {
-                                labelStatus.Text = "Cable";
-                                buttonConnectToIP.Enabled = true;
-                                buttonDisconnectIP.Enabled = false;
+                                errorMessage = "android version not supported";
                             }
-
-                            if (ATA.CurrentDeviceSelected.Version > 6)
-                            {
-                                labelUser.Text = ATA.CurrentDeviceSelected.User = Regex.Replace(ConsoleProcess.adbFastbootCommandR(commandAssemblerF(" shell am get-current-user"), 0), @"\t|\n|\r", "");
-                            }
-
-                            groupBoxFreeRotation.Enabled = int.TryParse(ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell cmd display get - displays"), 0), out int maxDisplay);
-
-                            for (int i = maxDisplay; i > -1; i--)
-                            {
-                                _ = domainUpDownFreeRotation.Items.Add(i);
-                            }
-
-                            loadApps(AppMode.NONSYSTEM);
-
-                            ATA.CurrentDeviceSelected.IsRotationFreeEnabled = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " shell wm get-ignore-orientation-request", 0).Contains("true");
-                            buttonSetRotation.Text = ATA.CurrentDeviceSelected.IsRotationFreeEnabled ? "Unset" : "Set";
-
-                            LogWriteLine("[INFO] device info extracted");
-                            disableEnableSystem(true);
-                        });
+                        }
+                        else
+                        {
+                            errorMessage = "android versions under 5.0 are not supported";
+                        }
                     }
                     else
                     {
-                        throw new Exception("device not supported");
+                        errorMessage = "device not supported";
                     }
                 }
                 else
                 {
-                    throw new Exception("android version not supported");
+                    errorMessage = "android version not found";
                 }
             }
             catch (Exception e)
+            {
+                errorMessage = e.Message;
+            }
+
+            if (errorMessage != null)
             {
                 reloadList();
 
@@ -340,7 +366,7 @@ namespace ATA_GUI
                     disableEnableSystem(false);
                     buttonDisconnectIP.Enabled = false;
                     LogWriteLine("[ERROR] failed to extract device info!");
-                    MessageShowBox("Failed to extract device info\nError message: " + e.Message, 0);
+                    MessageShowBox("Failed to extract device info\nError message: " + errorMessage, 0);
                 });
             }
         }
@@ -417,7 +443,7 @@ namespace ATA_GUI
                         toolStripLabelTotalApps.Text = "Total: " + checkedListBoxApp.Items.Count;
                     });
 
-                    LogWriteLine("[ OK ] apps loaded!");
+                    LogWriteLine("[ OK ] apps loaded");
                 }
                 catch
                 {
