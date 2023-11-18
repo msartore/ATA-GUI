@@ -415,7 +415,7 @@ namespace ATA_GUI
                             {
                                 if (!allAppString.Contains(item))
                                 {
-                                    customApps.Add(item);
+                                    customApps.Add(item.Trim());
                                 }
                             }
                         }
@@ -1479,6 +1479,11 @@ namespace ATA_GUI
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
+            Application.Exit();
+        }
+
+        private void closeATA()
+        {
             if (Process.GetProcessesByName("adb").Length != 0)
             {
                 DialogResult dialogResult = MessageBox.Show("Do you want to kill ADB?", "Kill ADB", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -1487,7 +1492,6 @@ namespace ATA_GUI
                     _ = ConsoleProcess.adbFastbootCommandR("kill-server", 0);
                 }
             }
-            Application.Exit();
         }
 
         private void pictureBoxMinimize_MouseEnter(object sender, EventArgs e)
@@ -2149,6 +2153,11 @@ namespace ATA_GUI
         private void groupBox2_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            closeATA();
         }
     }
 }

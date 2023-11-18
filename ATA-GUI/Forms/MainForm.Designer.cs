@@ -2305,6 +2305,7 @@ namespace ATA_GUI
             Name = "MainForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "ATA-GUI";
+            FormClosed += MainForm_FormClosed;
             Load += MainForm_Load;
             Shown += MainForm_Shown;
             groupBoxDeviceInfo.ResumeLayout(false);
