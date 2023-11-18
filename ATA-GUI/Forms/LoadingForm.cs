@@ -78,19 +78,28 @@ namespace ATA_GUI
                 progressBar1.Minimum = 1;
                 progressBar1.Step = 1;
                 progressBar1.Maximum = array.Count;
+                List<string> failedApps = new();
+
                 switch (operation)
                 {
                     case OperationType.Install:
+
                         array.ForEach(x =>
                         {
                             labelFileName.Text = x;
                             Refresh();
-                            _ = ConsoleProcess.systemCommand(command + x);
+                            string result = ConsoleProcess.adbFastbootCommandR(command + x, 0).ToLowerInvariant();
+                            if (result.Contains("not found") || result.Contains("fail") || result.Trim().Length == 0)
+                            {
+                                failedApps.Add(x);
+                            }
                             ReportProgress();
                         });
+
                         break;
                     case OperationType.Transfer:
                         _ = ConsoleProcess.adbFastbootCommandR(new[] { "-s " + deviceSerial + " shell mkdir sdcard/ATA" }, 0);
+
                         array.ForEach(file =>
                         {
                             if (File.Exists(file))
@@ -99,31 +108,48 @@ namespace ATA_GUI
                                 Refresh();
                                 if (ConsoleProcess.adbFastbootCommandR(new[] { "-s " + deviceSerial + " push " + file + " sdcard/ATA " }, 0) == null)
                                 {
-                                    MainForm.MessageShowBox(labelFileName.Text + " not transfered", 0);
+                                    failedApps.Add(file);
                                 }
                             }
                             ReportProgress();
                         });
+
                         break;
                     case OperationType.Extraction:
+
                         if (!Directory.Exists("APKS"))
                         {
                             _ = ConsoleProcess.systemCommand("mkdir APKS");
                         }
+
                         array.ForEach(x =>
                         {
                             labelFileName.Text = x;
                             Refresh();
-                            string[] pathList = ConsoleProcess.systemCommand("adb.exe " + "-s " + deviceSerial + " shell pm path " + x).Split('\n').Where(it => it.Contains("package")).ToArray();
+                            string[] pathList = ConsoleProcess.adbFastbootCommandR("-s " + deviceSerial + " shell pm path " + x, 0).Split('\n').Where(it => it.Contains("package")).ToArray();
                             foreach (string path in pathList)
                             {
-                                _ = ConsoleProcess.systemCommand("adb.exe " + "-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "\\APKS\\" + x + "_" + path[(path.LastIndexOf('/') + 1)..]);
+                                string result = ConsoleProcess.adbFastbootCommandR(("-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "APKS\\" + x.Trim() + "_" + path[(path.LastIndexOf('/') + 1)..]).Trim(), 0);
+                                if (!result.Contains("file pulled"))
+                                {
+                                    failedApps.Add(result);
+                                }
                             }
                             ReportProgress();
                         });
+
                         break;
                     default:
                         break;
+                }
+
+                if (failedApps.Count > 0)
+                {
+                    MainForm.MessageShowBox(string.Format("ATA failed to run the action on the following items:\n{0}", string.Join("\n", failedApps)), 1);
+                }
+                else
+                {
+                    MainForm.MessageShowBox("ATA successfully performed the action on all the items selected", 2);
                 }
             });
         }

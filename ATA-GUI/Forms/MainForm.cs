@@ -441,6 +441,7 @@ namespace ATA_GUI
                         checkedListBoxApp.Items.AddRange(ATA.CurrentDeviceSelected.AppsString.ToArray());
                         checkedListBoxApp.CheckOnClick = true;
                         toolStripLabelTotalApps.Text = "Total: " + checkedListBoxApp.Items.Count;
+                        checkBoxSelectAll.Checked = false;
                     });
 
                     LogWriteLine("[ OK ] apps loaded");
@@ -458,7 +459,7 @@ namespace ATA_GUI
             {
                 if (line.Contains("package:"))
                 {
-                    ATA.CurrentDeviceSelected.AppsString.Add(line[8..]);
+                    ATA.CurrentDeviceSelected.AppsString.Add(line[8..].Trim() + "\n");
                 }
             }
             ATA.CurrentDeviceSelected.AppsString.Sort();
@@ -1019,7 +1020,7 @@ namespace ATA_GUI
 
         public void uninstaller(CheckedListBox.CheckedItemCollection foundPackageList)
         {
-            string command = "adb -s " + ATA.CurrentDeviceSelected.ID + " shell pm uninstall -k --user " + ATA.CurrentDeviceSelected.User + " ";
+            string command = "-s " + ATA.CurrentDeviceSelected.ID + " shell pm uninstall -k --user " + ATA.CurrentDeviceSelected.User + " ";
             LoadingForm load;
             List<string> arrayApkSelect = new();
             foreach (object list in foundPackageList)
@@ -1065,15 +1066,15 @@ namespace ATA_GUI
                 switch (packageMenu.DialogResult1)
                 {
                     case 1:
-                        command = "adb -s " + ATA.CurrentDeviceSelected.ID + " shell pm enable --user " + ATA.CurrentDeviceSelected.User + " ";
+                        command = commandAssemblerF("shell pm enable --user " + ATA.CurrentDeviceSelected.User + " ");
                         commandName = "Enabled:";
                         break;
                     case 0:
-                        command = "adb -s " + ATA.CurrentDeviceSelected.ID + " shell pm disable-user --user " + ATA.CurrentDeviceSelected.User + " ";
+                        command = commandAssemblerF("shell pm disable-user --user " + ATA.CurrentDeviceSelected.User + " ");
                         commandName = "Disabled:";
                         break;
                     case 2:
-                        command = "adb -s " + ATA.CurrentDeviceSelected.ID + " shell pm clear --user " + ATA.CurrentDeviceSelected.User + " ";
+                        command = commandAssemblerF("shell pm clear --user " + ATA.CurrentDeviceSelected.User + " ");
                         commandName = "Cleared:";
                         break;
                     case -1:
@@ -1329,7 +1330,7 @@ namespace ATA_GUI
                 {
                     apps.Add(app.ToString());
                 }
-                LoadingForm load = new(apps, "adb -s " + ATA.CurrentDeviceSelected.ID + " shell cmd package install-existing --user " + ATA.CurrentDeviceSelected.User + " ", "Restored:");
+                LoadingForm load = new(apps, commandAssemblerF(" shell cmd package install-existing --user " + ATA.CurrentDeviceSelected.User + " "), "Restored:");
                 _ = load.ShowDialog();
                 if (load.DialogResult != DialogResult.OK)
                 {
@@ -1749,6 +1750,7 @@ namespace ATA_GUI
             openFileDialogAPK.Title = "Select Apk";
 
             DialogResult dr = openFileDialogAPK.ShowDialog();
+
             if (dr == DialogResult.OK)
             {
                 backgroundWorkerAPKinstall.RunWorkerAsync(openFileDialogAPK.FileNames);
