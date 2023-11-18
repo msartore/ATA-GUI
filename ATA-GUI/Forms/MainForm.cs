@@ -1330,7 +1330,7 @@ namespace ATA_GUI
                 {
                     apps.Add(app.ToString());
                 }
-                LoadingForm load = new(apps, commandAssemblerF(" shell cmd package install-existing --user " + ATA.CurrentDeviceSelected.User + " "), "Restored:");
+                LoadingForm load = new(apps, commandAssemblerF("shell cmd package install-existing --user " + ATA.CurrentDeviceSelected.User + " "), "Restored:");
                 _ = load.ShowDialog();
                 if (load.DialogResult != DialogResult.OK)
                 {

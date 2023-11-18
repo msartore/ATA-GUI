@@ -11,7 +11,7 @@ namespace ATA_GUI
 {
     public partial class LoadingForm : Form
     {
-        private readonly List<string> array;
+        private List<string> array;
         private readonly string command;
         private readonly string deviceSerial;
         private readonly OperationType operation;
@@ -73,12 +73,14 @@ namespace ATA_GUI
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            List<string> failedApps = new();
+            array = array.Select(it => it.Trim()).ToList();
+
             Invoke(delegate
             {
                 progressBar1.Minimum = 1;
                 progressBar1.Step = 1;
                 progressBar1.Maximum = array.Count;
-                List<string> failedApps = new();
 
                 switch (operation)
                 {
@@ -129,7 +131,7 @@ namespace ATA_GUI
                             string[] pathList = ConsoleProcess.adbFastbootCommandR("-s " + deviceSerial + " shell pm path " + x, 0).Split('\n').Where(it => it.Contains("package")).ToArray();
                             foreach (string path in pathList)
                             {
-                                string result = ConsoleProcess.adbFastbootCommandR(("-s " + deviceSerial + " pull " + path.Replace("package:", "") + " " + Application.StartupPath + "APKS\\" + x.Trim() + "_" + path[(path.LastIndexOf('/') + 1)..]).Trim(), 0);
+                                string result = ConsoleProcess.adbFastbootCommandR(("-s " + deviceSerial + " pull " + path.Replace("package:", "").Trim() + " " + Application.StartupPath + "APKS\\" + x + "_" + path[(path.LastIndexOf('/') + 1)..]).Trim(), 0);
                                 if (!result.Contains("file pulled"))
                                 {
                                     failedApps.Add(result);
