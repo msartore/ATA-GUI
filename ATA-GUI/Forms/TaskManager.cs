@@ -44,8 +44,6 @@ namespace ATA_GUI
             foreach (DataGridViewRow row in dataGridViewTasks.Rows)
             {
                 row.Visible = arrayApks.Any(it => ((string)row.Cells[8].Value).Contains(it.Trim()));
-
-                row.Visible = row.Visible;
             }
         }
 
