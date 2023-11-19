@@ -30,6 +30,8 @@ ATA-GUI is an app that lets you perform advanced tasks on your Android™ device
 * Logcat
 * Task manager
 * Support to Multiple user device
+* Screen mirroring
+* Camera mirroring
 
 ## ATA License
 
