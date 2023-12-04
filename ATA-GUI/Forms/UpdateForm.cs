@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ATA_GUI.Classes;
 using ATA_GUI.Utils;
 using Ionic.Zip;
 
@@ -71,6 +72,7 @@ namespace ATA_GUI
                     labelLog.Text = "Closing App...";
                     Refresh();
                     _ = ConsoleProcess.systemCommandAsync("start " + ataUFileName);
+                    ATA.isUpdating = true;
                     Application.Exit();
                 }
                 catch (Exception ex)

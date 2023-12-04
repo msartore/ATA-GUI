@@ -17,6 +17,7 @@ namespace ATA_GUI.Classes
             FILEADB = "adb.exe";
             IsConnected = true;
             IsMaximize = false;
+            isUpdating = false;
             CurrentTab = Tab.SYSTEM;
         }
 
@@ -27,6 +28,7 @@ namespace ATA_GUI.Classes
         public bool IsConnected { get; set; }
         public bool IsMaximize { get; set; }
         public Tab CurrentTab { get; private set; }
+        public static bool isUpdating { get; set; }
         public static DeviceData CurrentDeviceSelected { get; set; }
         public Size windowSize;
 

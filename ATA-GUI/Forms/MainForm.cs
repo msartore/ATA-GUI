@@ -2157,7 +2157,10 @@ namespace ATA_GUI
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            closeATA();
+            if (!ATA.isUpdating)
+            {
+                closeATA();
+            }
         }
     }
 }
