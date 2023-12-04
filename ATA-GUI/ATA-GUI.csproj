@@ -9,9 +9,9 @@
 		<ApplicationIcon>ATALogoGUI.ico</ApplicationIcon>
 
 		<!-- Versioning -->
-		<Version>3.3.4.0</Version>
-		<FileVersion>3.3.4.0</FileVersion>
-		<AssemblyVersion>3.3.4.0</AssemblyVersion>
+		<Version>3.4.0.0</Version>
+		<FileVersion>3.4.0.0</FileVersion>
+		<AssemblyVersion>3.4.0.0</AssemblyVersion>
 		<Copyright>© 2021-2023 Massimiliano Sartore</Copyright>
 
 		<!-- Publish settings -->
@@ -31,10 +31,10 @@
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-		<PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters" Version="1.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters" Version="1.3.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 using ATA_GUI.Classes;
 using ATA_GUI.Utils;
@@ -63,9 +64,31 @@ namespace ATA_GUI
 
                 if (line.ToLowerInvariant().Contains(textBoxFilter.Text.ToLowerInvariant()) || string.IsNullOrEmpty(textBoxFilter.Text))
                 {
+                    Color color;
+
+                    try
+                    {
+                        char charI = line.Split(" ")[6][0];
+
+                        color = charI switch
+                        {
+                            'D' => Color.Yellow,
+                            'E' => Color.Red,
+                            'I' => Color.LightSeaGreen,
+                            'W' => Color.Orange,
+                            'V' => Color.SkyBlue,
+                            'F' => Color.Purple,
+                            _ => Color.White,
+                        };
+                    }
+                    catch
+                    {
+                        color = Color.White;
+                    }
+
                     Invoke(delegate
                     {
-                        richTextBoxLog.Text += line;
+                        RichTextBoxExtensions.AppendText(richTextBoxLog, line, color);
                         richTextBoxLog.SelectionStart = richTextBoxLog.TextLength;
                         if (keepScrolling)
                         {

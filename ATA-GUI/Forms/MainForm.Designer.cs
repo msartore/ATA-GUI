@@ -1,4 +1,4 @@
-﻿
+
 namespace ATA_GUI
 {
     partial class MainForm
@@ -64,7 +64,6 @@ namespace ATA_GUI
             labelSelectedAppCount = new System.Windows.Forms.Label();
             groupBox6 = new System.Windows.Forms.GroupBox();
             label3 = new System.Windows.Forms.Label();
-            pictureBox2 = new System.Windows.Forms.PictureBox();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStripButtonReloadApps = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -143,7 +142,6 @@ namespace ATA_GUI
             tabPageTools = new System.Windows.Forms.TabPage();
             groupBox2 = new System.Windows.Forms.GroupBox();
             label5 = new System.Windows.Forms.Label();
-            pictureBox3 = new System.Windows.Forms.PictureBox();
             groupBox3 = new System.Windows.Forms.GroupBox();
             comboBoxCameraModes = new System.Windows.Forms.ComboBox();
             buttonCamera = new System.Windows.Forms.Button();
@@ -230,7 +228,6 @@ namespace ATA_GUI
             tabPageSystem.SuspendLayout();
             groupBoxAPKMenu.SuspendLayout();
             groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             toolStrip1.SuspendLayout();
             groupBoxADBNet.SuspendLayout();
             groupBoxRebootMenu.SuspendLayout();
@@ -244,7 +241,6 @@ namespace ATA_GUI
             groupBoxFlash.SuspendLayout();
             tabPageTools.SuspendLayout();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             groupBox3.SuspendLayout();
             groupBoxTextInject.SuspendLayout();
             groupBoxFreeRotation.SuspendLayout();
@@ -537,6 +533,7 @@ namespace ATA_GUI
             // 
             // checkBoxSelectAll
             // 
+            checkBoxSelectAll.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             checkBoxSelectAll.AutoSize = true;
             checkBoxSelectAll.ForeColor = System.Drawing.Color.Black;
             checkBoxSelectAll.Location = new System.Drawing.Point(11, 59);
@@ -565,6 +562,7 @@ namespace ATA_GUI
             // 
             // tabPageSystem
             // 
+            tabPageSystem.BackColor = System.Drawing.Color.White;
             tabPageSystem.Controls.Add(groupBoxDeviceInfo);
             tabPageSystem.Controls.Add(groupBoxAPKMenu);
             tabPageSystem.Controls.Add(groupBoxADBNet);
@@ -576,7 +574,6 @@ namespace ATA_GUI
             tabPageSystem.Size = new System.Drawing.Size(1043, 342);
             tabPageSystem.TabIndex = 0;
             tabPageSystem.Text = "System";
-            tabPageSystem.UseVisualStyleBackColor = true;
             // 
             // groupBoxAPKMenu
             // 
@@ -632,8 +629,9 @@ namespace ATA_GUI
             // groupBox6
             // 
             groupBox6.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            groupBox6.BackgroundImage = Properties.Resources.icons8_drag_and_drop_48;
+            groupBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             groupBox6.Controls.Add(label3);
-            groupBox6.Controls.Add(pictureBox2);
             groupBox6.Location = new System.Drawing.Point(462, 208);
             groupBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox6.Name = "groupBox6";
@@ -654,17 +652,6 @@ namespace ATA_GUI
             label3.Size = new System.Drawing.Size(57, 15);
             label3.TabIndex = 1;
             label3.Text = "Drop Apk";
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = Properties.Resources.icons8_drag_and_drop_48;
-            pictureBox2.Location = new System.Drawing.Point(65, 22);
-            pictureBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new System.Drawing.Size(59, 54);
-            pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            pictureBox2.TabIndex = 0;
-            pictureBox2.TabStop = false;
             // 
             // toolStrip1
             // 
@@ -1487,8 +1474,9 @@ namespace ATA_GUI
             // 
             // groupBox2
             // 
+            groupBox2.BackgroundImage = Properties.Resources.icons8_drag_and_drop_48;
+            groupBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             groupBox2.Controls.Add(label5);
-            groupBox2.Controls.Add(pictureBox3);
             groupBox2.Location = new System.Drawing.Point(8, 110);
             groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox2.Name = "groupBox2";
@@ -1509,17 +1497,6 @@ namespace ATA_GUI
             label5.Size = new System.Drawing.Size(54, 15);
             label5.TabIndex = 1;
             label5.Text = "Drop File";
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = Properties.Resources.icons8_drag_and_drop_48;
-            pictureBox3.Location = new System.Drawing.Point(62, 22);
-            pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new System.Drawing.Size(59, 54);
-            pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            pictureBox3.TabIndex = 0;
-            pictureBox3.TabStop = false;
             // 
             // groupBox3
             // 
@@ -2316,7 +2293,6 @@ namespace ATA_GUI
             groupBoxAPKMenu.PerformLayout();
             groupBox6.ResumeLayout(false);
             groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             groupBoxADBNet.ResumeLayout(false);
@@ -2336,7 +2312,6 @@ namespace ATA_GUI
             tabPageTools.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             groupBox3.ResumeLayout(false);
             groupBoxTextInject.ResumeLayout(false);
             groupBoxFreeRotation.ResumeLayout(false);
@@ -2446,7 +2421,6 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripButton toolStripButtonPermissionMenu;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label labelSelectedAppCount;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripPermissionMenu;
         private System.Windows.Forms.ToolStripMenuItem grantWriteSecureSettingsToolStripMenuItem;
@@ -2550,7 +2524,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button buttonBloatwareRemover;
         private System.Windows.Forms.ToolStripMenuItem driverToolStripMenuItem;
     }

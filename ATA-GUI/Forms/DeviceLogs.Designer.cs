@@ -29,204 +29,217 @@ namespace ATA_GUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonGetEvent = new System.Windows.Forms.Button();
-            this.buttonLogcat = new System.Windows.Forms.Button();
-            this.richTextBoxLog = new System.Windows.Forms.RichTextBox();
-            this.backgroundWorkerLog = new System.ComponentModel.BackgroundWorker();
-            this.buttonClearLog = new System.Windows.Forms.Button();
-            this.buttonCopyText = new System.Windows.Forms.Button();
-            this.buttonKeepScrolling = new System.Windows.Forms.Button();
-            this.buttonLogcatClear = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxFilter = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.labelCCount = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.SuspendLayout();
+            buttonGetEvent = new System.Windows.Forms.Button();
+            buttonLogcat = new System.Windows.Forms.Button();
+            richTextBoxLog = new System.Windows.Forms.RichTextBox();
+            backgroundWorkerLog = new System.ComponentModel.BackgroundWorker();
+            buttonClearLog = new System.Windows.Forms.Button();
+            buttonCopyText = new System.Windows.Forms.Button();
+            buttonKeepScrolling = new System.Windows.Forms.Button();
+            buttonLogcatClear = new System.Windows.Forms.Button();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            label1 = new System.Windows.Forms.Label();
+            textBoxFilter = new System.Windows.Forms.TextBox();
+            label2 = new System.Windows.Forms.Label();
+            labelCCount = new System.Windows.Forms.Label();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
             // 
             // buttonGetEvent
             // 
-            this.buttonGetEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonGetEvent.BackColor = System.Drawing.Color.White;
-            this.buttonGetEvent.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonGetEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonGetEvent.ForeColor = System.Drawing.Color.Black;
-            this.buttonGetEvent.Location = new System.Drawing.Point(301, 414);
-            this.buttonGetEvent.Name = "buttonGetEvent";
-            this.buttonGetEvent.Size = new System.Drawing.Size(82, 23);
-            this.buttonGetEvent.TabIndex = 33;
-            this.buttonGetEvent.Text = "GetEvent";
-            this.buttonGetEvent.UseVisualStyleBackColor = false;
-            this.buttonGetEvent.Visible = false;
-            this.buttonGetEvent.Click += new System.EventHandler(this.buttonGetEvent_Click);
+            buttonGetEvent.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            buttonGetEvent.BackColor = System.Drawing.Color.White;
+            buttonGetEvent.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonGetEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonGetEvent.ForeColor = System.Drawing.Color.Black;
+            buttonGetEvent.Location = new System.Drawing.Point(351, 478);
+            buttonGetEvent.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonGetEvent.Name = "buttonGetEvent";
+            buttonGetEvent.Size = new System.Drawing.Size(96, 27);
+            buttonGetEvent.TabIndex = 33;
+            buttonGetEvent.Text = "GetEvent";
+            buttonGetEvent.UseVisualStyleBackColor = false;
+            buttonGetEvent.Visible = false;
+            buttonGetEvent.Click += buttonGetEvent_Click;
             // 
             // buttonLogcat
             // 
-            this.buttonLogcat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLogcat.BackColor = System.Drawing.Color.White;
-            this.buttonLogcat.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonLogcat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLogcat.ForeColor = System.Drawing.Color.Black;
-            this.buttonLogcat.Location = new System.Drawing.Point(240, 15);
-            this.buttonLogcat.Name = "buttonLogcat";
-            this.buttonLogcat.Size = new System.Drawing.Size(82, 23);
-            this.buttonLogcat.TabIndex = 35;
-            this.buttonLogcat.Text = "Start";
-            this.buttonLogcat.UseVisualStyleBackColor = false;
-            this.buttonLogcat.Click += new System.EventHandler(this.buttonLogcat_Click);
+            buttonLogcat.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            buttonLogcat.BackColor = System.Drawing.Color.White;
+            buttonLogcat.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonLogcat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonLogcat.ForeColor = System.Drawing.Color.Black;
+            buttonLogcat.Location = new System.Drawing.Point(280, 17);
+            buttonLogcat.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonLogcat.Name = "buttonLogcat";
+            buttonLogcat.Size = new System.Drawing.Size(96, 27);
+            buttonLogcat.TabIndex = 35;
+            buttonLogcat.Text = "Start";
+            buttonLogcat.UseVisualStyleBackColor = false;
+            buttonLogcat.Click += buttonLogcat_Click;
             // 
             // richTextBoxLog
             // 
-            this.richTextBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBoxLog.BackColor = System.Drawing.Color.Black;
-            this.richTextBoxLog.ForeColor = System.Drawing.Color.White;
-            this.richTextBoxLog.Location = new System.Drawing.Point(12, 12);
-            this.richTextBoxLog.Name = "richTextBoxLog";
-            this.richTextBoxLog.ReadOnly = true;
-            this.richTextBoxLog.Size = new System.Drawing.Size(766, 381);
-            this.richTextBoxLog.TabIndex = 36;
-            this.richTextBoxLog.Text = "";
-            this.richTextBoxLog.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBoxLog_LinkClicked);
+            richTextBoxLog.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            richTextBoxLog.BackColor = System.Drawing.Color.Black;
+            richTextBoxLog.ForeColor = System.Drawing.Color.White;
+            richTextBoxLog.Location = new System.Drawing.Point(14, 14);
+            richTextBoxLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            richTextBoxLog.Name = "richTextBoxLog";
+            richTextBoxLog.ReadOnly = true;
+            richTextBoxLog.Size = new System.Drawing.Size(893, 439);
+            richTextBoxLog.TabIndex = 36;
+            richTextBoxLog.Text = "";
+            richTextBoxLog.LinkClicked += richTextBoxLog_LinkClicked;
             // 
             // backgroundWorkerLog
             // 
-            this.backgroundWorkerLog.WorkerReportsProgress = true;
-            this.backgroundWorkerLog.WorkerSupportsCancellation = true;
-            this.backgroundWorkerLog.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerLog_DoWorkAsync);
+            backgroundWorkerLog.WorkerReportsProgress = true;
+            backgroundWorkerLog.WorkerSupportsCancellation = true;
+            backgroundWorkerLog.DoWork += backgroundWorkerLog_DoWorkAsync;
             // 
             // buttonClearLog
             // 
-            this.buttonClearLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonClearLog.BackColor = System.Drawing.Color.White;
-            this.buttonClearLog.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonClearLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClearLog.ForeColor = System.Drawing.Color.Black;
-            this.buttonClearLog.Location = new System.Drawing.Point(12, 414);
-            this.buttonClearLog.Name = "buttonClearLog";
-            this.buttonClearLog.Size = new System.Drawing.Size(82, 23);
-            this.buttonClearLog.TabIndex = 38;
-            this.buttonClearLog.Text = "Clear Log";
-            this.buttonClearLog.UseVisualStyleBackColor = false;
-            this.buttonClearLog.Click += new System.EventHandler(this.buttonClearLog_Click);
+            buttonClearLog.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            buttonClearLog.BackColor = System.Drawing.Color.White;
+            buttonClearLog.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonClearLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonClearLog.ForeColor = System.Drawing.Color.Black;
+            buttonClearLog.Location = new System.Drawing.Point(14, 478);
+            buttonClearLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonClearLog.Name = "buttonClearLog";
+            buttonClearLog.Size = new System.Drawing.Size(96, 27);
+            buttonClearLog.TabIndex = 38;
+            buttonClearLog.Text = "Clear Log";
+            buttonClearLog.UseVisualStyleBackColor = false;
+            buttonClearLog.Click += buttonClearLog_Click;
             // 
             // buttonCopyText
             // 
-            this.buttonCopyText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonCopyText.BackColor = System.Drawing.Color.White;
-            this.buttonCopyText.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonCopyText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCopyText.ForeColor = System.Drawing.Color.Black;
-            this.buttonCopyText.Location = new System.Drawing.Point(101, 414);
-            this.buttonCopyText.Name = "buttonCopyText";
-            this.buttonCopyText.Size = new System.Drawing.Size(82, 23);
-            this.buttonCopyText.TabIndex = 39;
-            this.buttonCopyText.Text = "Copy log";
-            this.buttonCopyText.UseVisualStyleBackColor = false;
-            this.buttonCopyText.Click += new System.EventHandler(this.buttonCopyText_Click);
+            buttonCopyText.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            buttonCopyText.BackColor = System.Drawing.Color.White;
+            buttonCopyText.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonCopyText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonCopyText.ForeColor = System.Drawing.Color.Black;
+            buttonCopyText.Location = new System.Drawing.Point(118, 478);
+            buttonCopyText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonCopyText.Name = "buttonCopyText";
+            buttonCopyText.Size = new System.Drawing.Size(96, 27);
+            buttonCopyText.TabIndex = 39;
+            buttonCopyText.Text = "Copy log";
+            buttonCopyText.UseVisualStyleBackColor = false;
+            buttonCopyText.Click += buttonCopyText_Click;
             // 
             // buttonKeepScrolling
             // 
-            this.buttonKeepScrolling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonKeepScrolling.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonKeepScrolling.Location = new System.Drawing.Point(189, 414);
-            this.buttonKeepScrolling.Name = "buttonKeepScrolling";
-            this.buttonKeepScrolling.Size = new System.Drawing.Size(106, 23);
-            this.buttonKeepScrolling.TabIndex = 40;
-            this.buttonKeepScrolling.Text = "Stop scrolling";
-            this.buttonKeepScrolling.UseVisualStyleBackColor = true;
-            this.buttonKeepScrolling.Click += new System.EventHandler(this.buttonKeepScrolling_Click);
+            buttonKeepScrolling.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            buttonKeepScrolling.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonKeepScrolling.Location = new System.Drawing.Point(220, 478);
+            buttonKeepScrolling.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonKeepScrolling.Name = "buttonKeepScrolling";
+            buttonKeepScrolling.Size = new System.Drawing.Size(124, 27);
+            buttonKeepScrolling.TabIndex = 40;
+            buttonKeepScrolling.Text = "Stop scrolling";
+            buttonKeepScrolling.UseVisualStyleBackColor = true;
+            buttonKeepScrolling.Click += buttonKeepScrolling_Click;
             // 
             // buttonLogcatClear
             // 
-            this.buttonLogcatClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLogcatClear.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonLogcatClear.Location = new System.Drawing.Point(159, 15);
-            this.buttonLogcatClear.Name = "buttonLogcatClear";
-            this.buttonLogcatClear.Size = new System.Drawing.Size(75, 23);
-            this.buttonLogcatClear.TabIndex = 41;
-            this.buttonLogcatClear.Text = "Clear";
-            this.buttonLogcatClear.UseVisualStyleBackColor = true;
-            this.buttonLogcatClear.Click += new System.EventHandler(this.buttonLogcatClear_Click);
+            buttonLogcatClear.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            buttonLogcatClear.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonLogcatClear.Location = new System.Drawing.Point(186, 17);
+            buttonLogcatClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonLogcatClear.Name = "buttonLogcatClear";
+            buttonLogcatClear.Size = new System.Drawing.Size(88, 27);
+            buttonLogcatClear.TabIndex = 41;
+            buttonLogcatClear.Text = "Clear";
+            buttonLogcatClear.UseVisualStyleBackColor = true;
+            buttonLogcatClear.Click += buttonLogcatClear_Click;
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBoxFilter);
-            this.groupBox1.Controls.Add(this.buttonLogcatClear);
-            this.groupBox1.Controls.Add(this.buttonLogcat);
-            this.groupBox1.Location = new System.Drawing.Point(450, 399);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(328, 44);
-            this.groupBox1.TabIndex = 42;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Logcat";
+            groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(textBoxFilter);
+            groupBox1.Controls.Add(buttonLogcatClear);
+            groupBox1.Controls.Add(buttonLogcat);
+            groupBox1.Location = new System.Drawing.Point(525, 460);
+            groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox1.Size = new System.Drawing.Size(383, 51);
+            groupBox1.TabIndex = 42;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Logcat";
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 44;
-            this.label1.Text = "Filter:";
+            label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(18, 23);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(36, 15);
+            label1.TabIndex = 44;
+            label1.Text = "Filter:";
             // 
             // textBoxFilter
             // 
-            this.textBoxFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxFilter.Location = new System.Drawing.Point(53, 17);
-            this.textBoxFilter.Name = "textBoxFilter";
-            this.textBoxFilter.Size = new System.Drawing.Size(100, 20);
-            this.textBoxFilter.TabIndex = 43;
+            textBoxFilter.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            textBoxFilter.Location = new System.Drawing.Point(62, 20);
+            textBoxFilter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textBoxFilter.Name = "textBoxFilter";
+            textBoxFilter.Size = new System.Drawing.Size(116, 23);
+            textBoxFilter.TabIndex = 43;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 396);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 13);
-            this.label2.TabIndex = 43;
-            this.label2.Text = "Character count:";
+            label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(14, 457);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(95, 15);
+            label2.TabIndex = 43;
+            label2.Text = "Character count:";
             // 
             // labelCCount
             // 
-            this.labelCCount.AutoSize = true;
-            this.labelCCount.Location = new System.Drawing.Point(98, 396);
-            this.labelCCount.Name = "labelCCount";
-            this.labelCCount.Size = new System.Drawing.Size(13, 13);
-            this.labelCCount.TabIndex = 44;
-            this.labelCCount.Text = "0";
+            labelCCount.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            labelCCount.AutoSize = true;
+            labelCCount.Location = new System.Drawing.Point(114, 457);
+            labelCCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelCCount.Name = "labelCCount";
+            labelCCount.Size = new System.Drawing.Size(13, 15);
+            labelCCount.TabIndex = 44;
+            labelCCount.Text = "0";
             // 
             // DeviceLogs
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(790, 448);
-            this.Controls.Add(this.labelCCount);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.buttonKeepScrolling);
-            this.Controls.Add(this.buttonCopyText);
-            this.Controls.Add(this.buttonClearLog);
-            this.Controls.Add(this.richTextBoxLog);
-            this.Controls.Add(this.buttonGetEvent);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(700, 400);
-            this.Name = "DeviceLogs";
-            this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Device Logs";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeviceLogs_FormClosing);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.White;
+            ClientSize = new System.Drawing.Size(922, 517);
+            Controls.Add(labelCCount);
+            Controls.Add(label2);
+            Controls.Add(groupBox1);
+            Controls.Add(buttonKeepScrolling);
+            Controls.Add(buttonCopyText);
+            Controls.Add(buttonClearLog);
+            Controls.Add(richTextBoxLog);
+            Controls.Add(buttonGetEvent);
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MinimizeBox = false;
+            MinimumSize = new System.Drawing.Size(814, 456);
+            Name = "DeviceLogs";
+            ShowIcon = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "Device Logs";
+            FormClosing += DeviceLogs_FormClosing;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

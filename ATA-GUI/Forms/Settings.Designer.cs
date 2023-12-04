@@ -30,170 +30,177 @@ namespace ATA_GUI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
-            this.labelLatestRelease = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonCredits = new System.Windows.Forms.Button();
-            this.buttonCheckLastVersion = new System.Windows.Forms.Button();
-            this.linkLabelChangelog = new System.Windows.Forms.LinkLabel();
-            this.labelLog = new System.Windows.Forms.Label();
-            this.labelCurrentRelease = new System.Windows.Forms.Label();
-            this.checkBoxInitPopUp = new System.Windows.Forms.CheckBox();
-            this.buttonRemoveLocalSDK = new System.Windows.Forms.Button();
-            this.buttonDeleteIPHistory = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            labelLatestRelease = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            buttonCredits = new System.Windows.Forms.Button();
+            buttonCheckLastVersion = new System.Windows.Forms.Button();
+            linkLabelChangelog = new System.Windows.Forms.LinkLabel();
+            labelLog = new System.Windows.Forms.Label();
+            labelCurrentRelease = new System.Windows.Forms.Label();
+            checkBoxInitPopUp = new System.Windows.Forms.CheckBox();
+            buttonRemoveLocalSDK = new System.Windows.Forms.Button();
+            buttonDeleteIPHistory = new System.Windows.Forms.Button();
+            SuspendLayout();
             // 
             // labelLatestRelease
             // 
-            this.labelLatestRelease.AutoSize = true;
-            this.labelLatestRelease.Location = new System.Drawing.Point(236, 49);
-            this.labelLatestRelease.Name = "labelLatestRelease";
-            this.labelLatestRelease.Size = new System.Drawing.Size(57, 13);
-            this.labelLatestRelease.TabIndex = 38;
-            this.labelLatestRelease.Text = "UNKNOW";
+            labelLatestRelease.AutoSize = true;
+            labelLatestRelease.Location = new System.Drawing.Point(275, 57);
+            labelLatestRelease.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelLatestRelease.Name = "labelLatestRelease";
+            labelLatestRelease.Size = new System.Drawing.Size(60, 15);
+            labelLatestRelease.TabIndex = 38;
+            labelLatestRelease.Text = "UNKNOW";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(80, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 13);
-            this.label2.TabIndex = 36;
-            this.label2.Text = "Latest Release:";
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(93, 57);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(83, 15);
+            label2.TabIndex = 36;
+            label2.Text = "Latest Release:";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(80, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 13);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "Current Release:";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(93, 32);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(92, 15);
+            label1.TabIndex = 35;
+            label1.Text = "Current Release:";
             // 
             // buttonCredits
             // 
-            this.buttonCredits.BackColor = System.Drawing.Color.White;
-            this.buttonCredits.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonCredits.ForeColor = System.Drawing.Color.Black;
-            this.buttonCredits.Location = new System.Drawing.Point(104, 248);
-            this.buttonCredits.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCredits.Name = "buttonCredits";
-            this.buttonCredits.Size = new System.Drawing.Size(160, 23);
-            this.buttonCredits.TabIndex = 33;
-            this.buttonCredits.Text = "About";
-            this.buttonCredits.UseVisualStyleBackColor = false;
-            this.buttonCredits.Click += new System.EventHandler(this.buttonCredits_Click);
+            buttonCredits.BackColor = System.Drawing.Color.White;
+            buttonCredits.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonCredits.ForeColor = System.Drawing.Color.Black;
+            buttonCredits.Location = new System.Drawing.Point(121, 298);
+            buttonCredits.Margin = new System.Windows.Forms.Padding(2);
+            buttonCredits.Name = "buttonCredits";
+            buttonCredits.Size = new System.Drawing.Size(187, 27);
+            buttonCredits.TabIndex = 33;
+            buttonCredits.Text = "About";
+            buttonCredits.UseVisualStyleBackColor = false;
+            buttonCredits.Click += buttonCredits_Click;
             // 
             // buttonCheckLastVersion
             // 
-            this.buttonCheckLastVersion.BackColor = System.Drawing.Color.White;
-            this.buttonCheckLastVersion.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonCheckLastVersion.ForeColor = System.Drawing.Color.Black;
-            this.buttonCheckLastVersion.Location = new System.Drawing.Point(104, 93);
-            this.buttonCheckLastVersion.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCheckLastVersion.Name = "buttonCheckLastVersion";
-            this.buttonCheckLastVersion.Size = new System.Drawing.Size(160, 23);
-            this.buttonCheckLastVersion.TabIndex = 34;
-            this.buttonCheckLastVersion.Text = "Check Last Version";
-            this.buttonCheckLastVersion.UseVisualStyleBackColor = false;
-            this.buttonCheckLastVersion.Click += new System.EventHandler(this.buttonCheckLastVersion_ClickAsync);
+            buttonCheckLastVersion.BackColor = System.Drawing.Color.White;
+            buttonCheckLastVersion.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonCheckLastVersion.ForeColor = System.Drawing.Color.Black;
+            buttonCheckLastVersion.Location = new System.Drawing.Point(121, 205);
+            buttonCheckLastVersion.Margin = new System.Windows.Forms.Padding(2);
+            buttonCheckLastVersion.Name = "buttonCheckLastVersion";
+            buttonCheckLastVersion.Size = new System.Drawing.Size(187, 27);
+            buttonCheckLastVersion.TabIndex = 34;
+            buttonCheckLastVersion.Text = "Check Last Version";
+            buttonCheckLastVersion.UseVisualStyleBackColor = false;
+            buttonCheckLastVersion.Click += buttonCheckLastVersion_ClickAsync;
             // 
             // linkLabelChangelog
             // 
-            this.linkLabelChangelog.AutoSize = true;
-            this.linkLabelChangelog.Location = new System.Drawing.Point(236, 62);
-            this.linkLabelChangelog.Name = "linkLabelChangelog";
-            this.linkLabelChangelog.Size = new System.Drawing.Size(58, 13);
-            this.linkLabelChangelog.TabIndex = 40;
-            this.linkLabelChangelog.TabStop = true;
-            this.linkLabelChangelog.Text = "Changelog";
-            this.linkLabelChangelog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelChangelog_LinkClicked);
+            linkLabelChangelog.AutoSize = true;
+            linkLabelChangelog.Location = new System.Drawing.Point(275, 72);
+            linkLabelChangelog.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            linkLabelChangelog.Name = "linkLabelChangelog";
+            linkLabelChangelog.Size = new System.Drawing.Size(65, 15);
+            linkLabelChangelog.TabIndex = 40;
+            linkLabelChangelog.TabStop = true;
+            linkLabelChangelog.Text = "Changelog";
+            linkLabelChangelog.LinkClicked += linkLabelChangelog_LinkClicked;
             // 
             // labelLog
             // 
-            this.labelLog.AutoSize = true;
-            this.labelLog.Location = new System.Drawing.Point(110, 130);
-            this.labelLog.Name = "labelLog";
-            this.labelLog.Size = new System.Drawing.Size(0, 13);
-            this.labelLog.TabIndex = 39;
-            this.labelLog.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            labelLog.AutoSize = true;
+            labelLog.Location = new System.Drawing.Point(93, 98);
+            labelLog.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelLog.Name = "labelLog";
+            labelLog.Size = new System.Drawing.Size(0, 15);
+            labelLog.TabIndex = 39;
+            labelLog.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelCurrentRelease
             // 
-            this.labelCurrentRelease.AutoSize = true;
-            this.labelCurrentRelease.Location = new System.Drawing.Point(236, 28);
-            this.labelCurrentRelease.Name = "labelCurrentRelease";
-            this.labelCurrentRelease.Size = new System.Drawing.Size(57, 13);
-            this.labelCurrentRelease.TabIndex = 37;
-            this.labelCurrentRelease.Text = "UNKNOW";
+            labelCurrentRelease.AutoSize = true;
+            labelCurrentRelease.Location = new System.Drawing.Point(275, 32);
+            labelCurrentRelease.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelCurrentRelease.Name = "labelCurrentRelease";
+            labelCurrentRelease.Size = new System.Drawing.Size(60, 15);
+            labelCurrentRelease.TabIndex = 37;
+            labelCurrentRelease.Text = "UNKNOW";
             // 
             // checkBoxInitPopUp
             // 
-            this.checkBoxInitPopUp.AutoSize = true;
-            this.checkBoxInitPopUp.Location = new System.Drawing.Point(104, 225);
-            this.checkBoxInitPopUp.Name = "checkBoxInitPopUp";
-            this.checkBoxInitPopUp.Size = new System.Drawing.Size(145, 17);
-            this.checkBoxInitPopUp.TabIndex = 41;
-            this.checkBoxInitPopUp.Text = "Disable feedback pop up";
-            this.checkBoxInitPopUp.UseVisualStyleBackColor = true;
-            this.checkBoxInitPopUp.CheckedChanged += new System.EventHandler(this.checkBoxInitPopUp_CheckedChanged);
+            checkBoxInitPopUp.AutoSize = true;
+            checkBoxInitPopUp.Location = new System.Drawing.Point(121, 181);
+            checkBoxInitPopUp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            checkBoxInitPopUp.Name = "checkBoxInitPopUp";
+            checkBoxInitPopUp.Size = new System.Drawing.Size(156, 19);
+            checkBoxInitPopUp.TabIndex = 41;
+            checkBoxInitPopUp.Text = "Disable feedback pop up";
+            checkBoxInitPopUp.UseVisualStyleBackColor = true;
+            checkBoxInitPopUp.CheckedChanged += checkBoxInitPopUp_CheckedChanged;
             // 
             // buttonRemoveLocalSDK
             // 
-            this.buttonRemoveLocalSDK.BackColor = System.Drawing.Color.White;
-            this.buttonRemoveLocalSDK.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonRemoveLocalSDK.ForeColor = System.Drawing.Color.Black;
-            this.buttonRemoveLocalSDK.Location = new System.Drawing.Point(104, 167);
-            this.buttonRemoveLocalSDK.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonRemoveLocalSDK.Name = "buttonRemoveLocalSDK";
-            this.buttonRemoveLocalSDK.Size = new System.Drawing.Size(160, 23);
-            this.buttonRemoveLocalSDK.TabIndex = 42;
-            this.buttonRemoveLocalSDK.Text = "Remove local SDK";
-            this.buttonRemoveLocalSDK.UseVisualStyleBackColor = false;
-            this.buttonRemoveLocalSDK.Click += new System.EventHandler(this.buttonRemoveLocalSDK_Click);
+            buttonRemoveLocalSDK.BackColor = System.Drawing.Color.White;
+            buttonRemoveLocalSDK.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonRemoveLocalSDK.ForeColor = System.Drawing.Color.Black;
+            buttonRemoveLocalSDK.Location = new System.Drawing.Point(121, 236);
+            buttonRemoveLocalSDK.Margin = new System.Windows.Forms.Padding(2);
+            buttonRemoveLocalSDK.Name = "buttonRemoveLocalSDK";
+            buttonRemoveLocalSDK.Size = new System.Drawing.Size(187, 27);
+            buttonRemoveLocalSDK.TabIndex = 42;
+            buttonRemoveLocalSDK.Text = "Remove local SDK";
+            buttonRemoveLocalSDK.UseVisualStyleBackColor = false;
+            buttonRemoveLocalSDK.Click += buttonRemoveLocalSDK_Click;
             // 
             // buttonDeleteIPHistory
             // 
-            this.buttonDeleteIPHistory.BackColor = System.Drawing.Color.White;
-            this.buttonDeleteIPHistory.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonDeleteIPHistory.ForeColor = System.Drawing.Color.Black;
-            this.buttonDeleteIPHistory.Location = new System.Drawing.Point(104, 197);
-            this.buttonDeleteIPHistory.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonDeleteIPHistory.Name = "buttonDeleteIPHistory";
-            this.buttonDeleteIPHistory.Size = new System.Drawing.Size(160, 23);
-            this.buttonDeleteIPHistory.TabIndex = 43;
-            this.buttonDeleteIPHistory.Text = "Delete IP History";
-            this.buttonDeleteIPHistory.UseVisualStyleBackColor = false;
-            this.buttonDeleteIPHistory.Click += new System.EventHandler(this.buttonDeleteIPHistory_Click);
+            buttonDeleteIPHistory.BackColor = System.Drawing.Color.White;
+            buttonDeleteIPHistory.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonDeleteIPHistory.ForeColor = System.Drawing.Color.Black;
+            buttonDeleteIPHistory.Location = new System.Drawing.Point(121, 267);
+            buttonDeleteIPHistory.Margin = new System.Windows.Forms.Padding(2);
+            buttonDeleteIPHistory.Name = "buttonDeleteIPHistory";
+            buttonDeleteIPHistory.Size = new System.Drawing.Size(187, 27);
+            buttonDeleteIPHistory.TabIndex = 43;
+            buttonDeleteIPHistory.Text = "Delete IP History";
+            buttonDeleteIPHistory.UseVisualStyleBackColor = false;
+            buttonDeleteIPHistory.Click += buttonDeleteIPHistory_Click;
             // 
             // Settings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(363, 301);
-            this.Controls.Add(this.buttonDeleteIPHistory);
-            this.Controls.Add(this.buttonRemoveLocalSDK);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.checkBoxInitPopUp);
-            this.Controls.Add(this.labelLatestRelease);
-            this.Controls.Add(this.labelCurrentRelease);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.labelLog);
-            this.Controls.Add(this.buttonCredits);
-            this.Controls.Add(this.linkLabelChangelog);
-            this.Controls.Add(this.buttonCheckLastVersion);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "Settings";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Settings";
-            this.Load += new System.EventHandler(this.Settings_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.White;
+            ClientSize = new System.Drawing.Size(424, 347);
+            Controls.Add(buttonDeleteIPHistory);
+            Controls.Add(buttonRemoveLocalSDK);
+            Controls.Add(label1);
+            Controls.Add(checkBoxInitPopUp);
+            Controls.Add(labelLatestRelease);
+            Controls.Add(labelCurrentRelease);
+            Controls.Add(label2);
+            Controls.Add(labelLog);
+            Controls.Add(buttonCredits);
+            Controls.Add(linkLabelChangelog);
+            Controls.Add(buttonCheckLastVersion);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "Settings";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "Settings";
+            Load += Settings_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

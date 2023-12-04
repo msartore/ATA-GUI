@@ -28,7 +28,7 @@ namespace ATA_GUI
                 {
                     try
                     {
-                        labelLog.Text = "Checking for new ATA version...";
+                        labelLog.Text = "Status: Checking for new ATA version...";
 
                         _ = await ATA.CheckVersion((currentRelease, latestRelease, jsonReal) =>
                         {
@@ -47,7 +47,7 @@ namespace ATA_GUI
                                     }
                                     else
                                     {
-                                        labelLog.Text = "ATA is not up to date, update\nit as soon as you can!";
+                                        labelLog.Text = "Status:\tATA is not up to date, update\nit as soon as you can!";
                                     }
                                 }
                                 else
@@ -55,13 +55,13 @@ namespace ATA_GUI
                                     switch (Utils.Version.CompareVersions(currentRelease, latestRelease))
                                     {
                                         case Utils.Version.VersionComparisonResult.EqualTo:
-                                            labelLog.Text = "ATA is up to date!";
+                                            labelLog.Text = "Status: ATA is up to date!";
                                             break;
                                         case Utils.Version.VersionComparisonResult.LessThan:
-                                            labelLog.Text = "ATA is not up to date!";
+                                            labelLog.Text = "Status: ATA is not up to date!";
                                             break;
                                         case Utils.Version.VersionComparisonResult.GreaterThan:
-                                            labelLog.Text = "Cool, you are a developer :)";
+                                            labelLog.Text = "Status: Cool, you are a developer :)";
                                             break;
                                     }
                                 }
@@ -79,7 +79,7 @@ namespace ATA_GUI
                 }
                 else
                 {
-                    labelLog.Text = "You are offline";
+                    labelLog.Text = "Status: You are offline";
                 }
                 runningCheck = false;
             }
