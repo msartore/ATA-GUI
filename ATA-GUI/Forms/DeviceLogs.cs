@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using ATA_GUI.Classes;
 using ATA_GUI.Utils;
@@ -68,17 +69,17 @@ namespace ATA_GUI
 
                     try
                     {
-                        char charI = line.Split(" ")[6][0];
+                        char charI = line.Split(" ").Where(it => !it.Equals(string.Empty)).ElementAt(4)[0];
 
                         color = charI switch
                         {
-                            'D' => Color.Yellow,
-                            'E' => Color.Red,
-                            'I' => Color.LightSeaGreen,
-                            'W' => Color.Orange,
-                            'V' => Color.SkyBlue,
-                            'F' => Color.Purple,
-                            _ => Color.White,
+                            'D' => Color.Goldenrod,
+                            'E' => Color.Crimson,
+                            'I' => Color.MediumSeaGreen,
+                            'W' => Color.Coral,
+                            'V' => Color.SteelBlue,
+                            'F' => Color.Plum,
+                            _ => Color.LightGray,
                         };
                     }
                     catch
