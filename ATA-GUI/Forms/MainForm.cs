@@ -1479,7 +1479,7 @@ namespace ATA_GUI
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            closeATA();
         }
 
         private void closeATA()
@@ -1492,6 +1492,8 @@ namespace ATA_GUI
                     _ = ConsoleProcess.adbFastbootCommandR("kill-server", 0);
                 }
             }
+
+            Application.Exit();
         }
 
         private void pictureBoxMinimize_MouseEnter(object sender, EventArgs e)
@@ -2153,14 +2155,6 @@ namespace ATA_GUI
         private void groupBox2_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
-        }
-
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (!ATA.isUpdating)
-            {
-                closeATA();
-            }
         }
     }
 }

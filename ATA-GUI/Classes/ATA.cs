@@ -9,17 +9,8 @@ namespace ATA_GUI.Classes
 {
     internal class ATA
     {
-        public static readonly string CURRENTVERSION = "v3.4.1";
+        public static readonly string CURRENTVERSION = "v3.4.2";
         public static readonly string IPFileName = "IPList.txt";
-
-        public ATA()
-        {
-            FILEADB = "adb.exe";
-            IsConnected = true;
-            IsMaximize = false;
-            isUpdating = false;
-            CurrentTab = Tab.SYSTEM;
-        }
 
         public HashSet<string> IPList { get; } = new HashSet<string>();
         public List<DeviceData> Devices { get; } = new List<DeviceData>();
@@ -28,10 +19,17 @@ namespace ATA_GUI.Classes
         public bool IsConnected { get; set; }
         public bool IsMaximize { get; set; }
         public Tab CurrentTab { get; private set; }
-        public static bool isUpdating { get; set; }
         public static DeviceData CurrentDeviceSelected { get; set; }
         public Size windowSize;
 
+
+        public ATA()
+        {
+            FILEADB = "adb.exe";
+            IsConnected = true;
+            IsMaximize = false;
+            CurrentTab = Tab.SYSTEM;
+        }
 
         public static async Task<bool> CheckVersion(Func<string, string, dynamic, bool> command)
         {
