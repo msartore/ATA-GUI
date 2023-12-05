@@ -9,9 +9,9 @@
 		<ApplicationIcon>ATALogoGUI.ico</ApplicationIcon>
 
 		<!-- Versioning -->
-		<Version>3.4.1.0</Version>
-		<FileVersion>3.4.1.0</FileVersion>
-		<AssemblyVersion>3.4.1.0</AssemblyVersion>
+		<Version>3.4.2.0</Version>
+		<FileVersion>3.4.2.0</FileVersion>
+		<AssemblyVersion>3.4.2.0</AssemblyVersion>
 		<Copyright>© 2021-2023 Massimiliano Sartore</Copyright>
 
 		<!-- Publish settings -->
