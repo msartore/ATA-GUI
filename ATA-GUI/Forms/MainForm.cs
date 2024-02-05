@@ -88,7 +88,7 @@ namespace ATA_GUI
                             }
                         }
                         panelFastboot.Enabled = true;
-                        LogWriteLine("[ OK ] info extracted");
+                        LogWriteLine("info extracted", LogType.OK);
                         break;
                     case Tab.RECOVERY:
                         if (ATA.CurrentDeviceSelected.sameMode(Tab.RECOVERY))
@@ -141,10 +141,33 @@ namespace ATA_GUI
             richTextBoxLog.Clear();
         }
 
-        private void LogWriteLine(string str)
+        private void LogWriteLine(string str, LogType logType)
         {
             Invoke(delegate
             {
+                richTextBoxLog.Text += "[";
+
+                switch (logType)
+                {
+                    case LogType.ERROR:
+                        RichTextBoxExtensions.AppendText(richTextBoxLog, logType.ToString(), Color.Red);
+                        break;
+                    case LogType.OK:
+                        RichTextBoxExtensions.AppendText(richTextBoxLog, " " + logType.ToString() + " ", Color.LimeGreen);
+                        break;
+                    case LogType.WARNING:
+                        RichTextBoxExtensions.AppendText(richTextBoxLog, logType.ToString(), Color.Yellow);
+                        break;
+                    case LogType.INFO:
+                        RichTextBoxExtensions.AppendText(richTextBoxLog, logType.ToString(), Color.LightBlue);
+                        break;
+                    case LogType.UNKNOWN:
+                        RichTextBoxExtensions.AppendText(richTextBoxLog, logType.ToString(), Color.LightBlue);
+                        break;
+                }
+
+                richTextBoxLog.Text += "] ";
+
                 richTextBoxLog.Text += str + "\n";
                 richTextBoxLog.SelectionStart = richTextBoxLog.Text.Length;
                 richTextBoxLog.ScrollToCaret();
@@ -192,12 +215,12 @@ namespace ATA_GUI
                                 }
                                 else
                                 {
-                                    LogWriteLine("[WARNING] your ATA is not up to date. It is recommended that you update it as soon as possible to ensure optimal performance and security");
+                                    LogWriteLine("your ATA is not up to date. It is recommended that you update it as soon as possible to ensure optimal performance and security", LogType.WARNING);
                                 }
                             }
                             else
                             {
-                                LogWriteLine("[ OK ] ATA is up to date!");
+                                LogWriteLine("ATA is up to date!", LogType.OK);
                             }
                         });
                         return true;
@@ -206,8 +229,8 @@ namespace ATA_GUI
                 }
                 catch
                 {
-                    LogWriteLine("[ERROR] A timeout error occurred while attempting to connect to the server. Please check your network connection and try again");
-                    LogWriteLine("Please open the settings menu to check if a new version of the software is available for download");
+                    LogWriteLine("A timeout error occurred while attempting to connect to the server. Please check your network connection and try again " +
+                        "Please open the settings menu to check if a new version of the software is available for download", LogType.ERROR);
                 }
             }
             else
@@ -225,7 +248,7 @@ namespace ATA_GUI
                 return;
             }
 
-            LogWriteLine("[INFO] checking device...");
+            LogWriteLine("checking device...", LogType.INFO);
 
             try
             {
@@ -328,7 +351,7 @@ namespace ATA_GUI
                                     ATA.CurrentDeviceSelected.IsRotationFreeEnabled = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " shell wm get-ignore-orientation-request", 0).Contains("true");
                                     buttonSetRotation.Text = ATA.CurrentDeviceSelected.IsRotationFreeEnabled ? "Unset" : "Set";
 
-                                    LogWriteLine("[ OK ] device info extracted");
+                                    LogWriteLine("device info extracted", LogType.OK);
                                     disableEnableSystem(true);
                                 });
                             }
@@ -365,7 +388,7 @@ namespace ATA_GUI
                 {
                     disableEnableSystem(false);
                     buttonDisconnectIP.Enabled = false;
-                    LogWriteLine("[ERROR] failed to extract device info!");
+                    LogWriteLine("failed to extract device info!", LogType.ERROR);
                     MessageShowBox("Failed to extract device info\nError message: " + errorMessage, 0);
                 });
             }
@@ -423,7 +446,7 @@ namespace ATA_GUI
                     break;
             }
 
-            LogWriteLine("[INFO] loading apps...");
+            LogWriteLine("loading apps...", LogType.INFO);
 
             if (ATA.CurrentDeviceSelected.AppMode != AppMode.UNINSTALLED)
             {
@@ -444,7 +467,7 @@ namespace ATA_GUI
                         checkBoxSelectAll.Checked = false;
                     });
 
-                    LogWriteLine("[ OK ] apps loaded");
+                    LogWriteLine("apps loaded", LogType.OK);
                 }
                 catch
                 {
@@ -500,7 +523,7 @@ namespace ATA_GUI
             if (ATA.CurrentDeviceSelected.Connection == DeviceConnection.CABLE || MessageBox.Show("Adb is not able to check if the device rebooted via wireless mode, do you want to continue?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 _ = ConsoleProcess.systemCommand(commandAssembler(true, "reboot recovery"));
-                LogWriteLine("[INFO] rebooted");
+                LogWriteLine("rebooted", LogType.OK);
                 Thread.Sleep(1000);
                 reloadList();
             }
@@ -511,7 +534,7 @@ namespace ATA_GUI
             if (ATA.CurrentDeviceSelected.Connection == DeviceConnection.CABLE || MessageBox.Show("Adb is not able to check if the device rebooted via wireless mode, do you want to continue?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 _ = ConsoleProcess.systemCommand(commandAssembler(true, "reboot-bootloader"));
-                LogWriteLine("[INFO] rebooted");
+                LogWriteLine("rebooted", LogType.OK);
                 Thread.Sleep(1000);
                 reloadList();
             }
@@ -587,7 +610,7 @@ namespace ATA_GUI
 
             if (await checkAdbFastboot(isAdb))
             {
-                LogWriteLine("[INFO] searching for devices...");
+                LogWriteLine("searching for devices...", LogType.INFO);
 
                 string dev = ConsoleProcess.adbFastbootCommandR("devices", isAdb ? 0 : 1);
 
@@ -662,13 +685,13 @@ namespace ATA_GUI
                                 disableEnableSystem(false);
                                 panelFastboot.Enabled = false;
                                 panelRecovery.Enabled = false;
-                                LogWriteLine("[ERROR] no devices detected. If this problem continues, ensure that USB debugging is enabled on your device. Additionally, verify that the correct drivers are installed; you can find the necessary links under Help -> OEM Drivers. For detailed instructions on enabling USB debugging and more information, please refer to this video tutorial: https://www.youtube.com/watch?v=W7nkxS9LMXs.");
+                                LogWriteLine("no devices detected. If this problem continues, ensure that USB debugging is enabled on your device. Additionally, verify that the correct drivers are installed; you can find the necessary links under Help -> OEM Drivers. For detailed instructions on enabling USB debugging and more information, please refer to this video tutorial: https://www.youtube.com/watch?v=W7nkxS9LMXs.", LogType.ERROR);
                                 break;
                             case 1:
-                                LogWriteLine("[ OK ] one device has been found");
+                                LogWriteLine("one device has been found", LogType.OK);
                                 break;
                             default:
-                                LogWriteLine("[ OK ] more than one device has been found");
+                                LogWriteLine("more than one device has been found", LogType.OK);
                                 break;
                         }
                     });
@@ -708,7 +731,7 @@ namespace ATA_GUI
                 _ = new Feedback().ShowDialog();
             }
 
-            LogWriteLine("[INFO] checking connection...");
+            LogWriteLine("checking connection...", LogType.INFO);
 
             toolStripButtonRestoreApp.Enabled = false;
             Enabled = false;
@@ -732,13 +755,13 @@ namespace ATA_GUI
             }
             else
             {
-                LogWriteLine("[WARNING] you are offline");
+                LogWriteLine("you are offline", LogType.WARNING);
                 disableSystem(true);
             }
 
-            LogWriteLine("[ OK ] connection checked!");
+            LogWriteLine("connection checked!", LogType.OK);
 
-            LogWriteLine("[INFO] starting adb...");
+            LogWriteLine("starting adb...", LogType.INFO);
 
             _ = await DevicesListUpdate();
 
@@ -803,7 +826,7 @@ namespace ATA_GUI
             {
                 if (!backgroundWorkerADBConnect.IsBusy)
                 {
-                    LogWriteLine("[INFO] trying to connect to your device...");
+                    LogWriteLine("trying to connect to your device...", LogType.INFO);
                     backgroundWorkerADBConnect.RunWorkerAsync();
                 }
                 else
@@ -843,11 +866,11 @@ namespace ATA_GUI
                             ScrollableMessageBox.show(log, "Granted permissions");
                             continue;
                         }
-                        LogWriteLine("[ OK ] the command has been injected");
+                        LogWriteLine("the command has been injected", LogType.OK);
                     }
                     else
                     {
-                        LogWriteLine("[ERROR] the command injection has failed");
+                        LogWriteLine("the command injection has failed", LogType.ERROR);
                     }
                 }
             }
@@ -879,15 +902,15 @@ namespace ATA_GUI
         private void backgroundWorkerZip_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             string fileName = textBoxDirFile.Text[(textBoxDirFile.Text.LastIndexOf('\\') + 1)..];
-            LogWriteLine("[ OK ] flashing " + fileName + "...");
+            LogWriteLine("flashing " + fileName + "...", LogType.OK);
             string log = ConsoleProcess.adbFastbootCommandR(commandAssemblerF(string.Format("sideload \"{0}\"", textBoxDirFile.Text)), 0);
             if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log.Trim() == "")
             {
-                LogWriteLine("[ERROR] " + fileName + " failed to flash, try restarting the sideload process or unplugging and replugging the device to resolve the issue.");
+                LogWriteLine(fileName + " failed to flash, try restarting the sideload process or unplugging and replugging the device to resolve the issue.", LogType.ERROR);
             }
             else
             {
-                LogWriteLine("[ OK ] " + fileName + " flashed");
+                LogWriteLine(fileName + " flashed", LogType.OK);
             }
         }
 
@@ -905,56 +928,56 @@ namespace ATA_GUI
             }
         }
 
-        private void flash(int index)
-        {
-            try
-            {
-                backgroundWorkerFlashImg.RunWorkerAsync(index);
-            }
-            catch (Exception ex)
-            {
-                MessageShowBox(ex.ToString(), 0);
-            }
-        }
-
         private void backgroundWorkerFlashImg_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            string command;
+            string command = null;
             string log;
 
-            switch (sender.ToString())
+            if (radioButtonBoot.Checked)
             {
-                case "0":
-                    command = "flash boot ";
-                    break;
-                case "1":
-                    command = "flash bootloader ";
-                    break;
-                case "2":
-                    command = "flash cache ";
-                    break;
-                case "3":
-                    command = "flash radio ";
-                    break;
-                case "4":
-                    command = "flash recovery ";
-                    break;
-                case "5":
-                    command = "-w && fastboot update ";
-                    break;
-                case "6":
-                    command = "flash system ";
-                    break;
-                case "7":
-                    command = "flash vendor ";
-                    break;
-                default:
-                    return;
+                command = "flash boot ";
             }
+            else if (radioButtonBootloader.Checked)
+            {
+                command = "flash bootloader ";
+            }
+            else if (radioButtonCache.Checked)
+            {
+                command = "flash cache ";
+            }
+            else if (radioButtonRadio.Checked)
+            {
+                command = "flash radio ";
+            }
+            else if (radioButtonRecovery.Checked)
+            {
+                command = "flash recovery ";
+            }
+            else if (radioButtonRom.Checked)
+            {
+                command = "-w && fastboot update ";
+            }
+            else if (radioButtonSystem.Checked)
+            {
+                command = "flash system ";
+            }
+            else if (radioButtonVendor.Checked)
+            {
+                command = "flash vendor ";
+            }
+            else
+            {
+                return;
+            }
+
+            Invoke(delegate
+            {
+                LogWriteLine("flashing " + textBoxDirImg.Text, LogType.INFO);
+            });
 
             if ((log = ConsoleProcess.adbFastbootCommandR(commandAssemblerF(command + textBoxDirImg.Text), 1)) != null)
             {
-                LogWriteLine("[INFO] " + log);
+                LogWriteLine(log, LogType.INFO);
             }
             else
             {
@@ -969,7 +992,7 @@ namespace ATA_GUI
 
             if (!exist)
             {
-                LogWriteLine("[ERROR] adb not found");
+                LogWriteLine("adb not found", LogType.ERROR);
             }
 
             return exist || await ADBDownload();
@@ -977,32 +1000,32 @@ namespace ATA_GUI
 
         private void buttonRebootToSystem_Click(object sender, EventArgs e)
         {
-            LogWriteLine("[INFO] " + ConsoleProcess.adbFastbootCommandR(commandAssemblerF("reboot"), 1));
+            LogWriteLine(ConsoleProcess.adbFastbootCommandR(commandAssemblerF("reboot"), 1), LogType.INFO);
             Thread.Sleep(1000);
             reloadList();
         }
 
         private void buttonHardReset_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to erase your phone?", "Erase Phone", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Do you want to erase your userdata and cache?", "Erase Phone", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                LogWriteLine("[INFO] erasing process started...");
-                _ = ConsoleProcess.systemCommand(commandAssembler(false, "fastboot erase userdata && fastboot erase cache")); ;
-                LogWriteLine("[INFO] erasing process finished!!");
+                LogWriteLine("erasing process started...", LogType.INFO);
+                LogWriteLine(ConsoleProcess.adbFastbootCommandR(commandAssemblerF("erase userdata"), 1), LogType.INFO);
+                LogWriteLine(ConsoleProcess.adbFastbootCommandR(commandAssemblerF("erase cache"), 1), LogType.INFO);
             }
         }
 
         private void rebootSmartphone()
         {
-            LogWriteLine("[INFO] rebooting smartphone...");
+            LogWriteLine("rebooting smartphone...", LogType.INFO);
             _ = ConsoleProcess.systemCommand("adb -s " + ATA.CurrentDeviceSelected.ID + " reboot");
-            LogWriteLine("[INFO] smartphone rebooted");
+            LogWriteLine("smartphone rebooted", LogType.OK);
         }
 
         private void buttonRebootRecovery_Click(object sender, EventArgs e)
         {
-            LogWriteLine(ConsoleProcess.adbFastbootCommandR(commandAssemblerF("reboot recovery"), 1));
+            LogWriteLine(ConsoleProcess.adbFastbootCommandR(commandAssemblerF("reboot recovery"), 1), LogType.INFO);
             Thread.Sleep(1000);
             reloadList();
         }
@@ -1078,7 +1101,7 @@ namespace ATA_GUI
                         commandName = "Cleared:";
                         break;
                     case -1:
-                        LogWriteLine("[ERROR] operations canceled");
+                        LogWriteLine("operations canceled", LogType.ERROR);
                         return;
                     default:
                         MessageShowBox("Generic error", 0);
@@ -1243,7 +1266,7 @@ namespace ATA_GUI
             switch (adbError.DialogResult)
             {
                 case DialogResult.Yes:
-                    LogWriteLine("[INFO] downloading sdk platform tool...");
+                    LogWriteLine("downloading sdk platform tool...", LogType.INFO);
                     using (HttpClient client = new())
                     {
                         try
@@ -1256,8 +1279,8 @@ namespace ATA_GUI
                                 using FileStream fs = new(filePath, FileMode.Create);
                                 await response.Content.CopyToAsync(fs);
                             }
-                            LogWriteLine("[INFO] sdk platform tool downloaded!");
-                            LogWriteLine("[INFO] unzipping sdk platform tool...");
+                            LogWriteLine("sdk platform tool downloaded!", LogType.INFO);
+                            LogWriteLine("unzipping sdk platform tool...", LogType.INFO);
                             if (Directory.Exists("platform-tools"))
                             {
                                 Directory.Delete("platform-tools", true);
@@ -1266,8 +1289,8 @@ namespace ATA_GUI
                             {
                                 zip.ExtractAll(Path.GetDirectoryName(Application.ExecutablePath));
                             }
-                            LogWriteLine("[ OK ] sdk platform tool extraced!");
-                            LogWriteLine("[INFO] getting things ready...");
+                            LogWriteLine("sdk platform tool extraced!", LogType.OK);
+                            LogWriteLine("getting things ready...", LogType.INFO);
                             _ = ConsoleProcess.systemCommand("taskkill /f /im adb.exe");
                             _ = ConsoleProcess.systemCommand("taskkill /f /im fastboot.exe");
                             _ = ConsoleProcess.systemCommand("del adb.exe");
@@ -1286,12 +1309,12 @@ namespace ATA_GUI
                                 throw new Exception();
                             }
 
-                            LogWriteLine("[ OK ] ATA ready!");
+                            LogWriteLine("ATA ready!", LogType.OK);
                             return true;
                         }
                         catch (Exception ex)
                         {
-                            LogWriteLine("[ERROR] an error occurred while attempting to download the SDK Platform Tools");
+                            LogWriteLine("an error occurred while attempting to download the SDK Platform Tools", LogType.ERROR);
                             MessageShowBox("An error occurred while attempting to download the SDK Platform Tools\nError message:" + ex, 0);
                             disableSystem(true);
                             return false;
@@ -1390,7 +1413,7 @@ namespace ATA_GUI
             switch (scrcpyError.DialogResult)
             {
                 case DialogResult.Yes:
-                    LogWriteLine("[INFO] downloading scrcpy...");
+                    LogWriteLine("downloading scrcpy...", LogType.INFO);
                     using (HttpClient client = new())
                     {
                         try
@@ -1403,8 +1426,8 @@ namespace ATA_GUI
                                 using FileStream fs = new(filePath, FileMode.Create);
                                 await response.Content.CopyToAsync(fs);
                             }
-                            LogWriteLine("[ OK ] scrcpy downloaded");
-                            LogWriteLine("[INFO] unzipping scrcpy...");
+                            LogWriteLine("scrcpy downloaded", LogType.OK);
+                            LogWriteLine("unzipping scrcpy...", LogType.INFO);
                             using (ZipFile zip = ZipFile.Read("scrcpy.zip"))
                             {
                                 zip.ExtractAll(Path.GetDirectoryName(Application.ExecutablePath), ExtractExistingFileAction.DoNotOverwrite);
@@ -1421,11 +1444,11 @@ namespace ATA_GUI
                                         File.Copy(item, Path.GetDirectoryName(Application.ExecutablePath) + "\\" + name, false);
                                     }
                                 }
-                                LogWriteLine("[ OK ] scrcpy extracted");
-                                LogWriteLine("[INFO] getting things ready...");
+                                LogWriteLine("scrcpy extracted", LogType.OK);
+                                LogWriteLine("getting things ready...", LogType.INFO);
                                 Directory.Delete(directory, true);
                                 File.Delete("scrcpy.zip");
-                                LogWriteLine("[ OK ] scrcpy ready!");
+                                LogWriteLine("scrcpy ready!", LogType.OK);
                                 break;
                             }
                         }
@@ -1840,7 +1863,7 @@ namespace ATA_GUI
         private void buttonTurnOffAdb_Click(object sender, EventArgs e)
         {
             _ = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " shell settings put global adb_enabled 0", 0);
-            LogWriteLine("[INFO] the command has been ejected");
+            LogWriteLine("the command has been ejected", LogType.INFO);
             SyncDevice();
         }
 
@@ -1869,7 +1892,7 @@ namespace ATA_GUI
 
             _ = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + commandRun, 0);
             ATA.CurrentDeviceSelected.IsRotationFreeEnabled = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " shell wm get-ignore-orientation-request", 0).Contains("true");
-            LogWriteLine("[INFO] free rotation " + buttonSetRotation.Text.ToLowerInvariant() + "ed");
+            LogWriteLine("free rotation " + buttonSetRotation.Text.ToLowerInvariant() + "ed", LogType.INFO);
             buttonSetRotation.Text = ATA.CurrentDeviceSelected.IsRotationFreeEnabled ? "Unset" : "Set";
         }
 
@@ -1881,7 +1904,7 @@ namespace ATA_GUI
             }
             else
             {
-                LogWriteLine("[INFO] " + ConsoleProcess.adbFastbootCommandR(richTextBoxTerminal.Text.Trim(), radioButtonADB.Checked ? 0 : 1));
+                LogWriteLine(ConsoleProcess.adbFastbootCommandR(richTextBoxTerminal.Text.Trim(), radioButtonADB.Checked ? 0 : 1), LogType.INFO);
             }
         }
 
@@ -1894,7 +1917,7 @@ namespace ATA_GUI
             }
             else
             {
-                LogWriteLine("[ OK ] text injected");
+                LogWriteLine("text injected", LogType.OK);
             }
         }
 
@@ -1947,37 +1970,13 @@ namespace ATA_GUI
         {
             if (textBoxDirImg.Text.Length > 0)
             {
-                if (radioButtonBoot.Checked)
+                if (!backgroundWorkerFlashImg.IsBusy)
                 {
-                    flash(0);
+                    backgroundWorkerFlashImg.RunWorkerAsync();
                 }
-                if (radioButtonBootloader.Checked)
+                else
                 {
-                    flash(1);
-                }
-                if (radioButtonCache.Checked)
-                {
-                    flash(2);
-                }
-                if (radioButtonRadio.Checked)
-                {
-                    flash(3);
-                }
-                if (radioButtonRecovery.Checked)
-                {
-                    flash(4);
-                }
-                if (radioButtonRom.Checked)
-                {
-                    flash(5);
-                }
-                if (radioButtonSystem.Checked)
-                {
-                    flash(6);
-                }
-                if (radioButtonVendor.Checked)
-                {
-                    flash(7);
+                    MessageShowBox("Wait, process still running", 1);
                 }
             }
             else
@@ -2006,7 +2005,7 @@ namespace ATA_GUI
             {
                 Invoke(delegate
                 {
-                    LogWriteLine("[INFO] installing " + name + " ...");
+                    LogWriteLine("installing " + name + " ...", LogType.INFO);
                 });
             });
             loadApps(ATA.CurrentDeviceSelected.AppMode);
@@ -2025,21 +2024,21 @@ namespace ATA_GUI
         private void buttonrr__Click(object sender, EventArgs e)
         {
             _ = ConsoleProcess.systemCommand(commandAssembler(true, "reboot recovery"));
-            LogWriteLine("[INFO] rebooted");
+            LogWriteLine("rebooted", LogType.OK);
             reloadList();
         }
 
         private void buttonrs__Click(object sender, EventArgs e)
         {
             rebootSmartphone();
-            LogWriteLine("[INFO] rebooted");
+            LogWriteLine("rebooted", LogType.OK);
             reloadList();
         }
 
         private void buttonrf__Click(object sender, EventArgs e)
         {
             _ = ConsoleProcess.systemCommand(commandAssembler(true, "reboot-bootloader"));
-            LogWriteLine("[INFO] rebooted");
+            LogWriteLine("rebooted", LogType.INFO);
             reloadList();
         }
 
@@ -2155,6 +2154,21 @@ namespace ATA_GUI
         private void groupBox2_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
+        }
+
+        private void buttonWd_md_Click(object sender, EventArgs e)
+        {
+            string log;
+
+            DialogResult dialogResult = MessageBox.Show("Do you want to wipe your data and metadata partitions?", "Erase Phone", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                LogWriteLine("erasing process started...", LogType.INFO);
+                if ((log = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("-w"), 1)) != null)
+                {
+                    LogWriteLine(log, LogType.INFO);
+                }
+            }
         }
     }
 }

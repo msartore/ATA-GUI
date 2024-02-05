@@ -30,16 +30,18 @@
         {
             labelLoading = new System.Windows.Forms.Label();
             progressBar1 = new System.Windows.Forms.ProgressBar();
+            backgroundWorkerMessages = new System.ComponentModel.BackgroundWorker();
             SuspendLayout();
             // 
             // labelLoading
             // 
             labelLoading.AutoSize = true;
-            labelLoading.Location = new System.Drawing.Point(111, 69);
+            labelLoading.Location = new System.Drawing.Point(105, 70);
             labelLoading.Name = "labelLoading";
             labelLoading.Size = new System.Drawing.Size(85, 15);
             labelLoading.TabIndex = 3;
             labelLoading.Text = "Loading data...";
+            labelLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // progressBar1
             // 
@@ -48,6 +50,12 @@
             progressBar1.Size = new System.Drawing.Size(214, 23);
             progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             progressBar1.TabIndex = 2;
+            // 
+            // backgroundWorkerMessages
+            // 
+            backgroundWorkerMessages.WorkerReportsProgress = true;
+            backgroundWorkerMessages.DoWork += backgroundWorkerMessages_DoWork;
+            backgroundWorkerMessages.ProgressChanged += backgroundWorkerMessages_ProgressChanged;
             // 
             // WaitingForm
             // 
@@ -61,6 +69,7 @@
             ShowInTaskbar = false;
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "WaitingForm";
+            Load += WaitingForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -69,5 +78,6 @@
 
         private System.Windows.Forms.Label labelLoading;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerMessages;
     }
 }

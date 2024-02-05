@@ -9,7 +9,7 @@ namespace ATA_GUI.Classes
 {
     internal class ATA
     {
-        public static readonly string CURRENTVERSION = "v3.4.2";
+        public static readonly string CURRENTVERSION = "v3.4.3";
         public static readonly string IPFileName = "IPList.txt";
 
         public HashSet<string> IPList { get; } = new HashSet<string>();
@@ -68,6 +68,15 @@ namespace ATA_GUI.Classes
         SYSTEM,
         FASTBOOT,
         RECOVERY,
+        UNKNOWN
+    }
+
+    internal enum LogType
+    {
+        ERROR,
+        OK,
+        WARNING,
+        INFO,
         UNKNOWN
     }
 }

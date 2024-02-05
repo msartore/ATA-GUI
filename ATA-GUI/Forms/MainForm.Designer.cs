@@ -105,6 +105,7 @@ namespace ATA_GUI
             buttonRF = new System.Windows.Forms.Button();
             tabPageFastboot = new System.Windows.Forms.TabPage();
             panelFastboot = new System.Windows.Forms.Panel();
+            buttonWd_md = new System.Windows.Forms.Button();
             buttonBootloaderMenu = new System.Windows.Forms.Button();
             buttonRebootRecovery = new System.Windows.Forms.Button();
             groupBox5 = new System.Windows.Forms.GroupBox();
@@ -118,7 +119,6 @@ namespace ATA_GUI
             buttonRebootToSystem = new System.Windows.Forms.Button();
             groupBox4 = new System.Windows.Forms.GroupBox();
             button1 = new System.Windows.Forms.Button();
-            label10 = new System.Windows.Forms.Label();
             textBoxDirImg = new System.Windows.Forms.TextBox();
             radioButtonRom = new System.Windows.Forms.RadioButton();
             buttonSearchFileFastboot = new System.Windows.Forms.Button();
@@ -1035,6 +1035,7 @@ namespace ATA_GUI
             // panelFastboot
             // 
             panelFastboot.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelFastboot.Controls.Add(buttonWd_md);
             panelFastboot.Controls.Add(buttonBootloaderMenu);
             panelFastboot.Controls.Add(buttonRebootRecovery);
             panelFastboot.Controls.Add(groupBox5);
@@ -1046,6 +1047,16 @@ namespace ATA_GUI
             panelFastboot.Name = "panelFastboot";
             panelFastboot.Size = new System.Drawing.Size(1038, 329);
             panelFastboot.TabIndex = 49;
+            // 
+            // buttonWd_md
+            // 
+            buttonWd_md.Location = new System.Drawing.Point(790, 235);
+            buttonWd_md.Name = "buttonWd_md";
+            buttonWd_md.Size = new System.Drawing.Size(138, 46);
+            buttonWd_md.TabIndex = 56;
+            buttonWd_md.Text = "Wipe data and metadata partitions";
+            buttonWd_md.UseVisualStyleBackColor = true;
+            buttonWd_md.Click += buttonWd_md_Click;
             // 
             // buttonBootloaderMenu
             // 
@@ -1161,9 +1172,9 @@ namespace ATA_GUI
             buttonHardReset.Location = new System.Drawing.Point(790, 192);
             buttonHardReset.Margin = new System.Windows.Forms.Padding(2);
             buttonHardReset.Name = "buttonHardReset";
-            buttonHardReset.Size = new System.Drawing.Size(138, 27);
+            buttonHardReset.Size = new System.Drawing.Size(138, 38);
             buttonHardReset.TabIndex = 50;
-            buttonHardReset.Text = "Hard Reset";
+            buttonHardReset.Text = "Erase flash partition  userdata and cache";
             buttonHardReset.UseVisualStyleBackColor = false;
             buttonHardReset.Click += buttonHardReset_Click;
             // 
@@ -1185,7 +1196,6 @@ namespace ATA_GUI
             // 
             groupBox4.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             groupBox4.Controls.Add(button1);
-            groupBox4.Controls.Add(label10);
             groupBox4.Controls.Add(textBoxDirImg);
             groupBox4.Controls.Add(radioButtonRom);
             groupBox4.Controls.Add(buttonSearchFileFastboot);
@@ -1215,16 +1225,6 @@ namespace ATA_GUI
             button1.TabIndex = 50;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new System.Drawing.Point(148, 233);
-            label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(61, 15);
-            label10.TabIndex = 49;
-            label10.Text = "Flash .Img";
             // 
             // textBoxDirImg
             // 
@@ -1635,7 +1635,7 @@ namespace ATA_GUI
             richTextBoxLog.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
             richTextBoxLog.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            richTextBoxLog.ForeColor = System.Drawing.SystemColors.Window;
+            richTextBoxLog.ForeColor = System.Drawing.Color.White;
             richTextBoxLog.Location = new System.Drawing.Point(1068, 99);
             richTextBoxLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             richTextBoxLog.Name = "richTextBoxLog";
@@ -2361,7 +2361,6 @@ namespace ATA_GUI
         private System.Windows.Forms.GroupBox groupBoxAPKMenu;
         private System.Windows.Forms.OpenFileDialog openFileDialogAPK;
         private System.Windows.Forms.CheckBox checkBoxSelectAll;
-        private System.Windows.Forms.CheckedListBox checkedListBoxApp;
         private System.Windows.Forms.Label labelIP;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBoxADBNet;
@@ -2455,7 +2454,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonReloadDevicesList;
         private System.Windows.Forms.ComboBox comboBoxDevices;
         private System.Windows.Forms.Button buttonSyncApp;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button buttonSearchFileFastboot;
         private System.Windows.Forms.ToolStripMenuItem grantWriteSecureSettingsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem revokeWriteSecureSettingsToolStripMenuItem;
@@ -2525,6 +2523,8 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonBloatwareRemover;
         private System.Windows.Forms.ToolStripMenuItem driverToolStripMenuItem;
+        private System.Windows.Forms.Button buttonWd_md;
+        private System.Windows.Forms.CheckedListBox checkedListBoxApp;
     }
 }
 
