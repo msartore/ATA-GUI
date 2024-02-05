@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace ATA_GUI
 {
     partial class Settings
@@ -39,7 +41,7 @@ namespace ATA_GUI
             labelLog = new System.Windows.Forms.Label();
             labelCurrentRelease = new System.Windows.Forms.Label();
             checkBoxInitPopUp = new System.Windows.Forms.CheckBox();
-            buttonRemoveLocalSDK = new System.Windows.Forms.Button();
+            buttonUpdateLocalSDK = new System.Windows.Forms.Button();
             buttonDeleteIPHistory = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
@@ -145,19 +147,19 @@ namespace ATA_GUI
             checkBoxInitPopUp.UseVisualStyleBackColor = true;
             checkBoxInitPopUp.CheckedChanged += checkBoxInitPopUp_CheckedChanged;
             // 
-            // buttonRemoveLocalSDK
+            // buttonUpdateLocalSDK
             // 
-            buttonRemoveLocalSDK.BackColor = System.Drawing.Color.White;
-            buttonRemoveLocalSDK.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonRemoveLocalSDK.ForeColor = System.Drawing.Color.Black;
-            buttonRemoveLocalSDK.Location = new System.Drawing.Point(121, 236);
-            buttonRemoveLocalSDK.Margin = new System.Windows.Forms.Padding(2);
-            buttonRemoveLocalSDK.Name = "buttonRemoveLocalSDK";
-            buttonRemoveLocalSDK.Size = new System.Drawing.Size(187, 27);
-            buttonRemoveLocalSDK.TabIndex = 42;
-            buttonRemoveLocalSDK.Text = "Remove local SDK";
-            buttonRemoveLocalSDK.UseVisualStyleBackColor = false;
-            buttonRemoveLocalSDK.Click += buttonRemoveLocalSDK_Click;
+            buttonUpdateLocalSDK.BackColor = System.Drawing.Color.White;
+            buttonUpdateLocalSDK.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonUpdateLocalSDK.ForeColor = System.Drawing.Color.Black;
+            buttonUpdateLocalSDK.Location = new System.Drawing.Point(121, 236);
+            buttonUpdateLocalSDK.Margin = new System.Windows.Forms.Padding(2);
+            buttonUpdateLocalSDK.Name = "buttonUpdateLocalSDK";
+            buttonUpdateLocalSDK.Size = new System.Drawing.Size(187, 27);
+            buttonUpdateLocalSDK.TabIndex = 42;
+            buttonUpdateLocalSDK.Text = "Update local SDK Platform Tools";
+            buttonUpdateLocalSDK.UseVisualStyleBackColor = false;
+            buttonUpdateLocalSDK.Click += buttonUpdateLocalSDK_Click;
             // 
             // buttonDeleteIPHistory
             // 
@@ -180,7 +182,7 @@ namespace ATA_GUI
             BackColor = System.Drawing.Color.White;
             ClientSize = new System.Drawing.Size(424, 347);
             Controls.Add(buttonDeleteIPHistory);
-            Controls.Add(buttonRemoveLocalSDK);
+            Controls.Add(buttonUpdateLocalSDK);
             Controls.Add(label1);
             Controls.Add(checkBoxInitPopUp);
             Controls.Add(labelLatestRelease);
@@ -214,7 +216,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Label labelLog;
         private System.Windows.Forms.Label labelCurrentRelease;
         private System.Windows.Forms.CheckBox checkBoxInitPopUp;
-        private System.Windows.Forms.Button buttonRemoveLocalSDK;
+        private System.Windows.Forms.Button buttonUpdateLocalSDK;
         private System.Windows.Forms.Button buttonDeleteIPHistory;
     }
 }

@@ -125,39 +125,10 @@ namespace ATA_GUI
             _ = Feedback.changeFeedbackFile(true);
         }
 
-        private void buttonRemoveLocalSDK_Click(object sender, EventArgs e)
+        private void buttonUpdateLocalSDK_Click(object sender, EventArgs e)
         {
-            string[] programs = { "adb.exe", "fastboot.exe", "AdbWinUsbApi.dll", "AdbWinApi.dll" };
-            bool nFound = false;
-
-            _ = ConsoleProcess.systemCommand("taskkill /f /im " + programs[0]);
-
-            foreach (string program in programs)
-            {
-                if (!deleter(program))
-                {
-                    nFound = true;
-                }
-            }
-
-            if (nFound)
-            {
-                MainForm.MessageShowBox("SDK not found", 1);
-            }
-            else
-            {
-                MainForm.MessageShowBox("SDK deleted", 2);
-            }
-        }
-
-        private bool deleter(string programName)
-        {
-            if (File.Exists(programName))
-            {
-                File.Delete(programName);
-                return true;
-            }
-            return false;
+            DialogResult = DialogResult.Yes;
+            Close();
         }
 
         private void buttonDeleteIPHistory_Click(object sender, EventArgs e)

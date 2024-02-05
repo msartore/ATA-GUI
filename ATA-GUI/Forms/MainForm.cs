@@ -988,14 +988,14 @@ namespace ATA_GUI
         private async Task<bool> checkAdbFastboot(bool isAdb)
         {
             string exeTmp = isAdb ? "adb.exe" : "fastboot.exe";
-            bool exist = File.Exists(exeTmp) && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll");
+            bool exist = File.Exists(exeTmp) && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll") && File.Exists("etc1tool.exe");
 
             if (!exist)
             {
-                LogWriteLine("adb not found", LogType.ERROR);
+                LogWriteLine("platform tools not found", LogType.ERROR);
             }
 
-            return exist || await ADBDownload();
+            return exist || await ADBDownload(false);
         }
 
         private void buttonRebootToSystem_Click(object sender, EventArgs e)
@@ -1247,11 +1247,11 @@ namespace ATA_GUI
             panelFastboot.Enabled = false;
         }
 
-        private async Task<bool> ADBDownload()
+        public async Task<bool> ADBDownload(bool isUpdate)
         {
             if (!ata.IsConnected)
             {
-                MessageShowBox("You are offline, ATA can not download ADB", 0);
+                MessageShowBox("You are offline, ATA can not download SDK Platform Tools", 0);
                 return false;
             }
             Invoke(delegate
@@ -1260,7 +1260,9 @@ namespace ATA_GUI
                 buttonDisconnectIP.Enabled = false;
             });
 
-            ExeMissingForm adbError = new("adb.exe not found\n\nDo you want to download sdk platform tool?\n\n[By pressing YES you agree sdk platform tool terms and conditions]\nfor more info press info button", "Error, ADB Missing!");
+            string message = isUpdate ? "" : "SDK Platform Tools not found\n\n";
+
+            ExeMissingForm adbError = new(message + "Do you want to download them?\n\n[By pressing 'YES' you agree SDK Platform Tools terms and conditions]\nfor more info press info button", "Error, SDK Platform Tools Missing!");
             _ = adbError.ShowDialog();
 
             switch (adbError.DialogResult)
@@ -1293,14 +1295,7 @@ namespace ATA_GUI
                             LogWriteLine("getting things ready...", LogType.INFO);
                             _ = ConsoleProcess.systemCommand("taskkill /f /im adb.exe");
                             _ = ConsoleProcess.systemCommand("taskkill /f /im fastboot.exe");
-                            _ = ConsoleProcess.systemCommand("del adb.exe");
-                            _ = ConsoleProcess.systemCommand("del AdbWinUsbApi.dll");
-                            _ = ConsoleProcess.systemCommand("del AdbWinApi.dll");
-                            _ = ConsoleProcess.systemCommand("del fastboot.exe");
-                            _ = ConsoleProcess.systemCommand("move platform-tools\\adb.exe \"%cd%\"");
-                            _ = ConsoleProcess.systemCommand("move platform-tools\\AdbWinUsbApi.dll \"%cd%\"");
-                            _ = ConsoleProcess.systemCommand("move platform-tools\\AdbWinApi.dll \"%cd%\"");
-                            _ = ConsoleProcess.systemCommand("move platform-tools\\fastboot.exe \"%cd%\"");
+                            _ = ConsoleProcess.systemCommand("move /Y platform-tools\\* \"%cd%\"");
                             Directory.Delete("platform-tools", true);
                             File.Delete("sdkplatformtool.zip");
 
@@ -1479,10 +1474,15 @@ namespace ATA_GUI
             labelSettings.BackColor = Color.Black;
         }
 
-        private void labelSettings_Click(object sender, EventArgs e)
+        private async void labelSettings_Click(object sender, EventArgs e)
         {
             Settings settings = new();
-            _ = settings.ShowDialog();
+            DialogResult dialogResult = settings.ShowDialog();
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                _ = await ADBDownload(true);
+            }
         }
 
         private void labelHelp_Click(object sender, EventArgs e)

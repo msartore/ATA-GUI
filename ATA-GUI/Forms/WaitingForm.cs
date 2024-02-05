@@ -10,8 +10,6 @@ namespace ATA_GUI.Forms
             InitializeComponent();
         }
 
-
-
         private void backgroundWorkerMessages_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             int counter = 0;
@@ -19,7 +17,7 @@ namespace ATA_GUI.Forms
             while (!backgroundWorkerMessages.CancellationPending)
             {
                 backgroundWorkerMessages.ReportProgress(counter++);
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
             }
         }
 
