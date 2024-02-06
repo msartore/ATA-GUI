@@ -67,9 +67,17 @@ namespace ATA_GUI.Utils
             return ret.ToString().Trim();
         }
 
-        public static string scrcpyProcess(string arguments)
+        public static string scrcpyVersion(string arguments)
         {
             return systemProcess("", "scrcpy.exe", arguments);
+        }
+
+        public static void scrcpyProcess(string arguments)
+        {
+            _ = Task.Run(() =>
+            {
+                return systemProcess("", "scrcpy.exe", arguments);
+            });
         }
 
         public static string systemProcess(string command, string exe, string arguments)

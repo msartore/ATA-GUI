@@ -1381,7 +1381,7 @@ namespace ATA_GUI
         {
             if (File.Exists("scrcpy.exe"))
             {
-                _ = ConsoleProcess.scrcpyProcess("-s " + ATA.CurrentDeviceSelected.ID);
+                ConsoleProcess.scrcpyProcess("-s " + ATA.CurrentDeviceSelected.ID);
             }
             else
             {
@@ -2050,7 +2050,7 @@ namespace ATA_GUI
                 {
                     if (File.Exists("scrcpy.exe"))
                     {
-                        string[] result = ConsoleProcess.scrcpyProcess("--version").Split(' ');
+                        string[] result = ConsoleProcess.scrcpyVersion("--version").Split(' ');
                         foreach (string item in result)
                         {
                             if (item.Contains("."))
