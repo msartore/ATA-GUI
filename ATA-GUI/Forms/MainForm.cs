@@ -498,7 +498,6 @@ namespace ATA_GUI
             buttonDeviceLogs.Enabled = enable;
             buttonTaskManager.Enabled = enable;
             tabPageTools.Enabled = enable;
-            groupBoxTerminal.Enabled = enable;
         }
 
         private void textboxClick(object sender, EventArgs e)

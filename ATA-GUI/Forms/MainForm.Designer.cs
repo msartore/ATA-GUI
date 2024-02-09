@@ -59,11 +59,11 @@ namespace ATA_GUI
             tabControls = new System.Windows.Forms.TabControl();
             tabPageSystem = new System.Windows.Forms.TabPage();
             groupBoxAPKMenu = new System.Windows.Forms.GroupBox();
+            groupBox6 = new System.Windows.Forms.GroupBox();
+            label3 = new System.Windows.Forms.Label();
             buttonBloatwareRemover = new System.Windows.Forms.Button();
             label6 = new System.Windows.Forms.Label();
             labelSelectedAppCount = new System.Windows.Forms.Label();
-            groupBox6 = new System.Windows.Forms.GroupBox();
-            label3 = new System.Windows.Forms.Label();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStripButtonReloadApps = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -260,10 +260,10 @@ namespace ATA_GUI
             // 
             // labelLog
             // 
-            labelLog.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            labelLog.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             labelLog.AutoSize = true;
             labelLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            labelLog.Location = new System.Drawing.Point(1066, 81);
+            labelLog.Location = new System.Drawing.Point(474, 427);
             labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             labelLog.Name = "labelLog";
             labelLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -273,12 +273,12 @@ namespace ATA_GUI
             // 
             // buttonLogClear
             // 
-            buttonLogClear.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            buttonLogClear.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             buttonLogClear.BackColor = System.Drawing.Color.White;
             buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonLogClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             buttonLogClear.ForeColor = System.Drawing.Color.Black;
-            buttonLogClear.Location = new System.Drawing.Point(1208, 434);
+            buttonLogClear.Location = new System.Drawing.Point(366, 504);
             buttonLogClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonLogClear.Name = "buttonLogClear";
             buttonLogClear.Size = new System.Drawing.Size(102, 27);
@@ -536,7 +536,7 @@ namespace ATA_GUI
             checkBoxSelectAll.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             checkBoxSelectAll.AutoSize = true;
             checkBoxSelectAll.ForeColor = System.Drawing.Color.Black;
-            checkBoxSelectAll.Location = new System.Drawing.Point(11, 59);
+            checkBoxSelectAll.Location = new System.Drawing.Point(11, 74);
             checkBoxSelectAll.Margin = new System.Windows.Forms.Padding(2);
             checkBoxSelectAll.Name = "checkBoxSelectAll";
             checkBoxSelectAll.Size = new System.Drawing.Size(74, 19);
@@ -552,11 +552,11 @@ namespace ATA_GUI
             tabControls.Controls.Add(tabPageFastboot);
             tabControls.Controls.Add(tabPageRecovery);
             tabControls.Controls.Add(tabPageTools);
-            tabControls.Location = new System.Drawing.Point(9, 53);
+            tabControls.Location = new System.Drawing.Point(4, 54);
             tabControls.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             tabControls.Name = "tabControls";
             tabControls.SelectedIndex = 0;
-            tabControls.Size = new System.Drawing.Size(1051, 370);
+            tabControls.Size = new System.Drawing.Size(933, 370);
             tabControls.TabIndex = 33;
             tabControls.Selected += tabControl1_Selected;
             // 
@@ -571,17 +571,17 @@ namespace ATA_GUI
             tabPageSystem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             tabPageSystem.Name = "tabPageSystem";
             tabPageSystem.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            tabPageSystem.Size = new System.Drawing.Size(1043, 342);
+            tabPageSystem.Size = new System.Drawing.Size(925, 342);
             tabPageSystem.TabIndex = 0;
             tabPageSystem.Text = "System";
             // 
             // groupBoxAPKMenu
             // 
             groupBoxAPKMenu.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            groupBoxAPKMenu.Controls.Add(groupBox6);
             groupBoxAPKMenu.Controls.Add(buttonBloatwareRemover);
             groupBoxAPKMenu.Controls.Add(label6);
             groupBoxAPKMenu.Controls.Add(labelSelectedAppCount);
-            groupBoxAPKMenu.Controls.Add(groupBox6);
             groupBoxAPKMenu.Controls.Add(toolStrip1);
             groupBoxAPKMenu.Controls.Add(checkedListBoxApp);
             groupBoxAPKMenu.Controls.Add(checkBoxSelectAll);
@@ -589,42 +589,10 @@ namespace ATA_GUI
             groupBoxAPKMenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxAPKMenu.Name = "groupBoxAPKMenu";
             groupBoxAPKMenu.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxAPKMenu.Size = new System.Drawing.Size(649, 323);
+            groupBoxAPKMenu.Size = new System.Drawing.Size(531, 329);
             groupBoxAPKMenu.TabIndex = 36;
             groupBoxAPKMenu.TabStop = false;
             groupBoxAPKMenu.Text = "APK Menu";
-            // 
-            // buttonBloatwareRemover
-            // 
-            buttonBloatwareRemover.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            buttonBloatwareRemover.Image = Properties.Resources.user_shield_48;
-            buttonBloatwareRemover.Location = new System.Drawing.Point(521, 83);
-            buttonBloatwareRemover.Name = "buttonBloatwareRemover";
-            buttonBloatwareRemover.Size = new System.Drawing.Size(75, 80);
-            buttonBloatwareRemover.TabIndex = 46;
-            buttonBloatwareRemover.UseVisualStyleBackColor = true;
-            buttonBloatwareRemover.Click += buttonBloatwareRemover_Click;
-            // 
-            // label6
-            // 
-            label6.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(507, 166);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(103, 15);
-            label6.TabIndex = 45;
-            label6.Text = "Blotware Remover";
-            // 
-            // labelSelectedAppCount
-            // 
-            labelSelectedAppCount.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            labelSelectedAppCount.AutoSize = true;
-            labelSelectedAppCount.Location = new System.Drawing.Point(334, 60);
-            labelSelectedAppCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            labelSelectedAppCount.Name = "labelSelectedAppCount";
-            labelSelectedAppCount.Size = new System.Drawing.Size(88, 15);
-            labelSelectedAppCount.TabIndex = 44;
-            labelSelectedAppCount.Text = "Selected App: 0";
             // 
             // groupBox6
             // 
@@ -632,7 +600,7 @@ namespace ATA_GUI
             groupBox6.BackgroundImage = Properties.Resources.icons8_drag_and_drop_48;
             groupBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             groupBox6.Controls.Add(label3);
-            groupBox6.Location = new System.Drawing.Point(462, 208);
+            groupBox6.Location = new System.Drawing.Point(342, 206);
             groupBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox6.Name = "groupBox6";
             groupBox6.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -653,6 +621,38 @@ namespace ATA_GUI
             label3.TabIndex = 1;
             label3.Text = "Drop Apk";
             // 
+            // buttonBloatwareRemover
+            // 
+            buttonBloatwareRemover.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            buttonBloatwareRemover.Image = Properties.Resources.user_shield_48;
+            buttonBloatwareRemover.Location = new System.Drawing.Point(403, 83);
+            buttonBloatwareRemover.Name = "buttonBloatwareRemover";
+            buttonBloatwareRemover.Size = new System.Drawing.Size(75, 80);
+            buttonBloatwareRemover.TabIndex = 46;
+            buttonBloatwareRemover.UseVisualStyleBackColor = true;
+            buttonBloatwareRemover.Click += buttonBloatwareRemover_Click;
+            // 
+            // label6
+            // 
+            label6.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(389, 166);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(103, 15);
+            label6.TabIndex = 45;
+            label6.Text = "Blotware Remover";
+            // 
+            // labelSelectedAppCount
+            // 
+            labelSelectedAppCount.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            labelSelectedAppCount.AutoSize = true;
+            labelSelectedAppCount.Location = new System.Drawing.Point(218, 75);
+            labelSelectedAppCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelSelectedAppCount.Name = "labelSelectedAppCount";
+            labelSelectedAppCount.Size = new System.Drawing.Size(88, 15);
+            labelSelectedAppCount.TabIndex = 44;
+            labelSelectedAppCount.Text = "Selected App: 0";
+            // 
             // toolStrip1
             // 
             toolStrip1.BackColor = System.Drawing.Color.White;
@@ -662,7 +662,7 @@ namespace ATA_GUI
             toolStrip1.Location = new System.Drawing.Point(4, 19);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            toolStrip1.Size = new System.Drawing.Size(641, 25);
+            toolStrip1.Size = new System.Drawing.Size(523, 50);
             toolStrip1.TabIndex = 42;
             toolStrip1.Text = "toolStripAPKMenu";
             // 
@@ -860,11 +860,11 @@ namespace ATA_GUI
             checkedListBoxApp.BackColor = System.Drawing.Color.White;
             checkedListBoxApp.ForeColor = System.Drawing.Color.Black;
             checkedListBoxApp.FormattingEnabled = true;
-            checkedListBoxApp.Location = new System.Drawing.Point(6, 82);
+            checkedListBoxApp.Location = new System.Drawing.Point(8, 97);
             checkedListBoxApp.Margin = new System.Windows.Forms.Padding(2);
             checkedListBoxApp.Name = "checkedListBoxApp";
             checkedListBoxApp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            checkedListBoxApp.Size = new System.Drawing.Size(450, 238);
+            checkedListBoxApp.Size = new System.Drawing.Size(320, 220);
             checkedListBoxApp.TabIndex = 37;
             checkedListBoxApp.SelectedIndexChanged += checkedListBoxApp_SelectedIndexChanged;
             // 
@@ -881,7 +881,7 @@ namespace ATA_GUI
             groupBoxADBNet.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxADBNet.Name = "groupBoxADBNet";
             groupBoxADBNet.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxADBNet.Size = new System.Drawing.Size(208, 137);
+            groupBoxADBNet.Size = new System.Drawing.Size(208, 143);
             groupBoxADBNet.TabIndex = 37;
             groupBoxADBNet.TabStop = false;
             groupBoxADBNet.Text = "ADB over Network Menu";
@@ -973,7 +973,7 @@ namespace ATA_GUI
             groupBoxRebootMenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxRebootMenu.Name = "groupBoxRebootMenu";
             groupBoxRebootMenu.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxRebootMenu.Size = new System.Drawing.Size(160, 137);
+            groupBoxRebootMenu.Size = new System.Drawing.Size(160, 143);
             groupBoxRebootMenu.TabIndex = 35;
             groupBoxRebootMenu.TabStop = false;
             groupBoxRebootMenu.Text = "Reboot Menu";
@@ -1027,7 +1027,7 @@ namespace ATA_GUI
             tabPageFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             tabPageFastboot.Name = "tabPageFastboot";
             tabPageFastboot.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            tabPageFastboot.Size = new System.Drawing.Size(1043, 342);
+            tabPageFastboot.Size = new System.Drawing.Size(925, 342);
             tabPageFastboot.TabIndex = 1;
             tabPageFastboot.Text = "Fastboot";
             tabPageFastboot.UseVisualStyleBackColor = true;
@@ -1045,12 +1045,12 @@ namespace ATA_GUI
             panelFastboot.Location = new System.Drawing.Point(0, 3);
             panelFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             panelFastboot.Name = "panelFastboot";
-            panelFastboot.Size = new System.Drawing.Size(1038, 329);
+            panelFastboot.Size = new System.Drawing.Size(921, 336);
             panelFastboot.TabIndex = 49;
             // 
             // buttonWd_md
             // 
-            buttonWd_md.Location = new System.Drawing.Point(790, 235);
+            buttonWd_md.Location = new System.Drawing.Point(750, 235);
             buttonWd_md.Name = "buttonWd_md";
             buttonWd_md.Size = new System.Drawing.Size(138, 46);
             buttonWd_md.TabIndex = 56;
@@ -1063,7 +1063,7 @@ namespace ATA_GUI
             buttonBootloaderMenu.BackColor = System.Drawing.Color.White;
             buttonBootloaderMenu.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonBootloaderMenu.ForeColor = System.Drawing.Color.Black;
-            buttonBootloaderMenu.Location = new System.Drawing.Point(523, 254);
+            buttonBootloaderMenu.Location = new System.Drawing.Point(535, 254);
             buttonBootloaderMenu.Margin = new System.Windows.Forms.Padding(2);
             buttonBootloaderMenu.Name = "buttonBootloaderMenu";
             buttonBootloaderMenu.Size = new System.Drawing.Size(138, 27);
@@ -1077,7 +1077,7 @@ namespace ATA_GUI
             buttonRebootRecovery.BackColor = System.Drawing.Color.White;
             buttonRebootRecovery.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonRebootRecovery.ForeColor = System.Drawing.Color.Black;
-            buttonRebootRecovery.Location = new System.Drawing.Point(523, 223);
+            buttonRebootRecovery.Location = new System.Drawing.Point(535, 223);
             buttonRebootRecovery.Margin = new System.Windows.Forms.Padding(2);
             buttonRebootRecovery.Name = "buttonRebootRecovery";
             buttonRebootRecovery.Size = new System.Drawing.Size(138, 27);
@@ -1095,11 +1095,11 @@ namespace ATA_GUI
             groupBox5.Controls.Add(labelDataType);
             groupBox5.Controls.Add(label7);
             groupBox5.Controls.Add(label8);
-            groupBox5.Location = new System.Drawing.Point(499, 7);
+            groupBox5.Location = new System.Drawing.Point(499, 3);
             groupBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox5.Name = "groupBox5";
             groupBox5.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox5.Size = new System.Drawing.Size(532, 179);
+            groupBox5.Size = new System.Drawing.Size(415, 183);
             groupBox5.TabIndex = 51;
             groupBox5.TabStop = false;
             groupBox5.Text = "Device Info";
@@ -1169,7 +1169,7 @@ namespace ATA_GUI
             buttonHardReset.BackColor = System.Drawing.Color.White;
             buttonHardReset.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonHardReset.ForeColor = System.Drawing.Color.Black;
-            buttonHardReset.Location = new System.Drawing.Point(790, 192);
+            buttonHardReset.Location = new System.Drawing.Point(750, 192);
             buttonHardReset.Margin = new System.Windows.Forms.Padding(2);
             buttonHardReset.Name = "buttonHardReset";
             buttonHardReset.Size = new System.Drawing.Size(138, 38);
@@ -1183,7 +1183,7 @@ namespace ATA_GUI
             buttonRebootToSystem.BackColor = System.Drawing.Color.White;
             buttonRebootToSystem.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonRebootToSystem.ForeColor = System.Drawing.Color.Black;
-            buttonRebootToSystem.Location = new System.Drawing.Point(523, 192);
+            buttonRebootToSystem.Location = new System.Drawing.Point(535, 192);
             buttonRebootToSystem.Margin = new System.Windows.Forms.Padding(2);
             buttonRebootToSystem.Name = "buttonRebootToSystem";
             buttonRebootToSystem.Size = new System.Drawing.Size(138, 27);
@@ -1206,11 +1206,11 @@ namespace ATA_GUI
             groupBox4.Controls.Add(radioButtonRecovery);
             groupBox4.Controls.Add(radioButtonBootloader);
             groupBox4.Controls.Add(radioButtonRadio);
-            groupBox4.Location = new System.Drawing.Point(4, 7);
+            groupBox4.Location = new System.Drawing.Point(4, 3);
             groupBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox4.Size = new System.Drawing.Size(489, 314);
+            groupBox4.Size = new System.Drawing.Size(489, 330);
             groupBox4.TabIndex = 48;
             groupBox4.TabStop = false;
             groupBox4.Text = "Flash img";
@@ -1349,7 +1349,7 @@ namespace ATA_GUI
             tabPageRecovery.Location = new System.Drawing.Point(4, 24);
             tabPageRecovery.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             tabPageRecovery.Name = "tabPageRecovery";
-            tabPageRecovery.Size = new System.Drawing.Size(1043, 342);
+            tabPageRecovery.Size = new System.Drawing.Size(925, 342);
             tabPageRecovery.TabIndex = 2;
             tabPageRecovery.Text = "Recovery";
             tabPageRecovery.UseVisualStyleBackColor = true;
@@ -1361,7 +1361,7 @@ namespace ATA_GUI
             panelRecovery.Location = new System.Drawing.Point(0, 3);
             panelRecovery.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             panelRecovery.Name = "panelRecovery";
-            panelRecovery.Size = new System.Drawing.Size(1038, 333);
+            panelRecovery.Size = new System.Drawing.Size(921, 336);
             panelRecovery.TabIndex = 37;
             // 
             // groupBoxRecoveryRM
@@ -1369,11 +1369,11 @@ namespace ATA_GUI
             groupBoxRecoveryRM.Controls.Add(buttonrr_);
             groupBoxRecoveryRM.Controls.Add(buttonrf_);
             groupBoxRecoveryRM.Controls.Add(buttonrs_);
-            groupBoxRecoveryRM.Location = new System.Drawing.Point(789, 17);
+            groupBoxRecoveryRM.Location = new System.Drawing.Point(684, 3);
             groupBoxRecoveryRM.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxRecoveryRM.Name = "groupBoxRecoveryRM";
             groupBoxRecoveryRM.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxRecoveryRM.Size = new System.Drawing.Size(233, 300);
+            groupBoxRecoveryRM.Size = new System.Drawing.Size(233, 330);
             groupBoxRecoveryRM.TabIndex = 41;
             groupBoxRecoveryRM.TabStop = false;
             groupBoxRecoveryRM.Text = "Reboot menu";
@@ -1416,18 +1416,18 @@ namespace ATA_GUI
             groupBoxFlash.Controls.Add(textBoxDirFile);
             groupBoxFlash.Controls.Add(buttonFlashZip);
             groupBoxFlash.Controls.Add(buttonBrowseFile);
-            groupBoxFlash.Location = new System.Drawing.Point(14, 17);
+            groupBoxFlash.Location = new System.Drawing.Point(4, 3);
             groupBoxFlash.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxFlash.Name = "groupBoxFlash";
             groupBoxFlash.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxFlash.Size = new System.Drawing.Size(768, 300);
+            groupBoxFlash.Size = new System.Drawing.Size(672, 330);
             groupBoxFlash.TabIndex = 40;
             groupBoxFlash.TabStop = false;
             groupBoxFlash.Text = "Flash menu";
             // 
             // textBoxDirFile
             // 
-            textBoxDirFile.Location = new System.Drawing.Point(204, 126);
+            textBoxDirFile.Location = new System.Drawing.Point(141, 122);
             textBoxDirFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             textBoxDirFile.Name = "textBoxDirFile";
             textBoxDirFile.Size = new System.Drawing.Size(285, 23);
@@ -1437,7 +1437,7 @@ namespace ATA_GUI
             // 
             buttonFlashZip.BackColor = System.Drawing.Color.White;
             buttonFlashZip.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonFlashZip.Location = new System.Drawing.Point(497, 157);
+            buttonFlashZip.Location = new System.Drawing.Point(434, 153);
             buttonFlashZip.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonFlashZip.Name = "buttonFlashZip";
             buttonFlashZip.Size = new System.Drawing.Size(88, 27);
@@ -1448,7 +1448,7 @@ namespace ATA_GUI
             // 
             // buttonBrowseFile
             // 
-            buttonBrowseFile.Location = new System.Drawing.Point(497, 123);
+            buttonBrowseFile.Location = new System.Drawing.Point(434, 119);
             buttonBrowseFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonBrowseFile.Name = "buttonBrowseFile";
             buttonBrowseFile.Size = new System.Drawing.Size(88, 27);
@@ -1467,7 +1467,7 @@ namespace ATA_GUI
             tabPageTools.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             tabPageTools.Name = "tabPageTools";
             tabPageTools.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            tabPageTools.Size = new System.Drawing.Size(1043, 342);
+            tabPageTools.Size = new System.Drawing.Size(925, 342);
             tabPageTools.TabIndex = 3;
             tabPageTools.Text = "Tools";
             tabPageTools.UseVisualStyleBackColor = true;
@@ -1632,15 +1632,15 @@ namespace ATA_GUI
             // 
             // richTextBoxLog
             // 
-            richTextBoxLog.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            richTextBoxLog.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
             richTextBoxLog.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             richTextBoxLog.ForeColor = System.Drawing.Color.White;
-            richTextBoxLog.Location = new System.Drawing.Point(1068, 99);
+            richTextBoxLog.Location = new System.Drawing.Point(474, 443);
             richTextBoxLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             richTextBoxLog.Name = "richTextBoxLog";
             richTextBoxLog.ReadOnly = true;
-            richTextBoxLog.Size = new System.Drawing.Size(242, 324);
+            richTextBoxLog.Size = new System.Drawing.Size(463, 186);
             richTextBoxLog.TabIndex = 38;
             richTextBoxLog.TabStop = false;
             richTextBoxLog.Text = "";
@@ -1796,7 +1796,7 @@ namespace ATA_GUI
             buttonMobileScreenShare.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             buttonMobileScreenShare.ForeColor = System.Drawing.Color.Transparent;
             buttonMobileScreenShare.Image = Properties.Resources.icons8_screensharing_48;
-            buttonMobileScreenShare.Location = new System.Drawing.Point(411, 431);
+            buttonMobileScreenShare.Location = new System.Drawing.Point(391, 541);
             buttonMobileScreenShare.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonMobileScreenShare.Name = "buttonMobileScreenShare";
             buttonMobileScreenShare.Size = new System.Drawing.Size(70, 63);
@@ -1809,7 +1809,7 @@ namespace ATA_GUI
             label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             label9.AutoSize = true;
             label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label9.Location = new System.Drawing.Point(410, 499);
+            label9.Location = new System.Drawing.Point(389, 607);
             label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label9.Name = "label9";
             label9.Size = new System.Drawing.Size(72, 13);
@@ -1844,7 +1844,7 @@ namespace ATA_GUI
             panelTopBar.Location = new System.Drawing.Point(0, -3);
             panelTopBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             panelTopBar.Name = "panelTopBar";
-            panelTopBar.Size = new System.Drawing.Size(1314, 51);
+            panelTopBar.Size = new System.Drawing.Size(942, 51);
             panelTopBar.TabIndex = 0;
             panelTopBar.MouseDoubleClick += panelTopBar_MouseDoubleClick;
             panelTopBar.MouseMove += panelTopBar_MouseMove;
@@ -1853,7 +1853,7 @@ namespace ATA_GUI
             // 
             pictureBoxMaximize.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             pictureBoxMaximize.Image = Properties.Resources.icons8_maximize_button_16;
-            pictureBoxMaximize.Location = new System.Drawing.Point(1224, 3);
+            pictureBoxMaximize.Location = new System.Drawing.Point(852, 3);
             pictureBoxMaximize.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             pictureBoxMaximize.Name = "pictureBoxMaximize";
             pictureBoxMaximize.Size = new System.Drawing.Size(44, 48);
@@ -1884,7 +1884,7 @@ namespace ATA_GUI
             // 
             pictureBoxClose.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             pictureBoxClose.Image = Properties.Resources.close_16;
-            pictureBoxClose.Location = new System.Drawing.Point(1269, 3);
+            pictureBoxClose.Location = new System.Drawing.Point(897, 3);
             pictureBoxClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             pictureBoxClose.Name = "pictureBoxClose";
             pictureBoxClose.Size = new System.Drawing.Size(45, 48);
@@ -1899,7 +1899,7 @@ namespace ATA_GUI
             // 
             pictureBoxMinimize.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             pictureBoxMinimize.Image = Properties.Resources.subtract_16;
-            pictureBoxMinimize.Location = new System.Drawing.Point(1179, 3);
+            pictureBoxMinimize.Location = new System.Drawing.Point(807, 3);
             pictureBoxMinimize.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             pictureBoxMinimize.Name = "pictureBoxMinimize";
             pictureBoxMinimize.Size = new System.Drawing.Size(44, 48);
@@ -2021,12 +2021,12 @@ namespace ATA_GUI
             // 
             // buttonDeviceLogs
             // 
-            buttonDeviceLogs.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            buttonDeviceLogs.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             buttonDeviceLogs.BackColor = System.Drawing.Color.White;
             buttonDeviceLogs.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonDeviceLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             buttonDeviceLogs.ForeColor = System.Drawing.Color.Black;
-            buttonDeviceLogs.Location = new System.Drawing.Point(959, 467);
+            buttonDeviceLogs.Location = new System.Drawing.Point(366, 471);
             buttonDeviceLogs.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonDeviceLogs.Name = "buttonDeviceLogs";
             buttonDeviceLogs.Size = new System.Drawing.Size(102, 27);
@@ -2042,11 +2042,11 @@ namespace ATA_GUI
             groupBox1.Controls.Add(comboBoxDevices);
             groupBox1.Controls.Add(buttonSyncApp);
             groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            groupBox1.Location = new System.Drawing.Point(8, 426);
+            groupBox1.Location = new System.Drawing.Point(9, 531);
             groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox1.Size = new System.Drawing.Size(387, 97);
+            groupBox1.Size = new System.Drawing.Size(374, 97);
             groupBox1.TabIndex = 31;
             groupBox1.TabStop = false;
             groupBox1.Text = "Device Sync Settings";
@@ -2056,7 +2056,7 @@ namespace ATA_GUI
             buttonReloadDevicesList.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonReloadDevicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             buttonReloadDevicesList.ForeColor = System.Drawing.Color.Black;
-            buttonReloadDevicesList.Location = new System.Drawing.Point(201, 61);
+            buttonReloadDevicesList.Location = new System.Drawing.Point(185, 56);
             buttonReloadDevicesList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonReloadDevicesList.Name = "buttonReloadDevicesList";
             buttonReloadDevicesList.Size = new System.Drawing.Size(177, 27);
@@ -2069,7 +2069,7 @@ namespace ATA_GUI
             // 
             comboBoxDevices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             comboBoxDevices.FormattingEnabled = true;
-            comboBoxDevices.Location = new System.Drawing.Point(201, 25);
+            comboBoxDevices.Location = new System.Drawing.Point(185, 19);
             comboBoxDevices.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             comboBoxDevices.Name = "comboBoxDevices";
             comboBoxDevices.Size = new System.Drawing.Size(177, 21);
@@ -2083,7 +2083,7 @@ namespace ATA_GUI
             buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonSyncApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             buttonSyncApp.ForeColor = System.Drawing.Color.Black;
-            buttonSyncApp.Location = new System.Drawing.Point(20, 23);
+            buttonSyncApp.Location = new System.Drawing.Point(7, 18);
             buttonSyncApp.Margin = new System.Windows.Forms.Padding(2);
             buttonSyncApp.Name = "buttonSyncApp";
             buttonSyncApp.Size = new System.Drawing.Size(169, 65);
@@ -2162,12 +2162,12 @@ namespace ATA_GUI
             // 
             // buttonTaskManager
             // 
-            buttonTaskManager.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            buttonTaskManager.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             buttonTaskManager.BackColor = System.Drawing.Color.White;
             buttonTaskManager.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonTaskManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             buttonTaskManager.ForeColor = System.Drawing.Color.Black;
-            buttonTaskManager.Location = new System.Drawing.Point(958, 434);
+            buttonTaskManager.Location = new System.Drawing.Point(366, 438);
             buttonTaskManager.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonTaskManager.Name = "buttonTaskManager";
             buttonTaskManager.Size = new System.Drawing.Size(102, 27);
@@ -2186,16 +2186,16 @@ namespace ATA_GUI
             // 
             // groupBoxTerminal
             // 
-            groupBoxTerminal.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            groupBoxTerminal.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             groupBoxTerminal.Controls.Add(radioButtonFastboot);
             groupBoxTerminal.Controls.Add(radioButtonADB);
             groupBoxTerminal.Controls.Add(buttonTerminalRun);
             groupBoxTerminal.Controls.Add(richTextBoxTerminal);
-            groupBoxTerminal.Location = new System.Drawing.Point(493, 426);
+            groupBoxTerminal.Location = new System.Drawing.Point(9, 428);
             groupBoxTerminal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxTerminal.Name = "groupBoxTerminal";
             groupBoxTerminal.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxTerminal.Size = new System.Drawing.Size(458, 97);
+            groupBoxTerminal.Size = new System.Drawing.Size(349, 103);
             groupBoxTerminal.TabIndex = 46;
             groupBoxTerminal.TabStop = false;
             groupBoxTerminal.Text = "Terminal";
@@ -2204,7 +2204,7 @@ namespace ATA_GUI
             // 
             radioButtonFastboot.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             radioButtonFastboot.AutoSize = true;
-            radioButtonFastboot.Location = new System.Drawing.Point(364, 70);
+            radioButtonFastboot.Location = new System.Drawing.Point(255, 76);
             radioButtonFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonFastboot.Name = "radioButtonFastboot";
             radioButtonFastboot.Size = new System.Drawing.Size(69, 19);
@@ -2218,7 +2218,7 @@ namespace ATA_GUI
             radioButtonADB.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             radioButtonADB.AutoSize = true;
             radioButtonADB.Checked = true;
-            radioButtonADB.Location = new System.Drawing.Point(364, 49);
+            radioButtonADB.Location = new System.Drawing.Point(255, 55);
             radioButtonADB.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonADB.Name = "radioButtonADB";
             radioButtonADB.Size = new System.Drawing.Size(45, 19);
@@ -2231,7 +2231,7 @@ namespace ATA_GUI
             // 
             buttonTerminalRun.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             buttonTerminalRun.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonTerminalRun.Location = new System.Drawing.Point(364, 22);
+            buttonTerminalRun.Location = new System.Drawing.Point(255, 22);
             buttonTerminalRun.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonTerminalRun.Name = "buttonTerminalRun";
             buttonTerminalRun.Size = new System.Drawing.Size(88, 27);
@@ -2243,10 +2243,10 @@ namespace ATA_GUI
             // richTextBoxTerminal
             // 
             richTextBoxTerminal.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            richTextBoxTerminal.Location = new System.Drawing.Point(7, 22);
+            richTextBoxTerminal.Location = new System.Drawing.Point(7, 17);
             richTextBoxTerminal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             richTextBoxTerminal.Name = "richTextBoxTerminal";
-            richTextBoxTerminal.Size = new System.Drawing.Size(349, 65);
+            richTextBoxTerminal.Size = new System.Drawing.Size(240, 78);
             richTextBoxTerminal.TabIndex = 47;
             richTextBoxTerminal.Text = "";
             // 
@@ -2264,14 +2264,14 @@ namespace ATA_GUI
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.SystemColors.ControlLightLight;
-            ClientSize = new System.Drawing.Size(1314, 527);
+            ClientSize = new System.Drawing.Size(942, 632);
+            Controls.Add(richTextBoxLog);
             Controls.Add(label9);
             Controls.Add(groupBoxTerminal);
             Controls.Add(buttonTaskManager);
             Controls.Add(buttonDeviceLogs);
             Controls.Add(buttonMobileScreenShare);
             Controls.Add(buttonLogClear);
-            Controls.Add(richTextBoxLog);
             Controls.Add(tabControls);
             Controls.Add(groupBox1);
             Controls.Add(labelLog);
