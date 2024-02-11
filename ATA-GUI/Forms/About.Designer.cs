@@ -55,11 +55,11 @@ namespace ATA_GUI
             // 
             groupBox1.Controls.Add(labelVersion);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new System.Drawing.Point(14, 16);
-            groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox1.Location = new System.Drawing.Point(14, 14);
+            groupBox1.Margin = new System.Windows.Forms.Padding(4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            groupBox1.Size = new System.Drawing.Size(421, 68);
+            groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            groupBox1.Size = new System.Drawing.Size(421, 60);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Program Version";
@@ -67,21 +67,21 @@ namespace ATA_GUI
             // labelVersion
             // 
             labelVersion.AutoSize = true;
-            labelVersion.Location = new System.Drawing.Point(14, 42);
+            labelVersion.Location = new System.Drawing.Point(14, 37);
             labelVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelVersion.Name = "labelVersion";
-            labelVersion.Size = new System.Drawing.Size(127, 17);
+            labelVersion.Size = new System.Drawing.Size(113, 15);
             labelVersion.TabIndex = 1;
             labelVersion.Text = "Version: UNKNOWN";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label1.Location = new System.Drawing.Point(14, 21);
+            label1.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F);
+            label1.Location = new System.Drawing.Point(14, 19);
             label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(229, 16);
+            label1.Size = new System.Drawing.Size(198, 14);
             label1.TabIndex = 0;
             label1.Text = "ATA-GUI (Advance Tool for Android™)";
             // 
@@ -92,11 +92,11 @@ namespace ATA_GUI
             groupBox2.Controls.Add(linkLabelNewtonsoft);
             groupBox2.Controls.Add(linkLabelSDK);
             groupBox2.Controls.Add(linkLabelDNZ);
-            groupBox2.Location = new System.Drawing.Point(14, 221);
-            groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox2.Location = new System.Drawing.Point(14, 195);
+            groupBox2.Margin = new System.Windows.Forms.Padding(4);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            groupBox2.Size = new System.Drawing.Size(421, 161);
+            groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            groupBox2.Size = new System.Drawing.Size(421, 142);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Assest Used";
@@ -104,10 +104,10 @@ namespace ATA_GUI
             // linkLabelIcons
             // 
             linkLabelIcons.AutoSize = true;
-            linkLabelIcons.Location = new System.Drawing.Point(14, 122);
+            linkLabelIcons.Location = new System.Drawing.Point(14, 108);
             linkLabelIcons.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             linkLabelIcons.Name = "linkLabelIcons";
-            linkLabelIcons.Size = new System.Drawing.Size(45, 17);
+            linkLabelIcons.Size = new System.Drawing.Size(41, 15);
             linkLabelIcons.TabIndex = 4;
             linkLabelIcons.TabStop = true;
             linkLabelIcons.Text = "Icons8";
@@ -116,10 +116,10 @@ namespace ATA_GUI
             // linkLabelScrcpy
             // 
             linkLabelScrcpy.AutoSize = true;
-            linkLabelScrcpy.Location = new System.Drawing.Point(14, 97);
+            linkLabelScrcpy.Location = new System.Drawing.Point(14, 86);
             linkLabelScrcpy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             linkLabelScrcpy.Name = "linkLabelScrcpy";
-            linkLabelScrcpy.Size = new System.Drawing.Size(46, 17);
+            linkLabelScrcpy.Size = new System.Drawing.Size(42, 15);
             linkLabelScrcpy.TabIndex = 3;
             linkLabelScrcpy.TabStop = true;
             linkLabelScrcpy.Text = "Scrcpy";
@@ -128,10 +128,10 @@ namespace ATA_GUI
             // linkLabelNewtonsoft
             // 
             linkLabelNewtonsoft.AutoSize = true;
-            linkLabelNewtonsoft.Location = new System.Drawing.Point(14, 71);
+            linkLabelNewtonsoft.Location = new System.Drawing.Point(14, 63);
             linkLabelNewtonsoft.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             linkLabelNewtonsoft.Name = "linkLabelNewtonsoft";
-            linkLabelNewtonsoft.Size = new System.Drawing.Size(102, 17);
+            linkLabelNewtonsoft.Size = new System.Drawing.Size(94, 15);
             linkLabelNewtonsoft.TabIndex = 2;
             linkLabelNewtonsoft.TabStop = true;
             linkLabelNewtonsoft.Text = "Newtonsoft.json";
@@ -140,10 +140,10 @@ namespace ATA_GUI
             // linkLabelSDK
             // 
             linkLabelSDK.AutoSize = true;
-            linkLabelSDK.Location = new System.Drawing.Point(14, 46);
+            linkLabelSDK.Location = new System.Drawing.Point(14, 41);
             linkLabelSDK.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             linkLabelSDK.Name = "linkLabelSDK";
-            linkLabelSDK.Size = new System.Drawing.Size(114, 17);
+            linkLabelSDK.Size = new System.Drawing.Size(102, 15);
             linkLabelSDK.TabIndex = 1;
             linkLabelSDK.TabStop = true;
             linkLabelSDK.Text = "SDK Platform Tool";
@@ -152,10 +152,10 @@ namespace ATA_GUI
             // linkLabelDNZ
             // 
             linkLabelDNZ.AutoSize = true;
-            linkLabelDNZ.Location = new System.Drawing.Point(14, 21);
+            linkLabelDNZ.Location = new System.Drawing.Point(14, 19);
             linkLabelDNZ.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             linkLabelDNZ.Name = "linkLabelDNZ";
-            linkLabelDNZ.Size = new System.Drawing.Size(68, 17);
+            linkLabelDNZ.Size = new System.Drawing.Size(62, 15);
             linkLabelDNZ.TabIndex = 0;
             linkLabelDNZ.TabStop = true;
             linkLabelDNZ.Text = "DotNetZip";
@@ -168,11 +168,11 @@ namespace ATA_GUI
             groupBox3.Controls.Add(label4);
             groupBox3.Controls.Add(linkLabelRepo);
             groupBox3.Controls.Add(label3);
-            groupBox3.Location = new System.Drawing.Point(14, 92);
-            groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox3.Location = new System.Drawing.Point(14, 81);
+            groupBox3.Margin = new System.Windows.Forms.Padding(4);
             groupBox3.Name = "groupBox3";
-            groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            groupBox3.Size = new System.Drawing.Size(421, 122);
+            groupBox3.Padding = new System.Windows.Forms.Padding(4);
+            groupBox3.Size = new System.Drawing.Size(421, 108);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Developer Info";
@@ -180,10 +180,10 @@ namespace ATA_GUI
             // linkLabelWebsite
             // 
             linkLabelWebsite.AutoSize = true;
-            linkLabelWebsite.Location = new System.Drawing.Point(14, 88);
+            linkLabelWebsite.Location = new System.Drawing.Point(14, 78);
             linkLabelWebsite.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             linkLabelWebsite.Name = "linkLabelWebsite";
-            linkLabelWebsite.Size = new System.Drawing.Size(54, 17);
+            linkLabelWebsite.Size = new System.Drawing.Size(49, 15);
             linkLabelWebsite.TabIndex = 4;
             linkLabelWebsite.TabStop = true;
             linkLabelWebsite.Text = "Website";
@@ -192,10 +192,10 @@ namespace ATA_GUI
             // linkLabelGithub
             // 
             linkLabelGithub.AutoSize = true;
-            linkLabelGithub.Location = new System.Drawing.Point(14, 64);
+            linkLabelGithub.Location = new System.Drawing.Point(14, 56);
             linkLabelGithub.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             linkLabelGithub.Name = "linkLabelGithub";
-            linkLabelGithub.Size = new System.Drawing.Size(46, 17);
+            linkLabelGithub.Size = new System.Drawing.Size(43, 15);
             linkLabelGithub.TabIndex = 3;
             linkLabelGithub.TabStop = true;
             linkLabelGithub.Text = "Github";
@@ -204,20 +204,20 @@ namespace ATA_GUI
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(264, 21);
+            label4.Location = new System.Drawing.Point(264, 19);
             label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(146, 17);
+            label4.Size = new System.Drawing.Size(130, 15);
             label4.TabIndex = 2;
-            label4.Text = "Copyright © 2021-2023";
+            label4.Text = "Copyright © 2021-2024";
             // 
             // linkLabelRepo
             // 
             linkLabelRepo.AutoSize = true;
-            linkLabelRepo.Location = new System.Drawing.Point(14, 41);
+            linkLabelRepo.Location = new System.Drawing.Point(14, 36);
             linkLabelRepo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             linkLabelRepo.Name = "linkLabelRepo";
-            linkLabelRepo.Size = new System.Drawing.Size(71, 17);
+            linkLabelRepo.Size = new System.Drawing.Size(63, 15);
             linkLabelRepo.TabIndex = 1;
             linkLabelRepo.TabStop = true;
             linkLabelRepo.Text = "Repository";
@@ -226,20 +226,20 @@ namespace ATA_GUI
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(14, 21);
+            label3.Location = new System.Drawing.Point(14, 19);
             label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(131, 17);
+            label3.Size = new System.Drawing.Size(117, 15);
             label3.TabIndex = 0;
             label3.Text = "Massimiliano Sartore";
             // 
             // buttonClose
             // 
             buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonClose.Location = new System.Drawing.Point(348, 390);
-            buttonClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            buttonClose.Location = new System.Drawing.Point(348, 344);
+            buttonClose.Margin = new System.Windows.Forms.Padding(4);
             buttonClose.Name = "buttonClose";
-            buttonClose.Size = new System.Drawing.Size(88, 30);
+            buttonClose.Size = new System.Drawing.Size(88, 26);
             buttonClose.TabIndex = 3;
             buttonClose.Text = "Close";
             buttonClose.UseVisualStyleBackColor = true;
@@ -247,17 +247,17 @@ namespace ATA_GUI
             // 
             // About
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.SystemColors.ControlLightLight;
-            ClientSize = new System.Drawing.Size(449, 432);
+            ClientSize = new System.Drawing.Size(449, 381);
             Controls.Add(buttonClose);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
-            Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            Margin = new System.Windows.Forms.Padding(4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "About";
