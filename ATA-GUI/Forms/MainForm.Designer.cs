@@ -92,6 +92,8 @@ namespace ATA_GUI
             downgradeAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
             groupBoxADBNet = new System.Windows.Forms.GroupBox();
+            radioButtonCWired = new System.Windows.Forms.RadioButton();
+            radioButtonCWireless = new System.Windows.Forms.RadioButton();
             buttonUnlockNetworkMenu = new System.Windows.Forms.Button();
             label11 = new System.Windows.Forms.Label();
             textBoxPort = new System.Windows.Forms.TextBox();
@@ -262,7 +264,7 @@ namespace ATA_GUI
             // 
             labelLog.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             labelLog.AutoSize = true;
-            labelLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             labelLog.Location = new System.Drawing.Point(474, 427);
             labelLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             labelLog.Name = "labelLog";
@@ -276,7 +278,7 @@ namespace ATA_GUI
             buttonLogClear.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             buttonLogClear.BackColor = System.Drawing.Color.White;
             buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonLogClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonLogClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             buttonLogClear.ForeColor = System.Drawing.Color.Black;
             buttonLogClear.Location = new System.Drawing.Point(366, 504);
             buttonLogClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -657,12 +659,12 @@ namespace ATA_GUI
             // 
             toolStrip1.BackColor = System.Drawing.Color.White;
             toolStrip1.ImageScalingSize = new System.Drawing.Size(18, 18);
-            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripButtonReloadApps, toolStripSeparator2, toolStripButtonFilter, toolStripSeparator6, textBoxSearch, toolStripSeparator1, toolStripButtonRestoreApp, toolStripSeparator7, toolStripButtonUninstallApp, toolStripSeparator5, toolStripButtonPackageManager, toolStripSeparator3, toolStripButtonPermissionMenu, toolStripSeparator4, toolStripButtonSetDefault, toolStripSeparator8, toolStripButtonSearch, toolStripSeparator9, toolStripButtonExtract, toolStripSeparator12, toolStripLabelTotalApps, toolStripSeparator11, toolStripDropDownInstallApkButton });
+            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripLabelTotalApps, toolStripSeparator12, toolStripButtonReloadApps, toolStripSeparator2, toolStripButtonFilter, toolStripSeparator6, textBoxSearch, toolStripSeparator1, toolStripButtonRestoreApp, toolStripSeparator7, toolStripButtonUninstallApp, toolStripSeparator5, toolStripButtonPackageManager, toolStripSeparator3, toolStripButtonPermissionMenu, toolStripSeparator4, toolStripButtonSetDefault, toolStripSeparator8, toolStripButtonSearch, toolStripSeparator9, toolStripButtonExtract, toolStripSeparator11, toolStripDropDownInstallApkButton });
             toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             toolStrip1.Location = new System.Drawing.Point(4, 19);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            toolStrip1.Size = new System.Drawing.Size(523, 50);
+            toolStrip1.Size = new System.Drawing.Size(523, 44);
             toolStrip1.TabIndex = 42;
             toolStrip1.Text = "toolStripAPKMenu";
             // 
@@ -701,7 +703,7 @@ namespace ATA_GUI
             // 
             textBoxSearch.BackColor = System.Drawing.Color.White;
             textBoxSearch.Name = "textBoxSearch";
-            textBoxSearch.Size = new System.Drawing.Size(174, 23);
+            textBoxSearch.Size = new System.Drawing.Size(170, 23);
             textBoxSearch.Text = "Search";
             textBoxSearch.Click += textBoxSearch_Click;
             textBoxSearch.TextChanged += textBoxSearch_TextChanged;
@@ -821,6 +823,7 @@ namespace ATA_GUI
             // 
             // toolStripLabelTotalApps
             // 
+            toolStripLabelTotalApps.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             toolStripLabelTotalApps.Name = "toolStripLabelTotalApps";
             toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 15);
             toolStripLabelTotalApps.Text = "Total: 0";
@@ -870,6 +873,8 @@ namespace ATA_GUI
             // 
             // groupBoxADBNet
             // 
+            groupBoxADBNet.Controls.Add(radioButtonCWired);
+            groupBoxADBNet.Controls.Add(radioButtonCWireless);
             groupBoxADBNet.Controls.Add(buttonUnlockNetworkMenu);
             groupBoxADBNet.Controls.Add(label11);
             groupBoxADBNet.Controls.Add(textBoxPort);
@@ -885,6 +890,28 @@ namespace ATA_GUI
             groupBoxADBNet.TabIndex = 37;
             groupBoxADBNet.TabStop = false;
             groupBoxADBNet.Text = "ADB over Network Menu";
+            // 
+            // radioButtonCWired
+            // 
+            radioButtonCWired.AutoSize = true;
+            radioButtonCWired.Checked = true;
+            radioButtonCWired.Location = new System.Drawing.Point(12, 118);
+            radioButtonCWired.Name = "radioButtonCWired";
+            radioButtonCWired.Size = new System.Drawing.Size(56, 19);
+            radioButtonCWired.TabIndex = 45;
+            radioButtonCWired.TabStop = true;
+            radioButtonCWired.Text = "Wired";
+            radioButtonCWired.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonCWireless
+            // 
+            radioButtonCWireless.AutoSize = true;
+            radioButtonCWireless.Location = new System.Drawing.Point(12, 100);
+            radioButtonCWireless.Name = "radioButtonCWireless";
+            radioButtonCWireless.Size = new System.Drawing.Size(115, 19);
+            radioButtonCWireless.TabIndex = 44;
+            radioButtonCWireless.Text = "Wireless (A>=11)";
+            radioButtonCWireless.UseVisualStyleBackColor = true;
             // 
             // buttonUnlockNetworkMenu
             // 
@@ -1634,7 +1661,7 @@ namespace ATA_GUI
             // 
             richTextBoxLog.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             richTextBoxLog.BackColor = System.Drawing.SystemColors.MenuText;
-            richTextBoxLog.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            richTextBoxLog.Font = new System.Drawing.Font("Consolas", 8.25F);
             richTextBoxLog.ForeColor = System.Drawing.Color.White;
             richTextBoxLog.Location = new System.Drawing.Point(474, 443);
             richTextBoxLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -1808,7 +1835,7 @@ namespace ATA_GUI
             // 
             label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             label9.AutoSize = true;
-            label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             label9.Location = new System.Drawing.Point(389, 607);
             label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label9.Name = "label9";
@@ -1868,7 +1895,7 @@ namespace ATA_GUI
             // labelTools
             // 
             labelTools.AutoSize = true;
-            labelTools.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelTools.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
             labelTools.ForeColor = System.Drawing.Color.White;
             labelTools.Location = new System.Drawing.Point(245, 19);
             labelTools.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1913,7 +1940,7 @@ namespace ATA_GUI
             // labelHelp
             // 
             labelHelp.AutoSize = true;
-            labelHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
             labelHelp.ForeColor = System.Drawing.Color.White;
             labelHelp.Location = new System.Drawing.Point(194, 19);
             labelHelp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1928,7 +1955,7 @@ namespace ATA_GUI
             // labelSettings
             // 
             labelSettings.AutoSize = true;
-            labelSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            labelSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
             labelSettings.ForeColor = System.Drawing.Color.White;
             labelSettings.Location = new System.Drawing.Point(120, 19);
             labelSettings.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -2024,7 +2051,7 @@ namespace ATA_GUI
             buttonDeviceLogs.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             buttonDeviceLogs.BackColor = System.Drawing.Color.White;
             buttonDeviceLogs.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonDeviceLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonDeviceLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             buttonDeviceLogs.ForeColor = System.Drawing.Color.Black;
             buttonDeviceLogs.Location = new System.Drawing.Point(366, 471);
             buttonDeviceLogs.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -2041,7 +2068,7 @@ namespace ATA_GUI
             groupBox1.Controls.Add(buttonReloadDevicesList);
             groupBox1.Controls.Add(comboBoxDevices);
             groupBox1.Controls.Add(buttonSyncApp);
-            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             groupBox1.Location = new System.Drawing.Point(9, 531);
             groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox1.Name = "groupBox1";
@@ -2054,7 +2081,7 @@ namespace ATA_GUI
             // buttonReloadDevicesList
             // 
             buttonReloadDevicesList.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonReloadDevicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonReloadDevicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             buttonReloadDevicesList.ForeColor = System.Drawing.Color.Black;
             buttonReloadDevicesList.Location = new System.Drawing.Point(185, 56);
             buttonReloadDevicesList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -2067,7 +2094,7 @@ namespace ATA_GUI
             // 
             // comboBoxDevices
             // 
-            comboBoxDevices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            comboBoxDevices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             comboBoxDevices.FormattingEnabled = true;
             comboBoxDevices.Location = new System.Drawing.Point(185, 19);
             comboBoxDevices.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -2081,7 +2108,7 @@ namespace ATA_GUI
             buttonSyncApp.BackColor = System.Drawing.Color.White;
             buttonSyncApp.Enabled = false;
             buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonSyncApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonSyncApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
             buttonSyncApp.ForeColor = System.Drawing.Color.Black;
             buttonSyncApp.Location = new System.Drawing.Point(7, 18);
             buttonSyncApp.Margin = new System.Windows.Forms.Padding(2);
@@ -2165,7 +2192,7 @@ namespace ATA_GUI
             buttonTaskManager.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             buttonTaskManager.BackColor = System.Drawing.Color.White;
             buttonTaskManager.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonTaskManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonTaskManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             buttonTaskManager.ForeColor = System.Drawing.Color.Black;
             buttonTaskManager.Location = new System.Drawing.Point(366, 438);
             buttonTaskManager.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -2525,6 +2552,8 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem driverToolStripMenuItem;
         private System.Windows.Forms.Button buttonWd_md;
         private System.Windows.Forms.CheckedListBox checkedListBoxApp;
+        private System.Windows.Forms.RadioButton radioButtonCWired;
+        private System.Windows.Forms.RadioButton radioButtonCWireless;
     }
 }
 

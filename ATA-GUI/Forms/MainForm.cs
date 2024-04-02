@@ -586,7 +586,7 @@ namespace ATA_GUI
             comboBoxCameraModes.SelectedIndex = 0;
             groupBox6.AllowDrop = true;
             groupBox2.AllowDrop = true;
-            Disclaimer disclaimer = new();
+            DisclaimerForm disclaimer = new();
             ata.windowSize = Size;
             if (!disclaimer.checkDiscalimer())
             {
@@ -725,9 +725,9 @@ namespace ATA_GUI
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            if (Feedback.checkFeedbackFile())
+            if (FeedbackForm.checkFeedbackFile())
             {
-                _ = new Feedback().ShowDialog();
+                _ = new FeedbackForm().ShowDialog();
             }
 
             LogWriteLine("checking connection...", LogType.INFO);
@@ -862,7 +862,7 @@ namespace ATA_GUI
                     {
                         if (type == 1)
                         {
-                            ScrollableMessageBox.show(log, "Granted permissions");
+                            ScrollableMessageBoxForm.show(log, "Granted permissions");
                             continue;
                         }
                         LogWriteLine("the command has been injected", LogType.OK);
@@ -1031,7 +1031,7 @@ namespace ATA_GUI
 
         private void buttonBootloaderMenu_Click(object sender, EventArgs e)
         {
-            BootloaderMenu bootloaderMenu = new();
+            BootloaderMenuForm bootloaderMenu = new();
             _ = bootloaderMenu.ShowDialog();
         }
 
@@ -1081,7 +1081,7 @@ namespace ATA_GUI
                     arrayApkSelect.Add(list.ToString());
                 }
 
-                PackageMenu packageMenu = new(arrayApkSelect);
+                PackageMenuForm packageMenu = new(arrayApkSelect);
                 _ = packageMenu.ShowDialog();
                 string command;
                 string commandName;
@@ -1475,7 +1475,7 @@ namespace ATA_GUI
 
         private async void labelSettings_Click(object sender, EventArgs e)
         {
-            Settings settings = new();
+            SettingsForm settings = new();
             DialogResult dialogResult = settings.ShowDialog();
 
             if (dialogResult == DialogResult.Yes)
@@ -1540,13 +1540,13 @@ namespace ATA_GUI
 
         private void buttonDeviceLogs_Click(object sender, EventArgs e)
         {
-            DeviceLogs deviceLog = new(ATA.CurrentDeviceSelected.ID);
+            DeviceLogsForm deviceLog = new(ATA.CurrentDeviceSelected.ID);
             deviceLog.Show();
         }
 
         private void submitFeedbackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Feedback feedback = new();
+            FeedbackForm feedback = new();
             _ = feedback.ShowDialog();
         }
 
@@ -1671,6 +1671,7 @@ namespace ATA_GUI
         {
             int deviceCountTmp = ata.Devices.Count;
             string ip = string.Empty;
+            string result = string.Empty;
             string port = textBoxPort.Text.Trim();
 
             Invoke(delegate
@@ -1680,15 +1681,35 @@ namespace ATA_GUI
 
             if (ip.Length > 1)
             {
-                if (ATA.CurrentDeviceSelected != null)
+                string command = string.Empty;
+
+                if (radioButtonCWired.Checked)
                 {
-                    if (ATA.CurrentDeviceSelected.ID.Length > 0)
+                    if (ATA.CurrentDeviceSelected != null)
                     {
-                        _ = ConsoleProcess.adbFastbootCommandR(" -s " + ATA.CurrentDeviceSelected.ID + " tcpip " + port, 0);
+                        if (ATA.CurrentDeviceSelected.ID.Length > 0)
+                        {
+                            _ = ConsoleProcess.adbFastbootCommandR(" -s " + ATA.CurrentDeviceSelected.ID + " tcpip " + port, 0);
+                        }
                     }
+
+                    command = "connect ";
+                }
+                else
+                {
+                    command = "pair ";
                 }
 
-                string result = ConsoleProcess.adbFastbootCommandR("connect " + ip + ":" + port, 0);
+                if (radioButtonCWired.Checked)
+                {
+                    result = ConsoleProcess.adbFastbootCommandR(command + ip + ":" + port, 0);
+                }
+                else
+                {
+                    WirelessPairingForm wirelessPairingForm = new WirelessPairingForm(ip, port);
+                    wirelessPairingForm.ShowDialog();
+                    result = wirelessPairingForm.DialogResult == DialogResult.OK ? "connected" : "cannot connect to " + ip + "\nOperation aborted by the user";
+                }
 
                 if (!result.Contains("cannot connect"))
                 {
@@ -1815,7 +1836,7 @@ namespace ATA_GUI
                 case 1:
                     foreach (object current in checkedItems)
                     {
-                        _ = new DefaultApp(current.ToString()).ShowDialog();
+                        _ = new DefaultAppForm(current.ToString()).ShowDialog();
                     }
                     break;
                 default:
@@ -2128,7 +2149,7 @@ namespace ATA_GUI
                     }
                 }
 
-                BloatwareRemover bloatwareDetecter = new(appsNonSystem, appsSystem)
+                BloatwareRemoverForm bloatwareDetecter = new(appsNonSystem, appsSystem)
                 {
                     CurrentDevice = ATA.CurrentDeviceSelected.ID
                 };
@@ -2142,7 +2163,7 @@ namespace ATA_GUI
 
         private void driverToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ScrollableMessageBox.show("Acer \thttps://www.acer.com/worldwide/support/\r\nAlcatel Mobile \thttps://www.alcatelmobile.com/support/\r\nAsus \thttps://www.asus.com/support/Download-Center/\r\nBlackberry \thttps://swdownloads.blackberry.com/Downloads/entry.do?code=4EE0932F46276313B51570F46266A608\r\nDell \thttps://support.dell.com/support/downloads/index.aspx?c=us&cs=19&l=en&s=dhs&~ck=anavml\r\nFCNT \thttps://www.fcnt.com/support/develop/#anc-03\r\nGoogle\thttps://developer.android.com/studio/run/win-usb\r\nHTC \thttps://www.htc.com/support\r\nHuawei \thttps://consumer.huawei.com/en/support/index.htm\r\nIntel \thttps://www.intel.com/software/android\r\nKyocera \thttps://kyoceramobile.com/support/drivers/\r\nLenovo \thttps://support.lenovo.com/us/en/GlobalProductSelector\r\nLGE \thttps://www.lg.com/us/support/software-firmware\r\nMotorola \thttps://motorola-global-portal.custhelp.com/app/answers/detail/a_id/88481/\r\nMTK \thttp://online.mediatek.com/Public%20Documents/MTK_Android_USB_Driver.zip (ZIP download)\r\nSamsung \thttps://developer.samsung.com/galaxy/others/android-usb-driver-for-windows\r\nSharp \thttp://k-tai.sharp.co.jp/support/\r\nSony Mobile Communications \thttps://developer.sonymobile.com/downloads/drivers/\r\nToshiba \thttps://support.toshiba.com/sscontent?docId=4001814\r\nXiaomi \thttps://web.vip.miui.com/page/info/mio/mio/detail?postId=18464849&app_version=dev.20051\r\nZTE \thttp://support.zte.com.cn/support/news/NewsDetail.aspx?newsId=1000442", "OEM drivers");
+            ScrollableMessageBoxForm.show("Acer \thttps://www.acer.com/worldwide/support/\r\nAlcatel Mobile \thttps://www.alcatelmobile.com/support/\r\nAsus \thttps://www.asus.com/support/Download-Center/\r\nBlackberry \thttps://swdownloads.blackberry.com/Downloads/entry.do?code=4EE0932F46276313B51570F46266A608\r\nDell \thttps://support.dell.com/support/downloads/index.aspx?c=us&cs=19&l=en&s=dhs&~ck=anavml\r\nFCNT \thttps://www.fcnt.com/support/develop/#anc-03\r\nGoogle\thttps://developer.android.com/studio/run/win-usb\r\nHTC \thttps://www.htc.com/support\r\nHuawei \thttps://consumer.huawei.com/en/support/index.htm\r\nIntel \thttps://www.intel.com/software/android\r\nKyocera \thttps://kyoceramobile.com/support/drivers/\r\nLenovo \thttps://support.lenovo.com/us/en/GlobalProductSelector\r\nLGE \thttps://www.lg.com/us/support/software-firmware\r\nMotorola \thttps://motorola-global-portal.custhelp.com/app/answers/detail/a_id/88481/\r\nMTK \thttp://online.mediatek.com/Public%20Documents/MTK_Android_USB_Driver.zip (ZIP download)\r\nSamsung \thttps://developer.samsung.com/galaxy/others/android-usb-driver-for-windows\r\nSharp \thttp://k-tai.sharp.co.jp/support/\r\nSony Mobile Communications \thttps://developer.sonymobile.com/downloads/drivers/\r\nToshiba \thttps://support.toshiba.com/sscontent?docId=4001814\r\nXiaomi \thttps://web.vip.miui.com/page/info/mio/mio/detail?postId=18464849&app_version=dev.20051\r\nZTE \thttp://support.zte.com.cn/support/news/NewsDetail.aspx?newsId=1000442", "OEM drivers");
         }
 
         private void groupBox2_DragDrop(object sender, DragEventArgs e)
