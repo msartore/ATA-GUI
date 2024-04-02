@@ -9,7 +9,7 @@ using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
-    public partial class BloatwareRemover : Form
+    public partial class BloatwareRemoverForm : Form
     {
         private readonly List<string> packageList = new();
         private readonly List<string> nonSystemApp;
@@ -18,7 +18,7 @@ namespace ATA_GUI
 
         public string CurrentDevice { get; set; }
 
-        public BloatwareRemover(List<string> nonSystemApp, List<string> systemApp)
+        public BloatwareRemoverForm(List<string> nonSystemApp, List<string> systemApp)
         {
             InitializeComponent();
             this.nonSystemApp = nonSystemApp.Select(it => it.Trim()).ToList();

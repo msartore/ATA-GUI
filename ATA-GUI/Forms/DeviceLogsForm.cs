@@ -9,7 +9,7 @@ using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
-    public partial class DeviceLogs : Form
+    public partial class DeviceLogsForm : Form
     {
         private readonly string currentDevice = string.Empty;
         private string line = string.Empty;
@@ -18,7 +18,7 @@ namespace ATA_GUI
         private bool keepScrolling = true;
         private bool processBusy = false;
 
-        public DeviceLogs(string CurrentDevice)
+        public DeviceLogsForm(string CurrentDevice)
         {
             currentDevice = CurrentDevice;
             InitializeComponent();

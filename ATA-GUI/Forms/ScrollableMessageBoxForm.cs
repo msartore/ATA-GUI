@@ -3,16 +3,16 @@ using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
-    public partial class ScrollableMessageBox : Form
+    public partial class ScrollableMessageBoxForm : Form
     {
-        public ScrollableMessageBox()
+        public ScrollableMessageBoxForm()
         {
             InitializeComponent();
         }
 
         public static void show(string text, string title)
         {
-            ScrollableMessageBox scrollableMessageBox = new()
+            ScrollableMessageBoxForm scrollableMessageBox = new()
             {
                 Text = title
             };

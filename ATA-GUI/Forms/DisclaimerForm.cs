@@ -5,12 +5,12 @@ using System.Xml;
 
 namespace ATA_GUI
 {
-    public partial class Disclaimer : Form
+    public partial class DisclaimerForm : Form
     {
         private bool closedByMe;
         private const string fileName = "InfoCache.xml";
 
-        public Disclaimer()
+        public DisclaimerForm()
         {
             InitializeComponent();
         }

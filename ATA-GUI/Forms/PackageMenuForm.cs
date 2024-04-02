@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace ATA_GUI
 {
-    public partial class PackageMenu : Form
+    public partial class PackageMenuForm : Form
     {
         private bool closedByMe;
 
         public int DialogResult1 { get; private set; }
 
-        public PackageMenu(List<string> apklist)
+        public PackageMenuForm(List<string> apklist)
         {
             InitializeComponent();
             richTextBoxAPKList.Text = string.Join("", apklist);

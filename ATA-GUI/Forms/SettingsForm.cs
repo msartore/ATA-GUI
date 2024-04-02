@@ -7,14 +7,14 @@ using Newtonsoft.Json.Linq;
 
 namespace ATA_GUI
 {
-    public partial class Settings : Form
+    public partial class SettingsForm : Form
     {
         private string changelog = string.Empty;
         private static readonly string CURRENTVERSION = ATA.CURRENTVERSION;
         private bool runningCheck;
         private bool starting = true;
 
-        public Settings()
+        public SettingsForm()
         {
             InitializeComponent();
         }
@@ -91,7 +91,7 @@ namespace ATA_GUI
 
         private void buttonCredits_Click(object sender, EventArgs e)
         {
-            _ = new About().ShowDialog();
+            _ = new AboutForm().ShowDialog();
         }
 
         private void Settings_Load(object sender, EventArgs e)
@@ -99,7 +99,7 @@ namespace ATA_GUI
             labelCurrentRelease.Text = CURRENTVERSION;
             linkLabelChangelog.Visible = false;
 
-            if (!Feedback.checkFeedbackFile())
+            if (!FeedbackForm.checkFeedbackFile())
             {
                 checkBoxInitPopUp.Checked = true;
             }
@@ -108,7 +108,7 @@ namespace ATA_GUI
 
         private void linkLabelChangelog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ScrollableMessageBox.show(changelog, "Changelog");
+            ScrollableMessageBoxForm.show(changelog, "Changelog");
         }
 
         private void checkBoxInitPopUp_CheckedChanged(object sender, EventArgs e)
@@ -119,10 +119,10 @@ namespace ATA_GUI
             }
             if (checkBoxInitPopUp.Checked)
             {
-                _ = Feedback.changeFeedbackFile(false);
+                _ = FeedbackForm.changeFeedbackFile(false);
                 return;
             }
-            _ = Feedback.changeFeedbackFile(true);
+            _ = FeedbackForm.changeFeedbackFile(true);
         }
 
         private void buttonUpdateLocalSDK_Click(object sender, EventArgs e)

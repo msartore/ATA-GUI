@@ -5,11 +5,11 @@ using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
-    public partial class DefaultApp : Form
+    public partial class DefaultAppForm : Form
     {
         private readonly string apk = string.Empty;
 
-        public DefaultApp(string apk)
+        public DefaultAppForm(string apk)
         {
             this.apk = apk;
             InitializeComponent();

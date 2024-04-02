@@ -6,11 +6,11 @@ using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
-    public partial class Feedback : Form
+    public partial class FeedbackForm : Form
     {
         private const string fileName = "InfoCache.xml";
 
-        public Feedback()
+        public FeedbackForm()
         {
             InitializeComponent();
         }

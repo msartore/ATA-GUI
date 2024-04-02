@@ -4,9 +4,9 @@ using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
-    public partial class BootloaderMenu : Form
+    public partial class BootloaderMenuForm : Form
     {
-        public BootloaderMenu()
+        public BootloaderMenuForm()
         {
             InitializeComponent();
         }

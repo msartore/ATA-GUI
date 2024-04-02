@@ -1,7 +1,7 @@
 ﻿
 namespace ATA_GUI
 {
-    partial class BloatwareRemover
+    partial class BloatwareRemoverForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace ATA_GUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BloatwareRemover));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BloatwareRemoverForm));
             buttonAction = new System.Windows.Forms.Button();
             checkedListBoxBloatwareList = new System.Windows.Forms.CheckedListBox();
             label1 = new System.Windows.Forms.Label();

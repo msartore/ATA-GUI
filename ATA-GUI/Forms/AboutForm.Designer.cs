@@ -1,7 +1,7 @@
 ﻿
 namespace ATA_GUI
 {
-    partial class About
+    partial class AboutForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace ATA_GUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             groupBox1 = new System.Windows.Forms.GroupBox();
             labelVersion = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();

@@ -1,7 +1,7 @@
 ﻿
 namespace ATA_GUI
 {
-    partial class DeviceLogs
+    partial class DeviceLogsForm
     {
         /// <summary>
         /// Required designer variable.

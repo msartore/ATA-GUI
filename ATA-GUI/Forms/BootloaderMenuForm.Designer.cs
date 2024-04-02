@@ -1,7 +1,7 @@
 ﻿
 namespace ATA_GUI
 {
-    partial class BootloaderMenu
+    partial class BootloaderMenuForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace ATA_GUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BootloaderMenu));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BootloaderMenuForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonLB2014 = new System.Windows.Forms.Button();
             this.buttonUB2014 = new System.Windows.Forms.Button();

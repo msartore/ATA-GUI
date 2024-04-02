@@ -1,7 +1,7 @@
 ﻿
 namespace ATA_GUI
 {
-    partial class DefaultApp
+    partial class DefaultAppForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace ATA_GUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DefaultApp));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DefaultAppForm));
             this.label1 = new System.Windows.Forms.Label();
             this.labelAPKName = new System.Windows.Forms.Label();
             this.buttonSetDefault = new System.Windows.Forms.Button();
