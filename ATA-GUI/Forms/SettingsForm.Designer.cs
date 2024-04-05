@@ -43,6 +43,7 @@ namespace ATA_GUI
             checkBoxInitPopUp = new System.Windows.Forms.CheckBox();
             buttonUpdateLocalSDK = new System.Windows.Forms.Button();
             buttonDeleteIPHistory = new System.Windows.Forms.Button();
+            button1 = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
             // labelLatestRelease
@@ -138,7 +139,7 @@ namespace ATA_GUI
             // checkBoxInitPopUp
             // 
             checkBoxInitPopUp.AutoSize = true;
-            checkBoxInitPopUp.Location = new System.Drawing.Point(121, 181);
+            checkBoxInitPopUp.Location = new System.Drawing.Point(121, 149);
             checkBoxInitPopUp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             checkBoxInitPopUp.Name = "checkBoxInitPopUp";
             checkBoxInitPopUp.Size = new System.Drawing.Size(156, 19);
@@ -175,12 +176,22 @@ namespace ATA_GUI
             buttonDeleteIPHistory.UseVisualStyleBackColor = false;
             buttonDeleteIPHistory.Click += buttonDeleteIPHistory_Click;
             // 
-            // Settings
+            // button1
+            // 
+            button1.Location = new System.Drawing.Point(121, 174);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(187, 27);
+            button1.TabIndex = 44;
+            button1.Text = "Download ATABridge";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // SettingsForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.White;
             ClientSize = new System.Drawing.Size(424, 347);
+            Controls.Add(button1);
             Controls.Add(buttonDeleteIPHistory);
             Controls.Add(buttonUpdateLocalSDK);
             Controls.Add(label1);
@@ -197,7 +208,7 @@ namespace ATA_GUI
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "Settings";
+            Name = "SettingsForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "Settings";
             Load += Settings_Load;
@@ -218,5 +229,6 @@ namespace ATA_GUI
         private System.Windows.Forms.CheckBox checkBoxInitPopUp;
         private System.Windows.Forms.Button buttonUpdateLocalSDK;
         private System.Windows.Forms.Button buttonDeleteIPHistory;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -21,7 +21,8 @@ namespace ATA_GUI.Classes
         public List<string> AppsString { get; set; }
         public AppMode AppMode { get; set; }
         public int Version { get; set; }
-
+        public List<AppData> AppsExtracted { get; set; }
+        public bool isATABridgeInstalled { get; set; }
         public string ID { get; }
 
         public char getConnectionSymbol()

@@ -20,6 +20,8 @@ namespace ATA_GUI.Forms
 
         private void buttonPair_Click(object sender, EventArgs e)
         {
+            buttonPair.Enabled = false;
+
             string code = textBoxCode.Text;
             string output = string.Empty;
 
@@ -30,6 +32,7 @@ namespace ATA_GUI.Forms
                     if (!char.IsDigit(c))
                     {
                         MainForm.MessageShowBox("Wrong code format, the code must be a number without letters or special characters allowed!", 1);
+                        buttonPair.Enabled = true;
                         return;
                     }
                 }
@@ -37,6 +40,7 @@ namespace ATA_GUI.Forms
             else
             {
                 MainForm.MessageShowBox("Wrong code format, the code must consist of exactly six digits!", 1);
+                buttonPair.Enabled = true;
                 return;
             }
 

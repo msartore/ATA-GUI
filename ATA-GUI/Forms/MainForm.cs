@@ -17,6 +17,7 @@ using ATA_GUI.Classes;
 using ATA_GUI.Forms;
 using ATA_GUI.Utils;
 using Ionic.Zip;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace ATA_GUI
@@ -282,8 +283,8 @@ namespace ATA_GUI
 
                                 Invoke(delegate
                                 {
-                                    toolStripLabelTotalApps.Text = "Total: 0";
-                                    checkedListBoxApp.Items.Clear();
+                                    labelTotalPackages.Text = "Total: 0";
+                                    dataGridViewPackages.Rows.Clear();
 
                                     if (int.TryParse(Regex.Replace(arrayDeviceInfo[0], "([.][^.]*)", ""), out int version))
                                     {
@@ -396,10 +397,12 @@ namespace ATA_GUI
 
         private void loadApps(AppMode appMode)
         {
+            string filePath = "installed_apps.json";
+
             Invoke(delegate
             {
                 labelSelectedAppCount.Text = "Selected App: 0";
-                checkedListBoxApp.Items.Clear();
+                dataGridViewPackages.Rows.Clear();
             });
 
             string command = "";
@@ -408,6 +411,21 @@ namespace ATA_GUI
 
             ATA.CurrentDeviceSelected.AppsString.Clear();
             ATA.CurrentDeviceSelected.AppMode = appMode;
+
+            ATA.CurrentDeviceSelected.isATABridgeInstalled = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell pm list packages dev.msartore.atabridge"), 0).Trim().Length != 0;
+
+            if (ATA.CurrentDeviceSelected.isATABridgeInstalled)
+            {
+                string isAppPermissionGranted = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell dumpsys package dev.msartore.atabridge"), 0);
+                ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell am start -a dev.msartore.ACTION_SHARE_APP_LIST -c android.intent.category.DEFAULT -n dev.msartore.atabridge/dev.msartore.atabridge.MainActivity"), 0);
+                ConsoleProcess.adbFastbootCommandR(commandAssemblerF("pull sdcard/Android/data/dev.msartore.atabridge/cache/installed_apps.json"), 0);
+
+                if (File.Exists(filePath))
+                {
+                    string json = File.ReadAllText(filePath);
+                    ATA.CurrentDeviceSelected.AppsExtracted = JsonConvert.DeserializeObject<List<AppData>>(json);
+                }
+            }
 
             switch (appMode)
             {
@@ -424,7 +442,7 @@ namespace ATA_GUI
                     command = commandAssemblerF("shell pm list packages -d --user " + ATA.CurrentDeviceSelected.User);
                     break;
                 case AppMode.UNINSTALLED:
-                    string allAppString = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " shell pm list packages --user " + ATA.CurrentDeviceSelected.User, 0);
+                    string allAppString = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell pm list packages --user ") + ATA.CurrentDeviceSelected.User, 0);
 
                     if (allAppString != null)
                     {
@@ -461,10 +479,27 @@ namespace ATA_GUI
 
                     Invoke(delegate
                     {
-                        checkedListBoxApp.Items.AddRange(ATA.CurrentDeviceSelected.AppsString.ToArray());
-                        checkedListBoxApp.CheckOnClick = true;
-                        toolStripLabelTotalApps.Text = "Total: " + checkedListBoxApp.Items.Count;
-                        checkBoxSelectAll.Checked = false;
+                        AppData appData;
+
+                        foreach (string package in ATA.CurrentDeviceSelected.AppsString)
+                        {
+                            if (ATA.CurrentDeviceSelected.isATABridgeInstalled)
+                            {
+                                appData = ATA.CurrentDeviceSelected.AppsExtracted.Find((appData) => { return appData.Package == package; });
+
+                                if (appData == null)
+                                {
+                                    appData = new AppData("UNKNOWN", package);
+                                }
+                            }
+                            else
+                            {
+                                appData = new AppData("UNKNOWN (ATA Bridge required)", package);
+                            }
+
+                            dataGridViewPackages.Rows.Add((new[] { appData.Name, appData.Package }).ToArray());
+                        }
+                        labelTotalPackages.Text = "Total: " + dataGridViewPackages.Rows.Count;
                     });
 
                     LogWriteLine("apps loaded", LogType.OK);
@@ -482,9 +517,10 @@ namespace ATA_GUI
             {
                 if (line.Contains("package:"))
                 {
-                    ATA.CurrentDeviceSelected.AppsString.Add(line[8..].Trim() + "\n");
+                    ATA.CurrentDeviceSelected.AppsString.Add(line[8..].Trim());
                 }
             }
+
             ATA.CurrentDeviceSelected.AppsString.Sort();
         }
 
@@ -557,7 +593,7 @@ namespace ATA_GUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            radioButtonBoot.Checked = true;
+            comboBoxImg.SelectedIndex = 0;
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             ToolTipGenerator(buttonConnectToIP, "Connect device", "Connect to your device with this IP");
             ToolTipGenerator(buttonDisconnectIP, "Disconnect device", "Disconnect from your device with this IP");
@@ -571,6 +607,9 @@ namespace ATA_GUI
             ToolTipGenerator(buttonRebootRecovery, "Reboot to recovery", "Your device will be rebooted to recovery");
             ToolTipGenerator(groupBox2, "File Transfer", "Drop a file in this box and it will be trasfered in a new folder called ATA inside your device");
             ToolTipGenerator(groupBox6, "Apk Installer", "Drop an apk file and it will be installed inside your device");
+
+            dataGridViewPackages.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewPackages.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             if (File.Exists(ATA.IPFileName))
             {
@@ -773,45 +812,21 @@ namespace ATA_GUI
             });
         }
 
-        private void checkBoxSelectAll_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxSelectAll.Checked)
-            {
-                for (int i = 0; i < checkedListBoxApp.Items.Count; i++)
-                {
-                    checkedListBoxApp.SetItemCheckState(i, CheckState.Checked);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < checkedListBoxApp.Items.Count; i++)
-                {
-                    checkedListBoxApp.SetItemCheckState(i, CheckState.Unchecked);
-                }
-            }
-            updateAppCount();
-        }
-
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
             string text = textBoxSearch.Text.ToLowerInvariant();
 
-            checkedListBoxApp.Items.Clear();
-            updateAppCount();
-            checkBoxSelectAll.Checked = false;
-
-            foreach (string str in ATA.CurrentDeviceSelected.AppsString)
+            foreach (DataGridViewRow row in dataGridViewPackages.Rows)
             {
-                if (str.Contains(text))
-                {
-                    _ = checkedListBoxApp.Items.Add(str);
-                }
+                row.Visible = row.Cells[1].Value.ToString().Contains(text) || row.Cells[0].Value.ToString().Contains(text);
             }
+
+            updateAppCount();
         }
 
         private void updateAppCount()
         {
-            labelSelectedAppCount.Text = "Selected App: " + checkedListBoxApp.CheckedItems.Count;
+            labelSelectedAppCount.Text = "Selected App: " + dataGridViewPackages.SelectedRows.Count;
         }
 
         private void buttonConnectToIP_Click(object sender, EventArgs e)
@@ -853,12 +868,12 @@ namespace ATA_GUI
 
         private void appFunc(string command1, string command2, int type)
         {
-            if (checkedListBoxApp.CheckedItems.Count > 0)
+            if (dataGridViewPackages.SelectedRows.Count > 0)
             {
-                foreach (object current in checkedListBoxApp.CheckedItems)
+                foreach (DataGridViewRow current in dataGridViewPackages.SelectedRows)
                 {
                     string log;
-                    if ((log = ConsoleProcess.adbFastbootCommandR(" -s " + ATA.CurrentDeviceSelected.ID + " " + command1 + "--user " + ATA.CurrentDeviceSelected.User + " " + current + command2, 0)) != null)
+                    if ((log = ConsoleProcess.adbFastbootCommandR(" -s " + ATA.CurrentDeviceSelected.ID + " " + command1 + "--user " + ATA.CurrentDeviceSelected.User + " " + current.Cells[1].Value + command2, 0)) != null)
                     {
                         if (type == 1)
                         {
@@ -932,42 +947,7 @@ namespace ATA_GUI
             string command = null;
             string log;
 
-            if (radioButtonBoot.Checked)
-            {
-                command = "flash boot ";
-            }
-            else if (radioButtonBootloader.Checked)
-            {
-                command = "flash bootloader ";
-            }
-            else if (radioButtonCache.Checked)
-            {
-                command = "flash cache ";
-            }
-            else if (radioButtonRadio.Checked)
-            {
-                command = "flash radio ";
-            }
-            else if (radioButtonRecovery.Checked)
-            {
-                command = "flash recovery ";
-            }
-            else if (radioButtonRom.Checked)
-            {
-                command = "-w && fastboot update ";
-            }
-            else if (radioButtonSystem.Checked)
-            {
-                command = "flash system ";
-            }
-            else if (radioButtonVendor.Checked)
-            {
-                command = "flash vendor ";
-            }
-            else
-            {
-                return;
-            }
+            command = "flash " + comboBoxImg.Text + " ";
 
             Invoke(delegate
             {
@@ -1040,14 +1020,14 @@ namespace ATA_GUI
             loadApps(ATA.CurrentDeviceSelected.AppMode);
         }
 
-        public void uninstaller(CheckedListBox.CheckedItemCollection foundPackageList)
+        public void uninstaller(DataGridViewSelectedRowCollection foundPackageList)
         {
             string command = "-s " + ATA.CurrentDeviceSelected.ID + " shell pm uninstall -k --user " + ATA.CurrentDeviceSelected.User + " ";
             LoadingForm load;
             List<string> arrayApkSelect = new();
-            foreach (object list in foundPackageList)
+            foreach (DataGridViewRow row in foundPackageList)
             {
-                arrayApkSelect.Add(list.ToString());
+                arrayApkSelect.Add(row.Cells[1].Value.ToString());
             }
             load = new LoadingForm(arrayApkSelect, command, "Uninstalled:");
             _ = load.ShowDialog();
@@ -1056,14 +1036,13 @@ namespace ATA_GUI
                 MessageShowBox("Error during uninstallation process", 0);
             }
             loadApps(ATA.CurrentDeviceSelected.AppMode);
-            checkBoxSelectAll.Checked = false;
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxApp.CheckedItems.Count > 0)
+            if (dataGridViewPackages.SelectedRows.Count > 0)
             {
-                uninstaller(checkedListBoxApp.CheckedItems);
+                uninstaller(dataGridViewPackages.SelectedRows);
             }
             else
             {
@@ -1073,12 +1052,13 @@ namespace ATA_GUI
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxApp.CheckedItems.Count > 0)
+            if (dataGridViewPackages.SelectedRows.Count > 0)
             {
                 List<string> arrayApkSelect = new();
-                foreach (object list in checkedListBoxApp.CheckedItems)
+
+                foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
                 {
-                    arrayApkSelect.Add(list.ToString());
+                    arrayApkSelect.Add(row.Cells[1].Value.ToString() + "\n");
                 }
 
                 PackageMenuForm packageMenu = new(arrayApkSelect);
@@ -1100,10 +1080,10 @@ namespace ATA_GUI
                         commandName = "Cleared:";
                         break;
                     case -1:
-                        LogWriteLine("operations canceled", LogType.ERROR);
+                        LogWriteLine("operation canceled", LogType.ERROR);
                         return;
                     default:
-                        MessageShowBox("Generic error", 0);
+                        MessageShowBox("generic error", 0);
                         return;
                 }
                 loadMethod(arrayApkSelect, command, commandName);
@@ -1195,7 +1175,7 @@ namespace ATA_GUI
 
         private void checkGrantedPermissionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            appFunc("shell dumpsys package --user " + ATA.CurrentDeviceSelected.User, null, 1);
+            appFunc("shell dumpsys package " + ATA.CurrentDeviceSelected.User, null, 1);
         }
 
         private void comboBoxDevices_SelectedIndexChanged(object sender, EventArgs e)
@@ -1340,12 +1320,12 @@ namespace ATA_GUI
 
         private void toolStripButtonRestoreApp_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxApp.CheckedItems.Count > 0)
+            if (dataGridViewPackages.SelectedRows.Count > 0)
             {
                 List<string> apps = new();
-                foreach (object app in checkedListBoxApp.CheckedItems)
+                foreach (DataGridViewRow app in dataGridViewPackages.SelectedRows)
                 {
-                    apps.Add(app.ToString());
+                    apps.Add(app.Cells[1].Value.ToString());
                 }
                 LoadingForm load = new(apps, commandAssemblerF("shell cmd package install-existing --user " + ATA.CurrentDeviceSelected.User + " "), "Restored:");
                 _ = load.ShowDialog();
@@ -1572,7 +1552,7 @@ namespace ATA_GUI
 
         private void toolStripButtonSearch_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxApp.CheckedItems.Count == 0)
+            if (dataGridViewPackages.SelectedRows.Count == 0)
             {
                 MessageShowBox("No app selected", 1);
                 return;
@@ -1582,41 +1562,41 @@ namespace ATA_GUI
 
         private void duckduckgoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (string file in checkedListBoxApp.CheckedItems)
+            foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
             {
-                ConsoleProcess.openLink("https://duckduckgo.com/?q=" + file);
+                ConsoleProcess.openLink("https://duckduckgo.com/?q=" + row.Cells[1].Value.ToString());
             }
         }
 
         private void googleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (string file in checkedListBoxApp.CheckedItems)
+            foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
             {
-                ConsoleProcess.openLink("https://www.google.com/search?q=" + file);
+                ConsoleProcess.openLink("https://www.google.com/search?q=" + row.Cells[1].Value.ToString());
             }
         }
 
         private void playMarketToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (string file in checkedListBoxApp.CheckedItems)
+            foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
             {
-                ConsoleProcess.openLink("https://play.google.com/store/apps/details?id=" + file);
+                ConsoleProcess.openLink("https://play.google.com/store/apps/details?id=" + row.Cells[1].Value.ToString());
             }
         }
 
         private void APKMirrorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (string file in checkedListBoxApp.CheckedItems)
+            foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
             {
-                ConsoleProcess.openLink("https://www.apkmirror.com/?post_type=app_release&searchtype=apk&s=" + file);
+                ConsoleProcess.openLink("https://www.apkmirror.com/?post_type=app_release&searchtype=apk&s=" + row.Cells[1].Value.ToString());
             }
         }
 
         private void fDroidToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (string file in checkedListBoxApp.CheckedItems)
+            foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
             {
-                ConsoleProcess.openLink("https://f-droid.org/en/packages/" + file);
+                ConsoleProcess.openLink("https://f-droid.org/en/packages/" + row.Cells[1].Value.ToString());
             }
         }
 
@@ -1826,7 +1806,7 @@ namespace ATA_GUI
 
         private void toolStripButtonSetDefault_Click(object sender, EventArgs e)
         {
-            CheckedListBox.CheckedItemCollection checkedItems = checkedListBoxApp.CheckedItems;
+            DataGridViewSelectedRowCollection checkedItems = dataGridViewPackages.SelectedRows;
 
             switch (checkedItems.Count)
             {
@@ -1834,9 +1814,9 @@ namespace ATA_GUI
                     MessageShowBox("No app seleted", 1);
                     break;
                 case 1:
-                    foreach (object current in checkedItems)
+                    foreach (DataGridViewRow current in checkedItems)
                     {
-                        _ = new DefaultAppForm(current.ToString()).ShowDialog();
+                        _ = new DefaultAppForm(current.Cells[1].Value.ToString()).ShowDialog();
                     }
                     break;
                 default:
@@ -1860,19 +1840,16 @@ namespace ATA_GUI
 
         private void toolStripButtonExtract_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxApp.CheckedItems.Count > 0)
+            if (dataGridViewPackages.SelectedRows.Count > 0)
             {
                 List<string> arrayApkSelect = new();
-                foreach (object list in checkedListBoxApp.CheckedItems)
+                foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
                 {
-                    arrayApkSelect.Add(list.ToString());
+                    arrayApkSelect.Add(row.Cells[1].Value.ToString());
                 }
                 LoadingForm loadingForm = new(ATA.CurrentDeviceSelected.ID, arrayApkSelect);
                 _ = loadingForm.ShowDialog();
-                for (int i = 0; i < checkedListBoxApp.Items.Count; i++)
-                {
-                    checkedListBoxApp.SetItemChecked(i, false);
-                }
+                dataGridViewPackages.ClearSelection();
             }
             else
             {
@@ -2189,6 +2166,11 @@ namespace ATA_GUI
                     LogWriteLine(log, LogType.INFO);
                 }
             }
+        }
+
+        private void dataGridViewPackages_SelectionChanged(object sender, EventArgs e)
+        {
+            updateAppCount();
         }
     }
 }

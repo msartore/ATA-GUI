@@ -30,6 +30,7 @@ namespace ATA_GUI
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             labelLog = new System.Windows.Forms.Label();
             buttonLogClear = new System.Windows.Forms.Button();
@@ -55,10 +56,12 @@ namespace ATA_GUI
             labelManufacturer = new System.Windows.Forms.Label();
             labelCpuAbilitis = new System.Windows.Forms.Label();
             labelBuildUser = new System.Windows.Forms.Label();
-            checkBoxSelectAll = new System.Windows.Forms.CheckBox();
             tabControls = new System.Windows.Forms.TabControl();
             tabPageSystem = new System.Windows.Forms.TabPage();
             groupBoxAPKMenu = new System.Windows.Forms.GroupBox();
+            dataGridViewPackages = new System.Windows.Forms.DataGridView();
+            name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            package = new System.Windows.Forms.DataGridViewTextBoxColumn();
             groupBox6 = new System.Windows.Forms.GroupBox();
             label3 = new System.Windows.Forms.Label();
             buttonBloatwareRemover = new System.Windows.Forms.Button();
@@ -84,13 +87,10 @@ namespace ATA_GUI
             toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             toolStripButtonExtract = new System.Windows.Forms.ToolStripButton();
-            toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            toolStripLabelTotalApps = new System.Windows.Forms.ToolStripLabel();
             toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             toolStripDropDownInstallApkButton = new System.Windows.Forms.ToolStripDropDownButton();
             installAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             downgradeAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
             groupBoxADBNet = new System.Windows.Forms.GroupBox();
             radioButtonCWired = new System.Windows.Forms.RadioButton();
             radioButtonCWireless = new System.Windows.Forms.RadioButton();
@@ -120,17 +120,11 @@ namespace ATA_GUI
             buttonHardReset = new System.Windows.Forms.Button();
             buttonRebootToSystem = new System.Windows.Forms.Button();
             groupBox4 = new System.Windows.Forms.GroupBox();
+            label10 = new System.Windows.Forms.Label();
+            comboBoxImg = new System.Windows.Forms.ComboBox();
             button1 = new System.Windows.Forms.Button();
             textBoxDirImg = new System.Windows.Forms.TextBox();
-            radioButtonRom = new System.Windows.Forms.RadioButton();
             buttonSearchFileFastboot = new System.Windows.Forms.Button();
-            radioButtonCache = new System.Windows.Forms.RadioButton();
-            radioButtonVendor = new System.Windows.Forms.RadioButton();
-            radioButtonSystem = new System.Windows.Forms.RadioButton();
-            radioButtonBoot = new System.Windows.Forms.RadioButton();
-            radioButtonRecovery = new System.Windows.Forms.RadioButton();
-            radioButtonBootloader = new System.Windows.Forms.RadioButton();
-            radioButtonRadio = new System.Windows.Forms.RadioButton();
             tabPageRecovery = new System.Windows.Forms.TabPage();
             panelRecovery = new System.Windows.Forms.Panel();
             groupBoxRecoveryRM = new System.Windows.Forms.GroupBox();
@@ -225,10 +219,12 @@ namespace ATA_GUI
             richTextBoxTerminal = new System.Windows.Forms.RichTextBox();
             backgroundWorkerAPKinstall = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerFileTransfer = new System.ComponentModel.BackgroundWorker();
+            labelTotalPackages = new System.Windows.Forms.Label();
             groupBoxDeviceInfo.SuspendLayout();
             tabControls.SuspendLayout();
             tabPageSystem.SuspendLayout();
             groupBoxAPKMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPackages).BeginInit();
             groupBox6.SuspendLayout();
             toolStrip1.SuspendLayout();
             groupBoxADBNet.SuspendLayout();
@@ -533,20 +529,6 @@ namespace ATA_GUI
             labelBuildUser.TabIndex = 0;
             labelBuildUser.Text = "Build User:";
             // 
-            // checkBoxSelectAll
-            // 
-            checkBoxSelectAll.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            checkBoxSelectAll.AutoSize = true;
-            checkBoxSelectAll.ForeColor = System.Drawing.Color.Black;
-            checkBoxSelectAll.Location = new System.Drawing.Point(11, 74);
-            checkBoxSelectAll.Margin = new System.Windows.Forms.Padding(2);
-            checkBoxSelectAll.Name = "checkBoxSelectAll";
-            checkBoxSelectAll.Size = new System.Drawing.Size(74, 19);
-            checkBoxSelectAll.TabIndex = 37;
-            checkBoxSelectAll.Text = "Select All";
-            checkBoxSelectAll.UseVisualStyleBackColor = true;
-            checkBoxSelectAll.CheckedChanged += checkBoxSelectAll_CheckedChanged;
-            // 
             // tabControls
             // 
             tabControls.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
@@ -580,13 +562,13 @@ namespace ATA_GUI
             // groupBoxAPKMenu
             // 
             groupBoxAPKMenu.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            groupBoxAPKMenu.Controls.Add(labelTotalPackages);
+            groupBoxAPKMenu.Controls.Add(dataGridViewPackages);
             groupBoxAPKMenu.Controls.Add(groupBox6);
             groupBoxAPKMenu.Controls.Add(buttonBloatwareRemover);
             groupBoxAPKMenu.Controls.Add(label6);
             groupBoxAPKMenu.Controls.Add(labelSelectedAppCount);
             groupBoxAPKMenu.Controls.Add(toolStrip1);
-            groupBoxAPKMenu.Controls.Add(checkedListBoxApp);
-            groupBoxAPKMenu.Controls.Add(checkBoxSelectAll);
             groupBoxAPKMenu.Location = new System.Drawing.Point(386, 10);
             groupBoxAPKMenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxAPKMenu.Name = "groupBoxAPKMenu";
@@ -595,6 +577,36 @@ namespace ATA_GUI
             groupBoxAPKMenu.TabIndex = 36;
             groupBoxAPKMenu.TabStop = false;
             groupBoxAPKMenu.Text = "APK Menu";
+            // 
+            // dataGridViewPackages
+            // 
+            dataGridViewPackages.AllowUserToAddRows = false;
+            dataGridViewPackages.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewPackages.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dataGridViewPackages.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewPackages.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { name, package });
+            dataGridViewPackages.Location = new System.Drawing.Point(11, 99);
+            dataGridViewPackages.Name = "dataGridViewPackages";
+            dataGridViewPackages.ReadOnly = true;
+            dataGridViewPackages.RowTemplate.Height = 25;
+            dataGridViewPackages.Size = new System.Drawing.Size(324, 224);
+            dataGridViewPackages.TabIndex = 47;
+            dataGridViewPackages.SelectionChanged += dataGridViewPackages_SelectionChanged;
+            // 
+            // name
+            // 
+            name.HeaderText = "name";
+            name.Name = "name";
+            name.ReadOnly = true;
+            // 
+            // package
+            // 
+            package.HeaderText = "package";
+            package.Name = "package";
+            package.ReadOnly = true;
             // 
             // groupBox6
             // 
@@ -606,7 +618,7 @@ namespace ATA_GUI
             groupBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox6.Name = "groupBox6";
             groupBox6.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox6.Size = new System.Drawing.Size(181, 109);
+            groupBox6.Size = new System.Drawing.Size(181, 117);
             groupBox6.TabIndex = 43;
             groupBox6.TabStop = false;
             groupBox6.Text = "Apk Installer";
@@ -627,7 +639,7 @@ namespace ATA_GUI
             // 
             buttonBloatwareRemover.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             buttonBloatwareRemover.Image = Properties.Resources.user_shield_48;
-            buttonBloatwareRemover.Location = new System.Drawing.Point(403, 83);
+            buttonBloatwareRemover.Location = new System.Drawing.Point(400, 99);
             buttonBloatwareRemover.Name = "buttonBloatwareRemover";
             buttonBloatwareRemover.Size = new System.Drawing.Size(75, 80);
             buttonBloatwareRemover.TabIndex = 46;
@@ -638,7 +650,7 @@ namespace ATA_GUI
             // 
             label6.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(389, 166);
+            label6.Location = new System.Drawing.Point(386, 182);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(103, 15);
             label6.TabIndex = 45;
@@ -659,12 +671,12 @@ namespace ATA_GUI
             // 
             toolStrip1.BackColor = System.Drawing.Color.White;
             toolStrip1.ImageScalingSize = new System.Drawing.Size(18, 18);
-            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripLabelTotalApps, toolStripSeparator12, toolStripButtonReloadApps, toolStripSeparator2, toolStripButtonFilter, toolStripSeparator6, textBoxSearch, toolStripSeparator1, toolStripButtonRestoreApp, toolStripSeparator7, toolStripButtonUninstallApp, toolStripSeparator5, toolStripButtonPackageManager, toolStripSeparator3, toolStripButtonPermissionMenu, toolStripSeparator4, toolStripButtonSetDefault, toolStripSeparator8, toolStripButtonSearch, toolStripSeparator9, toolStripButtonExtract, toolStripSeparator11, toolStripDropDownInstallApkButton });
+            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripButtonReloadApps, toolStripSeparator2, toolStripButtonFilter, toolStripSeparator6, textBoxSearch, toolStripSeparator1, toolStripButtonRestoreApp, toolStripSeparator7, toolStripButtonUninstallApp, toolStripSeparator5, toolStripButtonPackageManager, toolStripSeparator3, toolStripButtonPermissionMenu, toolStripSeparator4, toolStripButtonSetDefault, toolStripSeparator8, toolStripButtonSearch, toolStripSeparator9, toolStripButtonExtract, toolStripSeparator11, toolStripDropDownInstallApkButton });
             toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             toolStrip1.Location = new System.Drawing.Point(4, 19);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            toolStrip1.Size = new System.Drawing.Size(523, 44);
+            toolStrip1.Size = new System.Drawing.Size(523, 25);
             toolStrip1.TabIndex = 42;
             toolStrip1.Text = "toolStripAPKMenu";
             // 
@@ -816,18 +828,6 @@ namespace ATA_GUI
             toolStripButtonExtract.Text = "Extract";
             toolStripButtonExtract.Click += toolStripButtonExtract_Click;
             // 
-            // toolStripSeparator12
-            // 
-            toolStripSeparator12.Name = "toolStripSeparator12";
-            toolStripSeparator12.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripLabelTotalApps
-            // 
-            toolStripLabelTotalApps.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            toolStripLabelTotalApps.Name = "toolStripLabelTotalApps";
-            toolStripLabelTotalApps.Size = new System.Drawing.Size(44, 15);
-            toolStripLabelTotalApps.Text = "Total: 0";
-            // 
             // toolStripSeparator11
             // 
             toolStripSeparator11.Name = "toolStripSeparator11";
@@ -856,20 +856,6 @@ namespace ATA_GUI
             downgradeAppToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             downgradeAppToolStripMenuItem.Text = "Downgrade App";
             downgradeAppToolStripMenuItem.Click += downgradeAppToolStripMenuItem_Click;
-            // 
-            // checkedListBoxApp
-            // 
-            checkedListBoxApp.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            checkedListBoxApp.BackColor = System.Drawing.Color.White;
-            checkedListBoxApp.ForeColor = System.Drawing.Color.Black;
-            checkedListBoxApp.FormattingEnabled = true;
-            checkedListBoxApp.Location = new System.Drawing.Point(8, 97);
-            checkedListBoxApp.Margin = new System.Windows.Forms.Padding(2);
-            checkedListBoxApp.Name = "checkedListBoxApp";
-            checkedListBoxApp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            checkedListBoxApp.Size = new System.Drawing.Size(320, 220);
-            checkedListBoxApp.TabIndex = 37;
-            checkedListBoxApp.SelectedIndexChanged += checkedListBoxApp_SelectedIndexChanged;
             // 
             // groupBoxADBNet
             // 
@@ -1222,34 +1208,48 @@ namespace ATA_GUI
             // groupBox4
             // 
             groupBox4.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            groupBox4.Controls.Add(label10);
+            groupBox4.Controls.Add(comboBoxImg);
             groupBox4.Controls.Add(button1);
             groupBox4.Controls.Add(textBoxDirImg);
-            groupBox4.Controls.Add(radioButtonRom);
             groupBox4.Controls.Add(buttonSearchFileFastboot);
-            groupBox4.Controls.Add(radioButtonCache);
-            groupBox4.Controls.Add(radioButtonVendor);
-            groupBox4.Controls.Add(radioButtonSystem);
-            groupBox4.Controls.Add(radioButtonBoot);
-            groupBox4.Controls.Add(radioButtonRecovery);
-            groupBox4.Controls.Add(radioButtonBootloader);
-            groupBox4.Controls.Add(radioButtonRadio);
             groupBox4.Location = new System.Drawing.Point(4, 3);
             groupBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox4.Size = new System.Drawing.Size(489, 330);
+            groupBox4.Size = new System.Drawing.Size(489, 183);
             groupBox4.TabIndex = 48;
             groupBox4.TabStop = false;
             groupBox4.Text = "Flash img";
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new System.Drawing.Point(30, 81);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(37, 15);
+            label10.TabIndex = 52;
+            label10.Text = "Flash:";
+            // 
+            // comboBoxImg
+            // 
+            comboBoxImg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBoxImg.FormattingEnabled = true;
+            comboBoxImg.Items.AddRange(new object[] { "boot", "bootloader", "cache", "radio", "recovery", "system", "update", "vendor" });
+            comboBoxImg.Location = new System.Drawing.Point(87, 78);
+            comboBoxImg.Name = "comboBoxImg";
+            comboBoxImg.Size = new System.Drawing.Size(338, 23);
+            comboBoxImg.Sorted = true;
+            comboBoxImg.TabIndex = 51;
+            // 
             // button1
             // 
-            button1.Image = Properties.Resources.icons8_flash_on_48;
-            button1.Location = new System.Drawing.Point(134, 149);
+            button1.Location = new System.Drawing.Point(30, 107);
             button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(88, 81);
+            button1.Size = new System.Drawing.Size(395, 30);
             button1.TabIndex = 50;
+            button1.Text = "flash";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -1260,18 +1260,6 @@ namespace ATA_GUI
             textBoxDirImg.Name = "textBoxDirImg";
             textBoxDirImg.Size = new System.Drawing.Size(285, 23);
             textBoxDirImg.TabIndex = 37;
-            // 
-            // radioButtonRom
-            // 
-            radioButtonRom.AutoSize = true;
-            radioButtonRom.Location = new System.Drawing.Point(326, 264);
-            radioButtonRom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            radioButtonRom.Name = "radioButtonRom";
-            radioButtonRom.Size = new System.Drawing.Size(50, 19);
-            radioButtonRom.TabIndex = 47;
-            radioButtonRom.TabStop = true;
-            radioButtonRom.Text = "Rom";
-            radioButtonRom.UseVisualStyleBackColor = true;
             // 
             // buttonSearchFileFastboot
             // 
@@ -1285,90 +1273,6 @@ namespace ATA_GUI
             buttonSearchFileFastboot.Text = "Search File";
             buttonSearchFileFastboot.UseVisualStyleBackColor = false;
             buttonSearchFileFastboot.Click += buttonSearchFileFastboot_Click;
-            // 
-            // radioButtonCache
-            // 
-            radioButtonCache.AutoSize = true;
-            radioButtonCache.Location = new System.Drawing.Point(326, 238);
-            radioButtonCache.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            radioButtonCache.Name = "radioButtonCache";
-            radioButtonCache.Size = new System.Drawing.Size(58, 19);
-            radioButtonCache.TabIndex = 46;
-            radioButtonCache.TabStop = true;
-            radioButtonCache.Text = "Cache";
-            radioButtonCache.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonVendor
-            // 
-            radioButtonVendor.AutoSize = true;
-            radioButtonVendor.Location = new System.Drawing.Point(326, 211);
-            radioButtonVendor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            radioButtonVendor.Name = "radioButtonVendor";
-            radioButtonVendor.Size = new System.Drawing.Size(62, 19);
-            radioButtonVendor.TabIndex = 45;
-            radioButtonVendor.TabStop = true;
-            radioButtonVendor.Text = "Vendor";
-            radioButtonVendor.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonSystem
-            // 
-            radioButtonSystem.AutoSize = true;
-            radioButtonSystem.Location = new System.Drawing.Point(326, 185);
-            radioButtonSystem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            radioButtonSystem.Name = "radioButtonSystem";
-            radioButtonSystem.Size = new System.Drawing.Size(63, 19);
-            radioButtonSystem.TabIndex = 44;
-            radioButtonSystem.TabStop = true;
-            radioButtonSystem.Text = "System";
-            radioButtonSystem.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonBoot
-            // 
-            radioButtonBoot.AutoSize = true;
-            radioButtonBoot.Location = new System.Drawing.Point(326, 78);
-            radioButtonBoot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            radioButtonBoot.Name = "radioButtonBoot";
-            radioButtonBoot.Size = new System.Drawing.Size(50, 19);
-            radioButtonBoot.TabIndex = 40;
-            radioButtonBoot.TabStop = true;
-            radioButtonBoot.Text = "Boot";
-            radioButtonBoot.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonRecovery
-            // 
-            radioButtonRecovery.AutoSize = true;
-            radioButtonRecovery.Location = new System.Drawing.Point(326, 158);
-            radioButtonRecovery.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            radioButtonRecovery.Name = "radioButtonRecovery";
-            radioButtonRecovery.Size = new System.Drawing.Size(73, 19);
-            radioButtonRecovery.TabIndex = 43;
-            radioButtonRecovery.TabStop = true;
-            radioButtonRecovery.Text = "Recovery";
-            radioButtonRecovery.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonBootloader
-            // 
-            radioButtonBootloader.AutoSize = true;
-            radioButtonBootloader.Location = new System.Drawing.Point(326, 105);
-            radioButtonBootloader.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            radioButtonBootloader.Name = "radioButtonBootloader";
-            radioButtonBootloader.Size = new System.Drawing.Size(83, 19);
-            radioButtonBootloader.TabIndex = 41;
-            radioButtonBootloader.TabStop = true;
-            radioButtonBootloader.Text = "Bootloader";
-            radioButtonBootloader.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonRadio
-            // 
-            radioButtonRadio.AutoSize = true;
-            radioButtonRadio.Location = new System.Drawing.Point(326, 132);
-            radioButtonRadio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            radioButtonRadio.Name = "radioButtonRadio";
-            radioButtonRadio.Size = new System.Drawing.Size(55, 19);
-            radioButtonRadio.TabIndex = 42;
-            radioButtonRadio.TabStop = true;
-            radioButtonRadio.Text = "Radio";
-            radioButtonRadio.UseVisualStyleBackColor = true;
             // 
             // tabPageRecovery
             // 
@@ -2285,6 +2189,15 @@ namespace ATA_GUI
             // 
             backgroundWorkerFileTransfer.DoWork += backgroundWorkerFileTransfer_DoWork;
             // 
+            // labelTotalPackages
+            // 
+            labelTotalPackages.AutoSize = true;
+            labelTotalPackages.Location = new System.Drawing.Point(11, 75);
+            labelTotalPackages.Name = "labelTotalPackages";
+            labelTotalPackages.Size = new System.Drawing.Size(44, 15);
+            labelTotalPackages.TabIndex = 48;
+            labelTotalPackages.Text = "Total: 0";
+            // 
             // MainForm
             // 
             AllowDrop = true;
@@ -2317,6 +2230,7 @@ namespace ATA_GUI
             tabPageSystem.ResumeLayout(false);
             groupBoxAPKMenu.ResumeLayout(false);
             groupBoxAPKMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPackages).EndInit();
             groupBox6.ResumeLayout(false);
             groupBox6.PerformLayout();
             toolStrip1.ResumeLayout(false);
@@ -2387,7 +2301,6 @@ namespace ATA_GUI
         private System.Windows.Forms.GroupBox groupBoxRebootMenu;
         private System.Windows.Forms.GroupBox groupBoxAPKMenu;
         private System.Windows.Forms.OpenFileDialog openFileDialogAPK;
-        private System.Windows.Forms.CheckBox checkBoxSelectAll;
         private System.Windows.Forms.Label labelIP;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBoxADBNet;
@@ -2400,14 +2313,6 @@ namespace ATA_GUI
         private System.ComponentModel.BackgroundWorker backgroundWorkerZip;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox textBoxDirImg;
-        private System.Windows.Forms.RadioButton radioButtonRom;
-        private System.Windows.Forms.RadioButton radioButtonCache;
-        private System.Windows.Forms.RadioButton radioButtonVendor;
-        private System.Windows.Forms.RadioButton radioButtonSystem;
-        private System.Windows.Forms.RadioButton radioButtonBoot;
-        private System.Windows.Forms.RadioButton radioButtonRecovery;
-        private System.Windows.Forms.RadioButton radioButtonBootloader;
-        private System.Windows.Forms.RadioButton radioButtonRadio;
         private System.ComponentModel.BackgroundWorker backgroundWorkerFlashImg;
         private System.Windows.Forms.Panel panelFastboot;
         private System.Windows.Forms.Button buttonRebootToSystem;
@@ -2451,7 +2356,6 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem grantWriteSecureSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grantDUMPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkGrantedPermissionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripLabel toolStripLabelTotalApps;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
@@ -2513,7 +2417,6 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripButton toolStripButtonSetDefault;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripButton toolStripButtonExtract;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.Button buttonTurnOffAdb;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBoxPort;
@@ -2551,9 +2454,15 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonBloatwareRemover;
         private System.Windows.Forms.ToolStripMenuItem driverToolStripMenuItem;
         private System.Windows.Forms.Button buttonWd_md;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBoxImg;
+        private System.Windows.Forms.DataGridView dataGridViewPackages;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn package;
         private System.Windows.Forms.CheckedListBox checkedListBoxApp;
         private System.Windows.Forms.RadioButton radioButtonCWired;
         private System.Windows.Forms.RadioButton radioButtonCWireless;
+        private System.Windows.Forms.Label labelTotalPackages;
     }
 }
 
