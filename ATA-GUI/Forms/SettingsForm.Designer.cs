@@ -43,7 +43,7 @@ namespace ATA_GUI
             checkBoxInitPopUp = new System.Windows.Forms.CheckBox();
             buttonUpdateLocalSDK = new System.Windows.Forms.Button();
             buttonDeleteIPHistory = new System.Windows.Forms.Button();
-            button1 = new System.Windows.Forms.Button();
+            buttonATABridgeDownload = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
             // labelLatestRelease
@@ -176,14 +176,14 @@ namespace ATA_GUI
             buttonDeleteIPHistory.UseVisualStyleBackColor = false;
             buttonDeleteIPHistory.Click += buttonDeleteIPHistory_Click;
             // 
-            // button1
+            // buttonATABridgeDownload
             // 
-            button1.Location = new System.Drawing.Point(121, 174);
-            button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(187, 27);
-            button1.TabIndex = 44;
-            button1.Text = "Download ATABridge";
-            button1.UseVisualStyleBackColor = true;
+            buttonATABridgeDownload.Location = new System.Drawing.Point(121, 174);
+            buttonATABridgeDownload.Name = "buttonATABridgeDownload";
+            buttonATABridgeDownload.Size = new System.Drawing.Size(187, 27);
+            buttonATABridgeDownload.TabIndex = 44;
+            buttonATABridgeDownload.Text = "Download ATABridge";
+            buttonATABridgeDownload.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
@@ -191,7 +191,7 @@ namespace ATA_GUI
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.White;
             ClientSize = new System.Drawing.Size(424, 347);
-            Controls.Add(button1);
+            Controls.Add(buttonATABridgeDownload);
             Controls.Add(buttonDeleteIPHistory);
             Controls.Add(buttonUpdateLocalSDK);
             Controls.Add(label1);
@@ -229,6 +229,6 @@ namespace ATA_GUI
         private System.Windows.Forms.CheckBox checkBoxInitPopUp;
         private System.Windows.Forms.Button buttonUpdateLocalSDK;
         private System.Windows.Forms.Button buttonDeleteIPHistory;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonATABridgeDownload;
     }
 }
