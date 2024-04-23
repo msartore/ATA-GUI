@@ -1,3 +1,9 @@
+using ATA_GUI.Classes;
+using ATA_GUI.Forms;
+using ATA_GUI.Utils;
+using Ionic.Zip;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,12 +19,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ATA_GUI.Classes;
-using ATA_GUI.Forms;
-using ATA_GUI.Utils;
-using Ionic.Zip;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ATA_GUI
 {
@@ -1672,24 +1672,9 @@ namespace ATA_GUI
                             _ = ConsoleProcess.adbFastbootCommandR(" -s " + ATA.CurrentDeviceSelected.ID + " tcpip " + port, 0);
                         }
                     }
-
-                    command = "connect ";
-                }
-                else
-                {
-                    command = "pair ";
                 }
 
-                if (radioButtonCWired.Checked)
-                {
-                    result = ConsoleProcess.adbFastbootCommandR(command + ip + ":" + port, 0);
-                }
-                else
-                {
-                    WirelessPairingForm wirelessPairingForm = new WirelessPairingForm(ip, port);
-                    wirelessPairingForm.ShowDialog();
-                    result = wirelessPairingForm.DialogResult == DialogResult.OK ? "connected" : "cannot connect to " + ip + "\nOperation aborted by the user";
-                }
+                result = ConsoleProcess.adbFastbootCommandR("connect " + ip + ":" + port, 0);
 
                 if (!result.Contains("cannot connect"))
                 {
@@ -2171,6 +2156,23 @@ namespace ATA_GUI
         private void dataGridViewPackages_SelectionChanged(object sender, EventArgs e)
         {
             updateAppCount();
+        }
+
+        private void radioButtonCWireless_CheckedChanged(object sender, EventArgs e)
+        {
+            buttonPair.Visible = radioButtonCWireless.Checked;
+        }
+
+        private void buttonPair_Click(object sender, EventArgs e)
+        {
+            string port = textBoxPort.Text.Trim();
+            string ip = comboBoxIP.Text.Trim();
+
+            WirelessPairingForm wirelessPairingForm = new WirelessPairingForm(ip, port);
+            wirelessPairingForm.ShowDialog();
+            string result = (wirelessPairingForm.DialogResult == DialogResult.OK ? "Paired successfully to" : "Operation aborted by the user\nCannot pair to ") + ip;
+
+            MessageShowBox(result, wirelessPairingForm.DialogResult == DialogResult.OK ? 2 : 0);
         }
     }
 }

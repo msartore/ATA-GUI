@@ -59,6 +59,7 @@ namespace ATA_GUI
             tabControls = new System.Windows.Forms.TabControl();
             tabPageSystem = new System.Windows.Forms.TabPage();
             groupBoxAPKMenu = new System.Windows.Forms.GroupBox();
+            labelTotalPackages = new System.Windows.Forms.Label();
             dataGridViewPackages = new System.Windows.Forms.DataGridView();
             name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             package = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,6 +93,7 @@ namespace ATA_GUI
             installAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             downgradeAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             groupBoxADBNet = new System.Windows.Forms.GroupBox();
+            buttonPair = new System.Windows.Forms.Button();
             radioButtonCWired = new System.Windows.Forms.RadioButton();
             radioButtonCWireless = new System.Windows.Forms.RadioButton();
             buttonUnlockNetworkMenu = new System.Windows.Forms.Button();
@@ -219,7 +221,6 @@ namespace ATA_GUI
             richTextBoxTerminal = new System.Windows.Forms.RichTextBox();
             backgroundWorkerAPKinstall = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerFileTransfer = new System.ComponentModel.BackgroundWorker();
-            labelTotalPackages = new System.Windows.Forms.Label();
             groupBoxDeviceInfo.SuspendLayout();
             tabControls.SuspendLayout();
             tabPageSystem.SuspendLayout();
@@ -578,6 +579,15 @@ namespace ATA_GUI
             groupBoxAPKMenu.TabStop = false;
             groupBoxAPKMenu.Text = "APK Menu";
             // 
+            // labelTotalPackages
+            // 
+            labelTotalPackages.AutoSize = true;
+            labelTotalPackages.Location = new System.Drawing.Point(11, 75);
+            labelTotalPackages.Name = "labelTotalPackages";
+            labelTotalPackages.Size = new System.Drawing.Size(44, 15);
+            labelTotalPackages.TabIndex = 48;
+            labelTotalPackages.Text = "Total: 0";
+            // 
             // dataGridViewPackages
             // 
             dataGridViewPackages.AllowUserToAddRows = false;
@@ -859,6 +869,7 @@ namespace ATA_GUI
             // 
             // groupBoxADBNet
             // 
+            groupBoxADBNet.Controls.Add(buttonPair);
             groupBoxADBNet.Controls.Add(radioButtonCWired);
             groupBoxADBNet.Controls.Add(radioButtonCWireless);
             groupBoxADBNet.Controls.Add(buttonUnlockNetworkMenu);
@@ -877,6 +888,17 @@ namespace ATA_GUI
             groupBoxADBNet.TabStop = false;
             groupBoxADBNet.Text = "ADB over Network Menu";
             // 
+            // buttonPair
+            // 
+            buttonPair.Location = new System.Drawing.Point(103, 104);
+            buttonPair.Name = "buttonPair";
+            buttonPair.Size = new System.Drawing.Size(54, 27);
+            buttonPair.TabIndex = 46;
+            buttonPair.Text = "Pair";
+            buttonPair.UseVisualStyleBackColor = true;
+            buttonPair.Visible = false;
+            buttonPair.Click += buttonPair_Click;
+            // 
             // radioButtonCWired
             // 
             radioButtonCWired.AutoSize = true;
@@ -894,10 +916,11 @@ namespace ATA_GUI
             radioButtonCWireless.AutoSize = true;
             radioButtonCWireless.Location = new System.Drawing.Point(12, 100);
             radioButtonCWireless.Name = "radioButtonCWireless";
-            radioButtonCWireless.Size = new System.Drawing.Size(115, 19);
+            radioButtonCWireless.Size = new System.Drawing.Size(68, 19);
             radioButtonCWireless.TabIndex = 44;
-            radioButtonCWireless.Text = "Wireless (A>=11)";
+            radioButtonCWireless.Text = "Wireless";
             radioButtonCWireless.UseVisualStyleBackColor = true;
+            radioButtonCWireless.CheckedChanged += radioButtonCWireless_CheckedChanged;
             // 
             // buttonUnlockNetworkMenu
             // 
@@ -2189,15 +2212,6 @@ namespace ATA_GUI
             // 
             backgroundWorkerFileTransfer.DoWork += backgroundWorkerFileTransfer_DoWork;
             // 
-            // labelTotalPackages
-            // 
-            labelTotalPackages.AutoSize = true;
-            labelTotalPackages.Location = new System.Drawing.Point(11, 75);
-            labelTotalPackages.Name = "labelTotalPackages";
-            labelTotalPackages.Size = new System.Drawing.Size(44, 15);
-            labelTotalPackages.TabIndex = 48;
-            labelTotalPackages.Text = "Total: 0";
-            // 
             // MainForm
             // 
             AllowDrop = true;
@@ -2463,6 +2477,7 @@ namespace ATA_GUI
         private System.Windows.Forms.RadioButton radioButtonCWired;
         private System.Windows.Forms.RadioButton radioButtonCWireless;
         private System.Windows.Forms.Label labelTotalPackages;
+        private System.Windows.Forms.Button buttonPair;
     }
 }
 

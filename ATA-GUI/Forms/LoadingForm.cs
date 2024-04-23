@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ATA_GUI.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
