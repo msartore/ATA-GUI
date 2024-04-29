@@ -1,6 +1,5 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
+﻿using ATA_GUI.Utils;
+using System;
 using System.Windows.Forms;
 
 namespace ATA_GUI.Forms
@@ -44,29 +43,7 @@ namespace ATA_GUI.Forms
                 return;
             }
 
-            Process cmd = new();
-            cmd.StartInfo.FileName = "adb.exe";
-            cmd.StartInfo.RedirectStandardInput = true;
-            cmd.StartInfo.RedirectStandardOutput = true;
-            cmd.StartInfo.RedirectStandardError = true;
-            cmd.StartInfo.CreateNoWindow = true;
-            cmd.StartInfo.UseShellExecute = false;
-            cmd.StartInfo.Arguments = "pair " + IP + ":" + PORT;
-            _ = cmd.Start();
-            StreamReader sr = cmd.StandardOutput;
-
-            while (!sr.EndOfStream)
-            {
-                output += (char)sr.Read();
-
-                if (output.Contains(":"))
-                {
-                    cmd.StandardInput.WriteLine(code);
-                }
-            }
-
-            cmd.WaitForExit();
-            cmd.Close();
+            output = ConsoleProcess.adbProcess(string.Format("pair {0}:{1} {2}", IP, PORT, code));
 
             DialogResult = output.Contains("Successfully paired") ? DialogResult.OK : DialogResult.No;
 

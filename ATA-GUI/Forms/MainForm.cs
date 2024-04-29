@@ -72,7 +72,7 @@ namespace ATA_GUI
                         SyncDevice();
                         break;
                     case Tab.FASTBOOT:
-                        string[] log = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("getvar all"), 1).Split(' ', '\n');
+                        string[] log = ConsoleProcess.fastbootProcess(commandAssemblerF("getvar all")).Split(' ', '\n');
                         for (int a = 0; a < log.Count(); a++)
                         {
                             if (log[a].Contains("partition-type:userdata:"))
@@ -253,8 +253,8 @@ namespace ATA_GUI
 
             try
             {
-                string sdk = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell getprop ro.build.version.sdk"), 0);
-                string version = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell getprop ro.build.version.release"), 0);
+                string sdk = ConsoleProcess.adbProcess(commandAssemblerF("shell getprop ro.build.version.sdk"));
+                string version = ConsoleProcess.adbProcess(commandAssemblerF("shell getprop ro.build.version.release"));
 
                 if (sdk.Length > 0)
                 {
@@ -333,14 +333,14 @@ namespace ATA_GUI
 
                                     if (ATA.CurrentDeviceSelected.Version > 0)
                                     {
-                                        string[] usersList = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell pm list users"), 0).Split("\n");
+                                        string[] usersList = ConsoleProcess.adbProcess(commandAssemblerF("shell pm list users")).Split("\n");
                                         string userTmp = usersList.Where(it => it.Contains("running")).FirstOrDefault();
                                         userTmp ??= usersList[1];
                                         int gPIndex = userTmp.IndexOf('{') + 1;
                                         labelUser.Text = ATA.CurrentDeviceSelected.User = userTmp[gPIndex..userTmp.IndexOf(':')].Trim();
                                     }
 
-                                    groupBoxFreeRotation.Enabled = int.TryParse(ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell cmd display get - displays"), 0), out int maxDisplay);
+                                    groupBoxFreeRotation.Enabled = int.TryParse(ConsoleProcess.adbProcess(commandAssemblerF("shell cmd display get - displays")), out int maxDisplay);
 
                                     for (int i = maxDisplay; i > -1; i--)
                                     {
@@ -349,7 +349,7 @@ namespace ATA_GUI
 
                                     loadApps(AppMode.NONSYSTEM);
 
-                                    ATA.CurrentDeviceSelected.IsRotationFreeEnabled = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " shell wm get-ignore-orientation-request", 0).Contains("true");
+                                    ATA.CurrentDeviceSelected.IsRotationFreeEnabled = ConsoleProcess.adbProcess("-s " + ATA.CurrentDeviceSelected.ID + " shell wm get-ignore-orientation-request").Contains("true");
                                     buttonSetRotation.Text = ATA.CurrentDeviceSelected.IsRotationFreeEnabled ? "Unset" : "Set";
 
                                     LogWriteLine("device info extracted", LogType.OK);
@@ -412,13 +412,13 @@ namespace ATA_GUI
             ATA.CurrentDeviceSelected.AppsString.Clear();
             ATA.CurrentDeviceSelected.AppMode = appMode;
 
-            ATA.CurrentDeviceSelected.isATABridgeInstalled = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell pm list packages dev.msartore.atabridge"), 0).Trim().Length != 0;
+            ATA.CurrentDeviceSelected.isATABridgeInstalled = ConsoleProcess.adbProcess(commandAssemblerF("shell pm list packages dev.msartore.atabridge")).Trim().Length != 0;
 
             if (ATA.CurrentDeviceSelected.isATABridgeInstalled)
             {
-                string isAppPermissionGranted = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell dumpsys package dev.msartore.atabridge"), 0);
-                ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell am start -a dev.msartore.ACTION_SHARE_APP_LIST -c android.intent.category.DEFAULT -n dev.msartore.atabridge/dev.msartore.atabridge.MainActivity"), 0);
-                ConsoleProcess.adbFastbootCommandR(commandAssemblerF("pull sdcard/Android/data/dev.msartore.atabridge/cache/installed_apps.json"), 0);
+                string isAppPermissionGranted = ConsoleProcess.adbProcess(commandAssemblerF("shell dumpsys package dev.msartore.atabridge"));
+                ConsoleProcess.adbProcess(commandAssemblerF("shell am start -a dev.msartore.ACTION_SHARE_APP_LIST -c android.intent.category.DEFAULT -n dev.msartore.atabridge/dev.msartore.atabridge.MainActivity"));
+                ConsoleProcess.adbProcess(commandAssemblerF("pull sdcard/Android/data/dev.msartore.atabridge/cache/installed_apps.json"));
 
                 if (File.Exists(filePath))
                 {
@@ -442,13 +442,13 @@ namespace ATA_GUI
                     command = commandAssemblerF("shell pm list packages -d --user " + ATA.CurrentDeviceSelected.User);
                     break;
                 case AppMode.UNINSTALLED:
-                    string allAppString = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell pm list packages --user ") + ATA.CurrentDeviceSelected.User, 0);
+                    string allAppString = ConsoleProcess.adbProcess(commandAssemblerF("shell pm list packages --user ") + ATA.CurrentDeviceSelected.User);
 
                     if (allAppString != null)
                     {
                         command = commandAssemblerF("shell pm list packages -u --user " + ATA.CurrentDeviceSelected.User);
 
-                        string customAppString = ConsoleProcess.adbFastbootCommandR(command, 0);
+                        string customAppString = ConsoleProcess.adbProcess(command);
 
                         if (customAppString != null)
                         {
@@ -468,7 +468,7 @@ namespace ATA_GUI
 
             if (ATA.CurrentDeviceSelected.AppMode != AppMode.UNINSTALLED)
             {
-                appStringList = ConsoleProcess.adbFastbootCommandR(command, 0);
+                appStringList = ConsoleProcess.adbProcess(command);
             }
 
             if (appStringList != null || customApps.Count > 0)
@@ -667,7 +667,7 @@ namespace ATA_GUI
 
                         if (isAdb)
                         {
-                            name = ConsoleProcess.adbFastbootCommandR("-s " + Regex.Replace(id, @"\s", "") + " shell getprop ro.product.model", 0);
+                            name = ConsoleProcess.adbProcess("-s " + Regex.Replace(id, @"\s", "") + " shell getprop ro.product.model");
 
                             if (Regex.Match(id, "(\\b25[0-5]|\\b2[0-4][0-9]|\\b[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}").Success || id.Contains("tcp"))
                             {
@@ -873,7 +873,7 @@ namespace ATA_GUI
                 foreach (DataGridViewRow current in dataGridViewPackages.SelectedRows)
                 {
                     string log;
-                    if ((log = ConsoleProcess.adbFastbootCommandR(" -s " + ATA.CurrentDeviceSelected.ID + " " + command1 + "--user " + ATA.CurrentDeviceSelected.User + " " + current.Cells[1].Value + command2, 0)) != null)
+                    if ((log = ConsoleProcess.adbProcess(" -s " + ATA.CurrentDeviceSelected.ID + " " + command1 + "--user " + ATA.CurrentDeviceSelected.User + " " + current.Cells[1].Value + command2)) != null)
                     {
                         if (type == 1)
                         {
@@ -917,7 +917,7 @@ namespace ATA_GUI
         {
             string fileName = textBoxDirFile.Text[(textBoxDirFile.Text.LastIndexOf('\\') + 1)..];
             LogWriteLine("flashing " + fileName + "...", LogType.OK);
-            string log = ConsoleProcess.adbFastbootCommandR(commandAssemblerF(string.Format("sideload \"{0}\"", textBoxDirFile.Text)), 0);
+            string log = ConsoleProcess.adbProcess(commandAssemblerF(string.Format("sideload \"{0}\"", textBoxDirFile.Text)));
             if (log.ToLower().Contains("error") || log.ToLower().Contains("failed") || log.Trim() == "")
             {
                 LogWriteLine(fileName + " failed to flash, try restarting the sideload process or unplugging and replugging the device to resolve the issue.", LogType.ERROR);
@@ -1491,7 +1491,7 @@ namespace ATA_GUI
                 DialogResult dialogResult = MessageBox.Show("Do you want to kill ADB?", "Kill ADB", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    _ = ConsoleProcess.adbFastbootCommandR("kill-server", 0);
+                    _ = ConsoleProcess.adbProcess("kill-server");
                 }
             }
 
@@ -1669,12 +1669,12 @@ namespace ATA_GUI
                     {
                         if (ATA.CurrentDeviceSelected.ID.Length > 0)
                         {
-                            _ = ConsoleProcess.adbFastbootCommandR(" -s " + ATA.CurrentDeviceSelected.ID + " tcpip " + port, 0);
+                            _ = ConsoleProcess.adbProcess(" -s " + ATA.CurrentDeviceSelected.ID + " tcpip " + port);
                         }
                     }
                 }
 
-                result = ConsoleProcess.adbFastbootCommandR("connect " + ip + ":" + port, 0);
+                result = ConsoleProcess.adbProcess("connect " + ip + ":" + port);
 
                 if (!result.Contains("cannot connect"))
                 {
@@ -1844,7 +1844,7 @@ namespace ATA_GUI
 
         private void buttonTurnOffAdb_Click(object sender, EventArgs e)
         {
-            _ = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " shell settings put global adb_enabled 0", 0);
+            _ = ConsoleProcess.adbProcess("-s " + ATA.CurrentDeviceSelected.ID + " shell settings put global adb_enabled 0");
             LogWriteLine("the command has been ejected", LogType.INFO);
             SyncDevice();
         }
@@ -1872,8 +1872,8 @@ namespace ATA_GUI
 
             commandRun += (!ATA.CurrentDeviceSelected.IsRotationFreeEnabled).ToString().ToLowerInvariant();
 
-            _ = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + commandRun, 0);
-            ATA.CurrentDeviceSelected.IsRotationFreeEnabled = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " shell wm get-ignore-orientation-request", 0).Contains("true");
+            _ = ConsoleProcess.adbProcess("-s " + ATA.CurrentDeviceSelected.ID + commandRun);
+            ATA.CurrentDeviceSelected.IsRotationFreeEnabled = ConsoleProcess.adbProcess("-s " + ATA.CurrentDeviceSelected.ID + " shell wm get-ignore-orientation-request").Contains("true");
             LogWriteLine("free rotation " + buttonSetRotation.Text.ToLowerInvariant() + "ed", LogType.INFO);
             buttonSetRotation.Text = ATA.CurrentDeviceSelected.IsRotationFreeEnabled ? "Unset" : "Set";
         }
@@ -1892,7 +1892,7 @@ namespace ATA_GUI
 
         private void buttonInjectText_Click(object sender, EventArgs e)
         {
-            _ = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " shell input text \"" + richTextBoxSend.Text + "\"", 0);
+            _ = ConsoleProcess.adbProcess("-s " + ATA.CurrentDeviceSelected.ID + " shell input text \"" + richTextBoxSend.Text + "\"");
             if (richTextBoxSend.Text.Length == 0)
             {
                 MessageShowBox("You have to enter a text to inject!", 1);
@@ -2092,8 +2092,8 @@ namespace ATA_GUI
 
             try
             {
-                string system = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell pm list packages -s --user " + ATA.CurrentDeviceSelected.User), 0);
-                string nonSystem = ConsoleProcess.adbFastbootCommandR(commandAssemblerF("shell pm list packages -3 --user " + ATA.CurrentDeviceSelected.User), 0); ;
+                string system = ConsoleProcess.adbProcess(commandAssemblerF("shell pm list packages -s --user " + ATA.CurrentDeviceSelected.User));
+                string nonSystem = ConsoleProcess.adbProcess(commandAssemblerF("shell pm list packages -3 --user " + ATA.CurrentDeviceSelected.User)); ;
 
                 foreach (string line in system.Split("\n"))
                 {

@@ -7,6 +7,16 @@ namespace ATA_GUI.Utils
 {
     internal class ConsoleProcess
     {
+        public static string fastbootProcess(string command)
+        {
+            return adbFastbootCommandR(command, 1);
+        }
+
+        public static string adbProcess(string command)
+        {
+            return adbFastbootCommandR(command, 0);
+        }
+
         public static string adbFastbootCommandR(string command, int type)
         {
             return adbFastbootCommandR(new[] { command }, type);

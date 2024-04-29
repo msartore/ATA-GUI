@@ -2473,7 +2473,6 @@ namespace ATA_GUI
         private System.Windows.Forms.DataGridView dataGridViewPackages;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn package;
-        private System.Windows.Forms.CheckedListBox checkedListBoxApp;
         private System.Windows.Forms.RadioButton radioButtonCWired;
         private System.Windows.Forms.RadioButton radioButtonCWireless;
         private System.Windows.Forms.Label labelTotalPackages;
