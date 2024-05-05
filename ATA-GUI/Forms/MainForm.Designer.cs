@@ -1258,7 +1258,7 @@ namespace ATA_GUI
             // 
             comboBoxImg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBoxImg.FormattingEnabled = true;
-            comboBoxImg.Items.AddRange(new object[] { "boot", "bootloader", "cache", "radio", "recovery", "system", "update", "vendor" });
+            comboBoxImg.Items.AddRange(new object[] { "boot", "bootloader", "cache", "dtbo", "radio", "recovery", "system", "update", "vendor", "vendor_boot" });
             comboBoxImg.Location = new System.Drawing.Point(87, 78);
             comboBoxImg.Name = "comboBoxImg";
             comboBoxImg.Size = new System.Drawing.Size(338, 23);
