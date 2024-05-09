@@ -74,26 +74,20 @@ namespace ATA_GUI.Properties {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;bloatware&gt;
         ///  &lt;basic&gt;
-        ///    com.amazon.fv
-        ///    com.amazon.kindle
-        ///    com.amazon.mp3
-        ///    com.amazon.venezia
-        ///    com.ebay.carrier
-        ///    com.ebay.mobile
-        ///    com.facebook.appmanager
-        ///    com.facebook.katana
-        ///    com.facebook.services
-        ///    com.facebook.system
-        ///    com.skype.raider
-        ///    flipboard.app
-        ///    flipboard.boxer.app
-        ///    com.amazon.mShop.android
-        ///    sg.bigo.live
-        ///    com.tripadvisor.tripadvisor
-        ///    com.alibaba.aliexpresshd
-        ///  &lt;/basic&gt;
-        ///  &lt;medium&gt;
-        ///    com.goo [rest of string was truncated]&quot;;.
+        ///	com.sony.tvsideview.videoph
+        ///	com.sony.tvsideview.phone
+        ///	com.sonyericsson.idd.agent
+        ///	com.sonyericsson.startupflagservice
+        ///	com.sonyericsson.textinput.chinese
+        ///	com.sonyericsson.wappush
+        ///	com.sonyericsson.xhs
+        ///	com.sonymobile.advancedlogging
+        ///	com.sonymobile.advancedwidget.topcontacts
+        ///	com.sonymobile.android.addoncamera.soundphoto
+        ///	com.sonymobile.androidapp.cameraaddon.areffect
+        ///	com.sonymobile.anondata
+        ///	com.sonymobile.assist
+        ///	com.sonymo [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string bloatwareList {
             get {

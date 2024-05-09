@@ -30,7 +30,7 @@ namespace ATA_GUI
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             labelLog = new System.Windows.Forms.Label();
             buttonLogClear = new System.Windows.Forms.Button();
@@ -592,8 +592,8 @@ namespace ATA_GUI
             // 
             dataGridViewPackages.AllowUserToAddRows = false;
             dataGridViewPackages.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewPackages.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             dataGridViewPackages.BackgroundColor = System.Drawing.Color.White;
             dataGridViewPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1258,7 +1258,7 @@ namespace ATA_GUI
             // 
             comboBoxImg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBoxImg.FormattingEnabled = true;
-            comboBoxImg.Items.AddRange(new object[] { "boot", "bootloader", "cache", "dtbo", "radio", "recovery", "system", "update", "vendor", "vendor_boot" });
+            comboBoxImg.Items.AddRange(new object[] { "boot", "bootloader", "cache", "dtbo", "radio", "recovery", "system", "update", "vendor", "vendor_boot", "vendor_kernel_boot " });
             comboBoxImg.Location = new System.Drawing.Point(87, 78);
             comboBoxImg.Name = "comboBoxImg";
             comboBoxImg.Size = new System.Drawing.Size(338, 23);
@@ -1267,7 +1267,7 @@ namespace ATA_GUI
             // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(30, 107);
+            button1.Location = new System.Drawing.Point(30, 134);
             button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(395, 30);

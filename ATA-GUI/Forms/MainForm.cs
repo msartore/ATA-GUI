@@ -1,9 +1,3 @@
-using ATA_GUI.Classes;
-using ATA_GUI.Forms;
-using ATA_GUI.Utils;
-using Ionic.Zip;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,6 +13,12 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ATA_GUI.Classes;
+using ATA_GUI.Forms;
+using ATA_GUI.Utils;
+using Ionic.Zip;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ATA_GUI
 {
@@ -494,7 +494,7 @@ namespace ATA_GUI
                             }
                             else
                             {
-                                appData = new AppData("UNKNOWN (ATA Bridge required)", package);
+                                appData = new AppData("Coming soon!", package);
                             }
 
                             dataGridViewPackages.Rows.Add((new[] { appData.Name, appData.Package }).ToArray());
@@ -826,7 +826,8 @@ namespace ATA_GUI
 
         private void updateAppCount()
         {
-            labelSelectedAppCount.Text = "Selected App: " + dataGridViewPackages.SelectedRows.Count;
+            setWantedRows();
+            labelSelectedAppCount.Text = "Selected App: " + ata.selectedRows.Count;
         }
 
         private void buttonConnectToIP_Click(object sender, EventArgs e)
@@ -868,9 +869,9 @@ namespace ATA_GUI
 
         private void appFunc(string command1, string command2, int type)
         {
-            if (dataGridViewPackages.SelectedRows.Count > 0)
+            if (ata.selectedRows.Count > 0)
             {
-                foreach (DataGridViewRow current in dataGridViewPackages.SelectedRows)
+                foreach (DataGridViewRow current in ata.selectedRows)
                 {
                     string log;
                     if ((log = ConsoleProcess.adbProcess(" -s " + ATA.CurrentDeviceSelected.ID + " " + command1 + "--user " + ATA.CurrentDeviceSelected.User + " " + current.Cells[1].Value + command2)) != null)
@@ -1020,21 +1021,25 @@ namespace ATA_GUI
             loadApps(ATA.CurrentDeviceSelected.AppMode);
         }
 
-        public void uninstaller(DataGridViewSelectedRowCollection foundPackageList)
+        public void uninstaller()
         {
             string command = "-s " + ATA.CurrentDeviceSelected.ID + " shell pm uninstall -k --user " + ATA.CurrentDeviceSelected.User + " ";
             LoadingForm load;
             List<string> arrayApkSelect = new();
-            foreach (DataGridViewRow row in foundPackageList)
+
+            foreach (DataGridViewRow row in ata.selectedRows)
             {
                 arrayApkSelect.Add(row.Cells[1].Value.ToString());
             }
+
             load = new LoadingForm(arrayApkSelect, command, "Uninstalled:");
             _ = load.ShowDialog();
+
             if (load.DialogResult != DialogResult.OK)
             {
                 MessageShowBox("Error during uninstallation process", 0);
             }
+
             loadApps(ATA.CurrentDeviceSelected.AppMode);
         }
 
@@ -1042,7 +1047,7 @@ namespace ATA_GUI
         {
             if (dataGridViewPackages.SelectedRows.Count > 0)
             {
-                uninstaller(dataGridViewPackages.SelectedRows);
+                uninstaller();
             }
             else
             {
@@ -1052,11 +1057,11 @@ namespace ATA_GUI
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-            if (dataGridViewPackages.SelectedRows.Count > 0)
+            if (ata.selectedRows.Count > 0)
             {
                 List<string> arrayApkSelect = new();
 
-                foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
+                foreach (DataGridViewRow row in ata.selectedRows)
                 {
                     arrayApkSelect.Add(row.Cells[1].Value.ToString() + "\n");
                 }
@@ -1320,19 +1325,23 @@ namespace ATA_GUI
 
         private void toolStripButtonRestoreApp_Click(object sender, EventArgs e)
         {
-            if (dataGridViewPackages.SelectedRows.Count > 0)
+            if (ata.selectedRows.Count > 0)
             {
                 List<string> apps = new();
-                foreach (DataGridViewRow app in dataGridViewPackages.SelectedRows)
+
+                foreach (DataGridViewRow app in ata.selectedRows)
                 {
                     apps.Add(app.Cells[1].Value.ToString());
                 }
+
                 LoadingForm load = new(apps, commandAssemblerF("shell cmd package install-existing --user " + ATA.CurrentDeviceSelected.User + " "), "Restored:");
                 _ = load.ShowDialog();
+
                 if (load.DialogResult != DialogResult.OK)
                 {
                     MessageShowBox("Error during restoring process", 0);
                 }
+
                 loadApps(ATA.CurrentDeviceSelected.AppMode);
             }
             else
@@ -1552,7 +1561,7 @@ namespace ATA_GUI
 
         private void toolStripButtonSearch_Click(object sender, EventArgs e)
         {
-            if (dataGridViewPackages.SelectedRows.Count == 0)
+            if (ata.selectedRows.Count == 0)
             {
                 MessageShowBox("No app selected", 1);
                 return;
@@ -1562,7 +1571,7 @@ namespace ATA_GUI
 
         private void duckduckgoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
+            foreach (DataGridViewRow row in ata.selectedRows)
             {
                 ConsoleProcess.openLink("https://duckduckgo.com/?q=" + row.Cells[1].Value.ToString());
             }
@@ -1570,7 +1579,7 @@ namespace ATA_GUI
 
         private void googleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
+            foreach (DataGridViewRow row in ata.selectedRows)
             {
                 ConsoleProcess.openLink("https://www.google.com/search?q=" + row.Cells[1].Value.ToString());
             }
@@ -1578,7 +1587,7 @@ namespace ATA_GUI
 
         private void playMarketToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
+            foreach (DataGridViewRow row in ata.selectedRows)
             {
                 ConsoleProcess.openLink("https://play.google.com/store/apps/details?id=" + row.Cells[1].Value.ToString());
             }
@@ -1586,7 +1595,7 @@ namespace ATA_GUI
 
         private void APKMirrorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
+            foreach (DataGridViewRow row in ata.selectedRows)
             {
                 ConsoleProcess.openLink("https://www.apkmirror.com/?post_type=app_release&searchtype=apk&s=" + row.Cells[1].Value.ToString());
             }
@@ -1594,7 +1603,7 @@ namespace ATA_GUI
 
         private void fDroidToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
+            foreach (DataGridViewRow row in ata.selectedRows)
             {
                 ConsoleProcess.openLink("https://f-droid.org/en/packages/" + row.Cells[1].Value.ToString());
             }
@@ -1825,15 +1834,18 @@ namespace ATA_GUI
 
         private void toolStripButtonExtract_Click(object sender, EventArgs e)
         {
-            if (dataGridViewPackages.SelectedRows.Count > 0)
+            if (ata.selectedRows.Count > 0)
             {
                 List<string> arrayApkSelect = new();
-                foreach (DataGridViewRow row in dataGridViewPackages.SelectedRows)
+
+                foreach (DataGridViewRow row in ata.selectedRows)
                 {
                     arrayApkSelect.Add(row.Cells[1].Value.ToString());
                 }
+
                 LoadingForm loadingForm = new(ATA.CurrentDeviceSelected.ID, arrayApkSelect);
                 _ = loadingForm.ShowDialog();
+
                 dataGridViewPackages.ClearSelection();
             }
             else
@@ -2170,9 +2182,22 @@ namespace ATA_GUI
 
             WirelessPairingForm wirelessPairingForm = new WirelessPairingForm(ip, port);
             wirelessPairingForm.ShowDialog();
-            string result = (wirelessPairingForm.DialogResult == DialogResult.OK ? "Paired successfully to" : "Operation aborted by the user\nCannot pair to ") + ip;
+            string result = (wirelessPairingForm.DialogResult == DialogResult.OK ? "Paired successfully to" : "Operation failed\nCannot pair to ") + ip;
 
             MessageShowBox(result, wirelessPairingForm.DialogResult == DialogResult.OK ? 2 : 0);
+        }
+
+        private void setWantedRows()
+        {
+            ata.selectedRows.Clear();
+
+            foreach (DataGridViewRow item in dataGridViewPackages.Rows)
+            {
+                if (item.Visible && item.Selected)
+                {
+                    ata.selectedRows.Add(item);
+                }
+            }
         }
     }
 }

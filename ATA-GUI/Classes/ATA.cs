@@ -1,15 +1,16 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace ATA_GUI.Classes
 {
     internal class ATA
     {
-        public static readonly string CURRENTVERSION = "v3.5.1";
+        public static readonly string CURRENTVERSION = "v3.6.0";
         public static readonly string IPFileName = "IPList.txt";
 
         public HashSet<string> IPList { get; } = new HashSet<string>();
@@ -21,6 +22,7 @@ namespace ATA_GUI.Classes
         public Tab CurrentTab { get; private set; }
         public static DeviceData CurrentDeviceSelected { get; set; }
         public Size windowSize;
+        public List<DataGridViewRow> selectedRows { get; set; }
 
 
         public ATA()
@@ -29,6 +31,7 @@ namespace ATA_GUI.Classes
             IsConnected = true;
             IsMaximize = false;
             CurrentTab = Tab.SYSTEM;
+            selectedRows = new List<DataGridViewRow>();
         }
 
         public static async Task<bool> CheckVersion(Func<string, string, dynamic, bool> command)
