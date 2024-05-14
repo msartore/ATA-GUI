@@ -97,6 +97,7 @@ namespace ATA_GUI
                             panelRecovery.Enabled = true;
                             groupBoxFlash.Enabled = ATA.CurrentDeviceSelected.Mode == DeviceMode.SIDELOAD;
                             groupBoxRecoveryRM.Enabled = ATA.CurrentDeviceSelected.Mode != DeviceMode.SIDELOAD;
+                            groupBoxImageExtraction.Enabled = groupBoxRecoveryRM.Enabled;
                         }
                         else
                         {
@@ -594,6 +595,8 @@ namespace ATA_GUI
         private void MainForm_Load(object sender, EventArgs e)
         {
             comboBoxImg.SelectedIndex = 0;
+            comboBoxImgExtraction.SelectedIndex = 0;
+
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             ToolTipGenerator(buttonConnectToIP, "Connect device", "Connect to your device with this IP");
             ToolTipGenerator(buttonDisconnectIP, "Disconnect device", "Disconnect from your device with this IP");
@@ -2198,6 +2201,47 @@ namespace ATA_GUI
                     ata.selectedRows.Add(item);
                 }
             }
+        }
+
+        private void buttonImgExtraction_Click(object sender, EventArgs e)
+        {
+            bool opResult = false;
+
+            LogWriteLine("Generating image...", LogType.INFO);
+
+            string creationResult = ConsoleProcess.adbProcess(commandAssemblerF(String.Format("shell dd if=/dev/block/bootdevice/by-name/{0} of=/sdcard/{0}.img", comboBoxImgExtraction.Text)));
+
+            if (!creationResult.Contains("No such file or directory") && creationResult.Contains("copied"))
+            {
+                if (!Directory.Exists("IMG"))
+                {
+                    Directory.CreateDirectory("IMG");
+                }
+
+                LogWriteLine("image generated, pulling it from the device...", LogType.INFO);
+
+                string pullResult = ConsoleProcess.adbProcess(String.Format("pull /sdcard/{0}.img IMG/{0}.img", comboBoxImgExtraction.Text));
+
+                if (pullResult.Contains("file pulled"))
+                {
+                    ConsoleProcess.adbProcess(String.Format("shell rm /sdcard/{0}.img", comboBoxImgExtraction.Text));
+                    opResult = true;
+                    LogWriteLine("image pulled successfully!", LogType.OK);
+                }
+                else
+                {
+                    LogWriteLine("Failed to pull the image, \nError result:\n" + pullResult, LogType.ERROR);
+                }
+            }
+            else
+            {
+                LogWriteLine("Failed to generate the image. \nError result:" + creationResult, LogType.ERROR);
+            }
+
+            MessageShowBox(
+                opResult ? "image extracted, it can be found in this directory: " + Directory.GetCurrentDirectory() + "\\IMG" : "Failed to extract the img",
+                opResult ? 2 : 0
+            );
         }
     }
 }

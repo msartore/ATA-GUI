@@ -30,7 +30,7 @@ namespace ATA_GUI
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             labelLog = new System.Windows.Forms.Label();
             buttonLogClear = new System.Windows.Forms.Button();
@@ -129,6 +129,9 @@ namespace ATA_GUI
             buttonSearchFileFastboot = new System.Windows.Forms.Button();
             tabPageRecovery = new System.Windows.Forms.TabPage();
             panelRecovery = new System.Windows.Forms.Panel();
+            groupBoxImageExtraction = new System.Windows.Forms.GroupBox();
+            comboBoxImgExtraction = new System.Windows.Forms.ComboBox();
+            buttonImgExtraction = new System.Windows.Forms.Button();
             groupBoxRecoveryRM = new System.Windows.Forms.GroupBox();
             buttonrr_ = new System.Windows.Forms.Button();
             buttonrf_ = new System.Windows.Forms.Button();
@@ -236,6 +239,7 @@ namespace ATA_GUI
             groupBox4.SuspendLayout();
             tabPageRecovery.SuspendLayout();
             panelRecovery.SuspendLayout();
+            groupBoxImageExtraction.SuspendLayout();
             groupBoxRecoveryRM.SuspendLayout();
             groupBoxFlash.SuspendLayout();
             tabPageTools.SuspendLayout();
@@ -592,8 +596,8 @@ namespace ATA_GUI
             // 
             dataGridViewPackages.AllowUserToAddRows = false;
             dataGridViewPackages.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewPackages.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             dataGridViewPackages.BackgroundColor = System.Drawing.Color.White;
             dataGridViewPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1310,6 +1314,7 @@ namespace ATA_GUI
             // 
             // panelRecovery
             // 
+            panelRecovery.Controls.Add(groupBoxImageExtraction);
             panelRecovery.Controls.Add(groupBoxRecoveryRM);
             panelRecovery.Controls.Add(groupBoxFlash);
             panelRecovery.Location = new System.Drawing.Point(0, 3);
@@ -1318,23 +1323,55 @@ namespace ATA_GUI
             panelRecovery.Size = new System.Drawing.Size(921, 336);
             panelRecovery.TabIndex = 37;
             // 
+            // groupBoxImageExtraction
+            // 
+            groupBoxImageExtraction.Controls.Add(comboBoxImgExtraction);
+            groupBoxImageExtraction.Controls.Add(buttonImgExtraction);
+            groupBoxImageExtraction.Location = new System.Drawing.Point(482, 3);
+            groupBoxImageExtraction.Name = "groupBoxImageExtraction";
+            groupBoxImageExtraction.Size = new System.Drawing.Size(435, 198);
+            groupBoxImageExtraction.TabIndex = 42;
+            groupBoxImageExtraction.TabStop = false;
+            groupBoxImageExtraction.Text = "Image extraction";
+            // 
+            // comboBoxImgExtraction
+            // 
+            comboBoxImgExtraction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBoxImgExtraction.FormattingEnabled = true;
+            comboBoxImgExtraction.Items.AddRange(new object[] { "abl_a", "abl_b", "aop_a", "aop_b", "boot", "cmnlib_a", "cmnlib_b", "cmnlib64_a", "cmnlib64_b", "devcfg_a", "devcfg_b", "dtbo", "hyp_a", "hyp_b", "keymaster_a", "keymaster_b", "modem", "recovery", "system", "tz_a", "tz_b", "vbmeta", "vendor", "xbl_a", "xbl_b", "xbl_config_a", "xbl_config_b" });
+            comboBoxImgExtraction.Location = new System.Drawing.Point(29, 78);
+            comboBoxImgExtraction.Name = "comboBoxImgExtraction";
+            comboBoxImgExtraction.Size = new System.Drawing.Size(381, 23);
+            comboBoxImgExtraction.Sorted = true;
+            comboBoxImgExtraction.TabIndex = 1;
+            // 
+            // buttonImgExtraction
+            // 
+            buttonImgExtraction.Location = new System.Drawing.Point(29, 107);
+            buttonImgExtraction.Name = "buttonImgExtraction";
+            buttonImgExtraction.Size = new System.Drawing.Size(381, 27);
+            buttonImgExtraction.TabIndex = 0;
+            buttonImgExtraction.Text = "Extract";
+            buttonImgExtraction.UseVisualStyleBackColor = true;
+            buttonImgExtraction.Click += buttonImgExtraction_Click;
+            // 
             // groupBoxRecoveryRM
             // 
             groupBoxRecoveryRM.Controls.Add(buttonrr_);
             groupBoxRecoveryRM.Controls.Add(buttonrf_);
             groupBoxRecoveryRM.Controls.Add(buttonrs_);
-            groupBoxRecoveryRM.Location = new System.Drawing.Point(684, 3);
+            groupBoxRecoveryRM.Location = new System.Drawing.Point(482, 206);
             groupBoxRecoveryRM.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxRecoveryRM.Name = "groupBoxRecoveryRM";
             groupBoxRecoveryRM.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxRecoveryRM.Size = new System.Drawing.Size(233, 330);
+            groupBoxRecoveryRM.Size = new System.Drawing.Size(435, 127);
             groupBoxRecoveryRM.TabIndex = 41;
             groupBoxRecoveryRM.TabStop = false;
             groupBoxRecoveryRM.Text = "Reboot menu";
             // 
             // buttonrr_
             // 
-            buttonrr_.Location = new System.Drawing.Point(52, 103);
+            buttonrr_.Location = new System.Drawing.Point(155, 22);
             buttonrr_.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonrr_.Name = "buttonrr_";
             buttonrr_.Size = new System.Drawing.Size(130, 27);
@@ -1345,7 +1382,7 @@ namespace ATA_GUI
             // 
             // buttonrf_
             // 
-            buttonrf_.Location = new System.Drawing.Point(52, 170);
+            buttonrf_.Location = new System.Drawing.Point(155, 89);
             buttonrf_.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonrf_.Name = "buttonrf_";
             buttonrf_.Size = new System.Drawing.Size(130, 27);
@@ -1356,7 +1393,7 @@ namespace ATA_GUI
             // 
             // buttonrs_
             // 
-            buttonrs_.Location = new System.Drawing.Point(52, 136);
+            buttonrs_.Location = new System.Drawing.Point(155, 55);
             buttonrs_.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonrs_.Name = "buttonrs_";
             buttonrs_.Size = new System.Drawing.Size(130, 27);
@@ -1374,14 +1411,14 @@ namespace ATA_GUI
             groupBoxFlash.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBoxFlash.Name = "groupBoxFlash";
             groupBoxFlash.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBoxFlash.Size = new System.Drawing.Size(672, 330);
+            groupBoxFlash.Size = new System.Drawing.Size(470, 330);
             groupBoxFlash.TabIndex = 40;
             groupBoxFlash.TabStop = false;
             groupBoxFlash.Text = "Flash menu";
             // 
             // textBoxDirFile
             // 
-            textBoxDirFile.Location = new System.Drawing.Point(141, 122);
+            textBoxDirFile.Location = new System.Drawing.Point(36, 140);
             textBoxDirFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             textBoxDirFile.Name = "textBoxDirFile";
             textBoxDirFile.Size = new System.Drawing.Size(285, 23);
@@ -1391,10 +1428,10 @@ namespace ATA_GUI
             // 
             buttonFlashZip.BackColor = System.Drawing.Color.White;
             buttonFlashZip.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonFlashZip.Location = new System.Drawing.Point(434, 153);
+            buttonFlashZip.Location = new System.Drawing.Point(36, 171);
             buttonFlashZip.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonFlashZip.Name = "buttonFlashZip";
-            buttonFlashZip.Size = new System.Drawing.Size(88, 27);
+            buttonFlashZip.Size = new System.Drawing.Size(381, 27);
             buttonFlashZip.TabIndex = 34;
             buttonFlashZip.Text = "Flash";
             buttonFlashZip.UseVisualStyleBackColor = false;
@@ -1402,7 +1439,7 @@ namespace ATA_GUI
             // 
             // buttonBrowseFile
             // 
-            buttonBrowseFile.Location = new System.Drawing.Point(434, 119);
+            buttonBrowseFile.Location = new System.Drawing.Point(329, 137);
             buttonBrowseFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonBrowseFile.Name = "buttonBrowseFile";
             buttonBrowseFile.Size = new System.Drawing.Size(88, 27);
@@ -2260,6 +2297,7 @@ namespace ATA_GUI
             groupBox4.PerformLayout();
             tabPageRecovery.ResumeLayout(false);
             panelRecovery.ResumeLayout(false);
+            groupBoxImageExtraction.ResumeLayout(false);
             groupBoxRecoveryRM.ResumeLayout(false);
             groupBoxFlash.ResumeLayout(false);
             groupBoxFlash.PerformLayout();
@@ -2477,6 +2515,9 @@ namespace ATA_GUI
         private System.Windows.Forms.RadioButton radioButtonCWireless;
         private System.Windows.Forms.Label labelTotalPackages;
         private System.Windows.Forms.Button buttonPair;
+        private System.Windows.Forms.GroupBox groupBoxImageExtraction;
+        private System.Windows.Forms.Button buttonImgExtraction;
+        private System.Windows.Forms.ComboBox comboBoxImgExtraction;
     }
 }
 

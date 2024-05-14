@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,55 +26,46 @@ namespace ATA_GUI.Utils
         public static string adbFastbootCommandR(string[] args, int type)
         {
             StringBuilder ret = new();
-            string line;
             Cursor.Current = Cursors.WaitCursor;
-            Process process = new();
+
+            string executable = type switch
+            {
+                0 => "adb.exe",
+                1 => "fastboot.exe",
+                _ => throw new ArgumentOutOfRangeException(nameof(type), "Invalid type specified.")
+            };
+
             ProcessStartInfo startInfo = new()
             {
+                FileName = executable,
                 UseShellExecute = false,
                 CreateNoWindow = true,
                 RedirectStandardError = true,
                 RedirectStandardOutput = true
             };
-            switch (type)
+
+            foreach (string arg in args)
             {
-                case 0:
-                    startInfo.FileName = "adb.exe";
-                    process.StartInfo = startInfo;
+                startInfo.Arguments = arg;
+                using Process process = new() { StartInfo = startInfo };
+                process.Start();
 
-                    foreach (string s in args)
-                    {
-                        startInfo.Arguments = s;
-                        _ = process.Start();
-                        line = process.StandardOutput.ReadToEnd();
-                        if (line.Length > 0)
-                        {
-                            _ = ret.Append(line);
-                        }
-                    }
-                    break;
-                case 1:
-                    startInfo.FileName = "fastboot.exe";
-                    process.StartInfo = startInfo;
+                string output = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
 
-                    foreach (string s in args)
-                    {
-                        startInfo.Arguments = s;
-                        _ = process.Start();
-                        line = process.StandardError.ReadToEnd();
-                        if (line.Length > 0) { _ = ret.Append(line); }
+                if (!string.IsNullOrEmpty(output))
+                {
+                    ret.AppendLine(output);
+                }
+                if (!string.IsNullOrEmpty(error))
+                {
+                    ret.AppendLine(error);
+                }
 
-                        line = process.StandardOutput.ReadToEnd();
-                        if (line.Length > 0)
-                        {
-                            _ = ret.Append(line);
-                        }
-                    }
-                    break;
-                default:
-                    break;
+                process.WaitForExit();
             }
-            process.Close();
+
+            Cursor.Current = Cursors.Default;
             return ret.ToString().Trim();
         }
 

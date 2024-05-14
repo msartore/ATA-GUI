@@ -4,8 +4,8 @@
     {
         public AppData(string name, string package)
         {
-            this.Name = name;
-            this.Package = package;
+            Name = name;
+            Package = package;
         }
 
         public string Name { get; set; }
