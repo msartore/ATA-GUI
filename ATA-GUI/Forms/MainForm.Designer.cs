@@ -113,12 +113,7 @@ namespace ATA_GUI
             buttonBootloaderMenu = new System.Windows.Forms.Button();
             buttonRebootRecovery = new System.Windows.Forms.Button();
             groupBox5 = new System.Windows.Forms.GroupBox();
-            labelUDT = new System.Windows.Forms.Label();
-            labelCDT = new System.Windows.Forms.Label();
-            labelBootloaderStatus = new System.Windows.Forms.Label();
-            labelDataType = new System.Windows.Forms.Label();
-            label7 = new System.Windows.Forms.Label();
-            label8 = new System.Windows.Forms.Label();
+            richTextBoxFastbootInfo = new System.Windows.Forms.RichTextBox();
             buttonHardReset = new System.Windows.Forms.Button();
             buttonRebootToSystem = new System.Windows.Forms.Button();
             groupBox4 = new System.Windows.Forms.GroupBox();
@@ -1075,6 +1070,7 @@ namespace ATA_GUI
             // panelFastboot
             // 
             panelFastboot.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelFastboot.BackColor = System.Drawing.Color.White;
             panelFastboot.Controls.Add(buttonWd_md);
             panelFastboot.Controls.Add(buttonBootloaderMenu);
             panelFastboot.Controls.Add(buttonRebootRecovery);
@@ -1090,7 +1086,7 @@ namespace ATA_GUI
             // 
             // buttonWd_md
             // 
-            buttonWd_md.Location = new System.Drawing.Point(750, 235);
+            buttonWd_md.Location = new System.Drawing.Point(289, 250);
             buttonWd_md.Name = "buttonWd_md";
             buttonWd_md.Size = new System.Drawing.Size(138, 46);
             buttonWd_md.TabIndex = 56;
@@ -1103,7 +1099,7 @@ namespace ATA_GUI
             buttonBootloaderMenu.BackColor = System.Drawing.Color.White;
             buttonBootloaderMenu.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonBootloaderMenu.ForeColor = System.Drawing.Color.Black;
-            buttonBootloaderMenu.Location = new System.Drawing.Point(535, 254);
+            buttonBootloaderMenu.Location = new System.Drawing.Point(74, 269);
             buttonBootloaderMenu.Margin = new System.Windows.Forms.Padding(2);
             buttonBootloaderMenu.Name = "buttonBootloaderMenu";
             buttonBootloaderMenu.Size = new System.Drawing.Size(138, 27);
@@ -1117,7 +1113,7 @@ namespace ATA_GUI
             buttonRebootRecovery.BackColor = System.Drawing.Color.White;
             buttonRebootRecovery.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonRebootRecovery.ForeColor = System.Drawing.Color.Black;
-            buttonRebootRecovery.Location = new System.Drawing.Point(535, 223);
+            buttonRebootRecovery.Location = new System.Drawing.Point(74, 238);
             buttonRebootRecovery.Margin = new System.Windows.Forms.Padding(2);
             buttonRebootRecovery.Name = "buttonRebootRecovery";
             buttonRebootRecovery.Size = new System.Drawing.Size(138, 27);
@@ -1129,87 +1125,33 @@ namespace ATA_GUI
             // groupBox5
             // 
             groupBox5.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            groupBox5.Controls.Add(labelUDT);
-            groupBox5.Controls.Add(labelCDT);
-            groupBox5.Controls.Add(labelBootloaderStatus);
-            groupBox5.Controls.Add(labelDataType);
-            groupBox5.Controls.Add(label7);
-            groupBox5.Controls.Add(label8);
+            groupBox5.Controls.Add(richTextBoxFastbootInfo);
             groupBox5.Location = new System.Drawing.Point(499, 3);
             groupBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox5.Name = "groupBox5";
             groupBox5.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox5.Size = new System.Drawing.Size(415, 183);
+            groupBox5.Size = new System.Drawing.Size(415, 330);
             groupBox5.TabIndex = 51;
             groupBox5.TabStop = false;
             groupBox5.Text = "Device Info";
             // 
-            // labelUDT
+            // richTextBoxFastbootInfo
             // 
-            labelUDT.AutoSize = true;
-            labelUDT.Location = new System.Drawing.Point(154, 75);
-            labelUDT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            labelUDT.Name = "labelUDT";
-            labelUDT.Size = new System.Drawing.Size(44, 15);
-            labelUDT.TabIndex = 15;
-            labelUDT.Text = "EMPTY";
-            // 
-            // labelCDT
-            // 
-            labelCDT.AutoSize = true;
-            labelCDT.Location = new System.Drawing.Point(154, 60);
-            labelCDT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            labelCDT.Name = "labelCDT";
-            labelCDT.Size = new System.Drawing.Size(44, 15);
-            labelCDT.TabIndex = 14;
-            labelCDT.Text = "EMPTY";
-            // 
-            // labelBootloaderStatus
-            // 
-            labelBootloaderStatus.AutoSize = true;
-            labelBootloaderStatus.Location = new System.Drawing.Point(154, 45);
-            labelBootloaderStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            labelBootloaderStatus.Name = "labelBootloaderStatus";
-            labelBootloaderStatus.Size = new System.Drawing.Size(44, 15);
-            labelBootloaderStatus.TabIndex = 13;
-            labelBootloaderStatus.Text = "EMPTY";
-            // 
-            // labelDataType
-            // 
-            labelDataType.AutoSize = true;
-            labelDataType.Location = new System.Drawing.Point(20, 75);
-            labelDataType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            labelDataType.Name = "labelDataType";
-            labelDataType.Size = new System.Drawing.Size(61, 15);
-            labelDataType.TabIndex = 12;
-            labelDataType.Text = "Data Type:";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new System.Drawing.Point(20, 60);
-            label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(67, 15);
-            label7.TabIndex = 11;
-            label7.Text = "Cache Type";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new System.Drawing.Point(20, 45);
-            label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(121, 15);
-            label8.TabIndex = 10;
-            label8.Text = "Bootloader Unlocked:";
+            richTextBoxFastbootInfo.BackColor = System.Drawing.Color.White;
+            richTextBoxFastbootInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            richTextBoxFastbootInfo.Location = new System.Drawing.Point(7, 22);
+            richTextBoxFastbootInfo.Name = "richTextBoxFastbootInfo";
+            richTextBoxFastbootInfo.ReadOnly = true;
+            richTextBoxFastbootInfo.Size = new System.Drawing.Size(401, 302);
+            richTextBoxFastbootInfo.TabIndex = 0;
+            richTextBoxFastbootInfo.Text = "";
             // 
             // buttonHardReset
             // 
             buttonHardReset.BackColor = System.Drawing.Color.White;
             buttonHardReset.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonHardReset.ForeColor = System.Drawing.Color.Black;
-            buttonHardReset.Location = new System.Drawing.Point(750, 192);
+            buttonHardReset.Location = new System.Drawing.Point(289, 207);
             buttonHardReset.Margin = new System.Windows.Forms.Padding(2);
             buttonHardReset.Name = "buttonHardReset";
             buttonHardReset.Size = new System.Drawing.Size(138, 38);
@@ -1223,7 +1165,7 @@ namespace ATA_GUI
             buttonRebootToSystem.BackColor = System.Drawing.Color.White;
             buttonRebootToSystem.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonRebootToSystem.ForeColor = System.Drawing.Color.Black;
-            buttonRebootToSystem.Location = new System.Drawing.Point(535, 192);
+            buttonRebootToSystem.Location = new System.Drawing.Point(74, 207);
             buttonRebootToSystem.Margin = new System.Windows.Forms.Padding(2);
             buttonRebootToSystem.Name = "buttonRebootToSystem";
             buttonRebootToSystem.Size = new System.Drawing.Size(138, 27);
@@ -1252,7 +1194,7 @@ namespace ATA_GUI
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new System.Drawing.Point(30, 81);
+            label10.Location = new System.Drawing.Point(50, 76);
             label10.Name = "label10";
             label10.Size = new System.Drawing.Size(37, 15);
             label10.TabIndex = 52;
@@ -1263,15 +1205,15 @@ namespace ATA_GUI
             comboBoxImg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBoxImg.FormattingEnabled = true;
             comboBoxImg.Items.AddRange(new object[] { "boot", "bootloader", "cache", "dtbo", "radio", "recovery", "system", "update", "vendor", "vendor_boot", "vendor_kernel_boot " });
-            comboBoxImg.Location = new System.Drawing.Point(87, 78);
+            comboBoxImg.Location = new System.Drawing.Point(117, 72);
             comboBoxImg.Name = "comboBoxImg";
-            comboBoxImg.Size = new System.Drawing.Size(338, 23);
+            comboBoxImg.Size = new System.Drawing.Size(328, 23);
             comboBoxImg.Sorted = true;
             comboBoxImg.TabIndex = 51;
             // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(30, 134);
+            button1.Location = new System.Drawing.Point(50, 128);
             button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(395, 30);
@@ -1282,7 +1224,7 @@ namespace ATA_GUI
             // 
             // textBoxDirImg
             // 
-            textBoxDirImg.Location = new System.Drawing.Point(30, 47);
+            textBoxDirImg.Location = new System.Drawing.Point(50, 41);
             textBoxDirImg.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             textBoxDirImg.Name = "textBoxDirImg";
             textBoxDirImg.Size = new System.Drawing.Size(285, 23);
@@ -1292,7 +1234,7 @@ namespace ATA_GUI
             // 
             buttonSearchFileFastboot.BackColor = System.Drawing.Color.White;
             buttonSearchFileFastboot.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonSearchFileFastboot.Location = new System.Drawing.Point(323, 45);
+            buttonSearchFileFastboot.Location = new System.Drawing.Point(343, 39);
             buttonSearchFileFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonSearchFileFastboot.Name = "buttonSearchFileFastboot";
             buttonSearchFileFastboot.Size = new System.Drawing.Size(102, 27);
@@ -1314,6 +1256,7 @@ namespace ATA_GUI
             // 
             // panelRecovery
             // 
+            panelRecovery.BackColor = System.Drawing.Color.White;
             panelRecovery.Controls.Add(groupBoxImageExtraction);
             panelRecovery.Controls.Add(groupBoxRecoveryRM);
             panelRecovery.Controls.Add(groupBoxFlash);
@@ -1450,6 +1393,7 @@ namespace ATA_GUI
             // 
             // tabPageTools
             // 
+            tabPageTools.BackColor = System.Drawing.Color.White;
             tabPageTools.Controls.Add(groupBox2);
             tabPageTools.Controls.Add(groupBox3);
             tabPageTools.Controls.Add(groupBoxTextInject);
@@ -1461,7 +1405,6 @@ namespace ATA_GUI
             tabPageTools.Size = new System.Drawing.Size(925, 342);
             tabPageTools.TabIndex = 3;
             tabPageTools.Text = "Tools";
-            tabPageTools.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -2254,7 +2197,7 @@ namespace ATA_GUI
             AllowDrop = true;
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            BackColor = System.Drawing.SystemColors.ControlLightLight;
+            BackColor = System.Drawing.Color.White;
             ClientSize = new System.Drawing.Size(942, 632);
             Controls.Add(richTextBoxLog);
             Controls.Add(label9);
@@ -2292,7 +2235,6 @@ namespace ATA_GUI
             tabPageFastboot.ResumeLayout(false);
             panelFastboot.ResumeLayout(false);
             groupBox5.ResumeLayout(false);
-            groupBox5.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
             tabPageRecovery.ResumeLayout(false);
@@ -2371,12 +2313,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonHardReset;
         private System.Windows.Forms.RichTextBox richTextBoxLog;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label labelUDT;
-        private System.Windows.Forms.Label labelCDT;
-        private System.Windows.Forms.Label labelBootloaderStatus;
-        private System.Windows.Forms.Label labelDataType;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonBootloaderMenu;
@@ -2518,6 +2454,7 @@ namespace ATA_GUI
         private System.Windows.Forms.GroupBox groupBoxImageExtraction;
         private System.Windows.Forms.Button buttonImgExtraction;
         private System.Windows.Forms.ComboBox comboBoxImgExtraction;
+        private System.Windows.Forms.RichTextBox richTextBoxFastbootInfo;
     }
 }
 

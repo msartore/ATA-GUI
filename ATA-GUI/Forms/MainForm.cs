@@ -72,22 +72,7 @@ namespace ATA_GUI
                         SyncDevice();
                         break;
                     case Tab.FASTBOOT:
-                        string[] log = ConsoleProcess.fastbootProcess(commandAssemblerF("getvar all")).Split(' ', '\n');
-                        for (int a = 0; a < log.Count(); a++)
-                        {
-                            if (log[a].Contains("partition-type:userdata:"))
-                            {
-                                labelUDT.Text = log[a]["partition-type:userdata:".Length..];
-                            }
-                            else if (log[a].Contains("partition-type:cache:"))
-                            {
-                                labelCDT.Text = log[a]["partition-type:cache:".Length..];
-                            }
-                            else if (log[a].Contains("unlocked:"))
-                            {
-                                labelBootloaderStatus.Text = log[a].Contains("yes") ? "Yes" : "No";
-                            }
-                        }
+                        richTextBoxFastbootInfo.Text = DeviceData.ExtractBootloaderInfo(ConsoleProcess.fastbootProcess(commandAssemblerF("getvar all")));
                         panelFastboot.Enabled = true;
                         LogWriteLine("info extracted", LogType.OK);
                         break;

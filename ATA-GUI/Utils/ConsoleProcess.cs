@@ -50,8 +50,8 @@ namespace ATA_GUI.Utils
                 using Process process = new() { StartInfo = startInfo };
                 process.Start();
 
-                string output = process.StandardOutput.ReadToEnd();
                 string error = process.StandardError.ReadToEnd();
+                string output = process.StandardOutput.ReadToEnd();
 
                 if (!string.IsNullOrEmpty(output))
                 {
