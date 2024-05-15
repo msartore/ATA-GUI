@@ -1168,7 +1168,7 @@ namespace ATA_GUI
 
         private void checkGrantedPermissionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            appFunc("shell dumpsys package " + ATA.CurrentDeviceSelected.User, null, 1);
+            appFunc("shell appops get ", null, 1);
         }
 
         private void comboBoxDevices_SelectedIndexChanged(object sender, EventArgs e)

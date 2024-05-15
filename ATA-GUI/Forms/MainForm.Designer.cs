@@ -2051,7 +2051,7 @@ namespace ATA_GUI
             // 
             // playMarketToolStripMenuItem
             // 
-            playMarketToolStripMenuItem.Image = Properties.Resources.playmarketicon;
+            playMarketToolStripMenuItem.Image = Properties.Resources.icons8_play_store_48;
             playMarketToolStripMenuItem.Name = "playMarketToolStripMenuItem";
             playMarketToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
             playMarketToolStripMenuItem.Text = "Play Market";

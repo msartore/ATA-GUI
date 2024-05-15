@@ -268,6 +268,16 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_play_store_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-play-store-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_privacy_policy_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-privacy-policy-48", resourceCulture);
@@ -391,16 +401,6 @@ namespace ATA_GUI.Properties {
         internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap playmarketicon {
-            get {
-                object obj = ResourceManager.GetObject("playmarketicon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
