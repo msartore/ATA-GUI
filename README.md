@@ -35,7 +35,7 @@ ATA-GUI is an app that lets you perform advanced tasks on your Android™ device
 
 ## ATA License
 
-    Copyright (C) 2021-2023 Massimiliano Sartore
+    Copyright (C) 2021-2024 Massimiliano Sartore
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ In short, Scrcpy is an excellent way to easily view your Android screen on your 
 ## Scrcpy License
 
     Copyright (C) 2018 Genymobile
-    Copyright (C) 2018-2022 Romain Vimont
+    Copyright (C) 2018-2024 Romain Vimont
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
