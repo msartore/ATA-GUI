@@ -12,28 +12,26 @@ ATA-GUI is an app that lets you perform advanced tasks on your Android™ device
 ## ✨Features
 * Uninstall, data cleaning and disable/enable system/user applications without root
 * Install applications, Uploading files
-* Grant WRITE_SECURE_SETTINGS permission
-* Grant DUMP permission
-* Check for granted permissions
-* ADB over network
+* Check for granted permissions to an application
+* ADB over network with easy and fast pairing system
 * Bloatware Detector
-* REBOOT INTO THE RECOVERY, REBOOT SMARTPHONE
-* REBOOT INTO THE Fastboot/Bootloader
-* FLASH BOOT , BOOTLOADER, RADIO, RECOVERY, SYSTEM, VENDOR, CACHE, ROM
+* Reboot into Recovery, Fastboot, and System
+* Image Flash and Extraction
 * Erase user data and cache
+* Screen and Camera mirroring
+* Images extraction
 * UNLOCK BOOTLOADER (Not all device supported)
 * LOCK BOOTLOADER (Not all device supported)
-* OEM device-id
-* Get device info
+* Device info extration in system and fastboot
 * Sideload a zip
 * Command injection
 * Text injection
 * Screen Share
 * Logcat
 * Task manager
+* Grant WRITE_SECURE_SETTINGS, DUMP permissions
+* OEM device-id
 * Support to Multiple user device
-* Screen mirroring
-* Camera mirroring
 
 ## ATA License
 
