@@ -9,29 +9,31 @@
 ## 💡Introduction
 ATA-GUI is an app that lets you perform advanced tasks on your Android™ device with ease. You can use ATA-GUI to access and modify your device's system settings, files, and features. You can also use ATA-GUI to install, uninstall, and restore apps on your device. ATA-GUI is powered by SDK Platform Tools, which are a set of command-line tools that allow you to communicate with your device and execute various operations. ATA-GUI is the app for advanced Android™ users who want to have more control over their device.
 
-## ✨Features
-* Uninstall, data cleaning and disable/enable system/user applications without root
-* Install applications, Uploading files
-* Check for granted permissions to an application
-* ADB over network with easy and fast pairing system
-* Bloatware Detector
-* Reboot into Recovery, Fastboot, and System
-* Image Flash and Extraction
-* Erase user data and cache
-* Screen and Camera mirroring
-* Images extraction
-* UNLOCK BOOTLOADER (Not all device supported)
-* LOCK BOOTLOADER (Not all device supported)
-* Device info extration in system and fastboot
-* Sideload a zip
-* Command injection
-* Text injection
-* Screen Share
-* Logcat
-* Task manager
-* Grant WRITE_SECURE_SETTINGS, DUMP permissions
-* OEM device-id
-* Support to Multiple user device
+## ✨ Features
+
+- **Manage System/User Applications Without Root:**
+  - Uninstall applications
+  - Clean data
+  - Enable/disable apps
+- **Install Applications and Upload Files Seamlessly**
+- **Check and Manage Permissions for Any Application**
+- **ADB Over Network with Easy and Fast Pairing**
+- **Detect and Remove Bloatware**
+- **Reboot into Recovery, Fastboot, and System Modes**
+- **Flash and Extract Images**
+- **Erase User Data and Cache**
+- **Screen and Camera Mirroring**
+- **Unlock and Lock Bootloader** (device dependent)
+- **Extract Device Information in System and Fastboot Modes**
+- **Sideload ZIP Files Easily**
+- **Execute Custom Commands**
+- **Inject Text**
+- **Access and Analyze Logcat**
+- **Integrated Task Manager**
+- **Grant WRITE_SECURE_SETTINGS and DUMP Permissions**
+- **Retrieve OEM Device ID**
+- **Support for Multiple User Devices**
+
 
 ## ATA License
 
