@@ -1,11 +1,11 @@
-﻿using ATA_GUI.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
@@ -91,7 +91,7 @@ namespace ATA_GUI
                             labelFileName.Text = x;
                             Refresh();
                             string result = ConsoleProcess.adbProcess(command + x).ToLowerInvariant();
-                            if (result.Contains("not found") || result.Contains("fail") || result.Trim().Length == 0)
+                            if (result.Contains("not found") || result.Contains("fail") || result.Trim().Length == 0 || result.Contains("doesn't exist"))
                             {
                                 failedApps.Add(x);
                             }
@@ -147,7 +147,7 @@ namespace ATA_GUI
 
                 if (failedApps.Count > 0)
                 {
-                    MainForm.MessageShowBox(string.Format("ATA failed to run the action on the following items:\n{0}", string.Join("\n", failedApps)), 1);
+                    MainForm.MessageShowBox(string.Format("Error: ATA failed to run the action on the following items:\n{0}", string.Join("\n", failedApps)), 0);
                 }
                 else
                 {

@@ -1,9 +1,3 @@
-using ATA_GUI.Classes;
-using ATA_GUI.Forms;
-using ATA_GUI.Utils;
-using Ionic.Zip;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,6 +13,12 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ATA_GUI.Classes;
+using ATA_GUI.Forms;
+using ATA_GUI.Utils;
+using Ionic.Zip;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ATA_GUI
 {
@@ -758,7 +758,6 @@ namespace ATA_GUI
 
             LogWriteLine("checking connection...", LogType.INFO);
 
-            toolStripButtonRestoreApp.Enabled = false;
             Enabled = false;
 
             waitingForm = new()

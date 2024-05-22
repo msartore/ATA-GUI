@@ -1,11 +1,11 @@
-﻿using ATA_GUI.Classes;
-using ATA_GUI.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
+using ATA_GUI.Classes;
+using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
@@ -36,7 +36,7 @@ namespace ATA_GUI
             comboBoxScanLevel.SelectedIndex = 0;
             LoadApp();
             MainForm.MessageShowBox("Warning: Be careful before disabling/removing any system app or service. You must ensure that the package is not used by system " +
-                "to function. Disabling a critical system app may result in bricking your phone. So always double check before disabling any system app.", 1);
+                "to function. Disabling a critical system app may result in bricking your phone. So always double check before disabling/removing any system app.", 1);
         }
 
         private void LoadApp()
@@ -93,26 +93,26 @@ namespace ATA_GUI
                 {
                     string app = item.ToString();
 
-                    if (nonSystemApp.Any(it => it.Equals(app)) && comboBoxActionMode.SelectedIndex == 1)
+                    if (nonSystemApp.Any(it => it.Equals(app)) || comboBoxActionMode.SelectedIndex == 1)
                     {
-                        if (ConsoleProcess.adbFastbootCommandR(MainForm.commandAssemblerF("shell pm uninstall -k --user " + ATA.CurrentDeviceSelected.User + " " + item), 0) != "Success")
+                        if (ConsoleProcess.adbFastbootCommandR(MainForm.commandAssemblerF("shell pm uninstall -k --user " + ATA.CurrentDeviceSelected.User + " " + item), 0).Contains("Success"))
                         {
-                            listFailed.Add(app);
+                            listSuccess.Add(app);
                         }
                         else
                         {
-                            listSuccess.Add(app);
+                            listFailed.Add(app);
                         }
                     }
                     else
                     {
-                        if (!ConsoleProcess.adbFastbootCommandR(MainForm.commandAssemblerF("shell pm disable-user --user " + ATA.CurrentDeviceSelected.User + " " + item), 0).Contains(item + " new state: disabled-user"))
+                        if (ConsoleProcess.adbFastbootCommandR(MainForm.commandAssemblerF("shell pm disable-user --user " + ATA.CurrentDeviceSelected.User + " " + item), 0).Contains(item + " new state: disabled-user"))
                         {
-                            listFailed.Add(app);
+                            listSuccess.Add(app);
                         }
                         else
                         {
-                            listSuccess.Add(app);
+                            listFailed.Add(app);
                         }
                     }
                 }

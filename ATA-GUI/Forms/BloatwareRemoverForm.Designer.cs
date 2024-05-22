@@ -43,7 +43,7 @@ namespace ATA_GUI
             // 
             // buttonAction
             // 
-            buttonAction.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonAction.Font = new System.Drawing.Font("Segoe UI", 18F);
             buttonAction.Location = new System.Drawing.Point(268, 235);
             buttonAction.Name = "buttonAction";
             buttonAction.Size = new System.Drawing.Size(140, 73);
@@ -74,9 +74,9 @@ namespace ATA_GUI
             checkBoxSelectAll.AutoSize = true;
             checkBoxSelectAll.Location = new System.Drawing.Point(47, 12);
             checkBoxSelectAll.Name = "checkBoxSelectAll";
-            checkBoxSelectAll.Size = new System.Drawing.Size(72, 19);
+            checkBoxSelectAll.Size = new System.Drawing.Size(160, 19);
             checkBoxSelectAll.TabIndex = 6;
-            checkBoxSelectAll.Text = "Select all";
+            checkBoxSelectAll.Text = "Select all (Not suggested)";
             checkBoxSelectAll.UseVisualStyleBackColor = true;
             checkBoxSelectAll.CheckedChanged += checkBoxSelectAll_CheckedChanged;
             // 
@@ -84,7 +84,7 @@ namespace ATA_GUI
             // 
             comboBoxActionMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBoxActionMode.FormattingEnabled = true;
-            comboBoxActionMode.Items.AddRange(new object[] { "disable", "disable or remove" });
+            comboBoxActionMode.Items.AddRange(new object[] { "disable or remove", "remove" });
             comboBoxActionMode.Location = new System.Drawing.Point(47, 285);
             comboBoxActionMode.Name = "comboBoxActionMode";
             comboBoxActionMode.Size = new System.Drawing.Size(140, 23);
@@ -122,14 +122,15 @@ namespace ATA_GUI
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new System.Drawing.Font("Segoe UI", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label3.Font = new System.Drawing.Font("Segoe UI", 6F);
+            label3.ForeColor = System.Drawing.Color.DarkRed;
             label3.Location = new System.Drawing.Point(22, 320);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(417, 11);
             label3.TabIndex = 11;
             label3.Text = "* If the option \"disable or remove\" is chosen, system apps will be disabled, and non-system apps will be uninstalled.";
             // 
-            // BloatwareRemover
+            // BloatwareRemoverForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -149,7 +150,7 @@ namespace ATA_GUI
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "BloatwareRemover";
+            Name = "BloatwareRemoverForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "Bloatware Remover";
             Shown += BloatwareRemover_Shown;
