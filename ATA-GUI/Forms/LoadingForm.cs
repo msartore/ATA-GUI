@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ATA_GUI.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
@@ -90,7 +90,7 @@ namespace ATA_GUI
                         {
                             labelFileName.Text = x;
                             Refresh();
-                            string result = ConsoleProcess.adbFastbootCommandR(command + x, 0).ToLowerInvariant();
+                            string result = ConsoleProcess.adbProcess(command + x).ToLowerInvariant();
                             if (result.Contains("not found") || result.Contains("fail") || result.Trim().Length == 0)
                             {
                                 failedApps.Add(x);
@@ -100,7 +100,7 @@ namespace ATA_GUI
 
                         break;
                     case OperationType.Transfer:
-                        _ = ConsoleProcess.adbFastbootCommandR(new[] { "-s " + deviceSerial + " shell mkdir sdcard/ATA" }, 0);
+                        _ = ConsoleProcess.adbProcess("-s " + deviceSerial + " shell mkdir sdcard/ATA");
 
                         array.ForEach(file =>
                         {
@@ -108,7 +108,7 @@ namespace ATA_GUI
                             {
                                 labelFileName.Text = file[(file.LastIndexOf('\\') + 1)..];
                                 Refresh();
-                                if (ConsoleProcess.adbFastbootCommandR(new[] { "-s " + deviceSerial + " push " + file + " sdcard/ATA " }, 0) == null)
+                                if (ConsoleProcess.adbProcess("-s " + deviceSerial + " push " + file + " sdcard/ATA ") == null)
                                 {
                                     failedApps.Add(file);
                                 }
@@ -128,10 +128,10 @@ namespace ATA_GUI
                         {
                             labelFileName.Text = x;
                             Refresh();
-                            string[] pathList = ConsoleProcess.adbFastbootCommandR("-s " + deviceSerial + " shell pm path " + x, 0).Split('\n').Where(it => it.Contains("package")).ToArray();
+                            string[] pathList = ConsoleProcess.adbProcess("-s " + deviceSerial + " shell pm path " + x).Split('\n').Where(it => it.Contains("package")).ToArray();
                             foreach (string path in pathList)
                             {
-                                string result = ConsoleProcess.adbFastbootCommandR(("-s " + deviceSerial + " pull " + path.Replace("package:", "").Trim() + " " + Application.StartupPath + "APKS\\" + x + "_" + path[(path.LastIndexOf('/') + 1)..]).Trim(), 0);
+                                string result = ConsoleProcess.adbProcess(("-s " + deviceSerial + " pull " + path.Replace("package:", "").Trim() + " " + Application.StartupPath + "APKS\\" + x + "_" + path[(path.LastIndexOf('/') + 1)..]).Trim());
                                 if (!result.Contains("file pulled"))
                                 {
                                     failedApps.Add(result);

@@ -1,3 +1,9 @@
+using ATA_GUI.Classes;
+using ATA_GUI.Forms;
+using ATA_GUI.Utils;
+using Ionic.Zip;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,12 +19,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ATA_GUI.Classes;
-using ATA_GUI.Forms;
-using ATA_GUI.Utils;
-using Ionic.Zip;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ATA_GUI
 {
@@ -251,8 +251,7 @@ namespace ATA_GUI
                             string[] arrayDeviceInfoCommands = { "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.build.version.release", "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.build.user",
                                         "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.product.cpu.abilist", "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.product.manufacturer" , "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.product.model",
                                         "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.product.board", "-s "+ ATA.CurrentDeviceSelected.ID +" shell getprop ro.product.device"};
-                            string deviceinfo = ConsoleProcess.adbFastbootCommandR(arrayDeviceInfoCommands, 0);
-                            string[] arrayDeviceInfo = deviceinfo.Split('\n');
+                            string[] arrayDeviceInfo = ConsoleProcess.adbFastbootCommandR(arrayDeviceInfoCommands, 0);
 
                             if (arrayDeviceInfo.Length > 6)
                             {
@@ -283,12 +282,12 @@ namespace ATA_GUI
                                     }
 
                                     labelAV.Text = arrayDeviceInfo[0];
-                                    labelBU.Text = arrayDeviceInfo[1];
-                                    labelCA.Text = arrayDeviceInfo[2];
+                                    labelBuildU.Text = arrayDeviceInfo[1];
+                                    labelCPUAb.Text = arrayDeviceInfo[2];
                                     labelManu.Text = arrayDeviceInfo[3];
                                     labelModel.Text = arrayDeviceInfo[4];
-                                    labelB.Text = arrayDeviceInfo[5];
-                                    labelD.Text = arrayDeviceInfo[6];
+                                    labelBoard.Text = arrayDeviceInfo[5];
+                                    labelDevice.Text = arrayDeviceInfo[6];
 
                                     if (arrayDeviceInfo.Length > 6)
                                     {

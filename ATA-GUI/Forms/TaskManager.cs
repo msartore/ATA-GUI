@@ -1,10 +1,9 @@
-﻿using System;
+﻿using ATA_GUI.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using ATA_GUI.Classes;
-using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
@@ -43,7 +42,10 @@ namespace ATA_GUI
 
             foreach (DataGridViewRow row in dataGridViewTasks.Rows)
             {
-                row.Visible = arrayApks.Any(it => ((string)row.Cells[8].Value).Contains(it.Trim()));
+                row.Visible = arrayApks.Any((it) =>
+                {
+                    return row.Cells[8].Value != null && ((string)row.Cells[8].Value).Contains(it.Trim());
+                });
             }
         }
 
@@ -51,7 +53,7 @@ namespace ATA_GUI
         {
             textBoxTaskName.Text = "";
             dataGridViewTasks.Rows.Clear();
-            string[] tasks = ConsoleProcess.adbFastbootCommandR(new string[] { " -s " + ATA.CurrentDeviceSelected.ID + " shell ps" }, 0).Split('\n');
+            string[] tasks = ConsoleProcess.adbProcess(MainForm.commandAssemblerF("shell ps")).Split('\n');
 
             for (int i = 1; i < tasks.Length; i++)
             {

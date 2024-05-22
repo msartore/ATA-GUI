@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,12 +20,14 @@ namespace ATA_GUI.Utils
 
         public static string adbFastbootCommandR(string command, int type)
         {
-            return adbFastbootCommandR(new[] { command }, type);
+            string[] r = adbFastbootCommandR(new[] { command }, type);
+
+            return r.Length > 0 ? r[0] : string.Empty;
         }
 
-        public static string adbFastbootCommandR(string[] args, int type)
+        public static string[] adbFastbootCommandR(string[] args, int type)
         {
-            StringBuilder ret = new();
+            List<string> ret = new List<string>();
             Cursor.Current = Cursors.WaitCursor;
 
             string executable = type switch
@@ -56,21 +58,21 @@ namespace ATA_GUI.Utils
 
                     if (!string.IsNullOrEmpty(error))
                     {
-                        ret.AppendLine(error);
+                        ret.Add(error);
                     }
                 }
                 string output = process.StandardOutput.ReadToEnd();
 
                 if (!string.IsNullOrEmpty(output))
                 {
-                    ret.AppendLine(output);
+                    ret.Add(output);
                 }
 
                 process.WaitForExit();
             }
 
             Cursor.Current = Cursors.Default;
-            return ret.ToString().Trim();
+            return ret.ToArray();
         }
 
         public static string scrcpyVersion(string arguments)

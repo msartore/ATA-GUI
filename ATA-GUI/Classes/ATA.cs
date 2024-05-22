@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 namespace ATA_GUI.Classes
 {
     internal class ATA
     {
-        public static readonly string CURRENTVERSION = "v3.7.4";
+        public static readonly string CURRENTVERSION = "v3.7.5";
         public static readonly string IPFileName = "IPList.txt";
 
         public HashSet<string> IPList { get; } = new HashSet<string>();

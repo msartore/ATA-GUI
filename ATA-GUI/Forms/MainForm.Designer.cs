@@ -30,7 +30,7 @@ namespace ATA_GUI
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             labelLog = new System.Windows.Forms.Label();
             buttonLogClear = new System.Windows.Forms.Button();
@@ -43,12 +43,12 @@ namespace ATA_GUI
             labelIP = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             labelAV = new System.Windows.Forms.Label();
-            labelD = new System.Windows.Forms.Label();
-            labelB = new System.Windows.Forms.Label();
+            labelDevice = new System.Windows.Forms.Label();
+            labelBoard = new System.Windows.Forms.Label();
             labelModel = new System.Windows.Forms.Label();
             labelManu = new System.Windows.Forms.Label();
-            labelCA = new System.Windows.Forms.Label();
-            labelBU = new System.Windows.Forms.Label();
+            labelCPUAb = new System.Windows.Forms.Label();
+            labelBuildU = new System.Windows.Forms.Label();
             labelAndroidVersion = new System.Windows.Forms.Label();
             labelProductDevice = new System.Windows.Forms.Label();
             labelProductBoard = new System.Windows.Forms.Label();
@@ -295,12 +295,12 @@ namespace ATA_GUI
             groupBoxDeviceInfo.Controls.Add(labelIP);
             groupBoxDeviceInfo.Controls.Add(label1);
             groupBoxDeviceInfo.Controls.Add(labelAV);
-            groupBoxDeviceInfo.Controls.Add(labelD);
-            groupBoxDeviceInfo.Controls.Add(labelB);
+            groupBoxDeviceInfo.Controls.Add(labelDevice);
+            groupBoxDeviceInfo.Controls.Add(labelBoard);
             groupBoxDeviceInfo.Controls.Add(labelModel);
             groupBoxDeviceInfo.Controls.Add(labelManu);
-            groupBoxDeviceInfo.Controls.Add(labelCA);
-            groupBoxDeviceInfo.Controls.Add(labelBU);
+            groupBoxDeviceInfo.Controls.Add(labelCPUAb);
+            groupBoxDeviceInfo.Controls.Add(labelBuildU);
             groupBoxDeviceInfo.Controls.Add(labelAndroidVersion);
             groupBoxDeviceInfo.Controls.Add(labelProductDevice);
             groupBoxDeviceInfo.Controls.Add(labelProductBoard);
@@ -399,25 +399,25 @@ namespace ATA_GUI
             labelAV.TabIndex = 13;
             labelAV.Text = "EMPTY";
             // 
-            // labelD
+            // labelDevice
             // 
-            labelD.AutoSize = true;
-            labelD.Location = new System.Drawing.Point(115, 93);
-            labelD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            labelD.Name = "labelD";
-            labelD.Size = new System.Drawing.Size(44, 15);
-            labelD.TabIndex = 12;
-            labelD.Text = "EMPTY";
+            labelDevice.AutoSize = true;
+            labelDevice.Location = new System.Drawing.Point(115, 93);
+            labelDevice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelDevice.Name = "labelDevice";
+            labelDevice.Size = new System.Drawing.Size(44, 15);
+            labelDevice.TabIndex = 12;
+            labelDevice.Text = "EMPTY";
             // 
-            // labelB
+            // labelBoard
             // 
-            labelB.AutoSize = true;
-            labelB.Location = new System.Drawing.Point(115, 78);
-            labelB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            labelB.Name = "labelB";
-            labelB.Size = new System.Drawing.Size(44, 15);
-            labelB.TabIndex = 11;
-            labelB.Text = "EMPTY";
+            labelBoard.AutoSize = true;
+            labelBoard.Location = new System.Drawing.Point(115, 78);
+            labelBoard.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelBoard.Name = "labelBoard";
+            labelBoard.Size = new System.Drawing.Size(44, 15);
+            labelBoard.TabIndex = 11;
+            labelBoard.Text = "EMPTY";
             // 
             // labelModel
             // 
@@ -439,25 +439,25 @@ namespace ATA_GUI
             labelManu.TabIndex = 9;
             labelManu.Text = "EMPTY";
             // 
-            // labelCA
+            // labelCPUAb
             // 
-            labelCA.AutoSize = true;
-            labelCA.Location = new System.Drawing.Point(115, 33);
-            labelCA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            labelCA.Name = "labelCA";
-            labelCA.Size = new System.Drawing.Size(44, 15);
-            labelCA.TabIndex = 8;
-            labelCA.Text = "EMPTY";
+            labelCPUAb.AutoSize = true;
+            labelCPUAb.Location = new System.Drawing.Point(115, 33);
+            labelCPUAb.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelCPUAb.Name = "labelCPUAb";
+            labelCPUAb.Size = new System.Drawing.Size(44, 15);
+            labelCPUAb.TabIndex = 8;
+            labelCPUAb.Text = "EMPTY";
             // 
-            // labelBU
+            // labelBuildU
             // 
-            labelBU.AutoSize = true;
-            labelBU.Location = new System.Drawing.Point(115, 18);
-            labelBU.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            labelBU.Name = "labelBU";
-            labelBU.Size = new System.Drawing.Size(44, 15);
-            labelBU.TabIndex = 7;
-            labelBU.Text = "EMPTY";
+            labelBuildU.AutoSize = true;
+            labelBuildU.Location = new System.Drawing.Point(115, 18);
+            labelBuildU.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelBuildU.Name = "labelBuildU";
+            labelBuildU.Size = new System.Drawing.Size(44, 15);
+            labelBuildU.TabIndex = 7;
+            labelBuildU.Text = "EMPTY";
             // 
             // labelAndroidVersion
             // 
@@ -591,8 +591,8 @@ namespace ATA_GUI
             // 
             dataGridViewPackages.AllowUserToAddRows = false;
             dataGridViewPackages.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewPackages.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             dataGridViewPackages.BackgroundColor = System.Drawing.Color.White;
             dataGridViewPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -2271,12 +2271,12 @@ namespace ATA_GUI
         private System.Windows.Forms.Label labelLog;
         private System.Windows.Forms.GroupBox groupBoxDeviceInfo;
         private System.Windows.Forms.Label labelAV;
-        private System.Windows.Forms.Label labelD;
-        private System.Windows.Forms.Label labelB;
+        private System.Windows.Forms.Label labelDevice;
+        private System.Windows.Forms.Label labelBoard;
         private System.Windows.Forms.Label labelModel;
         private System.Windows.Forms.Label labelManu;
-        private System.Windows.Forms.Label labelCA;
-        private System.Windows.Forms.Label labelBU;
+        private System.Windows.Forms.Label labelCPUAb;
+        private System.Windows.Forms.Label labelBuildU;
         private System.Windows.Forms.Label labelAndroidVersion;
         private System.Windows.Forms.Label labelProductDevice;
         private System.Windows.Forms.Label labelProductBoard;
