@@ -19,7 +19,7 @@ namespace ATA_GUI
             InitializeComponent();
         }
 
-        private async void buttonCheckLastVersion_ClickAsync(object sender, EventArgs e)
+        private async void ButtonCheckLastVersion_ClickAsync(object sender, EventArgs e)
         {
             if (!runningCheck)
             {
@@ -40,7 +40,7 @@ namespace ATA_GUI
                                 {
                                     if (MessageBox.Show("New version found: " + latestRelease + "\nCurrent Version: " + CURRENTVERSION + "\n\nDo you want to update it?", "Update found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
-                                        ConsoleProcess.openLink((string)jsonReal[0]["html_url"]);
+                                        ConsoleProcess.OpenLink((string)jsonReal[0]["html_url"]);
                                         jsonReal[0]["assets"][0].TryGetValue("browser_download_url", out JToken urlDownload);
                                         UpdateForm update = new(urlDownload.ToString());
                                         _ = update.ShowDialog();
@@ -89,13 +89,14 @@ namespace ATA_GUI
             }
         }
 
-        private void buttonCredits_Click(object sender, EventArgs e)
+        private void ButtonCredits_Click(object sender, EventArgs e)
         {
             _ = new AboutForm().ShowDialog();
         }
 
         private void Settings_Load(object sender, EventArgs e)
         {
+            buttonUpdateLocalSDK.Enabled = ATA.ADBPath.Contains(Directory.GetCurrentDirectory());
             labelCurrentRelease.Text = CURRENTVERSION;
             linkLabelChangelog.Visible = false;
 
@@ -106,12 +107,12 @@ namespace ATA_GUI
             starting = false;
         }
 
-        private void linkLabelChangelog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabelChangelog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ScrollableMessageBoxForm.show(changelog, "Changelog");
         }
 
-        private void checkBoxInitPopUp_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxInitPopUp_CheckedChanged(object sender, EventArgs e)
         {
             if (starting)
             {
@@ -125,13 +126,13 @@ namespace ATA_GUI
             _ = FeedbackForm.changeFeedbackFile(true);
         }
 
-        private void buttonUpdateLocalSDK_Click(object sender, EventArgs e)
+        private void ButtonUpdateLocalSDK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Yes;
             Close();
         }
 
-        private void buttonDeleteIPHistory_Click(object sender, EventArgs e)
+        private void ButtonDeleteIPHistory_Click(object sender, EventArgs e)
         {
             if (File.Exists(ATA.IPFileName))
             {

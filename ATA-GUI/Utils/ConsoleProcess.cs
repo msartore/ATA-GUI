@@ -3,39 +3,40 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ATA_GUI.Classes;
 
 namespace ATA_GUI.Utils
 {
     internal class ConsoleProcess
     {
-        public static string fastbootProcess(string command)
+        public static string FastbootProcess(string command)
         {
-            return adbFastbootCommandR(command, 1);
+            return AdbFastbootCommandR(command, 1);
         }
 
-        public static string adbProcess(string command)
+        public static string AdbProcess(string command)
         {
-            return adbFastbootCommandR(command, 0);
+            return AdbFastbootCommandR(command, 0);
         }
 
-        public static string adbFastbootCommandR(string command, int type)
+        public static string AdbFastbootCommandR(string command, int type)
         {
-            string[] r = adbFastbootCommandR(new[] { command }, type);
+            string[] r = AdbFastbootCommandR(new[] { command }, type);
 
             return r.Length > 0 ? r[0] : string.Empty;
         }
 
-        public static string[] adbFastbootCommandR(string[] args, int type)
+        public static string[] AdbFastbootCommandR(string[] args, int type)
         {
             List<string> ret = new List<string>();
             Cursor.Current = Cursors.WaitCursor;
 
-            string executable = type switch
+            string executable = type == 0 ? ATA.ADBPath : ATA.FASTBOOTPath;
+
+            if (executable == null)
             {
-                0 => "adb.exe",
-                1 => "fastboot.exe",
-                _ => throw new ArgumentOutOfRangeException(nameof(type), "Invalid type specified.")
-            };
+                return Array.Empty<string>();
+            }
 
             ProcessStartInfo startInfo = new()
             {
@@ -75,20 +76,20 @@ namespace ATA_GUI.Utils
             return ret.ToArray();
         }
 
-        public static string scrcpyVersion(string arguments)
+        public static string ScrcpyVersion(string arguments)
         {
-            return systemProcess("", "scrcpy.exe", arguments);
+            return SystemProcess("", "scrcpy.exe", arguments);
         }
 
-        public static void scrcpyProcess(string arguments)
+        public static void ScrcpyProcess(string arguments)
         {
             _ = Task.Run(() =>
             {
-                return systemProcess("", "scrcpy.exe", arguments);
+                return SystemProcess("", "scrcpy.exe", arguments);
             });
         }
 
-        public static string systemProcess(string command, string exe, string arguments)
+        public static string SystemProcess(string command, string exe, string arguments)
         {
             Process cmd = new();
             cmd.StartInfo.FileName = exe;
@@ -107,21 +108,21 @@ namespace ATA_GUI.Utils
             return result;
         }
 
-        public static void openLink(string link)
+        public static void OpenLink(string link)
         {
             _ = Process.Start(new ProcessStartInfo(link) { UseShellExecute = true });
         }
 
-        public static string systemCommand(string command)
+        public static string SystemCommand(string command)
         {
-            return systemProcess(command, "cmd.exe", "");
+            return SystemProcess(command, "cmd.exe", "");
         }
 
-        public static Task<string> systemCommandAsync(string command)
+        public static Task<string> SystemCommandAsync(string command)
         {
             return Task.Run(() =>
             {
-                return systemCommand(command);
+                return SystemCommand(command);
             });
         }
     }

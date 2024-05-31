@@ -175,6 +175,7 @@
 		com.motorola.attvowifi
 		com.wavemarket.waplauncher
 		com.samsung.attvvm
+		com.samsung.attribution
 		com.sec.android.app.ewidgetatt
 		com.synchronoss.dcs.att.r2g
 		fr.bouyguestelecom.ecm.android
@@ -617,7 +618,6 @@
 		com.sec.hearingadjust
 		com.sec.vsim.ericssonnsds.webapp
 		com.sec.svoice.lang.en_GB
-		com.samsung.android.sm_cn
 		com.android.bluetoothmidiservice
 		com.android.egg
 		com.android.galaxy4
@@ -773,7 +773,6 @@
 		com.samsung.android.cmfa.framework
 		com.sec.android.smartfpsadjuster
 		com.sec.location.nfwlocationprivacy
-		com.samsung.sait.sohservice
 		com.samsung.android.hdmapp
 		com.samsung.android.mcfds
 		com.samsung.android.rajaampat
@@ -2776,11 +2775,11 @@
 		com.unionpay.tsmservice
 		com.samsung.android.chnfileshare.kit
 		com.sec.clocationservice
+		com.samsung.android.dbsc
 		com.samsung.android.deviceidservice
 		com.samsung.chn.apps.devicemanagement
 		com.samsung.android.dkey
 		com.baidu.location.fused
-		com.samsung.android.globalpostprocmgr
 		com.samsung.hongbaoassistant
 		com.sec.android.iaft
 		com.samsung.android.app.kfa
@@ -2800,6 +2799,7 @@
 		com.samsung.android.tencentwifisecurity
 		com.samsung.android.sm.devicesecurity.tcm
 		com.samsung.android.softsim
+		com.samsung.sait.sohservice
 		com.samsung.android.sskds
 		com.samsung.android.tncpage
 		com.samsung.android.vdc
@@ -2811,6 +2811,20 @@
 		com.transsion.aivoiceassistant
 		com.transsion.aisettings
 		com.miui.phone.carriers.overlay
+		com.tracfone.preload.accountservices
+		org.chromium.webview_shell
+		com.microsoft.deviceintegrationservice
+		com.microsoftsdk.crossdeviceservicebroker
+		com.aura.jet.att
+		com.aura.oobe.att
+		com.samsung.android.inputshare
+		com.itc.autotest
+		com.transsnet.moreplus
+		com.transsion.nephilim
+		com.transsion.phoenix
+		com.mediatek.ppl
+		com.infinix.xshare
+		com.android.opasuwintegrationsample
 	</basic>
 	<medium>
 		com.sonyericsson.android.addoncamera.artfilter
@@ -3079,7 +3093,6 @@
 		com.google.android.overlay.gmsconfig.gsa
 		com.google.mainline.telemetry
 		vendor.qti.iwlan
-		com.samsung.android.incall.contentprovider
 		com.samsung.android.service.tagservice
 		com.samsung.android.app.telephonyui
 		com.samsung.android.appseparation
@@ -3087,8 +3100,6 @@
 		com.samsung.android.dialer
 		com.samsung.android.motionphoto.viewer
 		com.samsung.android.scs
-		com.samsung.android.singletake.service
-		com.samsung.ims.smk
 		com.softwinner.service
 		com.tcl.faceunlock
 		com.tct.soundrecorder
@@ -3351,7 +3362,6 @@
 		com.google.android.apps.pdfviewer
 		com.google.android.apps.wellbeing
 		com.google.android.backuptransport
-		com.google.android.configupdater
 		com.google.android.deskclock
 		com.google.android.gallery3d
 		com.google.android.googlequicksearchbox
@@ -3429,6 +3439,7 @@
 		com.oplus.sos
 		com.oppo.sos
 		com.coloros.activation
+		com.oplus.pantanal.ums
 		com.oplus.atlas
 		com.oplus.stdid
 		com.oneplus.dialer
@@ -3537,6 +3548,7 @@
 		com.fido.fido2client
 		com.oplus.apprecover
 		com.coloros.musiclink
+		com.oplus.nas
 		com.oplus.virtualcomm
 		com.oplus.screenrecorder
 		com.oplus.subsys
@@ -3608,16 +3620,29 @@
 		com.android.se.overlay.target
 		com.android.camera.overlay
 		com.heytap.headset
+		com.samsung.android.incall.contentprovider
 		com.sec.android.dexsystemui
 		com.samsung.android.kmxservice
 		com.samsung.android.knox.mpos
+		com.samsung.android.singletake.service
 		com.samsung.android.providers.trash
+		com.samsung.ims.smk
 		vendor.qti.data.txpwradmin
 		com.samsung.android.vdcservice
 		com.samsung.android.wifi.ai
 		com.sec.android.app.qsfastpairoverlay
 		com.samsung.android.A10s.d01.wallpapermulti
 		com.xiaomi.mbnloader
+		com.sonymobile.telephony.extension
+		com.samsung.android.app.notes.addons
+		com.samsung.android.app.interpreter
+		com.samsung.android.audiomirroring
+		com.hilauncherconfig
+		com.theme.icondefaultshape
+		com.android.bluetooth.auto_generated_rro_product__
+		com.google.android.overlay.modules.packageinstaller
+		com.transsion.bluetooth
+		com.android.settings.resoverlay
 	</medium>
 	<advance>
 		com.sonyericsson.mtp
@@ -3630,7 +3655,6 @@
 		com.sonymobile.themes.xperialoops2
 		com.sonyericsson.android.conversations
 		com.vzw.apnlib
-		com.samsung.attribution
 		com.sec.omadm
 		com.sec.omadmspr.syncmlphoneif
 		com.huawei.android.hwouc
@@ -3650,6 +3674,7 @@
 		com.sec.ims
 		com.wssyncmldm
 		com.samsung.android.MtpApplication
+		com.samsung.android.sm_cn
 		com.android.htmlviewer
 		com.android.simappdialog
 		com.android.backupconfirm
@@ -3812,17 +3837,13 @@
 		com.samsung.android.localeoverlaymanager
 		com.samsung.android.providers.contacts
 		com.samsung.android.providers.media
-		com.samsung.android.secsoundpicker
 		com.samsung.android.setting.multisound
 		com.samsung.android.sume.nn.service
 		com.samsung.android.wifi.softapwpathree.resources
 		com.samsung.gamedriver.ex2100
-		com.samsung.internal.systemui.navbar.gestural_no_hint
 		com.samsung.internal.systemui.navbar.gestural_no_hint_extra_wide_back
 		com.samsung.internal.systemui.navbar.gestural_no_hint_narrow_back
 		com.samsung.internal.systemui.navbar.gestural_no_hint_wide_back
-		com.samsung.internal.systemui.navbar.sec_gestural
-		com.samsung.internal.systemui.navbar.sec_gestural_no_hint
 		com.samsung.pregpudriver.ex2100
 		com.sec.android.systemupdate
 		com.sec.unifiedwfc
@@ -4109,7 +4130,6 @@
 		com.tct.systemservice
 		com.transsion.faceid
 		com.transsion.os.typeface
-		com.transsion.hilauncher
 		com.transsion.ossettingsext
 		com.transsion.systemupdate
 		com.transsion.thunderback
@@ -4168,6 +4188,7 @@
 		com.miui.systemui.overlay.devices.android
 		com.xiaomi.discover
 		com.xiaomi.powerchecker
+		com.google.android.configupdater
 		com.google.android.apps.nexuslauncher
 		com.google.android.gms
 		com.google.android.gsf
@@ -4267,7 +4288,6 @@
 		com.mi.android.globallauncher
 		com.miui.core.internal.editor.services
 		com.miui.core.internal.services
-		com.android.wifi.mainline.resources.overlay
 		com.android.wifi.system.mainline.resources.overlay
 		com.android.wifi.system.resources.overlay
 		com.android.overlay.systemui
@@ -4319,7 +4339,6 @@
 		com.android.overlay.dynamiciconconfig
 		com.android.overlay.launcher3
 		com.android.overlay.settings
-		com.android.settings.os.overlay
 		com.android.systemui.os.overlay
 		com.infinix
 		com.sprd.omacp
@@ -4335,8 +4354,15 @@
 		com.vivo.game
 		com.vivo.imanager
 		com.xiaomi.ugd
+		com.samsung.android.globalpostprocmgr
+		com.samsung.internal.systemui.navbar.gestural_no_hint
+		com.samsung.internal.systemui.navbar.sec_gestural_no_hint
+		com.samsung.internal.systemui.navbar.sec_gestural
 		com.samsung.android.packageinstaller
 		com.samsung.android.timezone.updater
+		com.samsung.android.secsoundpicker
 		com.sec.android.app.camerasaver
+		com.android.settings.os.overlay
+		com.android.soundpicker.auto_generated_rro_product__
 	</advance>
 </bloatware>

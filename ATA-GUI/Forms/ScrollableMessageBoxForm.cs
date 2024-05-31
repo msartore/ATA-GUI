@@ -22,7 +22,7 @@ namespace ATA_GUI
 
         private void richTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            ConsoleProcess.openLink(e.LinkText);
+            ConsoleProcess.OpenLink(e.LinkText);
         }
     }
 }

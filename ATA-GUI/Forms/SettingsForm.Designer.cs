@@ -88,7 +88,7 @@ namespace ATA_GUI
             buttonCredits.TabIndex = 33;
             buttonCredits.Text = "About";
             buttonCredits.UseVisualStyleBackColor = false;
-            buttonCredits.Click += buttonCredits_Click;
+            buttonCredits.Click += ButtonCredits_Click;
             // 
             // buttonCheckLastVersion
             // 
@@ -102,7 +102,7 @@ namespace ATA_GUI
             buttonCheckLastVersion.TabIndex = 34;
             buttonCheckLastVersion.Text = "Check Last Version";
             buttonCheckLastVersion.UseVisualStyleBackColor = false;
-            buttonCheckLastVersion.Click += buttonCheckLastVersion_ClickAsync;
+            buttonCheckLastVersion.Click += ButtonCheckLastVersion_ClickAsync;
             // 
             // linkLabelChangelog
             // 
@@ -114,7 +114,7 @@ namespace ATA_GUI
             linkLabelChangelog.TabIndex = 40;
             linkLabelChangelog.TabStop = true;
             linkLabelChangelog.Text = "Changelog";
-            linkLabelChangelog.LinkClicked += linkLabelChangelog_LinkClicked;
+            linkLabelChangelog.LinkClicked += LinkLabelChangelog_LinkClicked;
             // 
             // labelLog
             // 
@@ -146,7 +146,7 @@ namespace ATA_GUI
             checkBoxInitPopUp.TabIndex = 41;
             checkBoxInitPopUp.Text = "Disable feedback pop up";
             checkBoxInitPopUp.UseVisualStyleBackColor = true;
-            checkBoxInitPopUp.CheckedChanged += checkBoxInitPopUp_CheckedChanged;
+            checkBoxInitPopUp.CheckedChanged += CheckBoxInitPopUp_CheckedChanged;
             // 
             // buttonUpdateLocalSDK
             // 
@@ -160,7 +160,7 @@ namespace ATA_GUI
             buttonUpdateLocalSDK.TabIndex = 42;
             buttonUpdateLocalSDK.Text = "Update local SDK Platform Tools";
             buttonUpdateLocalSDK.UseVisualStyleBackColor = false;
-            buttonUpdateLocalSDK.Click += buttonUpdateLocalSDK_Click;
+            buttonUpdateLocalSDK.Click += ButtonUpdateLocalSDK_Click;
             // 
             // buttonDeleteIPHistory
             // 
@@ -174,7 +174,7 @@ namespace ATA_GUI
             buttonDeleteIPHistory.TabIndex = 43;
             buttonDeleteIPHistory.Text = "Delete IP History";
             buttonDeleteIPHistory.UseVisualStyleBackColor = false;
-            buttonDeleteIPHistory.Click += buttonDeleteIPHistory_Click;
+            buttonDeleteIPHistory.Click += ButtonDeleteIPHistory_Click;
             // 
             // buttonATABridgeDownload
             // 

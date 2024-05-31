@@ -14,27 +14,27 @@ namespace ATA_GUI
 
         private void pictureRepo_Click(object sender, EventArgs e)
         {
-            ConsoleProcess.openLink("https://github.com/MassimilianoSartore/ATA-GUI");
+            ConsoleProcess.OpenLink("https://github.com/MassimilianoSartore/ATA-GUI");
         }
 
         private void labelLicense_Click(object sender, EventArgs e)
         {
-            ConsoleProcess.openLink("https://raw.githubusercontent.com/MassimilianoSartore/ATA-GUI/main/LICENSE");
+            ConsoleProcess.OpenLink("https://raw.githubusercontent.com/MassimilianoSartore/ATA-GUI/main/LICENSE");
         }
 
         private void linkLabelDNZ_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ConsoleProcess.openLink("https://github.com/haf/DotNetZip.Semverd");
+            ConsoleProcess.OpenLink("https://github.com/haf/DotNetZip.Semverd");
         }
 
         private void linkLabelSDK_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ConsoleProcess.openLink("https://developer.android.com/studio/releases/platform-tools");
+            ConsoleProcess.OpenLink("https://developer.android.com/studio/releases/platform-tools");
         }
 
         private void linkLabelRepo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ConsoleProcess.openLink("https://github.com/MassimilianoSartore/ATA-GUI");
+            ConsoleProcess.OpenLink("https://github.com/MassimilianoSartore/ATA-GUI");
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
@@ -44,17 +44,17 @@ namespace ATA_GUI
 
         private void linkLabelNewtonsoft_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ConsoleProcess.openLink("https://www.newtonsoft.com/json");
+            ConsoleProcess.OpenLink("https://www.newtonsoft.com/json");
         }
 
         private void linkLabelScrcpy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ConsoleProcess.openLink("https://github.com/Genymobile/scrcpy");
+            ConsoleProcess.OpenLink("https://github.com/Genymobile/scrcpy");
         }
 
         private void linkLabelIcons_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ConsoleProcess.openLink("https://icons8.com");
+            ConsoleProcess.OpenLink("https://icons8.com");
         }
 
         private void About_Load(object sender, EventArgs e)
@@ -64,12 +64,12 @@ namespace ATA_GUI
 
         private void linkLabelGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ConsoleProcess.openLink("https://github.com/msartore");
+            ConsoleProcess.OpenLink("https://github.com/msartore");
         }
 
         private void linkLabelWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ConsoleProcess.openLink("https://msartore.dev");
+            ConsoleProcess.OpenLink("https://msartore.dev");
         }
     }
 }

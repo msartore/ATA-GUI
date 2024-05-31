@@ -95,7 +95,7 @@ namespace ATA_GUI
 
                     if (nonSystemApp.Any(it => it.Equals(app)) || comboBoxActionMode.SelectedIndex == 1)
                     {
-                        if (ConsoleProcess.adbFastbootCommandR(MainForm.commandAssemblerF("shell pm uninstall -k --user " + ATA.CurrentDeviceSelected.User + " " + item), 0).Contains("Success"))
+                        if (ConsoleProcess.AdbFastbootCommandR(MainForm.commandAssemblerF("shell pm uninstall -k --user " + ATA.CurrentDeviceSelected.User + " " + item), 0).Contains("Success"))
                         {
                             listSuccess.Add(app);
                         }
@@ -106,7 +106,7 @@ namespace ATA_GUI
                     }
                     else
                     {
-                        if (ConsoleProcess.adbFastbootCommandR(MainForm.commandAssemblerF("shell pm disable-user --user " + ATA.CurrentDeviceSelected.User + " " + item), 0).Contains(item + " new state: disabled-user"))
+                        if (ConsoleProcess.AdbFastbootCommandR(MainForm.commandAssemblerF("shell pm disable-user --user " + ATA.CurrentDeviceSelected.User + " " + item), 0).Contains(item + " new state: disabled-user"))
                         {
                             listSuccess.Add(app);
                         }

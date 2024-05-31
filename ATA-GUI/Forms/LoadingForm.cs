@@ -90,7 +90,7 @@ namespace ATA_GUI
                         {
                             labelFileName.Text = x;
                             Refresh();
-                            string result = ConsoleProcess.adbProcess(command + x).ToLowerInvariant();
+                            string result = ConsoleProcess.AdbProcess(command + x).ToLowerInvariant();
                             if (result.Contains("not found") || result.Contains("fail") || result.Trim().Length == 0 || result.Contains("doesn't exist"))
                             {
                                 failedApps.Add(x);
@@ -100,7 +100,7 @@ namespace ATA_GUI
 
                         break;
                     case OperationType.Transfer:
-                        _ = ConsoleProcess.adbProcess("-s " + deviceSerial + " shell mkdir sdcard/ATA");
+                        _ = ConsoleProcess.AdbProcess("-s " + deviceSerial + " shell mkdir sdcard/ATA");
 
                         array.ForEach(file =>
                         {
@@ -108,7 +108,7 @@ namespace ATA_GUI
                             {
                                 labelFileName.Text = file[(file.LastIndexOf('\\') + 1)..];
                                 Refresh();
-                                if (ConsoleProcess.adbProcess("-s " + deviceSerial + " push " + file + " sdcard/ATA ") == null)
+                                if (ConsoleProcess.AdbProcess("-s " + deviceSerial + " push " + file + " sdcard/ATA ") == null)
                                 {
                                     failedApps.Add(file);
                                 }
@@ -121,17 +121,17 @@ namespace ATA_GUI
 
                         if (!Directory.Exists("APKS"))
                         {
-                            _ = ConsoleProcess.systemCommand("mkdir APKS");
+                            _ = ConsoleProcess.SystemCommand("mkdir APKS");
                         }
 
                         array.ForEach(x =>
                         {
                             labelFileName.Text = x;
                             Refresh();
-                            string[] pathList = ConsoleProcess.adbProcess("-s " + deviceSerial + " shell pm path " + x).Split('\n').Where(it => it.Contains("package")).ToArray();
+                            string[] pathList = ConsoleProcess.AdbProcess("-s " + deviceSerial + " shell pm path " + x).Split('\n').Where(it => it.Contains("package")).ToArray();
                             foreach (string path in pathList)
                             {
-                                string result = ConsoleProcess.adbProcess(("-s " + deviceSerial + " pull " + path.Replace("package:", "").Trim() + " " + Application.StartupPath + "APKS\\" + x + "_" + path[(path.LastIndexOf('/') + 1)..]).Trim());
+                                string result = ConsoleProcess.AdbProcess(("-s " + deviceSerial + " pull " + path.Replace("package:", "").Trim() + " " + Application.StartupPath + "APKS\\" + x + "_" + path[(path.LastIndexOf('/') + 1)..]).Trim());
                                 if (!result.Contains("file pulled"))
                                 {
                                     failedApps.Add(result);

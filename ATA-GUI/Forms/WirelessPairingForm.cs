@@ -43,7 +43,7 @@ namespace ATA_GUI.Forms
                 return;
             }
 
-            output = ConsoleProcess.adbProcess(string.Format("pair {0}:{1} {2}", IP, PORT, code));
+            output = ConsoleProcess.AdbProcess(string.Format("pair {0}:{1} {2}", IP, PORT, code));
 
             DialogResult = output.Contains("Successfully paired") ? DialogResult.OK : DialogResult.No;
 

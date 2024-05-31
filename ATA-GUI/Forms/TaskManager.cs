@@ -53,7 +53,7 @@ namespace ATA_GUI
         {
             textBoxTaskName.Text = "";
             dataGridViewTasks.Rows.Clear();
-            string[] tasks = ConsoleProcess.adbProcess(MainForm.commandAssemblerF("shell ps")).Split('\n');
+            string[] tasks = ConsoleProcess.AdbProcess(MainForm.commandAssemblerF("shell ps")).Split('\n');
 
             for (int i = 1; i < tasks.Length; i++)
             {
@@ -99,7 +99,7 @@ namespace ATA_GUI
         {
             foreach (DataGridViewRow row in dataGridViewTasks.SelectedRows)
             {
-                _ = ConsoleProcess.adbFastbootCommandR(MainForm.commandAssemblerF(" shell am force-stop " + row.Cells[8].Value).Replace("\r", ""), 0);
+                _ = ConsoleProcess.AdbFastbootCommandR(MainForm.commandAssemblerF(" shell am force-stop " + row.Cells[8].Value).Replace("\r", ""), 0);
             }
 
             loadTasks();

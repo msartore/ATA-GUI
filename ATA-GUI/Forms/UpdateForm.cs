@@ -36,7 +36,7 @@ namespace ATA_GUI
                         sw.WriteLine("@echo off\nTITLE ATA-GUI Updater\ntaskkill /f /im \"ATA-GUI.exe\"\ndel \"ATA-GUI.exe\"\ndel ATAUpdate.zip\ncd ATAUpdate\nmove /y * \"" + Path.GetDirectoryName(Application.ExecutablePath) + "\"\ncd ..\nrmdir ATAUpdate\nstart \"\" \"ATA-GUI.exe\"\nexit");
                     }
                     labelLog.Text = "Downloading update...";
-                    _ = ConsoleProcess.systemCommandAsync("rmdir /s /q ATAUpdate");
+                    _ = ConsoleProcess.SystemCommandAsync("rmdir /s /q ATAUpdate");
                     Refresh();
                     if (!File.Exists(ataUFileName))
                     {
@@ -62,7 +62,7 @@ namespace ATA_GUI
                     Refresh();
                     using (ZipFile zip = ZipFile.Read(ataZipFileName))
                     {
-                        _ = ConsoleProcess.systemCommand("mkdir ATAUpdate");
+                        _ = ConsoleProcess.SystemCommand("mkdir ATAUpdate");
                         zip.ExtractAll(Path.GetDirectoryName(Application.ExecutablePath) + "\\ATAUpdate");
                     }
                     reportProgress();
@@ -70,7 +70,7 @@ namespace ATA_GUI
                     Refresh();
                     labelLog.Text = "Closing App...";
                     Refresh();
-                    _ = ConsoleProcess.systemCommandAsync("start " + ataUFileName);
+                    _ = ConsoleProcess.SystemCommandAsync("start " + ataUFileName);
                     Application.Exit();
                 }
                 catch (Exception ex)

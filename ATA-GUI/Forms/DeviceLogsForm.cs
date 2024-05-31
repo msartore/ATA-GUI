@@ -148,7 +148,7 @@ namespace ATA_GUI
         {
             checkAndStop();
             buttonLogcat.Text = "Start";
-            _ = ConsoleProcess.adbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " logcat -c", 0);
+            _ = ConsoleProcess.AdbFastbootCommandR("-s " + ATA.CurrentDeviceSelected.ID + " logcat -c", 0);
         }
 
         private void richTextBoxLog_LinkClicked(object sender, LinkClickedEventArgs e)

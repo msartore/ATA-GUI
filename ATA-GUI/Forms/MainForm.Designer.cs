@@ -816,7 +816,7 @@ namespace ATA_GUI
             // toolStripButtonSearch
             // 
             toolStripButtonSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            toolStripButtonSearch.Image = Properties.Resources.icons8_search_in_browser_48;
+            toolStripButtonSearch.Image = Properties.Resources.icons8_search_48;
             toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripButtonSearch.Name = "toolStripButtonSearch";
             toolStripButtonSearch.Size = new System.Drawing.Size(23, 22);
