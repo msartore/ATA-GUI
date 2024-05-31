@@ -33,7 +33,7 @@ ATA-GUI is an app that lets you perform advanced tasks on your Android™ device
 - **Grant WRITE_SECURE_SETTINGS and DUMP Permissions**
 - **Retrieve OEM Device ID**
 - **Support for Multiple User Devices**
-
+- **Support for enviroment variables
 
 ## ATA License
 
