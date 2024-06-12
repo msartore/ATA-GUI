@@ -175,7 +175,6 @@ namespace ATA_GUI
             checkGrantedPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             backgroundWorkerExeDownloader = new System.ComponentModel.BackgroundWorker();
             buttonMobileScreenShare = new System.Windows.Forms.Button();
-            label9 = new System.Windows.Forms.Label();
             pictureBoxLogo = new System.Windows.Forms.PictureBox();
             panelTopBar = new System.Windows.Forms.Panel();
             pictureBoxMaximize = new System.Windows.Forms.PictureBox();
@@ -1729,27 +1728,18 @@ namespace ATA_GUI
             // buttonMobileScreenShare
             // 
             buttonMobileScreenShare.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            buttonMobileScreenShare.ForeColor = System.Drawing.Color.Transparent;
-            buttonMobileScreenShare.Image = Properties.Resources.icons8_screensharing_48;
-            buttonMobileScreenShare.Location = new System.Drawing.Point(391, 541);
+            buttonMobileScreenShare.ForeColor = System.Drawing.Color.Black;
+            buttonMobileScreenShare.Image = Properties.Resources.multiple_devices_48;
+            buttonMobileScreenShare.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            buttonMobileScreenShare.Location = new System.Drawing.Point(391, 537);
             buttonMobileScreenShare.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonMobileScreenShare.Name = "buttonMobileScreenShare";
-            buttonMobileScreenShare.Size = new System.Drawing.Size(70, 63);
+            buttonMobileScreenShare.Size = new System.Drawing.Size(70, 91);
             buttonMobileScreenShare.TabIndex = 39;
+            buttonMobileScreenShare.Text = "Screen Share";
+            buttonMobileScreenShare.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             buttonMobileScreenShare.UseVisualStyleBackColor = true;
             buttonMobileScreenShare.Click += buttonMobileScreenShare_Click;
-            // 
-            // label9
-            // 
-            label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            label9.AutoSize = true;
-            label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            label9.Location = new System.Drawing.Point(389, 607);
-            label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label9.Name = "label9";
-            label9.Size = new System.Drawing.Size(72, 13);
-            label9.TabIndex = 40;
-            label9.Text = "Screen Share";
             // 
             // pictureBoxLogo
             // 
@@ -2201,7 +2191,6 @@ namespace ATA_GUI
             BackColor = System.Drawing.Color.White;
             ClientSize = new System.Drawing.Size(942, 632);
             Controls.Add(richTextBoxLog);
-            Controls.Add(label9);
             Controls.Add(groupBoxTerminal);
             Controls.Add(buttonTaskManager);
             Controls.Add(buttonDeviceLogs);
@@ -2352,7 +2341,6 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem uninstalledAppToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker backgroundWorkerExeDownloader;
         private System.Windows.Forms.Button buttonMobileScreenShare;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.Panel panelTopBar;
         private System.Windows.Forms.ToolStripPanel BottomToolStripPanel;

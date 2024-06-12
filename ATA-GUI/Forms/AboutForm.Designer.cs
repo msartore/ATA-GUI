@@ -34,6 +34,13 @@ namespace ATA_GUI
             labelVersion = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             groupBox2 = new System.Windows.Forms.GroupBox();
+            linkLabelBlo = new System.Windows.Forms.LinkLabel();
+            linkLabelIco = new System.Windows.Forms.LinkLabel();
+            linkLabelScr = new System.Windows.Forms.LinkLabel();
+            linkLabelNew = new System.Windows.Forms.LinkLabel();
+            linkLabelSd = new System.Windows.Forms.LinkLabel();
+            linkLabelDot = new System.Windows.Forms.LinkLabel();
+            linkLabelBL = new System.Windows.Forms.LinkLabel();
             linkLabelIcons = new System.Windows.Forms.LinkLabel();
             linkLabelScrcpy = new System.Windows.Forms.LinkLabel();
             linkLabelNewtonsoft = new System.Windows.Forms.LinkLabel();
@@ -87,6 +94,13 @@ namespace ATA_GUI
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(linkLabelBlo);
+            groupBox2.Controls.Add(linkLabelIco);
+            groupBox2.Controls.Add(linkLabelScr);
+            groupBox2.Controls.Add(linkLabelNew);
+            groupBox2.Controls.Add(linkLabelSd);
+            groupBox2.Controls.Add(linkLabelDot);
+            groupBox2.Controls.Add(linkLabelBL);
             groupBox2.Controls.Add(linkLabelIcons);
             groupBox2.Controls.Add(linkLabelScrcpy);
             groupBox2.Controls.Add(linkLabelNewtonsoft);
@@ -96,10 +110,76 @@ namespace ATA_GUI
             groupBox2.Margin = new System.Windows.Forms.Padding(4);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            groupBox2.Size = new System.Drawing.Size(421, 142);
+            groupBox2.Size = new System.Drawing.Size(421, 165);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Assest Used";
+            // 
+            // linkLabelBlo
+            // 
+            linkLabelBlo.AutoSize = true;
+            linkLabelBlo.Location = new System.Drawing.Point(334, 132);
+            linkLabelBlo.Name = "linkLabelBlo";
+            linkLabelBlo.Size = new System.Drawing.Size(51, 15);
+            linkLabelBlo.TabIndex = 11;
+            linkLabelBlo.TabStop = true;
+            linkLabelBlo.Text = "LICENSE";
+            linkLabelBlo.LinkClicked += linkLabelBlo_LinkClicked;
+            // 
+            // linkLabelScr
+            // 
+            linkLabelScr.AutoSize = true;
+            linkLabelScr.Location = new System.Drawing.Point(334, 86);
+            linkLabelScr.Name = "linkLabelScr";
+            linkLabelScr.Size = new System.Drawing.Size(51, 15);
+            linkLabelScr.TabIndex = 9;
+            linkLabelScr.TabStop = true;
+            linkLabelScr.Text = "LICENSE";
+            linkLabelScr.LinkClicked += linkLabelScr_LinkClicked;
+            // 
+            // linkLabelNew
+            // 
+            linkLabelNew.AutoSize = true;
+            linkLabelNew.Location = new System.Drawing.Point(334, 63);
+            linkLabelNew.Name = "linkLabelNew";
+            linkLabelNew.Size = new System.Drawing.Size(51, 15);
+            linkLabelNew.TabIndex = 8;
+            linkLabelNew.TabStop = true;
+            linkLabelNew.Text = "LICENSE";
+            linkLabelNew.LinkClicked += linkLabelNew_LinkClicked;
+            // 
+            // linkLabelSd
+            // 
+            linkLabelSd.AutoSize = true;
+            linkLabelSd.Location = new System.Drawing.Point(334, 41);
+            linkLabelSd.Name = "linkLabelSd";
+            linkLabelSd.Size = new System.Drawing.Size(51, 15);
+            linkLabelSd.TabIndex = 7;
+            linkLabelSd.TabStop = true;
+            linkLabelSd.Text = "LICENSE";
+            linkLabelSd.LinkClicked += linkLabelSd_LinkClicked;
+            // 
+            // linkLabelDot
+            // 
+            linkLabelDot.AutoSize = true;
+            linkLabelDot.Location = new System.Drawing.Point(334, 19);
+            linkLabelDot.Name = "linkLabelDot";
+            linkLabelDot.Size = new System.Drawing.Size(51, 15);
+            linkLabelDot.TabIndex = 6;
+            linkLabelDot.TabStop = true;
+            linkLabelDot.Text = "LICENSE";
+            linkLabelDot.LinkClicked += linkLabelDot_LinkClicked;
+            // 
+            // linkLabelBL
+            // 
+            linkLabelBL.AutoSize = true;
+            linkLabelBL.Location = new System.Drawing.Point(14, 132);
+            linkLabelBL.Name = "linkLabelBL";
+            linkLabelBL.Size = new System.Drawing.Size(77, 15);
+            linkLabelBL.TabIndex = 5;
+            linkLabelBL.TabStop = true;
+            linkLabelBL.Text = "Bloatware list";
+            linkLabelBL.LinkClicked += linkLabelBL_LinkClicked;
             // 
             // linkLabelIcons
             // 
@@ -236,7 +316,7 @@ namespace ATA_GUI
             // buttonClose
             // 
             buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            buttonClose.Location = new System.Drawing.Point(348, 344);
+            buttonClose.Location = new System.Drawing.Point(348, 368);
             buttonClose.Margin = new System.Windows.Forms.Padding(4);
             buttonClose.Name = "buttonClose";
             buttonClose.Size = new System.Drawing.Size(88, 26);
@@ -245,12 +325,12 @@ namespace ATA_GUI
             buttonClose.UseVisualStyleBackColor = true;
             buttonClose.Click += buttonClose_Click;
             // 
-            // About
+            // AboutForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.SystemColors.ControlLightLight;
-            ClientSize = new System.Drawing.Size(449, 381);
+            ClientSize = new System.Drawing.Size(449, 407);
             Controls.Add(buttonClose);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -260,7 +340,7 @@ namespace ATA_GUI
             Margin = new System.Windows.Forms.Padding(4);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "About";
+            Name = "AboutForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "About";
             Load += About_Load;
@@ -291,5 +371,12 @@ namespace ATA_GUI
         private System.Windows.Forms.LinkLabel linkLabelIcons;
         private System.Windows.Forms.LinkLabel linkLabelWebsite;
         private System.Windows.Forms.LinkLabel linkLabelGithub;
+        private System.Windows.Forms.LinkLabel linkLabelBL;
+        private System.Windows.Forms.LinkLabel linkLabelBlo;
+        private System.Windows.Forms.LinkLabel linkLabelIco;
+        private System.Windows.Forms.LinkLabel linkLabelScr;
+        private System.Windows.Forms.LinkLabel linkLabelNew;
+        private System.Windows.Forms.LinkLabel linkLabelSd;
+        private System.Windows.Forms.LinkLabel linkLabelDot;
     }
 }

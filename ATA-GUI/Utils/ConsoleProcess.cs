@@ -76,36 +76,43 @@ namespace ATA_GUI.Utils
             return ret.ToArray();
         }
 
-        public static string ScrcpyVersion(string arguments)
+        public static Task<string> ScrcpyAsk(string arguments)
         {
             return SystemProcess("", "scrcpy.exe", arguments);
         }
 
         public static void ScrcpyProcess(string arguments)
         {
-            _ = Task.Run(() =>
+            Task.Run(() =>
             {
                 return SystemProcess("", "scrcpy.exe", arguments);
             });
         }
 
-        public static string SystemProcess(string command, string exe, string arguments)
+        public static async Task<string> SystemProcess(string command, string exe, string arguments)
         {
-            Process cmd = new();
+            using Process cmd = new();
             cmd.StartInfo.FileName = exe;
             cmd.StartInfo.RedirectStandardInput = true;
             cmd.StartInfo.RedirectStandardOutput = true;
+            cmd.StartInfo.RedirectStandardError = true;
             cmd.StartInfo.CreateNoWindow = true;
             cmd.StartInfo.UseShellExecute = false;
             cmd.StartInfo.Arguments = arguments;
-            _ = cmd.Start();
-            cmd.StandardInput.WriteLine(command);
-            cmd.StandardInput.Flush();
-            cmd.StandardInput.Close();
-            string result = cmd.StandardOutput.ReadToEnd();
-            cmd.WaitForExit();
-            cmd.Close();
-            return result;
+
+            cmd.Start();
+
+            await using var standardInputWriter = cmd.StandardInput;
+            await standardInputWriter.WriteLineAsync(command);
+            await standardInputWriter.FlushAsync();
+            standardInputWriter.Close();
+
+            string output = await cmd.StandardOutput.ReadToEndAsync();
+            string error = await cmd.StandardError.ReadToEndAsync();
+
+            await cmd.WaitForExitAsync();
+
+            return string.IsNullOrEmpty(error) ? output : $"{output}\n{error}";
         }
 
         public static void OpenLink(string link)
@@ -113,9 +120,9 @@ namespace ATA_GUI.Utils
             _ = Process.Start(new ProcessStartInfo(link) { UseShellExecute = true });
         }
 
-        public static string SystemCommand(string command)
+        public static async Task<string> SystemCommand(string command)
         {
-            return SystemProcess(command, "cmd.exe", "");
+            return await SystemProcess(command, "cmd.exe", "");
         }
 
         public static Task<string> SystemCommandAsync(string command)

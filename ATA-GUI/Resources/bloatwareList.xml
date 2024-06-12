@@ -736,7 +736,6 @@
 		com.google.android.cellbroadcastservice.overlay.miui
 		com.google.android.ondevicepersonalization.services
 		com.google.android.overlay.modules.captiveportallogin.forframework
-		com.google.android.overlay.gmsconfig
 		com.google.android.overlay.gmsconfig.asi
 		com.google.android.overlay.gmsconfig.common
 		com.google.android.overlay.gmsconfig.comms
@@ -827,6 +826,7 @@
 		com.lge.qhelp
 		com.lge.qhelp.application
 		com.lge.qmemoplus
+		com.lge.remote.lgairdrive
 		com.lge.remote.setting
 		com.lge.sizechangable.weather
 		com.lge.sizechangable.weather.platform
@@ -2477,6 +2477,7 @@
 		com.samsung.android.scloud.backup
 		com.sec.android.app.saspmodemailerprovider
 		com.nttdocomo.android.rwpushcontroller
+		com.rsupport.rs.activity.lge.allinone
 		com.rsupport.rsperm.ntt
 		com.oppo.nw
 		com.qualcomm.qti.tm
@@ -2798,6 +2799,7 @@
 		com.sec.android.yellowpage
 		com.samsung.android.tencentwifisecurity
 		com.samsung.android.sm.devicesecurity.tcm
+		com.samsung.samsungpssdplus
 		com.samsung.android.softsim
 		com.samsung.sait.sohservice
 		com.samsung.android.sskds
@@ -2825,6 +2827,19 @@
 		com.mediatek.ppl
 		com.infinix.xshare
 		com.android.opasuwintegrationsample
+		com.sony.dtv.seeds.iot
+		com.sony.dtv.sonyselect
+		com.sony.dtv.recapp
+		com.sony.dtv.osat.music
+		com.sony.dtv.livingfit
+		com.youview.poa
+		com.sony.dtv.smarthelp
+		com.sony.dtv.notificationcenter
+		com.sony.dtv.timers
+		com.vewd.core.integration.dia
+		com.sony.dtv.promos
+		screnmirroring.com
+		com.apple.atve.sony.appletv
 	</basic>
 	<medium>
 		com.sonyericsson.android.addoncamera.artfilter
@@ -3090,6 +3105,7 @@
 		com.roaming.android.gsimbase
 		com.roaming.android.gsimcontentprovider
 		com.android.hotspot2.osulogin
+		com.google.android.overlay.gmsconfig
 		com.google.android.overlay.gmsconfig.gsa
 		com.google.mainline.telemetry
 		vendor.qti.iwlan
@@ -3643,6 +3659,8 @@
 		com.google.android.overlay.modules.packageinstaller
 		com.transsion.bluetooth
 		com.android.settings.resoverlay
+		com.sony.dtv.ecodashboard
+		com.sony.dtv.calibrationmonitor
 	</medium>
 	<advance>
 		com.sonyericsson.mtp
@@ -3894,6 +3912,7 @@
 		com.tct.wfcwebiew
 		com.lge.ime
 		com.lge.launcher2.theme.optimus
+		com.lge.lgdmsclient
 		com.lge.sizechangable.weather.theme.optimus
 		com.lge.theme.titan
 		com.android.partnerbrowsercustomizations.btl.s600ww.overlay
@@ -4364,5 +4383,6 @@
 		com.sec.android.app.camerasaver
 		com.android.settings.os.overlay
 		com.android.soundpicker.auto_generated_rro_product__
+		com.sony.dtv.tvx
 	</advance>
 </bloatware>

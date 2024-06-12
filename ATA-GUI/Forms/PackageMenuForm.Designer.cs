@@ -30,98 +30,105 @@ namespace ATA_GUI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackageMenuForm));
-            this.richTextBoxAPKList = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonEnable = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.buttonDisable = new System.Windows.Forms.Button();
-            this.buttonClearData = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            richTextBoxAPKList = new System.Windows.Forms.RichTextBox();
+            label1 = new System.Windows.Forms.Label();
+            buttonEnable = new System.Windows.Forms.Button();
+            buttonCancel = new System.Windows.Forms.Button();
+            buttonDisable = new System.Windows.Forms.Button();
+            buttonClearData = new System.Windows.Forms.Button();
+            SuspendLayout();
             // 
             // richTextBoxAPKList
             // 
-            this.richTextBoxAPKList.BackColor = System.Drawing.Color.Black;
-            this.richTextBoxAPKList.ForeColor = System.Drawing.Color.White;
-            this.richTextBoxAPKList.Location = new System.Drawing.Point(64, 21);
-            this.richTextBoxAPKList.Name = "richTextBoxAPKList";
-            this.richTextBoxAPKList.Size = new System.Drawing.Size(385, 76);
-            this.richTextBoxAPKList.TabIndex = 0;
-            this.richTextBoxAPKList.Text = "";
+            richTextBoxAPKList.BackColor = System.Drawing.Color.Black;
+            richTextBoxAPKList.ForeColor = System.Drawing.Color.White;
+            richTextBoxAPKList.Location = new System.Drawing.Point(75, 24);
+            richTextBoxAPKList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            richTextBoxAPKList.Name = "richTextBoxAPKList";
+            richTextBoxAPKList.Size = new System.Drawing.Size(448, 87);
+            richTextBoxAPKList.TabIndex = 0;
+            richTextBoxAPKList.Text = "";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "APK list:";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(14, 24);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(50, 15);
+            label1.TabIndex = 1;
+            label1.Text = "APK list:";
             // 
             // buttonEnable
             // 
-            this.buttonEnable.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonEnable.Location = new System.Drawing.Point(283, 115);
-            this.buttonEnable.Name = "buttonEnable";
-            this.buttonEnable.Size = new System.Drawing.Size(75, 23);
-            this.buttonEnable.TabIndex = 2;
-            this.buttonEnable.Text = "Enable";
-            this.buttonEnable.UseVisualStyleBackColor = true;
-            this.buttonEnable.Click += new System.EventHandler(this.ButtonEnable_Click);
+            buttonEnable.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonEnable.Location = new System.Drawing.Point(330, 133);
+            buttonEnable.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonEnable.Name = "buttonEnable";
+            buttonEnable.Size = new System.Drawing.Size(88, 27);
+            buttonEnable.TabIndex = 2;
+            buttonEnable.Text = "Enable";
+            buttonEnable.UseVisualStyleBackColor = true;
+            buttonEnable.Click += ButtonEnable_Click;
             // 
             // buttonCancel
             // 
-            this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonCancel.Location = new System.Drawing.Point(374, 115);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 3;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
+            buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonCancel.Location = new System.Drawing.Point(436, 133);
+            buttonCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.Size = new System.Drawing.Size(88, 27);
+            buttonCancel.TabIndex = 3;
+            buttonCancel.Text = "Cancel";
+            buttonCancel.UseVisualStyleBackColor = true;
+            buttonCancel.Click += ButtonCancel_Click;
             // 
             // buttonDisable
             // 
-            this.buttonDisable.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonDisable.Location = new System.Drawing.Point(202, 115);
-            this.buttonDisable.Name = "buttonDisable";
-            this.buttonDisable.Size = new System.Drawing.Size(75, 23);
-            this.buttonDisable.TabIndex = 4;
-            this.buttonDisable.Text = "Disable";
-            this.buttonDisable.UseVisualStyleBackColor = true;
-            this.buttonDisable.Click += new System.EventHandler(this.ButtonDisable_Click);
+            buttonDisable.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonDisable.Location = new System.Drawing.Point(236, 133);
+            buttonDisable.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonDisable.Name = "buttonDisable";
+            buttonDisable.Size = new System.Drawing.Size(88, 27);
+            buttonDisable.TabIndex = 4;
+            buttonDisable.Text = "Disable";
+            buttonDisable.UseVisualStyleBackColor = true;
+            buttonDisable.Click += ButtonDisable_Click;
             // 
             // buttonClearData
             // 
-            this.buttonClearData.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonClearData.Location = new System.Drawing.Point(121, 115);
-            this.buttonClearData.Name = "buttonClearData";
-            this.buttonClearData.Size = new System.Drawing.Size(75, 23);
-            this.buttonClearData.TabIndex = 5;
-            this.buttonClearData.Text = "Clear Data";
-            this.buttonClearData.UseVisualStyleBackColor = true;
-            this.buttonClearData.Click += new System.EventHandler(this.ButtonClearData_Click);
+            buttonClearData.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            buttonClearData.Location = new System.Drawing.Point(141, 133);
+            buttonClearData.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonClearData.Name = "buttonClearData";
+            buttonClearData.Size = new System.Drawing.Size(88, 27);
+            buttonClearData.TabIndex = 5;
+            buttonClearData.Text = "Clear Data";
+            buttonClearData.UseVisualStyleBackColor = true;
+            buttonClearData.Click += ButtonClearData_Click;
             // 
-            // PackageMenu
+            // PackageMenuForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(470, 145);
-            this.Controls.Add(this.buttonClearData);
-            this.Controls.Add(this.buttonDisable);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonEnable);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.richTextBoxAPKList);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.Name = "PackageMenu";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Package Menu";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.White;
+            ClientSize = new System.Drawing.Size(548, 167);
+            Controls.Add(buttonClearData);
+            Controls.Add(buttonDisable);
+            Controls.Add(buttonCancel);
+            Controls.Add(buttonEnable);
+            Controls.Add(label1);
+            Controls.Add(richTextBoxAPKList);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "PackageMenuForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "Package Menu";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

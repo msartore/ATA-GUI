@@ -71,5 +71,35 @@ namespace ATA_GUI
         {
             ConsoleProcess.OpenLink("https://msartore.dev");
         }
+
+        private void linkLabelBL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ConsoleProcess.OpenLink("https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json");
+        }
+
+        private void linkLabelDot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ConsoleProcess.OpenLink("https://raw.githubusercontent.com/haf/DotNetZip.Semverd/master/LICENSE");
+        }
+
+        private void linkLabelSd_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ConsoleProcess.OpenLink("https://developer.android.com/license");
+        }
+
+        private void linkLabelNew_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ConsoleProcess.OpenLink("https://licenses.nuget.org/MIT");
+        }
+
+        private void linkLabelScr_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ConsoleProcess.OpenLink("https://raw.githubusercontent.com/Genymobile/scrcpy/master/LICENSE");
+        }
+
+        private void linkLabelBlo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ConsoleProcess.OpenLink("https://raw.githubusercontent.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/main/LICENSE");
+        }
     }
 }

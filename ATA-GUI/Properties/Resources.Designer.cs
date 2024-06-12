@@ -73,21 +73,21 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;bloatware&gt;
-        ///  &lt;basic&gt;
-        ///	com.sony.tvsideview.videoph
-        ///	com.sony.tvsideview.phone
-        ///	com.sonyericsson.idd.agent
-        ///	com.sonyericsson.startupflagservice
-        ///	com.sonyericsson.textinput.chinese
-        ///	com.sonyericsson.wappush
-        ///	com.sonyericsson.xhs
-        ///	com.sonymobile.advancedlogging
-        ///	com.sonymobile.advancedwidget.topcontacts
-        ///	com.sonymobile.android.addoncamera.soundphoto
-        ///	com.sonymobile.androidapp.cameraaddon.areffect
-        ///	com.sonymobile.anondata
-        ///	com.sonymobile.assist
-        ///	com.sonymo [rest of string was truncated]&quot;;.
+        ///	&lt;basic&gt;
+        ///		com.dti.tracfone
+        ///		com.sony.tvsideview.videoph
+        ///		com.sony.tvsideview.phone
+        ///		com.sonyericsson.idd.agent
+        ///		com.sonyericsson.startupflagservice
+        ///		com.sonyericsson.textinput.chinese
+        ///		com.sonyericsson.wappush
+        ///		com.sonyericsson.xhs
+        ///		com.sonymobile.advancedlogging
+        ///		com.sonymobile.advancedwidget.topcontacts
+        ///		com.sonymobile.android.addoncamera.soundphoto
+        ///		com.sonymobile.androidapp.cameraaddon.areffect
+        ///		com.sonymobile.anondata
+        ///		co [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string bloatwareList {
             get {
@@ -101,6 +101,16 @@ namespace ATA_GUI.Properties {
         internal static System.Drawing.Bitmap camera_live {
             get {
                 object obj = ResourceManager.GetObject("camera_live", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap circled_play_48 {
+            get {
+                object obj = ResourceManager.GetObject("circled_play_48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -401,6 +411,16 @@ namespace ATA_GUI.Properties {
         internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap multiple_devices_48 {
+            get {
+                object obj = ResourceManager.GetObject("multiple_devices_48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

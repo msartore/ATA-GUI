@@ -1361,7 +1361,8 @@ namespace ATA_GUI
         {
             if (File.Exists("scrcpy.exe"))
             {
-                ConsoleProcess.ScrcpyProcess("-s " + ATA.CurrentDeviceSelected.ID);
+                ScrcpyForm scrcpyForm = new();
+                scrcpyForm.Show(this);
             }
             else
             {
@@ -1645,7 +1646,7 @@ namespace ATA_GUI
 
         private void buttonTaskManager_Click(object sender, EventArgs e)
         {
-            _ = new TaskManager(ATA.CurrentDeviceSelected.AppsString).ShowDialog();
+            new TaskManager(ATA.CurrentDeviceSelected.AppsString).Show();
         }
 
         private void backgroundWorkerADBConnect_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -1713,7 +1714,7 @@ namespace ATA_GUI
             }
         }
 
-        private void backgroundWorkerADBDisconnect_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private async void backgroundWorkerADBDisconnect_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             int deviceCountTmp = ata.Devices.Count;
             string ip = string.Empty;
@@ -1725,7 +1726,7 @@ namespace ATA_GUI
 
             if (ip.Length > 1)
             {
-                bool result = ConsoleProcess.SystemCommand("adb disconnect " + ip).Contains("disconnected");
+                bool result = (await ConsoleProcess.SystemCommand("adb disconnect " + ip)).Contains("disconnected");
 
                 if (result)
                 {
@@ -2028,7 +2029,7 @@ namespace ATA_GUI
             reloadList();
         }
 
-        private void buttonCamera_Click(object sender, EventArgs e)
+        private async void buttonCamera_Click(object sender, EventArgs e)
         {
             if (ATA.CurrentDeviceSelected.Version > 11)
             {
@@ -2036,7 +2037,7 @@ namespace ATA_GUI
                 {
                     if (File.Exists("scrcpy.exe"))
                     {
-                        string[] result = ConsoleProcess.ScrcpyVersion("--version").Split(' ');
+                        string[] result = (await ConsoleProcess.ScrcpyAsk("--version")).Split();
                         foreach (string item in result)
                         {
                             if (item.Contains("."))

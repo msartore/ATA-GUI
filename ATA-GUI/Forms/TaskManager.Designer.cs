@@ -231,7 +231,6 @@ namespace ATA_GUI
             Controls.Add(buttonKillProcess);
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            MinimizeBox = false;
             Name = "TaskManager";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "TaskManager";
