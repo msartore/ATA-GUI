@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - '*'
-  workflow_dispatch: # This allows you to trigger the workflow manually from the GitHub UI
+  workflow_dispatch:
 
 jobs:
   build:
@@ -12,10 +12,10 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3.3.0
+      uses: actions/checkout@v4.1.6
 
     - name: Setup .NET 6.0
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '6.0.x'
 
@@ -34,10 +34,10 @@ jobs:
 
     - name: Get Previous tag
       id: previoustag
-      uses: "WyriHaximus/github-action-get-previous-tag@v1.3.0"
+      uses: "WyriHaximus/github-action-get-previous-tag@v1.4.0"
 
     - name: Create Release
-      uses: ncipollo/release-action@v1.12.0
+      uses: ncipollo/release-action@v1.14.0
       with:
         generateReleaseNotes: true
         artifacts: ATA-GUI.zip
