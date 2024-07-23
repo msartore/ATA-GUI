@@ -1,7 +1,5 @@
 # ATA GUI
 
-<img src="docs/resources/banner.png">
-
 ![Codacy grade](https://img.shields.io/codacy/grade/27d499575ce84ce683866adf5645e9b5?cacheSeconds=3600) ![GitHub](https://img.shields.io/github/license/msartore/ATA-GUI?cacheSeconds=3600) ![GitHub all releases](https://img.shields.io/github/downloads/msartore/ATA-GUI/total?cacheSeconds=3600) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/msartore/ATA-GUI?cacheSeconds=3600) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/msartore/ATA-GUI/dotnet-desktop.yml?cacheSeconds=3600) ![Latest release downloads](https://img.shields.io/github/downloads/msartore/ATA-GUI/latest/total?label=downloads%20on%20latest&cacheSeconds=3600)
 
 
