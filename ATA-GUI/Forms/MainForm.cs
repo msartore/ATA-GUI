@@ -1250,6 +1250,7 @@ namespace ATA_GUI
                         try
                         {
                             string url = "https://dl.google.com/android/repository/platform-tools-latest-windows.zip";
+                            string exePath = Path.GetDirectoryName(Application.ExecutablePath);
                             string filePath = "sdkplatformtool.zip";
                             using (HttpResponseMessage response = await client.GetAsync(url))
                             {
@@ -1265,14 +1266,22 @@ namespace ATA_GUI
                             }
                             using (ZipFile zip = ZipFile.Read("sdkplatformtool.zip"))
                             {
-                                zip.ExtractAll(Path.GetDirectoryName(Application.ExecutablePath));
+                                zip.ExtractAll(exePath);
                             }
                             LogWriteLine("sdk platform tool extraced!", LogType.OK);
                             LogWriteLine("getting things ready...", LogType.INFO);
                             _ = ConsoleProcess.SystemCommand("taskkill /f /im " + ata.FILEADB);
                             _ = ConsoleProcess.SystemCommand("taskkill /f /im " + ata.FILEFastboot);
-                            _ = ConsoleProcess.SystemCommand("move /Y platform-tools\\* \"%cd%\"");
-                            Directory.Delete("platform-tools", true);
+
+                            if (Directory.Exists("platform-tools"))
+                            {
+                                foreach (var item in Directory.EnumerateFiles(exePath + "\\platform-tools"))
+                                {
+                                    File.Move(item, exePath + item.Substring(item.LastIndexOf("\\")));
+                                }
+                                Directory.Delete("platform-tools", true);
+                            }
+
                             File.Delete("sdkplatformtool.zip");
 
                             if (!(File.Exists("adb.exe") && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll") && File.Exists("fastboot.exe")))
