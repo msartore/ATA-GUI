@@ -30,7 +30,7 @@ namespace ATA_GUI
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             labelLog = new System.Windows.Forms.Label();
             buttonLogClear = new System.Windows.Forms.Button();
@@ -163,15 +163,6 @@ namespace ATA_GUI
             uninstalledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             disabledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             contextMenuStripPermissionMenu = new System.Windows.Forms.ContextMenuStrip(components);
-            grantWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            grantWriteSecureSettingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            revokeWriteSecureSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            grantDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            grantDUMPToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            revokeDUMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            grantRevokeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            grantSYSTEMALERTWINDOWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            revokeSYSTEMALERTWINDOWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             checkGrantedPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             backgroundWorkerExeDownloader = new System.ComponentModel.BackgroundWorker();
             buttonMobileScreenShare = new System.Windows.Forms.Button();
@@ -218,6 +209,7 @@ namespace ATA_GUI
             richTextBoxTerminal = new System.Windows.Forms.RichTextBox();
             backgroundWorkerAPKinstall = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerFileTransfer = new System.ComponentModel.BackgroundWorker();
+            grantRevokePermissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             groupBoxDeviceInfo.SuspendLayout();
             tabControls.SuspendLayout();
             tabPageSystem.SuspendLayout();
@@ -590,8 +582,8 @@ namespace ATA_GUI
             // 
             dataGridViewPackages.AllowUserToAddRows = false;
             dataGridViewPackages.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewPackages.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             dataGridViewPackages.BackgroundColor = System.Drawing.Color.White;
             dataGridViewPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1645,73 +1637,9 @@ namespace ATA_GUI
             // contextMenuStripPermissionMenu
             // 
             contextMenuStripPermissionMenu.ImageScalingSize = new System.Drawing.Size(18, 18);
-            contextMenuStripPermissionMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { grantWriteSecureSettingsToolStripMenuItem, grantDUMPToolStripMenuItem, grantRevokeToolStripMenuItem, checkGrantedPermissionsToolStripMenuItem });
+            contextMenuStripPermissionMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { checkGrantedPermissionsToolStripMenuItem, grantRevokePermissionToolStripMenuItem });
             contextMenuStripPermissionMenu.Name = "contextMenuStripPermissionMenu";
-            contextMenuStripPermissionMenu.Size = new System.Drawing.Size(287, 100);
-            // 
-            // grantWriteSecureSettingsToolStripMenuItem
-            // 
-            grantWriteSecureSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { grantWriteSecureSettingsToolStripMenuItem1, revokeWriteSecureSettingsToolStripMenuItem });
-            grantWriteSecureSettingsToolStripMenuItem.Name = "grantWriteSecureSettingsToolStripMenuItem";
-            grantWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(286, 24);
-            grantWriteSecureSettingsToolStripMenuItem.Text = "Grant/Revoke Write_Secure_Settings";
-            // 
-            // grantWriteSecureSettingsToolStripMenuItem1
-            // 
-            grantWriteSecureSettingsToolStripMenuItem1.Name = "grantWriteSecureSettingsToolStripMenuItem1";
-            grantWriteSecureSettingsToolStripMenuItem1.Size = new System.Drawing.Size(230, 22);
-            grantWriteSecureSettingsToolStripMenuItem1.Text = "Grant Write_Secure_Settings";
-            grantWriteSecureSettingsToolStripMenuItem1.Click += grantWriteSecureSettingsToolStripMenuItem_Click;
-            // 
-            // revokeWriteSecureSettingsToolStripMenuItem
-            // 
-            revokeWriteSecureSettingsToolStripMenuItem.Name = "revokeWriteSecureSettingsToolStripMenuItem";
-            revokeWriteSecureSettingsToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
-            revokeWriteSecureSettingsToolStripMenuItem.Text = "Revoke Write_Secure_Settings";
-            revokeWriteSecureSettingsToolStripMenuItem.Click += revokeWriteSecureSettingsToolStripMenuItem_Click;
-            // 
-            // grantDUMPToolStripMenuItem
-            // 
-            grantDUMPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { grantDUMPToolStripMenuItem1, revokeDUMPToolStripMenuItem });
-            grantDUMPToolStripMenuItem.Name = "grantDUMPToolStripMenuItem";
-            grantDUMPToolStripMenuItem.Size = new System.Drawing.Size(286, 24);
-            grantDUMPToolStripMenuItem.Text = "Grant/Revoke DUMP";
-            // 
-            // grantDUMPToolStripMenuItem1
-            // 
-            grantDUMPToolStripMenuItem1.Name = "grantDUMPToolStripMenuItem1";
-            grantDUMPToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
-            grantDUMPToolStripMenuItem1.Text = "Grant DUMP";
-            grantDUMPToolStripMenuItem1.Click += grantDUMPToolStripMenuItem_Click;
-            // 
-            // revokeDUMPToolStripMenuItem
-            // 
-            revokeDUMPToolStripMenuItem.Name = "revokeDUMPToolStripMenuItem";
-            revokeDUMPToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            revokeDUMPToolStripMenuItem.Text = "Revoke DUMP";
-            revokeDUMPToolStripMenuItem.Click += revokeDUMPToolStripMenuItem_Click;
-            // 
-            // grantRevokeToolStripMenuItem
-            // 
-            grantRevokeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { grantSYSTEMALERTWINDOWToolStripMenuItem, revokeSYSTEMALERTWINDOWToolStripMenuItem });
-            grantRevokeToolStripMenuItem.Name = "grantRevokeToolStripMenuItem";
-            grantRevokeToolStripMenuItem.Size = new System.Drawing.Size(286, 24);
-            grantRevokeToolStripMenuItem.Text = "Grant/Revoke SYSTEM_ALERT_WINDOW";
-            grantRevokeToolStripMenuItem.Visible = false;
-            // 
-            // grantSYSTEMALERTWINDOWToolStripMenuItem
-            // 
-            grantSYSTEMALERTWINDOWToolStripMenuItem.Name = "grantSYSTEMALERTWINDOWToolStripMenuItem";
-            grantSYSTEMALERTWINDOWToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
-            grantSYSTEMALERTWINDOWToolStripMenuItem.Text = "Grant SYSTEM_ALERT_WINDOW";
-            grantSYSTEMALERTWINDOWToolStripMenuItem.Click += grantSYSTEMALERTWINDOWToolStripMenuItem_Click;
-            // 
-            // revokeSYSTEMALERTWINDOWToolStripMenuItem
-            // 
-            revokeSYSTEMALERTWINDOWToolStripMenuItem.Name = "revokeSYSTEMALERTWINDOWToolStripMenuItem";
-            revokeSYSTEMALERTWINDOWToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
-            revokeSYSTEMALERTWINDOWToolStripMenuItem.Text = "Revoke SYSTEM_ALERT_WINDOW";
-            revokeSYSTEMALERTWINDOWToolStripMenuItem.Click += revokeSYSTEMALERTWINDOWToolStripMenuItem_Click;
+            contextMenuStripPermissionMenu.Size = new System.Drawing.Size(220, 74);
             // 
             // checkGrantedPermissionsToolStripMenuItem
             // 
@@ -2183,6 +2111,14 @@ namespace ATA_GUI
             // 
             backgroundWorkerFileTransfer.DoWork += backgroundWorkerFileTransfer_DoWork;
             // 
+            // grantRevokePermissionToolStripMenuItem
+            // 
+            grantRevokePermissionToolStripMenuItem.Image = Properties.Resources.cyber_security;
+            grantRevokePermissionToolStripMenuItem.Name = "grantRevokePermissionToolStripMenuItem";
+            grantRevokePermissionToolStripMenuItem.Size = new System.Drawing.Size(219, 24);
+            grantRevokePermissionToolStripMenuItem.Text = "Grant/Revoke Permission";
+            grantRevokePermissionToolStripMenuItem.Click += grantRevokePermissionToolStripMenuItem_Click;
+            // 
             // MainForm
             // 
             AllowDrop = true;
@@ -2331,8 +2267,6 @@ namespace ATA_GUI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelSelectedAppCount;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripPermissionMenu;
-        private System.Windows.Forms.ToolStripMenuItem grantWriteSecureSettingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem grantDUMPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkGrantedPermissionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
@@ -2363,10 +2297,6 @@ namespace ATA_GUI
         private System.Windows.Forms.ComboBox comboBoxDevices;
         private System.Windows.Forms.Button buttonSyncApp;
         private System.Windows.Forms.Button buttonSearchFileFastboot;
-        private System.Windows.Forms.ToolStripMenuItem grantWriteSecureSettingsToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem revokeWriteSecureSettingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem grantDUMPToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem revokeDUMPToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripSearch;
         private System.Windows.Forms.ToolStripMenuItem duckduckgoToolStripMenuItem;
@@ -2388,9 +2318,6 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem installAppToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downgradeAppToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBoxIP;
-        private System.Windows.Forms.ToolStripMenuItem grantRevokeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem grantSYSTEMALERTWINDOWToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem revokeSYSTEMALERTWINDOWToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonSetDefault;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripButton toolStripButtonExtract;
@@ -2444,6 +2371,7 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonImgExtraction;
         private System.Windows.Forms.ComboBox comboBoxImgExtraction;
         private System.Windows.Forms.RichTextBox richTextBoxFastbootInfo;
+        private System.Windows.Forms.ToolStripMenuItem grantRevokePermissionToolStripMenuItem;
     }
 }
 

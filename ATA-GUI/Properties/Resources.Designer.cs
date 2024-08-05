@@ -128,6 +128,16 @@ namespace ATA_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cyber_security {
+            get {
+                object obj = ResourceManager.GetObject("cyber-security", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fdroidlogo {
             get {
                 object obj = ResourceManager.GetObject("fdroidlogo", resourceCulture);
@@ -421,6 +431,16 @@ namespace ATA_GUI.Properties {
         internal static System.Drawing.Bitmap multiple_devices_48 {
             get {
                 object obj = ResourceManager.GetObject("multiple_devices_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spyware {
+            get {
+                object obj = ResourceManager.GetObject("spyware", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

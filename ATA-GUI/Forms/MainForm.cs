@@ -2242,5 +2242,23 @@ namespace ATA_GUI
                 opResult ? 2 : 0
             );
         }
+
+        private void grantRevokePermissionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switch (ata.selectedRows.Count)
+            {
+                case 0:
+                    MessageShowBox("No app selected!", 1);
+                    break;
+                case 1:
+                    ShellCommandsForm shellCommandsForm = new(ata.selectedRows[0].Cells[1].Value.ToString());
+                    shellCommandsForm.ShowDialog();
+                    break;
+                default:
+                    MessageShowBox("Select only one app!", 1);
+                    break;
+
+            }
+        }
     }
 }

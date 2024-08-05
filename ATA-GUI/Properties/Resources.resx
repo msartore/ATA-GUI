@@ -238,4 +238,10 @@
   <data name="multiple_devices_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\multiple-devices-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="cyber-security" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cyber-security.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spyware" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spyware.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
