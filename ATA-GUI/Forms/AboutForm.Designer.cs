@@ -35,7 +35,6 @@ namespace ATA_GUI
             label1 = new System.Windows.Forms.Label();
             groupBox2 = new System.Windows.Forms.GroupBox();
             linkLabelBlo = new System.Windows.Forms.LinkLabel();
-            linkLabelIco = new System.Windows.Forms.LinkLabel();
             linkLabelScr = new System.Windows.Forms.LinkLabel();
             linkLabelNew = new System.Windows.Forms.LinkLabel();
             linkLabelSd = new System.Windows.Forms.LinkLabel();
@@ -95,7 +94,6 @@ namespace ATA_GUI
             // groupBox2
             // 
             groupBox2.Controls.Add(linkLabelBlo);
-            groupBox2.Controls.Add(linkLabelIco);
             groupBox2.Controls.Add(linkLabelScr);
             groupBox2.Controls.Add(linkLabelNew);
             groupBox2.Controls.Add(linkLabelSd);
@@ -113,7 +111,7 @@ namespace ATA_GUI
             groupBox2.Size = new System.Drawing.Size(421, 165);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Assest Used";
+            groupBox2.Text = "Third Party Assests";
             // 
             // linkLabelBlo
             // 
@@ -373,7 +371,6 @@ namespace ATA_GUI
         private System.Windows.Forms.LinkLabel linkLabelGithub;
         private System.Windows.Forms.LinkLabel linkLabelBL;
         private System.Windows.Forms.LinkLabel linkLabelBlo;
-        private System.Windows.Forms.LinkLabel linkLabelIco;
         private System.Windows.Forms.LinkLabel linkLabelScr;
         private System.Windows.Forms.LinkLabel linkLabelNew;
         private System.Windows.Forms.LinkLabel linkLabelSd;

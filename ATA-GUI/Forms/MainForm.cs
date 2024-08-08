@@ -1363,7 +1363,7 @@ namespace ATA_GUI
 
         private void pictureBoxLogo_Click(object sender, EventArgs e)
         {
-            ConsoleProcess.OpenLink("https://github.com/MassimilianoSartore/ATA-GUI");
+            ConsoleProcess.OpenLink("https://msartore.dev/projects/ata-gui");
         }
 
         private void buttonMobileScreenShare_Click(object sender, EventArgs e)

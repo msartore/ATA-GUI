@@ -14,12 +14,12 @@ namespace ATA_GUI
 
         private void pictureRepo_Click(object sender, EventArgs e)
         {
-            ConsoleProcess.OpenLink("https://github.com/MassimilianoSartore/ATA-GUI");
+            ConsoleProcess.OpenLink("https://github.com/msartore/ATA-GUI");
         }
 
         private void labelLicense_Click(object sender, EventArgs e)
         {
-            ConsoleProcess.OpenLink("https://raw.githubusercontent.com/MassimilianoSartore/ATA-GUI/main/LICENSE");
+            ConsoleProcess.OpenLink("https://raw.githubusercontent.com/msartore/ATA-GUI/main/LICENSE");
         }
 
         private void linkLabelDNZ_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -34,7 +34,7 @@ namespace ATA_GUI
 
         private void linkLabelRepo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ConsoleProcess.OpenLink("https://github.com/MassimilianoSartore/ATA-GUI");
+            ConsoleProcess.OpenLink("https://github.com/msartore/ATA-GUI");
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

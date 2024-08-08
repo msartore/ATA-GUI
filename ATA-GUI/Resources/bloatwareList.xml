@@ -2845,6 +2845,18 @@
 		com.epicgames.portal
 		com.dti.samsung
 		com.samsung.adaptivebrightnessgo
+		com.onyx.aiassistant
+		com.onyx.android.production.test
+		com.onyx.calculator
+		com.onyx.clock
+		com.onyx.dict
+		com.onyx.easytransfer
+		com.onyx.gallery
+		com.onyx.kime
+		com.onyx.latinime
+		com.onyx.mail
+		com.onyx.musicplayer
+		com.onyx.voicerecorder
 	</basic>
 	<medium>
 		com.sonyericsson.android.addoncamera.artfilter
@@ -3322,6 +3334,7 @@
 		com.google.android.apps.carrier.carrierwifi
 		com.google.euiccpixel
 		com.google.pixel.livewallpaper
+		com.google.android.pixelnfc
 		com.shannon.rcsservice
 		com.shannon.qualifiednetworksservice
 		com.google.android.wfcactivation
@@ -3668,6 +3681,7 @@
 		com.sony.dtv.calibrationmonitor
 		com.samsung.android.app.siofviewer
 		com.samsung.android.server.wifi.mobilewips.client
+		com.preff.kb.xm
 	</medium>
 	<advance>
 		com.sonyericsson.mtp
@@ -4140,7 +4154,6 @@
 		com.coloros.oppoguardelf.restrict_plugin
 		com.google.android.connectivitythermalpowermanager
 		com.google.android.flipendo
-		com.google.android.pixelnfc
 		com.google.android.overlay.flipendo
 		com.google.android.connectivity.resources.overlay
 		com.google.android.networkstack.tethering.overlay2021
@@ -4397,5 +4410,6 @@
 		com.android.settings.os.overlay
 		com.android.soundpicker.auto_generated_rro_product__
 		com.sony.dtv.tvx
+		com.onyx.appmarket
 	</advance>
 </bloatware>
