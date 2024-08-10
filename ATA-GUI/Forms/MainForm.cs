@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -16,7 +17,6 @@ using System.Windows.Forms;
 using ATA_GUI.Classes;
 using ATA_GUI.Forms;
 using ATA_GUI.Utils;
-using Ionic.Zip;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -1264,10 +1264,7 @@ namespace ATA_GUI
                             {
                                 Directory.Delete("platform-tools", true);
                             }
-                            using (ZipFile zip = ZipFile.Read("sdkplatformtool.zip"))
-                            {
-                                zip.ExtractAll(exePath);
-                            }
+                            ZipFile.ExtractToDirectory("sdkplatformtool.zip", Path.GetDirectoryName(Application.ExecutablePath));
                             LogWriteLine("sdk platform tool extraced!", LogType.OK);
                             LogWriteLine("getting things ready...", LogType.INFO);
                             _ = ConsoleProcess.SystemCommand("taskkill /f /im " + ata.FILEADB);
@@ -1413,10 +1410,7 @@ namespace ATA_GUI
                             }
                             LogWriteLine("scrcpy downloaded", LogType.OK);
                             LogWriteLine("unzipping scrcpy...", LogType.INFO);
-                            using (ZipFile zip = ZipFile.Read("scrcpy.zip"))
-                            {
-                                zip.ExtractAll(Path.GetDirectoryName(Application.ExecutablePath), ExtractExistingFileAction.DoNotOverwrite);
-                            }
+                            ZipFile.ExtractToDirectory("scrcpy.zip", Path.GetDirectoryName(Application.ExecutablePath), false);
                             string directory = Directory.GetDirectories(Path.GetDirectoryName(Application.ExecutablePath)).Where(it => it.Contains("scrcpy-win64")).FirstOrDefault();
 
                             if (directory != null)

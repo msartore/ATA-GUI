@@ -1,11 +1,11 @@
-﻿using System;
+using ATA_GUI.Utils;
+using System;
 using System.IO;
+using System.IO.Compression;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ATA_GUI.Utils;
-using Ionic.Zip;
 
 namespace ATA_GUI
 {
@@ -60,11 +60,8 @@ namespace ATA_GUI
                     reportProgress();
                     labelLog.Text = "Unzipping update...";
                     Refresh();
-                    using (ZipFile zip = ZipFile.Read(ataZipFileName))
-                    {
-                        _ = ConsoleProcess.SystemCommand("mkdir ATAUpdate");
-                        zip.ExtractAll(Path.GetDirectoryName(Application.ExecutablePath) + "\\ATAUpdate");
-                    }
+                    _ = ConsoleProcess.SystemCommand("mkdir ATAUpdate");
+                    ZipFile.ExtractToDirectory(ataZipFileName, Path.GetDirectoryName(Application.ExecutablePath) + "\\ATAUpdate");
                     reportProgress();
                     labelLog.Text = "Starting to update...";
                     Refresh();

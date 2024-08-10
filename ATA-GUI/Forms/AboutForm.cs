@@ -22,11 +22,6 @@ namespace ATA_GUI
             ConsoleProcess.OpenLink("https://raw.githubusercontent.com/msartore/ATA-GUI/main/LICENSE");
         }
 
-        private void linkLabelDNZ_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ConsoleProcess.OpenLink("https://github.com/haf/DotNetZip.Semverd");
-        }
-
         private void linkLabelSDK_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ConsoleProcess.OpenLink("https://developer.android.com/studio/releases/platform-tools");
@@ -75,11 +70,6 @@ namespace ATA_GUI
         private void linkLabelBL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ConsoleProcess.OpenLink("https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/blob/main/resources/assets/uad_lists.json");
-        }
-
-        private void linkLabelDot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ConsoleProcess.OpenLink("https://raw.githubusercontent.com/haf/DotNetZip.Semverd/master/LICENSE");
         }
 
         private void linkLabelSd_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
