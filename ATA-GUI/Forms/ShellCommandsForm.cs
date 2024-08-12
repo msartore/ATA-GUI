@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using ATA_GUI.Classes;
 using ATA_GUI.Utils;
@@ -9,7 +8,6 @@ namespace ATA_GUI.Forms
     public partial class ShellCommandsForm : Form
     {
         private readonly string Package;
-        private readonly List<string> Permissions;
 
         public ShellCommandsForm(string package)
         {
