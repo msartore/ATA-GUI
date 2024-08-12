@@ -28,19 +28,19 @@ jobs:
     - name: Publish the application
       run: dotnet publish D:\a\ATA-GUI\ATA-GUI\ATA-GUI\ATA-GUI.csproj --configuration Release --runtime win-x64 --self-contained false /p:PublishSingleFile=true --output ./publish
 
-    - name: Zip the published output
-      run: Compress-Archive -Path ./publish/ATA-GUI.exe, ./LICENSE -DestinationPath ATA-GUI.zip
-      shell: pwsh
-
     - name: Get Previous tag
       id: previoustag
       uses: "WyriHaximus/github-action-get-previous-tag@v1.4.0"
+
+    - name: Zip the published output
+      run: Compress-Archive -Path ./publish/ATA-GUI.exe, ./LICENSE -DestinationPath ATA-GUI_${{ steps.previoustag.outputs.tag }}.zip
+      shell: pwsh
 
     - name: Create Release
       uses: ncipollo/release-action@v1.14.0
       with:
         generateReleaseNotes: true
-        artifacts: ATA-GUI.zip
+        artifacts: ATA-GUI_${{ steps.previoustag.outputs.tag }}.zip
         name: ${{ steps.previoustag.outputs.tag }}
         tag: ${{ steps.previoustag.outputs.tag }}
         token: ${{ secrets.GITHUB_TOKEN }}
