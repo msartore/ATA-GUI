@@ -30,7 +30,7 @@ namespace ATA_GUI
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             labelLog = new System.Windows.Forms.Label();
             buttonLogClear = new System.Windows.Forms.Button();
@@ -164,6 +164,7 @@ namespace ATA_GUI
             disabledAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             contextMenuStripPermissionMenu = new System.Windows.Forms.ContextMenuStrip(components);
             checkGrantedPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            grantRevokePermissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             backgroundWorkerExeDownloader = new System.ComponentModel.BackgroundWorker();
             buttonMobileScreenShare = new System.Windows.Forms.Button();
             pictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -209,7 +210,7 @@ namespace ATA_GUI
             richTextBoxTerminal = new System.Windows.Forms.RichTextBox();
             backgroundWorkerAPKinstall = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerFileTransfer = new System.ComponentModel.BackgroundWorker();
-            grantRevokePermissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            backgroundWorkerDC = new System.ComponentModel.BackgroundWorker();
             groupBoxDeviceInfo.SuspendLayout();
             tabControls.SuspendLayout();
             tabPageSystem.SuspendLayout();
@@ -582,8 +583,8 @@ namespace ATA_GUI
             // 
             dataGridViewPackages.AllowUserToAddRows = false;
             dataGridViewPackages.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewPackages.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             dataGridViewPackages.BackgroundColor = System.Drawing.Color.White;
             dataGridViewPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1639,15 +1640,23 @@ namespace ATA_GUI
             contextMenuStripPermissionMenu.ImageScalingSize = new System.Drawing.Size(18, 18);
             contextMenuStripPermissionMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { checkGrantedPermissionsToolStripMenuItem, grantRevokePermissionToolStripMenuItem });
             contextMenuStripPermissionMenu.Name = "contextMenuStripPermissionMenu";
-            contextMenuStripPermissionMenu.Size = new System.Drawing.Size(220, 74);
+            contextMenuStripPermissionMenu.Size = new System.Drawing.Size(220, 52);
             // 
             // checkGrantedPermissionsToolStripMenuItem
             // 
             checkGrantedPermissionsToolStripMenuItem.Image = Properties.Resources.icons8_privacy_policy_48;
             checkGrantedPermissionsToolStripMenuItem.Name = "checkGrantedPermissionsToolStripMenuItem";
-            checkGrantedPermissionsToolStripMenuItem.Size = new System.Drawing.Size(286, 24);
+            checkGrantedPermissionsToolStripMenuItem.Size = new System.Drawing.Size(219, 24);
             checkGrantedPermissionsToolStripMenuItem.Text = "Check granted permissions";
             checkGrantedPermissionsToolStripMenuItem.Click += checkGrantedPermissionsToolStripMenuItem_Click;
+            // 
+            // grantRevokePermissionToolStripMenuItem
+            // 
+            grantRevokePermissionToolStripMenuItem.Image = Properties.Resources.cyber_security;
+            grantRevokePermissionToolStripMenuItem.Name = "grantRevokePermissionToolStripMenuItem";
+            grantRevokePermissionToolStripMenuItem.Size = new System.Drawing.Size(219, 24);
+            grantRevokePermissionToolStripMenuItem.Text = "Grant/Revoke Permission";
+            grantRevokePermissionToolStripMenuItem.Click += grantRevokePermissionToolStripMenuItem_Click;
             // 
             // backgroundWorkerExeDownloader
             // 
@@ -2111,13 +2120,9 @@ namespace ATA_GUI
             // 
             backgroundWorkerFileTransfer.DoWork += backgroundWorkerFileTransfer_DoWork;
             // 
-            // grantRevokePermissionToolStripMenuItem
+            // backgroundWorkerDC
             // 
-            grantRevokePermissionToolStripMenuItem.Image = Properties.Resources.cyber_security;
-            grantRevokePermissionToolStripMenuItem.Name = "grantRevokePermissionToolStripMenuItem";
-            grantRevokePermissionToolStripMenuItem.Size = new System.Drawing.Size(219, 24);
-            grantRevokePermissionToolStripMenuItem.Text = "Grant/Revoke Permission";
-            grantRevokePermissionToolStripMenuItem.Click += grantRevokePermissionToolStripMenuItem_Click;
+            backgroundWorkerDC.DoWork += BackgroundWorkerDC_DoWork;
             // 
             // MainForm
             // 
@@ -2372,6 +2377,7 @@ namespace ATA_GUI
         private System.Windows.Forms.ComboBox comboBoxImgExtraction;
         private System.Windows.Forms.RichTextBox richTextBoxFastbootInfo;
         private System.Windows.Forms.ToolStripMenuItem grantRevokePermissionToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerDC;
     }
 }
 

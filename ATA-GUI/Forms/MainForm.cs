@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Management;
 using System.Net;
 using System.Net.Http;
 using System.Net.NetworkInformation;
@@ -770,6 +771,8 @@ namespace ATA_GUI
             Thread thread = new(DataLoadingUI);
             thread.Start();
             _ = waitingForm.ShowDialog();
+
+            backgroundWorkerDC.RunWorkerAsync();
         }
 
         private void DataLoadingUI()
@@ -2253,6 +2256,29 @@ namespace ATA_GUI
                     break;
 
             }
+        }
+
+        private void DeviceInsertedEvent(object sender, EventArrivedEventArgs e)
+        {
+            reloadList();
+        }
+
+        private void DeviceRemovedEvent(object sender, EventArrivedEventArgs e)
+        {
+            reloadList();
+        }
+
+        private void BackgroundWorkerDC_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            var insertQuery = new WqlEventQuery("SELECT * FROM Win32_DeviceChangeEvent WHERE EventType = 2");
+            var insertWatcher = new ManagementEventWatcher(insertQuery);
+            insertWatcher.EventArrived += DeviceInsertedEvent;
+            insertWatcher.Start();
+
+            var removeQuery = new WqlEventQuery("SELECT * FROM Win32_DeviceChangeEvent WHERE EventType = 3");
+            var removeWatcher = new ManagementEventWatcher(removeQuery);
+            removeWatcher.EventArrived += DeviceRemovedEvent;
+            removeWatcher.Start();
         }
     }
 }
