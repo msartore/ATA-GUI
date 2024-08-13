@@ -36,6 +36,7 @@ namespace ATA_GUI
         private static readonly int HT_CAPTION = 0x2;
         private static readonly Regex regex = new(@"\s+");
         private WaitingForm waitingForm;
+        private bool deviceFound = false;
 
         public static string RemoveWhiteSpaces(string str)
         {
@@ -626,14 +627,16 @@ namespace ATA_GUI
             WindowState = FormWindowState.Minimized;
             WindowState = FormWindowState.Normal;
             _ = Focus();
+
+            backgroundWorkerDC.RunWorkerAsync();
         }
 
         private async Task<bool> DevicesListUpdate()
         {
-            return await deviceListExtractor(ata.CurrentTab != Tab.FASTBOOT);
+            return await DeviceListExtractor(ata.CurrentTab != Tab.FASTBOOT);
         }
 
-        private async Task<bool> deviceListExtractor(bool isAdb)
+        private async Task<bool> DeviceListExtractor(bool isAdb)
         {
             List<string> devicesRaw;
 
@@ -768,11 +771,10 @@ namespace ATA_GUI
             {
                 Owner = this
             };
+
             Thread thread = new(DataLoadingUI);
             thread.Start();
             _ = waitingForm.ShowDialog();
-
-            backgroundWorkerDC.RunWorkerAsync();
         }
 
         private void DataLoadingUI()
@@ -2017,14 +2019,14 @@ namespace ATA_GUI
         private void buttonrr__Click(object sender, EventArgs e)
         {
             _ = ConsoleProcess.AdbProcess(commandAssemblerF("reboot recovery"));
-            LogWriteLine("rebooted", LogType.OK);
+            LogWriteLine("rebooted", LogType.INFO);
             reloadList();
         }
 
         private void buttonrs__Click(object sender, EventArgs e)
         {
             rebootSmartphone();
-            LogWriteLine("rebooted", LogType.OK);
+            LogWriteLine("rebooted", LogType.INFO);
             reloadList();
         }
 
@@ -2258,27 +2260,30 @@ namespace ATA_GUI
             }
         }
 
-        private void DeviceInsertedEvent(object sender, EventArrivedEventArgs e)
+        private void DeviceEvent(object sender, EventArrivedEventArgs e)
         {
-            reloadList();
-        }
+            if (!deviceFound)
+            {
+                deviceFound = true;
+                Task.Run(() =>
+                {
+                    Thread.Sleep(2000);
 
-        private void DeviceRemovedEvent(object sender, EventArrivedEventArgs e)
-        {
-            reloadList();
+                    reloadList();
+
+                    Thread.Sleep(3000);
+
+                    deviceFound = false;
+                });
+            }
         }
 
         private void BackgroundWorkerDC_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            var insertQuery = new WqlEventQuery("SELECT * FROM Win32_DeviceChangeEvent WHERE EventType = 2");
+            var insertQuery = new WqlEventQuery("SELECT * FROM Win32_DeviceChangeEvent WHERE EventType = 2 OR EventType = 3");
             var insertWatcher = new ManagementEventWatcher(insertQuery);
-            insertWatcher.EventArrived += DeviceInsertedEvent;
+            insertWatcher.EventArrived += DeviceEvent;
             insertWatcher.Start();
-
-            var removeQuery = new WqlEventQuery("SELECT * FROM Win32_DeviceChangeEvent WHERE EventType = 3");
-            var removeWatcher = new ManagementEventWatcher(removeQuery);
-            removeWatcher.EventArrived += DeviceRemovedEvent;
-            removeWatcher.Start();
         }
     }
 }
