@@ -1,6 +1,6 @@
-﻿using System;
+﻿using ATA_GUI.Utils;
+using System;
 using System.Windows.Forms;
-using ATA_GUI.Utils;
 
 namespace ATA_GUI.Forms
 {

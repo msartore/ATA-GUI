@@ -1,9 +1,9 @@
-﻿using System;
+﻿using ATA_GUI.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {

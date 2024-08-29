@@ -1,3 +1,8 @@
+using ATA_GUI.Classes;
+using ATA_GUI.Forms;
+using ATA_GUI.Utils;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,11 +20,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ATA_GUI.Classes;
-using ATA_GUI.Forms;
-using ATA_GUI.Utils;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ATA_GUI
 {
@@ -261,7 +261,7 @@ namespace ATA_GUI
 
                                 try
                                 {
-                                    localIp = ConsoleProcess.AdbProcess(commandAssemblerF("shell ip route")).Split(' ').Where(it => Regex.Match(it, "(\\b25[0-5]|\\b2[0-4][0-9]|\\b[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}").Success).Last();
+                                    localIp = ConsoleProcess.AdbProcess(commandAssemblerF("shell ip route")).Split(' ').Where(it => Network.IsValidIP(it)).Last();
                                 }
                                 catch
                                 {
@@ -547,7 +547,6 @@ namespace ATA_GUI
                 _ = ConsoleProcess.AdbProcess(commandAssemblerF("reboot recovery"));
                 LogWriteLine("rebooted", LogType.OK);
                 Thread.Sleep(1000);
-                reloadList();
             }
         }
 
@@ -558,7 +557,6 @@ namespace ATA_GUI
                 _ = ConsoleProcess.AdbProcess(commandAssemblerF("reboot-bootloader"));
                 LogWriteLine("rebooted", LogType.OK);
                 Thread.Sleep(1000);
-                reloadList();
             }
         }
 
@@ -979,7 +977,6 @@ namespace ATA_GUI
         {
             LogWriteLine(ConsoleProcess.AdbFastbootCommandR(commandAssemblerF("reboot"), 1), LogType.INFO);
             Thread.Sleep(1000);
-            reloadList();
         }
 
         private void buttonHardReset_Click(object sender, EventArgs e)
@@ -1004,7 +1001,6 @@ namespace ATA_GUI
         {
             LogWriteLine(ConsoleProcess.AdbFastbootCommandR(commandAssemblerF("reboot recovery"), 1), LogType.INFO);
             Thread.Sleep(1000);
-            reloadList();
         }
 
         private void buttonBootloaderMenu_Click(object sender, EventArgs e)
@@ -1820,14 +1816,6 @@ namespace ATA_GUI
             }
         }
 
-        private void comboBoxIP_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                connectToIp();
-            }
-        }
-
         private void comboBoxIP_TextUpdate(object sender, EventArgs e)
         {
             buttonConnectToIP.Enabled = buttonDisconnectIP.Enabled = true;
@@ -2020,21 +2008,17 @@ namespace ATA_GUI
         {
             _ = ConsoleProcess.AdbProcess(commandAssemblerF("reboot recovery"));
             LogWriteLine("rebooted", LogType.INFO);
-            reloadList();
         }
 
         private void buttonrs__Click(object sender, EventArgs e)
         {
             rebootSmartphone();
-            LogWriteLine("rebooted", LogType.INFO);
-            reloadList();
         }
 
         private void buttonrf__Click(object sender, EventArgs e)
         {
             _ = ConsoleProcess.AdbProcess(commandAssemblerF("reboot-bootloader"));
             LogWriteLine("rebooted", LogType.INFO);
-            reloadList();
         }
 
         private async void buttonCamera_Click(object sender, EventArgs e)
@@ -2178,14 +2162,28 @@ namespace ATA_GUI
 
         private void buttonPair_Click(object sender, EventArgs e)
         {
-            string port = textBoxPort.Text.Trim();
-            string ip = comboBoxIP.Text.Trim();
+            if (Network.IsValidIP(comboBoxIP.Text))
+            {
+                if (textBoxPort.Text.Length > 0)
+                {
+                    string port = textBoxPort.Text.Trim();
+                    string ip = comboBoxIP.Text.Trim();
 
-            WirelessPairingForm wirelessPairingForm = new WirelessPairingForm(ip, port);
-            wirelessPairingForm.ShowDialog();
-            string result = (wirelessPairingForm.DialogResult == DialogResult.OK ? "Paired successfully to" : "Operation failed\nCannot pair to ") + ip;
+                    WirelessPairingForm wirelessPairingForm = new WirelessPairingForm(ip, port);
+                    wirelessPairingForm.ShowDialog();
+                    string result = (wirelessPairingForm.DialogResult == DialogResult.OK ? "Paired successfully to" : "Operation failed\nCannot pair to ") + ip;
 
-            MessageShowBox(result, wirelessPairingForm.DialogResult == DialogResult.OK ? 2 : 0);
+                    MessageShowBox(result, wirelessPairingForm.DialogResult == DialogResult.OK ? 2 : 0);
+                }
+                else
+                {
+                    MessageShowBox("PORT cannot be empty", 1);
+                }
+            }
+            else
+            {
+                MessageShowBox("IP not valid, try again with a different one!", 1);
+            }
         }
 
         private void setWantedRows()
