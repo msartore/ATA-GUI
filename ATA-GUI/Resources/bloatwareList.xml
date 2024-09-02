@@ -1382,7 +1382,6 @@
 		com.arcsoft.lg_avatar_resource
 		com.lge.ims.chatbotinfoprovider
 		com.lge.cinemagraph
-		com.lge.sui.widget
 		com.lge.covertools
 		com.lge.dualscreenfirmware
 		com.lge.animal.resource
@@ -1999,6 +1998,7 @@
 		com.heytap.quicksearchbox
 		com.heytap.speechassist
 		com.heytap.openid
+		com.android.safetycenter.styles.overlay
 		com.oplus.encryption
 		com.oplus.healthservice
 		com.oplus.eid
@@ -3241,6 +3241,7 @@
 		com.zui.theme.overlay.steellegion
 		com.zui.theme.overlay.thinarmor
 		com.zui.mms.overlay.mostbeautiful
+		com.lge.sui.widget
 		com.lge.secondlauncher
 		com.lge.ellievision
 		com.lge.eula.downloader
@@ -3384,6 +3385,16 @@
 		com.samsung.android.sdk.ocr
 		com.android.dlna.service
 		com.coloros.activation.overlay.common
+		com.android.safetycenter.resources.overlay
+		com.android.systemui.overlay.charging.anim.siphon_wireless
+		com.android.systemui.overlay.fingerprint.anim.cosmos
+		com.android.systemui.overlay.fingerprint.anim.fireworks
+		com.android.systemui.overlay.fingerprint.anim.fy
+		com.android.systemui.overlay.fingerprint.anim.none
+		com.android.systemui.overlay.fingerprint.anim.ripple
+		com.android.systemui.overlay.fingerprint.anim.stripe
+		com.android.systemui.overlay.fingerprint.anim.sw
+		com.oplus.vdc
 		com.oplus.melody
 		com.vivo.hiboard
 		com.vivo.email
@@ -3474,7 +3485,6 @@
 		com.oppo.sos
 		com.coloros.activation
 		com.oplus.pantanal.ums
-		com.oplus.atlas
 		com.oplus.stdid
 		com.oneplus.dialer
 		com.scanning.agold.agoldscanning
@@ -4149,6 +4159,7 @@
 		com.oplus.phonenoareainquire
 		com.coloros.uxdesign
 		com.coloros.wallpapers
+		oplus.frameworkres.overlay.display.product
 		com.coloros.athena.config_plugin
 		com.coloros.oppoguardelf.secretplugin
 		com.coloros.oppoguardelf.restrict_plugin
@@ -4215,6 +4226,19 @@
 		com.samsung.android.wcmurlsnetworkstack
 		com.oplus.romupdate
 		com.oplus.ota
+		android.frameworkres.overlay.display.product
+		android.framework.res.rro.oneplus
+		aon.frameworkres.overlay.display.product
+		com.aiunit.aon
+		com.google.android.cellbroadcastreceiver.overlay
+		com.google.android.cellbroadcastservice.overlay
+		com.android.SystemUIResOverlay
+		android.connectivity.base.overlay
+		com.ses.entitlement.o2
+		com.oplus.framework.rro.oneplus
+		com.google.android.permissioncontroller.overlay.oplus
+		com.oplus.owkservice
+		com.oplus.mediacontroller
 		com.oplus.nhs
 		com.oplus.smartengine
 		com.sec.mhs.smarttethering
@@ -4304,6 +4328,7 @@
 		com.huawei.wifieapsimplmn
 		com.huawei.wifiprobqeservice
 		com.oplus.athena
+		com.oplus.atlas
 		com.oplus.exsystemservice
 		com.android.soundpicker
 		com.oneplus.geoiptime
