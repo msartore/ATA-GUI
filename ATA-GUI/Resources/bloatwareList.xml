@@ -1799,7 +1799,6 @@
 		com.transsion.healthlife
 		com.talpa.hiservice
 		com.transsion.phonemanager
-		com.hoffnung
 		com.transsion.letswitch
 		com.transsion.mol
 		com.transsion.netphilim
@@ -2857,6 +2856,9 @@
 		com.onyx.mail
 		com.onyx.musicplayer
 		com.onyx.voicerecorder
+		com.nim.rogers
+		com.Rogers.MyRogersTab
+		com.sec.android.app.kidshome
 	</basic>
 	<medium>
 		com.sonyericsson.android.addoncamera.artfilter
@@ -2942,6 +2944,7 @@
 		com.samsung.android.aware.service
 		com.samsung.android.calendar
 		com.samsung.android.location
+		com.samsung.android.mdagent
 		com.samsung.android.mdx.quickboard
 		com.samsung.android.photoremasterservice
 		com.samsung.android.provider.shootingmodeprovider
@@ -3133,6 +3136,7 @@
 		com.samsung.android.dialer
 		com.samsung.android.motionphoto.viewer
 		com.samsung.android.scs
+		com.samsung.android.wifi.p2paware.resources
 		com.softwinner.service
 		com.tcl.faceunlock
 		com.tct.soundrecorder
@@ -3692,6 +3696,37 @@
 		com.samsung.android.app.siofviewer
 		com.samsung.android.server.wifi.mobilewips.client
 		com.preff.kb.xm
+		com.samsung.android.app.colorblind
+		com.samsung.android.framework.res
+		com.samsung.android.timezone.autoupdate_N
+		com.samsung.knox.appsupdateagent
+		com.sec.android.app.wallpaperchooser
+		com.android.phone.overlay.motcommon
+		com.android.systemui.accessibility.accessibilitymenu.auto_generated_rro_product__
+		com.android.wifi.resources.overlay.motCommon
+		com.android.wifi.resources.overlay.WifiResScanCountryCode
+		com.google.android.health.connect.backuprestore
+		com.google.android.healthconnect.controller
+		com.motorola.android.launcher.overlay.motolauncheroverlayna
+		com.motorola.android.launcher.overlay.retail.global
+		com.motorola.android.networkstack.tethering.overlay.motCommon
+		com.motorola.android.overlay.lpptoga
+		com.motorola.android.overlay.qcom.common
+		com.motorola.android.providers.settings.auto_generated_rro_product__
+		com.motorola.android.providers.settings.overlay.dppcamera
+		com.motorola.android.providers.settings.overlay.dppnone
+		com.motorola.android.settings.overlay.global
+		com.motorola.android.settings.overlay.lra
+		com.motorola.android.settings.overlay.power.bottom
+		com.motorola.batterycare
+		com.motorola.batterycare.overlay
+		com.motorola.batterycare.overlay.appside
+		com.motorola.camera3.content.ai
+		com.motorola.imagertuning_u
+		com.motorola.installer
+		com.motorola.mykey
+		com.motorola.om
+		com.motorola.securityhubext
 	</medium>
 	<advance>
 		com.sonyericsson.mtp
@@ -3883,6 +3918,7 @@
 		com.sec.android.Cdfs
 		com.samsung.gamedriver.sm8250
 		com.samsung.huxplatform
+		com.samsung.phone.overlay.common
 		com.samsung.android.localeoverlaymanager
 		com.samsung.android.providers.contacts
 		com.samsung.android.providers.media
@@ -4078,6 +4114,7 @@
 		com.lge.dsmanager
 		com.lge.nextcapture
 		com.android.settingaccessibility
+		com.android.settingsaccessibility
 		com.lge.systemservice
 		com.lge.provider.systemui
 		com.lge.themeinstaller
@@ -4436,5 +4473,14 @@
 		com.android.soundpicker.auto_generated_rro_product__
 		com.sony.dtv.tvx
 		com.onyx.appmarket
+		com.sec.app.TransmitPowerService
+		com.android.internal.systemui.navbar.hidegestural
+		com.android.internal.systemui.navbar.transparent
+		com.google.android.wifi.dialog
+		com.motorola.android.coresettingsext.overlay.avatrn
+		com.motorola.android.networkstack.overlay.mcc460
+		com.motorola.setup.auto_generated_rro_product__
+		com.motorola.setup.overlay.dataenable
+		com.oem.euiccpartnerapp.overlay.retca
 	</advance>
 </bloatware>

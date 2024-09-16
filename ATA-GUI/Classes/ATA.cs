@@ -11,7 +11,7 @@ namespace ATA_GUI.Classes
 {
     internal class ATA
     {
-        public static readonly string CURRENTVERSION = "v3.10.0";
+        public static readonly string CURRENTVERSION = "v3.11.0";
         public static readonly string IPFileName = "IPList.txt";
 
         public HashSet<string> IPList { get; } = new HashSet<string>();
