@@ -32,3 +32,4 @@ ATA-GUI is an app that lets you perform advanced tasks on your Android™ device
 - **Retrieve OEM Device ID**
 - **Support for Multiple User Devices**
 - **Support for enviroment variables**
+- **Auto USB device detection**
