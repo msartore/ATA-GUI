@@ -73,6 +73,7 @@
 		com.miui.core.internal.assistant
 		com.xiaomi.digitalkey
 		com.xiaomi.gamecenter.sdk.service
+		com.mig.play.games
 		com.xiaomi.market
 		com.miui.voiceassist
 		com.xiaomi.migameservice
@@ -2619,7 +2620,6 @@
 		com.google.android.euiccoverlay
 		com.google.android.grilservice
 		com.google.omadm.trigger
-		com.samsung.slsi.telephony.oem.oemrilhookservice
 		com.google.pixel.camera.services
 		com.google.android.apps.pixel.support
 		com.google.android.apps.retaildemo.preload
@@ -2783,7 +2783,6 @@
 		com.samsung.hongbaoassistant
 		com.sec.android.iaft
 		com.samsung.android.app.kfa
-		com.samsung.android.knox.app.networkfilter
 		com.samsung.android.knox.zt.framework
 		com.sec.android.llmpolicy
 		com.samsung.android.mocca
@@ -3611,7 +3610,6 @@
 		com.google.android.dreamlinerupdater
 		com.google.android.hardwareinfo
 		com.android.hbmsvmanager
-		com.samsung.slsi.telephony.oemril
 		com.google.android.apps.camera.services
 		com.google.android.repairmode
 		com.android.safetyregulatoryinfo
@@ -4437,6 +4435,8 @@
 		com.oplus.nrMode
 		com.oplus.screenshot
 		com.google.android.carrierlocation
+		com.samsung.slsi.telephony.oem.oemrilhookservice
+		com.samsung.slsi.telephony.oemril
 		com.android.qns
 		com.google.RilConfigService
 		com.qorvo.uwb.vendorservice
@@ -4462,6 +4462,7 @@
 		com.vivo.imanager
 		com.xiaomi.ugd
 		com.samsung.android.globalpostprocmgr
+		com.samsung.android.knox.app.networkfilter
 		com.samsung.internal.systemui.navbar.gestural_no_hint
 		com.samsung.internal.systemui.navbar.sec_gestural_no_hint
 		com.samsung.internal.systemui.navbar.sec_gestural
