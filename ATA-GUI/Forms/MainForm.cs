@@ -940,11 +940,18 @@ namespace ATA_GUI
             string command = null;
             string log;
 
-            command = "flash " + comboBoxImg.Text + " ";
+            if (e.Argument.ToString() == "boot")
+            {
+                command = e.Argument + " ";
+            }
+            else
+            {
+                command = e.Argument + " " + comboBoxImg.Text + " ";
+            }
 
             Invoke(delegate
             {
-                LogWriteLine("flashing " + textBoxDirImg.Text, LogType.INFO);
+                LogWriteLine(e.Argument + "ing " + textBoxDirImg.Text, LogType.INFO);
             });
 
             if ((log = ConsoleProcess.AdbFastbootCommandR(commandAssemblerF(command + textBoxDirImg.Text), 1)) != null)
@@ -1955,7 +1962,7 @@ namespace ATA_GUI
             {
                 if (!backgroundWorkerFlashImg.IsBusy)
                 {
-                    backgroundWorkerFlashImg.RunWorkerAsync();
+                    backgroundWorkerFlashImg.RunWorkerAsync("flash");
                 }
                 else
                 {
@@ -2282,6 +2289,25 @@ namespace ATA_GUI
             var insertWatcher = new ManagementEventWatcher(insertQuery);
             insertWatcher.EventArrived += DeviceEvent;
             insertWatcher.Start();
+        }
+
+        private void buttonBootFastboot_Click(object sender, EventArgs e)
+        {
+            if (textBoxDirImg.Text.Length > 0)
+            {
+                if (!backgroundWorkerFlashImg.IsBusy)
+                {
+                    backgroundWorkerFlashImg.RunWorkerAsync("boot");
+                }
+                else
+                {
+                    MessageShowBox("Wait, process still running", 1);
+                }
+            }
+            else
+            {
+                MessageShowBox("Please select a img file", 1);
+            }
         }
     }
 }
