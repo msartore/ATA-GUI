@@ -212,6 +212,8 @@ namespace ATA_GUI
             backgroundWorkerAPKinstall = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerFileTransfer = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerDC = new System.ComponentModel.BackgroundWorker();
+            groupBox7 = new System.Windows.Forms.GroupBox();
+            groupBox8 = new System.Windows.Forms.GroupBox();
             groupBoxDeviceInfo.SuspendLayout();
             tabControls.SuspendLayout();
             tabPageSystem.SuspendLayout();
@@ -247,6 +249,8 @@ namespace ATA_GUI
             contextMenuStripSearch.SuspendLayout();
             contextMenuStripTools.SuspendLayout();
             groupBoxTerminal.SuspendLayout();
+            groupBox7.SuspendLayout();
+            groupBox8.SuspendLayout();
             SuspendLayout();
             // 
             // labelLog
@@ -1174,10 +1178,8 @@ namespace ATA_GUI
             // groupBox4
             // 
             groupBox4.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            groupBox4.Controls.Add(buttonBootFastboot);
-            groupBox4.Controls.Add(label10);
-            groupBox4.Controls.Add(comboBoxImg);
-            groupBox4.Controls.Add(button1);
+            groupBox4.Controls.Add(groupBox8);
+            groupBox4.Controls.Add(groupBox7);
             groupBox4.Controls.Add(textBoxDirImg);
             groupBox4.Controls.Add(buttonSearchFileFastboot);
             groupBox4.Location = new System.Drawing.Point(4, 3);
@@ -1187,11 +1189,11 @@ namespace ATA_GUI
             groupBox4.Size = new System.Drawing.Size(489, 183);
             groupBox4.TabIndex = 48;
             groupBox4.TabStop = false;
-            groupBox4.Text = "Flash img";
+            groupBox4.Text = "Flash/Boot IMG";
             // 
             // buttonBootFastboot
             // 
-            buttonBootFastboot.Location = new System.Drawing.Point(252, 99);
+            buttonBootFastboot.Location = new System.Drawing.Point(21, 37);
             buttonBootFastboot.Name = "buttonBootFastboot";
             buttonBootFastboot.Size = new System.Drawing.Size(193, 30);
             buttonBootFastboot.TabIndex = 53;
@@ -1202,18 +1204,18 @@ namespace ATA_GUI
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new System.Drawing.Point(50, 76);
+            label10.Location = new System.Drawing.Point(19, 24);
             label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(37, 15);
+            label10.Size = new System.Drawing.Size(34, 15);
             label10.TabIndex = 52;
-            label10.Text = "Flash:";
+            label10.Text = "Type:";
             // 
             // comboBoxImg
             // 
             comboBoxImg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBoxImg.FormattingEnabled = true;
             comboBoxImg.Items.AddRange(new object[] { "boot", "bootloader", "cache", "dtbo", "init_boot", "radio", "recovery", "system", "update", "vendor", "vendor_boot", "vendor_kernel_boot " });
-            comboBoxImg.Location = new System.Drawing.Point(97, 73);
+            comboBoxImg.Location = new System.Drawing.Point(66, 21);
             comboBoxImg.Name = "comboBoxImg";
             comboBoxImg.Size = new System.Drawing.Size(147, 23);
             comboBoxImg.Sorted = true;
@@ -1221,7 +1223,7 @@ namespace ATA_GUI
             // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(50, 99);
+            button1.Location = new System.Drawing.Point(19, 52);
             button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(194, 30);
@@ -2143,6 +2145,28 @@ namespace ATA_GUI
             // 
             backgroundWorkerDC.DoWork += BackgroundWorkerDC_DoWork;
             // 
+            // groupBox7
+            // 
+            groupBox7.Controls.Add(button1);
+            groupBox7.Controls.Add(comboBoxImg);
+            groupBox7.Controls.Add(label10);
+            groupBox7.Location = new System.Drawing.Point(7, 77);
+            groupBox7.Name = "groupBox7";
+            groupBox7.Size = new System.Drawing.Size(230, 100);
+            groupBox7.TabIndex = 54;
+            groupBox7.TabStop = false;
+            groupBox7.Text = "flash";
+            // 
+            // groupBox8
+            // 
+            groupBox8.Controls.Add(buttonBootFastboot);
+            groupBox8.Location = new System.Drawing.Point(252, 77);
+            groupBox8.Name = "groupBox8";
+            groupBox8.Size = new System.Drawing.Size(230, 100);
+            groupBox8.TabIndex = 55;
+            groupBox8.TabStop = false;
+            groupBox8.Text = "boot";
+            // 
             // MainForm
             // 
             AllowDrop = true;
@@ -2213,6 +2237,9 @@ namespace ATA_GUI
             contextMenuStripTools.ResumeLayout(false);
             groupBoxTerminal.ResumeLayout(false);
             groupBoxTerminal.PerformLayout();
+            groupBox7.ResumeLayout(false);
+            groupBox7.PerformLayout();
+            groupBox8.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -2398,6 +2425,8 @@ namespace ATA_GUI
         private System.Windows.Forms.ToolStripMenuItem grantRevokePermissionToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker backgroundWorkerDC;
         private System.Windows.Forms.Button buttonBootFastboot;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.GroupBox groupBox7;
     }
 }
 
