@@ -340,7 +340,7 @@ namespace ATA_GUI
                                     buttonSetRotation.Text = ATA.CurrentDeviceSelected.IsRotationFreeEnabled ? "Unset" : "Set";
 
                                     LogWriteLine("device info extracted", LogType.OK);
-                                    disableEnableSystem(true);
+                                    disableSystem(false);
                                 });
                             }
                             else
@@ -374,7 +374,7 @@ namespace ATA_GUI
 
                 Invoke(delegate
                 {
-                    disableEnableSystem(false);
+                    disableSystem(true);
                     buttonDisconnectIP.Enabled = false;
                     LogWriteLine("failed to extract device info!", LogType.ERROR);
                     MessageShowBox("Failed to extract device info\nError message: " + errorMessage, 0);
@@ -509,18 +509,6 @@ namespace ATA_GUI
             }
 
             ATA.CurrentDeviceSelected.AppsString.Sort();
-        }
-
-        private void disableEnableSystem(bool enable)
-        {
-            textBoxPort.Enabled = !enable;
-            buttonMobileScreenShare.Enabled = enable;
-            groupBoxDeviceInfo.Enabled = enable;
-            groupBoxRebootMenu.Enabled = enable;
-            groupBoxAPKMenu.Enabled = enable;
-            buttonDeviceLogs.Enabled = enable;
-            buttonTaskManager.Enabled = enable;
-            tabPageTools.Enabled = enable;
         }
 
         private void textboxClick(object sender, EventArgs e)
@@ -712,7 +700,7 @@ namespace ATA_GUI
                         switch (ata.Devices.Count)
                         {
                             case 0:
-                                disableEnableSystem(false);
+                                disableSystem(true);
                                 panelFastboot.Enabled = false;
                                 panelRecovery.Enabled = false;
                                 LogWriteLine("no devices detected. If this problem continues, ensure that USB debugging is enabled on your device. Additionally, verify that the correct drivers are installed; you can find the necessary links under Help -> OEM Drivers. For detailed instructions on enabling USB debugging and more information, please refer to this video tutorial: https://www.youtube.com/watch?v=W7nkxS9LMXs.", LogType.ERROR);
@@ -744,6 +732,7 @@ namespace ATA_GUI
                 reply = myPing.Send(IPAddress.Parse("1.1.1.1"), 1000, new byte[32], new PingOptions());
                 if (reply.Status == IPStatus.Success)
                 {
+                    
                     return true;
                 }
             }
@@ -752,6 +741,11 @@ namespace ATA_GUI
                 MessageShowBox("Error during connection check", 0);
             }
             return false;
+        }
+
+        public void updateOnlineStatus()
+        {
+            ata.IsConnected = pingCheck();
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
@@ -777,7 +771,7 @@ namespace ATA_GUI
 
         private void DataLoadingUI()
         {
-            ata.IsConnected = pingCheck();
+            updateOnlineStatus();
 
             if (ata.IsConnected)
             {
@@ -972,6 +966,8 @@ namespace ATA_GUI
             }
             else
             {
+                updateOnlineStatus();
+
                 await ADBDownload(false);
                 ATA.ADBPath = ATA.FindExecutable(ata.FILEADB);
                 ATA.FASTBOOTPath = ATA.FindExecutable(ata.FILEFastboot);
@@ -1187,7 +1183,7 @@ namespace ATA_GUI
         {
             ATA.CurrentDeviceSelected = ata.Devices[comboBoxDevices.SelectedIndex];
 
-            disableEnableSystem(false);
+            disableSystem(true);
             panelFastboot.Enabled = false;
             panelRecovery.Enabled = false;
         }
@@ -1219,7 +1215,7 @@ namespace ATA_GUI
                 buttonDeviceLogs.Enabled = false;
                 buttonTaskManager.Enabled = false;
                 buttonMobileScreenShare.Enabled = false;
-                disableEnableSystem(false);
+                disableSystem(true);
             }
 
             if (ata.CurrentTab != Tab.SYSTEM)
@@ -1240,7 +1236,7 @@ namespace ATA_GUI
             }
             Invoke(delegate
             {
-                disableEnableSystem(false);
+                disableSystem(true);
                 buttonDisconnectIP.Enabled = false;
             });
 
@@ -1324,8 +1320,14 @@ namespace ATA_GUI
         {
             Invoke(delegate
             {
-                tabPageSystem.Enabled = !a;
+                textBoxPort.Enabled = a;
                 buttonMobileScreenShare.Enabled = !a;
+                groupBoxDeviceInfo.Enabled = !a;
+                groupBoxRebootMenu.Enabled = !a;
+                groupBoxAPKMenu.Enabled = !a;
+                tabPageTools.Enabled = !a;
+                buttonDeviceLogs.Enabled = !a;
+                buttonTaskManager.Enabled = !a;
             });
         }
 
@@ -1380,6 +1382,8 @@ namespace ATA_GUI
             }
             else
             {
+                updateOnlineStatus();
+
                 try
                 {
                     backgroundWorkerExeDownloader.RunWorkerAsync();
@@ -1473,6 +1477,8 @@ namespace ATA_GUI
 
             if (dialogResult == DialogResult.Yes)
             {
+                updateOnlineStatus();
+
                 _ = await ADBDownload(true);
             }
         }
