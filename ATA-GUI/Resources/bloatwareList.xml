@@ -428,7 +428,6 @@
 		com.samsung.android.mdm
 		com.samsung.android.mdx
 		com.samsung.android.mdx.kit
-		com.samsung.android.mobileservice
 		com.samsung.android.net.wifi.wifiguider
 		com.samsung.android.networkdiagnostic
 		com.samsung.android.oneconnect
@@ -739,7 +738,6 @@
 		com.google.android.ondevicepersonalization.services
 		com.google.android.overlay.modules.captiveportallogin.forframework
 		com.google.android.overlay.gmsconfig.asi
-		com.google.android.overlay.gmsconfig.common
 		com.google.android.overlay.gmsconfig.comms
 		com.google.android.overlay.gmsconfig.geotz
 		com.google.android.overlay.gmsconfig.personalsafety
@@ -748,7 +746,6 @@
 		com.google.android.overlay.gmsconfig.searchselector
 		com.google.android.overlay.gmsconfig.ww
 		com.google.android.overlay.modules.documentsui
-		com.google.android.overlay.modules.modulemetadata.forframework
 		com.huaqin.btlogger
 		com.android.systemui.miui.optimization.overlay
 		com.android.settings.overlay.miui
@@ -2945,6 +2942,7 @@
 		com.samsung.android.location
 		com.samsung.android.mdagent
 		com.samsung.android.mdx.quickboard
+		com.samsung.android.mobileservice
 		com.samsung.android.photoremasterservice
 		com.samsung.android.provider.shootingmodeprovider
 		com.samsung.android.smartface
@@ -3894,6 +3892,7 @@
 		com.google.android.cellbroadcastservice
 		com.google.android.networkstack.tethering
 		com.google.android.overlay.managedprovisioning
+		com.google.android.overlay.gmsconfig.common
 		com.google.android.overlay.modules.cellbroadcastservice
 		com.google.android.providers.media.module
 		vendor.qti.imsrcs
