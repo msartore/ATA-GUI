@@ -481,7 +481,7 @@ namespace ATA_GUI
                             }
                             else
                             {
-                                appData = new AppData("Coming soon!", package);
+                                appData = new AppData("ATA Bridge not installed!", package);
                             }
 
                             dataGridViewPackages.Rows.Add((new[] { appData.Name, appData.Package }).ToArray());
@@ -804,7 +804,7 @@ namespace ATA_GUI
 
             foreach (DataGridViewRow row in dataGridViewPackages.Rows)
             {
-                row.Visible = row.Cells[1].Value.ToString().Contains(text) || row.Cells[0].Value.ToString().Contains(text);
+                row.Visible = row.Cells[1].Value.ToString().ToLowerInvariant().Contains(text) || row.Cells[0].Value.ToString().ToLowerInvariant().Contains(text);
             }
 
             updateAppCount();
