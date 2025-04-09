@@ -33,3 +33,9 @@ ATA-GUI is an app that lets you perform advanced tasks on your Android™ device
 - **Support for Multiple User Devices**
 - **Support for enviroment variables**
 - **Auto USB device detection**
+
+## 🌉 ATA-Bridge
+
+To obtain access to more features, you can download ATA-Bridge from the Play Store
+
+<a href="https://play.google.com/store/apps/details?id=dev.msartore.atabridge"><img src="/docs/resources/gp_button.png" alt="google play download button"></a>
