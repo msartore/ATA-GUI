@@ -1,8 +1,3 @@
-using ATA_GUI.Classes;
-using ATA_GUI.Forms;
-using ATA_GUI.Utils;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,6 +15,11 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ATA_GUI.Classes;
+using ATA_GUI.Forms;
+using ATA_GUI.Utils;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ATA_GUI
 {
@@ -732,7 +732,7 @@ namespace ATA_GUI
                 reply = myPing.Send(IPAddress.Parse("1.1.1.1"), 1000, new byte[32], new PingOptions());
                 if (reply.Status == IPStatus.Success)
                 {
-                    
+
                     return true;
                 }
             }
@@ -1271,14 +1271,19 @@ namespace ATA_GUI
                             ZipFile.ExtractToDirectory("sdkplatformtool.zip", Path.GetDirectoryName(Application.ExecutablePath));
                             LogWriteLine("sdk platform tool extraced!", LogType.OK);
                             LogWriteLine("getting things ready...", LogType.INFO);
-                            _ = ConsoleProcess.SystemCommand("taskkill /f /im " + ata.FILEADB);
-                            _ = ConsoleProcess.SystemCommand("taskkill /f /im " + ata.FILEFastboot);
+                            _ = await ConsoleProcess.SystemCommand("taskkill /f /im " + ata.FILEADB);
+                            _ = await ConsoleProcess.SystemCommand("taskkill /f /im " + ata.FILEFastboot);
 
                             if (Directory.Exists("platform-tools"))
                             {
                                 foreach (var item in Directory.EnumerateFiles(exePath + "\\platform-tools"))
                                 {
-                                    File.Move(item, exePath + item.Substring(item.LastIndexOf("\\")));
+                                    string itemPath = string.Concat(exePath, item.AsSpan(item.LastIndexOf("\\")));
+
+                                    if (File.Exists(itemPath))
+                                        File.Delete(itemPath);
+
+                                    File.Move(item, itemPath);
                                 }
                                 Directory.Delete("platform-tools", true);
                             }
