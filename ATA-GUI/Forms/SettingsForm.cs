@@ -1,9 +1,9 @@
-﻿using ATA_GUI.Classes;
-using ATA_GUI.Utils;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using ATA_GUI.Classes;
+using ATA_GUI.Utils;
+using Newtonsoft.Json.Linq;
 
 namespace ATA_GUI
 {
@@ -138,6 +138,11 @@ namespace ATA_GUI
             {
                 File.Delete(ATA.IPFileName);
             }
+        }
+
+        private void buttonATABridgeDownload_Click(object sender, EventArgs e)
+        {
+            ConsoleProcess.OpenLink("https://play.google.com/store/apps/details?id=dev.msartore.atabridge");
         }
     }
 }

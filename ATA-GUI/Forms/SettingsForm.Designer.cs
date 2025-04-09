@@ -178,13 +178,13 @@ namespace ATA_GUI
             // 
             // buttonATABridgeDownload
             // 
-            buttonATABridgeDownload.Enabled = false;
             buttonATABridgeDownload.Location = new System.Drawing.Point(121, 174);
             buttonATABridgeDownload.Name = "buttonATABridgeDownload";
             buttonATABridgeDownload.Size = new System.Drawing.Size(187, 27);
             buttonATABridgeDownload.TabIndex = 44;
-            buttonATABridgeDownload.Text = "ATABridge Coming Soon!";
+            buttonATABridgeDownload.Text = "Download ATA-Bridge";
             buttonATABridgeDownload.UseVisualStyleBackColor = true;
+            buttonATABridgeDownload.Click += buttonATABridgeDownload_Click;
             // 
             // SettingsForm
             // 

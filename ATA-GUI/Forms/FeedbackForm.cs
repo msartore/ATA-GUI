@@ -1,8 +1,8 @@
-﻿using ATA_GUI.Utils;
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
+using ATA_GUI.Utils;
 
 namespace ATA_GUI
 {
@@ -66,7 +66,12 @@ namespace ATA_GUI
 
         private void buttonDonate_Click(object sender, EventArgs e)
         {
-            ConsoleProcess.OpenLink("https://msartore.dev/donation/");
+            ConsoleProcess.OpenLink("https://msartore.dev/donate");
+        }
+
+        private void buttonDownloadATAB_Click(object sender, EventArgs e)
+        {
+            ConsoleProcess.OpenLink("https://play.google.com/store/apps/details?id=dev.msartore.atabridge");
         }
     }
 }
