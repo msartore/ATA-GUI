@@ -117,10 +117,14 @@ namespace ATA_GUI
             buttonHardReset = new System.Windows.Forms.Button();
             buttonRebootToSystem = new System.Windows.Forms.Button();
             groupBox4 = new System.Windows.Forms.GroupBox();
+            groupBox8 = new System.Windows.Forms.GroupBox();
             buttonBootFastboot = new System.Windows.Forms.Button();
-            label10 = new System.Windows.Forms.Label();
-            comboBoxImg = new System.Windows.Forms.ComboBox();
+            groupBox7 = new System.Windows.Forms.GroupBox();
+            label7 = new System.Windows.Forms.Label();
+            comboBoxP = new System.Windows.Forms.ComboBox();
             button1 = new System.Windows.Forms.Button();
+            comboBoxImg = new System.Windows.Forms.ComboBox();
+            label10 = new System.Windows.Forms.Label();
             textBoxDirImg = new System.Windows.Forms.TextBox();
             buttonSearchFileFastboot = new System.Windows.Forms.Button();
             tabPageRecovery = new System.Windows.Forms.TabPage();
@@ -212,8 +216,6 @@ namespace ATA_GUI
             backgroundWorkerAPKinstall = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerFileTransfer = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerDC = new System.ComponentModel.BackgroundWorker();
-            groupBox7 = new System.Windows.Forms.GroupBox();
-            groupBox8 = new System.Windows.Forms.GroupBox();
             groupBoxDeviceInfo.SuspendLayout();
             tabControls.SuspendLayout();
             tabPageSystem.SuspendLayout();
@@ -227,6 +229,8 @@ namespace ATA_GUI
             panelFastboot.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox4.SuspendLayout();
+            groupBox8.SuspendLayout();
+            groupBox7.SuspendLayout();
             tabPageRecovery.SuspendLayout();
             panelRecovery.SuspendLayout();
             groupBoxImageExtraction.SuspendLayout();
@@ -249,8 +253,6 @@ namespace ATA_GUI
             contextMenuStripSearch.SuspendLayout();
             contextMenuStripTools.SuspendLayout();
             groupBoxTerminal.SuspendLayout();
-            groupBox7.SuspendLayout();
-            groupBox8.SuspendLayout();
             SuspendLayout();
             // 
             // labelLog
@@ -372,7 +374,7 @@ namespace ATA_GUI
             labelIP.Location = new System.Drawing.Point(115, 123);
             labelIP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelIP.Name = "labelIP";
-            labelIP.Size = new System.Drawing.Size(44, 15);
+            labelIP.Size = new System.Drawing.Size(45, 15);
             labelIP.TabIndex = 15;
             labelIP.Text = "EMPTY";
             // 
@@ -392,7 +394,7 @@ namespace ATA_GUI
             labelAV.Location = new System.Drawing.Point(115, 108);
             labelAV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelAV.Name = "labelAV";
-            labelAV.Size = new System.Drawing.Size(44, 15);
+            labelAV.Size = new System.Drawing.Size(45, 15);
             labelAV.TabIndex = 13;
             labelAV.Text = "EMPTY";
             // 
@@ -402,7 +404,7 @@ namespace ATA_GUI
             labelDevice.Location = new System.Drawing.Point(115, 93);
             labelDevice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelDevice.Name = "labelDevice";
-            labelDevice.Size = new System.Drawing.Size(44, 15);
+            labelDevice.Size = new System.Drawing.Size(45, 15);
             labelDevice.TabIndex = 12;
             labelDevice.Text = "EMPTY";
             // 
@@ -412,7 +414,7 @@ namespace ATA_GUI
             labelBoard.Location = new System.Drawing.Point(115, 78);
             labelBoard.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelBoard.Name = "labelBoard";
-            labelBoard.Size = new System.Drawing.Size(44, 15);
+            labelBoard.Size = new System.Drawing.Size(45, 15);
             labelBoard.TabIndex = 11;
             labelBoard.Text = "EMPTY";
             // 
@@ -422,7 +424,7 @@ namespace ATA_GUI
             labelModel.Location = new System.Drawing.Point(115, 63);
             labelModel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelModel.Name = "labelModel";
-            labelModel.Size = new System.Drawing.Size(44, 15);
+            labelModel.Size = new System.Drawing.Size(45, 15);
             labelModel.TabIndex = 10;
             labelModel.Text = "EMPTY";
             // 
@@ -432,7 +434,7 @@ namespace ATA_GUI
             labelManu.Location = new System.Drawing.Point(115, 48);
             labelManu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelManu.Name = "labelManu";
-            labelManu.Size = new System.Drawing.Size(44, 15);
+            labelManu.Size = new System.Drawing.Size(45, 15);
             labelManu.TabIndex = 9;
             labelManu.Text = "EMPTY";
             // 
@@ -442,7 +444,7 @@ namespace ATA_GUI
             labelCPUAb.Location = new System.Drawing.Point(115, 33);
             labelCPUAb.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelCPUAb.Name = "labelCPUAb";
-            labelCPUAb.Size = new System.Drawing.Size(44, 15);
+            labelCPUAb.Size = new System.Drawing.Size(45, 15);
             labelCPUAb.TabIndex = 8;
             labelCPUAb.Text = "EMPTY";
             // 
@@ -452,7 +454,7 @@ namespace ATA_GUI
             labelBuildU.Location = new System.Drawing.Point(115, 18);
             labelBuildU.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelBuildU.Name = "labelBuildU";
-            labelBuildU.Size = new System.Drawing.Size(44, 15);
+            labelBuildU.Size = new System.Drawing.Size(45, 15);
             labelBuildU.TabIndex = 7;
             labelBuildU.Text = "EMPTY";
             // 
@@ -580,7 +582,7 @@ namespace ATA_GUI
             labelTotalPackages.AutoSize = true;
             labelTotalPackages.Location = new System.Drawing.Point(11, 75);
             labelTotalPackages.Name = "labelTotalPackages";
-            labelTotalPackages.Size = new System.Drawing.Size(44, 15);
+            labelTotalPackages.Size = new System.Drawing.Size(45, 15);
             labelTotalPackages.TabIndex = 48;
             labelTotalPackages.Text = "Total: 0";
             // 
@@ -598,7 +600,6 @@ namespace ATA_GUI
             dataGridViewPackages.Name = "dataGridViewPackages";
             dataGridViewPackages.ReadOnly = true;
             dataGridViewPackages.RowHeadersWidth = 43;
-            dataGridViewPackages.RowTemplate.Height = 25;
             dataGridViewPackages.Size = new System.Drawing.Size(324, 224);
             dataGridViewPackages.TabIndex = 47;
             dataGridViewPackages.SelectionChanged += dataGridViewPackages_SelectionChanged;
@@ -939,7 +940,7 @@ namespace ATA_GUI
             label11.Location = new System.Drawing.Point(146, 22);
             label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label11.Name = "label11";
-            label11.Size = new System.Drawing.Size(38, 15);
+            label11.Size = new System.Drawing.Size(39, 15);
             label11.TabIndex = 42;
             label11.Text = "PORT:";
             // 
@@ -1126,11 +1127,11 @@ namespace ATA_GUI
             // 
             groupBox5.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             groupBox5.Controls.Add(richTextBoxFastbootInfo);
-            groupBox5.Location = new System.Drawing.Point(499, 3);
+            groupBox5.Location = new System.Drawing.Point(527, 3);
             groupBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox5.Name = "groupBox5";
             groupBox5.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox5.Size = new System.Drawing.Size(415, 330);
+            groupBox5.Size = new System.Drawing.Size(387, 330);
             groupBox5.TabIndex = 51;
             groupBox5.TabStop = false;
             groupBox5.Text = "Device Info";
@@ -1143,7 +1144,7 @@ namespace ATA_GUI
             richTextBoxFastbootInfo.Location = new System.Drawing.Point(7, 22);
             richTextBoxFastbootInfo.Name = "richTextBoxFastbootInfo";
             richTextBoxFastbootInfo.ReadOnly = true;
-            richTextBoxFastbootInfo.Size = new System.Drawing.Size(401, 302);
+            richTextBoxFastbootInfo.Size = new System.Drawing.Size(373, 302);
             richTextBoxFastbootInfo.TabIndex = 0;
             richTextBoxFastbootInfo.Text = "";
             // 
@@ -1186,51 +1187,94 @@ namespace ATA_GUI
             groupBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox4.Size = new System.Drawing.Size(489, 183);
+            groupBox4.Size = new System.Drawing.Size(515, 183);
             groupBox4.TabIndex = 48;
             groupBox4.TabStop = false;
             groupBox4.Text = "Flash/Boot IMG";
             // 
+            // groupBox8
+            // 
+            groupBox8.Controls.Add(buttonBootFastboot);
+            groupBox8.Location = new System.Drawing.Point(278, 77);
+            groupBox8.Name = "groupBox8";
+            groupBox8.Size = new System.Drawing.Size(230, 100);
+            groupBox8.TabIndex = 55;
+            groupBox8.TabStop = false;
+            groupBox8.Text = "boot";
+            // 
             // buttonBootFastboot
             // 
-            buttonBootFastboot.Location = new System.Drawing.Point(21, 37);
+            buttonBootFastboot.Location = new System.Drawing.Point(7, 37);
             buttonBootFastboot.Name = "buttonBootFastboot";
-            buttonBootFastboot.Size = new System.Drawing.Size(193, 30);
+            buttonBootFastboot.Size = new System.Drawing.Size(217, 30);
             buttonBootFastboot.TabIndex = 53;
             buttonBootFastboot.Text = "boot";
             buttonBootFastboot.UseVisualStyleBackColor = true;
             buttonBootFastboot.Click += buttonBootFastboot_Click;
             // 
-            // label10
+            // groupBox7
             // 
-            label10.AutoSize = true;
-            label10.Location = new System.Drawing.Point(19, 24);
-            label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(34, 15);
-            label10.TabIndex = 52;
-            label10.Text = "Type:";
+            groupBox7.Controls.Add(label7);
+            groupBox7.Controls.Add(comboBoxP);
+            groupBox7.Controls.Add(button1);
+            groupBox7.Controls.Add(comboBoxImg);
+            groupBox7.Controls.Add(label10);
+            groupBox7.Location = new System.Drawing.Point(7, 77);
+            groupBox7.Name = "groupBox7";
+            groupBox7.Size = new System.Drawing.Size(263, 100);
+            groupBox7.TabIndex = 54;
+            groupBox7.TabStop = false;
+            groupBox7.Text = "flash";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new System.Drawing.Point(184, 24);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(17, 15);
+            label7.TabIndex = 54;
+            label7.Text = "P:";
+            // 
+            // comboBoxP
+            // 
+            comboBoxP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBoxP.FormattingEnabled = true;
+            comboBoxP.Items.AddRange(new object[] { "a", "b", "all", "a or b" });
+            comboBoxP.Location = new System.Drawing.Point(207, 21);
+            comboBoxP.Name = "comboBoxP";
+            comboBoxP.Size = new System.Drawing.Size(47, 23);
+            comboBoxP.TabIndex = 53;
+            // 
+            // button1
+            // 
+            button1.Location = new System.Drawing.Point(7, 52);
+            button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(249, 30);
+            button1.TabIndex = 50;
+            button1.Text = "flash";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // comboBoxImg
             // 
             comboBoxImg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBoxImg.FormattingEnabled = true;
-            comboBoxImg.Items.AddRange(new object[] { "boot", "bootloader", "cache", "dtbo", "init_boot", "radio", "recovery", "system", "update", "vendor", "vendor_boot", "vendor_kernel_boot " });
-            comboBoxImg.Location = new System.Drawing.Point(66, 21);
+            comboBoxImg.Items.AddRange(new object[] { "boot", "bootloader", "cache", "dtbo", "init_boot", "radio", "recovery", "super", "system", "update", "vendor", "vendor_boot", "vendor_kernel_boot " });
+            comboBoxImg.Location = new System.Drawing.Point(43, 21);
             comboBoxImg.Name = "comboBoxImg";
-            comboBoxImg.Size = new System.Drawing.Size(147, 23);
+            comboBoxImg.Size = new System.Drawing.Size(135, 23);
             comboBoxImg.Sorted = true;
             comboBoxImg.TabIndex = 51;
             // 
-            // button1
+            // label10
             // 
-            button1.Location = new System.Drawing.Point(19, 52);
-            button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(194, 30);
-            button1.TabIndex = 50;
-            button1.Text = "flash";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            label10.AutoSize = true;
+            label10.Location = new System.Drawing.Point(7, 24);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(35, 15);
+            label10.TabIndex = 52;
+            label10.Text = "Type:";
             // 
             // textBoxDirImg
             // 
@@ -1239,6 +1283,7 @@ namespace ATA_GUI
             textBoxDirImg.Name = "textBoxDirImg";
             textBoxDirImg.Size = new System.Drawing.Size(285, 23);
             textBoxDirImg.TabIndex = 37;
+            textBoxDirImg.TextChanged += textBoxDirImg_TextChanged;
             // 
             // buttonSearchFileFastboot
             // 
@@ -1877,7 +1922,7 @@ namespace ATA_GUI
             // videoTutorialToolStripMenuItem
             // 
             videoTutorialToolStripMenuItem.Name = "videoTutorialToolStripMenuItem";
-            videoTutorialToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            videoTutorialToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             videoTutorialToolStripMenuItem.Text = "Video Tutorial";
             videoTutorialToolStripMenuItem.Click += videoTutorialToolStripMenuItem_Click;
             // 
@@ -2145,28 +2190,6 @@ namespace ATA_GUI
             // 
             backgroundWorkerDC.DoWork += BackgroundWorkerDC_DoWork;
             // 
-            // groupBox7
-            // 
-            groupBox7.Controls.Add(button1);
-            groupBox7.Controls.Add(comboBoxImg);
-            groupBox7.Controls.Add(label10);
-            groupBox7.Location = new System.Drawing.Point(7, 77);
-            groupBox7.Name = "groupBox7";
-            groupBox7.Size = new System.Drawing.Size(230, 100);
-            groupBox7.TabIndex = 54;
-            groupBox7.TabStop = false;
-            groupBox7.Text = "flash";
-            // 
-            // groupBox8
-            // 
-            groupBox8.Controls.Add(buttonBootFastboot);
-            groupBox8.Location = new System.Drawing.Point(252, 77);
-            groupBox8.Name = "groupBox8";
-            groupBox8.Size = new System.Drawing.Size(230, 100);
-            groupBox8.TabIndex = 55;
-            groupBox8.TabStop = false;
-            groupBox8.Text = "boot";
-            // 
             // MainForm
             // 
             AllowDrop = true;
@@ -2211,6 +2234,9 @@ namespace ATA_GUI
             groupBox5.ResumeLayout(false);
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
+            groupBox8.ResumeLayout(false);
+            groupBox7.ResumeLayout(false);
+            groupBox7.PerformLayout();
             tabPageRecovery.ResumeLayout(false);
             panelRecovery.ResumeLayout(false);
             groupBoxImageExtraction.ResumeLayout(false);
@@ -2237,9 +2263,6 @@ namespace ATA_GUI
             contextMenuStripTools.ResumeLayout(false);
             groupBoxTerminal.ResumeLayout(false);
             groupBoxTerminal.PerformLayout();
-            groupBox7.ResumeLayout(false);
-            groupBox7.PerformLayout();
-            groupBox8.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -2427,6 +2450,8 @@ namespace ATA_GUI
         private System.Windows.Forms.Button buttonBootFastboot;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboBoxP;
     }
 }
 

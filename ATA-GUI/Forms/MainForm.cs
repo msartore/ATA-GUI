@@ -567,6 +567,7 @@ namespace ATA_GUI
         private void MainForm_Load(object sender, EventArgs e)
         {
             comboBoxImg.SelectedIndex = 0;
+            comboBoxP.SelectedIndex = 0;
             comboBoxImgExtraction.SelectedIndex = 0;
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -931,32 +932,63 @@ namespace ATA_GUI
 
         private void backgroundWorkerFlashImg_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            string command = null;
-            string log;
+            List<string> commands = [];
+            string argument = e.Argument.ToString();
+            string imagePath = textBoxDirImg.Text;
+            string imageName = "";
+            int selectedIndex = -1;
+            string selectedPartition = "";
 
-            if (e.Argument.ToString() == "boot")
+            Invoke(() =>
             {
-                command = e.Argument + " ";
-            }
-            else
-            {
-                command = e.Argument + " " + comboBoxImg.Text + " ";
-            }
-
-            Invoke(delegate
-            {
-                LogWriteLine(e.Argument + "ing " + textBoxDirImg.Text, LogType.INFO);
+                imageName = comboBoxImg.Text;
+                selectedIndex = comboBoxP.SelectedIndex;
+                selectedPartition = comboBoxP.Text;
             });
 
-            if ((log = ConsoleProcess.AdbFastbootCommandR(commandAssemblerF(command + textBoxDirImg.Text), 1)) != null)
+            if (argument == "boot")
             {
-                LogWriteLine(log, LogType.INFO);
+                commands.Add($"{argument} {imagePath}");
             }
             else
             {
-                MessageShowBox("Something went wrong!", 0);
+                switch (selectedIndex)
+                {
+                    case 2:
+                        commands.Add($"{argument} {imageName}_a {imagePath}");
+                        commands.Add($"{argument} {imageName}_b {imagePath}");
+                        break;
+
+                    case 3:
+                        commands.Add($"{argument} {imageName} {imagePath}");
+                        break;
+
+                    default:
+                        commands.Add($"{argument} {imageName}_{selectedPartition} {imagePath}");
+                        break;
+                }
+            }
+
+            foreach (string command in commands)
+            {
+                Invoke(() =>
+                {
+                    LogWriteLine($"{argument}ing image {imageName} from {imagePath} to partition: {selectedPartition}", LogType.INFO);
+                });
+
+                string log = ConsoleProcess.AdbFastbootCommandR(commandAssemblerF(command), 1);
+
+                if (log != null)
+                {
+                    Invoke(() => LogWriteLine(log, LogType.INFO));
+                }
+                else
+                {
+                    MessageShowBox("Something went wrong!", 0);
+                }
             }
         }
+
 
         private async Task<bool> AdbFastbootExist(bool isAdb)
         {
@@ -2318,6 +2350,22 @@ namespace ATA_GUI
             else
             {
                 MessageShowBox("Please select a img file", 1);
+            }
+        }
+
+        private void textBoxDirImg_TextChanged(object sender, EventArgs e)
+        {
+            int length = 0;
+
+            for (int i = 0; i < comboBoxImg.Items.Count; i++)
+            {
+                string imgName = (string)comboBoxImg.Items[i];
+
+                if (textBoxDirImg.Text.Contains(imgName, StringComparison.InvariantCultureIgnoreCase) && imgName.Length > length)
+                {
+                    comboBoxImg.SelectedIndex = i;
+                    length = imgName.Length;
+                }
             }
         }
     }

@@ -21,7 +21,7 @@ namespace ATA_GUI.Utils
 
         public static string AdbFastbootCommandR(string command, int type)
         {
-            string[] r = AdbFastbootCommandR(new[] { command }, type);
+            string[] r = AdbFastbootCommandR([command], type);
 
             return r.Length > 0 ? r[0] : string.Empty;
         }
