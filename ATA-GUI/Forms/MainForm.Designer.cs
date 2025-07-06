@@ -2132,7 +2132,7 @@ namespace ATA_GUI
             // 
             radioButtonFastboot.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             radioButtonFastboot.AutoSize = true;
-            radioButtonFastboot.Location = new System.Drawing.Point(264, 75);
+            radioButtonFastboot.Location = new System.Drawing.Point(261, 76);
             radioButtonFastboot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonFastboot.Name = "radioButtonFastboot";
             radioButtonFastboot.Size = new System.Drawing.Size(69, 19);
@@ -2146,7 +2146,7 @@ namespace ATA_GUI
             radioButtonADB.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             radioButtonADB.AutoSize = true;
             radioButtonADB.Checked = true;
-            radioButtonADB.Location = new System.Drawing.Point(262, 54);
+            radioButtonADB.Location = new System.Drawing.Point(261, 55);
             radioButtonADB.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             radioButtonADB.Name = "radioButtonADB";
             radioButtonADB.Size = new System.Drawing.Size(45, 19);
@@ -2171,6 +2171,8 @@ namespace ATA_GUI
             // richTextBoxTerminal
             // 
             richTextBoxTerminal.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            richTextBoxTerminal.BackColor = System.Drawing.Color.Black;
+            richTextBoxTerminal.ForeColor = System.Drawing.SystemColors.Window;
             richTextBoxTerminal.Location = new System.Drawing.Point(7, 17);
             richTextBoxTerminal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             richTextBoxTerminal.Name = "richTextBoxTerminal";
