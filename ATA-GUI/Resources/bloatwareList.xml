@@ -46,7 +46,6 @@
 		com.sonymobile.retaildemo
 		com.sonymobile.scan3d
 		com.sonymobile.simlockunlockapp
-		com.sonymobile.smartcharger
 		com.sonymobile.support
 		com.sonymobile.synchub
 		com.sonymobile.xperialounge.services
@@ -74,7 +73,6 @@
 		com.xiaomi.digitalkey
 		com.xiaomi.gamecenter.sdk.service
 		com.mig.play.games
-		com.xiaomi.market
 		com.miui.voiceassist
 		com.xiaomi.migameservice
 		com.miui.securityinputmethod
@@ -92,6 +90,15 @@
 		com.miui.contentextension
 		com.unionpay.tsmservice.mi
 		com.miui.voicetrigger
+		com.motorola.livewallpaper3.prebuilt.chroma_plume
+		com.motorola.livewallpaper3.prebuilt.cool_bamboo
+		com.motorola.livewallpaper3.prebuilt.titan
+		com.motorola.livewallpaper3.prebuilt.lovely_peach
+		com.motorola.livewallpaper3.prebuilt.mysterious_amber
+		com.motorola.livewallpaper3.prebuilt.romantic_wisteria
+		com.motorola.livewallpaper3.prebuilt.tranquil_whale
+		com.motorola.livewallpaper3.prebuilt.twilight_twist
+		com.motorola.livewallpaper3.prebuilt.vibrant_sapling
 		com.whitepages.nameid.tmobile
 		us.com.dt.iq.appsource.tmobile
 		com.asurion.android.verizon.vms
@@ -105,6 +112,7 @@
 		com.motricity.verizon.ssodownloadable
 		com.securityandprivacy.android.verizon.vms
 		com.telecomsys.directedsms.android.SCG
+		com.telus.checkup
 		com.telus.myaccount
 		com.vcast.mediamanager
 		com.verizon.llkagent
@@ -369,7 +377,6 @@
 		com.samsung.android.app.panel.naver.v
 		com.samsung.android.app.pinboard
 		com.samsung.android.app.reminder
-		com.samsung.android.app.routines
 		com.samsung.android.app.sbrowseredge
 		com.samsung.android.app.settings.bixby
 		com.samsung.android.app.simplesharing
@@ -398,9 +405,7 @@
 		com.samsung.android.coreapps
 		com.samsung.android.da.daagent
 		com.samsung.android.dlp.service
-		com.samsung.android.dqagent
 		com.samsung.android.drivelink.stub
-		com.samsung.android.dynamiclock
 		com.samsung.android.gearoplugin
 		com.samsung.android.easysetup
 		com.samsung.android.email.provider
@@ -506,7 +511,6 @@
 		com.samsung.oh
 		com.samsung.rcs
 		com.samsung.safetyinformation
-		com.samsung.SMT
 		com.samsung.storyservice
 		com.samsung.svoice.sync
 		com.samsung.systemui.bixby2
@@ -533,7 +537,6 @@
 		com.sec.android.app.parser
 		com.sec.android.app.quicktool
 		com.sec.android.app.ringtoneBR
-		com.sec.android.app.samsungapps
 		com.sec.android.app.sbrowser
 		com.sec.android.app.sbrowser.lite
 		com.sec.android.app.scloud
@@ -642,6 +645,7 @@
 		com.android.systemui.plugin.globalactions.wallet
 		com.android.theme.font.notoserifsource
 		com.android.theme.icon_pack.rounded.systemui
+		com.android.store
 		cn.oneplus.photos
 		com.example.wifirftest
 		com.fingerprints.extension.service
@@ -738,9 +742,6 @@
 		com.google.android.ondevicepersonalization.services
 		com.google.android.overlay.modules.captiveportallogin.forframework
 		com.google.android.overlay.gmsconfig.asi
-		com.google.android.overlay.gmsconfig.comms
-		com.google.android.overlay.gmsconfig.geotz
-		com.google.android.overlay.gmsconfig.personalsafety
 		com.google.android.overlay.gmsconfig.photos
 		com.google.android.overlay.gmsconfig.searchlauncherqs
 		com.google.android.overlay.gmsconfig.searchselector
@@ -758,10 +759,8 @@
 		com.qualcomm.qti.qccauthmgr
 		com.qualcomm.qti.seccamservice
 		com.qualcomm.qti.services.secureui
-		com.qualcomm.qti.services.systemhelper
 		com.qualcomm.qti.server.wigig.tethering.rro
 		com.qualcomm.qti.qcom_accesslogkit
-		com.mediatek.miravision.ui
 		com.qualcomm.qti.simcontacts
 		com.qualcomm.qti.smq
 		com.qualcomm.qti.xrvd.service
@@ -895,6 +894,7 @@
 		com.amazon.mShop.android.shopping
 		com.amazon.clouddrive.photos
 		in.amazon.mShop.android.shopping
+		com.facebook.lite
 		com.facebook.katana
 		com.facebook.system
 		com.facebook.appmanager
@@ -911,6 +911,7 @@
 		com.microsoft.office.officehubrow
 		com.microsoft.appmanager
 		com.microsoft.translator
+		com.casper.turkiye
 		com.caf.fmradio
 		org.codeaurora.gps.gpslogsave
 		org.ifaa.aidl.manager
@@ -1064,6 +1065,7 @@
 		com.ubercab.eats
 		com.ubercab.driver
 		com.ubercab
+		com.alibaba.aliexpresshd
 		com.UCMobile.intl
 		com.ume.browser.northamerica
 		com.wb.goog.got.conquest
@@ -1235,7 +1237,6 @@
 		com.android.cameraextensions
 		com.android.globalFileexplorer
 		com.android.thememanager.gliobal_config.config.overlay
-		com.miui.aod
 		com.miui.calculator
 		com.mi.globalminusscreen
 		com.mi.emapal
@@ -1397,7 +1398,6 @@
 		com.lge.musicpicker
 		com.lge.penprime
 		android.autoinstalls.config.lge.device
-		com.lge.provider.signboard
 		com.lge.ia.task.informant
 		com.lge.onehandcontroller
 		com.arcsoft.app.humanavatar
@@ -1483,6 +1483,7 @@
 		com.android.theme.icon.round
 		com.motorola.dciservice
 		com.motorola.enterprise.adapter.service
+		com.google.android.apps.privacy.wildlife
 		com.google.android.apps.pixelmigrate
 		com.android.bluetooth.bthelper
 		com.motorola.iqimotmetrics
@@ -1513,7 +1514,6 @@
 		com.android.setupwizard.overlay
 		com.nothing.weather
 		com.nothing.applocker
-		com.nothing.thirdparty
 		com.nothing.smartcenter
 		com.google.android.overlay.gmsconfig.healthconnect
 		com.google.android.overlay.gmsconfig.tetheringentitlement
@@ -1638,7 +1638,6 @@
 		com.coloros.securitykeyboard
 		com.coloros.translate.engine
 		com.oppo.tzupdate
-		com.coloros.weather.service
 		com.coloros.wifisecuredetect
 		com.oppo.ovoicemanager
 		com.oplus.postmanservice
@@ -1648,7 +1647,6 @@
 		com.daemon.shelper
 		com.coloros.smartdrive
 		com.coloros.smartsidebar
-		com.coloros.wifibackuprestore
 		com.oppo.wifitest
 		com.android.systemui.overlay.charging.anim.alita_supervooc2
 		com.android.systemui.overlay.fingerprint.anim.ccyh
@@ -1671,7 +1669,6 @@
 		com.oppo.criticallog
 		com.oppo.freefallingmonitor
 		com.coloros.prome.smsservice
-		com.coloros.recents
 		com.oppo.resmonitor
 		com.oppo.wifirf
 		com.oppo.smartvolume
@@ -1693,7 +1690,6 @@
 		com.android.sdm.plugins.diagmon
 		com.google.android.apps.diagnostictool
 		com.google.android.apps.carrier.log
-		com.google.android.euicc
 		com.google.android.factoryota
 		com.google.android.apps.helprtc
 		com.google.android.apps.wearables.maestro.companion
@@ -1780,6 +1776,7 @@
 		com.google.android.cellbroadcastreceiver.rro_common
 		com.google.android.cellbroadcastservice.rro_common
 		com.jrdcom.Elabel.a_overlay
+		com.jrdcom.urlreservedapp1
 		com.google.android.dialer.rro_common
 		com.tcl.fmradio.a_overlay
 		com.tcl.usercare.a_overlay
@@ -1951,6 +1948,7 @@
 		com.android.incallui.overlay
 		com.miui.system.overlay
 		com.android.systemui.overlay.miui
+		com.samsung.android.app.dtv.dmb
 		com.sec.android.app.bluetoothagent
 		com.sec.android.app.ve.vebgm
 		com.samsung.android.coldwalletservice
@@ -1962,9 +1960,9 @@
 		com.sec.android.app.uwbtest
 		com.samsung.android.keycustomizationinfobackupservice
 		com.samsung.gpuwatchapp
-		com.samsung.euicc
 		com.samsung.android.digitalkey
 		com.samsung.slsi.audiologging
+		com.samsung.slsi.telephony.silentlogging
 		com.sec.android.app.volumemonitorprovider
 		com.samsung.sec.android.teegris.tui_service
 		com.sec.android.pagebuddynotisvc
@@ -1978,7 +1976,6 @@
 		com.samsung.knox.rcp.components
 		com.monotype.android.font.samsungsans
 		com.samsung.android.uds
-		com.samsung.android.providers.factory
 		com.samsung.android.rlc
 		com.teksun.factorytest
 		com.freemeimp.factory
@@ -2044,7 +2041,6 @@
 		com.oplus.thirdkit
 		com.coloros.sharescreen
 		com.oplus.eyeprotect
-		com.oplus.trafficmonitor
 		com.coloros.feedback
 		com.fingerprints.fpctest
 		com.google.android.gmsintegration
@@ -2137,7 +2133,6 @@
 		com.google.android.play.games
 		com.google.android.safetycenter.resources
 		com.google.android.projection.gearhead
-		com.google.android.pixel.setupwizard
 		com.google.android.soundpicker
 		com.google.android.street
 		com.google.android.syncadapters.bookmarks
@@ -2161,7 +2156,6 @@
 		com.google.vr.expeditions
 		com.google.zxing.client.android
 		com.google.android.apps.maps
-		com.google.android.apps.turbo
 		com.google.android.apps.tycho
 		com.google.android.federatedcompute
 		com.google.android.nearby.halfsheet
@@ -2173,8 +2167,6 @@
 		com.google.android.gm.lite
 		com.google.audio.hearing.visualization.accessibility.scribe
 		com.google.android.overlay.modules.permissioncontroller
-		com.google.android.overlay.modules.permissioncontroller.forframework
-		com.google.android.overlay.permissioncontroller
 		com.verizon.obdm
 		com.verizon.permissions.appdirectedsms
 		com.vzw.ecid
@@ -2232,7 +2224,6 @@
 		com.huawei.livewallpaper.mountaincloud
 		com.huawei.livewallpaper.naturalgarden
 		com.huawei.livewallpaper.ripplestone
-		com.huawei.lbs
 		com.huawei.mmitest
 		com.huawei.mirror
 		com.huawei.numberidentity
@@ -2335,6 +2326,7 @@
 		com.heytap.browser
 		com.heytap.habit.analysis
 		com.heytap.music
+		com.heytap.pictorial
 		com.heytap.themestore
 		com.oplus.kekepay
 		com.oplus.logkit
@@ -2351,7 +2343,6 @@
 		com.oplus.crashbox
 		com.oplus.lfeh
 		com.oplus.ocar
-		com.oplus.wifibackuprestore
 		com.tripledot.solitaire
 		net.supertreat.solitaire
 		air.com.playtika.slotomania
@@ -2544,9 +2535,6 @@
 		com.android.rkpdapp
 		com.google.android.apps.googlecamera.fishfood
 		com.android.systemui.accessibility.accessibilitymenu
-		org.lineageos.profiles
-		org.calyxos.backup.contacts
-		org.lineageos.setupwizard
 		com.stevesoltys.seedvault
 		com.huawei.audioaccessorymanager
 		com.huawei.contentsensor
@@ -2578,7 +2566,6 @@
 		com.google.android.apps.tv.dreamx
 		com.google.android.apps.tv.netoscope
 		com.google.android.backdrop
-		com.google.android.tungsten.setupwraith
 		com.google.android.tv.remote.service
 		com.bc360.control
 		com.bc360.android.service
@@ -2613,11 +2600,9 @@
 		com.oplus.qualityprotect
 		com.google.android.apps.betterbug
 		com.google.pixel.digitalkey.timesync
-		com.android.DeviceAsWebcam
 		com.google.android.euiccoverlay
 		com.google.android.grilservice
 		com.google.omadm.trigger
-		com.google.pixel.camera.services
 		com.google.android.apps.pixel.support
 		com.google.android.apps.retaildemo.preload
 		com.android.yadayada
@@ -2626,7 +2611,6 @@
 		com.android.overlay.logmanager
 		com.android.overlay.music
 		com.android.overlay.soundrecorder
-		com.android.unisoc.telephony.server
 		com.cdfinger.factorytest
 		com.example.alpha.chipsemitptest
 		com.reallytek.wg
@@ -2855,6 +2839,8 @@
 		com.nim.rogers
 		com.Rogers.MyRogersTab
 		com.sec.android.app.kidshome
+		com.taboola.scoop
+		com.google.android.apps.weather
 	</basic>
 	<medium>
 		com.sonyericsson.android.addoncamera.artfilter
@@ -2869,6 +2855,7 @@
 		com.sonymobile.aptx.notifier
 		com.sonymobile.cellbroadcast.notification
 		com.sonymobile.mtp.extension.fotaupdate
+		com.sonymobile.smartcharger
 		com.sonymobile.xperiaxlivewallpaper.product.res.overlay
 		com.sonyericsson.album
 		com.sonymobile.camera
@@ -2889,6 +2876,7 @@
 		com.ape.easymode1
 		com.ape.oneclean
 		com.ape.smartgesture
+		com.xiaomi.market
 		com.miui.packageinstaller
 		com.longcheertel.secretcode
 		com.verizon.mips.services
@@ -2939,6 +2927,8 @@
 		com.samsung.android.app.dressroom
 		com.samsung.android.aware.service
 		com.samsung.android.calendar
+		com.samsung.android.dqagent
+		com.samsung.android.dynamiclock
 		com.samsung.android.location
 		com.samsung.android.mdagent
 		com.samsung.android.mdx.quickboard
@@ -2952,6 +2942,7 @@
 		com.samsung.android.themestore
 		com.samsung.android.widget.pictureframe
 		com.samsung.cmfa.AuthTouch
+		com.samsung.SMT
 		com.sec.android.app.apex
 		com.sec.android.app.camera
 		com.sec.android.diagmonagent
@@ -3064,7 +3055,6 @@
 		com.android.facelock
 		com.android.gallery3d
 		com.android.inputmethod.latin
-		com.android.intentresolver
 		com.android.internal.systemui.onehanded.gestural
 		com.android.musicfx
 		com.android.mms
@@ -3114,6 +3104,7 @@
 		com.oneplus.screenrecord
 		com.oneplus.security
 		com.oneplus.ses
+		com.oplus.account
 		com.oneplus.wallpaper
 		com.oneplus.wifiapsettings
 		com.qti.ltebc
@@ -3125,9 +3116,9 @@
 		com.google.android.overlay.gmsconfig
 		com.google.android.overlay.gmsconfig.gsa
 		com.google.mainline.telemetry
+		com.mediatek.miravision.ui
 		vendor.qti.iwlan
 		com.samsung.android.service.tagservice
-		com.samsung.android.app.telephonyui
 		com.samsung.android.appseparation
 		com.samsung.android.callbgprovider
 		com.samsung.android.dialer
@@ -3153,7 +3144,6 @@
 		com.hmdglobal.camera2
 		com.evenwell.camera2
 		com.evenwell.hdrservice
-		com.cyanogenmod.filemanager
 		com.coloros.appmanager
 		com.coloros.soundrecorder
 		com.coremobility.app.vnotes
@@ -3171,7 +3161,6 @@
 		com.mediatek.telephony
 		com.qualcomm.qti.qtisystemservice
 		com.qualcomm.qti.uceshimservice
-		com.qualcomm.qti.uceShimService
 		com.qualcomm.qti.dynamicddsservice
 		com.qualcomm.qti.lpa
 		com.quicinc.fmradio
@@ -3195,11 +3184,11 @@
 		com.android.camera
 		com.android.camera2
 		com.android.fileexplorer
-		com.android.incallui
 		com.android.thememanager
 		com.fido.uafclient
 		com.fido.asm
 		com.fido.xiaomi.uafclient
+		com.miui.aod
 		com.miui.audiomonitor
 		com.miui.face
 		com.miui.face.overlay.miui
@@ -3211,7 +3200,6 @@
 		com.mi.android.globalFileexplorer
 		com.xiaomi.bluetooth.overlay
 		com.xiaomi.bsp.gps.nps
-		com.miui.global.packageinstaller
 		com.miui.guardprovider
 		com.asus.camera
 		com.asus.contacts
@@ -3332,6 +3320,7 @@
 		com.coloros.digitalwellbeing
 		com.oppo.camera
 		com.coloros.gallery3d
+		com.coloros.wifibackuprestore
 		com.oplus.padconnect
 		com.google.android.apps.carrier.carrierwifi
 		com.google.euiccpixel
@@ -3355,7 +3344,6 @@
 		com.tct.screenrecorder
 		com.tcl.tct.weather
 		com.tct.android.video
-		com.transsion.applock
 		com.transsion.livewallpaper.wakeup_mirror
 		com.facemoji.lite.transsion
 		com.funbase.xradio
@@ -3384,6 +3372,7 @@
 		android.miui.home.launcher.res
 		com.miui.miinput
 		com.samsung.android.sdk.ocr
+		com.samsung.android.providers.factory
 		com.android.dlna.service
 		com.coloros.activation.overlay.common
 		com.android.safetycenter.resources.overlay
@@ -3400,6 +3389,7 @@
 		com.vivo.hiboard
 		com.vivo.email
 		com.android.bbkmusic
+		com.oplus.trafficmonitor
 		com.miui.systemui.devices.overlay
 		miui.systemui.plugin
 		com.xiaomi.miplay_client
@@ -3412,6 +3402,7 @@
 		com.google.android.gallery3d
 		com.google.android.googlequicksearchbox
 		com.google.android.printservice.recommendation
+		com.google.android.pixel.setupwizard
 		com.google.android.syncadapters.calendar
 		com.google.android.syncadapters.contacts
 		com.google.android.tts
@@ -3434,6 +3425,7 @@
 		com.google.android.inputmethod.korean
 		com.google.android.inputmethod.pinyin
 		com.google.android.captiveportallogin
+		com.google.android.overlay.permissioncontroller
 		com.evenwell.bokeheditor
 		com.evenwell.CPClient
 		com.evenwell.custmanager
@@ -3441,6 +3433,8 @@
 		com.evenwell.DeviceMonitorControl
 		com.evenwell.UsageStatsLogReceiver
 		com.samsung.hiddennetworksetting
+		com.htc.masthead
+		com.htc.weather
 		com.huawei.languagedownloader
 		com.huawei.motionservice
 		com.huawei.nearby
@@ -3479,7 +3473,6 @@
 		com.coloros.compass2
 		com.coloros.oshare
 		com.coloros.systemclone
-		com.heytap.pictorial
 		com.heytap.usercenter
 		com.oplus.multiapp
 		com.oplus.sos
@@ -3487,6 +3480,7 @@
 		com.coloros.activation
 		com.oplus.pantanal.ums
 		com.oplus.stdid
+		com.oplus.wifibackuprestore
 		com.oneplus.dialer
 		com.scanning.agold.agoldscanning
 		com.mediatek.simprocessor
@@ -3552,6 +3546,7 @@
 		com.android.phone.injection
 		com.verizon.services
 		android.miui.poco.launcher.res
+		com.samsung.unifiedtp
 		com.sec.ims.android
 		com.samsung.android.emergency
 		com.sec.android.romantic2
@@ -3564,7 +3559,6 @@
 		com.sec.android.casual2
 		com.miui.mediaeditor
 		com.android.credentialmanager
-		org.lineageos.backgrounds
 		com.huawei.airlink
 		com.huawei.android.airsharing
 		com.huawei.calculator
@@ -3591,6 +3585,7 @@
 		com.coloros.alarmclock
 		com.oplus.ndsf
 		com.fido.fido2client
+		com.oplus.aiunit
 		com.oplus.apprecover
 		com.coloros.musiclink
 		com.oplus.nas
@@ -3603,11 +3598,13 @@
 		com.google.android.aicore
 		com.android.sdm.plugins.connmo
 		com.android.sdm.plugins.dcmo
+		com.android.DeviceAsWebcam
 		com.android.omadm.service
 		com.google.android.apps.dreamliner
 		com.google.android.dreamlinerupdater
 		com.google.android.hardwareinfo
 		com.android.hbmsvmanager
+		com.google.pixel.camera.services
 		com.google.android.apps.camera.services
 		com.google.android.repairmode
 		com.android.safetyregulatoryinfo
@@ -3669,7 +3666,6 @@
 		com.samsung.android.kmxservice
 		com.samsung.android.knox.mpos
 		com.samsung.android.singletake.service
-		com.samsung.android.providers.trash
 		com.samsung.ims.smk
 		vendor.qti.data.txpwradmin
 		com.samsung.android.vdcservice
@@ -3723,6 +3719,7 @@
 		com.motorola.mykey
 		com.motorola.om
 		com.motorola.securityhubext
+		com.android.avatarpicker
 	</medium>
 	<advance>
 		com.sonyericsson.mtp
@@ -3745,6 +3742,8 @@
 		com.motorola.entitlement
 		com.motorola.launcher3
 		com.motorola.coresettingsext
+		com.samsung.android.app.routines
+		com.sec.android.app.samsungapps
 		com.samsung.accessibility
 		com.sec.epdg
 		com.sec.android.app.launcher
@@ -3766,6 +3765,7 @@
 		com.android.hotspot2
 		com.android.inputdevices
 		com.android.inputmethod.pinyin
+		com.android.intentresolver
 		com.android.internal.systemui.navbar.gestural
 		com.android.internal.systemui.navbar.gestural_extra_wide_back
 		com.android.internal.systemui.navbar.gestural_narrow_back
@@ -3784,6 +3784,7 @@
 		com.android.providers.userdictionary
 		com.android.proxyhandler
 		com.android.se
+		com.android.server.deviceconfig.resources
 		com.android.settings.intelligence
 		com.android.systemui.theme.dark
 		com.android.timezone.updater
@@ -3888,17 +3889,23 @@
 		net.oneplus.weather.basiccolorwhite.overlay
 		android.auto_generated_rro_product__
 		android.auto_generated_rro_vendor__
+		com.google.android.appsearch.apk
 		com.google.android.cellbroadcastreceiver
 		com.google.android.cellbroadcastservice
 		com.google.android.networkstack.tethering
 		com.google.android.overlay.managedprovisioning
 		com.google.android.overlay.gmsconfig.common
+		com.google.android.overlay.gmsconfig.comms
+		com.google.android.overlay.gmsconfig.geotz
+		com.google.android.overlay.gmsconfig.personalsafety
 		com.google.android.overlay.modules.cellbroadcastservice
+		com.google.android.photopicker
 		com.google.android.providers.media.module
 		vendor.qti.imsrcs
 		com.qti.phone
 		com.qualcomm.qti.cne
 		com.qualcomm.qti.poweroffalarm
+		com.qualcomm.qti.services.systemhelper
 		com.qualcomm.qti.workloadclassifier
 		com.jrd.verizonuriintentservice
 		com.tcl.vzwintents
@@ -3915,6 +3922,8 @@
 		com.sec.android.Cdfs
 		com.samsung.gamedriver.sm8250
 		com.samsung.huxplatform
+		com.samsung.android.app.telephonyui
+		com.samsung.android.callassistant
 		com.samsung.phone.overlay.common
 		com.samsung.android.localeoverlaymanager
 		com.samsung.android.providers.contacts
@@ -4060,12 +4069,14 @@
 		com.android.networksettings.overlay.ct
 		com.android.systemui.overlay.ct
 		com.xiaomi.xmsf
+		com.android.incallui
 		com.android.thememanager.module
 		com.miui.home
 		com.miui.notification
 		com.miui.powerkeeper
 		com.xiaomi.bluetooth
 		com.miui.core
+		com.miui.global.packageinstaller
 		com.android.systemui.icon.overlay
 		com.asus.appupdater
 		com.asus.system.api
@@ -4112,6 +4123,7 @@
 		com.lge.nextcapture
 		com.android.settingaccessibility
 		com.android.settingsaccessibility
+		com.lge.provider.signboard
 		com.lge.systemservice
 		com.lge.provider.systemui
 		com.lge.themeinstaller
@@ -4144,6 +4156,7 @@
 		com.nothing.launcher
 		com.nothing.proxy
 		com.google.android.apps.customization.pixel
+		com.nothing.thirdparty
 		android.overlay.common.all_devices
 		cn.nubia.bluetooth.opp
 		cn.nubia.jobdispatcher
@@ -4197,7 +4210,9 @@
 		com.coloros.athena.config_plugin
 		com.coloros.oppoguardelf.secretplugin
 		com.coloros.oppoguardelf.restrict_plugin
+		com.coloros.recents
 		com.google.android.connectivitythermalpowermanager
+		com.google.android.euicc
 		com.google.android.flipendo
 		com.google.android.overlay.flipendo
 		com.google.android.connectivity.resources.overlay
@@ -4214,6 +4229,7 @@
 		com.tct.phone
 		com.tct.screenshotex
 		com.tct.systemservice
+		com.transsion.applock
 		com.transsion.faceid
 		com.transsion.os.typeface
 		com.transsion.ossettingsext
@@ -4256,6 +4272,7 @@
 		com.samsung.android.container
 		com.samsung.android.gru
 		com.samsung.ssu
+		com.samsung.euicc
 		com.samsung.android.app.clockpack
 		com.samsung.android.wcmurlsnetworkstack
 		com.oplus.romupdate
@@ -4293,10 +4310,12 @@
 		com.miui.securityadd
 		com.google.android.configupdater
 		com.google.android.apps.nexuslauncher
+		com.google.android.apps.turbo
 		com.google.android.gms
 		com.google.android.gsf
 		com.google.android.webview
 		com.android.vending
+		com.google.android.overlay.modules.permissioncontroller.forframework
 		com.evenwell.AprUploadService
 		com.evenwell.AprUploadService.data.overlay.base
 		com.evenwell.AprUploadService.data.overlay.base.s600ww
@@ -4347,6 +4366,7 @@
 		com.evenwell.weather.overlay.base.s600ww
 		com.hmdglobal.datago.overlay.base
 		com.samsung.android.contacts
+		com.huawei.lbs
 		com.huawei.nb.service
 		com.huawei.omacp
 		com.sonymobile.themes.sou.cid18.black
@@ -4357,10 +4377,16 @@
 		com.android.phone
 		com.t2m.euiccoverlay
 		com.dolby.daxservice
+		com.oplus.blur
 		com.huawei.systemmanager
 		com.huawei.systemserver
 		com.huawei.wifieapsimplmn
 		com.huawei.wifiprobqeservice
+		com.oplus.keyguard.clock.graffiti
+		com.oplus.keyguard.clock.magazine
+		com.oplus.keyguard.clock.gallery
+		com.oplus.keyguard.clock.base
+		com.oplus.pscanvas
 		com.oplus.athena
 		com.oplus.atlas
 		com.oplus.exsystemservice
@@ -4398,6 +4424,7 @@
 		com.ws.dm
 		com.oppo.em5g
 		com.sec.omadmspr
+		com.sec.android.app.tfstatus
 		com.huawei.coauthservice
 		com.huawei.devicegroupmanage
 		com.huawei.entitlement
@@ -4408,6 +4435,7 @@
 		com.google.android.apps.mediashell
 		com.google.android.apps.tv.launcherx
 		com.google.android.chromecast.chromecastservice
+		com.google.android.tungsten.setupwraith
 		com.google.android.tv.axel
 		com.google.android.tv.dfuservice
 		com.google.android.tv.remotecontrol.logging
@@ -4425,7 +4453,6 @@
 		com.oplus.cota
 		com.oplus.camera
 		com.oplus.cast
-		com.oplus.aiunit
 		vendor.mediatek.iwlanservice
 		com.oplus.exserviceui
 		com.oplus.framework_bluetooth.overlay
@@ -4446,6 +4473,7 @@
 		com.android.overlay.launcher3
 		com.android.overlay.settings
 		com.android.systemui.os.overlay
+		com.android.unisoc.telephony.server
 		com.infinix
 		com.sprd.omacp
 		com.transsion
@@ -4468,6 +4496,7 @@
 		com.samsung.android.packageinstaller
 		com.samsung.android.timezone.updater
 		com.samsung.android.secsoundpicker
+		com.samsung.android.providers.trash
 		com.sec.android.app.camerasaver
 		com.android.settings.os.overlay
 		com.android.soundpicker.auto_generated_rro_product__
