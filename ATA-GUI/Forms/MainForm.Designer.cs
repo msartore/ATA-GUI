@@ -30,7 +30,7 @@ namespace ATA_GUI
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             labelLog = new System.Windows.Forms.Label();
             buttonLogClear = new System.Windows.Forms.Button();
@@ -590,8 +590,8 @@ namespace ATA_GUI
             // 
             dataGridViewPackages.AllowUserToAddRows = false;
             dataGridViewPackages.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewPackages.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewPackages.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             dataGridViewPackages.BackgroundColor = System.Drawing.Color.White;
             dataGridViewPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1195,9 +1195,9 @@ namespace ATA_GUI
             // groupBox8
             // 
             groupBox8.Controls.Add(buttonBootFastboot);
-            groupBox8.Location = new System.Drawing.Point(278, 77);
+            groupBox8.Location = new System.Drawing.Point(326, 77);
             groupBox8.Name = "groupBox8";
-            groupBox8.Size = new System.Drawing.Size(230, 100);
+            groupBox8.Size = new System.Drawing.Size(182, 100);
             groupBox8.TabIndex = 55;
             groupBox8.TabStop = false;
             groupBox8.Text = "boot";
@@ -1206,7 +1206,7 @@ namespace ATA_GUI
             // 
             buttonBootFastboot.Location = new System.Drawing.Point(7, 37);
             buttonBootFastboot.Name = "buttonBootFastboot";
-            buttonBootFastboot.Size = new System.Drawing.Size(217, 30);
+            buttonBootFastboot.Size = new System.Drawing.Size(169, 30);
             buttonBootFastboot.TabIndex = 53;
             buttonBootFastboot.Text = "boot";
             buttonBootFastboot.UseVisualStyleBackColor = true;
@@ -1221,7 +1221,7 @@ namespace ATA_GUI
             groupBox7.Controls.Add(label10);
             groupBox7.Location = new System.Drawing.Point(7, 77);
             groupBox7.Name = "groupBox7";
-            groupBox7.Size = new System.Drawing.Size(263, 100);
+            groupBox7.Size = new System.Drawing.Size(313, 100);
             groupBox7.TabIndex = 54;
             groupBox7.TabStop = false;
             groupBox7.Text = "flash";
@@ -1229,7 +1229,7 @@ namespace ATA_GUI
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new System.Drawing.Point(184, 24);
+            label7.Location = new System.Drawing.Point(203, 24);
             label7.Name = "label7";
             label7.Size = new System.Drawing.Size(17, 15);
             label7.TabIndex = 54;
@@ -1239,10 +1239,10 @@ namespace ATA_GUI
             // 
             comboBoxP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBoxP.FormattingEnabled = true;
-            comboBoxP.Items.AddRange(new object[] { "a", "b", "all", "a or b" });
-            comboBoxP.Location = new System.Drawing.Point(207, 21);
+            comboBoxP.Items.AddRange(new object[] { "a", "b", "all", "auto" });
+            comboBoxP.Location = new System.Drawing.Point(226, 21);
             comboBoxP.Name = "comboBoxP";
-            comboBoxP.Size = new System.Drawing.Size(47, 23);
+            comboBoxP.Size = new System.Drawing.Size(80, 23);
             comboBoxP.TabIndex = 53;
             // 
             // button1
@@ -1250,7 +1250,7 @@ namespace ATA_GUI
             button1.Location = new System.Drawing.Point(7, 52);
             button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(249, 30);
+            button1.Size = new System.Drawing.Size(299, 30);
             button1.TabIndex = 50;
             button1.Text = "flash";
             button1.UseVisualStyleBackColor = true;
@@ -1263,7 +1263,7 @@ namespace ATA_GUI
             comboBoxImg.Items.AddRange(new object[] { "boot", "bootloader", "cache", "dtbo", "init_boot", "radio", "recovery", "super", "system", "update", "vendor", "vendor_boot", "vendor_kernel_boot " });
             comboBoxImg.Location = new System.Drawing.Point(43, 21);
             comboBoxImg.Name = "comboBoxImg";
-            comboBoxImg.Size = new System.Drawing.Size(135, 23);
+            comboBoxImg.Size = new System.Drawing.Size(154, 23);
             comboBoxImg.Sorted = true;
             comboBoxImg.TabIndex = 51;
             // 
