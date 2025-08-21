@@ -1,9 +1,9 @@
-name: .NET 6.0 Desktop Build and Publish
+name: .NET 8.0 Desktop Build and Publish
 
 on:
   push:
     tags:
-      - '*'
+      - "*"
   workflow_dispatch:
 
 jobs:
@@ -11,36 +11,36 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4.1.6
+      - name: Checkout
+        uses: actions/checkout@v4.1.6
 
-    - name: Setup .NET 6.0
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '6.0.x'
+      - name: Setup .NET 8.0
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
 
-    - name: Restore dependencies
-      run: dotnet restore --runtime win-x64
-      
-    - name: Build the solution
-      run: dotnet build --configuration Release --no-restore
+      - name: Restore dependencies
+        run: dotnet restore --runtime win-x64
 
-    - name: Publish the application
-      run: dotnet publish D:\a\ATA-GUI\ATA-GUI\ATA-GUI\ATA-GUI.csproj --configuration Release --runtime win-x64 --self-contained false /p:PublishSingleFile=true --output ./publish
+      - name: Build the solution
+        run: dotnet build --configuration Release --no-restore
 
-    - name: Get Previous tag
-      id: previoustag
-      uses: "WyriHaximus/github-action-get-previous-tag@v1.4.0"
+      - name: Publish the application
+        run: dotnet publish D:\a\ATA-GUI\ATA-GUI\ATA-GUI\ATA-GUI.csproj --configuration Release --runtime win-x64 --self-contained false /p:PublishSingleFile=true --output ./publish
 
-    - name: Zip the published output
-      run: Compress-Archive -Path ./publish/ATA-GUI.exe, ./LICENSE -DestinationPath ATA-GUI_${{ steps.previoustag.outputs.tag }}.zip
-      shell: pwsh
+      - name: Get Previous tag
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1.4.0"
 
-    - name: Create Release
-      uses: ncipollo/release-action@v1.14.0
-      with:
-        generateReleaseNotes: true
-        artifacts: ATA-GUI_${{ steps.previoustag.outputs.tag }}.zip
-        name: ${{ steps.previoustag.outputs.tag }}
-        tag: ${{ steps.previoustag.outputs.tag }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Zip the published output
+        run: Compress-Archive -Path ./publish/ATA-GUI.exe, ./LICENSE -DestinationPath ATA-GUI_${{ steps.previoustag.outputs.tag }}.zip
+        shell: pwsh
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          generateReleaseNotes: true
+          artifacts: ATA-GUI_${{ steps.previoustag.outputs.tag }}.zip
+          name: ${{ steps.previoustag.outputs.tag }}
+          tag: ${{ steps.previoustag.outputs.tag }}
+          token: ${{ secrets.GITHUB_TOKEN }}
