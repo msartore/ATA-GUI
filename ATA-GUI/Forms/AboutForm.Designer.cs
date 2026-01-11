@@ -60,9 +60,9 @@ namespace ATA_GUI
             groupBox1.Controls.Add(labelVersion);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new System.Drawing.Point(14, 14);
-            groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox1.Margin = new System.Windows.Forms.Padding(4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox1.Padding = new System.Windows.Forms.Padding(4);
             groupBox1.Size = new System.Drawing.Size(421, 60);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
@@ -101,9 +101,9 @@ namespace ATA_GUI
             groupBox2.Controls.Add(linkLabelNewtonsoft);
             groupBox2.Controls.Add(linkLabelSDK);
             groupBox2.Location = new System.Drawing.Point(14, 195);
-            groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox2.Margin = new System.Windows.Forms.Padding(4);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox2.Padding = new System.Windows.Forms.Padding(4);
             groupBox2.Size = new System.Drawing.Size(421, 165);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
@@ -220,9 +220,9 @@ namespace ATA_GUI
             groupBox3.Controls.Add(linkLabelRepo);
             groupBox3.Controls.Add(label3);
             groupBox3.Location = new System.Drawing.Point(14, 81);
-            groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox3.Margin = new System.Windows.Forms.Padding(4);
             groupBox3.Name = "groupBox3";
-            groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            groupBox3.Padding = new System.Windows.Forms.Padding(4);
             groupBox3.Size = new System.Drawing.Size(421, 108);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
@@ -260,7 +260,7 @@ namespace ATA_GUI
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(130, 15);
             label4.TabIndex = 2;
-            label4.Text = "Copyright © 2021-2025";
+            label4.Text = "Copyright © 2021-2026";
             // 
             // linkLabelRepo
             // 
@@ -288,7 +288,7 @@ namespace ATA_GUI
             // 
             buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
             buttonClose.Location = new System.Drawing.Point(348, 368);
-            buttonClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            buttonClose.Margin = new System.Windows.Forms.Padding(4);
             buttonClose.Name = "buttonClose";
             buttonClose.Size = new System.Drawing.Size(88, 26);
             buttonClose.TabIndex = 3;
@@ -308,7 +308,7 @@ namespace ATA_GUI
             Controls.Add(groupBox1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
-            Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            Margin = new System.Windows.Forms.Padding(4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AboutForm";

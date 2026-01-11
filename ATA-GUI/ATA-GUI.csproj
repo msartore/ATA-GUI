@@ -7,12 +7,12 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<GenerateAssemblyInfo>True</GenerateAssemblyInfo>
 		<ApplicationIcon>ATALogoGUI.ico</ApplicationIcon>
-		<Copyright>© 2021-2025 Massimiliano Sartore</Copyright>
+		<Copyright>© 2021-2026 Massimiliano Sartore</Copyright>
 
 		<!-- Versioning -->
-		<Version>3.14.2.0</Version>
-		<AssemblyVersion>3.14.2.0</AssemblyVersion>
-		<FileVersion>3.14.2.0</FileVersion>
+		<Version>3.14.3.0</Version>
+		<AssemblyVersion>3.14.3.0</AssemblyVersion>
+		<FileVersion>3.14.3.0</FileVersion>
 
 		<!-- Publish settings -->
 		<PublishUrl>publish\</PublishUrl>
