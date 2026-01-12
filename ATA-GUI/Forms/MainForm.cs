@@ -472,7 +472,7 @@ namespace ATA_GUI
                         {
                             if (ATA.CurrentDeviceSelected.isATABridgeInstalled)
                             {
-                                appData = ATA.CurrentDeviceSelected.AppsExtracted.Find((appData) => { return appData.Package == package; });
+                                appData = ATA.CurrentDeviceSelected.AppsExtracted?.Find((appData) => { return appData.Package == package; });
 
                                 if (appData == null)
                                 {
