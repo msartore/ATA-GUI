@@ -178,8 +178,14 @@ namespace ATA_GUI
                         }
 
                         // Determine if this package should be included based on scan level
+                        string scanLevel = "";
+                        Invoke(new Action(() =>
+                        {
+                            scanLevel = comboBoxScanLevel.Text;
+                        }));
+
                         bool includePackage = false;
-                        switch (comboBoxScanLevel.Text)
+                        switch (scanLevel)
                         {
                             case "basic":
                                 // For basic level, include only recommended packages
@@ -209,47 +215,62 @@ namespace ATA_GUI
                             !string.IsNullOrEmpty(packageId) &&
                             (nonSystemAppSet.Contains(packageId) || systemAppSet.Contains(packageId)))
                         {
+                            // Check if this package already exists in the DataGridView to avoid duplicates
+                            // and add it if it doesn't exist - all in one UI thread operation
                             Invoke(new Action(() =>
                             {
-                                int rowIndex = dataGridViewBloatwareList.Rows.Add(packageId, description);
-
-                                // Color the row based on severity level
-                                DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
-
-                                switch (removal?.ToLower())
+                                bool packageExists = false;
+                                foreach (DataGridViewRow row in dataGridViewBloatwareList.Rows)
                                 {
-                                    case "recommended":
-                                        cellStyle.BackColor = Color.LightGreen;
-                                        break;
-                                    case "advanced":
-                                        cellStyle.BackColor = Color.Orange;
-                                        break;
-                                    case "unsafe":
-                                        cellStyle.BackColor = Color.Red;
-                                        cellStyle.ForeColor = Color.White;
-                                        break;
-                                    case "expert":
-                                        cellStyle.BackColor = Color.Purple;
-                                        cellStyle.ForeColor = Color.White;
-                                        break;
-                                    default:
-                                        // Use default color for unknown severity levels
-                                        break;
-                                }
-
-                                // Apply the style to all cells in the row
-                                if (dataGridViewBloatwareList.Rows[rowIndex].Cells != null)
-                                {
-                                    foreach (DataGridViewCell cell in dataGridViewBloatwareList.Rows[rowIndex].Cells)
+                                    if (row.Cells[0].Value?.ToString() == packageId)
                                     {
-                                        if (cell != null)
-                                        {
-                                            cell.Style = cellStyle;
-                                        }
+                                        packageExists = true;
+                                        break;
                                     }
                                 }
+
+                                if (!packageExists)
+                                {
+                                    int rowIndex = dataGridViewBloatwareList.Rows.Add(packageId, description);
+
+                                    // Color the row based on severity level
+                                    DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
+
+                                    switch (removal?.ToLower())
+                                    {
+                                        case "recommended":
+                                            cellStyle.BackColor = Color.LightGreen;
+                                            break;
+                                        case "advanced":
+                                            cellStyle.BackColor = Color.Orange;
+                                            break;
+                                        case "unsafe":
+                                            cellStyle.BackColor = Color.Red;
+                                            cellStyle.ForeColor = Color.White;
+                                            break;
+                                        case "expert":
+                                            cellStyle.BackColor = Color.Purple;
+                                            cellStyle.ForeColor = Color.White;
+                                            break;
+                                        default:
+                                            // Use default color for unknown severity levels
+                                            break;
+                                    }
+
+                                    // Apply the style to all cells in the row
+                                    if (dataGridViewBloatwareList.Rows[rowIndex].Cells != null)
+                                    {
+                                        foreach (DataGridViewCell cell in dataGridViewBloatwareList.Rows[rowIndex].Cells)
+                                        {
+                                            if (cell != null)
+                                            {
+                                                cell.Style = cellStyle;
+                                            }
+                                        }
+                                    }
+                                    counter++; // Increment counter in the UI thread
+                                }
                             }));
-                            counter++;
                         }
                     }
 
@@ -258,6 +279,13 @@ namespace ATA_GUI
                         labelBC.Text = "Bloatware found: " + counter;
                         // Resize rows after all data is loaded to improve appearance without affecting resize performance
                         dataGridViewBloatwareList.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
+
+                        // Apply search filter if there's text in the search box
+                        if (textBoxSearch != null && !string.IsNullOrEmpty(textBoxSearch.Text))
+                        {
+                            // Trigger the search to filter the newly loaded data
+                            textBoxSearch_TextChanged(null, EventArgs.Empty);
+                        }
                     }));
                 }
                 catch (Exception ex)
@@ -364,7 +392,6 @@ namespace ATA_GUI
                     listFailed.Count > 0 ? $"ATA was not able to disable/remove the following apps:\n{string.Join("\n", listFailed)}" : "");
 
                 MainForm.MessageShowBox(successMessage, 2);
-
                 Close();
             }
             else
@@ -421,6 +448,36 @@ namespace ATA_GUI
                 }
             }
         }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            // Check if controls are properly initialized
+            if (textBoxSearch == null || dataGridViewBloatwareList == null || labelBC == null)
+                return;
+
+            string searchText = textBoxSearch.Text?.ToLowerInvariant() ?? "";
+
+            foreach (DataGridViewRow row in dataGridViewBloatwareList.Rows)
+            {
+                // Check if the search text matches either the package name or description
+                string packageName = row.Cells[0]?.Value?.ToString()?.ToLowerInvariant() ?? "";
+                string description = row.Cells[1]?.Value?.ToString()?.ToLowerInvariant() ?? "";
+
+                bool isVisible = packageName.Contains(searchText) || description.Contains(searchText);
+                row.Visible = isVisible;
+            }
+
+            // Update the count of visible rows
+            int visibleCount = dataGridViewBloatwareList.Rows.Cast<DataGridViewRow>()
+                .Count(row => row.Visible && !row.IsNewRow);
+            labelBC.Text = $"Bloatware found: {visibleCount}";
+        }
+
+        public async void RefreshList()
+        {
+            await LoadAppAsync();
+        }
+
 
     }
 }
