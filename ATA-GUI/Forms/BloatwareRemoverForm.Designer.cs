@@ -85,7 +85,6 @@ namespace ATA_GUI
             dataGridViewBloatwareList.MultiSelect = true;
             dataGridViewBloatwareList.Size = new System.Drawing.Size(760, 400);
             dataGridViewBloatwareList.TabIndex = 1;
-            dataGridViewBloatwareList.SelectionChanged += dataGridViewBloatwareList_SelectionChanged;
             // 
             // packageColumn
             // 

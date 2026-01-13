@@ -402,6 +402,7 @@ namespace ATA_GUI
 
         private async void comboBoxScanLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
+            checkBoxSelectAll.Checked = false;
             await LoadAppAsync();
         }
 
@@ -410,29 +411,12 @@ namespace ATA_GUI
             if (checkBoxSelectAll.Checked)
             {
                 dataGridViewBloatwareList.SelectAll();
+                setWantedRows();
             }
             else
             {
                 dataGridViewBloatwareList.ClearSelection();
-            }
-        }
-
-        private void dataGridViewBloatwareList_SelectionChanged(object sender, EventArgs e)
-        {
-            setWantedRows();
-
-            // Update the select all checkbox state based on whether all rows are selected
-            if (dataGridViewBloatwareList.Rows.Count > 0 && !dataGridViewBloatwareList.Rows.Cast<DataGridViewRow>().Any(row => !row.Selected && !row.IsNewRow))
-            {
-                checkBoxSelectAll.CheckedChanged -= checkBoxSelectAll_CheckedChanged; // Temporarily remove handler to prevent recursion
-                checkBoxSelectAll.Checked = dataGridViewBloatwareList.SelectedRows.Count == dataGridViewBloatwareList.Rows.Count;
-                checkBoxSelectAll.CheckedChanged += checkBoxSelectAll_CheckedChanged; // Re-add the handler
-            }
-            else
-            {
-                checkBoxSelectAll.CheckedChanged -= checkBoxSelectAll_CheckedChanged; // Temporarily remove handler to prevent recursion
-                checkBoxSelectAll.Checked = false;
-                checkBoxSelectAll.CheckedChanged += checkBoxSelectAll_CheckedChanged; // Re-add the handler
+                selectedRows.Clear();
             }
         }
 
