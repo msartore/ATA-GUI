@@ -227,7 +227,7 @@ namespace ATA_GUI
             Name = "BloatwareRemoverForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "Bloatware Remover";
-            Shown += BloatwareRemover_Shown;
+            Load += BloatwareRemoverForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewBloatwareList).EndInit();
             ResumeLayout(false);
             PerformLayout();

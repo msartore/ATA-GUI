@@ -23,6 +23,9 @@ namespace ATA_GUI
 
         public string CurrentDevice { get; set; }
 
+        private bool initializationComplete = false;
+        private bool userDeclinedDownload = false;
+
         public BloatwareRemoverForm(List<string> nonSystemApp, List<string> systemApp)
         {
             InitializeComponent();
@@ -70,19 +73,6 @@ namespace ATA_GUI
             return true;
         }
 
-        private async void BloatwareRemover_Shown(object sender, EventArgs e)
-        {
-            comboBoxActionMode.SelectedIndex = 0;
-            comboBoxScanLevel.SelectedIndex = 0;
-
-            // Configure the DataGridView for optimal display
-            ConfigureDataGridView();
-
-            await LoadAppAsync();
-            MainForm.MessageShowBox("Warning: Be careful before disabling/removing any system app or service. You must ensure that the package is not used by system " +
-                "to function. Disabling a critical system app may result in bricking your phone. So always double check before disabling/removing any system app.", 1);
-        }
-
         private void ConfigureDataGridView()
         {
             // Set up the DataGridView for better display of multiline content
@@ -102,15 +92,19 @@ namespace ATA_GUI
         }
 
 
-        private async Task LoadAppAsync()
+        private async Task<bool> LoadAppAsync()
         {
+            if (initializationComplete)
+                return true;
+
+            if (userDeclinedDownload)
+                return false;
+
             string jsonFilePath = Path.Combine(Application.StartupPath, "uad_lists.json");
             JObject json = null;
 
-            // Check if the file exists locally
             if (!File.Exists(jsonFilePath))
             {
-                // Ask user if they want to download the file using a simple dialog
                 DialogResult result = MessageBox.Show(
                     "The bloatware list file was not found. Would you like to download it from the Universal Android Debloater repository?",
                     "Download Bloatware List",
@@ -119,18 +113,16 @@ namespace ATA_GUI
 
                 if (result == DialogResult.Yes)
                 {
-                    // Download the file
                     await DownloadBloatwareListAsync(jsonFilePath);
                 }
                 else
                 {
-                    // If user declines, show error message
                     MainForm.MessageShowBox("Cannot proceed without bloatware list. Please ensure the file is available or allow download.", 0);
-                    return;
+                    userDeclinedDownload = true;
+                    return false;
                 }
             }
 
-            // If we haven't loaded JSON yet (because file was downloaded or user declined download)
             if (json == null && File.Exists(jsonFilePath))
             {
                 string jsonString = File.ReadAllText(jsonFilePath);
@@ -139,12 +131,12 @@ namespace ATA_GUI
 
             if (json == null || !File.Exists(jsonFilePath))
             {
-                // If still no JSON, show error and return
                 MainForm.MessageShowBox("Could not load bloatware list. The application may not function properly.", 0);
-                return;
+                return false;
             }
 
-            // Run the rest of the processing on a background thread
+            initializationComplete = true;
+
             await Task.Run(() =>
             {
                 try
@@ -208,7 +200,7 @@ namespace ATA_GUI
                                 {
                                     MainForm.MessageShowBox("Error, this value can't be set", 0);
                                 }));
-                                return;
+                                return; // This return is for the anonymous method, not the main method
                         }
 
                         if (includePackage &&
@@ -296,6 +288,7 @@ namespace ATA_GUI
                     }));
                 }
             });
+            return true;
         }
 
         private async Task DownloadBloatwareListAsync(string filePath)
@@ -403,7 +396,10 @@ namespace ATA_GUI
         private async void comboBoxScanLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
             checkBoxSelectAll.Checked = false;
-            await LoadAppAsync();
+            if (await LoadAppAsync() == false)
+            {
+                this.Close();
+            }
         }
 
         private void checkBoxSelectAll_CheckedChanged(object sender, EventArgs e)
@@ -459,12 +455,24 @@ namespace ATA_GUI
 
         public async void RefreshList()
         {
-            await LoadAppAsync();
+            if (await LoadAppAsync() == false)
+            {
+                this.Close();
+            }
         }
 
         private void dataGridViewBloatwareList_SelectionChanged(object sender, EventArgs e)
         {
             setWantedRows();
+        }
+
+        private void BloatwareRemoverForm_Load(object sender, EventArgs e)
+        {
+            comboBoxActionMode.SelectedIndex = 0;
+            comboBoxScanLevel.SelectedIndex = 0;
+
+            // Configure the DataGridView for optimal display
+            ConfigureDataGridView();
         }
     }
 }
