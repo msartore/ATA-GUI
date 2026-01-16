@@ -389,7 +389,7 @@ namespace ATA_GUI
                 string successMessage = string.Format("Following apps {0}:\n{1}\n{2}",
                     comboBoxActionMode.Text,
                     string.Join("\n", listSuccess),
-                    listFailed.Count > 0 ? $"ATA was not able to disable/remove the following apps:\n{string.Join("\n", listFailed)}" : "");
+                    listFailed.Count > 0 ? $"ATA was not able to {comboBoxActionMode.SelectedText} the following apps:\n{string.Join("\n", listFailed)}\nSome system application can be only removed and not disabled" : "");
 
                 MainForm.MessageShowBox(successMessage, 2);
                 Close();
@@ -424,11 +424,11 @@ namespace ATA_GUI
         {
             selectedRows.Clear();
 
-            foreach (DataGridViewRow item in dataGridViewBloatwareList.Rows)
+            foreach (DataGridViewRow row in dataGridViewBloatwareList.SelectedRows)
             {
-                if (item.Visible && item.Selected)
+                if (row.Visible && !row.IsNewRow)
                 {
-                    selectedRows.Add(item);
+                    selectedRows.Add(row);
                 }
             }
         }
@@ -462,6 +462,9 @@ namespace ATA_GUI
             await LoadAppAsync();
         }
 
-
+        private void dataGridViewBloatwareList_SelectionChanged(object sender, EventArgs e)
+        {
+            setWantedRows();
+        }
     }
 }

@@ -48,9 +48,8 @@ namespace ATA_GUI
             ((System.ComponentModel.ISupportInitialize)dataGridViewBloatwareList).BeginInit();
             SuspendLayout();
             // 
-            //
             // buttonAction
-            //
+            // 
             buttonAction.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             buttonAction.Font = new System.Drawing.Font("Segoe UI", 18F);
             buttonAction.Location = new System.Drawing.Point(620, 500);
@@ -82,9 +81,9 @@ namespace ATA_GUI
             dataGridViewBloatwareList.RowHeadersVisible = false;
             dataGridViewBloatwareList.RowHeadersWidth = 62;
             dataGridViewBloatwareList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewBloatwareList.MultiSelect = true;
             dataGridViewBloatwareList.Size = new System.Drawing.Size(760, 400);
             dataGridViewBloatwareList.TabIndex = 1;
+            dataGridViewBloatwareList.SelectionChanged += dataGridViewBloatwareList_SelectionChanged;
             // 
             // packageColumn
             // 
