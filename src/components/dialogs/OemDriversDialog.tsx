@@ -1,0 +1,42 @@
+import { useEffect, useMemo, useRef, useState } from "react";
+import { listen } from "@tauri-apps/api/event";
+import { api } from "../../lib/api";
+import { useI18n } from "../../i18n";
+import { Btn, Empty, Field, Modal, Spinner, useUi } from "../ui";
+import { LICENSE_TEXT } from "../../lib/license";
+import { OEM_DRIVERS } from "../../lib/oem-drivers";
+import { ANDROID_PERMISSIONS } from "../../lib/permissions";
+import type { BloatEntry, Config, EncoderData, ToolStatus } from "../../lib/types";
+import { ATA_BRIDGE, ATA_REPO, ATA_SITE, UAD_SITE, Link, ScrollableDialog, MissingDialog, LoadingDialog } from "./shared";
+
+export function OemDriversDialog({ onClose }: { onClose: () => void }) {
+  const { t } = useI18n();
+
+  return (
+    <Modal
+      title={t("dialog.oemDriversTitle")}
+      onClose={onClose}
+      wide
+      footer={
+        <Btn variant="primary" onClick={onClose}>
+          {t("button.close")}
+        </Btn>
+      }
+    >
+      <p className="hint">{t("menu.oemDrivers")}</p>
+      <div className="oem-list">
+        {OEM_DRIVERS.map((driver) => (
+          <button
+            key={driver.vendor}
+            type="button"
+            className="oem-row"
+            onClick={() => void api.openUrl(driver.url)}
+          >
+            <span>{driver.vendor}</span>
+            <span className="mono">{driver.url}</span>
+          </button>
+        ))}
+      </div>
+    </Modal>
+  );
+}

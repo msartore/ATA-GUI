@@ -1,0 +1,172 @@
+name: release
+
+# Builds the Windows and Linux packages on a version tag and publishes them as a
+# GitHub release. The in-app updater reads `releases` from the repo and downloads
+# the portable ZIP for the running platform, so the asset names below matter:
+#
+#   ATA-GUI-<version>-portable-windows-x64.zip
+#   ATA-GUI-<version>-portable-linux-x64.zip   (+ .tar.gz for manual installs)
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing tag to build and publish (e.g. v4.0.0)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
+
+jobs:
+  verify:
+    name: Verify tag matches the version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.RELEASE_TAG }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Compare tag, package.json, Cargo.toml and tauri.conf.json
+        run: |
+          set -euo pipefail
+          tag="${RELEASE_TAG#v}"
+          version=$(node -p "require('./src-tauri/tauri.conf.json').version")
+          pkg=$(node -p "require('./package.json').version")
+          cargo=$(sed -n 's/^version *= *"\(.*\)"/\1/p' src-tauri/Cargo.toml | head -1)
+          echo "tag=$tag package.json=$pkg Cargo.toml=$cargo tauri.conf.json=$version"
+          if [ "$tag" != "$version" ] || [ "$tag" != "$pkg" ] || [ "$tag" != "$cargo" ]; then
+            echo "::error::Tag ${RELEASE_TAG} does not match the project version (expected v${version})."
+            exit 1
+          fi
+
+  build:
+    name: Build (${{ matrix.artifact }})
+    needs: verify
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows-latest
+            artifact: windows-x64
+          - platform: ubuntu-22.04
+            artifact: linux-x64
+    runs-on: ${{ matrix.platform }}
+    env:
+      # Baked into the binary so the updater checks the repo that built it.
+      ATA_RELEASES_URL: https://api.github.com/repos/${{ github.repository }}/releases
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.RELEASE_TAG }}
+
+      - name: Linux dependencies
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libgtk-3-dev librsvg2-dev \
+            libayatana-appindicator3-dev patchelf build-essential pkg-config rpm zip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+          key: release-${{ matrix.artifact }}
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Type-check and build frontend
+        run: npm run build
+
+      - name: Backend tests
+        run: cargo test --manifest-path src-tauri/Cargo.toml
+
+      - name: Build application and installers
+        run: npx tauri build
+
+      - name: Package portable archive and installers
+        run: npm run package
+
+      - name: Collect release assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          ls -la release
+          # The updater picks a ZIP per platform; fail early if packaging regressed.
+          if [ "${{ matrix.artifact }}" = "windows-x64" ]; then
+            zip_file=$(ls release/*portable-windows-x64.zip 2>/dev/null | head -1) || true
+            test -n "$zip_file" || { echo "::error::missing portable Windows ZIP"; exit 1; }
+            # The 3.x updater copies the archive root into the install folder
+            # and relaunches ATA-GUI.exe — fail the release if that layout breaks.
+            unzip -l "$zip_file" | grep -q "ATA-GUI.exe" || {
+              echo "::error::portable ZIP has no ATA-GUI.exe at its root"; exit 1; }
+          else
+            test -n "$(ls release/*portable-linux-x64.zip 2>/dev/null)" || {
+              echo "::error::missing portable Linux ZIP"; exit 1; }
+            test -n "$(ls release/*.deb 2>/dev/null)" || {
+              echo "::error::missing .deb package"; exit 1; }
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ata-gui-${{ matrix.artifact }}
+          path: release/**
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Publish release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Inventory
+        run: ls -laR dist
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: ATA-GUI ${{ env.RELEASE_TAG }}
+          generate_release_notes: true
+          fail_on_unmatched_files: false
+          prerelease: ${{ contains(env.RELEASE_TAG, '-') }}
+          # Order matters: the 3.x WinForms updater blindly downloads the FIRST
+          # asset of the release and expects a ZIP whose root contains
+          # ATA-GUI.exe, so the Windows portable archive must come first.
+          files: |
+            dist/ATA-GUI-*portable-windows-x64.zip
+            dist/ATA-GUI_*_x64-setup.exe
+            dist/ATA-GUI_*_x64_en-US.msi
+            dist/ATA-GUI-*portable-linux-x64.zip
+            dist/ATA-GUI-*portable-linux-x64.tar.gz
+            dist/*.deb
+            dist/*.rpm
+            dist/*.AppImage
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

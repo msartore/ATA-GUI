@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "ATA-GUI",
+  "mainBinaryName": "ATA-GUI",
+  "version": "4.0.0",
+  "identifier": "dev.msartore.atagui",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "ATA-GUI",
+        "width": 1280,
+        "height": 900,
+        "minWidth": 1040,
+        "minHeight": 720,
+        "center": true,
+        "resizable": true,
+        "maximizable": true,
+        "decorations": false,
+        "transparent": false,
+        "dragDropEnabled": true,
+        "theme": "Dark",
+        "backgroundColor": "#0b0d0e"
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "category": "DeveloperTool",
+    "shortDescription": "Advanced Android device manager",
+    "longDescription": "ATA-GUI is an app that lets you perform advanced tasks on your Android device with ease: manage system and user apps without root, install APKs, handle permissions, pair ADB over Wi-Fi, detect and remove bloatware, reboot into recovery/fastboot, flash and extract images, mirror screen and camera, unlock/lock the bootloader, read logcat and more.",
+    "copyright": "© 2021-2026 Massimiliano Sartore",
+    "publisher": "Massimiliano Sartore",
+    "homepage": "https://msartore.dev/projects/ata-gui",
+    "resources": [],
+    "linux": {
+      "deb": {
+        "depends": ["libwebkit2gtk-4.1-0", "libgtk-3-0"]
+      }
+    },
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser"
+      }
+    }
+  }
+}

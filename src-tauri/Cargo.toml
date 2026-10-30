@@ -1,0 +1,41 @@
+[package]
+name = "ata-gui"
+version = "4.0.0"
+description = "ATA-GUI — advanced Android device manager over ADB/Fastboot"
+authors = ["Massimiliano Sartore"]
+edition = "2021"
+rust-version = "1.80"
+license = "Apache-2.0"
+
+[[bin]]
+# Kept as ATA-GUI.exe so installs coming from the 3.x WinForms updater can
+# replace and relaunch the same file.
+name = "ATA-GUI"
+path = "src/main.rs"
+
+[lib]
+name = "ata_gui_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-clipboard-manager = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "stream"] }
+futures-util = "0.3"
+zip = { version = "2", default-features = false, features = ["deflate"] }
+regex = "1"
+qrcode = { version = "0.14", default-features = false, features = ["svg"] }
+rand = "0.8"
+
+[profile.release]
+codegen-units = 1
+lto = true
+strip = true
+panic = "abort"
+opt-level = "s"
