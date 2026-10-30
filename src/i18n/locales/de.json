@@ -450,5 +450,6 @@
   "terminal.dockHint": "Befehle laufen jetzt in einem eigenen Terminalfenster.",
   "terminal.empty": "Noch keine Befehle — tippe unten einen ein.",
   "terminal.clear": "Ausgabe leeren",
-  "terminal.noOutput": "(keine Ausgabe)"
+  "terminal.noOutput": "(keine Ausgabe)",
+  "log.adbStopped": "adb beendet — aktualisiere die Geräteliste, um ihn neu zu starten."
 }

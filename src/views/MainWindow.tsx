@@ -590,6 +590,10 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
             const output = await api.adbKill();
             log("OK", t("log.adbKilled"));
             if (output.trim()) log("INFO", output);
+            resetDeviceView();
+            setAllDevices([]);
+            setDeviceIndex(0);
+            log("INFO", t("log.adbStopped"));
           }}
           onVideoTutorial={() => void api.openUrl("https://github.com/MassimilianoSartore/ATA-GUI/wiki")}
           onClose={() => void requestClose()}

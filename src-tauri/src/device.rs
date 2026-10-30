@@ -25,6 +25,24 @@ pub struct UserEntry {
     pub name: String,
 }
 
+/// Device states `adb devices` reports. Anything else on stdout is daemon noise
+/// ("could not read ok from ADB Server", "adb.exe: failed to ...") from a server
+/// that was killed a moment earlier, and must not become a fake device.
+const DEVICE_STATES: &[&str] = &[
+    "device",
+    "offline",
+    "unauthorized",
+    "authorizing",
+    "recovery",
+    "sideload",
+    "bootloader",
+    "fastboot",
+    "fastbootd",
+    "connecting",
+    "rescue",
+    "host",
+];
+
 /// Parse `adb devices` / `fastboot devices` output into (id, state) pairs.
 pub fn parse_devices(text: &str) -> Vec<(String, String)> {
     text.lines()
@@ -39,8 +57,14 @@ pub fn parse_devices(text: &str) -> Vec<(String, String)> {
             }
             let mut parts = line.split_whitespace();
             let id = parts.next()?.to_string();
-            let state = parts.next().unwrap_or("").to_string();
-            Some((id, state))
+            if line.contains("no permissions") {
+                return Some((id, "unauthorized".to_string()));
+            }
+            let state = parts.next().unwrap_or("");
+            if !DEVICE_STATES.contains(&state) {
+                return None;
+            }
+            Some((id, state.to_string()))
         })
         .collect()
 }
@@ -376,7 +400,7 @@ impl WatcherHandle {
 
 /// Cross-platform replacement for the WMI `Win32_DeviceChangeEvent` watcher:
 /// poll `adb devices` every two seconds and emit `devices:changed` on diffs.
-pub fn start_watcher(app: tauri::AppHandle, paths: AppPaths) -> WatcherHandle {
+pub fn start_watcher(app: tauri::AppHandle, paths: AppPaths, paused: Arc<AtomicBool>) -> WatcherHandle {
     use tauri::Emitter;
 
     let stop = Arc::new(AtomicBool::new(false));
@@ -385,6 +409,12 @@ pub fn start_watcher(app: tauri::AppHandle, paths: AppPaths) -> WatcherHandle {
     let join = thread::spawn(move || {
         let mut last: Vec<DeviceEntry> = Vec::new();
         while !stop_thread.load(Ordering::Relaxed) {
+            // "Kill ADB" pauses polling: any `adb devices` would otherwise
+            // start a fresh daemon two seconds later.
+            if paused.load(Ordering::Relaxed) {
+                sleep_unless_stopped(&stop_thread, Duration::from_millis(250));
+                continue;
+            }
             // Poll both transports so switching to fastboot is picked up.
             let mut current = list(&paths, true).unwrap_or_default();
             if let Ok(mut fastboot) = list(&paths, false) {
@@ -396,13 +426,28 @@ pub fn start_watcher(app: tauri::AppHandle, paths: AppPaths) -> WatcherHandle {
             }
             // Poll faster while nothing is attached so a freshly plugged phone
             // shows up almost immediately; relax to 2 s once a device is live.
-            thread::sleep(Duration::from_millis(if current.is_empty() { 1000 } else { 2000 }));
+            let interval = if current.is_empty() { 1000 } else { 2000 };
+            sleep_unless_stopped(&stop_thread, Duration::from_millis(interval));
         }
     });
 
     WatcherHandle {
         stop,
         join: Some(join),
+    }
+}
+
+/// Sleep in small slices so `WatcherHandle::stop` does not wait a full poll.
+fn sleep_unless_stopped(stop: &AtomicBool, total: Duration) {
+    let step = Duration::from_millis(50);
+    let mut left = total;
+    while left > Duration::ZERO {
+        if stop.load(Ordering::Relaxed) {
+            return;
+        }
+        let slice = left.min(step);
+        thread::sleep(slice);
+        left -= slice;
     }
 }
 
@@ -417,6 +462,18 @@ mod tests {
         assert_eq!(devices.len(), 2);
         assert_eq!(devices[0], ("R58M1234".into(), "device".into()));
         assert_eq!(devices[1].0, "192.168.1.5:5555");
+    }
+
+    #[test]
+    fn ignores_daemon_noise_after_a_kill() {
+        let text = "* daemon not running; starting now at tcp:5037\n\
+                    * daemon started successfully\n\
+                    List of devices attached\n\
+                    could not read ok from ADB Server\n\
+                    * failed to start daemon\n\
+                    adb.exe: failed to check server version: cannot connect to daemon\n\
+                    R58M1234\tdevice\n";
+        assert_eq!(parse_devices(text), vec![("R58M1234".to_string(), "device".to_string())]);
     }
 
     #[test]

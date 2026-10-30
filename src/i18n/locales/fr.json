@@ -450,5 +450,6 @@
   "terminal.dockHint": "Les commandes s'exécutent dans une fenêtre de terminal dédiée.",
   "terminal.empty": "Aucune commande pour l'instant — saisissez-en une ci-dessous.",
   "terminal.clear": "Effacer la sortie",
-  "terminal.noOutput": "(aucune sortie)"
+  "terminal.noOutput": "(aucune sortie)",
+  "log.adbStopped": "adb arrêté — actualisez la liste des appareils pour le redémarrer."
 }

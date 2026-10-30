@@ -450,5 +450,6 @@
   "terminal.dockHint": "Os comandos são executados em uma janela de terminal dedicada.",
   "terminal.empty": "Nenhum comando ainda — digite um abaixo.",
   "terminal.clear": "Limpar saída",
-  "terminal.noOutput": "(sem saída)"
+  "terminal.noOutput": "(sem saída)",
+  "log.adbStopped": "adb encerrado — atualize a lista de dispositivos para iniciá-lo novamente."
 }

@@ -227,4 +227,7 @@ pub struct AppState {
     pub watcher: Mutex<Option<crate::device::WatcherHandle>>,
     /// Raised by the Cancel button; long operations poll it and kill their child.
     pub cancel: std::sync::Arc<std::sync::atomic::AtomicBool>,
+    /// Set by "Kill ADB": the watcher stops polling so nothing restarts the
+    /// daemon until the user asks for the device list again.
+    pub adb_paused: std::sync::Arc<std::sync::atomic::AtomicBool>,
 }

@@ -450,5 +450,6 @@
   "terminal.dockHint": "命令将在独立的终端窗口中运行。",
   "terminal.empty": "还没有命令——在下方输入。",
   "terminal.clear": "清除输出",
-  "terminal.noOutput": "（无输出）"
+  "terminal.noOutput": "（无输出）",
+  "log.adbStopped": "adb 已停止——刷新设备列表即可重新启动。"
 }

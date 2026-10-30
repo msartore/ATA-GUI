@@ -450,5 +450,6 @@
   "terminal.dockHint": "Commands run in a dedicated terminal window.",
   "terminal.empty": "No commands yet — type one below.",
   "terminal.clear": "Clear output",
-  "terminal.noOutput": "(no output)"
+  "terminal.noOutput": "(no output)",
+  "log.adbStopped": "adb stopped — refresh the device list to start it again."
 }

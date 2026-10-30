@@ -65,7 +65,18 @@ fn run_tool(
 }
 
 #[tauri::command(async)]
-fn devices(state: tauri::State<'_, AppState>, is_adb: bool) -> Result<Vec<device::DeviceEntry>, String> {
+fn devices(
+    app: tauri::AppHandle,
+    state: tauri::State<'_, AppState>,
+    is_adb: bool,
+) -> Result<Vec<device::DeviceEntry>, String> {
+    // Asking for the device list is the way back from "Kill ADB".
+    if state
+        .adb_paused
+        .swap(false, std::sync::atomic::Ordering::Relaxed)
+    {
+        watcher_start(app, state.clone());
+    }
     device::list(&state.paths, is_adb)
 }
 
@@ -241,6 +252,16 @@ fn auto_connect(state: tauri::State<'_, AppState>) -> Vec<String> {
 
 #[tauri::command(async)]
 fn adb_kill(state: tauri::State<'_, AppState>) -> String {
+    // Stop the watcher first: it polls `adb devices`, which would spawn a new
+    // daemon right after the kill and make the action look like it failed.
+    state
+        .adb_paused
+        .store(true, std::sync::atomic::Ordering::Relaxed);
+    if let Ok(mut guard) = state.watcher.lock() {
+        if let Some(handle) = guard.take() {
+            handle.stop();
+        }
+    }
     net::kill_adb(&state.paths)
 }
 
@@ -571,7 +592,11 @@ fn watcher_start(app: tauri::AppHandle, state: tauri::State<'_, AppState>) {
     if guard.is_some() {
         return;
     }
-    *guard = Some(device::start_watcher(app, state.paths.clone()));
+    *guard = Some(device::start_watcher(
+        app,
+        state.paths.clone(),
+        state.adb_paused.clone(),
+    ));
 }
 
 #[tauri::command(async)]
@@ -628,6 +653,7 @@ pub fn run() {
                 logcat: std::sync::Mutex::new(None),
                 watcher: std::sync::Mutex::new(None),
                 cancel: std::sync::Arc::new(std::sync::atomic::AtomicBool::new(false)),
+                adb_paused: std::sync::Arc::new(std::sync::atomic::AtomicBool::new(false)),
             });
             Ok(())
         })
