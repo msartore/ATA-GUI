@@ -1073,8 +1073,7 @@ textarea {
 .toast {
   background: var(--toast);
   border: 1px solid var(--border-strong);
-  border-left: 3px solid var(--info);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 8px 12px;
   font-size: 12px;
   max-width: 400px;
@@ -1082,13 +1081,13 @@ textarea {
   animation: toast-in 0.16s ease-out;
 }
 .toast-ok {
-  border-left-color: var(--ok);
+  color: var(--ok);
 }
 .toast-error {
-  border-left-color: var(--danger);
+  color: var(--danger);
 }
 .toast-warning {
-  border-left-color: var(--warn);
+  color: var(--warn);
 }
 
 @keyframes toast-in {
@@ -1787,7 +1786,6 @@ textarea {
   gap: 9px;
   padding: 11px 13px;
   border: 1px solid var(--border);
-  border-left: 2px solid var(--accent-dim);
   border-radius: 9px;
   background: var(--chip);
   color: var(--text-dim);
