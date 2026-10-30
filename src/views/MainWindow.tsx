@@ -593,7 +593,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
 
   return (
     <MainContext.Provider value={context}>
-      <div className="app">
+      <div className={`app ${tools?.platform === "macos" ? "is-macos" : ""}`}>
         <TitleBar
           tools={tools}
           onSettings={() => setDialog({ name: "settings" })}

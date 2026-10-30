@@ -65,6 +65,10 @@ jobs:
             artifact: windows-x64
           - platform: ubuntu-22.04
             artifact: linux-x64
+          - platform: macos-latest
+            artifact: macos-arm64
+          - platform: macos-13
+            artifact: macos-x64
     runs-on: ${{ matrix.platform }}
     env:
       # Baked into the binary so the updater checks the repo that built it.
@@ -114,19 +118,28 @@ jobs:
           set -euo pipefail
           ls -la release
           # The updater picks a ZIP per platform; fail early if packaging regressed.
-          if [ "${{ matrix.artifact }}" = "windows-x64" ]; then
-            zip_file=$(ls release/*portable-windows-x64.zip 2>/dev/null | head -1) || true
-            test -n "$zip_file" || { echo "::error::missing portable Windows ZIP"; exit 1; }
-            # The 3.x updater copies the archive root into the install folder
-            # and relaunches ATA-GUI.exe — fail the release if that layout breaks.
-            unzip -l "$zip_file" | grep -q "ATA-GUI.exe" || {
-              echo "::error::portable ZIP has no ATA-GUI.exe at its root"; exit 1; }
-          else
-            test -n "$(ls release/*portable-linux-x64.zip 2>/dev/null)" || {
-              echo "::error::missing portable Linux ZIP"; exit 1; }
-            test -n "$(ls release/*.deb 2>/dev/null)" || {
-              echo "::error::missing .deb package"; exit 1; }
-          fi
+          case "${{ matrix.artifact }}" in
+            windows-x64)
+              zip_file=$(ls release/*portable-windows-x64.zip 2>/dev/null | head -1) || true
+              test -n "$zip_file" || { echo "::error::missing portable Windows ZIP"; exit 1; }
+              # The 3.x updater copies the archive root into the install folder
+              # and relaunches ATA-GUI.exe — fail the release if that layout breaks.
+              unzip -l "$zip_file" | grep -q "ATA-GUI.exe" || {
+                echo "::error::portable ZIP has no ATA-GUI.exe at its root"; exit 1; }
+              ;;
+            linux-x64)
+              test -n "$(ls release/*portable-linux-x64.zip 2>/dev/null)" || {
+                echo "::error::missing portable Linux ZIP"; exit 1; }
+              test -n "$(ls release/*.deb 2>/dev/null)" || {
+                echo "::error::missing .deb package"; exit 1; }
+              ;;
+            macos-*)
+              test -n "$(ls release/*portable-darwin-*.zip 2>/dev/null)" || {
+                echo "::error::missing portable macOS ZIP"; exit 1; }
+              test -n "$(ls release/*.dmg 2>/dev/null)" || {
+                echo "::error::missing .dmg"; exit 1; }
+              ;;
+          esac
 
       - uses: actions/upload-artifact@v4
         with:
@@ -168,5 +181,6 @@ jobs:
             dist/*.deb
             dist/*.rpm
             dist/*.AppImage
+            dist/*.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

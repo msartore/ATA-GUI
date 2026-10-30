@@ -266,6 +266,11 @@ fn pick_asset(names: &[String]) -> Option<String> {
             if !(lower.contains("macos") || lower.contains("darwin")) {
                 continue;
             }
+            if lower.contains("aarch64") || lower.contains("arm64") {
+                score += if is_arm { 30 } else { -20 };
+            } else if lower.contains("x86_64") || lower.contains("amd64") || lower.contains("x64") {
+                score += if is_arm { -20 } else { 20 };
+            }
             score += 10;
         } else {
             if lower.contains("linux") || lower.contains("macos") || lower.contains("darwin") {
@@ -484,6 +489,15 @@ pub async fn apply_update(
     paths: AppPaths,
     url: String,
 ) -> Result<(), String> {
+    // Replacing a signed .app bundle from inside the running app is not safe:
+    // macOS users update by downloading the new .dmg.
+    #[cfg(target_os = "macos")]
+    {
+        let _ = (app, &paths, &url);
+        return Err("errors.updateManual".into());
+    }
+
+    #[allow(unreachable_code)]
     let zip_path = paths.runtime_dir.join("ATAUpdate.zip");
     let staging = paths.runtime_dir.join("ATAUpdate");
     let _ = fs::remove_dir_all(&staging);
@@ -559,6 +573,21 @@ mod tests {
             pick_asset(&names).as_deref(),
             Some("ATA-GUI-3.15.0-portable-windows-x64.zip")
         );
+    }
+
+    #[cfg(target_os = "macos")]
+    #[test]
+    fn macos_prefers_the_matching_architecture() {
+        let names = vec![
+            "ATA-GUI-4.0.0-portable-darwin-x64.zip".to_string(),
+            "ATA-GUI-4.0.0-portable-darwin-arm64.zip".to_string(),
+        ];
+        let expected = if cfg!(target_arch = "aarch64") {
+            "ATA-GUI-4.0.0-portable-darwin-arm64.zip"
+        } else {
+            "ATA-GUI-4.0.0-portable-darwin-x64.zip"
+        };
+        assert_eq!(pick_asset(&names).as_deref(), Some(expected));
     }
 
     #[cfg(all(unix, not(target_os = "macos")))]

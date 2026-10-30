@@ -443,5 +443,6 @@
   "hint.connectionTimeout": "手机没有及时响应。请确认手机在同一 Wi-Fi 网络且无线调试已开启。",
   "hint.pairAuth": "配对被拒绝。请在手机上重新生成代码/二维码后重试。",
   "error.cancelled": "操作已取消",
-  "error.timeout": "操作超时"
+  "error.timeout": "操作超时",
+  "error.updateManual": "macOS 暂不支持自动更新，请从发布页面下载新的 .dmg。"
 }

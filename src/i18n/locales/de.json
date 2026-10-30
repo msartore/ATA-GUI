@@ -443,5 +443,6 @@
   "hint.connectionTimeout": "Das Telefon hat nicht rechtzeitig geantwortet. Prüfe, ob es im selben WLAN ist und kabelloses Debugging aktiv ist.",
   "hint.pairAuth": "Kopplung abgelehnt. Code/QR am Telefon neu erzeugen und erneut versuchen.",
   "error.cancelled": "Vorgang abgebrochen",
-  "error.timeout": "Zeitüberschreitung beim Vorgang"
+  "error.timeout": "Zeitüberschreitung beim Vorgang",
+  "error.updateManual": "Automatische Updates gibt es unter macOS noch nicht — lade die neue .dmg von der Release-Seite herunter."
 }

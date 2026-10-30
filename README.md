@@ -5,14 +5,14 @@ with **Tauri 2 + Rust + React**, replacing the original Windows-only WinForms ed
 
 [![License](https://img.shields.io/github/license/msartore/ATA-GUI?cacheSeconds=3600)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/msartore/ATA-GUI?cacheSeconds=3600)](https://github.com/msartore/ATA-GUI/releases)
-![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20Linux-2b3137)
+![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20Linux%20%7C%20macOS-2b3137)
 
 > The 3.x C# sources are preserved on the **`legacy`** branch; `main` is the Tauri rewrite.
 
 ## What's new in 4.0
 
 - **Rust + Tauri core** — same feature set without a .NET runtime; a ~2.4 MB installer instead of a framework-dependent WinForms build.
-- **Windows and Linux** — one codebase, per-platform bundles (NSIS/MSI, `.deb`/`.rpm`/AppImage and portable archives).
+- **Windows, Linux and macOS** — one codebase, per-platform bundles (NSIS/MSI, `.deb`/`.rpm`/AppImage, `.dmg`/`.app` and portable archives).
 - **Dark and light themes**, including "follow system" with live repaint.
 - **8 bundled languages** (`en`, `it`, `es`, `de`, `fr`, `pt-BR`, `ru`, `zh-CN`) loaded at runtime — translators can drop a JSON file next to the executable and reload without rebuilding.
 - **QR-code wireless pairing** (`WIFI:T:ADB;S:…;P:…;;`) with mDNS discovery, alongside the 6-digit code.
@@ -39,11 +39,20 @@ with **Tauri 2 + Rust + React**, replacing the original Windows-only WinForms ed
 | --- | --- | --- |
 | Windows 10/11 x64 | `ATA-GUI_4.0.0_x64-setup.exe` (per-user NSIS) | `.msi`, portable `.zip` |
 | Linux x64 | `.AppImage` or `.deb` | `.rpm`, portable `.tar.gz` / `.zip` |
+| macOS 10.15+ | `.dmg` (Apple silicon or Intel) | portable `.zip` containing `ATA-GUI.app` |
 
 Downloads live on the [releases page](https://github.com/msartore/ATA-GUI/releases).
 The portable archive is self-contained: unpack it anywhere and run `ATA-GUI` (`ATA-GUI.exe` on
 Windows). Settings and IP history are stored in `config.json` next to the executable while that
 folder is writable, otherwise in the per-user config directory.
+
+### macOS notes
+
+The `.dmg` is ad-hoc signed (no Apple Developer ID), so the first launch needs
+**right-click → Open** or `xattr -dr com.apple.quarantine /Applications/ATA-GUI.app`.
+Platform Tools and scrcpy are downloaded on first use exactly like the other
+platforms. The in-app updater is disabled on macOS — download the new `.dmg` from
+the releases page (the app tells you when one is available).
 
 SDK Platform Tools and scrcpy are not bundled — the app downloads them on first use (startup
 prompt or Settings → Tools) and keeps them beside the executable.
@@ -212,6 +221,8 @@ ATA-GUI_4.0.0_x64_en-US.msi                MSI installer
 ATA-GUI-4.0.0-portable-linux-x64.zip       Linux portable (used by the 4.x updater)
 ATA-GUI-4.0.0-portable-linux-x64.tar.gz    Linux portable (manual installs)
 ATA-GUI_4.0.0_amd64.deb / .rpm / .AppImage  Linux packages
+ATA-GUI_4.0.0_aarch64.dmg / _x64.dmg        macOS installers
+ATA-GUI-4.0.0-portable-darwin-arm64.zip     macOS portable (.app bundle)
 ```
 
 ## Legacy

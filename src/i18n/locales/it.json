@@ -443,5 +443,6 @@
   "hint.connectionTimeout": "Il telefono non ha risposto in tempo. Verifica che sia sulla stessa rete Wi-Fi e che il debug wireless sia attivo.",
   "hint.pairAuth": "Accoppiamento rifiutato. Rigenera il codice/QR sul telefono e riprova.",
   "error.cancelled": "Operazione annullata",
-  "error.timeout": "L'operazione è andata in timeout"
+  "error.timeout": "L'operazione è andata in timeout",
+  "error.updateManual": "Gli aggiornamenti automatici non sono ancora disponibili su macOS: scarica il nuovo .dmg dalla pagina delle release."
 }

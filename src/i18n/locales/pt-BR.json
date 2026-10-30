@@ -443,5 +443,6 @@
   "hint.connectionTimeout": "O celular não respondeu a tempo. Verifique se está na mesma rede Wi-Fi e se a depuração sem fio está ativa.",
   "hint.pairAuth": "Pareamento recusado. Gere novamente o código/QR no celular e tente outra vez.",
   "error.cancelled": "Operação cancelada",
-  "error.timeout": "A operação expirou"
+  "error.timeout": "A operação expirou",
+  "error.updateManual": "Atualizações automáticas ainda não estão disponíveis no macOS — baixe o novo .dmg na página de versões."
 }

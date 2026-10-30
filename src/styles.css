@@ -1674,3 +1674,13 @@ label.control {
 :root[data-theme="light"] .brand img {
   filter: invert(1);
 }
+
+/* macOS uses a native overlay title bar: leave room for the traffic lights and
+   drop the custom window buttons / resize handles. */
+.app.is-macos .titlebar {
+  padding-left: 84px;
+}
+.app.is-macos .window-controls,
+.app.is-macos .resize-handle {
+  display: none;
+}

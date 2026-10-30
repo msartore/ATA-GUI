@@ -9,7 +9,7 @@
  *
  * Run after `npm run desktop:build`.
  */
-import { copyFile, mkdir, readdir, readFile, readlink, rm, stat, symlink, writeFile } from "node:fs/promises";
+import { copyFile, cp, mkdir, readdir, readFile, readlink, rm, stat, symlink, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -21,21 +21,29 @@ const platform = process.platform;
 const arch = process.arch;
 const platformLabel = platform === "win32" ? "windows" : platform;
 const exeName = platform === "win32" ? "ATA-GUI.exe" : "ATA-GUI";
+const isMac = platform === "darwin";
 
 const releaseDir = path.join(root, "release");
 const stageName = `ATA-GUI-${version}-portable-${platformLabel}-${arch}`;
 const stageDir = path.join(releaseDir, stageName);
 
 const binary = path.join(root, "src-tauri", "target", "release", exeName);
-if (!existsSync(binary)) {
-  console.error(`Missing release binary: ${binary}\nRun "npm run desktop:build" first.`);
+const appBundle = path.join(root, "src-tauri", "target", "release", "bundle", "macos", "ATA-GUI.app");
+
+if (isMac ? !existsSync(appBundle) : !existsSync(binary)) {
+  console.error(`Missing release ${isMac ? "app bundle" : "binary"}: ${isMac ? appBundle : binary}\nRun "npm run desktop:build" first.`);
   process.exit(1);
 }
 
 await rm(stageDir, { recursive: true, force: true });
 await mkdir(path.join(stageDir, "locales"), { recursive: true });
 
-await copyFile(binary, path.join(stageDir, exeName));
+if (isMac) {
+  // macOS users need the .app bundle, not the raw Mach-O binary.
+  await cp(appBundle, path.join(stageDir, "ATA-GUI.app"), { recursive: true });
+} else {
+  await copyFile(binary, path.join(stageDir, exeName));
+}
 await copyFile(path.join(root, "LICENSE"), path.join(stageDir, "LICENSE"));
 
 const localesDir = path.join(root, "src", "i18n", "locales");
@@ -77,7 +85,11 @@ bloatware list by the Universal Android Debloater Alliance, icons by Icons8.
 /* --------------------------------------------------------------- archives */
 
 const archiveBase = path.join(releaseDir, stageName);
-if (platform === "win32") {
+if (isMac) {
+  const zip = `${archiveBase}.zip`;
+  await rm(zip, { force: true });
+  execFileSync("zip", ["-qry", zip, stageName], { cwd: releaseDir, stdio: "inherit" });
+} else if (platform === "win32") {
   const zip = `${archiveBase}.zip`;
   await rm(zip, { force: true });
   execFileSync(

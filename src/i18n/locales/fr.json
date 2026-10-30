@@ -443,5 +443,6 @@
   "hint.connectionTimeout": "Le téléphone n'a pas répondu à temps. Vérifiez qu'il est sur le même Wi-Fi et que le débogage sans fil est actif.",
   "hint.pairAuth": "Association refusée. Régénérez le code/QR sur le téléphone et réessayez.",
   "error.cancelled": "Opération annulée",
-  "error.timeout": "L'opération a expiré"
+  "error.timeout": "L'opération a expiré",
+  "error.updateManual": "Les mises à jour automatiques ne sont pas encore disponibles sur macOS — téléchargez le nouveau .dmg depuis la page des versions."
 }
