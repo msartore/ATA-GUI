@@ -33,7 +33,7 @@ import {
 } from "../components/dialogs";
 import { BootloaderDialog } from "../components/BootloaderDialog";
 import { QrPairingDialog } from "../components/QrPairingDialog";
-import { basename, errorKey, errorText, splitArgs } from "../lib/util";
+import { basename, errorKey, errorText } from "../lib/util";
 import type {
   AppEntry,
   AppMode,
@@ -350,23 +350,10 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
     [deviceIndex, log, t],
   );
 
-  const runTerminal = useCallback(
-    async (tool: "adb" | "fastboot", command: string) => {
-      const target = devicesRef.current[deviceIndex];
-      if (!command.trim()) {
-        await ui.alert(t("error.enterCommand"), "warning");
-        return;
-      }
-      try {
-        const output = await api.runTool(tool, target?.id ?? null, splitArgs(command));
-        const text = `${output.stdout}${output.stderr}`.trim();
-        log("INFO", text || t("log.genericDone"));
-      } catch (error) {
-        log("ERROR", errorText(error));
-      }
-    },
-    [deviceIndex, log, t, ui],
-  );
+  const openTerminal = useCallback(() => {
+    const target = devicesRef.current[deviceIndex];
+    void api.openSubWindow("terminal", target?.id ?? "", user);
+  }, [deviceIndex, user]);
 
   const ensureScrcpy = useCallback(async () => {
     const status = await api.toolStatus().catch(() => null);
@@ -585,7 +572,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
     extractApks,
     logs,
     clearLogs,
-    runTerminal,
+    openTerminal,
     openLogs,
     openTasks,
     shareScreen,

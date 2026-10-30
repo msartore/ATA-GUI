@@ -45,10 +45,14 @@ fn encode(value: &str) -> String {
 }
 
 /// Open the detached windows the WinForms app showed with `Form.Show()`:
-/// Device Logs and Task Manager.
+/// Device Logs, Task Manager and the terminal.
 #[tauri::command]
 pub async fn open_sub_window(app: AppHandle, kind: String, serial: String, user: String) -> Result<(), String> {
-    let label = if kind == "tasks" { "tasks" } else { "logs" };
+    let (label, title, width, height, min_width, min_height) = match kind.as_str() {
+        "tasks" => ("tasks", "ATA-GUI — Task Manager", 1010.0, 700.0, 760.0, 520.0),
+        "terminal" => ("terminal", "ATA-GUI — Terminal", 900.0, 600.0, 560.0, 380.0),
+        _ => ("logs", "ATA-GUI — Device Logs", 1010.0, 700.0, 760.0, 520.0),
+    };
 
     if let Some(existing) = app.get_webview_window(label) {
         let _ = existing.show();
@@ -62,16 +66,10 @@ pub async fn open_sub_window(app: AppHandle, kind: String, serial: String, user:
         encode(&serial),
         encode(&user)
     );
-    let title = if label == "tasks" {
-        "ATA-GUI — Task Manager"
-    } else {
-        "ATA-GUI — Device Logs"
-    };
-
     WebviewWindowBuilder::new(&app, label, WebviewUrl::App(url.into()))
         .title(title)
-        .inner_size(1010.0, 700.0)
-        .min_inner_size(760.0, 520.0)
+        .inner_size(width, height)
+        .min_inner_size(min_width, min_height)
         .decorations(false)
         .resizable(true)
         .visible(true)

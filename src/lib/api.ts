@@ -189,6 +189,6 @@ export const api = {
 
   windowStartResize: (direction: string) => invoke<void>("window_start_resize", { direction }),
 
-  openSubWindow: (kind: "logs" | "tasks", serial: string, user: string) =>
+  openSubWindow: (kind: "logs" | "tasks" | "terminal", serial: string, user: string) =>
     invoke<void>("open_sub_window", { kind, serial, user }),
 };

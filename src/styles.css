@@ -1684,3 +1684,62 @@ label.control {
 .app.is-macos .resize-handle {
   display: none;
 }
+
+/* Detached terminal window: output above, single command line below. */
+.terminal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 10px 16px 0;
+  padding: 10px 12px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--log-bg);
+  color: var(--log-text);
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.terminal-body .hint {
+  margin: 0;
+  color: var(--log-dim);
+}
+.term-entry + .term-entry {
+  margin-top: 12px;
+}
+.term-cmd {
+  color: var(--accent);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.term-prompt {
+  margin-right: 6px;
+  color: var(--log-dim);
+}
+.term-out {
+  margin: 2px 0 0;
+  font-family: inherit;
+  font-size: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--log-text);
+}
+.term-out.is-error {
+  color: var(--danger);
+}
+.terminal-foot {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 12px 16px 16px;
+}
+.terminal-foot .terminal-input {
+  flex: 1 1 auto;
+  min-height: 38px;
+  resize: none;
+}
+
+/* One notice when ATA-Bridge is missing, instead of a sentence per row. */
+.apps-bridge-note {
+  margin: 0 0 8px;
+}

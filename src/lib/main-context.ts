@@ -57,7 +57,7 @@ export interface MainApi {
 
   logs: LogEntry[];
   clearLogs: () => void;
-  runTerminal: (tool: "adb" | "fastboot", command: string) => Promise<void>;
+  openTerminal: () => void;
   openLogs: () => void;
   openTasks: () => void;
   shareScreen: () => Promise<void>;

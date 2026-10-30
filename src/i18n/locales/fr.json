@@ -444,5 +444,11 @@
   "hint.pairAuth": "Association refusée. Régénérez le code/QR sur le téléphone et réessayez.",
   "error.cancelled": "Opération annulée",
   "error.timeout": "L'opération a expiré",
-  "error.updateManual": "Les mises à jour automatiques ne sont pas encore disponibles sur macOS — téléchargez le nouveau .dmg depuis la page des versions."
+  "error.updateManual": "Les mises à jour automatiques ne sont pas encore disponibles sur macOS — téléchargez le nouveau .dmg depuis la page des versions.",
+  "terminal.title": "Terminal",
+  "terminal.open": "Ouvrir la fenêtre de terminal",
+  "terminal.dockHint": "Les commandes s'exécutent dans une fenêtre de terminal dédiée.",
+  "terminal.empty": "Aucune commande pour l'instant — saisissez-en une ci-dessous.",
+  "terminal.clear": "Effacer la sortie",
+  "terminal.noOutput": "(aucune sortie)"
 }

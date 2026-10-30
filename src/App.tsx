@@ -6,6 +6,7 @@ import { UiProvider } from "./components/ui";
 import { MainWindow } from "./views/MainWindow";
 import { LogsWindow } from "./views/LogsWindow";
 import { TasksWindow } from "./views/TasksWindow";
+import { TerminalWindow } from "./views/TerminalWindow";
 import type { Config, LocaleBundle } from "./lib/types";
 import { DEFAULT_CONFIG } from "./lib/config";
 import { applyTheme, watchTheme } from "./lib/theme";
@@ -90,6 +91,8 @@ export default function App() {
           <LogsWindow serial={serial} />
         ) : windowKind === "tasks" ? (
           <TasksWindow serial={serial} user={user} />
+        ) : windowKind === "terminal" ? (
+          <TerminalWindow serial={serial} />
         ) : (
           <MainWindow config={config} setConfig={setConfig} />
         )}

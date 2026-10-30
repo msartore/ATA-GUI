@@ -450,6 +450,10 @@ export function SystemTab() {
             </Dropdown>
           </div>
 
+          {connected && !m.bridge ? (
+            <p className="hint apps-bridge-note">{t("apk.bridgeMissing")}</p>
+          ) : null}
+
           <div className="table apps-table">
             <div className="table-head apps-grid">
               <span>{t("label.name")}</span>
@@ -472,7 +476,7 @@ export function SystemTab() {
                     onClick={() => m.toggleApp(app.package)}
                   >
                     <span className="app-name">
-                      {app.name ?? (m.bridge ? t("value.unknown") : t("apk.bridgeMissing"))}
+                      {app.name ?? "—"}
                     </span>
                     <span className="pkg">{app.package}</span>
                   </div>

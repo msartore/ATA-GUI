@@ -22,7 +22,10 @@ async function targetUrl() {
   const list = await fetch(`${ENDPOINT}/json/list`).then((response) => response.json());
   const pages = list.filter((entry) => entry.type === "page");
   const match = process.env.CDP_MATCH;
-  const page = match ? pages.find((entry) => entry.url.includes(match)) : pages[0];
+  const pick = match?.startsWith("re:")
+    ? (entry) => new RegExp(match.slice(3)).test(entry.url)
+    : (entry) => entry.url.includes(match ?? "");
+  const page = match ? pages.find(pick) : pages[0];
   if (!page) throw new Error(`no page target found (${pages.length} pages, match=${match ?? "-"})`);
   return page.webSocketDebuggerUrl;
 }

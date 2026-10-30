@@ -444,5 +444,11 @@
   "hint.pairAuth": "Accoppiamento rifiutato. Rigenera il codice/QR sul telefono e riprova.",
   "error.cancelled": "Operazione annullata",
   "error.timeout": "L'operazione è andata in timeout",
-  "error.updateManual": "Gli aggiornamenti automatici non sono ancora disponibili su macOS: scarica il nuovo .dmg dalla pagina delle release."
+  "error.updateManual": "Gli aggiornamenti automatici non sono ancora disponibili su macOS: scarica il nuovo .dmg dalla pagina delle release.",
+  "terminal.title": "Terminale",
+  "terminal.open": "Apri finestra terminale",
+  "terminal.dockHint": "I comandi vengono eseguiti in una finestra terminale dedicata.",
+  "terminal.empty": "Nessun comando eseguito: scrivine uno qui sotto.",
+  "terminal.clear": "Pulisci output",
+  "terminal.noOutput": "(nessun output)"
 }

@@ -444,5 +444,11 @@
   "hint.pairAuth": "Kopplung abgelehnt. Code/QR am Telefon neu erzeugen und erneut versuchen.",
   "error.cancelled": "Vorgang abgebrochen",
   "error.timeout": "Zeitüberschreitung beim Vorgang",
-  "error.updateManual": "Automatische Updates gibt es unter macOS noch nicht — lade die neue .dmg von der Release-Seite herunter."
+  "error.updateManual": "Automatische Updates gibt es unter macOS noch nicht — lade die neue .dmg von der Release-Seite herunter.",
+  "terminal.title": "Terminal",
+  "terminal.open": "Terminalfenster öffnen",
+  "terminal.dockHint": "Befehle laufen jetzt in einem eigenen Terminalfenster.",
+  "terminal.empty": "Noch keine Befehle — tippe unten einen ein.",
+  "terminal.clear": "Ausgabe leeren",
+  "terminal.noOutput": "(keine Ausgabe)"
 }

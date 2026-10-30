@@ -444,5 +444,11 @@
   "hint.pairAuth": "配对被拒绝。请在手机上重新生成代码/二维码后重试。",
   "error.cancelled": "操作已取消",
   "error.timeout": "操作超时",
-  "error.updateManual": "macOS 暂不支持自动更新，请从发布页面下载新的 .dmg。"
+  "error.updateManual": "macOS 暂不支持自动更新，请从发布页面下载新的 .dmg。",
+  "terminal.title": "终端",
+  "terminal.open": "打开终端窗口",
+  "terminal.dockHint": "命令将在独立的终端窗口中运行。",
+  "terminal.empty": "还没有命令——在下方输入。",
+  "terminal.clear": "清除输出",
+  "terminal.noOutput": "（无输出）"
 }

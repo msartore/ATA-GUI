@@ -444,5 +444,11 @@
   "hint.pairAuth": "Pairing was rejected. Regenerate the code/QR on the phone and try again.",
   "error.cancelled": "Operation cancelled",
   "error.timeout": "The operation timed out",
-  "error.updateManual": "Automatic updates are not available on macOS yet — download the new .dmg from the releases page."
+  "error.updateManual": "Automatic updates are not available on macOS yet — download the new .dmg from the releases page.",
+  "terminal.title": "Terminal",
+  "terminal.open": "Open terminal window",
+  "terminal.dockHint": "Commands run in a dedicated terminal window.",
+  "terminal.empty": "No commands yet — type one below.",
+  "terminal.clear": "Clear output",
+  "terminal.noOutput": "(no output)"
 }

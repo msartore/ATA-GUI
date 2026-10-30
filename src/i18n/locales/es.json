@@ -444,5 +444,11 @@
   "hint.pairAuth": "Emparejamiento rechazado. Vuelve a generar el código/QR en el teléfono e inténtalo de nuevo.",
   "error.cancelled": "Operación cancelada",
   "error.timeout": "La operación ha caducado",
-  "error.updateManual": "Las actualizaciones automáticas aún no están disponibles en macOS: descarga el nuevo .dmg desde la página de versiones."
+  "error.updateManual": "Las actualizaciones automáticas aún no están disponibles en macOS: descarga el nuevo .dmg desde la página de versiones.",
+  "terminal.title": "Terminal",
+  "terminal.open": "Abrir ventana de terminal",
+  "terminal.dockHint": "Los comandos se ejecutan en una ventana de terminal dedicada.",
+  "terminal.empty": "Aún no hay comandos: escribe uno abajo.",
+  "terminal.clear": "Borrar salida",
+  "terminal.noOutput": "(sin salida)"
 }

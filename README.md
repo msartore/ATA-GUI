@@ -15,6 +15,7 @@ with **Tauri 2 + Rust + React**, replacing the original Windows-only WinForms ed
 - **Windows, Linux and macOS** — one codebase, per-platform bundles (NSIS/MSI, `.deb`/`.rpm`/AppImage, `.dmg`/`.app` and portable archives).
 - **Dark and light themes**, including "follow system" with live repaint.
 - **8 bundled languages** (`en`, `it`, `es`, `de`, `fr`, `pt-BR`, `ru`, `zh-CN`) loaded at runtime — translators can drop a JSON file next to the executable and reload without rebuilding.
+- **Terminal in its own window** — adb/fastboot commands run in a dedicated terminal (history with ↑/↓, Enter to run, full scrollback) instead of a cramped field in the dock.
 - **QR-code wireless pairing** (`WIFI:T:ADB;S:…;P:…;;`) with mDNS discovery, alongside the 6-digit code.
 - **No console window, ever**: the binary is GUI-subsystem and every child tool is spawned hidden.
 

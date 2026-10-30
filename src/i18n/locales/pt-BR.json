@@ -444,5 +444,11 @@
   "hint.pairAuth": "Pareamento recusado. Gere novamente o código/QR no celular e tente outra vez.",
   "error.cancelled": "Operação cancelada",
   "error.timeout": "A operação expirou",
-  "error.updateManual": "Atualizações automáticas ainda não estão disponíveis no macOS — baixe o novo .dmg na página de versões."
+  "error.updateManual": "Atualizações automáticas ainda não estão disponíveis no macOS — baixe o novo .dmg na página de versões.",
+  "terminal.title": "Terminal",
+  "terminal.open": "Abrir janela do terminal",
+  "terminal.dockHint": "Os comandos são executados em uma janela de terminal dedicada.",
+  "terminal.empty": "Nenhum comando ainda — digite um abaixo.",
+  "terminal.clear": "Limpar saída",
+  "terminal.noOutput": "(sem saída)"
 }

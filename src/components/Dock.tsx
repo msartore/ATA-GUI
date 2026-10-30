@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useI18n } from "../i18n";
 import { useMain } from "../lib/main-context";
 import { Btn, IconBtn, Panel } from "../components/ui";
@@ -70,56 +70,19 @@ export function LogPanel() {
 export function Dock() {
   const { t } = useI18n();
   const m = useMain();
-  const [tool, setTool] = useState<"adb" | "fastboot">("adb");
-  const [command, setCommand] = useState("");
 
   return (
     <div className="dock">
       <div className="dock-left">
         <Panel
           title={t("section.terminal")}
-          actions={
-            <div className="radio-row">
-              <label className="check">
-                <input type="radio" checked={tool === "adb"} onChange={() => setTool("adb")} />
-                adb
-              </label>
-              <label className="check">
-                <input type="radio" checked={tool === "fastboot"} onChange={() => setTool("fastboot")} />
-                fastboot
-              </label>
-            </div>
-          }
+          actions={<IconBtn icon="max" label={t("terminal.open")} onClick={m.openTerminal} />}
         >
-          <textarea
-            className="textarea terminal-input"
-            value={command}
-            placeholder={t("terminal.placeholder")}
-            onChange={(event) => setCommand(event.target.value)}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) {
-                void m.runTerminal(tool, command);
-                setCommand("");
-              }
-            }}
-          />
-          <div className="row">
-            <Btn
-              small
-              variant="primary"
-              icon="play"
-              disabled={!m.device}
-              onClick={() => {
-                void m.runTerminal(tool, command);
-                setCommand("");
-              }}
-            >
-              {t("button.run")}
-            </Btn>
-            <span className="hint right">Ctrl+Enter</span>
-          </div>
+          <p className="hint">{t("terminal.dockHint")}</p>
+          <Btn variant="primary" icon="terminal" onClick={m.openTerminal}>
+            {t("terminal.open")}
+          </Btn>
         </Panel>
-
         <Panel title={t("section.deviceSync")}>
           <div className="row">
             <Btn
