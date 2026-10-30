@@ -441,5 +441,7 @@
   "button.searchDevices": "Cerca dispositivi wireless",
   "hint.connectionRefused": "Nessun servizio in ascolto a questo indirizzo. Su Android 11+ attiva il debug wireless e accoppia prima (la porta è casuale, non 5555). In alternativa collega il telefono via USB e usa adb tcpip 5555.",
   "hint.connectionTimeout": "Il telefono non ha risposto in tempo. Verifica che sia sulla stessa rete Wi-Fi e che il debug wireless sia attivo.",
-  "hint.pairAuth": "Accoppiamento rifiutato. Rigenera il codice/QR sul telefono e riprova."
+  "hint.pairAuth": "Accoppiamento rifiutato. Rigenera il codice/QR sul telefono e riprova.",
+  "error.cancelled": "Operazione annullata",
+  "error.timeout": "L'operazione è andata in timeout"
 }

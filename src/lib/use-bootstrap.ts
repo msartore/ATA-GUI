@@ -73,6 +73,14 @@ export function useAppBootstrap(hooks: BootstrapHooks): void {
       );
 
       if (disposed) return;
+      // Reconnect wireless endpoints that are already reachable (mDNS + saved
+      // IPs) before the first device scan, so the app starts "connected".
+      const reconnected = await api.autoConnect().catch(() => [] as string[]);
+      for (const endpoint of reconnected) {
+        latest.current.log("OK", latest.current.t("log.connected", { ip: endpoint }));
+      }
+
+      if (disposed) return;
       const found = await latest.current.refreshDevices();
       if (found.length) await latest.current.syncFor(found[0]);
     };

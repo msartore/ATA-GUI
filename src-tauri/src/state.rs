@@ -225,4 +225,6 @@ pub struct AppState {
     pub config: Mutex<Config>,
     pub logcat: Mutex<Option<crate::logcat::LogcatHandle>>,
     pub watcher: Mutex<Option<crate::device::WatcherHandle>>,
+    /// Raised by the Cancel button; long operations poll it and kill their child.
+    pub cancel: std::sync::Arc<std::sync::atomic::AtomicBool>,
 }

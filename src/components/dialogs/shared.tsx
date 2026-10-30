@@ -91,13 +91,26 @@ export function LoadingDialog({
   label,
   detail,
   progress,
+  onCancel,
 }: {
   label: string;
   detail?: string;
   progress?: number;
+  onCancel?: () => void;
 }) {
+  const { t } = useI18n();
+
   return (
-    <Modal title={label}>
+    <Modal
+      title={label}
+      footer={
+        onCancel ? (
+          <Btn icon="stop" onClick={onCancel}>
+            {t("button.cancel")}
+          </Btn>
+        ) : undefined
+      }
+    >
       <div className="row">
         <Spinner size={16} />
         <span className="mono">{detail ?? ""}</span>

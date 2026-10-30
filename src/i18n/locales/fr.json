@@ -441,5 +441,7 @@
   "button.searchDevices": "Rechercher des appareils sans fil",
   "hint.connectionRefused": "Rien n'écoute à cette adresse. Sous Android 11+, activez le débogage sans fil et associez d'abord (le port est aléatoire, pas 5555). Sinon, connectez le téléphone en USB et utilisez adb tcpip 5555.",
   "hint.connectionTimeout": "Le téléphone n'a pas répondu à temps. Vérifiez qu'il est sur le même Wi-Fi et que le débogage sans fil est actif.",
-  "hint.pairAuth": "Association refusée. Régénérez le code/QR sur le téléphone et réessayez."
+  "hint.pairAuth": "Association refusée. Régénérez le code/QR sur le téléphone et réessayez.",
+  "error.cancelled": "Opération annulée",
+  "error.timeout": "L'opération a expiré"
 }

@@ -44,7 +44,26 @@ pub fn wipe(paths: &AppPaths, serial: &str) -> FlashStep {
 }
 
 fn step(paths: &AppPaths, serial: &str, args: &[String]) -> FlashStep {
-    match tools::fastboot(paths, Some(serial), args) {
+    step_guarded(paths, serial, args, None)
+}
+
+fn step_guarded(
+    paths: &AppPaths,
+    serial: &str,
+    args: &[String],
+    guard: Option<&tools::Guard>,
+) -> FlashStep {
+    let result = match guard {
+        Some(guard) => tools::fastboot_guarded(
+            paths,
+            Some(serial),
+            args,
+            Some(guard.timeout()),
+            Some(guard.flag()),
+        ),
+        None => tools::fastboot(paths, Some(serial), args),
+    };
+    match result {
         Ok(out) => FlashStep {
             command: args.join(" "),
             output: out.merged(),
@@ -98,6 +117,7 @@ pub fn flash_image(
     image_path: &str,
     image_type: &str,
     partition: &str,
+    guard: &tools::Guard,
 ) -> Vec<FlashStep> {
     let mut commands: Vec<Vec<String>> = Vec::new();
 
@@ -132,20 +152,31 @@ pub fn flash_image(
 
     commands
         .iter()
-        .map(|args| step(paths, serial, args))
+        .map(|args| step_guarded(paths, serial, args, Some(guard)))
         .collect()
 }
 
-pub fn sideload(paths: &AppPaths, serial: &str, zip_path: &str) -> FlashStep {
-    step(
+pub fn sideload(
+    paths: &AppPaths,
+    serial: &str,
+    zip_path: &str,
+    guard: &tools::Guard,
+) -> FlashStep {
+    step_guarded(
         paths,
         serial,
         &["sideload".to_string(), zip_path.to_string()],
+        Some(guard),
     )
 }
 
 /// Copy a partition to sdcard, pull it into `IMG/` and clean up the device.
-pub fn extract_image(paths: &AppPaths, serial: &str, partition: &str) -> ImageExtraction {
+pub fn extract_image(
+    paths: &AppPaths,
+    serial: &str,
+    partition: &str,
+    guard: &tools::Guard,
+) -> ImageExtraction {
     let mut log = Vec::new();
     let mut extraction = ImageExtraction {
         ok: false,
@@ -154,7 +185,7 @@ pub fn extract_image(paths: &AppPaths, serial: &str, partition: &str) -> ImageEx
         error: None,
     };
 
-    let create = tools::adb_text(
+    let create = tools::adb_guarded(
         paths,
         Some(serial),
         &[
@@ -163,7 +194,11 @@ pub fn extract_image(paths: &AppPaths, serial: &str, partition: &str) -> ImageEx
             format!("if=/dev/block/bootdevice/by-name/{partition}"),
             format!("of=/sdcard/{partition}.img"),
         ],
-    );
+        Some(guard.timeout()),
+        Some(guard.flag()),
+    )
+    .map(|out| out.merged())
+    .unwrap_or_default();
     log.push(create.clone());
 
     if create.contains("No such file or directory") || !create.contains("copied") {
@@ -176,7 +211,7 @@ pub fn extract_image(paths: &AppPaths, serial: &str, partition: &str) -> ImageEx
     let _ = fs::create_dir_all(&img_dir);
     let destination = img_dir.join(format!("{partition}.img"));
 
-    let pull = tools::adb_text(
+    let pull = tools::adb_guarded(
         paths,
         Some(serial),
         &[
@@ -184,7 +219,11 @@ pub fn extract_image(paths: &AppPaths, serial: &str, partition: &str) -> ImageEx
             format!("/sdcard/{partition}.img"),
             destination.to_string_lossy().to_string(),
         ],
-    );
+        Some(guard.timeout()),
+        Some(guard.flag()),
+    )
+    .map(|out| out.merged())
+    .unwrap_or_default();
     log.push(pull.clone());
 
     let _ = tools::adb(

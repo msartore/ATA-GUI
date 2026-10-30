@@ -93,6 +93,10 @@ export const api = {
 
   mdnsServices: () => invoke<MdnsService[]>("mdns_services"),
 
+  autoConnect: () => invoke<string[]>("auto_connect"),
+
+  cancelOperation: () => invoke<void>("cancel_operation"),
+
   adbKill: () => invoke<string>("adb_kill"),
 
   adbRunning: () => invoke<boolean>("adb_running"),

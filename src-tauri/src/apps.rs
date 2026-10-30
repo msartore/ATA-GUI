@@ -265,73 +265,116 @@ pub fn install_apks(
     user: &str,
     files: &[String],
     downgrade: bool,
+    guard: &tools::Guard,
 ) -> Vec<OpResult> {
-    files
-        .iter()
-        .filter(|file| file.to_ascii_lowercase().ends_with(".apk"))
-        .map(|file| {
-            let mut args: Vec<String> = vec!["install".into(), "-r".into()];
-            if downgrade {
-                args.push("-d".into());
-            }
-            args.push("--user".into());
-            args.push(user.to_string());
-            args.push(file.clone());
+    use std::sync::atomic::Ordering;
 
-            match tools::adb(paths, Some(serial), &args) {
-                Ok(out) => {
-                    let output = out.merged();
-                    OpResult {
-                        target: file.clone(),
-                        ok: output.contains("Success"),
-                        output,
-                    }
-                }
-                Err(err) => OpResult {
+    let mut results = Vec::with_capacity(files.len());
+    for file in files {
+        if guard.flag().load(Ordering::Relaxed) {
+            results.push(OpResult {
+                target: file.clone(),
+                ok: false,
+                output: "errors.cancelled".into(),
+            });
+            break;
+        }
+        if !file.to_ascii_lowercase().ends_with(".apk") {
+            continue;
+        }
+
+        let mut args: Vec<String> = vec!["install".into(), "-r".into()];
+        if downgrade {
+            args.push("-d".into());
+        }
+        args.push("--user".into());
+        args.push(user.to_string());
+        args.push(file.clone());
+
+        match tools::adb_guarded(
+            paths,
+            Some(serial),
+            &args,
+            Some(guard.timeout()),
+            Some(guard.flag()),
+        ) {
+            Ok(out) => {
+                let output = out.merged();
+                results.push(OpResult {
                     target: file.clone(),
-                    ok: false,
-                    output: err,
-                },
+                    ok: output.contains("Success"),
+                    output,
+                });
             }
-        })
-        .collect()
+            Err(err) => results.push(OpResult {
+                target: file.clone(),
+                ok: false,
+                output: err,
+            }),
+        }
+    }
+    results
 }
 
-pub fn push_files(paths: &AppPaths, serial: &str, files: &[String]) -> Vec<OpResult> {
-    let _ = tools::adb(
+pub fn push_files(
+    paths: &AppPaths,
+    serial: &str,
+    files: &[String],
+    guard: &tools::Guard,
+) -> Vec<OpResult> {
+    use std::sync::atomic::Ordering;
+
+    let _ = tools::adb_guarded(
         paths,
         Some(serial),
         &["shell".into(), "mkdir".into(), "-p".into(), "sdcard/ATA".into()],
+        Some(guard.timeout()),
+        Some(guard.flag()),
     );
 
-    files
-        .iter()
-        .map(|file| {
-            if !std::path::Path::new(file).exists() {
-                return OpResult {
+    let mut results = Vec::with_capacity(files.len());
+    for file in files {
+        if guard.flag().load(Ordering::Relaxed) {
+            results.push(OpResult {
+                target: file.clone(),
+                ok: false,
+                output: "errors.cancelled".into(),
+            });
+            break;
+        }
+        if !std::path::Path::new(file).exists() {
+            results.push(OpResult {
+                target: file.clone(),
+                ok: false,
+                output: "file not found".into(),
+            });
+            continue;
+        }
+
+        let args = vec!["push".to_string(), file.clone(), "sdcard/ATA".to_string()];
+        match tools::adb_guarded(
+            paths,
+            Some(serial),
+            &args,
+            Some(guard.timeout()),
+            Some(guard.flag()),
+        ) {
+            Ok(out) => {
+                let output = out.merged();
+                results.push(OpResult {
                     target: file.clone(),
-                    ok: false,
-                    output: "file not found".into(),
-                };
+                    ok: out.success() && !looks_failed(&output),
+                    output,
+                });
             }
-            let args = vec!["push".to_string(), file.clone(), "sdcard/ATA".to_string()];
-            match tools::adb(paths, Some(serial), &args) {
-                Ok(out) => {
-                    let output = out.merged();
-                    OpResult {
-                        target: file.clone(),
-                        ok: !looks_failed(&output),
-                        output,
-                    }
-                }
-                Err(err) => OpResult {
-                    target: file.clone(),
-                    ok: false,
-                    output: err,
-                },
-            }
-        })
-        .collect()
+            Err(err) => results.push(OpResult {
+                target: file.clone(),
+                ok: false,
+                output: err,
+            }),
+        }
+    }
+    results
 }
 
 /// Pull every split APK of the selected packages into `APKS/`.

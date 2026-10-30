@@ -78,6 +78,34 @@ External catalogues override the bundled ones and missing keys fall back to Engl
 [`docs/TRANSLATIONS.md`](docs/TRANSLATIONS.md). `cargo test` verifies every bundled catalogue has
 the same key set as English (438 keys).
 
+## Desktop capabilities
+
+Things the WinForms app could not do without freezing or blocking:
+
+- **Cancellable long operations** — installs, pushes, image extraction, flashing and sideloading run
+  through a guarded process wrapper: every child has a watchdog (20–45 min depending on the task),
+  stdout/stderr are drained on separate threads so a full pipe cannot deadlock, the whole process
+  tree is killed on cancel, and the busy overlay shows **Cancel** for operations that support it.
+- **The UI never blocks** — all adb/fastboot commands run off the main thread.
+- **Single instance** — launching the app twice focuses the running window instead of failing on the
+  shared WebView2 profile (the second process exits immediately).
+- **Remembered window** — size, position and maximised state are restored on start.
+- **Virtualised package list** — only the visible rows of an 800+ package list are rendered, so
+  searching and scrolling stay smooth.
+- **Strict CSP** — the webview only loads bundled assets; remote fetches and inline scripts are refused.
+- **Auto-reconnect** — on start the app reconnects wireless endpoints that are already reachable
+  (mDNS-advertised devices and saved IPs whose port answers), without stalling on dead addresses.
+
+### Keyboard shortcuts
+
+| Keys | Action |
+| --- | --- |
+| `Ctrl+F` | Focus the app search box |
+| `F5` | Rescan devices |
+| `Ctrl+L` | Clear the log |
+| `Ctrl+1…4` | System / Fastboot / Recovery / Tools |
+| `Esc` | Close the open dialog |
+
 ## Themes
 
 **Settings → Appearance** offers Dark, Light and System. The choice is stored in `config.json`,

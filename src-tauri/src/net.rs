@@ -116,6 +116,57 @@ pub fn pair(paths: &AppPaths, ip: &str, port: &str, code: &str) -> NetResult {
     }
 }
 
+/// Reconnect endpoints that are already reachable: mDNS-advertised wireless
+/// debugging services plus saved manual IPs whose port answers. Avoids the
+/// 20-second wait `adb connect` incurs on a silent host.
+pub fn auto_connect(paths: &AppPaths, ips: Vec<String>) -> Vec<String> {
+    use std::net::{TcpStream, ToSocketAddrs};
+
+    fn port_open(ip: &str, port: u16) -> bool {
+        let Ok(mut addrs) = (ip, port).to_socket_addrs() else {
+            return false;
+        };
+        match addrs.next() {
+            Some(addr) => TcpStream::connect_timeout(&addr, std::time::Duration::from_millis(400)).is_ok(),
+            None => false,
+        }
+    }
+
+    fn reachable(paths: &AppPaths, endpoint: &str) -> bool {
+        match tools::adb(paths, None, &["connect".into(), endpoint.to_string()]) {
+            Ok(out) => {
+                let text = out.merged().to_ascii_lowercase();
+                !text.contains("cannot connect") && !text.contains("failed")
+            }
+            Err(_) => false,
+        }
+    }
+
+    let mut connected: Vec<String> = Vec::new();
+
+    for service in crate::wireless::services(paths)
+        .into_iter()
+        .filter(|service| service.service.contains("_adb-tls-connect"))
+    {
+        let endpoint = format!("{}:{}", service.ip, service.port);
+        if reachable(paths, &endpoint) {
+            connected.push(endpoint);
+        }
+    }
+
+    for ip in ips.into_iter().take(4) {
+        if connected.iter().any(|known| known.starts_with(&ip)) || !port_open(&ip, 5555) {
+            continue;
+        }
+        let endpoint = format!("{ip}:5555");
+        if reachable(paths, &endpoint) {
+            connected.push(endpoint);
+        }
+    }
+
+    connected
+}
+
 pub fn kill_adb(paths: &AppPaths) -> String {
     let out = tools::adb_text(paths, None, &["kill-server".into()]);
     tools::kill_tool_processes();

@@ -1647,3 +1647,11 @@ label.control {
 :root[data-theme="light"] .qr-box {
   box-shadow: 0 8px 22px rgba(22, 34, 39, 0.18);
 }
+
+/* Virtualized app list: rows must have a fixed height for the windowing math. */
+.apps-table .table-row {
+  height: 30px;
+}
+.apps-table .table-scroll {
+  overflow-y: auto;
+}

@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "../lib/api";
 import { useI18n } from "../i18n";
 import { useMain } from "../lib/main-context";
 import { Btn, DropZone, Dropdown, Empty, Field, IconBtn, MenuItem, Panel, useUi } from "../components/ui";
 import { errorKey, errorText } from "../lib/util";
+import { VirtualList } from "../components/VirtualList";
 import type { AppMode, MdnsService } from "../lib/types";
 
 export function SystemTab() {
@@ -111,6 +112,16 @@ export function SystemTab() {
     }
     m.openDialog("pairing", { ip: ip.trim(), port: port.trim() || "5555" });
   };
+
+  const filteredApps = useMemo(() => {
+    const needle = m.search.trim().toLowerCase();
+    if (!needle) return m.apps;
+    return m.apps.filter(
+      (app) =>
+        app.package.toLowerCase().includes(needle) ||
+        (app.name ?? "").toLowerCase().includes(needle),
+    );
+  }, [m.apps, m.search]);
 
   return (
     <div className="system-grid">
@@ -444,35 +455,30 @@ export function SystemTab() {
               <span>{t("label.name")}</span>
               <span>{t("label.package")}</span>
             </div>
-            <div className="table-scroll">
-              {!connected ? (
+            {!connected ? (
+              <div className="table-scroll">
                 <Empty>{t("value.noDevice")}</Empty>
-              ) : m.apps.length === 0 ? (
-                <Empty>{t("apk.noApps")}</Empty>
-              ) : (
-                m.apps
-                  .filter((app) => {
-                    const needle = m.search.trim().toLowerCase();
-                    if (!needle) return true;
-                    return (
-                      app.package.toLowerCase().includes(needle) ||
-                      (app.name ?? "").toLowerCase().includes(needle)
-                    );
-                  })
-                  .map((app) => (
-                    <div
-                      key={app.package}
-                      className={`table-row apps-grid ${m.selectedApps.has(app.package) ? "is-selected" : ""}`}
-                      onClick={() => m.toggleApp(app.package)}
-                    >
-                      <span className="app-name">
-                        {app.name ?? (m.bridge ? t("value.unknown") : t("apk.bridgeMissing"))}
-                      </span>
-                      <span className="pkg">{app.package}</span>
-                    </div>
-                  ))
-              )}
-            </div>
+              </div>
+            ) : (
+              <VirtualList
+                items={filteredApps}
+                rowHeight={30}
+                className="table-scroll"
+                empty={<Empty>{t("apk.noApps")}</Empty>}
+                renderRow={(app) => (
+                  <div
+                    key={app.package}
+                    className={`table-row apps-grid ${m.selectedApps.has(app.package) ? "is-selected" : ""}`}
+                    onClick={() => m.toggleApp(app.package)}
+                  >
+                    <span className="app-name">
+                      {app.name ?? (m.bridge ? t("value.unknown") : t("apk.bridgeMissing"))}
+                    </span>
+                    <span className="pkg">{app.package}</span>
+                  </div>
+                )}
+              />
+            )}
             <div className="panel-foot">
               <span>
                 {t("label.total")}: {m.apps.length}

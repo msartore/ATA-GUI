@@ -108,7 +108,8 @@ fn apps_install(
     files: Vec<String>,
     downgrade: bool,
 ) -> Vec<apps::OpResult> {
-    apps::install_apks(&state.paths, &serial, &user, &files, downgrade)
+    let guard = tools::Guard::new(state.cancel.clone(), std::time::Duration::from_secs(20 * 60));
+    apps::install_apks(&state.paths, &serial, &user, &files, downgrade, &guard)
 }
 
 #[tauri::command(async)]
@@ -117,7 +118,8 @@ fn files_push(
     serial: String,
     files: Vec<String>,
 ) -> Vec<apps::OpResult> {
-    apps::push_files(&state.paths, &serial, &files)
+    let guard = tools::Guard::new(state.cancel.clone(), std::time::Duration::from_secs(30 * 60));
+    apps::push_files(&state.paths, &serial, &files, &guard)
 }
 
 #[tauri::command(async)]
@@ -178,7 +180,8 @@ fn flash_image(
     image_type: String,
     partition: String,
 ) -> Vec<flash::FlashStep> {
-    flash::flash_image(&state.paths, &serial, &kind, &image_path, &image_type, &partition)
+    let guard = tools::Guard::new(state.cancel.clone(), std::time::Duration::from_secs(45 * 60));
+    flash::flash_image(&state.paths, &serial, &kind, &image_path, &image_type, &partition, &guard)
 }
 
 #[tauri::command(async)]
@@ -187,7 +190,8 @@ fn sideload_zip(
     serial: String,
     zip_path: String,
 ) -> flash::FlashStep {
-    flash::sideload(&state.paths, &serial, &zip_path)
+    let guard = tools::Guard::new(state.cancel.clone(), std::time::Duration::from_secs(45 * 60));
+    flash::sideload(&state.paths, &serial, &zip_path, &guard)
 }
 
 #[tauri::command(async)]
@@ -196,7 +200,8 @@ fn image_extract(
     serial: String,
     partition: String,
 ) -> flash::ImageExtraction {
-    flash::extract_image(&state.paths, &serial, &partition)
+    let guard = tools::Guard::new(state.cancel.clone(), std::time::Duration::from_secs(20 * 60));
+    flash::extract_image(&state.paths, &serial, &partition, &guard)
 }
 
 #[tauri::command(async)]
@@ -222,6 +227,16 @@ fn adb_pair(
     code: String,
 ) -> net::NetResult {
     net::pair(&state.paths, &ip, &port, &code)
+}
+
+#[tauri::command(async)]
+fn auto_connect(state: tauri::State<'_, AppState>) -> Vec<String> {
+    let ips = state
+        .config
+        .lock()
+        .map(|config| config.ips.clone())
+        .unwrap_or_default();
+    net::auto_connect(&state.paths, ips)
 }
 
 #[tauri::command(async)]
@@ -540,6 +555,14 @@ fn clipboard_write(app: tauri::AppHandle, text: String) -> Result<(), String> {
     app.clipboard().write_text(text).map_err(|e| e.to_string())
 }
 
+/// Ask the running long operation (install / flash / sideload / push) to stop.
+#[tauri::command]
+fn cancel_operation(state: tauri::State<'_, AppState>) {
+    state
+        .cancel
+        .store(true, std::sync::atomic::Ordering::Relaxed);
+}
+
 #[tauri::command(async)]
 fn watcher_start(app: tauri::AppHandle, state: tauri::State<'_, AppState>) {
     let Ok(mut guard) = state.watcher.lock() else {
@@ -582,6 +605,15 @@ fn exit_app(app: tauri::AppHandle, state: tauri::State<'_, AppState>, kill_adb: 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        // Must be the first plugin: a second launch focuses the running window
+        // instead of failing on the shared WebView2 profile.
+        .plugin(tauri_plugin_single_instance::init(|app, _argv, _cwd| {
+            if let Some(window) = app.get_webview_window("main") {
+                let _ = window.unminimize();
+                let _ = window.set_focus();
+            }
+        }))
+        .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_clipboard_manager::init())
         .setup(|app| {
@@ -595,6 +627,7 @@ pub fn run() {
                 config: std::sync::Mutex::new(config),
                 logcat: std::sync::Mutex::new(None),
                 watcher: std::sync::Mutex::new(None),
+                cancel: std::sync::Arc::new(std::sync::atomic::AtomicBool::new(false)),
             });
             Ok(())
         })
@@ -669,6 +702,8 @@ pub fn run() {
             open_url,
             pick_files,
             clipboard_write,
+            cancel_operation,
+            auto_connect,
             watcher_start,
             watcher_stop,
             exit_app,

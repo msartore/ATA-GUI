@@ -441,5 +441,7 @@
   "button.searchDevices": "Buscar dispositivos inalámbricos",
   "hint.connectionRefused": "No hay nada escuchando en esta dirección. En Android 11+ activa la depuración inalámbrica y empareja primero (el puerto es aleatorio, no 5555). También puedes conectar el teléfono por USB y usar adb tcpip 5555.",
   "hint.connectionTimeout": "El teléfono no respondió a tiempo. Comprueba que está en la misma red Wi-Fi y que la depuración inalámbrica está activa.",
-  "hint.pairAuth": "Emparejamiento rechazado. Vuelve a generar el código/QR en el teléfono e inténtalo de nuevo."
+  "hint.pairAuth": "Emparejamiento rechazado. Vuelve a generar el código/QR en el teléfono e inténtalo de nuevo.",
+  "error.cancelled": "Operación cancelada",
+  "error.timeout": "La operación ha caducado"
 }

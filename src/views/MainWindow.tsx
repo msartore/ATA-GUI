@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { api } from "../lib/api";
 import { broadcastTheme } from "../lib/theme";
 import { devicesForTab, tabUsesAdb, type Tab } from "../lib/devices";
@@ -64,6 +64,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
   const [maxDisplay, setMaxDisplay] = useState(0);
   const [ips, setIps] = useState<string[]>(config.ips);
   const [busy, setBusy] = useState<string | null>(null);
+  const [cancelable, setCancelable] = useState(false);
   const [progress, setProgress] = useState<number | null>(null);
   const [dialog, setDialog] = useState<{ name: string; props?: Record<string, unknown> } | null>(null);
   const [missing, setMissing] = useState<"tools" | "scrcpy" | null>(null);
@@ -92,22 +93,30 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
   }, []);
 
   const runBusy = useCallback(
-    async <T,>(label: string, task: () => Promise<T>): Promise<T | undefined> => {
+    async <T,>(
+      label: string,
+      task: () => Promise<T>,
+      options?: { cancelable?: boolean },
+    ): Promise<T | undefined> => {
       setBusy(label);
+      setCancelable(Boolean(options?.cancelable));
       setProgress(null);
       try {
         return await task();
       } catch (error) {
         const text = errorText(error);
-        log("ERROR", text);
-        await ui.alert(text);
+        const key = errorKey(text);
+        const message = key ? t(key) : text;
+        log("ERROR", message);
+        await ui.alert(message);
         return undefined;
       } finally {
         setBusy(null);
+        setCancelable(false);
         setProgress(null);
       }
     },
-    [log, ui],
+    [log, t, ui],
   );
 
   const updateConfig = useCallback(
@@ -285,7 +294,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
           }
         }
         if (tabRef.current === "system") await loadAppsFor(target, user, appsModeRef.current);
-      });
+      }, { cancelable: true });
     },
     [deviceIndex, loadAppsFor, log, runBusy, t, ui, user],
   );
@@ -306,7 +315,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
         } else {
           log("OK", t("log.fileTransferDone"));
         }
-      });
+      }, { cancelable: true });
     },
     [deviceIndex, log, runBusy, t, ui],
   );
@@ -320,7 +329,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
         const failed = results.filter((result) => !result.ok);
         if (failed.length) log("ERROR", failed.map((item) => item.target).join("\n"));
         else log("OK", t("log.apksExtracted", { path: tools?.apksDir ?? "APKS" }));
-      });
+      }, { cancelable: true });
     },
     [deviceIndex, log, runBusy, t, tools?.apksDir],
   );
@@ -451,6 +460,46 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
     },
     [refreshDevices, syncFor],
   );
+
+  /* ------------------------------------------------------------ shortcuts */
+
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      const mod = event.ctrlKey || event.metaKey;
+
+      if (event.key === "Escape") {
+        setDialog(null);
+        return;
+      }
+      if (mod && event.key.toLowerCase() === "f") {
+        const search = document.querySelector<HTMLInputElement>("[data-search]");
+        if (search) {
+          event.preventDefault();
+          search.focus();
+          search.select();
+        }
+        return;
+      }
+      if (event.key === "F5") {
+        event.preventDefault();
+        void refreshDevices();
+        return;
+      }
+      if (mod && event.key.toLowerCase() === "l") {
+        event.preventDefault();
+        clearLogs();
+        return;
+      }
+      if (mod && ["1", "2", "3", "4"].includes(event.key)) {
+        event.preventDefault();
+        const order: Tab[] = ["system", "fastboot", "recovery", "tools"];
+        void changeTab(order[Number(event.key) - 1]);
+      }
+    };
+
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [changeTab, clearLogs, refreshDevices]);
 
   /* ------------------------------------------------------------ downloads */
 
@@ -593,6 +642,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
         {busy ? (
           <LoadingDialog
             label={busy}
+            onCancel={cancelable ? () => void api.cancelOperation() : undefined}
             detail={progress !== null ? `${progress}%` : undefined}
             progress={progress ?? undefined}
           />
