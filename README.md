@@ -221,7 +221,7 @@ longer maintained. `main` contains only the Tauri implementation.
 
 ## Credits
 
-Massimiliano Sartore · icons by [Icons8](https://icons8.com) · debloat list by the
+Massimiliano Sartore · icons by [Iconoir](https://iconoir.com) (MIT) · debloat list by the
 [Universal Android Debloater Alliance](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation)
 · screen mirroring by [scrcpy](https://github.com/Genymobile/scrcpy) · powered by
 [SDK Platform Tools](https://developer.android.com/studio/releases/platform-tools).

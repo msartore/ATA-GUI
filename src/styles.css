@@ -52,10 +52,13 @@
   --sans: "Segoe UI", Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   --mono: "JetBrains Mono", "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace;
   --radius: 8px;
+  --icon-stroke: 1.6;
 }
 
 :root[data-theme="light"] {
   color-scheme: light;
+  /* Iconoir is a thin line set: a hair bolder keeps it readable on white. */
+  --icon-stroke: 1.8;
   --bg: #eef2f3;
   --surface: #ffffff;
   --surface-2: #f5f8f8;
@@ -1654,4 +1657,20 @@ label.control {
 }
 .apps-table .table-scroll {
   overflow-y: auto;
+}
+
+/* Iconoir glyphs inherit the text colour; keep them from shrinking in flex rows. */
+.icon {
+  flex: 0 0 auto;
+  stroke-width: var(--icon-stroke, 1.6);
+}
+
+/* The wordmark is white-on-transparent; invert it for the light theme. */
+.brand img {
+  display: block;
+  height: 22px;
+  width: auto;
+}
+:root[data-theme="light"] .brand img {
+  filter: invert(1);
 }
