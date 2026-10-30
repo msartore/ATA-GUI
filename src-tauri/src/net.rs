@@ -63,7 +63,10 @@ pub fn connect(
             let lower = text.to_ascii_lowercase();
             let code = classify(&text);
             NetResult {
-                ok: !lower.contains("cannot connect") && !lower.contains("failed"),
+                // adb exits 0 even when it prints "cannot connect", and a broken
+                // adb (missing DLL) prints nothing at all: require both a clean
+                // exit and the success sentence.
+                ok: out.success() && (lower.contains("connected to") || lower.contains("already connected")),
                 message: text,
                 code,
             }
@@ -83,7 +86,7 @@ pub fn disconnect(paths: &AppPaths, ip: &str, port: &str) -> NetResult {
             let text = out.merged();
             let code = classify(&text);
             NetResult {
-                ok: text.contains("disconnected"),
+                ok: out.success() && text.contains("disconnected"),
                 message: text,
                 code,
             }
@@ -103,7 +106,7 @@ pub fn pair(paths: &AppPaths, ip: &str, port: &str, code: &str) -> NetResult {
             let text = out.merged();
             let code = classify(&text);
             NetResult {
-                ok: text.contains("Successfully paired"),
+                ok: out.success() && text.contains("Successfully paired"),
                 message: text,
                 code,
             }
