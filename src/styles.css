@@ -432,7 +432,7 @@ textarea {
   margin-left: auto;
 }
 
-label.control {
+.control {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -1742,4 +1742,35 @@ label.control {
 /* One notice when ATA-Bridge is missing, instead of a sentence per row. */
 .apps-bridge-note {
   margin: 0 0 8px;
+}
+
+/* Dock device sync: full-width action, picker + rescan on one line. */
+.btn.is-block {
+  width: 100%;
+  justify-content: center;
+}
+.sync-panel .btn.is-block {
+  margin-bottom: 2px;
+}
+.sync-pick {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sync-pick .select {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Make the rescan control read as part of the picker row. */
+.sync-pick .icon-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--field-bg);
+}
+.sync-pick .icon-btn:hover {
+  background: var(--btn-hover-bg);
+  border-color: var(--border-strong);
 }

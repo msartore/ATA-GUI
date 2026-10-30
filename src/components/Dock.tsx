@@ -83,33 +83,38 @@ export function Dock() {
             {t("terminal.open")}
           </Btn>
         </Panel>
-        <Panel title={t("section.deviceSync")}>
-          <div className="row">
-            <Btn
-              variant="primary"
-              icon="refresh"
-              disabled={!m.device}
-              onClick={() => void m.syncDevice()}
-            >
-              {t("button.sync")}
-            </Btn>
-            <IconBtn icon="refresh" label={t("button.refreshDevices")} onClick={() => void m.refreshDevices()} />
+        <Panel title={t("section.deviceSync")} className="sync-panel">
+          <Btn
+            variant="primary"
+            icon="refresh"
+            className="is-block"
+            disabled={!m.device}
+            onClick={() => void m.syncDevice()}
+          >
+            {t("button.sync")}
+          </Btn>
+          <div className="control">
+            <span>{t("label.device")}</span>
+            <div className="sync-pick">
+              <select
+                className="select"
+                value={m.deviceIndex}
+                onChange={(event) => m.selectDevice(Number(event.target.value))}
+              >
+                {m.devices.length === 0 ? <option value={-1}>{t("value.noDevice")}</option> : null}
+                {m.devices.map((device, index) => (
+                  <option key={`${device.id}-${index}`} value={index}>
+                    {device.name || device.id} [{device.mode}]
+                  </option>
+                ))}
+              </select>
+              <IconBtn
+                icon="usb"
+                label={t("button.refreshDevices")}
+                onClick={() => void m.refreshDevices()}
+              />
+            </div>
           </div>
-          <label className="control">
-            {t("label.device")}
-            <select
-              className="select"
-              value={m.deviceIndex}
-              onChange={(event) => m.selectDevice(Number(event.target.value))}
-            >
-              {m.devices.length === 0 ? <option value={-1}>{t("value.noDevice")}</option> : null}
-              {m.devices.map((device, index) => (
-                <option key={`${device.id}-${index}`} value={index}>
-                  {device.name || device.id} [{device.mode}]
-                </option>
-              ))}
-            </select>
-          </label>
         </Panel>
       </div>
 
