@@ -94,6 +94,8 @@ export interface ImageExtraction {
 export interface NetResult {
   ok: boolean;
   message: string;
+  /** "refused" | "timeout" | "unreachable" | "auth" when the failure is known. */
+  code?: string | null;
 }
 
 export interface EncoderData {

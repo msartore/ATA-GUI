@@ -436,5 +436,10 @@
   "settings.themeDark": "深色",
   "settings.themeLight": "浅色",
   "settings.themeSystem": "跟随系统",
-  "error.extractFailed": "无法解压压缩包"
+  "error.extractFailed": "无法解压压缩包",
+  "label.discovered": "网络中发现",
+  "button.searchDevices": "搜索无线设备",
+  "hint.connectionRefused": "该地址没有服务在监听。Android 11+ 请先开启无线调试并配对（端口是随机的，不是 5555）。也可以先用 USB 连接手机并执行 adb tcpip 5555。",
+  "hint.connectionTimeout": "手机没有及时响应。请确认手机在同一 Wi-Fi 网络且无线调试已开启。",
+  "hint.pairAuth": "配对被拒绝。请在手机上重新生成代码/二维码后重试。"
 }

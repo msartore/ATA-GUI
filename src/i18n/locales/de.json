@@ -436,5 +436,10 @@
   "settings.themeDark": "Dunkel",
   "settings.themeLight": "Hell",
   "settings.themeSystem": "System",
-  "error.extractFailed": "Archiv konnte nicht entpackt werden"
+  "error.extractFailed": "Archiv konnte nicht entpackt werden",
+  "label.discovered": "Im Netzwerk gefunden",
+  "button.searchDevices": "Nach WLAN-Geräten suchen",
+  "hint.connectionRefused": "An dieser Adresse lauscht nichts. Aktiviere auf Android 11+ das kabellose Debugging und kopple zuerst (der Port ist zufällig, nicht 5555). Alternativ das Telefon per USB verbinden und adb tcpip 5555 verwenden.",
+  "hint.connectionTimeout": "Das Telefon hat nicht rechtzeitig geantwortet. Prüfe, ob es im selben WLAN ist und kabelloses Debugging aktiv ist.",
+  "hint.pairAuth": "Kopplung abgelehnt. Code/QR am Telefon neu erzeugen und erneut versuchen."
 }

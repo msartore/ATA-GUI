@@ -23,7 +23,7 @@ with **Tauri 2 + Rust + React**, replacing the original Windows-only WinForms ed
 - Manage system and user apps without root: uninstall, disable/enable, clear data, restore
 - Install APKs (including split bundles) and push files
 - Inspect and grant/revoke runtime permissions, set default app roles
-- ADB over Wi-Fi: 6-digit pairing, QR pairing, `adb tcpip`, connect/disconnect, IP history
+- ADB over Wi-Fi: 6-digit pairing, QR pairing, mDNS discovery (the panel lists discovered `ip:port` endpoints, because Android 11+ uses a random port instead of 5555), `adb tcpip`, connect/disconnect, IP history
 - Detect and remove bloatware with the Universal Android Debloater list
 - Reboot to system, recovery or fastboot; unlock/lock the bootloader on supported devices
 - Flash images, wipe partitions, erase data/cache, sideload ZIPs

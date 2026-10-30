@@ -436,5 +436,10 @@
   "settings.themeDark": "Dark",
   "settings.themeLight": "Light",
   "settings.themeSystem": "System",
-  "error.extractFailed": "Failed to extract the archive"
+  "error.extractFailed": "Failed to extract the archive",
+  "label.discovered": "Discovered on the network",
+  "button.searchDevices": "Scan for wireless devices",
+  "hint.connectionRefused": "Nothing is listening at this address. On Android 11+ enable Wireless debugging and pair first (the port is random, not 5555). Alternatively connect the phone over USB and use adb tcpip 5555.",
+  "hint.connectionTimeout": "The phone did not answer in time. Check that it is on the same Wi-Fi network and that Wireless debugging is on.",
+  "hint.pairAuth": "Pairing was rejected. Regenerate the code/QR on the phone and try again."
 }

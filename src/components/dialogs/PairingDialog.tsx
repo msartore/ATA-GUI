@@ -36,7 +36,10 @@ export function PairingDialog({
       async () => {
         const result = await api.adbPair(ip, port, code);
         onDone(result.ok);
-        if (!result.ok) await ui.alert(`${t("log.pairFailed", { ip })}: ${result.message}`);
+        if (!result.ok) {
+          const hint = result.code === "auth" ? `\n\n${t("hint.pairAuth")}` : "";
+          await ui.alert(`${t("log.pairFailed", { ip })}: ${result.message}${hint}`);
+        }
       },
       { onError: () => onDone(false) },
     );

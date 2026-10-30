@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { api } from "../lib/api";
 import { useI18n } from "../i18n";
 import { useMain } from "../lib/main-context";
 import { Btn, DropZone, Dropdown, Empty, Field, IconBtn, MenuItem, Panel, useUi } from "../components/ui";
 import { errorKey, errorText } from "../lib/util";
-import type { AppMode } from "../lib/types";
+import type { AppMode, MdnsService } from "../lib/types";
 
 export function SystemTab() {
   const { t } = useI18n();
@@ -13,6 +13,23 @@ export function SystemTab() {
   const [ip, setIp] = useState("");
   const [port, setPort] = useState("5555");
   const [wireless, setWireless] = useState(false);
+  const [found, setFound] = useState<MdnsService[]>([]);
+
+  // Android 11+ advertises the real IP:port over mDNS; the fixed 5555 port is
+  // only valid after `adb tcpip 5555`, which is why manual connects often fail.
+  const discover = useCallback(async () => {
+    try {
+      const services = await api.mdnsServices();
+      setFound(services.filter((service) => service.service.includes("_adb-tls-connect")));
+    } catch {
+      setFound([]);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (wireless) void discover();
+    else setFound([]);
+  }, [wireless, discover]);
   const [networkLocked, setNetworkLocked] = useState(true);
   const [filterOpen, setFilterOpen] = useState(false);
 
@@ -53,6 +70,16 @@ export function SystemTab() {
         await m.refreshDevices();
       } else {
         m.log("ERROR", `${t("log.connectFailed", { ip: ip.trim() })}\n${result.message}`);
+        const hint =
+          result.code === "refused"
+            ? t("hint.connectionRefused")
+            : result.code === "timeout" || result.code === "unreachable"
+              ? t("hint.connectionTimeout")
+              : "";
+        if (hint) {
+          m.log("WARNING", hint);
+          await ui.alert(hint, "warning");
+        }
       }
     } catch (error) {
       m.log("ERROR", errorText(error));
@@ -211,9 +238,29 @@ export function SystemTab() {
                 <Btn small icon="qr" onClick={() => m.openDialog("qr")}>
                   QR
                 </Btn>
+                <IconBtn icon="refresh" label={t("button.searchDevices")} onClick={() => void discover()} />
               </>
             ) : null}
           </div>
+
+          {wireless && found.length ? (
+            <div className="row">
+              <span className="hint">{t("label.discovered")}</span>
+              {found.map((service) => (
+                <Btn
+                  key={service.address}
+                  small
+                  icon="wifi"
+                  onClick={() => {
+                    setIp(service.ip);
+                    setPort(service.port);
+                  }}
+                >
+                  {service.address}
+                </Btn>
+              ))}
+            </div>
+          ) : null}
         </Panel>
       </div>
 

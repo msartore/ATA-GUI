@@ -112,7 +112,24 @@ fn external_files(paths: &AppPaths) -> Vec<(String, PathBuf, String, bool)> {
     files
 }
 
-/// Bundled catalogs merged with external overrides. External files win.
+/// Overlay `overlay` on top of `base`, returning a flat JSON object.
+fn merge_json(base: &str, overlay: &str) -> String {
+    let mut map: serde_json::Map<String, serde_json::Value> =
+        serde_json::from_str(base).unwrap_or_default();
+
+    if let Ok(serde_json::Value::Object(extra)) =
+        serde_json::from_str::<serde_json::Value>(overlay)
+    {
+        for (key, value) in extra {
+            map.insert(key, value);
+        }
+    }
+
+    serde_json::to_string(&serde_json::Value::Object(map)).unwrap_or_else(|_| base.to_string())
+}
+
+/// Bundled catalogs merged with external overrides. External files win on the
+/// keys they define; bundled keys are kept for everything else.
 pub fn bundles(paths: &AppPaths) -> Vec<LocaleBundle> {
     let mut merged: BTreeMap<String, LocaleBundle> = BTreeMap::new();
 
@@ -132,6 +149,14 @@ pub fn bundles(paths: &AppPaths) -> Vec<LocaleBundle> {
         if !valid {
             continue;
         }
+
+        // Overlay, don't replace: a catalogue exported by an older build must
+        // not hide keys that were added since (they would render as raw ids).
+        let json = match merged.get(&code) {
+            Some(base) => merge_json(&base.json, &json),
+            None => json,
+        };
+
         merged.insert(
             code.clone(),
             LocaleBundle {
@@ -274,6 +299,16 @@ pub fn export_template(paths: &AppPaths) -> Result<String, String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn external_overlay_keeps_bundled_keys() {
+        let base = r#"{"a":"A","b":"B"}"#;
+        let overlay = r#"{"b":"B2","c":"C"}"#;
+        let merged: serde_json::Value = serde_json::from_str(&merge_json(base, overlay)).unwrap();
+        assert_eq!(merged["a"], "A");
+        assert_eq!(merged["b"], "B2");
+        assert_eq!(merged["c"], "C");
+    }
 
     #[test]
     fn bundled_catalogs_are_valid_and_translated() {

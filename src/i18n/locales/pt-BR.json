@@ -436,5 +436,10 @@
   "settings.themeDark": "Escuro",
   "settings.themeLight": "Claro",
   "settings.themeSystem": "Sistema",
-  "error.extractFailed": "Falha ao extrair o arquivo"
+  "error.extractFailed": "Falha ao extrair o arquivo",
+  "label.discovered": "Encontrados na rede",
+  "button.searchDevices": "Procurar dispositivos sem fio",
+  "hint.connectionRefused": "Nada está escutando neste endereço. No Android 11+ ative a depuração sem fio e pareie primeiro (a porta é aleatória, não 5555). Como alternativa, conecte o celular por USB e use adb tcpip 5555.",
+  "hint.connectionTimeout": "O celular não respondeu a tempo. Verifique se está na mesma rede Wi-Fi e se a depuração sem fio está ativa.",
+  "hint.pairAuth": "Pareamento recusado. Gere novamente o código/QR no celular e tente outra vez."
 }
