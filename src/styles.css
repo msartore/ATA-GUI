@@ -715,6 +715,10 @@ textarea {
 .apps-grid {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
 }
+/* Without ATA-Bridge there are no app names: show the package list alone. */
+.apps-grid.is-single {
+  grid-template-columns: minmax(0, 1fr);
+}
 
 .tasks-grid {
   grid-template-columns: 58px 58px 74px 74px minmax(0, 1fr);
@@ -805,6 +809,17 @@ textarea {
   color: var(--info);
   border-color: var(--info-line);
   background: var(--info-wash);
+}
+.badge.is-action {
+  font-family: inherit;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-size: 10.5px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.badge.is-action:hover {
+  border-color: var(--warn);
 }
 
 .dropzone {
@@ -1292,11 +1307,10 @@ textarea {
 /* --------------------------------------------------------------- small screens */
 
 @media (max-width: 1240px) {
+  /* Narrow the fixed columns instead of stacking: the APK list stays visible
+     next to the device panels down to the minimum window width. */
   .system-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .system-right {
-    grid-column: 1 / -1;
+    grid-template-columns: 296px 256px minmax(0, 1fr);
   }
   .tools-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1308,6 +1322,10 @@ textarea {
   .recovery-grid,
   .system-grid {
     grid-template-columns: 1fr;
+    min-height: 580px;
+  }
+  .system-right {
+    grid-column: 1 / -1;
   }
   .dock {
     grid-template-columns: 1fr;
@@ -1743,10 +1761,6 @@ textarea {
   resize: none;
 }
 
-/* One notice when ATA-Bridge is missing, instead of a sentence per row. */
-.apps-bridge-note {
-  margin: 0 0 8px;
-}
 
 /* Dock device sync: full-width action, picker + rescan on one line. */
 .btn.is-block {
@@ -1801,4 +1815,10 @@ textarea {
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+/* Dock terminal: one compact launcher row, no duplicate controls. */
+.terminal-launcher .panel-body {
+  padding-top: 8px;
+  padding-bottom: 8px;
 }

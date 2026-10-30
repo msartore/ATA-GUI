@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import type { ComponentProps } from "react";
 import { api } from "../lib/api";
 import { useI18n } from "../i18n";
 import { useMain } from "../lib/main-context";
@@ -6,6 +7,14 @@ import { Btn, DropZone, Dropdown, Empty, Field, IconBtn, MenuItem, Panel, useUi 
 import { errorKey, errorText } from "../lib/util";
 import { VirtualList } from "../components/VirtualList";
 import type { AppMode, MdnsService } from "../lib/types";
+
+const ATA_BRIDGE_URL =
+  "https://play.google.com/store/apps/details?id=dev.msartore.atabridge";
+
+/// Toolbar actions appear once they can act, instead of sitting greyed out.
+function ToolButton({ enabled, ...rest }: ComponentProps<typeof IconBtn> & { enabled: boolean }) {
+  return enabled ? <IconBtn {...rest} /> : null;
+}
 
 export function SystemTab() {
   const { t } = useI18n();
@@ -41,6 +50,8 @@ export function SystemTab() {
 
   const info = m.info;
   const connected = Boolean(m.device);
+  const selected = m.selectedApps.size;
+  const hasSelection = selected > 0;
 
   const wifiReboot = async (target: "system" | "recovery" | "fastboot") => {
     if (!m.device) return;
@@ -278,8 +289,9 @@ export function SystemTab() {
       <div className="system-right">
         <Panel title={t("section.apkMenu")} flush>
           <div className="toolbar">
-            <IconBtn icon="refresh" label={t("apk.reloadApps")} disabled={!connected} onClick={() => void m.loadApps(m.appsMode)} />
+            <ToolButton enabled={connected} icon="refresh" label={t("apk.reloadApps")} onClick={() => void m.loadApps(m.appsMode)} />
 
+            {connected ? (
             <div className="dropdown">
               <IconBtn icon="filter" label={t("apk.filter")} active={filterOpen} onClick={() => setFilterOpen((v) => !v)} />
               {filterOpen ? (
@@ -300,6 +312,7 @@ export function SystemTab() {
                 </div>
               ) : null}
             </div>
+            ) : null}
 
             <input
               className="input input-sm grow"
@@ -308,10 +321,10 @@ export function SystemTab() {
               onChange={(event) => m.setSearch(event.target.value)}
             />
 
-            <IconBtn
+            <ToolButton
+              enabled={connected && hasSelection}
               icon="trash"
               label={t("button.uninstall")}
-              disabled={!connected || m.selectedApps.size === 0}
               onClick={async () => {
                 if (!m.device) return;
                 try {
@@ -329,13 +342,14 @@ export function SystemTab() {
               }}
             />
 
-            <IconBtn
+            <ToolButton
+              enabled={connected && hasSelection}
               icon="box"
               label={t("button.packageManager")}
-              disabled={!connected || m.selectedApps.size === 0}
               onClick={() => m.openDialog("packageMenu", { packages: [...m.selectedApps] })}
             />
 
+            {hasSelection ? (
             <Dropdown label="" icon="key">
               <MenuItem
                 icon="list"
@@ -363,18 +377,19 @@ export function SystemTab() {
                 {t("apk.grantRevoke")}
               </MenuItem>
             </Dropdown>
+            ) : null}
 
-            <IconBtn
+            <ToolButton
+              enabled={connected && selected === 1}
               icon="star"
               label={t("button.setDefault")}
-              disabled={!connected || m.selectedApps.size !== 1}
               onClick={() => m.openDialog("defaultApp", { pkg: [...m.selectedApps][0] })}
             />
 
-            <IconBtn
+            <ToolButton
+              enabled={connected && hasSelection}
               icon="check"
               label={t("button.restoreApp")}
-              disabled={!connected || m.selectedApps.size === 0}
               onClick={async () => {
                 if (!m.device) return;
                 try {
@@ -389,6 +404,7 @@ export function SystemTab() {
               }}
             />
 
+            {hasSelection ? (
             <Dropdown label="" icon="search">
               {[
                 ["DuckDuckGo", "https://duckduckgo.com/?q="],
@@ -410,14 +426,16 @@ export function SystemTab() {
                 </MenuItem>
               ))}
             </Dropdown>
+            ) : null}
 
-            <IconBtn
+            <ToolButton
+              enabled={connected && hasSelection}
               icon="extract"
               label={t("button.extract")}
-              disabled={!connected || m.selectedApps.size === 0}
               onClick={() => void m.extractApks([...m.selectedApps])}
             />
 
+            {connected ? (
             <Dropdown label={t("button.install")} icon="install">
               <MenuItem
                 icon="install"
@@ -448,15 +466,12 @@ export function SystemTab() {
                 {t("button.downgrade")}
               </MenuItem>
             </Dropdown>
+            ) : null}
           </div>
 
-          {connected && !m.bridge ? (
-            <p className="hint apps-bridge-note">{t("apk.bridgeMissing")}</p>
-          ) : null}
-
           <div className="table apps-table">
-            <div className="table-head apps-grid">
-              <span>{t("label.name")}</span>
+            <div className={`table-head apps-grid${m.bridge ? "" : " is-single"}`}>
+              {m.bridge ? <span>{t("label.name")}</span> : null}
               <span>{t("label.package")}</span>
             </div>
             {!connected ? (
@@ -472,12 +487,12 @@ export function SystemTab() {
                 renderRow={(app) => (
                   <div
                     key={app.package}
-                    className={`table-row apps-grid ${m.selectedApps.has(app.package) ? "is-selected" : ""}`}
+                    className={`table-row apps-grid${m.bridge ? "" : " is-single"} ${
+                      m.selectedApps.has(app.package) ? "is-selected" : ""
+                    }`}
                     onClick={() => m.toggleApp(app.package)}
                   >
-                    <span className="app-name">
-                      {app.name ?? "—"}
-                    </span>
+                    {m.bridge ? <span className="app-name">{app.name ?? "—"}</span> : null}
                     <span className="pkg">{app.package}</span>
                   </div>
                 )}
@@ -490,7 +505,17 @@ export function SystemTab() {
               <span>
                 {t("label.selectedApps")}: {m.selectedApps.size}
               </span>
-              {m.bridge ? <span className="badge badge-info">ATA-Bridge</span> : null}
+              {m.bridge ? (
+                <span className="badge badge-info">ATA-Bridge</span>
+              ) : (
+                <button
+                  type="button"
+                  className="badge badge-warn is-action"
+                  onClick={() => void api.openUrl(ATA_BRIDGE_URL)}
+                >
+                  {t("apk.bridgeMissing")}
+                </button>
+              )}
               <span className="right">
                 <Btn small variant="ghost" icon="shield" onClick={() => m.openDialog("bloatware")} disabled={!connected}>
                   {t("apk.bloatwareRemover")}

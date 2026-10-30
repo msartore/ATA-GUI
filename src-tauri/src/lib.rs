@@ -655,6 +655,21 @@ pub fn run() {
                 cancel: std::sync::Arc::new(std::sync::atomic::AtomicBool::new(false)),
                 adb_paused: std::sync::Arc::new(std::sync::atomic::AtomicBool::new(false)),
             });
+
+            // The window-state plugin can restore a size saved by a build with
+            // a smaller minimum, leaving the layout cramped.
+            if let Some(window) = app.get_webview_window("main") {
+                let scale = window.scale_factor().unwrap_or(1.0);
+                if let Ok(size) = window.inner_size() {
+                    let logical: tauri::LogicalSize<f64> = size.to_logical(scale);
+                    if logical.width < 1040.0 || logical.height < 720.0 {
+                        let _ = window.set_size(tauri::LogicalSize::new(
+                            logical.width.max(1040.0),
+                            logical.height.max(720.0),
+                        ));
+                    }
+                }
+            }
             Ok(())
         })
         .on_window_event(|window, event| {

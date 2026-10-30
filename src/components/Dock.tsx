@@ -74,12 +74,8 @@ export function Dock() {
   return (
     <div className="dock">
       <div className="dock-left">
-        <Panel
-          title={t("section.terminal")}
-          actions={<IconBtn icon="max" label={t("terminal.open")} onClick={m.openTerminal} />}
-        >
-          <p className="hint">{t("terminal.dockHint")}</p>
-          <Btn variant="primary" icon="terminal" onClick={m.openTerminal}>
+        <Panel title={t("section.terminal")} className="terminal-launcher">
+          <Btn small variant="ghost" icon="terminal" className="is-block" onClick={m.openTerminal}>
             {t("terminal.open")}
           </Btn>
         </Panel>
