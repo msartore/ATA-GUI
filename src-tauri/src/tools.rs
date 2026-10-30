@@ -142,7 +142,12 @@ pub fn run_guarded(
 ) -> Result<CmdOut, String> {
     use std::io::Read;
 
-    let mut child = base_command(program)
+    let mut cmd = base_command(program);
+    // The app decides which endpoints to connect (auto_connect / pairing).
+    // adb's own mDNS auto-connect would add the same phone a second time under
+    // its service name, so it stays off for every child we spawn.
+    cmd.env("ADB_MDNS_AUTO_CONNECT", "0");
+    let mut child = cmd
         .args(args)
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())

@@ -3,11 +3,12 @@ use crate::tools;
 use serde::Serialize;
 use std::collections::BTreeMap;
 use std::net::Ipv4Addr;
+use std::collections::HashMap;
 use std::sync::LazyLock;
 use std::sync::atomic::{AtomicBool, Ordering};
-use std::sync::Arc;
+use std::sync::{Arc, Mutex};
 use std::thread;
-use std::time::Duration;
+use std::time::{Duration, Instant};
 
 #[derive(Serialize, Clone, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
@@ -69,6 +70,50 @@ pub fn parse_devices(text: &str) -> Vec<(String, String)> {
         .collect()
 }
 
+/// `ro.serialno` + model per transport, cached: the watcher polls every second
+/// and a shell round-trip per device per tick is wasted work.
+#[derive(Clone)]
+struct Identity {
+    serial: String,
+    model: String,
+    at: Instant,
+}
+
+static IDENTITIES: LazyLock<Mutex<HashMap<String, Identity>>> =
+    LazyLock::new(|| Mutex::new(HashMap::new()));
+
+fn identity(paths: &AppPaths, id: &str) -> Identity {
+    if let Ok(cache) = IDENTITIES.lock() {
+        if let Some(hit) = cache.get(id) {
+            if hit.at.elapsed() < Duration::from_secs(60) {
+                return hit.clone();
+            }
+        }
+    }
+
+    let text = tools::adb_text(
+        paths,
+        Some(id),
+        &[
+            "shell".into(),
+            "getprop ro.serialno; getprop ro.product.model".into(),
+        ],
+    );
+    let mut lines = text.lines().map(|line| line.trim().to_string());
+    let serial = lines.next().unwrap_or_default();
+    let model = lines.next().unwrap_or_default();
+
+    let identity = Identity {
+        serial,
+        model,
+        at: Instant::now(),
+    };
+    if let Ok(mut cache) = IDENTITIES.lock() {
+        cache.insert(id.to_string(), identity.clone());
+    }
+    identity
+}
+
 pub fn mode_for(state: &str) -> &'static str {
     match state {
         "recovery" => "RECOVERY",
@@ -102,29 +147,87 @@ pub fn list(paths: &AppPaths, is_adb: bool) -> Result<Vec<DeviceEntry>, String> 
         tools::fastboot(paths, None, &args)?
     };
 
-    let mut devices = Vec::new();
+    let mut found: Vec<(String, DeviceEntry)> = Vec::new();
     for (id, state) in parse_devices(&out.merged()) {
-        let name = if is_adb && state == "device" {
-            tools::adb_text(
-                paths,
-                Some(&id),
-                &["shell".into(), "getprop".into(), "ro.product.model".into()],
-            )
-            .trim()
-            .to_string()
+        let identity = if is_adb && state == "device" {
+            identity(paths, &id)
         } else {
-            String::new()
+            Identity {
+                serial: String::new(),
+                model: String::new(),
+                at: Instant::now(),
+            }
         };
 
-        devices.push(DeviceEntry {
-            connection: if is_adb { connection_for(&id).to_string() } else { "CABLE".into() },
-            name,
-            id,
+        let entry = DeviceEntry {
+            id: id.clone(),
+            name: identity.model,
             mode: mode_for(&state).to_string(),
-        });
+            connection: if is_adb {
+                connection_for(&id).to_string()
+            } else {
+                "CABLE".into()
+            },
+        };
+        found.push((identity.serial, entry));
     }
 
-    Ok(devices)
+    Ok(dedupe(found))
+}
+
+/// adb happily exposes one phone twice: its mDNS service name next to the
+/// resolved `ip:port`, or the wireless-debugging port next to legacy 5555.
+/// Keep one row per physical device (`ro.serialno`), preferring a numeric
+/// endpoint on a non-5555 port that is actually `device`.
+fn dedupe(found: Vec<(String, DeviceEntry)>) -> Vec<DeviceEntry> {
+    fn score(serial: &str, entry: &DeviceEntry) -> i32 {
+        let mut score = 0;
+        if !serial.is_empty() {
+            score += 1;
+        }
+        if entry.mode == "SYSTEM" {
+            score += 4;
+        }
+        // A cabled transport is the faster, steadier one: when the same phone
+        // is also on Wi-Fi, keep the cable row.
+        if entry.connection == "CABLE" {
+            score += 3;
+        }
+        let host = entry.id.split(':').next().unwrap_or(&entry.id);
+        if is_valid_ip(host) {
+            score += 2;
+        }
+        if entry.id.ends_with(":5555") {
+            score -= 1;
+        }
+        score
+    }
+
+    let mut kept: Vec<(String, DeviceEntry)> = Vec::new();
+    for (serial, entry) in found {
+        let key = if serial.is_empty() {
+            entry.id.clone()
+        } else {
+            serial.clone()
+        };
+        match kept.iter().position(|(known_serial, known)| {
+            let known_key = if known_serial.is_empty() {
+                known.id.clone()
+            } else {
+                known_serial.clone()
+            };
+            known_key == key
+        }) {
+            Some(index) => {
+                if score(&serial, &entry) > score(&kept[index].0, &kept[index].1) {
+                    kept[index] = (serial, entry);
+                }
+            }
+            None => kept.push((serial, entry)),
+        }
+    }
+
+    kept.into_iter().map(|(_, entry)| entry).collect()
 }
 
 /// Full `getprop` dump as a key/value map (single adb round-trip instead of
@@ -474,6 +577,69 @@ mod tests {
                     adb.exe: failed to check server version: cannot connect to daemon\n\
                     R58M1234\tdevice\n";
         assert_eq!(parse_devices(text), vec![("R58M1234".to_string(), "device".to_string())]);
+    }
+
+    #[test]
+    fn collapses_the_same_phone_reported_twice() {
+        let make = |id: &str, mode: &str| DeviceEntry {
+            id: id.to_string(),
+            name: "21051182G".into(),
+            mode: mode.into(),
+            connection: "WIRELESS".into(),
+        };
+        let found = vec![
+            (
+                "SN123".to_string(),
+                make("adb-414d8918._adb-tls-connect._tcp", "SYSTEM"),
+            ),
+            ("SN123".to_string(), make("192.168.1.81:44599", "SYSTEM")),
+            ("SN123".to_string(), make("192.168.1.81:5555", "SYSTEM")),
+        ];
+        let devices = dedupe(found);
+        assert_eq!(devices.len(), 1);
+        assert_eq!(devices[0].id, "192.168.1.81:44599");
+    }
+
+    #[test]
+    fn prefers_the_cable_transport_for_one_phone() {
+        let found = vec![
+            (
+                "SN9".to_string(),
+                DeviceEntry {
+                    id: "192.168.1.81:44599".into(),
+                    name: "Pixel".into(),
+                    mode: "SYSTEM".into(),
+                    connection: "WIRELESS".into(),
+                },
+            ),
+            (
+                "SN9".to_string(),
+                DeviceEntry {
+                    id: "R58M1234".into(),
+                    name: "Pixel".into(),
+                    mode: "SYSTEM".into(),
+                    connection: "CABLE".into(),
+                },
+            ),
+        ];
+        let devices = dedupe(found);
+        assert_eq!(devices.len(), 1);
+        assert_eq!(devices[0].id, "R58M1234");
+    }
+
+    #[test]
+    fn keeps_different_phones() {
+        let make = |id: &str| DeviceEntry {
+            id: id.to_string(),
+            name: String::new(),
+            mode: "SYSTEM".into(),
+            connection: "CABLE".into(),
+        };
+        let found = vec![
+            ("SN1".to_string(), make("R58M1234")),
+            ("SN2".to_string(), make("R58M9999")),
+        ];
+        assert_eq!(dedupe(found).len(), 2);
     }
 
     #[test]
