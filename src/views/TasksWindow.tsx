@@ -12,7 +12,7 @@ export function TasksWindow({ serial, user }: { serial: string; user: string }) 
   const [packages, setPackages] = useState<string[]>([]);
   const [search, setSearch] = useState("");
   const [appsOnly, setAppsOnly] = useState(false);
-  const [selected, setSelected] = useState<Set<number>>(new Set());
+  const [selected, setSelected] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(false);
 
   const load = useCallback(async () => {
@@ -51,9 +51,9 @@ export function TasksWindow({ serial, user }: { serial: string; user: string }) 
   }, [rows, search, appsOnly, packages]);
 
   const kill = async () => {
-    const names = [...selected]
-      .map((index) => nameOf(visible[index]))
-      .filter(Boolean);
+    // Selection is keyed by process name: filtering must never retarget the
+    // rows that were ticked before the list changed.
+    const names = [...selected].filter(Boolean);
     if (!names.length) {
       await ui.alert(t("error.noAppSelected"), "warning");
       return;
@@ -121,12 +121,13 @@ export function TasksWindow({ serial, user }: { serial: string; user: string }) 
                 visible.map((row, index) => (
                   <div
                     key={`${nameOf(row)}-${index}`}
-                    className={`table-row tasks-grid-full ${selected.has(index) ? "is-selected" : ""}`}
+                    className={`table-row tasks-grid-full ${selected.has(nameOf(row)) ? "is-selected" : ""}`}
                     onClick={() =>
                       setSelected((current) => {
                         const next = new Set(current);
-                        if (next.has(index)) next.delete(index);
-                        else next.add(index);
+                        const key = nameOf(row);
+                        if (next.has(key)) next.delete(key);
+                        else next.add(key);
                         return next;
                       })
                     }

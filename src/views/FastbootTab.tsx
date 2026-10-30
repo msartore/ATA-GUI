@@ -50,16 +50,26 @@ export function FastbootTab() {
     if (!m.device) return;
     if (!(await ui.confirm(t("confirm.eraseBody"), t("confirm.eraseTitle")))) return;
     m.log("INFO", t("log.erasing"));
-    const steps = await api.fastbootErase(m.device.id, ["userdata", "cache"]);
-    for (const step of steps) m.log(step.ok ? "OK" : "ERROR", `${step.command}\n${step.output}`.trim());
+    try {
+      const steps = await api.fastbootErase(m.device.id, ["userdata", "cache"]);
+      for (const step of steps) m.log(step.ok ? "OK" : "ERROR", `${step.command}\n${step.output}`.trim());
+    } catch (error) {
+      m.log("ERROR", errorText(error));
+      await ui.alert(errorText(error));
+    }
   };
 
   const wipe = async () => {
     if (!m.device) return;
     if (!(await ui.confirm(t("confirm.wipeBody"), t("confirm.wipeTitle")))) return;
     m.log("INFO", t("log.wiping"));
-    const step = await api.fastbootWipe(m.device.id);
-    m.log(step.ok ? "OK" : "ERROR", step.output || step.command);
+    try {
+      const step = await api.fastbootWipe(m.device.id);
+      m.log(step.ok ? "OK" : "ERROR", step.output || step.command);
+    } catch (error) {
+      m.log("ERROR", errorText(error));
+      await ui.alert(errorText(error));
+    }
   };
 
   return (

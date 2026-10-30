@@ -11,11 +11,18 @@ import { ATA_BRIDGE, ATA_REPO, ATA_SITE, UAD_SITE, Link, ScrollableDialog, Missi
 
 export function UpdateDialog({ url, onClose }: { url: string; onClose: () => void }) {
   const { t } = useI18n();
+  const tRef = useRef(t);
+  tRef.current = t;
+  const started = useRef(false);
   const [message, setMessage] = useState(t("update.downloading"));
   const [progress, setProgress] = useState(0);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
+    // The update replaces the running binary: it must never be issued twice,
+    // and a language/theme change must not restart it.
+    if (started.current) return;
+    started.current = true;
     let mounted = true;
 
     const unlisten = listen<{ phase: string; received: number; total: number | null }>(
@@ -24,10 +31,10 @@ export function UpdateDialog({ url, onClose }: { url: string; onClose: () => voi
         const { phase, received, total } = event.payload;
         if (!mounted) return;
         if (phase === "update") {
-          setMessage(t("update.downloading"));
+          setMessage(tRef.current("update.downloading"));
           if (total) setProgress(Math.min(95, Math.round((received / total) * 90)));
         } else {
-          setMessage(phase === "unpacking" ? t("update.unzipping") : t("update.starting"));
+          setMessage(phase === "unpacking" ? tRef.current("update.unzipping") : tRef.current("update.starting"));
           setProgress(96);
         }
       },
@@ -39,7 +46,7 @@ export function UpdateDialog({ url, onClose }: { url: string; onClose: () => voi
       } catch (error) {
         if (!mounted) return;
         setFailed(true);
-        setMessage(`${t("update.failed")}: ${error}`);
+        setMessage(`${tRef.current("update.failed")}: ${error}`);
       }
     })();
 
@@ -47,7 +54,7 @@ export function UpdateDialog({ url, onClose }: { url: string; onClose: () => voi
       mounted = false;
       void unlisten.then((stop) => stop());
     };
-  }, [url, t]);
+  }, [url]);
 
   return (
     <Modal

@@ -33,7 +33,7 @@ struct ToolStatus {
     apks_dir: String,
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn tool_status(state: tauri::State<'_, AppState>) -> ToolStatus {
     ToolStatus {
         adb: tools::find_tool(&state.paths, "adb").map(|p| p.to_string_lossy().to_string()),
@@ -49,7 +49,7 @@ fn tool_status(state: tauri::State<'_, AppState>) -> ToolStatus {
     }
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn run_tool(
     state: tauri::State<'_, AppState>,
     tool: String,
@@ -64,22 +64,22 @@ fn run_tool(
     }
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn devices(state: tauri::State<'_, AppState>, is_adb: bool) -> Result<Vec<device::DeviceEntry>, String> {
     device::list(&state.paths, is_adb)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn device_info(state: tauri::State<'_, AppState>, serial: String) -> Result<device::DeviceInfo, String> {
     device::info(&state.paths, &serial)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn device_users(state: tauri::State<'_, AppState>, serial: String) -> Vec<device::UserEntry> {
     device::users(&state.paths, &serial)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn apps_load(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -89,7 +89,7 @@ fn apps_load(
     apps::load(&state.paths, &serial, &user, &mode)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn apps_apply(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -100,7 +100,7 @@ fn apps_apply(
     apps::apply(&state.paths, &serial, &user, &action, &packages)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn apps_install(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -111,7 +111,7 @@ fn apps_install(
     apps::install_apks(&state.paths, &serial, &user, &files, downgrade)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn files_push(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -120,7 +120,7 @@ fn files_push(
     apps::push_files(&state.paths, &serial, &files)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn apks_extract(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -129,7 +129,7 @@ fn apks_extract(
     apps::extract_apks(&state.paths, &serial, &packages)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn permission_grant(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -141,12 +141,12 @@ fn permission_grant(
     apps::grant(&state.paths, &serial, &user, &package, &permission, &method)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn bootloader_info(state: tauri::State<'_, AppState>, serial: String) -> String {
     flash::bootloader_info(&state.paths, &serial)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn fastboot_erase(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -155,12 +155,12 @@ fn fastboot_erase(
     flash::erase(&state.paths, &serial, &partitions)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn fastboot_wipe(state: tauri::State<'_, AppState>, serial: String) -> flash::FlashStep {
     flash::wipe(&state.paths, &serial)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn bootloader_ops(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -169,7 +169,7 @@ fn bootloader_ops(
     flash::bootloader_ops(&state.paths, &serial, &op)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn flash_image(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -181,7 +181,7 @@ fn flash_image(
     flash::flash_image(&state.paths, &serial, &kind, &image_path, &image_type, &partition)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn sideload_zip(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -190,7 +190,7 @@ fn sideload_zip(
     flash::sideload(&state.paths, &serial, &zip_path)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn image_extract(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -199,7 +199,7 @@ fn image_extract(
     flash::extract_image(&state.paths, &serial, &partition)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn adb_connect(
     state: tauri::State<'_, AppState>,
     ip: String,
@@ -209,12 +209,12 @@ fn adb_connect(
     net::connect(&state.paths, &ip, &port, tcpip_serial)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn adb_disconnect(state: tauri::State<'_, AppState>, ip: String, port: String) -> net::NetResult {
     net::disconnect(&state.paths, &ip, &port)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn adb_pair(
     state: tauri::State<'_, AppState>,
     ip: String,
@@ -224,12 +224,12 @@ fn adb_pair(
     net::pair(&state.paths, &ip, &port, &code)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn adb_kill(state: tauri::State<'_, AppState>) -> String {
     net::kill_adb(&state.paths)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn adb_running() -> bool {
     #[cfg(windows)]
     {
@@ -250,12 +250,12 @@ fn adb_running() -> bool {
     }
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn rotation_get(state: tauri::State<'_, AppState>, serial: String) -> bool {
     device::rotation_get(&state.paths, &serial)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn rotation_set(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -265,7 +265,7 @@ fn rotation_set(
     device::rotation_set(&state.paths, &serial, enabled, display)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn inject_text(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -281,7 +281,7 @@ fn inject_text(
     )
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn processes(state: tauri::State<'_, AppState>, serial: String) -> Vec<Vec<String>> {
     let text = tools::adb_text(&state.paths, Some(&serial), &["shell".into(), "ps".into()]);
     text.lines()
@@ -291,7 +291,7 @@ fn processes(state: tauri::State<'_, AppState>, serial: String) -> Vec<Vec<Strin
         .collect()
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn force_stop(state: tauri::State<'_, AppState>, serial: String, names: Vec<String>) -> usize {
     let mut stopped = 0;
     for name in names {
@@ -308,7 +308,7 @@ fn force_stop(state: tauri::State<'_, AppState>, serial: String, names: Vec<Stri
     stopped
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn logcat_start(
     app: tauri::AppHandle,
     state: tauri::State<'_, AppState>,
@@ -330,27 +330,27 @@ fn logcat_stop_inner(state: &tauri::State<'_, AppState>) {
     }
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn logcat_stop(state: tauri::State<'_, AppState>) {
     logcat_stop_inner(&state);
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn logcat_clear(state: tauri::State<'_, AppState>, serial: String) -> String {
     tools::adb_text(&state.paths, Some(&serial), &["logcat".into(), "-c".into()])
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn scrcpy_available(state: tauri::State<'_, AppState>) -> bool {
     scrcpy::executable(&state.paths).is_some()
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn scrcpy_version(state: tauri::State<'_, AppState>) -> Result<String, String> {
     scrcpy::version(&state.paths)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn scrcpy_encoders(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -358,7 +358,7 @@ fn scrcpy_encoders(
     scrcpy::encoders(&state.paths, &serial)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn scrcpy_run(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -407,7 +407,7 @@ async fn apply_update(
     download::apply_update(app, paths, url).await
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn bloatware_scan(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -417,52 +417,52 @@ fn bloatware_scan(
     bloatware::scan(&state.paths, &serial, &user, &level)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn bloatware_available(state: tauri::State<'_, AppState>) -> bool {
     bloatware::list_path(&state.paths).is_file()
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn bloatware_list_path(state: tauri::State<'_, AppState>) -> String {
     bloatware::list_path(&state.paths).to_string_lossy().to_string()
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn qr_pairing_code() -> Result<wireless::QrPairing, String> {
     wireless::pairing_code()
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn mdns_services(state: tauri::State<'_, AppState>) -> Vec<wireless::MdnsService> {
     wireless::services(&state.paths)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn locales_bundles(state: tauri::State<'_, AppState>) -> Vec<locales::LocaleBundle> {
     locales::bundles(&state.paths)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn locales_catalog(state: tauri::State<'_, AppState>) -> Vec<locales::LocaleMeta> {
     locales::catalog(&state.paths)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn locales_open_dir(state: tauri::State<'_, AppState>) -> Result<String, String> {
     locales::open_dir(&state.paths)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn locales_export_template(state: tauri::State<'_, AppState>) -> Result<String, String> {
     locales::export_template(&state.paths)
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn config_get(state: tauri::State<'_, AppState>) -> Config {
     state.config.lock().map(|c| c.clone()).unwrap_or_default()
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn config_save(state: tauri::State<'_, AppState>, config: Config) {
     if let Ok(mut guard) = state.config.lock() {
         *guard = config;
@@ -470,7 +470,7 @@ fn config_save(state: tauri::State<'_, AppState>, config: Config) {
     }
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn ip_add(state: tauri::State<'_, AppState>, ip: String) -> Vec<String> {
     if let Ok(mut guard) = state.config.lock() {
         let ip = ip.trim().to_string();
@@ -483,7 +483,7 @@ fn ip_add(state: tauri::State<'_, AppState>, ip: String) -> Vec<String> {
     Vec::new()
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn ip_clear(state: tauri::State<'_, AppState>) -> Vec<String> {
     if let Ok(mut guard) = state.config.lock() {
         guard.ips.clear();
@@ -492,12 +492,12 @@ fn ip_clear(state: tauri::State<'_, AppState>) -> Vec<String> {
     Vec::new()
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn online_check() -> bool {
     tools::ping_online()
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn open_url(url: String) -> Result<(), String> {
     tools::open_external(&url)
 }
@@ -535,12 +535,12 @@ async fn pick_files(
     Ok(picked.into_iter().map(|path| path.to_string()).collect())
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn clipboard_write(app: tauri::AppHandle, text: String) -> Result<(), String> {
     app.clipboard().write_text(text).map_err(|e| e.to_string())
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn watcher_start(app: tauri::AppHandle, state: tauri::State<'_, AppState>) {
     let Ok(mut guard) = state.watcher.lock() else {
         return;
@@ -551,7 +551,7 @@ fn watcher_start(app: tauri::AppHandle, state: tauri::State<'_, AppState>) {
     *guard = Some(device::start_watcher(app, state.paths.clone()));
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn watcher_stop(state: tauri::State<'_, AppState>) {
     if let Ok(mut guard) = state.watcher.lock() {
         if let Some(handle) = guard.take() {
@@ -560,7 +560,7 @@ fn watcher_stop(state: tauri::State<'_, AppState>) {
     }
 }
 
-#[tauri::command]
+#[tauri::command(async)]
 fn exit_app(app: tauri::AppHandle, state: tauri::State<'_, AppState>, kill_adb: bool) {
     if kill_adb {
         let _ = tools::adb(&state.paths, None, &["kill-server".into()]);

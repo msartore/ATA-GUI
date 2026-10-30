@@ -7,15 +7,9 @@ import { MainWindow } from "./views/MainWindow";
 import { LogsWindow } from "./views/LogsWindow";
 import { TasksWindow } from "./views/TasksWindow";
 import type { Config, LocaleBundle } from "./lib/types";
+import { DEFAULT_CONFIG } from "./lib/config";
 import { applyTheme, watchTheme } from "./lib/theme";
 
-const DEFAULT_CONFIG: Config = {
-  language: "system",
-  feedbackPopup: true,
-  disclaimerAccepted: false,
-  ips: [],
-  theme: "dark",
-};
 
 export default function App() {
   const params = new URLSearchParams(window.location.search);

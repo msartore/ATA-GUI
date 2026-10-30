@@ -150,13 +150,22 @@ impl Config {
         let primary = paths.config_file();
         for candidate in paths.config_candidates() {
             if let Ok(text) = fs::read_to_string(&candidate) {
-                if let Ok(cfg) = serde_json::from_str::<Config>(&text) {
-                    if candidate != primary {
-                        // Migrated from a per-user install: seed the portable
-                        // location so the next start is self-contained.
-                        cfg.save(paths);
+                match serde_json::from_str::<Config>(&text) {
+                    Ok(cfg) => {
+                        if candidate != primary {
+                            // Migrated from a per-user install: seed the portable
+                            // location so the next start is self-contained.
+                            cfg.save(paths);
+                        }
+                        return cfg;
                     }
-                    return cfg;
+                    Err(_) => {
+                        // Keep the unreadable file instead of overwriting it with
+                        // defaults: a schema change or a partial write must not
+                        // silently wipe the user's language/theme/history.
+                        let backup = candidate.with_extension("json.bak");
+                        let _ = fs::rename(&candidate, &backup);
+                    }
                 }
             }
         }
@@ -190,8 +199,15 @@ impl Config {
     }
 
     pub fn save(&self, paths: &AppPaths) {
-        if let Ok(text) = serde_json::to_string_pretty(self) {
-            let _ = fs::write(paths.config_file(), text);
+        let Ok(text) = serde_json::to_string_pretty(self) else {
+            return;
+        };
+        // Write-then-rename: a crash mid-write must not leave a truncated file
+        // that the loader would treat as corrupt on the next start.
+        let target = paths.config_file();
+        let temp = target.with_extension("json.tmp");
+        if fs::write(&temp, text).is_ok() && fs::rename(&temp, &target).is_err() {
+            let _ = fs::remove_file(&temp);
         }
     }
 }

@@ -184,6 +184,20 @@ pub fn apply(
     action: &str,
     packages: &[String],
 ) -> Vec<OpResult> {
+    if !matches!(action, "enable" | "disable" | "clear" | "uninstall" | "restore") {
+        // An unknown action used to fall through to an empty argv: adb printed
+        // its usage text (containing no failure words) and every package was
+        // reported as successfully processed.
+        return packages
+            .iter()
+            .map(|package| OpResult {
+                target: package.clone(),
+                ok: false,
+                output: format!("errors.unknownAction: {action}"),
+            })
+            .collect();
+    }
+
     packages
         .iter()
         .map(|package| {

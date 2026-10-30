@@ -114,3 +114,12 @@ export const IMAGE_PARTITIONS = [
 ];
 
 export const CAMERA_MODES = ["front", "back", "external"];
+
+/** True when `version` (e.g. "2.4", "v2.4.1") is at least major.minor. */
+export function versionAtLeast(version: string, major: number, minor = 0): boolean {
+  const match = version.match(/(\d+)(?:\.(\d+))?/);
+  if (!match) return false;
+  const foundMajor = Number(match[1]);
+  const foundMinor = Number(match[2] ?? 0);
+  return foundMajor > major || (foundMajor === major && foundMinor >= minor);
+}

@@ -2,6 +2,7 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { api } from "../lib/api";
 import { broadcastTheme } from "../lib/theme";
 import { devicesForTab, tabUsesAdb, type Tab } from "../lib/devices";
+import { DEFAULT_CONFIG } from "../lib/config";
 import { useAppBootstrap } from "../lib/use-bootstrap";
 import { useLogBuffer } from "../lib/use-log-buffer";
 import { useI18n } from "../i18n";
@@ -41,14 +42,6 @@ import type {
   DeviceInfo,
   ToolStatus,
 } from "../lib/types";
-
-const DEFAULT_CONFIG: Config = {
-  language: "system",
-  feedbackPopup: true,
-  disclaimerAccepted: false,
-  ips: [],
-  theme: "dark",
-};
 
 
 export function MainWindow({ config, setConfig }: { config: Config; setConfig: (config: Config) => void }) {
@@ -189,6 +182,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
       const list = await api.devices(isAdb);
       setAllDevices(list);
       const filtered = devicesForTab(list, activeTab);
+      if (deviceIndexRef.current >= filtered.length) setDeviceIndex(0);
       if (filtered.length === 0) {
         resetDeviceView();
         log("ERROR", t("log.noDevices"));
@@ -467,8 +461,10 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
       setTools(status);
       log("OK", t("log.toolsReady"));
       log("INFO", t("log.restartRequired"));
+      // Only dismiss the blocking prompt when both tools really exist — a
+      // failed download must not leave a working-looking UI without adb.
+      if (status.adb && status.fastboot) setMissing(null);
     });
-    setMissing(null);
   }, [log, runBusy, t]);
 
   const downloadScrcpy = useCallback(async () => {
@@ -477,9 +473,9 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
       const status = await api.toolStatus();
       setTools(status);
       log("OK", t("log.scrcpyReady"));
+      if (status.scrcpy || !missing) setMissing(null);
     });
-    setMissing(null);
-  }, [log, runBusy, t]);
+  }, [log, missing, runBusy, t]);
 
   const requestClose = useCallback(async () => {
     const running = await api.adbRunning().catch(() => false);
@@ -642,7 +638,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
             <pre className="pre-block">{String(dialog.props?.text ?? "")}</pre>
           </ScrollableDialog>
         ) : null}
-        {dialog?.name === "pairing" && device ? (
+        {dialog?.name === "pairing" ? (
           <PairingDialog
             ip={String(dialog.props?.ip ?? "")}
             port={String(dialog.props?.port ?? "5555")}

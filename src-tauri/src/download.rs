@@ -199,7 +199,7 @@ pub async fn platform_tools(app: tauri::AppHandle, paths: AppPaths) -> Result<()
     let staging = paths.runtime_dir.join("platform-tools-tmp");
     let _ = fs::remove_dir_all(&staging);
     fs::create_dir_all(&staging).map_err(|e| e.to_string())?;
-    extract_zip(&zip_path, &staging)?;
+    extract_archive(&zip_path, &staging)?;
 
     let _ = app.emit(
         "download:progress",
@@ -490,7 +490,7 @@ pub async fn apply_update(
     let _ = fs::remove_file(&zip_path);
 
     download_file(&app, &url, &zip_path, "update").await?;
-    extract_zip(&zip_path, &staging)?;
+    extract_archive(&zip_path, &staging)?;
 
     let exe = std::env::current_exe().map_err(|e| e.to_string())?;
     let exe_dir = exe.parent().ok_or("no exe dir")?.to_path_buf();

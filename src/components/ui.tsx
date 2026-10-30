@@ -275,18 +275,39 @@ export function UiProvider({ children }: { children: ReactNode }) {
   const [alertState, setAlertState] = useState<AlertState | null>(null);
   const [confirmState, setConfirmState] = useState<ConfirmState | null>(null);
   const [toasts, setToasts] = useState<Toast[]>([]);
+  // Kept in refs so a second alert/confirm can settle the one it replaces:
+  // otherwise the first caller's `await` never resolves and its flow hangs.
+  const alertRef = useRef<AlertState | null>(null);
+  const confirmRef = useRef<ConfirmState | null>(null);
 
-  const alert = useCallback(
-    (message: string, kind: MessageKind = "error") =>
-      new Promise<void>((resolve) => setAlertState({ message, kind, resolve })),
-    [],
-  );
+  const dismissAlert = useCallback(() => {
+    alertRef.current = null;
+    setAlertState(null);
+  }, []);
 
-  const confirm = useCallback(
-    (message: string, title?: string) =>
-      new Promise<boolean>((resolve) => setConfirmState({ message, title, resolve })),
-    [],
-  );
+  const settleConfirm = useCallback((value: boolean) => {
+    confirmRef.current?.resolve(value);
+    confirmRef.current = null;
+    setConfirmState(null);
+  }, []);
+
+  const alert = useCallback((message: string, kind: MessageKind = "error") => {
+    return new Promise<void>((resolve) => {
+      alertRef.current?.resolve();
+      const next = { message, kind, resolve };
+      alertRef.current = next;
+      setAlertState(next);
+    });
+  }, []);
+
+  const confirm = useCallback((message: string, title?: string) => {
+    return new Promise<boolean>((resolve) => {
+      confirmRef.current?.resolve(false);
+      const next = { message, title, resolve };
+      confirmRef.current = next;
+      setConfirmState(next);
+    });
+  }, []);
 
   const notify = useCallback((message: string, kind: MessageKind | "ok" = "info") => {
     const id = ++toastId;
@@ -307,14 +328,14 @@ export function UiProvider({ children }: { children: ReactNode }) {
           title={alertState.kind === "info" ? "Info" : alertState.kind === "warning" ? "Warning" : "Error"}
           onClose={() => {
             alertState.resolve();
-            setAlertState(null);
+            dismissAlert();
           }}
           footer={
             <Btn
               variant="primary"
               onClick={() => {
                 alertState.resolve();
-                setAlertState(null);
+                dismissAlert();
               }}
             >
               OK
@@ -328,27 +349,13 @@ export function UiProvider({ children }: { children: ReactNode }) {
       {confirmState ? (
         <Modal
           title={confirmState.title ?? "Confirm"}
-          onClose={() => {
-            confirmState.resolve(false);
-            setConfirmState(null);
-          }}
+          onClose={() => settleConfirm(false)}
           footer={
             <>
-              <Btn
-                onClick={() => {
-                  confirmState.resolve(false);
-                  setConfirmState(null);
-                }}
-              >
+              <Btn onClick={() => settleConfirm(false)}>
                 Cancel
               </Btn>
-              <Btn
-                variant="primary"
-                onClick={() => {
-                  confirmState.resolve(true);
-                  setConfirmState(null);
-                }}
-              >
+              <Btn variant="primary" onClick={() => settleConfirm(true)}>
                 OK
               </Btn>
             </>

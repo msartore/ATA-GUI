@@ -119,9 +119,14 @@ export function SystemTab() {
               disabled={!connected}
               onClick={async () => {
                 if (!m.device) return;
-                await api.runTool("adb", m.device.id, ["shell", "settings", "put", "global", "adb_enabled", "0"]);
-                m.log("INFO", t("log.commandInjected"));
-                await m.syncDevice();
+                try {
+                  await api.runTool("adb", m.device.id, ["shell", "settings", "put", "global", "adb_enabled", "0"]);
+                  m.log("INFO", t("log.commandInjected"));
+                  await m.syncDevice();
+                } catch (error) {
+                  m.log("ERROR", errorText(error));
+                  await ui.alert(errorText(error));
+                }
               }}
             >
               {t("button.turnOffAdb")}
@@ -251,13 +256,18 @@ export function SystemTab() {
               disabled={!connected || m.selectedApps.size === 0}
               onClick={async () => {
                 if (!m.device) return;
-                const packages = [...m.selectedApps];
-                m.log("INFO", t("log.uninstalling", { count: packages.length }));
-                const results = await api.appsApply(m.device.id, m.user, "uninstall", packages);
-                const failed = results.filter((result) => !result.ok);
-                if (failed.length) m.log("ERROR", `${t("log.operationFailed")}: ${failed.map((f) => f.target).join(", ")}`);
-                else m.log("OK", t("log.uninstalled"));
-                await m.loadApps(m.appsMode);
+                try {
+                  const packages = [...m.selectedApps];
+                  m.log("INFO", t("log.uninstalling", { count: packages.length }));
+                  const results = await api.appsApply(m.device.id, m.user, "uninstall", packages);
+                  const failed = results.filter((result) => !result.ok);
+                  if (failed.length) m.log("ERROR", `${t("log.operationFailed")}: ${failed.map((f) => f.target).join(", ")}`);
+                  else m.log("OK", t("log.uninstalled"));
+                  await m.loadApps(m.appsMode);
+                } catch (error) {
+                  m.log("ERROR", errorText(error));
+                  await ui.alert(errorText(error));
+                }
               }}
             />
 
@@ -273,15 +283,20 @@ export function SystemTab() {
                 icon="list"
                 onClick={async () => {
                   if (!m.device) return;
-                  const outputs: string[] = [];
-                  for (const pkg of m.selectedApps) {
-                    const out = await api.runTool("adb", m.device.id, ["shell", "appops", "get", pkg]);
-                    outputs.push(`${pkg}\n${out.stdout}${out.stderr}`);
+                  try {
+                    const outputs: string[] = [];
+                    for (const pkg of m.selectedApps) {
+                      const out = await api.runTool("adb", m.device.id, ["shell", "appops", "get", pkg]);
+                      outputs.push(`${pkg}\n${out.stdout}${out.stderr}`);
+                    }
+                    m.openDialog("scrollable", {
+                      title: t("apk.checkGrantedPermissions"),
+                      text: outputs.join("\n\n") || t("error.noAppSelected"),
+                    });
+                  } catch (error) {
+                    m.log("ERROR", errorText(error));
+                    await ui.alert(errorText(error));
                   }
-                  m.openDialog("scrollable", {
-                    title: t("apk.checkGrantedPermissions"),
-                    text: outputs.join("\n\n") || t("error.noAppSelected"),
-                  });
                 }}
               >
                 {t("apk.checkGrantedPermissions")}
@@ -304,10 +319,15 @@ export function SystemTab() {
               disabled={!connected || m.selectedApps.size === 0}
               onClick={async () => {
                 if (!m.device) return;
-                m.log("INFO", t("log.restoring", { count: m.selectedApps.size }));
-                await api.appsApply(m.device.id, m.user, "restore", [...m.selectedApps]);
-                m.log("OK", t("log.restored"));
-                await m.loadApps(m.appsMode);
+                try {
+                  m.log("INFO", t("log.restoring", { count: m.selectedApps.size }));
+                  await api.appsApply(m.device.id, m.user, "restore", [...m.selectedApps]);
+                  m.log("OK", t("log.restored"));
+                  await m.loadApps(m.appsMode);
+                } catch (error) {
+                  m.log("ERROR", errorText(error));
+                  await ui.alert(errorText(error));
+                }
               }}
             />
 
@@ -344,8 +364,13 @@ export function SystemTab() {
               <MenuItem
                 icon="install"
                 onClick={async () => {
-                  const files = await api.pickFiles("apk", true);
-                  if (files.length) await m.installApks(files, false);
+                  try {
+                    const files = await api.pickFiles("apk", true);
+                    if (files.length) await m.installApks(files, false);
+                  } catch (error) {
+                    m.log("ERROR", errorText(error));
+                    await ui.alert(errorText(error));
+                  }
                 }}
               >
                 {t("button.install")}
@@ -353,8 +378,13 @@ export function SystemTab() {
               <MenuItem
                 icon="install"
                 onClick={async () => {
-                  const files = await api.pickFiles("apk", true);
-                  if (files.length) await m.installApks(files, true);
+                  try {
+                    const files = await api.pickFiles("apk", true);
+                    if (files.length) await m.installApks(files, true);
+                  } catch (error) {
+                    m.log("ERROR", errorText(error));
+                    await ui.alert(errorText(error));
+                  }
                 }}
               >
                 {t("button.downgrade")}

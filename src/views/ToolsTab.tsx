@@ -3,7 +3,7 @@ import { api } from "../lib/api";
 import { useI18n } from "../i18n";
 import { useMain } from "../lib/main-context";
 import { Btn, DropZone, Panel, useUi } from "../components/ui";
-import { errorText } from "../lib/util";
+import { errorText, versionAtLeast } from "../lib/util";
 
 export function ToolsTab() {
   const { t } = useI18n();
@@ -51,8 +51,8 @@ export function ToolsTab() {
       return;
     }
     const version = await api.scrcpyVersion().catch(() => "");
-    const major = Number(version.match(/(\d+)\./)?.[1] ?? 0);
-    if (version && major < 22) {
+    // Camera mirroring needs scrcpy >= 2.2; compare major.minor, not just major.
+    if (version && !versionAtLeast(version, 2, 2)) {
       await ui.alert(t("error.scrcpyOutdated"), "warning");
       return;
     }
