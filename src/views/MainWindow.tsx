@@ -652,15 +652,14 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
             body={
               missing === "tools" ? t("dialog.platformToolsBody") : t("dialog.scrcpyBody")
             }
+            license={missing === "tools" ? t("dialog.licenseTools") : t("dialog.licenseScrcpy")}
+            licenseUrl={
+              missing === "tools"
+                ? "https://developer.android.com/license"
+                : "https://raw.githubusercontent.com/Genymobile/scrcpy/master/LICENSE"
+            }
             onYes={() => void (missing === "tools" ? downloadTools() : downloadScrcpy())}
             onNo={() => setMissing(null)}
-            onInfo={() =>
-              void api.openUrl(
-                missing === "tools"
-                  ? "https://developer.android.com/license"
-                  : "https://raw.githubusercontent.com/Genymobile/scrcpy/master/LICENSE",
-              )
-            }
           />
         ) : null}
 

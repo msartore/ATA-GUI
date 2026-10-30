@@ -207,8 +207,8 @@
   "dialog.scrcpyMissingTitle": "Erro, scrcpy ausente!",
   "dialog.feedbackPopupTitle": "Apoie o ATA-GUI",
   "dialog.infoTitle": "Informações",
-  "dialog.platformToolsBody": "SDK Platform Tools não encontrado.\n\nDeseja baixá-los?\n\n[Ao pressionar SIM, você concorda com os termos e condições do SDK Platform Tools]",
-  "dialog.scrcpyBody": "scrcpy não encontrado.\n\nDeseja baixá-lo?\n\n[Ao pressionar SIM, você concorda com os termos e condições do scrcpy]",
+  "dialog.platformToolsBody": "SDK Platform Tools não encontrado.\n\nDeseja baixá-los?",
+  "dialog.scrcpyBody": "scrcpy não encontrado.\n\nDeseja baixá-lo?",
   "dialog.agreeTerms": "Ao pressionar SIM, você concorda com os termos e condições",
   "dialog.feedbackBody": "O ATA-GUI é gratuito e de código aberto. Se ele economiza seu tempo, você pode apoiar o projeto ou enviar seu feedback.",
   "bloatware.scanLevelBasic": "básico",
@@ -451,5 +451,8 @@
   "terminal.empty": "Nenhum comando ainda — digite um abaixo.",
   "terminal.clear": "Limpar saída",
   "terminal.noOutput": "(sem saída)",
-  "log.adbStopped": "adb encerrado — atualize a lista de dispositivos para iniciá-lo novamente."
+  "log.adbStopped": "adb encerrado — atualize a lista de dispositivos para iniciá-lo novamente.",
+  "dialog.licenseTools": "Termos do SDK Android",
+  "dialog.licenseScrcpy": "Licença Apache 2.0",
+  "dialog.consentPrefix": "Ao clicar em Sim, você aceita os"
 }

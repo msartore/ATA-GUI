@@ -207,8 +207,8 @@
   "dialog.scrcpyMissingTitle": "错误，缺少 scrcpy！",
   "dialog.feedbackPopupTitle": "支持 ATA-GUI",
   "dialog.infoTitle": "信息",
-  "dialog.platformToolsBody": "未找到 SDK Platform Tools。\n\n是否要下载？\n\n[点击“是”即表示您同意 SDK Platform Tools 的条款和条件]",
-  "dialog.scrcpyBody": "未找到 scrcpy。\n\n是否要下载？\n\n[点击“是”即表示您同意 scrcpy 的条款和条件]",
+  "dialog.platformToolsBody": "未找到 SDK Platform Tools。\n\n是否要下载？",
+  "dialog.scrcpyBody": "未找到 scrcpy。\n\n是否要下载？",
   "dialog.agreeTerms": "点击“是”即表示您同意这些条款和条件",
   "dialog.feedbackBody": "ATA-GUI 是免费开源的软件。如果它为你节省了时间，你可以支持本项目或发送反馈。",
   "bloatware.scanLevelBasic": "基础",
@@ -451,5 +451,8 @@
   "terminal.empty": "还没有命令——在下方输入。",
   "terminal.clear": "清除输出",
   "terminal.noOutput": "（无输出）",
-  "log.adbStopped": "adb 已停止——刷新设备列表即可重新启动。"
+  "log.adbStopped": "adb 已停止——刷新设备列表即可重新启动。",
+  "dialog.licenseTools": "Android SDK 条款",
+  "dialog.licenseScrcpy": "Apache 2.0 许可证",
+  "dialog.consentPrefix": "点击“是”即表示你同意"
 }

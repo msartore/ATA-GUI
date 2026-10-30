@@ -3,6 +3,7 @@ import { listen } from "@tauri-apps/api/event";
 import { api } from "../../lib/api";
 import { useI18n } from "../../i18n";
 import { Btn, Empty, Field, Modal, Spinner, useUi } from "../ui";
+import { Icon } from "../Icon";
 import { LICENSE_TEXT } from "../../lib/license";
 import { OEM_DRIVERS } from "../../lib/oem-drivers";
 import { ANDROID_PERMISSIONS } from "../../lib/permissions";
@@ -54,17 +55,24 @@ export function ScrollableDialog({
 export function MissingDialog({
   title,
   body,
+  license,
+  licenseUrl,
   onYes,
   onNo,
-  onInfo,
 }: {
   title: string;
   body: string;
+  license: string;
+  licenseUrl: string;
   onYes: () => void;
   onNo: () => void;
-  onInfo: () => void;
 }) {
   const { t } = useI18n();
+
+  // Catalogues written before 4.0 still carry the old bracketed sentence
+  // ("[By pressing YES you agree to ...]"), and external locales/ files
+  // overlay the bundled ones. Strip it: the consent note below replaces it.
+  const cleanBody = body.replace(/\s*\n\s*\[[^\]]*\]\s*$/, "").trim();
 
   return (
     <Modal
@@ -72,9 +80,6 @@ export function MissingDialog({
       onClose={onNo}
       footer={
         <>
-          <Btn icon="info" variant="ghost" onClick={onInfo}>
-            {t("button.info")}
-          </Btn>
           <Btn onClick={onNo}>{t("button.no")}</Btn>
           <Btn variant="primary" onClick={onYes}>
             {t("button.yes")}
@@ -82,7 +87,13 @@ export function MissingDialog({
         </>
       }
     >
-      <p className="message">{body}</p>
+      <p className="message">{cleanBody}</p>
+      <div className="consent">
+        <Icon name="info" size={13} />
+        <span>
+          {t("dialog.consentPrefix")} <Link href={licenseUrl}>{license}</Link>.
+        </span>
+      </div>
     </Modal>
   );
 }

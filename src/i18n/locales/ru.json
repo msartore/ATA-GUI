@@ -207,8 +207,8 @@
   "dialog.scrcpyMissingTitle": "Ошибка: scrcpy не найден!",
   "dialog.feedbackPopupTitle": "Поддержите ATA-GUI",
   "dialog.infoTitle": "Информация",
-  "dialog.platformToolsBody": "SDK Platform Tools не найдены.\n\nСкачать их?\n\n[Нажимая «ДА», вы принимаете условия использования SDK Platform Tools]",
-  "dialog.scrcpyBody": "scrcpy не найден.\n\nСкачать его?\n\n[Нажимая «ДА», вы принимаете условия использования scrcpy]",
+  "dialog.platformToolsBody": "SDK Platform Tools не найдены.\n\nСкачать их?",
+  "dialog.scrcpyBody": "scrcpy не найден.\n\nСкачать его?",
   "dialog.agreeTerms": "Нажимая «ДА», вы принимаете условия использования",
   "dialog.feedbackBody": "ATA-GUI — бесплатное приложение с открытым исходным кодом. Если оно экономит ваше время, вы можете поддержать проект или оставить отзыв.",
   "bloatware.scanLevelBasic": "базовый",
@@ -451,5 +451,8 @@
   "terminal.empty": "Команд пока нет — введите ниже.",
   "terminal.clear": "Очистить вывод",
   "terminal.noOutput": "(нет вывода)",
-  "log.adbStopped": "adb остановлен — обновите список устройств, чтобы запустить его снова."
+  "log.adbStopped": "adb остановлен — обновите список устройств, чтобы запустить его снова.",
+  "dialog.licenseTools": "Условия Android SDK",
+  "dialog.licenseScrcpy": "Лицензия Apache 2.0",
+  "dialog.consentPrefix": "Нажав «Да», вы принимаете"
 }
