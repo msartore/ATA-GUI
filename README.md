@@ -1,236 +1,62 @@
 # ATA-GUI 4
 
-Advanced Android device manager over ADB and Fastboot — now a cross-platform desktop app built
-with **Tauri 2 + Rust + React**, replacing the original Windows-only WinForms edition.
+Advanced Android device manager over ADB and Fastboot, rebuilt as a cross-platform desktop app
+with **Tauri 2 + Rust + React**.
 
 [![License](https://img.shields.io/github/license/msartore/ATA-GUI?cacheSeconds=3600)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/msartore/ATA-GUI?cacheSeconds=3600)](https://github.com/msartore/ATA-GUI/releases)
 ![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20Linux%20%7C%20macOS-2b3137)
 
-> The 3.x C# sources are preserved on the **`legacy`** branch; `main` is the Tauri rewrite.
-
-## What's new in 4.0
-
-- **Rust + Tauri core** — same feature set without a .NET runtime; a ~2.4 MB installer instead of a framework-dependent WinForms build.
-- **Windows, Linux and macOS** — one codebase, per-platform bundles (NSIS/MSI, `.deb`/`.rpm`/AppImage, `.dmg`/`.app` and portable archives).
-- **Dark and light themes**, including "follow system" with live repaint.
-- **8 bundled languages** (`en`, `it`, `es`, `de`, `fr`, `pt-BR`, `ru`, `zh-CN`) loaded at runtime — translators can drop a JSON file next to the executable and reload without rebuilding.
-- **One row per device** — adb can expose the same phone as `ip:port`, as an mDNS service name and as a cable; the list collapses them by hardware serial (`ro.serialno`), preferring the cable.
-- **Terminal in its own window** — adb/fastboot commands run in a dedicated terminal (history with ↑/↓, Enter to run, full scrollback) instead of a cramped field in the dock.
-- **QR-code wireless pairing** (`WIFI:T:ADB;S:…;P:…;;`) with mDNS discovery, alongside the 6-digit code.
-- **No console window, ever**: the binary is GUI-subsystem and every child tool is spawned hidden.
+> The 3.x C# sources are on the **`legacy`** branch; `main` is the Tauri rewrite.
 
 ## Features
 
-- Manage system and user apps without root: uninstall, disable/enable, clear data, restore
-- Install APKs (including split bundles) and push files
-- Inspect and grant/revoke runtime permissions, set default app roles
-- ADB over Wi-Fi: 6-digit pairing, QR pairing, mDNS discovery (the panel lists discovered `ip:port` endpoints, because Android 11+ uses a random port instead of 5555), `adb tcpip`, connect/disconnect, IP history
-- Detect and remove bloatware with the Universal Android Debloater list
-- Reboot to system, recovery or fastboot; unlock/lock the bootloader on supported devices
-- Flash images, wipe partitions, erase data/cache, sideload ZIPs
-- Extract and repack `payload.bin`/images
-- Screen and camera mirroring via scrcpy, with encoder discovery
-- Device info in system and fastboot modes, multi-device selector
-- Logcat / `getevent` streaming in a detached, scrollable window
-- Task manager (process list, force-stop), shell command runner, text injection
+Manage system and user apps without root, install APKs and push files, inspect and grant
+permissions, wireless ADB with QR pairing, bloatware removal (Universal Android Debloater),
+fastboot flashing and image extraction, scrcpy mirroring, logcat/getevent, task manager and a
+terminal in its own window. One row per device, eight languages, dark/light/system themes.
+
+Full list, shortcuts and behaviour: [`docs/FEATURES.md`](docs/FEATURES.md).
 
 ## Install
 
 | Platform | Recommended | Also provided |
 | --- | --- | --- |
-| Windows 10/11 x64 | `ATA-GUI_4.0.0_x64-setup.exe` (per-user NSIS) | `.msi`, portable `.zip` |
+| Windows 10/11 x64 | `ATA-GUI_<version>_x64-setup.exe` (per-user NSIS) | `.msi`, portable `.zip` |
 | Linux x64 | `.AppImage` or `.deb` | `.rpm`, portable `.tar.gz` / `.zip` |
 | macOS 10.15+ | `.dmg` (Apple silicon or Intel) | portable `.zip` containing `ATA-GUI.app` |
 
-Downloads live on the [releases page](https://github.com/msartore/ATA-GUI/releases).
-The portable archive is self-contained: unpack it anywhere and run `ATA-GUI` (`ATA-GUI.exe` on
-Windows). Settings and IP history are stored in `config.json` next to the executable while that
-folder is writable, otherwise in the per-user config directory.
+Downloads live on the [releases page](https://github.com/msartore/ATA-GUI/releases). Portable
+builds are self-contained. SDK Platform Tools and scrcpy are not bundled: the app downloads them
+on first use.
 
-### macOS notes
+Platform notes, portable settings, the 3.x upgrade path and the updater: [`docs/INSTALL.md`](docs/INSTALL.md).
 
-The `.dmg` is ad-hoc signed (no Apple Developer ID), so the first launch needs
-**right-click → Open** or `xattr -dr com.apple.quarantine /Applications/ATA-GUI.app`.
-Platform Tools and scrcpy are downloaded on first use exactly like the other
-platforms. The in-app updater is disabled on macOS — download the new `.dmg` from
-the releases page (the app tells you when one is available).
+## Build
 
-SDK Platform Tools and scrcpy are not bundled — the app downloads them on first use (startup
-prompt or Settings → Tools) and keeps them beside the executable.
-
-### Upgrading from 3.x
-
-The 3.x updater is still supported. It downloads the **first asset** of the latest release and
-expects a ZIP whose root contains `ATA-GUI.exe`. The release workflow therefore publishes
-`ATA-GUI-<version>-portable-windows-x64.zip` first, and the 4.x binary keeps the `ATA-GUI.exe`
-name, so an existing 3.x install upgrades in place and relaunches the new app.
-
-Settings, IP history and the licence/disclaimer flags are read from the old per-user location on
-first start and copied to the new one.
-
-The old updater moves files only (`move /y *`), so its `locales/` folder is not copied. The app
-recreates `locales/` from the compiled-in catalogues on first start, so the UI stays fully
-translated; an empty `ATAUpdate` folder may be left behind and can be deleted.
-
-Upgrades after 4.0 use the built-in updater, which queries the repository that produced the build
-(`ATA_RELEASES_URL`), picks the portable ZIP for the running platform and replaces the install.
-
-## Languages
-
-The UI ships with eight catalogues in `src/i18n/locales/`. To add or change a language without
-rebuilding:
-
-1. Open **Settings → Open locales folder**.
-2. Copy `_template.json` to `<code>.json`, set `_meta.name` and translate the values.
-3. Press **Reload languages**.
-
-External catalogues override the bundled ones and missing keys fall back to English. Full guide:
-[`docs/TRANSLATIONS.md`](docs/TRANSLATIONS.md). `cargo test` verifies every bundled catalogue has
-the same key set as English (438 keys).
-
-## Desktop capabilities
-
-Things the WinForms app could not do without freezing or blocking:
-
-- **Cancellable long operations** — installs, pushes, image extraction, flashing and sideloading run
-  through a guarded process wrapper: every child has a watchdog (20–45 min depending on the task),
-  stdout/stderr are drained on separate threads so a full pipe cannot deadlock, the whole process
-  tree is killed on cancel, and the busy overlay shows **Cancel** for operations that support it.
-- **The UI never blocks** — all adb/fastboot commands run off the main thread.
-- **Single instance** — launching the app twice focuses the running window instead of failing on the
-  shared WebView2 profile (the second process exits immediately).
-- **Remembered window** — size, position and maximised state are restored on start.
-- **Virtualised package list** — only the visible rows of an 800+ package list are rendered, so
-  searching and scrolling stay smooth.
-- **Strict CSP** — the webview only loads bundled assets; remote fetches and inline scripts are refused.
-- **Auto-reconnect** — on start the app reconnects wireless endpoints that are already reachable
-  (mDNS-advertised devices and saved IPs whose port answers), without stalling on dead addresses.
-
-### Keyboard shortcuts
-
-| Keys | Action |
-| --- | --- |
-| `Ctrl+F` | Focus the app search box |
-| `F5` | Rescan devices |
-| `Ctrl+L` | Clear the log |
-| `Ctrl+1…4` | System / Fastboot / Recovery / Tools |
-| `Esc` | Close the open dialog |
-
-## Themes
-
-**Settings → Appearance** offers Dark, Light and System. The choice is stored in `config.json`,
-applied before the first paint (no flash), mirrored onto the native window theme, broadcast to the
-detached Logs/Tasks windows, and — in System mode — follows OS changes live.
-
-## QR pairing
-
-Android 11+ can pair over Wi-Fi without typing a code. **System → ADB over network → Wireless →
-QR** renders the official payload
-
-```text
-WIFI:T:ADB;S:<service-name>;P:<password>;;
-```
-
-The phone (Wireless debugging → *Pair device with QR code*) scans it, advertises
-`_adb-tls-pairing._tcp`, and the app discovers it through `adb mdns services`, pairs, connects
-through `_adb-tls-connect._tcp`, and refreshes the device list. The dialog shows live progress and
-can regenerate the code at any time. Both devices must be on the same Wi-Fi network.
-
-## Architecture
-
-```
-src-tauri/                       Rust backend (Tauri 2)
-  src/lib.rs                     IPC façade: thin #[tauri::command] wrappers + registry
-  src/state.rs                   AppPaths (portable vs installed), Config, AppState
-  src/tools.rs                   process layer — every adb/fastboot spawn goes through here
-  src/device.rs                  device list, getprop/users/rotation/bootloader parsing
-  src/apps.rs                    package listing/apply/install, split-APK extraction
-  src/flash.rs                   fastboot flash/erase/wipe/bootloader operations
-  src/net.rs                     wireless connect/pair, adb server control
-  src/logcat.rs                  streaming logcat/getevent with an owned process handle
-  src/download.rs                platform-tools, scrcpy, UAD list, update check/apply
-  src/wireless.rs                QR pairing payload + mDNS parsing
-  src/locales.rs                 bundled + external translation catalogues
-  src/scrcpy.rs                  encoder discovery and launch
-  src/bloatware.rs               UAD list matching
-  src/windows.rs                 detached Logs/Tasks windows
-
-src/                             React 19 + TypeScript frontend
-  views/                         MainWindow (composition root), tabs, Logs/Tasks windows
-  components/                    ui primitives, TitleBar, Dock, dialogs/ (one per dialog)
-  lib/                           api, types, devices, util, theme, hooks
-  i18n/locales/*.json            runtime catalogues (8 languages, 438 keys each)
-```
-
-Conventions: commands never panic — they return `Result<_, String>` with `errors.*` keys that
-`errorKey()` maps to translated messages; child processes are argv-only and hidden; dialogs share
-`useAction()` for busy state and error alerts; the main window's IPC lifecycle lives in
-`useAppBootstrap()` and its log buffer in `useLogBuffer()`.
-
-## Build from source
-
-Prerequisites:
-
-- Node.js 22+ and npm
-- Rust stable (1.80+) with the platform toolchain (MSVC on Windows, `build-essential` on Linux)
-- Windows: WebView2 runtime (preinstalled on Windows 11) and MSVC build tools
-- Linux: `libwebkit2gtk-4.1-dev`, `libgtk-3-dev`, `librsvg2-dev`, `libayatana-appindicator3-dev`, `patchelf`
+Requires Node 22+, Rust 1.80+ and the platform toolchain (MSVC on Windows, GTK/WebKit on Linux).
 
 ```bash
 npm ci
-npm run build            # type-check + bundle the frontend
-npx tauri build          # app + installers into src-tauri/target/release/bundle
+npm run desktop:dev      # Tauri window with hot reload
+npx tauri build          # app + installers
 npm run package          # release/ layout: portable archive + installers
 ```
 
-Development:
+Prerequisites per platform, checks and CI: [`docs/BUILD.md`](docs/BUILD.md).
 
-```bash
-npm run dev              # Vite only (port 1420)
-npm run desktop:dev      # Tauri window with hot reload
-```
+## Documentation
 
-Checks:
-
-```bash
-cargo test --manifest-path src-tauri/Cargo.toml
-npx tsc --noEmit
-cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets
-```
-
-## Releasing
-
-1. Bump the version in `package.json`, `src-tauri/Cargo.toml` and `src-tauri/tauri.conf.json` (they must match).
-2. Tag and push:
-
-   ```bash
-   git tag -a v4.0.0 -m "ATA-GUI 4.0.0"
-   git push origin v4.0.0
-   ```
-
-`.github/workflows/release.yml` verifies the tag against the three version fields, builds on
-`windows-latest` and `ubuntu-22.04`, runs the backend tests, packages the portable archives plus
-installers, and publishes a GitHub release with generated notes. The Windows portable ZIP is
-uploaded first so the 3.x updater keeps working; `workflow_dispatch` can rebuild an existing tag.
-
-Asset contract:
-
-```
-ATA-GUI-4.0.0-portable-windows-x64.zip     first asset — 3.x updater downloads this one
-ATA-GUI_4.0.0_x64-setup.exe                NSIS installer
-ATA-GUI_4.0.0_x64_en-US.msi                MSI installer
-ATA-GUI-4.0.0-portable-linux-x64.zip       Linux portable (used by the 4.x updater)
-ATA-GUI-4.0.0-portable-linux-x64.tar.gz    Linux portable (manual installs)
-ATA-GUI_4.0.0_amd64.deb / .rpm / .AppImage  Linux packages
-ATA-GUI_4.0.0_aarch64.dmg / _x64.dmg        macOS installers
-ATA-GUI-4.0.0-portable-darwin-arm64.zip     macOS portable (.app bundle)
-```
-
-## Legacy
-
-The C# WinForms sources (up to 3.15.0) live on the [`legacy`](../../tree/legacy) branch and are no
-longer maintained. `main` contains only the Tauri implementation.
+| Document | Contents |
+| --- | --- |
+| [`docs/FEATURES.md`](docs/FEATURES.md) | feature list, keyboard shortcuts, themes, QR pairing |
+| [`docs/INSTALL.md`](docs/INSTALL.md) | bundles, portable config, macOS, upgrading from 3.x, updates |
+| [`docs/BUILD.md`](docs/BUILD.md) | prerequisites, development loop, tests, packaging |
+| [`docs/RELEASING.md`](docs/RELEASING.md) | versioning, tag workflow, release asset contract |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | source tree, process layer, conventions |
+| [`docs/TRANSLATIONS.md`](docs/TRANSLATIONS.md) | adding or overriding a language |
+| [`docs/PORTING.md`](docs/PORTING.md) | mapping from the WinForms forms |
+| [`CHANGELOG.md`](CHANGELOG.md) | release notes |
 
 ## Credits
 
