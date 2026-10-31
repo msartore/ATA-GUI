@@ -1983,3 +1983,41 @@ textarea {
   width: 84px;
   flex: 0 0 auto;
 }
+
+/* "?" badge + popover used for inline explanations. */
+.info-tip {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  color: var(--text-mute);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: help;
+  user-select: none;
+}
+.info-tip:hover,
+.info-tip:focus-visible {
+  color: var(--text);
+  border-color: var(--accent-dim);
+  outline: none;
+}
+.info-pop {
+  position: fixed;
+  z-index: 90;
+  width: 244px;
+  padding: 9px 11px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--toast);
+  box-shadow: var(--shadow-lg);
+  color: var(--text-dim);
+  font-size: 11px;
+  line-height: 1.55;
+  pointer-events: none;
+}

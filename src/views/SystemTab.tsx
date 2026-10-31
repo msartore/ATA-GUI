@@ -6,6 +6,7 @@ import { useMain } from "../lib/main-context";
 import { Btn, DropZone, Dropdown, Empty, Field, IconBtn, MenuItem, Panel, useUi } from "../components/ui";
 import { errorKey, errorText } from "../lib/util";
 import { VirtualList } from "../components/VirtualList";
+import { InfoTip } from "../components/InfoTip";
 import type { AppMode, MdnsService } from "../lib/types";
 
 const ATA_BRIDGE_URL =
@@ -230,11 +231,14 @@ export function SystemTab() {
         <Panel
           title={t("section.adbOverNetwork")}
           actions={
-            <IconBtn
-              icon="refresh"
-              label={t("button.searchDevices")}
-              onClick={() => void discover()}
-            />
+            <div className="row is-tight">
+              <InfoTip label={t("section.adbOverNetwork")}>{t("wireless.hint")}</InfoTip>
+              <IconBtn
+                icon="refresh"
+                label={t("button.searchDevices")}
+                onClick={() => void discover()}
+              />
+            </div>
           }
         >
           <div className="wireless-status">
@@ -335,7 +339,6 @@ export function SystemTab() {
             </Btn>
           </div>
 
-          <p className="hint">{t("wireless.hint")}</p>
         </Panel>
       </div>
 
