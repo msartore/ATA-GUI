@@ -61,8 +61,11 @@ export default function App() {
   if (!config || bundles === null) {
     return (
       <div className="splash">
-        <span className="spinner" />
-        <span>ATA-GUI</span>
+        <span className="spinner is-lg" />
+        <span className="splash-brand">ATA-GUI</span>
+        <span className="splash-hint">
+          {navigator.language.toLowerCase().startsWith("it") ? "Caricamento…" : "Loading…"}
+        </span>
       </div>
     );
   }

@@ -1396,14 +1396,23 @@ textarea {
 .splash {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  color: var(--text-mute);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-size: 11px;
   background: var(--bg);
+}
+.splash-brand {
+  color: var(--text);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+}
+.splash-hint {
+  color: var(--text-mute);
+  font-size: 11px;
+  letter-spacing: 0.04em;
 }
 
 .window-head {
@@ -2039,4 +2048,49 @@ textarea {
 .logs-layout .log-line {
   content-visibility: auto;
   contain-intrinsic-size: auto 18px;
+}
+
+/* Full-window loading state: blur the app, keep a single centred cluster. */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  background: var(--overlay-soft);
+  backdrop-filter: blur(6px);
+}
+.loading-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 30px;
+  max-width: 70vw;
+  text-align: center;
+}
+.spinner.is-lg {
+  width: 34px;
+  height: 34px;
+  border-width: 3px;
+}
+.loading-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+}
+.loading-detail {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-mute);
+}
+.loading-bar {
+  width: 240px;
+  margin-top: 2px;
+}
+.loading-pct {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-mute);
 }

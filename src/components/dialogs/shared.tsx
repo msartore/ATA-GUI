@@ -114,24 +114,21 @@ export function LoadingDialog({
   const indeterminate = typeof progress !== "number";
 
   return (
-    <Modal
-      title={label}
-      footer={
-        onCancel ? (
-          <Btn icon="stop" onClick={onCancel}>
+    <div className="loading-overlay" role="alertdialog" aria-busy="true" aria-live="polite">
+      <div className="loading-card">
+        <span className="spinner is-lg" />
+        <span className="loading-label">{label}</span>
+        {detail ? <span className="loading-detail">{detail}</span> : null}
+        <div className={`progress loading-bar${indeterminate ? " is-indeterminate" : ""}`}>
+          <i style={indeterminate ? undefined : { width: `${progress}%` }} />
+        </div>
+        {typeof progress === "number" ? <span className="loading-pct">{Math.round(progress)}%</span> : null}
+        {onCancel ? (
+          <Btn small icon="stop" onClick={onCancel}>
             {t("button.cancel")}
           </Btn>
-        ) : undefined
-      }
-    >
-      <div className="row">
-        <Spinner size={16} />
-        <span className="mono grow">{detail ?? ""}</span>
-        {typeof progress === "number" ? <span className="mono">{Math.round(progress)}%</span> : null}
+        ) : null}
       </div>
-      <div className={`progress${indeterminate ? " is-indeterminate" : ""}`}>
-        <i style={indeterminate ? undefined : { width: `${progress}%` }} />
-      </div>
-    </Modal>
+    </div>
   );
 }
