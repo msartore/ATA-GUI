@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useI18n } from "../i18n";
 import { useMain } from "../lib/main-context";
 import { Btn, IconBtn, Panel } from "../components/ui";
+import { Icon } from "./Icon";
 import type { LogEntry } from "../lib/types";
 
 const URL_REGEX = /(https?:\/\/[^\s]+)/g;
@@ -105,19 +106,6 @@ export function Dock() {
   return (
     <div className="dock">
       <div className="dock-left">
-        <div className="terminal-launcher">
-          <span className="launcher-label">{t("section.terminal")}</span>
-          <Btn
-            small
-            variant="ghost"
-            icon="terminal"
-            className="is-collapsible"
-            title={t("terminal.open")}
-            onClick={m.openTerminal}
-          >
-            {t("terminal.open")}
-          </Btn>
-        </div>
         <Panel title={t("section.deviceSync")} className="sync-panel">
           <Btn
             variant="primary"
@@ -150,6 +138,21 @@ export function Dock() {
               />
             </div>
           </div>
+        </Panel>
+      </div>
+
+      <div className="dock-mid">
+        <Panel title={t("section.terminal")} className="terminal-card">
+          <button
+            type="button"
+            className="terminal-tile"
+            title={t("terminal.open")}
+            aria-label={t("terminal.open")}
+            onClick={m.openTerminal}
+          >
+            <Icon name="terminal" size={22} />
+            <span>{t("terminal.open")}</span>
+          </button>
         </Panel>
       </div>
 

@@ -1192,7 +1192,7 @@ textarea {
   flex: 0 0 clamp(210px, 28vh, 300px);
   height: clamp(210px, 28vh, 300px);
   display: grid;
-  grid-template-columns: 380px minmax(0, 1fr);
+  grid-template-columns: 320px 196px minmax(0, 1fr);
   gap: 9px;
   padding: 8px 12px 10px;
   border-top: 1px solid var(--border);
@@ -1214,10 +1214,18 @@ textarea {
   flex: 0 0 auto;
 }
 
+.dock-mid,
 .dock-right {
   min-width: 0;
   min-height: 0;
   display: flex;
+}
+.dock-mid > .panel {
+  flex: 1 1 auto;
+}
+.dock-mid .panel-body {
+  flex: 1 1 auto;
+  justify-content: center;
 }
 
 .dock-right > .panel {
@@ -1835,23 +1843,37 @@ textarea {
 }
 
 /* Dock terminal: one compact launcher row, no duplicate controls. */
-.terminal-launcher {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 6px 10px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  min-height: 40px;
+.terminal-card .panel-body {
+  padding: 10px;
+  justify-content: center;
 }
-.launcher-label {
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-mute);
+/* Action tile: fills the short, narrow card instead of leaving dead space. */
+.terminal-tile {
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--accent-wash);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
+  cursor: pointer;
+}
+.terminal-tile .icon {
+  color: var(--accent);
+}
+.terminal-tile:hover {
+  border-color: var(--accent-dim);
+  background: var(--accent-ring);
 }
 
 /* ------------------------------------------------------------ responsive */
@@ -1870,7 +1892,7 @@ textarea {
     gap: 8px;
   }
   .dock {
-    grid-template-columns: 320px minmax(0, 1fr);
+    grid-template-columns: 296px 172px minmax(0, 1fr);
     gap: 8px;
   }
 }
