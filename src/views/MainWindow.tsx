@@ -79,6 +79,13 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
   const appsModeRef = useRef<AppMode>(appsMode);
   appsModeRef.current = appsMode;
   const devicesChangedRef = useRef<(list: DeviceEntry[]) => void>(() => {});
+  // Guards against loading the same device twice: the bootstrap, the watcher's
+  // first "devices:changed" and the tab switch can all ask for a sync.
+  const syncInFlight = useRef<string | null>(null);
+  const lastSync = useRef<{ id: string; at: number }>({ id: "", at: 0 });
+  // The same phone answers on several transports (wireless debugging port vs
+  // legacy 5555): sync once per host, not once per endpoint.
+  const syncKey = (entry: DeviceEntry) => entry.id.split(":")[0];
 
   const devices = useMemo(() => devicesForTab(allDevices, tab), [allDevices, tab]);
   devicesRef.current = devices;
@@ -149,36 +156,51 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
   );
 
   const syncFor = useCallback(
-    async (target: DeviceEntry) => {
-      if (tabRef.current === "fastboot") {
+    async (target: DeviceEntry, options?: { force?: boolean }) => {
+      const now = Date.now();
+      const key = syncKey(target);
+      if (!options?.force) {
+        if (syncInFlight.current === key) return;
+        if (lastSync.current.id === key && now - lastSync.current.at < 1500) return;
+      }
+      syncInFlight.current = key;
+      lastSync.current = { id: key, at: now };
+
+      try {
+        if (tabRef.current === "fastboot") {
+          try {
+            const text = await api.bootloaderInfo(target.id);
+            setFastbootInfo(text);
+            log("OK", t("log.fastbootInfoExtracted"));
+          } catch (error) {
+            log("ERROR", errorText(error));
+          }
+          return;
+        }
+        if (tabRef.current !== "system") return;
+
+        log("INFO", t("log.checkingDevice"));
         try {
-          const text = await api.bootloaderInfo(target.id);
-          setFastbootInfo(text);
-          log("OK", t("log.fastbootInfoExtracted"));
+          const result = await api.deviceInfo(target.id);
+          if (result.error) {
+            setInfo(null);
+            log("ERROR", t("log.deviceInfoFailed"));
+            await ui.alert(
+              `${t("log.deviceInfoFailed")}\n\n${t(errorKey(result.error) || "error.generic")}`,
+            );
+            return;
+          }
+          setInfo(result);
+          setUser(result.user || "0");
+          setRotationFree(result.rotationFree);
+          setMaxDisplay(result.maxDisplay);
+          log("OK", t("log.deviceInfoExtracted"));
+          await loadAppsFor(target, result.user || "0", appsModeRef.current);
         } catch (error) {
           log("ERROR", errorText(error));
         }
-        return;
-      }
-      if (tabRef.current !== "system") return;
-
-      log("INFO", t("log.checkingDevice"));
-      try {
-        const result = await api.deviceInfo(target.id);
-        if (result.error) {
-          setInfo(null);
-          log("ERROR", t("log.deviceInfoFailed"));
-          await ui.alert(`${t("log.deviceInfoFailed")}\n\n${t(errorKey(result.error) || "error.generic")}`);
-          return;
-        }
-        setInfo(result);
-        setUser(result.user || "0");
-        setRotationFree(result.rotationFree);
-        setMaxDisplay(result.maxDisplay);
-        log("OK", t("log.deviceInfoExtracted"));
-        await loadAppsFor(target, result.user || "0", appsModeRef.current);
-      } catch (error) {
-        log("ERROR", errorText(error));
+      } finally {
+        syncInFlight.current = null;
       }
     },
     [loadAppsFor, log, t, ui],
@@ -222,6 +244,12 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
           if (index !== deviceIndexRef.current) setDeviceIndex(index);
           return;
         }
+        // Same phone, different transport: keep the data we already loaded.
+        const sameHost = filtered.findIndex((entry) => syncKey(entry) === syncKey(current));
+        if (sameHost >= 0) {
+          setDeviceIndex(sameHost);
+          return;
+        }
       }
 
       setDeviceIndex(0);
@@ -244,7 +272,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
       const target = devicesRef.current[index];
       setDeviceIndex(index);
       resetDeviceView();
-      if (target) void syncFor(target);
+      if (target) void syncFor(target, { force: true });
     },
     [syncFor],
   );
@@ -252,7 +280,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
   const syncDevice = useCallback(async () => {
     const target = devicesRef.current[deviceIndex];
     if (!target) return;
-    await syncFor(target);
+    await syncFor(target, { force: true });
   }, [deviceIndex, syncFor]);
 
   const loadApps = useCallback(
@@ -444,7 +472,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
       setRotationFree(false);
       if (next === "tools") return;
       const found = await refreshDevices();
-      if (found.length) await syncFor(found[0]);
+      if (found.length) await syncFor(found[0], { force: true });
     },
     [refreshDevices, syncFor],
   );
