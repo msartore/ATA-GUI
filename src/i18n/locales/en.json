@@ -372,8 +372,9 @@
   "wireless.pairing": "Pair a new phone",
   "wireless.connectedTo": "Connected to",
   "progress.unpacking": "Unpacking…",
-  "terminal.keys": "↑/↓ history · Ctrl+C stop · Ctrl+L clear",
+  "terminal.keys": "Tab complete · ↑/↓ history · Ctrl+C stop · Ctrl+L clear",
   "progress.resolving": "Checking the latest release…",
   "progress.installing": "Installing files…",
-  "terminal.exitCode": "process exited with code {code}"
+  "terminal.exitCode": "process exited with code {code}",
+  "terminal.completions": "Suggested commands"
 }

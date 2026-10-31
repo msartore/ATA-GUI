@@ -24,7 +24,12 @@ root), so existing installations upgrade in place.
 - Commands stream: output arrives as it is printed (batched at 60 ms), so
   `logcat`, `getevent` and long pushes report live instead of freezing the
   window until exit. Ctrl+C kills the child and returns the prompt; closing the
-  terminal window kills it too. A process that dies without printing anything
+  terminal window kills it too.
+- Tab completion for the adb and fastboot verbs, plus the closed argument sets
+  of `reboot`, `logcat`, `install`, `oem`, `getvar`, `set_active` and `flash`.
+  One match completes inline, several complete to the shared prefix and open a
+  list navigable with the arrow keys; the list flips below the prompt when the
+  scrollback is still empty. A process that dies without printing anything
   (a missing DLL, a broken binary) reports its exit code instead of leaving an
   empty block.
 

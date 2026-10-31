@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { listen } from "@tauri-apps/api/event";
 import { api } from "../lib/api";
 import type { TermExit, TermOutput } from "../lib/types";
+import { commonPrefix, suggest } from "../lib/completion";
 import { useI18n } from "../i18n";
 import { TitleBar, ResizeHandles } from "../components/TitleBar";
 import { errorText, splitArgs } from "../lib/util";
@@ -15,6 +16,15 @@ interface Entry {
   state: State;
 }
 
+/** Open completion list. `before + item + suffix` is the preview text. */
+interface Popup {
+  items: string[];
+  index: number;
+  before: string;
+  partial: string;
+  suffix: string;
+}
+
 const MAX_LINES = 600;
 
 /** Prompt host: the address without the adb port, like a shell prompt. */
@@ -22,6 +32,18 @@ function promptHost(serial: string): string {
   if (!serial) return "local";
   const host = serial.split(":")[0];
   return host.length > 24 ? `${host.slice(0, 22)}…` : host;
+}
+
+/** The whitespace-delimited token around the caret and the words before it. */
+function tokenAt(text: string, caret: number) {
+  const before = text.slice(0, caret);
+  const match = before.match(/(\S*)$/);
+  const partial = match ? match[1] : "";
+  const start = before.length - partial.length;
+  const tail = text.slice(caret).match(/^(\S*)/);
+  const end = caret + (tail ? tail[1].length : 0);
+  const tokens = before.slice(0, start).trim().split(/\s+/).filter(Boolean);
+  return { partial, start, end, tokens };
 }
 
 export function TerminalWindow({ serial }: { serial: string }) {
@@ -32,9 +54,14 @@ export function TerminalWindow({ serial }: { serial: string }) {
   const [running, setRunning] = useState(false);
   const [history, setHistory] = useState<string[]>([]);
   const [cursor, setCursor] = useState(-1);
+  const [popup, setPopup] = useState<Popup | null>(null);
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const termRef = useRef<HTMLDivElement | null>(null);
+  const lineRef = useRef<HTMLDivElement | null>(null);
+  const popupRef = useRef<HTMLDivElement | null>(null);
+  const [popupBox, setPopupBox] = useState<{ top: number; below: boolean }>({ top: 0, below: false });
   const sessionRef = useRef(0);
   const activeRef = useRef<number | null>(null);
   const stoppedRef = useRef(false);
@@ -52,6 +79,30 @@ export function TerminalWindow({ serial }: { serial: string }) {
     const node = scrollRef.current;
     if (node) node.scrollTop = node.scrollHeight;
   }, [entries, running]);
+
+  // The prompt sits wherever the scrollback ends, so the list is anchored to
+  // the input line rather than the panel: above it when there is room, below
+  // it when the session is still empty.
+  useLayoutEffect(() => {
+    if (!popup) return;
+    const measure = () => {
+      const term = termRef.current;
+      const line = lineRef.current;
+      if (!term || !line) return;
+      const host = term.getBoundingClientRect();
+      const rect = line.getBoundingClientRect();
+      const top = rect.top - host.top;
+      const height = popupRef.current?.offsetHeight ?? 0;
+      const above = top - height - 6 >= 4;
+      setPopupBox({
+        top: above ? top - 6 : rect.bottom - host.top + 6,
+        below: !above,
+      });
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [popup]);
 
   // Output streams in while the command runs: logcat never exits on its own.
   useEffect(() => {
@@ -121,6 +172,7 @@ export function TerminalWindow({ serial }: { serial: string }) {
     if (args.length === 0) return;
 
     const session = ++sessionRef.current;
+    setPopup(null);
     setHistory((current) => [...current, value]);
     setCursor(-1);
     setCommand("");
@@ -173,11 +225,146 @@ export function TerminalWindow({ serial }: { serial: string }) {
     setCommand(history[next]);
   };
 
+  /* -------------------------------------------------------- completion */
+
+  const focusEnd = (value: string) => {
+    setCommand(value);
+    requestAnimationFrame(() => {
+      const input = inputRef.current;
+      if (input) {
+        input.focus();
+        input.setSelectionRange(value.length, value.length);
+      }
+    });
+  };
+
+  const accept = (list: Popup, item: string) => {
+    const needsSpace = list.suffix.trim() === "";
+    focusEnd(`${list.before}${item}${needsSpace ? " " : list.suffix}`);
+    setPopup(null);
+  };
+
+  const preview = (list: Popup, index: number) => {
+    const item = list.items[index] ?? list.partial;
+    focusEnd(`${list.before}${item}${list.suffix}`);
+    setPopup({ ...list, index });
+  };
+
+  const complete = () => {
+    if (liveRef.current) return;
+    const input = inputRef.current;
+    if (!input) return;
+
+    if (popup) {
+      const next = popup.index < 0 ? 0 : (popup.index + 1) % popup.items.length;
+      preview(popup, next);
+      return;
+    }
+
+    const caret = input.selectionStart ?? command.length;
+    const { partial, start, end, tokens } = tokenAt(command, caret);
+    const items = suggest(tool, tokens, partial);
+
+    if (items.length === 0) return;
+
+    if (items.length === 1) {
+      const before = command.slice(0, start);
+      const suffix = command.slice(end);
+      focusEnd(`${before}${items[0]}${suffix.trim() === "" ? " " : suffix}`);
+      return;
+    }
+
+    // Several matches: complete to the longest common prefix, then list them.
+    const prefix = commonPrefix(items);
+    const before = command.slice(0, start);
+    const suffix = command.slice(end);
+    const grown = prefix.length > partial.length;
+    if (grown) focusEnd(`${before}${prefix}${suffix}`);
+    setPopup({
+      items,
+      index: -1,
+      before,
+      partial: grown ? prefix : partial,
+      suffix,
+    });
+  };
+
+  const keyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      complete();
+      return;
+    }
+
+    if (popup) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        focusEnd(`${popup.before}${popup.partial}${popup.suffix}`);
+        setPopup(null);
+        return;
+      }
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        const step = event.key === "ArrowDown" ? 1 : -1;
+        const size = popup.items.length;
+        const index =
+          popup.index < 0
+            ? step === 1
+              ? 0
+              : size - 1
+            : (popup.index + step + size) % size;
+        preview(popup, index);
+        return;
+      }
+      if (event.key === "Enter") {
+        event.preventDefault();
+        if (popup.index >= 0) accept(popup, popup.items[popup.index]);
+        else {
+          setPopup(null);
+          void run();
+        }
+        return;
+      }
+    }
+
+    if (event.key === "c" && event.ctrlKey) {
+      event.preventDefault();
+      if (running) void interrupt();
+      else setCommand("");
+      return;
+    }
+    if (event.key === "Enter") {
+      event.preventDefault();
+      void run();
+      return;
+    }
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      recall(-1);
+      return;
+    }
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      recall(1);
+      return;
+    }
+    if (event.key === "l" && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault();
+      setEntries([]);
+      setPopup(null);
+      return;
+    }
+    if (event.key === "u" && event.ctrlKey) {
+      event.preventDefault();
+      setCommand("");
+    }
+  };
+
   return (
     <div className="app terminal-window">
       <TitleBar tools={null} compact title={t("terminal.title")} />
 
-      <div className="term" onClick={() => inputRef.current?.focus()}>
+      <div className="term" ref={termRef} onClick={() => inputRef.current?.focus()}>
         <div className="term-scroll" ref={scrollRef}>
           {entries.map((entry) => (
             <div key={entry.session}>
@@ -187,16 +374,14 @@ export function TerminalWindow({ serial }: { serial: string }) {
                 {entry.state === "stopped" ? <span className="term-note"> ^C</span> : null}
               </div>
               {entry.output ? (
-                <pre
-                  className={entry.state === "failed" ? "term-out is-error" : "term-out"}
-                >
+                <pre className={entry.state === "failed" ? "term-out is-error" : "term-out"}>
                   {entry.output}
                 </pre>
               ) : null}
             </div>
           ))}
 
-          <div className={running ? "term-line is-busy" : "term-line"}>
+          <div className={running ? "term-line is-busy" : "term-line"} ref={lineRef}>
             <span className="term-prompt">{prompt}</span>
             <input
               ref={inputRef}
@@ -207,33 +392,42 @@ export function TerminalWindow({ serial }: { serial: string }) {
               autoCapitalize="off"
               aria-label={t("terminal.title")}
               readOnly={running}
-              onChange={(event) => setCommand(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "c" && event.ctrlKey) {
-                  event.preventDefault();
-                  if (running) void interrupt();
-                  else setCommand("");
-                } else if (event.key === "Enter") {
-                  event.preventDefault();
-                  void run();
-                } else if (event.key === "ArrowUp") {
-                  event.preventDefault();
-                  recall(-1);
-                } else if (event.key === "ArrowDown") {
-                  event.preventDefault();
-                  recall(1);
-                } else if (event.key === "l" && (event.ctrlKey || event.metaKey)) {
-                  event.preventDefault();
-                  setEntries([]);
-                } else if (event.key === "u" && event.ctrlKey) {
-                  event.preventDefault();
-                  setCommand("");
-                }
+              onChange={(event) => {
+                setCommand(event.target.value);
+                if (popup) setPopup(null);
               }}
+              onKeyDown={keyDown}
+              onBlur={() => setPopup(null)}
             />
             {running ? <span className="term-running">›</span> : null}
           </div>
         </div>
+
+        {popup ? (
+          <div
+            ref={popupRef}
+            className={popupBox.below ? "term-completions is-below" : "term-completions"}
+            role="listbox"
+            aria-label={t("terminal.completions")}
+            style={{ top: popupBox.top }}
+          >
+            {popup.items.map((item, index) => (
+              <button
+                key={item}
+                type="button"
+                role="option"
+                aria-selected={index === popup.index}
+                className={index === popup.index ? "is-active" : ""}
+                onMouseDown={(event) => {
+                  event.preventDefault();
+                  accept(popup, item);
+                }}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        ) : null}
 
         <footer className="term-status">
           <span className="term-mode">

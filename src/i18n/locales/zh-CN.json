@@ -372,8 +372,9 @@
   "wireless.pairing": "配对新手",
   "wireless.connectedTo": "已连接到",
   "progress.unpacking": "正在解压…",
-  "terminal.keys": "↑/↓ 历史 · Ctrl+C 停止 · Ctrl+L 清屏",
+  "terminal.keys": "Tab 补全 · ↑/↓ 历史 · Ctrl+C 停止 · Ctrl+L 清屏",
   "progress.resolving": "正在检查最新版本…",
   "progress.installing": "正在安装文件…",
-  "terminal.exitCode": "进程退出，代码 {code}"
+  "terminal.exitCode": "进程退出，代码 {code}",
+  "terminal.completions": "建议的命令"
 }

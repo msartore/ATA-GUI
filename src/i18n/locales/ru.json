@@ -372,8 +372,9 @@
   "wireless.pairing": "Сопряжение нового телефона",
   "wireless.connectedTo": "Подключено к",
   "progress.unpacking": "Распаковка…",
-  "terminal.keys": "↑/↓ история · Ctrl+C прервать · Ctrl+L очистить",
+  "terminal.keys": "Tab дополнить · ↑/↓ история · Ctrl+C прервать · Ctrl+L очистить",
   "progress.resolving": "Проверка последней версии…",
   "progress.installing": "Установка файлов…",
-  "terminal.exitCode": "процесс завершился с кодом {code}"
+  "terminal.exitCode": "процесс завершился с кодом {code}",
+  "terminal.completions": "Подсказки команд"
 }

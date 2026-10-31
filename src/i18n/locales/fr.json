@@ -372,8 +372,9 @@
   "wireless.pairing": "Associer un nouveau téléphone",
   "wireless.connectedTo": "Connecté à",
   "progress.unpacking": "Extraction…",
-  "terminal.keys": "↑/↓ historique · Ctrl+C arrêter · Ctrl+L effacer",
+  "terminal.keys": "Tab compléter · ↑/↓ historique · Ctrl+C arrêter · Ctrl+L effacer",
   "progress.resolving": "Vérification de la dernière version…",
   "progress.installing": "Installation des fichiers…",
-  "terminal.exitCode": "processus terminé avec le code {code}"
+  "terminal.exitCode": "processus terminé avec le code {code}",
+  "terminal.completions": "Commandes suggérées"
 }

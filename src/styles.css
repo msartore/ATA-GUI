@@ -1767,6 +1767,7 @@ textarea {
 
 /* Detached terminal: scrollback with an inline prompt, tmux-like status bar. */
 .term {
+  position: relative;
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
@@ -1842,6 +1843,42 @@ textarea {
   color: var(--text);
   font: inherit;
   caret-color: var(--accent);
+}
+.term-completions {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  z-index: 5;
+  transform: translateY(-100%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-height: 148px;
+  overflow-y: auto;
+  padding: 8px 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 14px 32px rgb(0 0 0 / 45%);
+  scrollbar-width: thin;
+}
+.term-completions.is-below {
+  transform: none;
+}
+.term-completions button {
+  background: none;
+  border: 0;
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: var(--log-text);
+  font: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+}
+.term-completions button.is-active,
+.term-completions button:hover {
+  background: var(--accent);
+  color: var(--log-bg);
 }
 .term-status {
   display: flex;
