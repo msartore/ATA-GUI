@@ -17,6 +17,11 @@ on:
         description: Existing tag to build and publish (e.g. v4.0.0)
         required: true
         type: string
+      prerelease:
+        description: Publish as a pre-release (testers only)
+        required: false
+        default: true
+        type: boolean
 
 permissions:
   contents: write
@@ -161,6 +166,19 @@ jobs:
       - name: Inventory
         run: ls -laR dist
 
+      # Test builds are published as pre-releases: /releases/latest ignores
+      # them, so the 3.x updater does not push ATA-GUI 4 to everyone. Publish a
+      # stable release with workflow_dispatch and this flag turned off.
+      - name: Resolve pre-release flag
+        id: flags
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "prerelease=${{ inputs.prerelease }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
@@ -168,7 +186,7 @@ jobs:
           name: ATA-GUI ${{ env.RELEASE_TAG }}
           generate_release_notes: true
           fail_on_unmatched_files: false
-          prerelease: ${{ contains(env.RELEASE_TAG, '-') }}
+          prerelease: ${{ steps.flags.outputs.prerelease == 'true' }}
           # Order matters: the 3.x WinForms updater blindly downloads the FIRST
           # asset of the release and expects a ZIP whose root contains
           # ATA-GUI.exe, so the Windows portable archive must come first.

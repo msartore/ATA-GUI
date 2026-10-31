@@ -17,6 +17,18 @@ git push origin v4.0.0
 archives plus installers, verifies each platform's expected files and publishes a GitHub release
 with generated notes. `workflow_dispatch` rebuilds an existing tag without moving it.
 
+## Pre-releases
+
+A tag push publishes a **pre-release**, so the build is only visible to people who look for it:
+
+- `https://api.github.com/repos/msartore/ATA-GUI/releases/latest` ignores pre-releases, so the
+  3.x WinForms updater keeps offering the last stable build and does not move everyone to 4.x.
+- The in-app updater reads the `/releases` list, so 4.x test builds still notice newer test builds.
+- Testers install manually from the release page.
+
+To publish a stable release, run the workflow with `workflow_dispatch` and set
+`prerelease: false`. That release then becomes `latest` for the 3.x updater too.
+
 ## Asset contract
 
 ```
