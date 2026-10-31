@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { api } from "../lib/api";
 import { useI18n } from "../i18n";
-import { Btn, IconBtn } from "../components/ui";
 import { TitleBar, ResizeHandles } from "../components/TitleBar";
 import { errorText, splitArgs } from "../lib/util";
 
@@ -15,7 +14,13 @@ interface Entry {
 
 let entryId = 0;
 
-/** Standalone terminal: the dock only holds the button that opens this window. */
+/** Prompt host: the address without the adb port, like a shell prompt. */
+function promptHost(serial: string): string {
+  if (!serial) return "local";
+  const host = serial.split(":")[0];
+  return host.length > 24 ? `${host.slice(0, 22)}…` : host;
+}
+
 export function TerminalWindow({ serial }: { serial: string }) {
   const { t } = useI18n();
   const [tool, setTool] = useState<"adb" | "fastboot">("adb");
@@ -26,7 +31,9 @@ export function TerminalWindow({ serial }: { serial: string }) {
   const [cursor, setCursor] = useState(-1);
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const inputRef = useRef<HTMLTextAreaElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const prompt = `ata@${promptHost(serial)}:~$`;
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -35,7 +42,7 @@ export function TerminalWindow({ serial }: { serial: string }) {
   useEffect(() => {
     const node = scrollRef.current;
     if (node) node.scrollTop = node.scrollHeight;
-  }, [entries]);
+  }, [entries, busy]);
 
   const run = async () => {
     const value = command.trim();
@@ -47,15 +54,15 @@ export function TerminalWindow({ serial }: { serial: string }) {
     setBusy(true);
     setHistory((current) => [...current, value]);
     setCursor(-1);
+    setCommand("");
 
     try {
       const out = await api.runTool(tool, serial || null, args);
-      const text = `${out.stdout}${out.stderr}`.trim();
+      const text = `${out.stdout}${out.stderr}`.replace(/\r\n/g, "\n").trim();
       setEntries((current) => [
         ...current,
         { id: ++entryId, tool, command: value, output: text || t("terminal.noOutput"), ok: out.code === 0 },
       ]);
-      setCommand("");
     } catch (error) {
       setEntries((current) => [
         ...current,
@@ -84,71 +91,74 @@ export function TerminalWindow({ serial }: { serial: string }) {
     <div className="app terminal-window">
       <TitleBar tools={null} compact title={t("terminal.title")} />
 
-      <div className="window-head">
-        <h1>{t("terminal.title")}</h1>
-        <span className="badge badge-info mono" title={serial || undefined}>
-          {serial || t("value.noDevice")}
-        </span>
-        <div className="row is-tight right">
-          <div className="radio-row">
-            <label className="check">
-              <input type="radio" checked={tool === "adb"} onChange={() => setTool("adb")} />
-              adb
-            </label>
-            <label className="check">
-              <input type="radio" checked={tool === "fastboot"} onChange={() => setTool("fastboot")} />
-              fastboot
-            </label>
-          </div>
-          <IconBtn
-            icon="trash"
-            label={t("terminal.clear")}
-            disabled={entries.length === 0}
-            onClick={() => setEntries([])}
-          />
-        </div>
-      </div>
-
-      <div className="terminal-body" ref={scrollRef}>
-        {entries.length === 0 ? (
-          <p className="hint">{t("terminal.empty")}</p>
-        ) : (
-          entries.map((entry) => (
-            <div key={entry.id} className="term-entry">
+      <div className="term" onClick={() => inputRef.current?.focus()}>
+        <div className="term-scroll" ref={scrollRef}>
+          {entries.map((entry) => (
+            <div key={entry.id}>
               <div className="term-cmd">
-                <span className="term-prompt">$</span>
-                {entry.tool} {entry.command}
+                <span className="term-prompt">{prompt}</span>
+                {entry.command}
               </div>
               <pre className={entry.ok ? "term-out" : "term-out is-error"}>{entry.output}</pre>
             </div>
-          ))
-        )}
-      </div>
+          ))}
 
-      <div className="terminal-foot">
-        <textarea
-          ref={inputRef}
-          className="textarea terminal-input"
-          rows={1}
-          value={command}
-          placeholder={t("terminal.placeholder")}
-          onChange={(event) => setCommand(event.target.value)}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" && !event.shiftKey && !event.altKey) {
-              event.preventDefault();
-              void run();
-            } else if (event.key === "ArrowUp") {
-              event.preventDefault();
-              recall(-1);
-            } else if (event.key === "ArrowDown") {
-              event.preventDefault();
-              recall(1);
-            }
-          }}
-        />
-        <Btn variant="primary" icon="play" disabled={busy || !command.trim()} onClick={() => void run()}>
-          {t("button.run")}
-        </Btn>
+          {busy ? (
+            <div className="term-cmd">
+              <span className="term-prompt">{prompt}</span>
+              <span className="term-running">…</span>
+            </div>
+          ) : null}
+
+          <div className="term-line">
+            <span className="term-prompt">{prompt}</span>
+            <input
+              ref={inputRef}
+              className="term-input"
+              value={command}
+              spellCheck={false}
+              autoComplete="off"
+              autoCapitalize="off"
+              aria-label={t("terminal.title")}
+              onChange={(event) => setCommand(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault();
+                  void run();
+                } else if (event.key === "ArrowUp") {
+                  event.preventDefault();
+                  recall(-1);
+                } else if (event.key === "ArrowDown") {
+                  event.preventDefault();
+                  recall(1);
+                } else if (event.key === "l" && (event.ctrlKey || event.metaKey)) {
+                  event.preventDefault();
+                  setEntries([]);
+                } else if ((event.key === "u" || event.key === "c") && event.ctrlKey) {
+                  event.preventDefault();
+                  setCommand("");
+                }
+              }}
+            />
+          </div>
+        </div>
+
+        <footer className="term-status">
+          <span className="term-mode">
+            <button type="button" className={tool === "adb" ? "is-on" : ""} onClick={() => setTool("adb")}>
+              adb
+            </button>
+            <button
+              type="button"
+              className={tool === "fastboot" ? "is-on" : ""}
+              onClick={() => setTool("fastboot")}
+            >
+              fastboot
+            </button>
+          </span>
+          <span className="term-host">{serial || t("value.noDevice")}</span>
+          <span className="term-hint">{t("terminal.keys")}</span>
+        </footer>
       </div>
 
       <ResizeHandles />

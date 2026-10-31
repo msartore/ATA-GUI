@@ -14,6 +14,14 @@ root), so existing installations upgrade in place.
 - macOS runs with the native overlay title bar (traffic lights); the detached
   Logs, Tasks and Terminal windows keep the app's own chrome.
 
+### Terminal
+
+- The detached terminal is a real terminal surface now: dark scrollback, a
+  shell prompt (`ata@<host>:~$`) with the command typed inline, output kept
+  verbatim (errors in red), ↑/↓ history, Ctrl+L / Cmd+K to clear, Ctrl+U or
+  Ctrl+C to drop the current line, and a status bar that toggles adb/fastboot.
+  The old card-per-command layout, textarea and Run button are gone.
+
 ### Languages
 
 Eight catalogues ship with the binary (`en`, `it`, `es`, `de`, `fr`, `pt-BR`,

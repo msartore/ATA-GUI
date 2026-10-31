@@ -129,7 +129,6 @@
   "apk.bloatwareRemover": "Bloatware remover",
   "apk.bridgeMissing": "ATA-Bridge not installed",
   "apk.noApps": "No apps to show",
-  "terminal.placeholder": "Type an adb or fastboot command (without the binary name)",
   "state.offline": "You are offline",
   "state.upToDate": "ATA is up to date",
   "state.notUpToDate": "ATA is not up to date, update it as soon as you can",
@@ -357,5 +356,6 @@
   "hint.pairAuth": "Pairing was rejected. Regenerate the code/QR on the phone and try again.",
   "error.cancelled": "Operation cancelled",
   "error.timeout": "The operation timed out",
-  "error.updateManual": "Automatic updates are not available on macOS yet — download the new .dmg from the releases page."
+  "error.updateManual": "Automatic updates are not available on macOS yet — download the new .dmg from the releases page.",
+  "terminal.keys": "↑/↓ history · Ctrl+L clear · Enter run"
 }

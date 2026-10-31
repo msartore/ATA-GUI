@@ -13,7 +13,7 @@
 - Device info in system and fastboot modes, with a multi-device selector.
 - Logcat / `getevent` streaming in a detached, scrollable window.
 - Task manager (process list, force-stop), shell command runner, text injection.
-- Terminal in its own window: adb/fastboot commands with history (↑/↓) and Enter to run.
+- Terminal in its own window: a full-height screen with a shell prompt (`ata@<host>:~$`), inline command line, scrollback, ↑/↓ history, Ctrl+L to clear and a status bar that switches between adb and fastboot.
 
 ## Wireless ADB
 

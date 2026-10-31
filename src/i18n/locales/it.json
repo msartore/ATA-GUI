@@ -129,7 +129,6 @@
   "apk.bloatwareRemover": "Rimozione bloatware",
   "apk.bridgeMissing": "ATA-Bridge non installato",
   "apk.noApps": "Nessuna app da mostrare",
-  "terminal.placeholder": "Digita un comando adb o fastboot (senza il nome del binario)",
   "state.offline": "Sei offline",
   "state.upToDate": "ATA è aggiornato",
   "state.notUpToDate": "ATA non è aggiornato, aggiornalo appena possibile",
@@ -360,8 +359,6 @@
   "error.updateManual": "Gli aggiornamenti automatici non sono ancora disponibili su macOS: scarica il nuovo .dmg dalla pagina delle release.",
   "terminal.title": "Terminale",
   "terminal.open": "Apri finestra terminale",
-  "terminal.empty": "Nessun comando eseguito: scrivine uno qui sotto.",
-  "terminal.clear": "Pulisci output",
   "terminal.noOutput": "(nessun output)",
   "log.adbStopped": "adb terminato: aggiorna l'elenco dispositivi per riavviarlo.",
   "dialog.licenseTools": "Termini Android SDK",
@@ -375,5 +372,6 @@
   "wireless.manual": "Endpoint manuale",
   "wireless.pairing": "Accoppia un nuovo telefono",
   "wireless.connectedTo": "Connesso a",
-  "progress.unpacking": "Estrazione…"
+  "progress.unpacking": "Estrazione…",
+  "terminal.keys": "↑/↓ cronologia · Ctrl+L pulisci · Invio esegui"
 }

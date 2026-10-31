@@ -129,7 +129,6 @@
   "apk.bloatwareRemover": "预装软件清理",
   "apk.bridgeMissing": "ATA-Bridge 未安装",
   "apk.noApps": "没有可显示的应用",
-  "terminal.placeholder": "输入 adb 或 fastboot 命令（不需要写可执行文件名）",
   "state.offline": "当前处于离线状态",
   "state.upToDate": "ATA 已是最新版本",
   "state.notUpToDate": "ATA 不是最新版本，请尽快更新",
@@ -360,8 +359,6 @@
   "error.updateManual": "macOS 暂不支持自动更新，请从发布页面下载新的 .dmg。",
   "terminal.title": "终端",
   "terminal.open": "打开终端窗口",
-  "terminal.empty": "还没有命令——在下方输入。",
-  "terminal.clear": "清除输出",
   "terminal.noOutput": "（无输出）",
   "log.adbStopped": "adb 已停止——刷新设备列表即可重新启动。",
   "dialog.licenseTools": "Android SDK 条款",
@@ -375,5 +372,6 @@
   "wireless.manual": "手动端点",
   "wireless.pairing": "配对新手",
   "wireless.connectedTo": "已连接到",
-  "progress.unpacking": "正在解压…"
+  "progress.unpacking": "正在解压…",
+  "terminal.keys": "↑/↓ 历史 · Ctrl+L 清屏 · Enter 执行"
 }

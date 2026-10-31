@@ -129,7 +129,6 @@
   "apk.bloatwareRemover": "Удаление bloatware",
   "apk.bridgeMissing": "ATA-Bridge не установлен",
   "apk.noApps": "Нет приложений для отображения",
-  "terminal.placeholder": "Введите команду adb или fastboot (без имени исполняемого файла)",
   "state.offline": "Нет подключения к интернету",
   "state.upToDate": "ATA обновлена до актуальной версии",
   "state.notUpToDate": "ATA не обновлена — обновите её как можно скорее",
@@ -360,8 +359,6 @@
   "error.updateManual": "Автоматические обновления в macOS пока недоступны — скачайте новый .dmg со страницы релизов.",
   "terminal.title": "Терминал",
   "terminal.open": "Открыть окно терминала",
-  "terminal.empty": "Команд пока нет — введите ниже.",
-  "terminal.clear": "Очистить вывод",
   "terminal.noOutput": "(нет вывода)",
   "log.adbStopped": "adb остановлен — обновите список устройств, чтобы запустить его снова.",
   "dialog.licenseTools": "Условия Android SDK",
@@ -375,5 +372,6 @@
   "wireless.manual": "Ручной endpoint",
   "wireless.pairing": "Сопряжение нового телефона",
   "wireless.connectedTo": "Подключено к",
-  "progress.unpacking": "Распаковка…"
+  "progress.unpacking": "Распаковка…",
+  "terminal.keys": "↑/↓ история · Ctrl+L очистить · Enter выполнить"
 }
