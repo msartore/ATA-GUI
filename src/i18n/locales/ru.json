@@ -462,5 +462,6 @@
   "error.invalidIp": "Введите корректный IPv4-адрес",
   "wireless.manual": "Ручной endpoint",
   "wireless.pairing": "Сопряжение нового телефона",
-  "wireless.connectedTo": "Подключено к"
+  "wireless.connectedTo": "Подключено к",
+  "progress.unpacking": "Распаковка…"
 }

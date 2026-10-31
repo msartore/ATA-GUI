@@ -40,6 +40,7 @@ import type {
   Config,
   DeviceEntry,
   DeviceInfo,
+  DownloadProgress,
   ToolStatus,
 } from "../lib/types";
 
@@ -65,7 +66,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
   const [ips, setIps] = useState<string[]>(config.ips);
   const [busy, setBusy] = useState<string | null>(null);
   const [cancelable, setCancelable] = useState(false);
-  const [progress, setProgress] = useState<number | null>(null);
+  const [progress, setProgress] = useState<DownloadProgress | null>(null);
   const [dialog, setDialog] = useState<{ name: string; props?: Record<string, unknown> } | null>(null);
   const [missing, setMissing] = useState<"tools" | "scrcpy" | null>(null);
   const [disclaimer, setDisclaimer] = useState(!config.disclaimerAccepted);
@@ -563,7 +564,6 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
     ips,
     addIp,
     busy,
-    progress,
     runBusy,
     openDialog: (name, props) => setDialog({ name, props }),
     closeDialog: () => setDialog(null),
@@ -630,15 +630,6 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
         <Dock />
         <ResizeHandles />
 
-        {busy ? (
-          <LoadingDialog
-            label={busy}
-            onCancel={cancelable ? () => void api.cancelOperation() : undefined}
-            detail={progress !== null ? `${progress}%` : undefined}
-            progress={progress ?? undefined}
-          />
-        ) : null}
-
         {disclaimer ? (
           <DisclaimerDialog
             onAccept={completeDisclaimer}
@@ -646,7 +637,7 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
           />
         ) : null}
 
-        {missing && !disclaimer ? (
+        {missing && !disclaimer && !busy ? (
           <MissingDialog
             title={missing === "tools" ? t("dialog.missingTitle") : t("dialog.scrcpyMissingTitle")}
             body={
@@ -731,6 +722,15 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
         ) : null}
         {dialog?.name === "update" ? (
           <UpdateDialog url={String(dialog.props?.url ?? "")} onClose={() => setDialog(null)} />
+        ) : null}
+
+        {busy ? (
+          <LoadingDialog
+            label={busy}
+            onCancel={cancelable ? () => void api.cancelOperation() : undefined}
+            detail={progress?.detail}
+            progress={progress ? progress.percent : null}
+          />
         ) : null}
       </div>
     </MainContext.Provider>

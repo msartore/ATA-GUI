@@ -106,10 +106,12 @@ export function LoadingDialog({
 }: {
   label: string;
   detail?: string;
-  progress?: number;
+  /** 0-100 for a determinate bar; null/undefined shows an indeterminate one. */
+  progress?: number | null;
   onCancel?: () => void;
 }) {
   const { t } = useI18n();
+  const indeterminate = typeof progress !== "number";
 
   return (
     <Modal
@@ -124,10 +126,11 @@ export function LoadingDialog({
     >
       <div className="row">
         <Spinner size={16} />
-        <span className="mono">{detail ?? ""}</span>
+        <span className="mono grow">{detail ?? ""}</span>
+        {typeof progress === "number" ? <span className="mono">{Math.round(progress)}%</span> : null}
       </div>
-      <div className="progress">
-        <i style={{ width: `${progress ?? 35}%` }} />
+      <div className={`progress${indeterminate ? " is-indeterminate" : ""}`}>
+        <i style={indeterminate ? undefined : { width: `${progress}%` }} />
       </div>
     </Modal>
   );

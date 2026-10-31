@@ -462,5 +462,6 @@
   "error.invalidIp": "Inserisci un indirizzo IPv4 valido",
   "wireless.manual": "Endpoint manuale",
   "wireless.pairing": "Accoppia un nuovo telefono",
-  "wireless.connectedTo": "Connesso a"
+  "wireless.connectedTo": "Connesso a",
+  "progress.unpacking": "Estrazione…"
 }

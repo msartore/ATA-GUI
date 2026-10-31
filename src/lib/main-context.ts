@@ -45,7 +45,6 @@ export interface MainApi {
   addIp: (ip: string) => Promise<void>;
 
   busy: string | null;
-  progress: number | null;
   runBusy: <T>(label: string, task: () => Promise<T>) => Promise<T | undefined>;
 
   openDialog: (name: string, props?: Record<string, unknown>) => void;

@@ -79,6 +79,15 @@ async fn download_file(
     }
 
     let total = response.content_length();
+    // Give the bar a determinate start instead of waiting for the first chunk.
+    let _ = app.emit(
+        "download:progress",
+        Progress {
+            phase: phase.to_string(),
+            received: 0,
+            total,
+        },
+    );
     let mut file = fs::File::create(destination).map_err(|e| e.to_string())?;
     let mut received: u64 = 0;
     let mut stream = response.bytes_stream();
@@ -98,6 +107,14 @@ async fn download_file(
     }
 
     file.flush().map_err(|e| e.to_string())?;
+    let _ = app.emit(
+        "download:progress",
+        Progress {
+            phase: phase.to_string(),
+            received: total.unwrap_or(received),
+            total,
+        },
+    );
     Ok(())
 }
 
@@ -199,7 +216,7 @@ pub async fn platform_tools(app: tauri::AppHandle, paths: AppPaths) -> Result<()
     let staging = paths.runtime_dir.join("platform-tools-tmp");
     let _ = fs::remove_dir_all(&staging);
     fs::create_dir_all(&staging).map_err(|e| e.to_string())?;
-    extract_archive(&zip_path, &staging)?;
+    unpack(&zip_path, &staging).await?;
 
     let _ = app.emit(
         "download:progress",
@@ -322,6 +339,16 @@ fn pick_asset_url(assets: &[serde_json::Value]) -> Option<(String, String)> {
 
 /// Extract a zip or a tar.gz into `destination` (scrcpy ships a tarball on
 /// Linux, everything else is a zip).
+/// Unpacking a 13 MB archive is CPU/disk bound: keep it off the async worker
+/// so other commands (device polling, UI calls) are not stalled.
+async fn unpack(archive: &Path, destination: &Path) -> Result<(), String> {
+    let from = archive.to_path_buf();
+    let to = destination.to_path_buf();
+    tauri::async_runtime::spawn_blocking(move || extract_archive(&from, &to))
+        .await
+        .map_err(|e| e.to_string())?
+}
+
 fn extract_archive(archive: &Path, destination: &Path) -> Result<(), String> {
     let name = archive
         .file_name()
@@ -362,7 +389,7 @@ pub async fn scrcpy(app: tauri::AppHandle, paths: AppPaths) -> Result<(), String
     let staging = paths.runtime_dir.join("scrcpy-tmp");
     let _ = fs::remove_dir_all(&staging);
     fs::create_dir_all(&staging).map_err(|e| e.to_string())?;
-    extract_archive(&archive, &staging)?;
+    unpack(&archive, &staging).await?;
 
     // The archive contains a single scrcpy-<platform>-vX folder.
     let mut root = staging.clone();
@@ -504,7 +531,7 @@ pub async fn apply_update(
     let _ = fs::remove_file(&zip_path);
 
     download_file(&app, &url, &zip_path, "update").await?;
-    extract_archive(&zip_path, &staging)?;
+    unpack(&zip_path, &staging).await?;
 
     let exe = std::env::current_exe().map_err(|e| e.to_string())?;
     let exe_dir = exe.parent().ok_or("no exe dir")?.to_path_buf();

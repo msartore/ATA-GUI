@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { listen } from "@tauri-apps/api/event";
 import { api } from "./api";
 import type { TFunction } from "../i18n";
-import type { DeviceEntry, LogType, ToolStatus } from "./types";
+import type { DeviceEntry, DownloadProgress, LogType, ToolStatus } from "./types";
 
 export interface BootstrapHooks {
   t: TFunction;
@@ -12,7 +12,7 @@ export interface BootstrapHooks {
   syncFor: (device: DeviceEntry) => Promise<void>;
   onTools: (tools: ToolStatus | null) => void;
   onMissing: (what: "tools" | null) => void;
-  onProgress: (value: number | null) => void;
+  onProgress: (value: DownloadProgress | null) => void;
   onDevices: (devices: DeviceEntry[]) => void;
 }
 
@@ -65,10 +65,20 @@ export function useAppBootstrap(hooks: BootstrapHooks): void {
 
       await subscribe<{ phase: string; received: number; total: number | null }>(
         "download:progress",
-        ({ received, total }) => {
-          if (total && total > 0) {
-            latest.current.onProgress(Math.min(99, Math.round((received / total) * 100)));
+        ({ phase, received, total }) => {
+          const mb = (bytes: number) => `${(bytes / 1_048_576).toFixed(1)} MB`;
+          if (phase === "unpacking") {
+            latest.current.onProgress({ percent: null, detail: latest.current.t("progress.unpacking") });
+            return;
           }
+          if (total && total > 0) {
+            latest.current.onProgress({
+              percent: Math.min(100, Math.round((received / total) * 100)),
+              detail: `${mb(received)} / ${mb(total)}`,
+            });
+            return;
+          }
+          latest.current.onProgress({ percent: null, detail: mb(received) });
         },
       );
 

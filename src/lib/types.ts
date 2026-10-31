@@ -181,3 +181,10 @@ export interface MdnsService {
   ip: string;
   port: string;
 }
+
+/** Download progress shown by the busy overlay. `percent` is null while the
+ *  total size is unknown (the bar then runs indeterminate). */
+export interface DownloadProgress {
+  percent: number | null;
+  detail?: string;
+}

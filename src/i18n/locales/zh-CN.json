@@ -462,5 +462,6 @@
   "error.invalidIp": "请输入有效的 IPv4 地址",
   "wireless.manual": "手动端点",
   "wireless.pairing": "配对新手",
-  "wireless.connectedTo": "已连接到"
+  "wireless.connectedTo": "已连接到",
+  "progress.unpacking": "正在解压…"
 }
