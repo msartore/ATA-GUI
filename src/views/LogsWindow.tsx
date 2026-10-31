@@ -219,15 +219,20 @@ export function LogsWindow({ serial }: { serial: string }) {
             <Btn
               small
               variant="ghost"
-              icon="copy"
+              icon="download"
               onClick={async () => {
                 const text = buffer.current.map((line) => line.text).join("\n");
                 if (!text) return;
-                await api.clipboardWrite(text);
-                ui.notify(t("logs.copied"), "ok");
+                const stamp = new Date().toISOString().slice(0, 16).replace(/[:T]/g, "-");
+                try {
+                  const path = await api.saveTextFile(`logcat-${serial}-${stamp}.txt`, text);
+                  if (path) ui.notify(t("logs.saved", { path }), "ok");
+                } catch (error) {
+                  ui.notify(t("error.saveFailed", { message: errorText(error) }), "error");
+                }
               }}
             >
-              {t("logs.copy")}
+              {t("logs.save")}
             </Btn>
             <Btn small variant="ghost" icon="trash" onClick={clear}>
               {t("logs.clear")}

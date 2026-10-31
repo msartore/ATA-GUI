@@ -80,6 +80,9 @@ export const api = {
 
   fileSize: (path: string) => invoke<number>("file_size", { path }),
 
+  saveTextFile: (name: string, content: string) =>
+    invoke<string | null>("save_text_file", { name, content }),
+
   imageExtract: (serial: string, partition: string) =>
     invoke<ImageExtraction>("image_extract", { serial, partition }),
 
@@ -168,7 +171,6 @@ export const api = {
   pickFiles: (kind: "apk" | "img" | "zip" | "any", multiple: boolean) =>
     invoke<string[]>("pick_files", { kind, multiple }),
 
-  clipboardWrite: (text: string) => invoke<void>("clipboard_write", { text }),
 
   watcherStart: () => invoke<void>("watcher_start"),
 

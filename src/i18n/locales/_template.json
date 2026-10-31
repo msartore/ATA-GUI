@@ -195,7 +195,6 @@
   "logs.getEvent": "GetEvent",
   "logs.filter": "Filter",
   "logs.charCount": "Character count",
-  "logs.copied": "Log copied to the clipboard",
   "logs.startLogcat": "Start",
   "logs.stopLogcat": "Stop",
   "logs.clear": "Clear log",
@@ -352,5 +351,7 @@
   "error.cancelled": "Operation cancelled",
   "error.timeout": "The operation timed out",
   "error.updateManual": "Automatic updates are not available on macOS yet — download the new .dmg from the releases page.",
-  "terminal.keys": "↑/↓ history · Ctrl+L clear · Enter run"
+  "terminal.keys": "↑/↓ history · Ctrl+L clear · Enter run",
+  "logs.save": "Save log",
+  "logs.saved": "Saved to {path}"
 }

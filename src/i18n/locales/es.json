@@ -195,12 +195,10 @@
   "logs.getEvent": "GetEvent",
   "logs.filter": "Filtrar",
   "logs.charCount": "Número de caracteres",
-  "logs.copied": "Registro copiado al portapapeles",
   "logs.startLogcat": "Iniciar",
   "logs.stopLogcat": "Detener",
   "logs.clear": "Borrar registro",
   "logs.clearLogcat": "Borrar logcat",
-  "logs.copy": "Copiar registro",
   "settings.language": "Idioma",
   "settings.languageSystem": "Idioma del sistema",
   "settings.feedbackPopup": "Desactivar la ventana de comentarios",
@@ -261,7 +259,7 @@
   "error.offline": "No tienes conexión",
   "error.noDeviceSelected": "No hay ningún dispositivo seleccionado",
   "error.noPackages": "No hay apps disponibles",
-  "error.saveFailed": "Error al guardar el archivo",
+  "error.saveFailed": "No se pudo guardar el archivo: {message}",
   "log.connectionChecking": "comprobando la conexión...",
   "log.connectionChecked": "conexión comprobada",
   "log.offline": "no tienes conexión",
@@ -393,5 +391,7 @@
   "flash.cancelled": "Cancelado",
   "flash.steps": "{done} de {total}",
   "flash.noOutput": "Esperando salida…",
-  "button.remove": "Quitar"
+  "button.remove": "Quitar",
+  "logs.save": "Guardar log",
+  "logs.saved": "Guardado en {path}"
 }

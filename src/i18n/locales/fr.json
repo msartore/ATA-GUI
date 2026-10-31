@@ -195,12 +195,10 @@
   "logs.getEvent": "GetEvent",
   "logs.filter": "Filtrer",
   "logs.charCount": "Nombre de caractères",
-  "logs.copied": "Journal copié dans le presse-papiers",
   "logs.startLogcat": "Démarrer",
   "logs.stopLogcat": "Arrêter",
   "logs.clear": "Effacer le journal",
   "logs.clearLogcat": "Effacer le logcat",
-  "logs.copy": "Copier le journal",
   "settings.language": "Langue",
   "settings.languageSystem": "Langue du système",
   "settings.feedbackPopup": "Désactiver la fenêtre de commentaires",
@@ -261,7 +259,7 @@
   "error.offline": "Vous êtes hors ligne",
   "error.noDeviceSelected": "Aucun appareil sélectionné",
   "error.noPackages": "Aucune application disponible",
-  "error.saveFailed": "Impossible d’enregistrer le fichier",
+  "error.saveFailed": "Impossible d'enregistrer le fichier : {message}",
   "log.connectionChecking": "vérification de la connexion...",
   "log.connectionChecked": "connexion vérifiée",
   "log.offline": "vous êtes hors ligne",
@@ -393,5 +391,7 @@
   "flash.cancelled": "Annulé",
   "flash.steps": "{done} sur {total}",
   "flash.noOutput": "En attente de sortie…",
-  "button.remove": "Retirer"
+  "button.remove": "Retirer",
+  "logs.save": "Enregistrer le log",
+  "logs.saved": "Enregistré dans {path}"
 }

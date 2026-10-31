@@ -195,12 +195,10 @@
   "logs.getEvent": "GetEvent",
   "logs.filter": "Filter",
   "logs.charCount": "Character count",
-  "logs.copied": "Log copied to the clipboard",
   "logs.startLogcat": "Start",
   "logs.stopLogcat": "Stop",
   "logs.clear": "Clear log",
   "logs.clearLogcat": "Clear logcat",
-  "logs.copy": "Copy log",
   "settings.language": "Language",
   "settings.languageSystem": "System language",
   "settings.feedbackPopup": "Disable feedback pop up",
@@ -261,7 +259,7 @@
   "error.offline": "You are offline",
   "error.noDeviceSelected": "No device selected",
   "error.noPackages": "No apps available",
-  "error.saveFailed": "Failed to save the file",
+  "error.saveFailed": "Could not save the file: {message}",
   "log.connectionChecking": "checking connection...",
   "log.connectionChecked": "connection checked",
   "log.offline": "you are offline",
@@ -393,5 +391,7 @@
   "flash.cancelled": "Cancelled",
   "flash.steps": "{done} of {total}",
   "flash.noOutput": "Waiting for output…",
-  "button.remove": "Remove"
+  "button.remove": "Remove",
+  "logs.save": "Save log",
+  "logs.saved": "Saved to {path}"
 }

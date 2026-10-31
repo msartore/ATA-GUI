@@ -195,12 +195,10 @@
   "logs.getEvent": "GetEvent",
   "logs.filter": "筛选",
   "logs.charCount": "字符数",
-  "logs.copied": "日志已复制到剪贴板",
   "logs.startLogcat": "开始",
   "logs.stopLogcat": "停止",
   "logs.clear": "清空日志",
   "logs.clearLogcat": "清空 logcat",
-  "logs.copy": "复制日志",
   "settings.language": "语言",
   "settings.languageSystem": "跟随系统语言",
   "settings.feedbackPopup": "禁用反馈弹窗",
@@ -261,7 +259,7 @@
   "error.offline": "当前处于离线状态",
   "error.noDeviceSelected": "未选择设备",
   "error.noPackages": "没有可用的应用",
-  "error.saveFailed": "保存文件失败",
+  "error.saveFailed": "无法保存文件：{message}",
   "log.connectionChecking": "正在检查连接...",
   "log.connectionChecked": "连接检查完成",
   "log.offline": "当前处于离线状态",
@@ -393,5 +391,7 @@
   "flash.cancelled": "已取消",
   "flash.steps": "{done} / {total}",
   "flash.noOutput": "等待输出…",
-  "button.remove": "移除"
+  "button.remove": "移除",
+  "logs.save": "保存日志",
+  "logs.saved": "已保存到 {path}"
 }

@@ -19,7 +19,6 @@
     "core:window:allow-set-focus",
     "core:webview:allow-internal-toggle-devtools",
     "dialog:default",
-    "clipboard-manager:allow-write-text",
     "core:window:allow-set-size",
     "core:window:allow-is-maximized"
   ]

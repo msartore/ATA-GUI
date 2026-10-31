@@ -195,12 +195,10 @@
   "logs.getEvent": "GetEvent",
   "logs.filter": "Фильтр",
   "logs.charCount": "Количество символов",
-  "logs.copied": "Журнал скопирован в буфер обмена",
   "logs.startLogcat": "Старт",
   "logs.stopLogcat": "Стоп",
   "logs.clear": "Очистить журнал",
   "logs.clearLogcat": "Очистить logcat",
-  "logs.copy": "Копировать журнал",
   "settings.language": "Язык",
   "settings.languageSystem": "Системный язык",
   "settings.feedbackPopup": "Отключить всплывающее окно с отзывом",
@@ -261,7 +259,7 @@
   "error.offline": "Нет подключения к интернету",
   "error.noDeviceSelected": "Устройство не выбрано",
   "error.noPackages": "Нет доступных приложений",
-  "error.saveFailed": "Не удалось сохранить файл",
+  "error.saveFailed": "Не удалось сохранить файл: {message}",
   "log.connectionChecking": "проверка подключения...",
   "log.connectionChecked": "подключение проверено",
   "log.offline": "нет подключения к интернету",
@@ -393,5 +391,7 @@
   "flash.cancelled": "Отменено",
   "flash.steps": "{done} из {total}",
   "flash.noOutput": "Ожидание вывода…",
-  "button.remove": "Удалить"
+  "button.remove": "Удалить",
+  "logs.save": "Сохранить лог",
+  "logs.saved": "Сохранено в {path}"
 }

@@ -54,6 +54,9 @@ root), so existing installations upgrade in place.
   window draws the last 400 lines of a 6 000-line buffer instead of every row.
   A busy device that prints 45 000 lines per second now stays at ~56 fps with
   400 nodes in the DOM.
+- The log toolbar saves the buffer to a file (`logcat-<serial>-<date>.txt`,
+  chosen in the native dialog) instead of only copying it to the clipboard, and
+  reports the path it wrote.
 - The level letter is no longer printed twice (the `threadtime` field is
   dropped from the message, the coloured column keeps it), the character count
   is maintained incrementally instead of re-joining the whole buffer, the

@@ -17,7 +17,6 @@ mod wireless;
 use serde::Serialize;
 use state::{AppPaths, AppState, Config};
 use tauri::Manager;
-use tauri_plugin_clipboard_manager::ClipboardExt;
 use tauri_plugin_dialog::DialogExt;
 
 #[derive(Serialize, Clone, Debug)]
@@ -212,6 +211,44 @@ fn flash_sideload(
     zip_path: String,
 ) -> Result<i32, String> {
     flashrun::sideload(app, &state.flash, &state.paths, &target, &serial, &zip_path)
+}
+
+#[tauri::command(async)]
+async fn save_text_file(
+    app: tauri::AppHandle,
+    name: String,
+    content: String,
+) -> Result<Option<String>, String> {
+    // Automation hook, mirroring ATA_PICK_FILES: answer the save dialog
+    // without showing it so CDP tests can verify the written file.
+    if let Ok(target) = std::env::var("ATA_SAVE_FILE") {
+        if !target.trim().is_empty() {
+            std::fs::write(&target, content).map_err(|error| error.to_string())?;
+            return Ok(Some(target));
+        }
+    }
+
+    let (sender, receiver) = std::sync::mpsc::channel();
+    app.dialog()
+        .file()
+        .set_file_name(&name)
+        .add_filter("Log", &["txt", "log"])
+        .save_file(move |path| {
+            let _ = sender.send(path);
+        });
+
+    let picked = receiver.recv().map_err(|error| error.to_string())?;
+    match picked {
+        Some(path) => {
+            let target = path
+                .as_path()
+                .ok_or_else(|| "invalid path".to_string())?
+                .to_path_buf();
+            std::fs::write(&target, content).map_err(|error| error.to_string())?;
+            Ok(Some(target.to_string_lossy().to_string()))
+        }
+        None => Ok(None),
+    }
 }
 
 #[tauri::command(async)]
@@ -613,10 +650,6 @@ async fn pick_files(
     Ok(picked.into_iter().map(|path| path.to_string()).collect())
 }
 
-#[tauri::command(async)]
-fn clipboard_write(app: tauri::AppHandle, text: String) -> Result<(), String> {
-    app.clipboard().write_text(text).map_err(|e| e.to_string())
-}
 
 /// Ask the running long operation (install / flash / sideload / push) to stop.
 #[tauri::command]
@@ -682,7 +715,6 @@ pub fn run() {
         }))
         .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_dialog::init())
-        .plugin(tauri_plugin_clipboard_manager::init())
         .setup(|app| {
             let paths = AppPaths::resolve(app.handle());
             let config = Config::load(&paths);
@@ -757,6 +789,7 @@ pub fn run() {
             flash_sideload,
             flash_cancel,
             file_size,
+            save_text_file,
             image_extract,
             adb_connect,
             adb_disconnect,
@@ -794,7 +827,6 @@ pub fn run() {
             online_check,
             open_url,
             pick_files,
-            clipboard_write,
             cancel_operation,
             auto_connect,
             watcher_start,
