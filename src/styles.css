@@ -1413,6 +1413,8 @@ textarea {
   max-height: none;
   height: 100%;
 }
+/* The licence dialog is a normal 560px modal, so the text keeps a readable
+   measure and sits centred on screen. */
 .pre-block.is-license {
   max-height: 48vh;
   font-size: 11.5px;

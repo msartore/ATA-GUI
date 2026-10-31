@@ -22,7 +22,6 @@ export function DisclaimerDialog({
     <Modal
       title={t("dialog.disclaimerTitle")}
       subtitle={t("dialog.disclaimerImportant")}
-      wide
       footer={
         <>
           <Btn variant="danger" onClick={onDecline}>
