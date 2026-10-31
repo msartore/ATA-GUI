@@ -365,6 +365,8 @@ textarea {
   background: var(--surface-2);
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 6px;
   gap: 12px;
   font-size: 11px;
   color: var(--text-mute);
@@ -1130,6 +1132,13 @@ textarea {
   gap: 9px;
   min-width: 0;
   min-height: 0;
+  /* Short windows scroll the column instead of clipping the last panel. */
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.system-left > .panel,
+.system-mid > .panel {
+  flex: 0 0 auto;
 }
 
 .system-right {
@@ -1179,8 +1188,9 @@ textarea {
 }
 
 .dock {
-  flex: 0 0 300px;
-  height: 300px;
+  /* Short windows give most of the height back to the workspace. */
+  flex: 0 0 clamp(210px, 28vh, 300px);
+  height: clamp(210px, 28vh, 300px);
   display: grid;
   grid-template-columns: 380px minmax(0, 1fr);
   gap: 9px;
@@ -1194,9 +1204,14 @@ textarea {
 .dock-left {
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 8px;
   min-width: 0;
   min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.dock-left > .panel {
+  flex: 0 0 auto;
 }
 
 .dock-right {
@@ -1820,7 +1835,52 @@ textarea {
 }
 
 /* Dock terminal: one compact launcher row, no duplicate controls. */
-.terminal-launcher .panel-body {
-  padding-top: 8px;
-  padding-bottom: 8px;
+.terminal-launcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  min-height: 40px;
+}
+.launcher-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+/* ------------------------------------------------------------ responsive */
+
+@media (max-width: 1240px) {
+  .workspace {
+    padding: 10px;
+  }
+  .panel-head {
+    padding: 8px 11px;
+  }
+  .panel-body {
+    padding: 10px 11px;
+  }
+  .system-grid {
+    gap: 8px;
+  }
+  .dock {
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 8px;
+  }
+}
+
+/* Buttons whose label repeats the icon drop the text when space is tight. */
+@media (max-width: 1180px), (max-height: 780px) {
+  .btn.is-collapsible > span {
+    display: none;
+  }
+  .btn.is-collapsible {
+    padding-inline: 9px;
+  }
 }

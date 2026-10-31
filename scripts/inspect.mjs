@@ -98,6 +98,26 @@ try {
       console.log(`saved ${argument ?? "shot.png"}`);
       break;
     }
+    case "size": {
+      if (argument === "reset") {
+        await send("Emulation.clearDeviceMetricsOverride");
+        console.log("viewport reset");
+        break;
+      }
+      const [w, h] = (argument ?? "").split("x").map(Number);
+      if (!w || !h) {
+        console.log("usage: inspect.mjs size <width>x<height> | size reset");
+        break;
+      }
+      await send("Emulation.setDeviceMetricsOverride", {
+        width: w,
+        height: h,
+        deviceScaleFactor: 1,
+        mobile: false,
+      });
+      console.log(`viewport ${w}x${h}`);
+      break;
+    }
     case "errors": {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       const problems = events.filter(
@@ -110,7 +130,7 @@ try {
       break;
     }
     default:
-      console.log("usage: inspect.mjs text|html|eval <expr>|shot <file>|errors");
+      console.log("usage: inspect.mjs text|html|eval <expr>|shot <file>|size <w>x<h>|errors");
   }
 } finally {
   socket.close();

@@ -517,7 +517,15 @@ export function SystemTab() {
                 </button>
               )}
               <span className="right">
-                <Btn small variant="ghost" icon="shield" onClick={() => m.openDialog("bloatware")} disabled={!connected}>
+                <Btn
+                  small
+                  variant="ghost"
+                  icon="shield"
+                  className="is-collapsible"
+                  title={t("apk.bloatwareRemover")}
+                  onClick={() => m.openDialog("bloatware")}
+                  disabled={!connected}
+                >
                   {t("apk.bloatwareRemover")}
                 </Btn>
               </span>

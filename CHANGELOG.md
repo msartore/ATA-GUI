@@ -37,6 +37,9 @@ ones and reloaded at runtime, so an older export can never hide a newer key.
 - Iconoir icon set throughout.
 - The terminal lives in its own window (history with ↑/↓, Enter to run, full
   scrollback) instead of a cramped field in the dock.
+- The layout holds together at the 1040×720 minimum: the dock shrinks, columns
+  narrow rather than stack, device columns scroll instead of clipping, and
+  toolbar buttons keep only their icon when space runs out.
 
 ### Robustness
 

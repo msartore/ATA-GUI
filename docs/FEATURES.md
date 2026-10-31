@@ -34,6 +34,9 @@
 - Eight bundled languages loaded at runtime; see [`TRANSLATIONS.md`](TRANSLATIONS.md).
 - Virtualised package list: only the visible rows of an 800+ package list are rendered.
 - Toolbar actions appear only when they can act instead of sitting greyed out.
+- Responsive down to the 1040×720 minimum: the dock gives height back to the workspace, the
+  columns narrow instead of stacking, device columns scroll instead of clipping their last panel,
+  and toolbar buttons drop their label to keep the icon when space is tight.
 
 ## Desktop capabilities
 

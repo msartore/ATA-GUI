@@ -43,16 +43,47 @@ export function LogPanel() {
       flush
       actions={
         <div className="row is-tight">
-          <Btn small variant="ghost" icon="trash" onClick={m.clearLogs}>
+          <Btn
+            small
+            variant="ghost"
+            icon="trash"
+            className="is-collapsible"
+            title={t("button.clearLog")}
+            onClick={m.clearLogs}
+          >
             {t("button.clearLog")}
           </Btn>
-          <Btn small variant="ghost" icon="logs" disabled={!m.device} onClick={m.openLogs}>
+          <Btn
+            small
+            variant="ghost"
+            icon="logs"
+            className="is-collapsible"
+            title={t("button.deviceLogs")}
+            disabled={!m.device}
+            onClick={m.openLogs}
+          >
             {t("button.deviceLogs")}
           </Btn>
-          <Btn small variant="ghost" icon="tasks" disabled={!m.device} onClick={m.openTasks}>
+          <Btn
+            small
+            variant="ghost"
+            icon="tasks"
+            className="is-collapsible"
+            title={t("button.taskManager")}
+            disabled={!m.device}
+            onClick={m.openTasks}
+          >
             {t("button.taskManager")}
           </Btn>
-          <Btn small variant="ghost" icon="screen" disabled={!m.device} onClick={() => void m.shareScreen()}>
+          <Btn
+            small
+            variant="ghost"
+            icon="screen"
+            className="is-collapsible"
+            title={t("button.screenShare")}
+            disabled={!m.device}
+            onClick={() => void m.shareScreen()}
+          >
             {t("button.screenShare")}
           </Btn>
         </div>
@@ -74,11 +105,19 @@ export function Dock() {
   return (
     <div className="dock">
       <div className="dock-left">
-        <Panel title={t("section.terminal")} className="terminal-launcher">
-          <Btn small variant="ghost" icon="terminal" className="is-block" onClick={m.openTerminal}>
+        <div className="terminal-launcher">
+          <span className="launcher-label">{t("section.terminal")}</span>
+          <Btn
+            small
+            variant="ghost"
+            icon="terminal"
+            className="is-collapsible"
+            title={t("terminal.open")}
+            onClick={m.openTerminal}
+          >
             {t("terminal.open")}
           </Btn>
-        </Panel>
+        </div>
         <Panel title={t("section.deviceSync")} className="sync-panel">
           <Btn
             variant="primary"
