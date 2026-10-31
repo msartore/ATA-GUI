@@ -28,17 +28,6 @@ const README: &str = "README.txt";
 
 #[derive(Serialize, Clone, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct LocaleMeta {
-    pub code: String,
-    pub name: String,
-    /// "bundled" or "external"
-    pub source: String,
-    pub path: Option<String>,
-    pub valid: bool,
-}
-
-#[derive(Serialize, Clone, Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct LocaleBundle {
     pub code: String,
     pub name: String,
@@ -179,42 +168,6 @@ pub fn bundles(paths: &AppPaths) -> Vec<LocaleBundle> {
 
 /// Lightweight metadata for the settings UI (includes invalid external files so
 /// a broken translation can be reported instead of silently ignored).
-pub fn catalog(paths: &AppPaths) -> Vec<LocaleMeta> {
-    let mut catalog: Vec<LocaleMeta> = bundles(paths)
-        .into_iter()
-        .map(|bundle| LocaleMeta {
-            code: bundle.code,
-            name: bundle.name,
-            source: bundle.source,
-            path: None,
-            valid: true,
-        })
-        .collect();
-
-    for (code, path, json, valid) in external_files(paths) {
-        if valid {
-            if let Some(entry) = catalog.iter_mut().find(|entry| entry.code == code) {
-                entry.path = Some(path.to_string_lossy().to_string());
-                entry.source = "external".into();
-                entry.name = display_name(&json, &code);
-            }
-        } else {
-            catalog.push(LocaleMeta {
-                code,
-                name: path
-                    .file_name()
-                    .map(|name| name.to_string_lossy().to_string())
-                    .unwrap_or_default(),
-                source: "external".into(),
-                path: Some(path.to_string_lossy().to_string()),
-                valid: false,
-            });
-        }
-    }
-
-    catalog
-}
-
 fn readme_text() -> String {
     r#"ATA-GUI translations
 =====================

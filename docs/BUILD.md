@@ -31,6 +31,7 @@ npm run desktop:dev      # Tauri window with hot reload
 cargo test --manifest-path src-tauri/Cargo.toml
 cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets
 npx tsc --noEmit
+npm run check:locales     # parity across the 9 catalogues, duplicate and unused keys
 ```
 
 ## CI

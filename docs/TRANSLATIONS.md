@@ -38,6 +38,8 @@ Rules:
   language itself.
 - Keep `{placeholders}` untouched: `{count} {name} {ip} {version} {path}
   {display} {kind} {image} {partition}`.
+- `npm run check:locales` fails when a catalogue misses a key, adds an extra one
+  or repeats a key, and lists keys that no longer appear in the source.
 - Missing keys fall back to English, so a partial translation is valid and can
   be completed over time.
 - Do not translate product names: ATA-GUI, ATA-Bridge, adb, fastboot, scrcpy,

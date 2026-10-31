@@ -256,15 +256,6 @@ pub fn parse_getprop(text: &str) -> BTreeMap<String, String> {
     map
 }
 
-pub fn users(paths: &AppPaths, serial: &str) -> Vec<UserEntry> {
-    let text = tools::adb_text(
-        paths,
-        Some(serial),
-        &["shell".into(), "pm".into(), "list".into(), "users".into()],
-    );
-    parse_users(&text)
-}
-
 static USERS_RE: LazyLock<regex::Regex> =
     LazyLock::new(|| regex::Regex::new(r"UserInfo\{(\d+):([^:}]*)").expect("users regex is valid"));
 
@@ -288,6 +279,16 @@ pub fn parse_users(text: &str) -> Vec<UserEntry> {
         }
     }
     users
+}
+
+/// `adb shell pm list users` as entries, running user first.
+pub fn users(paths: &AppPaths, serial: &str) -> Vec<UserEntry> {
+    let text = tools::adb_text(
+        paths,
+        Some(serial),
+        &["shell".into(), "pm".into(), "list".into(), "users".into()],
+    );
+    parse_users(&text)
 }
 
 pub fn primary_user(paths: &AppPaths, serial: &str) -> String {

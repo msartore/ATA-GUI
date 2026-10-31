@@ -29,6 +29,9 @@ jobs:
       - name: Frontend install
         run: npm ci
 
+      - name: Check locale catalogues
+        run: npm run check:locales
+
       - name: Type-check and bundle frontend
         run: npm run build
 

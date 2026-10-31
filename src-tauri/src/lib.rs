@@ -86,11 +86,6 @@ fn device_info(state: tauri::State<'_, AppState>, serial: String) -> Result<devi
 }
 
 #[tauri::command(async)]
-fn device_users(state: tauri::State<'_, AppState>, serial: String) -> Vec<device::UserEntry> {
-    device::users(&state.paths, &serial)
-}
-
-#[tauri::command(async)]
 fn apps_load(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -287,11 +282,6 @@ fn adb_running() -> bool {
 }
 
 #[tauri::command(async)]
-fn rotation_get(state: tauri::State<'_, AppState>, serial: String) -> bool {
-    device::rotation_get(&state.paths, &serial)
-}
-
-#[tauri::command(async)]
 fn rotation_set(
     state: tauri::State<'_, AppState>,
     serial: String,
@@ -377,11 +367,6 @@ fn logcat_clear(state: tauri::State<'_, AppState>, serial: String) -> String {
 }
 
 #[tauri::command(async)]
-fn scrcpy_available(state: tauri::State<'_, AppState>) -> bool {
-    scrcpy::executable(&state.paths).is_some()
-}
-
-#[tauri::command(async)]
 fn scrcpy_version(state: tauri::State<'_, AppState>) -> Result<String, String> {
     scrcpy::version(&state.paths)
 }
@@ -459,11 +444,6 @@ fn bloatware_available(state: tauri::State<'_, AppState>) -> bool {
 }
 
 #[tauri::command(async)]
-fn bloatware_list_path(state: tauri::State<'_, AppState>) -> String {
-    bloatware::list_path(&state.paths).to_string_lossy().to_string()
-}
-
-#[tauri::command(async)]
 fn qr_pairing_code() -> Result<wireless::QrPairing, String> {
     wireless::pairing_code()
 }
@@ -476,11 +456,6 @@ fn mdns_services(state: tauri::State<'_, AppState>) -> Vec<wireless::MdnsService
 #[tauri::command(async)]
 fn locales_bundles(state: tauri::State<'_, AppState>) -> Vec<locales::LocaleBundle> {
     locales::bundles(&state.paths)
-}
-
-#[tauri::command(async)]
-fn locales_catalog(state: tauri::State<'_, AppState>) -> Vec<locales::LocaleMeta> {
-    locales::catalog(&state.paths)
 }
 
 #[tauri::command(async)]
@@ -690,7 +665,6 @@ pub fn run() {
             run_tool,
             devices,
             device_info,
-            device_users,
             apps_load,
             apps_apply,
             apps_install,
@@ -709,7 +683,6 @@ pub fn run() {
             adb_pair,
             adb_kill,
             adb_running,
-            rotation_get,
             rotation_set,
             inject_text,
             processes,
@@ -717,7 +690,6 @@ pub fn run() {
             logcat_start,
             logcat_stop,
             logcat_clear,
-            scrcpy_available,
             scrcpy_version,
             scrcpy_encoders,
             scrcpy_run,
@@ -728,13 +700,11 @@ pub fn run() {
             apply_update,
             bloatware_scan,
             bloatware_available,
-            bloatware_list_path,
             config_get,
             config_save,
             qr_pairing_code,
             mdns_services,
             locales_bundles,
-            locales_catalog,
             locales_open_dir,
             locales_export_template,
             ip_add,
@@ -750,6 +720,7 @@ pub fn run() {
             exit_app,
             windows::window_minimize,
             windows::window_toggle_maximize,
+            windows::window_is_maximized,
             windows::window_is_maximized,
             windows::window_close,
             windows::window_start_drag,

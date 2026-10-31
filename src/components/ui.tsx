@@ -121,16 +121,6 @@ export function Empty({ children }: { children: ReactNode }) {
   return <div className="empty">{children}</div>;
 }
 
-export function Badge({
-  children,
-  tone = "muted",
-}: {
-  children: ReactNode;
-  tone?: "muted" | "ok" | "warn" | "danger" | "info";
-}) {
-  return <span className={`badge badge-${tone}`}>{children}</span>;
-}
-
 export function Spinner({ size = 14 }: { size?: number }) {
   return <span className="spinner" style={{ width: size, height: size }} />;
 }

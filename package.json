@@ -4,14 +4,15 @@
   "version": "4.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "tauri": "tauri",
-    "desktop:dev": "tauri dev",
+    "check:locales": "node scripts/check-locales.mjs --strict",
     "desktop:build": "tauri build",
+    "desktop:dev": "tauri dev",
+    "dev": "vite",
+    "dist": "npm run desktop:build && npm run package",
     "package": "node scripts/package.mjs",
-    "dist": "npm run desktop:build && npm run package"
+    "preview": "vite preview",
+    "tauri": "tauri"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.9.0",

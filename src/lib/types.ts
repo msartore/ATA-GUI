@@ -36,11 +36,6 @@ export interface DeviceEntry {
   connection: "CABLE" | "WIRELESS";
 }
 
-export interface UserEntry {
-  id: string;
-  name: string;
-}
-
 export interface DeviceInfo {
   serial: string;
   androidVersion: string;
@@ -157,14 +152,6 @@ export interface LocaleBundle {
   name: string;
   source: "bundled" | "external" | string;
   json: string;
-}
-
-export interface LocaleMeta {
-  code: string;
-  name: string;
-  source: string;
-  path: string | null;
-  valid: boolean;
 }
 
 export interface QrPairing {

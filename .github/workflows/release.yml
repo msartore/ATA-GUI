@@ -46,6 +46,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Check locale catalogues
+        run: npm run check:locales
+
       - name: Compare tag, package.json, Cargo.toml and tauri.conf.json
         run: |
           set -euo pipefail

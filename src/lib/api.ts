@@ -3,7 +3,6 @@ import type {
   AppMode,
   AppsResult,
   LocaleBundle,
-  LocaleMeta,
   MdnsService,
   BloatEntry,
   CmdOut,
@@ -18,7 +17,6 @@ import type {
   ScrcpyMedia,
   ToolStatus,
   UpdateInfo,
-  UserEntry,
 } from "./types";
 
 export const api = {
@@ -31,7 +29,6 @@ export const api = {
 
   deviceInfo: (serial: string) => invoke<DeviceInfo>("device_info", { serial }),
 
-  deviceUsers: (serial: string) => invoke<UserEntry[]>("device_users", { serial }),
 
   appsLoad: (serial: string, user: string, mode: AppMode) =>
     invoke<AppsResult>("apps_load", { serial, user, mode }),
@@ -101,7 +98,6 @@ export const api = {
 
   adbRunning: () => invoke<boolean>("adb_running"),
 
-  rotationGet: (serial: string) => invoke<boolean>("rotation_get", { serial }),
 
   rotationSet: (serial: string, enabled: boolean, display: number | null) =>
     invoke<boolean>("rotation_set", { serial, enabled, display }),
@@ -121,7 +117,6 @@ export const api = {
 
   logcatClear: (serial: string) => invoke<string>("logcat_clear", { serial }),
 
-  scrcpyAvailable: () => invoke<boolean>("scrcpy_available"),
 
   scrcpyVersion: () => invoke<string>("scrcpy_version"),
 
@@ -144,13 +139,11 @@ export const api = {
 
   bloatwareAvailable: () => invoke<boolean>("bloatware_available"),
 
-  bloatwareListPath: () => invoke<string>("bloatware_list_path"),
 
   configGet: () => invoke<Config>("config_get"),
 
   localesBundles: () => invoke<LocaleBundle[]>("locales_bundles"),
 
-  localesCatalog: () => invoke<LocaleMeta[]>("locales_catalog"),
 
   localesOpenDir: () => invoke<string>("locales_open_dir"),
 
@@ -181,14 +174,13 @@ export const api = {
 
   windowToggleMaximize: () => invoke<boolean>("window_toggle_maximize"),
 
-  windowIsMaximized: () => invoke<boolean>("window_is_maximized"),
 
   windowClose: () => invoke<void>("window_close"),
 
   windowStartDrag: () => invoke<void>("window_start_drag"),
 
-  windowStartResize: (direction: string) => invoke<void>("window_start_resize", { direction }),
 
+  windowIsMaximized: () => invoke<boolean>("window_is_maximized"),
   openSubWindow: (kind: "logs" | "tasks" | "terminal", serial: string, user: string) =>
     invoke<void>("open_sub_window", { kind, serial, user }),
 };
