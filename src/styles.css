@@ -1160,9 +1160,12 @@ textarea {
 
 .recovery-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   align-items: start;
+}
+.recovery-grid > .is-full {
+  grid-column: 1 / -1;
 }
 
 .tools-grid {
@@ -1346,6 +1349,9 @@ textarea {
   .system-grid {
     grid-template-columns: 1fr;
     min-height: 580px;
+  }
+  .recovery-grid > .is-full {
+    grid-column: auto;
   }
   .system-right {
     grid-column: 1 / -1;
@@ -1843,9 +1849,17 @@ textarea {
 }
 
 /* Dock terminal: one compact launcher row, no duplicate controls. */
+.terminal-card {
+  container-type: inline-size;
+}
 .terminal-card .panel-body {
   padding: 10px;
   justify-content: center;
+}
+@container (max-width: 150px) {
+  .terminal-tile span {
+    display: none;
+  }
 }
 /* Action tile: fills the short, narrow card instead of leaving dead space. */
 .terminal-tile {

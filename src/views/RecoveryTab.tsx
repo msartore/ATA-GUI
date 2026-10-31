@@ -85,8 +85,7 @@ export function RecoveryTab() {
         <p className="hint">{t("section.flashMenu")} — sideload</p>
       </Panel>
 
-      <div className="stack">
-        <Panel title={t("section.imageExtraction")}>
+      <Panel title={t("section.imageExtraction")}>
           <label className="control">
             {t("label.partition")}
             <select className="select" value={partition} onChange={(event) => setPartition(event.target.value)}>
@@ -101,9 +100,9 @@ export function RecoveryTab() {
             {t("button.extract")}
           </Btn>
           <p className="hint">dd → /sdcard → IMG/</p>
-        </Panel>
+      </Panel>
 
-        <Panel title={t("section.rebootMenu")}>
+      <Panel title={t("section.rebootMenu")}>
           <Btn className="btn-block" icon="boot" disabled={!connected} onClick={() => void reboot("recovery")}>
             {t("button.rebootRecovery")}
           </Btn>
@@ -113,11 +112,10 @@ export function RecoveryTab() {
           <Btn className="btn-block" icon="chip" disabled={!connected} onClick={() => void reboot("bootloader")}>
             {t("button.rebootFastboot")}
           </Btn>
-        </Panel>
-      </div>
+      </Panel>
 
       {!connected ? (
-        <Panel title={t("label.status")}>
+        <Panel title={t("label.status")} className="is-full">
           <Empty>{t("value.noDevice")}</Empty>
         </Panel>
       ) : null}
