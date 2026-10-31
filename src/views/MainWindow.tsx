@@ -525,12 +525,20 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
       const status = await api.toolStatus();
       setTools(status);
       log("OK", t("log.toolsReady"));
-      log("INFO", t("log.restartRequired"));
       // Only dismiss the blocking prompt when both tools really exist — a
       // failed download must not leave a working-looking UI without adb.
-      if (status.adb && status.fastboot) setMissing(null);
+      if (!status.adb || !status.fastboot) return;
+      setMissing(null);
+      // No restart needed: reconnect the endpoints that were unreachable while
+      // adb was missing and load whatever is attached now.
+      const reconnected = await api.autoConnect().catch(() => [] as string[]);
+      for (const endpoint of reconnected) {
+        log("OK", t("log.connected", { ip: endpoint }));
+      }
+      const found = await refreshDevices();
+      if (found.length) await syncFor(found[0], { force: true });
     });
-  }, [log, runBusy, t]);
+  }, [log, refreshDevices, runBusy, syncFor, t]);
 
   const downloadScrcpy = useCallback(async () => {
     await runBusy(t("log.scrcpyDownloading"), async () => {

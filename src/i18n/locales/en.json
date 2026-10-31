@@ -408,7 +408,6 @@
   "log.waitingDevice": "waiting for the device...",
   "log.genericDone": "done",
   "log.genericFailed": "operation failed",
-  "log.restartRequired": "restart ATA after installing the tools",
   "_meta.name": "English",
   "settings.translations": "Translations",
   "settings.reloadLocales": "Reload languages",

@@ -408,7 +408,6 @@
   "log.waitingDevice": "ожидание устройства...",
   "log.genericDone": "готово",
   "log.genericFailed": "операция не выполнена",
-  "log.restartRequired": "перезапустите ATA после установки инструментов",
   "_meta.name": "Русский",
   "settings.translations": "Переводы",
   "settings.reloadLocales": "Перезагрузить языки",

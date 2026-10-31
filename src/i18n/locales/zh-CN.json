@@ -408,7 +408,6 @@
   "log.waitingDevice": "正在等待设备...",
   "log.genericDone": "完成",
   "log.genericFailed": "操作失败",
-  "log.restartRequired": "安装工具后请重启 ATA",
   "_meta.name": "简体中文",
   "settings.translations": "翻译",
   "settings.reloadLocales": "重新加载语言",

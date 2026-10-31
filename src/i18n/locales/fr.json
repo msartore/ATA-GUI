@@ -408,7 +408,6 @@
   "log.waitingDevice": "en attente de l’appareil...",
   "log.genericDone": "terminé",
   "log.genericFailed": "échec de l’opération",
-  "log.restartRequired": "redémarrez ATA après l’installation des outils",
   "_meta.name": "Français",
   "settings.translations": "Traductions",
   "settings.reloadLocales": "Recharger les langues",

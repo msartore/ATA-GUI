@@ -408,7 +408,6 @@
   "log.waitingDevice": "Warten auf das Gerät...",
   "log.genericDone": "abgeschlossen",
   "log.genericFailed": "Vorgang fehlgeschlagen",
-  "log.restartRequired": "ATA nach der Installation der Tools neu starten",
   "_meta.name": "Deutsch",
   "settings.translations": "Übersetzungen",
   "settings.reloadLocales": "Sprachen neu laden",
