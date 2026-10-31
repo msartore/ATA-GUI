@@ -4,6 +4,11 @@ use std::io::{BufRead, BufReader};
 use std::process::{Child, Command, Stdio};
 use std::sync::{Arc, Mutex};
 
+/// Emit at most `BATCH_LINES` per message, or everything older than
+/// `BATCH_WINDOW` — whichever comes first.
+const BATCH_LINES: usize = 300;
+const BATCH_WINDOW: std::time::Duration = std::time::Duration::from_millis(60);
+
 pub struct LogcatHandle {
     child: Arc<Mutex<Child>>,
     join: Option<std::thread::JoinHandle<()>>,
@@ -53,20 +58,38 @@ pub fn start(
     let stderr = child.stderr.take().ok_or("no stderr")?;
     let child = Arc::new(Mutex::new(child));
 
-    // stdout reader — the actual log stream.
+    // stdout reader — the actual log stream. Lines are batched: a busy device
+    // prints thousands per second and one IPC message each would swamp the
+    // webview before React gets a chance to paint.
     let child_ref = child.clone();
     let app_out = app.clone();
     let target_out = target.to_string();
     let join = std::thread::spawn(move || {
         let reader = BufReader::new(stdout);
+        let mut batch: Vec<String> = Vec::with_capacity(BATCH_LINES);
+        let mut last = std::time::Instant::now();
+
         for line in reader.lines() {
             match line {
                 Ok(line) => {
-                    let _ = app_out.emit_to(&target_out, "logcat:line", &line);
+                    batch.push(line);
+                    if batch.len() >= BATCH_LINES || last.elapsed() >= BATCH_WINDOW {
+                        let _ = app_out.emit_to(
+                            &target_out,
+                            "logcat:lines",
+                            std::mem::take(&mut batch),
+                        );
+                        last = std::time::Instant::now();
+                    }
                 }
                 Err(_) => break,
             }
         }
+
+        if !batch.is_empty() {
+            let _ = app_out.emit_to(&target_out, "logcat:lines", batch);
+        }
+
         if let Ok(mut child) = child_ref.lock() {
             let _ = child.kill();
         }

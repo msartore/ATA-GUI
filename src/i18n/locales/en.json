@@ -376,5 +376,6 @@
   "progress.resolving": "Checking the latest release…",
   "progress.installing": "Installing files…",
   "terminal.exitCode": "process exited with code {code}",
-  "terminal.completions": "Suggested commands"
+  "terminal.completions": "Suggested commands",
+  "logs.showing": "showing last {shown} of {total}"
 }

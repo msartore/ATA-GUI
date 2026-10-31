@@ -376,5 +376,6 @@
   "progress.resolving": "正在检查最新版本…",
   "progress.installing": "正在安装文件…",
   "terminal.exitCode": "进程退出，代码 {code}",
-  "terminal.completions": "建议的命令"
+  "terminal.completions": "建议的命令",
+  "logs.showing": "显示最后 {shown} 条，共 {total} 条"
 }

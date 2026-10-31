@@ -2151,6 +2151,10 @@ textarea {
 .logs-layout .log-line {
   content-visibility: auto;
   contain-intrinsic-size: auto 18px;
+  /* Wrapped entries hang under the message instead of starting at the level
+     letter's margin. */
+  padding-left: 1.4em;
+  text-indent: -1.4em;
 }
 
 /* Full-window loading state: blur the app, keep a single centred cluster. */

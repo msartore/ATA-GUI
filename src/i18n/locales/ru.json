@@ -376,5 +376,6 @@
   "progress.resolving": "Проверка последней версии…",
   "progress.installing": "Установка файлов…",
   "terminal.exitCode": "процесс завершился с кодом {code}",
-  "terminal.completions": "Подсказки команд"
+  "terminal.completions": "Подсказки команд",
+  "logs.showing": "последние {shown} из {total}"
 }

@@ -9,9 +9,25 @@ import { errorText } from "../lib/util";
 interface Line {
   id: number;
   text: string;
+  level: string;
 }
 
 let lineId = 0;
+
+/** Kept in memory for filtering and copy; only the tail is rendered. */
+const MAX_LINES = 6000;
+const RENDER_LIMIT = 400;
+
+/**
+ * Default `threadtime` output already carries the level letter between the
+ * tid and the tag. The list shows that letter in its own coloured column, so
+ * drop it here instead of printing it twice.
+ */
+const THREADTIME = /^(\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\.\d{3}\s+\d+\s+\d+)\s+[VDIWEFA]\s/;
+
+function tidy(line: string): string {
+  return line.replace(THREADTIME, "$1 ");
+}
 
 function levelOf(line: string): string {
   const tokens = line.split(/\s+/).filter(Boolean);
@@ -35,13 +51,16 @@ const LEVEL_CLASS: Record<string, string> = {
 export function LogsWindow({ serial }: { serial: string }) {
   const { t } = useI18n();
   const ui = useUi();
-  const [lines, setLines] = useState<Line[]>([]);
   const [running, setRunning] = useState<"logcat" | "getevent" | null>(null);
   const [filter, setFilter] = useState("");
   const [keepScrolling, setKeepScrolling] = useState(true);
+  const [version, setVersion] = useState(0);
+  const [chars, setChars] = useState(0);
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  // logcat can push hundreds of lines per second: buffer them and flush once
-  // per frame so React re-renders at most 60 times a second.
+  // The buffer is mutated in place: React only needs to know that it changed,
+  // not a copy of six thousand strings sixty times a second.
+  const buffer = useRef<Line[]>([]);
+  const charsRef = useRef(0);
   const pending = useRef<string[]>([]);
   const frame = useRef<number | null>(null);
 
@@ -55,11 +74,21 @@ export function LogsWindow({ serial }: { serial: string }) {
         const batch = pending.current;
         pending.current = [];
         if (disposed || batch.length === 0) return;
-        setLines((current) => {
-          const next = [...current];
-          for (const text of batch) next.push({ id: ++lineId, text });
-          return next.length > 6000 ? next.slice(next.length - 6000) : next;
-        });
+
+        const target = buffer.current;
+        for (const text of batch) {
+          const level = levelOf(text);
+          const cleaned = tidy(text);
+          target.push({ id: ++lineId, text: cleaned, level });
+          charsRef.current += cleaned.length + 1;
+        }
+        if (target.length > MAX_LINES) {
+          const dropped = target.splice(0, target.length - MAX_LINES);
+          for (const line of dropped) charsRef.current -= line.text.length + 1;
+        }
+
+        setChars(charsRef.current);
+        setVersion((value) => value + 1);
       };
 
       const append = (text: string) => {
@@ -69,7 +98,13 @@ export function LogsWindow({ serial }: { serial: string }) {
       };
 
       try {
-        stops.push(await listen<string>("logcat:line", (event) => append(event.payload)));
+        // Lines arrive in batches from the reader thread; a busy device can
+        // print thousands per second and one state update each would stall.
+        stops.push(
+          await listen<string[]>("logcat:lines", (event) => {
+            for (const line of event.payload) append(line);
+          }),
+        );
         stops.push(
           await listen<string>("logcat:stderr", (event) => {
             if (event.payload.trim()) append(event.payload);
@@ -89,19 +124,31 @@ export function LogsWindow({ serial }: { serial: string }) {
     };
   }, []);
 
+  const clear = () => {
+    buffer.current = [];
+    charsRef.current = 0;
+    pending.current = [];
+    setChars(0);
+    setVersion((value) => value + 1);
+  };
+
   useEffect(() => {
     if (!keepScrolling) return;
     const node = scrollRef.current;
     if (node) node.scrollTop = node.scrollHeight;
-  }, [lines, keepScrolling]);
+  }, [version, keepScrolling]);
 
-  const visible = useMemo(() => {
+  const { visible, total } = useMemo(() => {
+    const all = buffer.current;
     const needle = filter.trim().toLowerCase();
-    if (!needle) return lines;
-    return lines.filter((line) => line.text.toLowerCase().includes(needle));
-  }, [lines, filter]);
-
-  const text = useMemo(() => lines.map((line) => line.text).join("\n"), [lines]);
+    const matched = needle ? all.filter((line) => line.text.toLowerCase().includes(needle)) : all;
+    return {
+      total: matched.length,
+      visible: matched.length > RENDER_LIMIT ? matched.slice(-RENDER_LIMIT) : matched,
+    };
+    // `all` is mutated in place; `version` is the change signal.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [version, filter]);
 
   const start = async (mode: "logcat" | "getevent") => {
     try {
@@ -148,7 +195,7 @@ export function LogsWindow({ serial }: { serial: string }) {
                 icon="trash"
                 onClick={async () => {
                   await api.logcatClear(serial).catch(() => {});
-                  setLines([]);
+                  clear();
                 }}
               >
                 {t("logs.clearLogcat")}
@@ -174,6 +221,7 @@ export function LogsWindow({ serial }: { serial: string }) {
               variant="ghost"
               icon="copy"
               onClick={async () => {
+                const text = buffer.current.map((line) => line.text).join("\n");
                 if (!text) return;
                 await api.clipboardWrite(text);
                 ui.notify(t("logs.copied"), "ok");
@@ -181,20 +229,23 @@ export function LogsWindow({ serial }: { serial: string }) {
             >
               {t("logs.copy")}
             </Btn>
-            <Btn small variant="ghost" icon="trash" onClick={() => setLines([])}>
+            <Btn small variant="ghost" icon="trash" onClick={clear}>
               {t("logs.clear")}
             </Btn>
+            {total > visible.length ? (
+              <span className="hint">
+                {t("logs.showing", { shown: visible.length, total })}
+              </span>
+            ) : null}
             <span className="hint right">
-              {t("logs.charCount")}: {text.length}
+              {t("logs.charCount")}: {chars}
             </span>
           </div>
 
           <div className="log" ref={scrollRef}>
             {visible.map((line) => (
               <div key={line.id} className="log-line">
-                <span className={LEVEL_CLASS[levelOf(line.text)] ?? "log-UNKNOWN"}>
-                  {levelOf(line.text)}
-                </span>{" "}
+                <span className={LEVEL_CLASS[line.level] ?? "log-UNKNOWN"}>{line.level}</span>{" "}
                 {line.text}
               </div>
             ))}
@@ -204,7 +255,7 @@ export function LogsWindow({ serial }: { serial: string }) {
         <Panel title={t("label.status")}>
           <Field label={t("label.device")} value={serial} mono />
           <Field label={t("label.status")} value={running ?? t("value.none")} />
-          <Field label={t("logs.charCount")} value={text.length} mono />
+          <Field label={t("logs.charCount")} value={chars} mono />
         </Panel>
       </div>
 

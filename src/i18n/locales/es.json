@@ -376,5 +376,6 @@
   "progress.resolving": "Comprobando la última versión…",
   "progress.installing": "Instalando archivos…",
   "terminal.exitCode": "el proceso terminó con el código {code}",
-  "terminal.completions": "Comandos sugeridos"
+  "terminal.completions": "Comandos sugeridos",
+  "logs.showing": "últimas {shown} de {total}"
 }

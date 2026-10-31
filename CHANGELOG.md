@@ -33,6 +33,19 @@ root), so existing installations upgrade in place.
   (a missing DLL, a broken binary) reports its exit code instead of leaving an
   empty block.
 
+### Device log
+
+- logcat output is batched between the reader thread and the UI (up to 300
+  lines or 60 ms per event) instead of one IPC message per line, and the
+  window draws the last 400 lines of a 6 000-line buffer instead of every row.
+  A busy device that prints 45 000 lines per second now stays at ~56 fps with
+  400 nodes in the DOM.
+- The level letter is no longer printed twice (the `threadtime` field is
+  dropped from the message, the coloured column keeps it), the character count
+  is maintained incrementally instead of re-joining the whole buffer, the
+  filter runs only when the text or the buffer changes, and wrapped entries
+  hang under the message.
+
 ### Downloads
 
 - scrcpy and the SDK Platform Tools report every phase — resolving, download
