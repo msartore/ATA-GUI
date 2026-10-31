@@ -2034,3 +2034,9 @@ textarea {
   line-height: 1.55;
   pointer-events: none;
 }
+
+/* Logcat floods the list; let the engine skip painting offscreen lines. */
+.logs-layout .log-line {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 18px;
+}

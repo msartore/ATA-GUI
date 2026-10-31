@@ -28,6 +28,12 @@ src/                             React 19 + TypeScript frontend
 
 - Commands never panic: they return `Result<_, String>` with `errors.*` keys that `errorKey()` maps
   to translated messages.
+- Every command that spawns adb/fastboot, touches the disk or does network I/O is declared
+  `#[tauri::command(async)]` (or `async fn`). Tauri runs those off the main thread; a plain
+  `#[tauri::command]` would run on it and freeze the window for the duration of the call. CPU-bound
+  helpers inside async commands go through `tauri::async_runtime::spawn_blocking` (see `download::unpack`).
+- The webview is never asked to do bulk work either: the package list is virtualised and logcat
+  lines are buffered and flushed once per animation frame.
 - Child processes are argv-only and hidden; long operations run through `Guard`, which owns the
   timeout, the cancel flag and the process-tree kill.
 - Dialogs share `useAction()` for busy state and error alerts; the main window's IPC lifecycle

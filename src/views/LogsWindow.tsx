@@ -40,18 +40,32 @@ export function LogsWindow({ serial }: { serial: string }) {
   const [filter, setFilter] = useState("");
   const [keepScrolling, setKeepScrolling] = useState(true);
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  // logcat can push hundreds of lines per second: buffer them and flush once
+  // per frame so React re-renders at most 60 times a second.
+  const pending = useRef<string[]>([]);
+  const frame = useRef<number | null>(null);
 
   useEffect(() => {
     let disposed = false;
     const stops: Array<() => void> = [];
 
     (async () => {
-      const append = (text: string) => {
-        if (disposed) return;
+      const flush = () => {
+        frame.current = null;
+        const batch = pending.current;
+        pending.current = [];
+        if (disposed || batch.length === 0) return;
         setLines((current) => {
-          const next = [...current, { id: ++lineId, text }];
+          const next = [...current];
+          for (const text of batch) next.push({ id: ++lineId, text });
           return next.length > 6000 ? next.slice(next.length - 6000) : next;
         });
+      };
+
+      const append = (text: string) => {
+        if (disposed) return;
+        pending.current.push(text);
+        if (frame.current === null) frame.current = requestAnimationFrame(flush);
       };
 
       try {
@@ -68,6 +82,8 @@ export function LogsWindow({ serial }: { serial: string }) {
 
     return () => {
       disposed = true;
+      if (frame.current !== null) cancelAnimationFrame(frame.current);
+      pending.current = [];
       stops.forEach((stop) => stop());
       void api.logcatStop().catch(() => {});
     };
