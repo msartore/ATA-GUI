@@ -1795,7 +1795,15 @@ textarea {
   color: var(--accent);
 }
 .term-running {
-  color: var(--log-dim);
+  color: var(--accent);
+}
+.term-line.is-busy .term-running {
+  animation: term-pulse 1.2s ease-in-out infinite;
+}
+@keyframes term-pulse {
+  50% {
+    opacity: 0.25;
+  }
 }
 .term-out {
   margin: 0 0 8px;
@@ -1809,10 +1817,16 @@ textarea {
 .term-out.is-error {
   color: var(--danger);
 }
+.term-note {
+  color: var(--log-dim);
+}
 .term-line {
   display: flex;
   align-items: baseline;
   gap: 6px;
+}
+.term-line.is-busy .term-input {
+  color: var(--log-dim);
 }
 .term-line .term-prompt {
   flex: 0 0 auto;

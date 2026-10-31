@@ -359,7 +359,6 @@
   "error.updateManual": "Автоматические обновления в macOS пока недоступны — скачайте новый .dmg со страницы релизов.",
   "terminal.title": "Терминал",
   "terminal.open": "Открыть окно терминала",
-  "terminal.noOutput": "(нет вывода)",
   "log.adbStopped": "adb остановлен — обновите список устройств, чтобы запустить его снова.",
   "dialog.licenseTools": "Условия Android SDK",
   "dialog.licenseScrcpy": "Лицензия Apache 2.0",
@@ -373,5 +372,8 @@
   "wireless.pairing": "Сопряжение нового телефона",
   "wireless.connectedTo": "Подключено к",
   "progress.unpacking": "Распаковка…",
-  "terminal.keys": "↑/↓ история · Ctrl+L очистить · Enter выполнить"
+  "terminal.keys": "↑/↓ история · Ctrl+C прервать · Ctrl+L очистить",
+  "progress.resolving": "Проверка последней версии…",
+  "progress.installing": "Установка файлов…",
+  "terminal.exitCode": "процесс завершился с кодом {code}"
 }

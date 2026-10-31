@@ -225,6 +225,8 @@ pub struct AppState {
     pub config: Mutex<Config>,
     pub logcat: Mutex<Option<crate::logcat::LogcatHandle>>,
     pub watcher: Mutex<Option<crate::device::WatcherHandle>>,
+    /// The command currently running in the detached terminal window.
+    pub term: crate::terminal::TermState,
     /// Raised by the Cancel button; long operations poll it and kill their child.
     pub cancel: std::sync::Arc<std::sync::atomic::AtomicBool>,
     /// Set by "Kill ADB": the watcher stops polling so nothing restarts the

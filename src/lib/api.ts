@@ -25,6 +25,13 @@ export const api = {
   runTool: (tool: "adb" | "fastboot", serial: string | null, args: string[]) =>
     invoke<CmdOut>("run_tool", { tool, serial, args }),
 
+  /** Streaming variant used by the detached terminal: returns as soon as the
+   *  child starts, output arrives as `term:output` events. */
+  termRun: (target: string, session: number, tool: "adb" | "fastboot", serial: string | null, args: string[]) =>
+    invoke<void>("term_run", { target, session, tool, serial, args }),
+
+  termKill: () => invoke<boolean>("term_kill"),
+
   devices: (isAdb: boolean) => invoke<DeviceEntry[]>("devices", { isAdb }),
 
   deviceInfo: (serial: string) => invoke<DeviceInfo>("device_info", { serial }),

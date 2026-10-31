@@ -545,10 +545,17 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
       await api.downloadScrcpy();
       const status = await api.toolStatus();
       setTools(status);
+      if (!status.scrcpy) {
+        // The archive unpacked but no binary was found: say so instead of
+        // leaving the prompt on screen as if nothing happened.
+        log("ERROR", t("error.scrcpyMissing"));
+        await ui.alert(t("error.scrcpyMissing"));
+        return;
+      }
       log("OK", t("log.scrcpyReady"));
-      if (status.scrcpy || !missing) setMissing(null);
+      setMissing(null);
     });
-  }, [log, missing, runBusy, t]);
+  }, [log, runBusy, t, ui]);
 
   const requestClose = useCallback(async () => {
     const running = await api.adbRunning().catch(() => false);

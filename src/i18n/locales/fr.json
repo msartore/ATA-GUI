@@ -359,7 +359,6 @@
   "error.updateManual": "Les mises à jour automatiques ne sont pas encore disponibles sur macOS — téléchargez le nouveau .dmg depuis la page des versions.",
   "terminal.title": "Terminal",
   "terminal.open": "Ouvrir la fenêtre de terminal",
-  "terminal.noOutput": "(aucune sortie)",
   "log.adbStopped": "adb arrêté — actualisez la liste des appareils pour le redémarrer.",
   "dialog.licenseTools": "Conditions du SDK Android",
   "dialog.licenseScrcpy": "Licence Apache 2.0",
@@ -373,5 +372,8 @@
   "wireless.pairing": "Associer un nouveau téléphone",
   "wireless.connectedTo": "Connecté à",
   "progress.unpacking": "Extraction…",
-  "terminal.keys": "↑/↓ historique · Ctrl+L effacer · Entrée exécuter"
+  "terminal.keys": "↑/↓ historique · Ctrl+C arrêter · Ctrl+L effacer",
+  "progress.resolving": "Vérification de la dernière version…",
+  "progress.installing": "Installation des fichiers…",
+  "terminal.exitCode": "processus terminé avec le code {code}"
 }

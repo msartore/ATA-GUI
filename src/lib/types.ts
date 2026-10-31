@@ -23,6 +23,17 @@ export interface ToolStatus {
   apksDir: string;
 }
 
+export interface TermOutput {
+  session: number;
+  stream: "out" | "err";
+  text: string;
+}
+
+export interface TermExit {
+  session: number;
+  code: number;
+}
+
 export interface CmdOut {
   stdout: string;
   stderr: string;

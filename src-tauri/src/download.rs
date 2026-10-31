@@ -50,7 +50,11 @@ pub struct UpdateInfo {
 pub fn client() -> Result<reqwest::Client, String> {
     reqwest::Client::builder()
         .user_agent("ATA-GUI")
-        .timeout(std::time::Duration::from_secs(120))
+        // No overall cap: an 11 MB archive on a slow link is legitimate. A
+        // stalled socket still fails, because connect and every read have
+        // their own deadline.
+        .connect_timeout(std::time::Duration::from_secs(15))
+        .read_timeout(std::time::Duration::from_secs(45))
         .build()
         .map_err(|e| e.to_string())
 }
@@ -65,6 +69,25 @@ async fn fetch_text(url: &str) -> Result<String, String> {
 }
 
 async fn download_file(
+    app: &tauri::AppHandle,
+    url: &str,
+    destination: &Path,
+    phase: &str,
+) -> Result<(), String> {
+    // A dropped connection mid-body would otherwise surface as a bare error
+    // after a long wait; one clean retry covers the common case.
+    match download_once(app, url, destination, phase).await {
+        Ok(()) => Ok(()),
+        Err(first) => {
+            let _ = fs::remove_file(destination);
+            download_once(app, url, destination, phase)
+                .await
+                .map_err(|second| if second.is_empty() { first } else { second })
+        }
+    }
+}
+
+async fn download_once(
     app: &tauri::AppHandle,
     url: &str,
     destination: &Path,
@@ -91,19 +114,25 @@ async fn download_file(
     let mut file = fs::File::create(destination).map_err(|e| e.to_string())?;
     let mut received: u64 = 0;
     let mut stream = response.bytes_stream();
+    // ~10 events per second is enough for a smooth bar; one per chunk floods
+    // the webview on fast links.
+    let mut last_emit = std::time::Instant::now();
 
     while let Some(chunk) = stream.next().await {
         let chunk = chunk.map_err(|e| e.to_string())?;
         file.write_all(&chunk).map_err(|e| e.to_string())?;
         received += chunk.len() as u64;
-        let _ = app.emit(
-            "download:progress",
-            Progress {
-                phase: phase.to_string(),
-                received,
-                total,
-            },
-        );
+        if last_emit.elapsed() >= std::time::Duration::from_millis(100) {
+            last_emit = std::time::Instant::now();
+            let _ = app.emit(
+                "download:progress",
+                Progress {
+                    phase: phase.to_string(),
+                    received,
+                    total,
+                },
+            );
+        }
     }
 
     file.flush().map_err(|e| e.to_string())?;
@@ -375,6 +404,12 @@ fn extract_archive(archive: &Path, destination: &Path) -> Result<(), String> {
 /// Download scrcpy for the running platform. Windows ships a zip, Linux a
 /// tarball — both are flattened into the runtime directory.
 pub async fn scrcpy(app: tauri::AppHandle, paths: AppPaths) -> Result<(), String> {
+    use tauri::Emitter;
+
+    let _ = app.emit(
+        "download:progress",
+        Progress { phase: "resolving".into(), received: 0, total: None },
+    );
     let text = fetch_text(SCRCPY_RELEASES).await?;
     let json: serde_json::Value = serde_json::from_str(&text).map_err(|e| e.to_string())?;
     let assets = json["assets"].as_array().ok_or("no assets")?;
@@ -389,7 +424,17 @@ pub async fn scrcpy(app: tauri::AppHandle, paths: AppPaths) -> Result<(), String
     let staging = paths.runtime_dir.join("scrcpy-tmp");
     let _ = fs::remove_dir_all(&staging);
     fs::create_dir_all(&staging).map_err(|e| e.to_string())?;
+
+    let _ = app.emit(
+        "download:progress",
+        Progress { phase: "unpacking".into(), received: 0, total: None },
+    );
     unpack(&archive, &staging).await?;
+
+    let _ = app.emit(
+        "download:progress",
+        Progress { phase: "installing".into(), received: 0, total: None },
+    );
 
     // The archive contains a single scrcpy-<platform>-vX folder.
     let mut root = staging.clone();

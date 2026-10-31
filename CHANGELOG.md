@@ -21,6 +21,22 @@ root), so existing installations upgrade in place.
   verbatim (errors in red), ↑/↓ history, Ctrl+L / Cmd+K to clear, Ctrl+U or
   Ctrl+C to drop the current line, and a status bar that toggles adb/fastboot.
   The old card-per-command layout, textarea and Run button are gone.
+- Commands stream: output arrives as it is printed (batched at 60 ms), so
+  `logcat`, `getevent` and long pushes report live instead of freezing the
+  window until exit. Ctrl+C kills the child and returns the prompt; closing the
+  terminal window kills it too. A process that dies without printing anything
+  (a missing DLL, a broken binary) reports its exit code instead of leaving an
+  empty block.
+
+### Downloads
+
+- scrcpy and the SDK Platform Tools report every phase — resolving, download
+  percentage, unpacking, installing — instead of sitting at 100% while the
+  archive is extracted.
+- Downloads have connect/read deadlines (15 s / 45 s) rather than one global
+  timeout that aborted large files on slow links, and retry once.
+- A download that unpacks without producing the binary now says so instead of
+  silently leaving the prompt on screen.
 
 ### Languages
 

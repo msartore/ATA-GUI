@@ -359,7 +359,6 @@
   "error.updateManual": "macOS 暂不支持自动更新，请从发布页面下载新的 .dmg。",
   "terminal.title": "终端",
   "terminal.open": "打开终端窗口",
-  "terminal.noOutput": "（无输出）",
   "log.adbStopped": "adb 已停止——刷新设备列表即可重新启动。",
   "dialog.licenseTools": "Android SDK 条款",
   "dialog.licenseScrcpy": "Apache 2.0 许可证",
@@ -373,5 +372,8 @@
   "wireless.pairing": "配对新手",
   "wireless.connectedTo": "已连接到",
   "progress.unpacking": "正在解压…",
-  "terminal.keys": "↑/↓ 历史 · Ctrl+L 清屏 · Enter 执行"
+  "terminal.keys": "↑/↓ 历史 · Ctrl+C 停止 · Ctrl+L 清屏",
+  "progress.resolving": "正在检查最新版本…",
+  "progress.installing": "正在安装文件…",
+  "terminal.exitCode": "进程退出，代码 {code}"
 }

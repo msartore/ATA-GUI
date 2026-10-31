@@ -7,6 +7,7 @@ mod locales;
 mod logcat;
 mod net;
 mod scrcpy;
+mod terminal;
 mod state;
 mod tools;
 mod windows;
@@ -335,6 +336,35 @@ fn force_stop(state: tauri::State<'_, AppState>, serial: String, names: Vec<Stri
 }
 
 #[tauri::command(async)]
+fn term_run(
+    app: tauri::AppHandle,
+    state: tauri::State<'_, AppState>,
+    target: String,
+    session: u64,
+    tool: String,
+    serial: Option<String>,
+    args: Vec<String>,
+) -> Result<(), String> {
+    terminal::run(
+        app,
+        &state.term,
+        &state.paths,
+        terminal::Run {
+            target: &target,
+            session,
+            tool: &tool,
+            serial: serial.as_deref(),
+            args: &args,
+        },
+    )
+}
+
+#[tauri::command(async)]
+fn term_kill(state: tauri::State<'_, AppState>) -> Result<bool, String> {
+    terminal::kill(&state.term)
+}
+
+#[tauri::command(async)]
 fn logcat_start(
     app: tauri::AppHandle,
     state: tauri::State<'_, AppState>,
@@ -627,6 +657,7 @@ pub fn run() {
                 config: std::sync::Mutex::new(config),
                 logcat: std::sync::Mutex::new(None),
                 watcher: std::sync::Mutex::new(None),
+                term: terminal::TermState::default(),
                 cancel: std::sync::Arc::new(std::sync::atomic::AtomicBool::new(false)),
                 adb_paused: std::sync::Arc::new(std::sync::atomic::AtomicBool::new(false)),
             });
@@ -649,6 +680,15 @@ pub fn run() {
         })
         .on_window_event(|window, event| {
             if let tauri::WindowEvent::CloseRequested { .. } = event {
+                if window.label() == "terminal" {
+                    if let Some(state) = window.app_handle().try_state::<AppState>() {
+                        if let Ok(mut guard) = state.term.current.lock() {
+                            if let Some(handle) = guard.take() {
+                                handle.stop();
+                            }
+                        }
+                    }
+                }
                 if window.label() == "logs" {
                     if let Some(state) = window.app_handle().try_state::<AppState>() {
                         if let Ok(mut guard) = state.logcat.lock() {
@@ -687,6 +727,8 @@ pub fn run() {
             inject_text,
             processes,
             force_stop,
+            term_run,
+            term_kill,
             logcat_start,
             logcat_stop,
             logcat_clear,

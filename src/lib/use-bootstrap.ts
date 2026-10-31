@@ -67,8 +67,16 @@ export function useAppBootstrap(hooks: BootstrapHooks): void {
         "download:progress",
         ({ phase, received, total }) => {
           const mb = (bytes: number) => `${(bytes / 1_048_576).toFixed(1)} MB`;
-          if (phase === "unpacking") {
-            latest.current.onProgress({ percent: null, detail: latest.current.t("progress.unpacking") });
+          const detailKey =
+            phase === "unpacking"
+              ? "progress.unpacking"
+              : phase === "installing"
+                ? "progress.installing"
+                : phase === "resolving"
+                  ? "progress.resolving"
+                  : null;
+          if (detailKey) {
+            latest.current.onProgress({ percent: null, detail: latest.current.t(detailKey) });
             return;
           }
           if (total && total > 0) {
