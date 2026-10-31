@@ -22,31 +22,43 @@ export function SystemTab() {
   const ui = useUi();
   const [ip, setIp] = useState("");
   const [port, setPort] = useState("5555");
-  const [wireless, setWireless] = useState(false);
-  const [found, setFound] = useState<MdnsService[]>([]);
+  const [connectServices, setConnectServices] = useState<MdnsService[]>([]);
+  const [pairServices, setPairServices] = useState<MdnsService[]>([]);
+  const [scanning, setScanning] = useState(false);
+  const [busy, setBusy] = useState<string | null>(null);
+  const [filterOpen, setFilterOpen] = useState(false);
 
-  // Android 11+ advertises the real IP:port over mDNS; the fixed 5555 port is
-  // only valid after `adb tcpip 5555`, which is why manual connects often fail.
+  // Android 11+ picks a random port for wireless debugging, so the advertised
+  // `_adb-tls-connect` endpoint is the only reliable address; 5555 exists only
+  // after an explicit `adb tcpip 5555`.
   const discover = useCallback(async () => {
+    setScanning(true);
     try {
       const services = await api.mdnsServices();
-      setFound(services.filter((service) => service.service.includes("_adb-tls-connect")));
+      setConnectServices(services.filter((service) => service.service.includes("_adb-tls-connect")));
+      setPairServices(services.filter((service) => service.service.includes("_adb-tls-pairing")));
     } catch {
-      setFound([]);
+      setConnectServices([]);
+      setPairServices([]);
+    } finally {
+      setScanning(false);
     }
   }, []);
 
   useEffect(() => {
-    if (wireless) void discover();
-    else setFound([]);
-  }, [wireless, discover]);
-  const [networkLocked, setNetworkLocked] = useState(true);
-  const [filterOpen, setFilterOpen] = useState(false);
+    void discover();
+  }, [discover]);
 
+  // Follow the selected device: its endpoint is the truth, not the last typed IP.
   useEffect(() => {
+    if (m.device?.connection === "WIRELESS") {
+      const [host, endpointPort] = m.device.id.split(":");
+      if (host) setIp(host);
+      if (endpointPort) setPort(endpointPort);
+      return;
+    }
     if (m.info?.ip) setIp(m.info.ip);
-    if (m.device?.connection === "WIRELESS") setWireless(true);
-  }, [m.info?.ip, m.device?.connection]);
+  }, [m.device?.id, m.device?.connection, m.info?.ip]);
 
   const info = m.info;
   const connected = Boolean(m.device);
@@ -68,60 +80,77 @@ export function SystemTab() {
     }
   };
 
-  const connect = async () => {
-    if (!ip.trim()) {
+  const wirelessDevice = m.device?.connection === "WIRELESS" ? m.device : null;
+  // The endpoint we are already on is shown in the status line, not listed again.
+  const discovered = connectServices.filter((service) => service.address !== wirelessDevice?.id);
+
+  const connectTo = async (host: string, rawPort: string) => {
+    const address = host.trim();
+    const target = (rawPort ?? "").trim() || "5555";
+    if (!address) {
       await ui.alert(t("error.enterIp"), "warning");
       return;
     }
+    if (!/^\d{1,3}(\.\d{1,3}){3}$/.test(address)) {
+      await ui.alert(t("error.invalidIp"), "warning");
+      return;
+    }
+    setBusy(`connect:${address}:${target}`);
     m.log("INFO", t("log.connecting"));
     try {
-      const result = await api.adbConnect(ip.trim(), port.trim() || "5555", wireless ? m.device?.id ?? null : null);
+      const result = await api.adbConnect(address, target, null);
       if (result.ok) {
-        m.log("OK", t("log.connected", { ip: ip.trim() }));
-        await m.addIp(ip.trim());
+        m.log("OK", t("log.connected", { ip: address }));
+        await m.addIp(address);
         await m.refreshDevices();
-      } else {
-        m.log("ERROR", `${t("log.connectFailed", { ip: ip.trim() })}\n${result.message}`);
-        const hint =
-          result.code === "refused"
-            ? t("hint.connectionRefused")
-            : result.code === "timeout" || result.code === "unreachable"
-              ? t("hint.connectionTimeout")
+        return;
+      }
+      m.log("ERROR", `${t("log.connectFailed", { ip: address })}\n${result.message}`);
+      const hint =
+        result.code === "refused"
+          ? t("hint.connectionRefused")
+          : result.code === "timeout" || result.code === "unreachable"
+            ? t("hint.connectionTimeout")
+            : result.code === "auth"
+              ? t("hint.pairAuth")
               : "";
-        if (hint) {
-          m.log("WARNING", hint);
-          await ui.alert(hint, "warning");
-        }
+      if (hint) {
+        m.log("WARNING", hint);
+        await ui.alert(hint, "warning");
       }
     } catch (error) {
       m.log("ERROR", errorText(error));
+    } finally {
+      setBusy(null);
     }
   };
 
-  const disconnect = async () => {
-    if (!ip.trim()) {
-      await ui.alert(t("error.enterIp"), "warning");
-      return;
-    }
+  const disconnectFrom = async (endpoint: string) => {
+    const [host, endpointPort] = endpoint.split(":");
+    setBusy(`disconnect:${endpoint}`);
     try {
-      const result = await api.adbDisconnect(ip.trim(), port.trim() || "5555");
+      const result = await api.adbDisconnect(host, endpointPort || "5555");
       if (result.ok) {
-        m.log("OK", t("log.disconnected", { ip: ip.trim() }));
+        m.log("OK", t("log.disconnected", { ip: host }));
         await m.refreshDevices();
       } else {
-        m.log("ERROR", t("log.disconnectFailed", { ip: ip.trim() }));
+        m.log("ERROR", t("log.disconnectFailed", { ip: host }));
       }
     } catch (error) {
       m.log("ERROR", errorText(error));
+    } finally {
+      setBusy(null);
     }
   };
 
-  const pair = async () => {
-    if (!ip.trim()) {
-      await ui.alert(t("error.enterIp"), "warning");
-      return;
-    }
-    m.openDialog("pairing", { ip: ip.trim(), port: port.trim() || "5555" });
+  const pair = () => {
+    // Prefer the address the phone is advertising right now: its pairing port
+    // differs from the connect port and from 5555.
+    const service = pairServices[0];
+    m.openDialog("pairing", {
+      ip: ip.trim() || service?.ip || "",
+      port: service?.port || port.trim() || "",
+    });
   };
 
   const filteredApps = useMemo(() => {
@@ -198,91 +227,115 @@ export function SystemTab() {
           </Btn>
         </Panel>
 
-        <Panel title={t("section.adbOverNetwork")}>
-          <div className="row">
-            <label className="control grow">
-              {t("label.ip")}
-              <input
-                className="input is-mono"
-                value={ip}
-                list="ip-history"
-                disabled={!networkLocked}
-                onChange={(event) => setIp(event.target.value)}
-                onKeyDown={(event) => event.key === "Enter" && void connect()}
-              />
-              <datalist id="ip-history">
-                {m.ips.map((known) => (
-                  <option key={known} value={known} />
-                ))}
-              </datalist>
-            </label>
-            <label className="control w-port">
-              {t("label.port")}
-              <input
-                className="input is-mono"
-                value={port}
-                disabled={!networkLocked}
-                onChange={(event) => setPort(event.target.value)}
-              />
-            </label>
-          </div>
-
-          <div className="row">
-            <div className="radio-row grow">
-              <label className="check">
-                <input type="radio" checked={!wireless} onChange={() => setWireless(false)} />
-                {t("label.wired")}
-              </label>
-              <label className="check">
-                <input type="radio" checked={wireless} onChange={() => setWireless(true)} />
-                {t("label.wireless")}
-              </label>
-            </div>
+        <Panel
+          title={t("section.adbOverNetwork")}
+          actions={
             <IconBtn
-              icon={networkLocked ? "lock" : "unlock"}
-              label={t("button.connect")}
-              onClick={() => setNetworkLocked((value) => !value)}
+              icon="refresh"
+              label={t("button.searchDevices")}
+              onClick={() => void discover()}
             />
-          </div>
-
-          <div className="row">
-            <Btn small icon="wifi" onClick={() => void connect()}>
-              {t("button.connect")}
-            </Btn>
-            <Btn small icon="x" onClick={() => void disconnect()}>
-              {t("button.disconnect")}
-            </Btn>
-            {wireless ? (
-              <>
-                <Btn small icon="key" onClick={() => void pair()}>
-                  {t("button.pair")}
-                </Btn>
-                <Btn small icon="qr" onClick={() => m.openDialog("qr")}>
-                  QR
-                </Btn>
-                <IconBtn icon="refresh" label={t("button.searchDevices")} onClick={() => void discover()} />
-              </>
+          }
+        >
+          <div className="wireless-status">
+            <span className={`dot ${wirelessDevice ? "is-on" : ""}`} />
+            <span className="mono grow">
+              {wirelessDevice
+                ? `${t("wireless.connectedTo")} ${wirelessDevice.id}`
+                : t("wireless.notConnected")}
+            </span>
+            {wirelessDevice ? (
+              <Btn
+                small
+                variant="ghost"
+                icon="x"
+                className="is-collapsible"
+                title={t("button.disconnect")}
+                disabled={busy !== null}
+                onClick={() => void disconnectFrom(wirelessDevice.id)}
+              >
+                {t("button.disconnect")}
+              </Btn>
             ) : null}
           </div>
 
-          {wireless && found.length ? (
-            <div className="row">
-              <span className="hint">{t("label.discovered")}</span>
-              {found.map((service) => (
-                <Btn
-                  key={service.address}
-                  small
-                  icon="wifi"
-                  onClick={() => {
-                    setIp(service.ip);
-                    setPort(service.port);
-                  }}
-                >
-                  {service.address}
-                </Btn>
+          {!scanning && connectServices.length > 0 && discovered.length === 0 ? null : (
+            <>
+              <p className="wireless-label">{t("label.discovered")}</p>
+              <div className="wireless-list">
+                {scanning ? (
+                  <p className="hint">{t("wireless.scanning")}</p>
+                ) : connectServices.length === 0 ? (
+                  <p className="hint">{t("wireless.noneFound")}</p>
+                ) : (
+                  discovered.map((service) => (
+                    <div className="wireless-row" key={service.address}>
+                      <span className="mono grow">{service.address}</span>
+                      <Btn
+                        small
+                        icon="wifi"
+                        disabled={busy !== null}
+                        onClick={() => void connectTo(service.ip, service.port)}
+                      >
+                        {t("button.connect")}
+                      </Btn>
+                    </div>
+                  ))
+                )}
+              </div>
+            </>
+          )}
+
+          <p className="wireless-label">{t("wireless.manual")}</p>
+          <div className="wireless-manual">
+            <input
+              className="input is-mono grow"
+              value={ip}
+              list="ip-history"
+              placeholder="192.168.1.20"
+              onChange={(event) => setIp(event.target.value)}
+              onKeyDown={(event) => event.key === "Enter" && void connectTo(ip, port)}
+            />
+            <datalist id="ip-history">
+              {m.ips.map((known) => (
+                <option key={known} value={known} />
               ))}
-            </div>
-          ) : null}
+            </datalist>
+            <input
+              className="input is-mono w-port"
+              value={port}
+              placeholder="5555"
+              onChange={(event) => setPort(event.target.value)}
+              onKeyDown={(event) => event.key === "Enter" && void connectTo(ip, port)}
+            />
+          </div>
+          <Btn
+            small
+            variant="primary"
+            icon="wifi"
+            className="is-block"
+            disabled={busy !== null || !ip.trim()}
+            onClick={() => void connectTo(ip, port)}
+          >
+            {t("button.connect")}
+          </Btn>
+
+          <p className="wireless-label">{t("wireless.pairing")}</p>
+          <div className="row is-wrap">
+            <Btn
+              small
+              icon="key"
+              disabled={busy !== null || (!ip.trim() && pairServices.length === 0)}
+              onClick={pair}
+            >
+              {t("button.pair")}
+            </Btn>
+            <Btn small icon="qr" title={t("dialog.qrTitle")} onClick={() => m.openDialog("qr")}>
+              QR
+            </Btn>
+          </div>
+
+          <p className="hint">{t("wireless.hint")}</p>
         </Panel>
       </div>
 

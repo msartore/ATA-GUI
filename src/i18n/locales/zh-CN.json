@@ -454,5 +454,13 @@
   "log.adbStopped": "adb 已停止——刷新设备列表即可重新启动。",
   "dialog.licenseTools": "Android SDK 条款",
   "dialog.licenseScrcpy": "Apache 2.0 许可证",
-  "dialog.consentPrefix": "点击“是”即表示你同意"
+  "dialog.consentPrefix": "点击“是”即表示你同意",
+  "wireless.notConnected": "未连接无线设备",
+  "wireless.noneFound": "尚未发现设备。请在手机上开启无线调试后重新扫描。",
+  "wireless.scanning": "正在扫描…",
+  "wireless.hint": "Android 11+ 会为无线调试使用随机端口。除非执行过 adb tcpip，否则请使用发现的端点而不是 5555。",
+  "error.invalidIp": "请输入有效的 IPv4 地址",
+  "wireless.manual": "手动端点",
+  "wireless.pairing": "配对新手",
+  "wireless.connectedTo": "已连接到"
 }

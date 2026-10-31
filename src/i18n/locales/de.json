@@ -454,5 +454,13 @@
   "log.adbStopped": "adb beendet — aktualisiere die Geräteliste, um ihn neu zu starten.",
   "dialog.licenseTools": "Android-SDK-Bedingungen",
   "dialog.licenseScrcpy": "Apache-Lizenz 2.0",
-  "dialog.consentPrefix": "Mit einem Klick auf „Ja“ akzeptierst du die"
+  "dialog.consentPrefix": "Mit einem Klick auf „Ja“ akzeptierst du die",
+  "wireless.notConnected": "Kein Wireless-Gerät verbunden",
+  "wireless.noneFound": "Noch nichts gefunden. Aktiviere drahtloses Debugging am Telefon und suche erneut.",
+  "wireless.scanning": "Suche…",
+  "wireless.hint": "Android 11+ wählt einen zufälligen Port für drahtloses Debugging. Nutze einen gefundenen Endpunkt statt 5555, außer du hast adb tcpip ausgeführt.",
+  "error.invalidIp": "Gültige IPv4-Adresse eingeben",
+  "wireless.manual": "Manueller Endpunkt",
+  "wireless.pairing": "Neues Telefon koppeln",
+  "wireless.connectedTo": "Verbunden mit"
 }

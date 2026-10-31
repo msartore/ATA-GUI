@@ -1920,3 +1920,61 @@ textarea {
     padding-inline: 9px;
   }
 }
+
+/* ------------------------------------------------------ ADB over network */
+
+.wireless-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 26px;
+}
+.wireless-status .dot {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-mute);
+}
+.wireless-status .dot.is-on {
+  background: var(--ok);
+  box-shadow: 0 0 0 3px var(--ok-wash);
+}
+.wireless-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 104px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.wireless-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border-top: 1px solid var(--hairline);
+}
+.wireless-row:first-child {
+  border-top: 0;
+}
+.wireless-label {
+  margin: 0;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.wireless-manual {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.row.is-wrap {
+  flex-wrap: wrap;
+}
+.wireless-manual .w-port {
+  width: 84px;
+  flex: 0 0 auto;
+}

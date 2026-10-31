@@ -454,5 +454,13 @@
   "log.adbStopped": "adb encerrado — atualize a lista de dispositivos para iniciá-lo novamente.",
   "dialog.licenseTools": "Termos do SDK Android",
   "dialog.licenseScrcpy": "Licença Apache 2.0",
-  "dialog.consentPrefix": "Ao clicar em Sim, você aceita os"
+  "dialog.consentPrefix": "Ao clicar em Sim, você aceita os",
+  "wireless.notConnected": "Nenhum dispositivo sem fio conectado",
+  "wireless.noneFound": "Nada encontrado ainda. Ative a depuração sem fio no telefone e procure novamente.",
+  "wireless.scanning": "Procurando…",
+  "wireless.hint": "O Android 11+ usa uma porta aleatória para depuração sem fio. Use um endpoint descoberto em vez de 5555, a menos que tenha executado adb tcpip.",
+  "error.invalidIp": "Informe um endereço IPv4 válido",
+  "wireless.manual": "Endpoint manual",
+  "wireless.pairing": "Parear um novo telefone",
+  "wireless.connectedTo": "Conectado a"
 }

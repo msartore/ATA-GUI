@@ -454,5 +454,13 @@
   "log.adbStopped": "adb остановлен — обновите список устройств, чтобы запустить его снова.",
   "dialog.licenseTools": "Условия Android SDK",
   "dialog.licenseScrcpy": "Лицензия Apache 2.0",
-  "dialog.consentPrefix": "Нажав «Да», вы принимаете"
+  "dialog.consentPrefix": "Нажав «Да», вы принимаете",
+  "wireless.notConnected": "Беспроводное устройство не подключено",
+  "wireless.noneFound": "Пока ничего не найдено. Включите отладку по Wi-Fi на телефоне и повторите поиск.",
+  "wireless.scanning": "Поиск…",
+  "wireless.hint": "Android 11+ выбирает случайный порт для отладки по Wi-Fi. Используйте найденный endpoint вместо 5555, если вы не выполняли adb tcpip.",
+  "error.invalidIp": "Введите корректный IPv4-адрес",
+  "wireless.manual": "Ручной endpoint",
+  "wireless.pairing": "Сопряжение нового телефона",
+  "wireless.connectedTo": "Подключено к"
 }
