@@ -1214,7 +1214,12 @@ textarea {
   scrollbar-width: thin;
 }
 .dock-left > .panel {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
+}
+/* The sync card is the only panel in its column: fill it and centre the
+   contents instead of leaving dead space under the picker. */
+.sync-panel .panel-body {
+  justify-content: center;
 }
 
 .dock-mid,
