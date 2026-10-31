@@ -34,7 +34,7 @@ ones and reloaded at runtime, so an older export can never hide a newer key.
 ### Interface
 
 - Dark, light and follow-system themes with live repaint and no flash on start.
-- Iconoir icon set throughout.
+- Tabler Icons set throughout.
 - The terminal lives in its own window (history with ↑/↓, Enter to run, full
   scrollback) instead of a cramped field in the dock.
 - The layout holds together at the 1040×720 minimum: the dock shrinks, columns

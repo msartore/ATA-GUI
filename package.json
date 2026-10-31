@@ -15,8 +15,8 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@tabler/icons-react": "^3.50.0",
     "@tauri-apps/api": "^2.9.0",
-    "iconoir-react": "^7.12.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

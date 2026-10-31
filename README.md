@@ -60,7 +60,7 @@ Prerequisites per platform, checks and CI: [`docs/BUILD.md`](docs/BUILD.md).
 
 ## Credits
 
-Massimiliano Sartore · icons by [Iconoir](https://iconoir.com) (MIT) · debloat list by the
+Massimiliano Sartore · icons by [Tabler Icons](https://tabler.io/icons) (MIT) · debloat list by the
 [Universal Android Debloater Alliance](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation)
 · screen mirroring by [scrcpy](https://github.com/Genymobile/scrcpy) · powered by
 [SDK Platform Tools](https://developer.android.com/studio/releases/platform-tools).
