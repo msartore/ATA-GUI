@@ -3,15 +3,26 @@ import { api } from "../lib/api";
 import { useI18n } from "../i18n";
 import { useMain } from "../lib/main-context";
 import { Btn, Empty, Panel, useUi } from "../components/ui";
-import { IMAGE_PARTITIONS, basename, errorKey, errorText } from "../lib/util";
+import { Icon } from "../components/Icon";
+import { FlashRun, type FlashStepSpec } from "../components/FlashRun";
+import { IMAGE_PARTITIONS, basename, errorKey } from "../lib/util";
 
 export function RecoveryTab() {
   const { t } = useI18n();
   const m = useMain();
   const ui = useUi();
   const [zipPath, setZipPath] = useState("");
+  const [zipSize, setZipSize] = useState(0);
   const [partition, setPartition] = useState(IMAGE_PARTITIONS[0]);
+  const [run, setRun] = useState<FlashStepSpec[] | null>(null);
   const connected = Boolean(m.device);
+
+  const pickZip = async () => {
+    const files = await api.pickFiles("zip", false);
+    if (!files[0]) return;
+    setZipPath(files[0]);
+    setZipSize(await api.fileSize(files[0]).catch(() => 0));
+  };
 
   const flashZip = async () => {
     const target = m.device;
@@ -20,13 +31,15 @@ export function RecoveryTab() {
       await ui.alert(t("error.noZip"), "warning");
       return;
     }
-    await m.runBusy(t("log.flashing", { name: basename(zipPath) }), async () => {
-      const step = await api.sideloadZip(target.id, zipPath);
-      const failed = /error|failed/i.test(step.output) || !step.output.trim();
-      if (failed) m.log("ERROR", t("log.flashFailed", { name: basename(zipPath) }));
-      else m.log("OK", t("log.flashed", { name: basename(zipPath) }));
-      if (step.output.trim()) m.log("INFO", step.output);
-    });
+    setRun([
+      {
+        key: "sideload",
+        label: basename(zipPath),
+        kind: "sideload",
+        image: zipPath,
+        size: zipSize,
+      },
+    ]);
   };
 
   const extract = async () => {
@@ -54,64 +67,83 @@ export function RecoveryTab() {
       await api.runTool("adb", m.device.id, args);
       m.log("OK", t("log.rebooting"));
     } catch (error) {
-      m.log("ERROR", errorText(error));
+      m.log("ERROR", String(error));
     }
   };
 
   return (
     <div className="recovery-grid">
-      <Panel title={t("section.flashMenu")}>
-        <div className="row">
-          <input
-            className="input is-mono grow"
-            value={zipPath}
-            placeholder="*.zip"
-            onChange={(event) => setZipPath(event.target.value)}
-          />
-          <Btn
-            small
-            icon="folder"
-            onClick={async () => {
-              const files = await api.pickFiles("zip", false);
-              if (files[0]) setZipPath(files[0]);
+      <Panel
+        title={t("flash.recoveryTitle")}
+        className="is-wide"
+        actions={
+          run ? null : (
+            <Btn small variant="primary" icon="install" disabled={!connected || !zipPath} onClick={() => void flashZip()}>
+              {t("button.flash")}
+            </Btn>
+          )
+        }
+      >
+        {run ? (
+          <FlashRun
+            target="main"
+            serial={m.device?.id ?? ""}
+            steps={run}
+            onClose={() => setRun(null)}
+            onLog={(ok, steps) => {
+              const name = steps[0]?.label ?? "";
+              if (ok) m.log("OK", t("log.flashed", { name }));
+              else m.log("ERROR", t("log.flashFailed", { name }));
             }}
-          >
-            {t("button.browse")}
-          </Btn>
-        </div>
-        <Btn variant="primary" icon="install" disabled={!connected} onClick={() => void flashZip()}>
-          {t("button.flash")}
-        </Btn>
-        <p className="hint">{t("section.flashMenu")} — sideload</p>
+          />
+        ) : (
+          <div className="flash-setup">
+            <button type="button" className="flash-pick" onClick={() => void pickZip()}>
+              <span className="flash-pick-icon">
+                <Icon name="box" size={18} />
+              </span>
+              <span className="flash-pick-body">
+                <span className="flash-pick-title mono">{zipPath ? basename(zipPath) : "*.zip"}</span>
+                <span className="flash-pick-hint">
+                  {zipPath
+                    ? `${(zipSize / 1_048_576).toFixed(1)} MB`
+                    : t("flash.sideloadHint")}
+                </span>
+              </span>
+              <span className="flash-pick-action">{t("button.browse")}</span>
+            </button>
+            {!connected ? <p className="hint">{t("value.noDevice")}</p> : null}
+          </div>
+        )}
       </Panel>
 
       <Panel title={t("section.imageExtraction")}>
-          <label className="control">
-            {t("label.partition")}
-            <select className="select" value={partition} onChange={(event) => setPartition(event.target.value)}>
-              {IMAGE_PARTITIONS.map((item) => (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
-          </label>
-          <Btn icon="extract" disabled={!connected} onClick={() => void extract()}>
-            {t("button.extract")}
-          </Btn>
-          <p className="hint">dd → /sdcard → IMG/</p>
+        <label className="control">
+          {t("label.partition")}
+          <select className="select" value={partition} onChange={(event) => setPartition(event.target.value)}>
+            {IMAGE_PARTITIONS.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </label>
+        <Btn icon="extract" disabled={!connected} onClick={() => void extract()}>
+          {t("button.extract")}
+        </Btn>
+        <p className="hint">dd → /sdcard → IMG/</p>
       </Panel>
 
       <Panel title={t("section.rebootMenu")}>
-          <Btn className="btn-block" icon="boot" disabled={!connected} onClick={() => void reboot("recovery")}>
-            {t("button.rebootRecovery")}
-          </Btn>
-          <Btn className="btn-block" icon="refresh" disabled={!connected} onClick={() => void reboot("system")}>
-            {t("button.rebootSystem")}
-          </Btn>
-          <Btn className="btn-block" icon="chip" disabled={!connected} onClick={() => void reboot("bootloader")}>
-            {t("button.rebootFastboot")}
-          </Btn>
+        <Btn className="btn-block" icon="boot" disabled={!connected} onClick={() => void reboot("recovery")}>
+          {t("button.rebootRecovery")}
+        </Btn>
+        <Btn className="btn-block" icon="refresh" disabled={!connected} onClick={() => void reboot("system")}>
+          {t("button.rebootSystem")}
+        </Btn>
+        <Btn className="btn-block" icon="chip" disabled={!connected} onClick={() => void reboot("bootloader")}>
+          {t("button.rebootFastboot")}
+        </Btn>
       </Panel>
 
       {!connected ? (

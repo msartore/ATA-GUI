@@ -23,6 +23,16 @@ export interface ToolStatus {
   apksDir: string;
 }
 
+export interface FlashPhase {
+  phase: "sending" | "writing" | "installing" | "done";
+  received: number;
+  total: number | null;
+}
+
+export interface FlashLine {
+  line: string;
+}
+
 export interface TermOutput {
   session: number;
   stream: "out" | "err";

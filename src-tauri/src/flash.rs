@@ -110,66 +110,6 @@ fn words(text: &str) -> Vec<String> {
 
 /// `flash`/`boot` an image on one or more partitions. Port of
 /// `backgroundWorkerFlashImg_DoWork`.
-pub fn flash_image(
-    paths: &AppPaths,
-    serial: &str,
-    kind: &str,
-    image_path: &str,
-    image_type: &str,
-    partition: &str,
-    guard: &tools::Guard,
-) -> Vec<FlashStep> {
-    let mut commands: Vec<Vec<String>> = Vec::new();
-
-    if kind == "boot" {
-        commands.push(vec!["boot".into(), image_path.to_string()]);
-    } else {
-        match partition {
-            "all" => {
-                commands.push(vec![
-                    kind.into(),
-                    format!("{image_type}_a"),
-                    image_path.to_string(),
-                ]);
-                commands.push(vec![
-                    kind.into(),
-                    format!("{image_type}_b"),
-                    image_path.to_string(),
-                ]);
-            }
-            "auto" => {
-                commands.push(vec![kind.into(), image_type.to_string(), image_path.to_string()]);
-            }
-            _ => {
-                commands.push(vec![
-                    kind.into(),
-                    format!("{image_type}_{partition}"),
-                    image_path.to_string(),
-                ]);
-            }
-        }
-    }
-
-    commands
-        .iter()
-        .map(|args| step_guarded(paths, serial, args, Some(guard)))
-        .collect()
-}
-
-pub fn sideload(
-    paths: &AppPaths,
-    serial: &str,
-    zip_path: &str,
-    guard: &tools::Guard,
-) -> FlashStep {
-    step_guarded(
-        paths,
-        serial,
-        &["sideload".to_string(), zip_path.to_string()],
-        Some(guard),
-    )
-}
-
 /// Copy a partition to sdcard, pull it into `IMG/` and clean up the device.
 pub fn extract_image(
     paths: &AppPaths,

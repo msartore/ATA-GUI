@@ -70,16 +70,15 @@ export const api = {
   bootloaderOps: (serial: string, op: string) =>
     invoke<FlashStep[]>("bootloader_ops", { serial, op }),
 
-  flashImage: (
-    serial: string,
-    kind: "flash" | "boot",
-    imagePath: string,
-    imageType: string,
-    partition: string,
-  ) => invoke<FlashStep[]>("flash_image", { serial, kind, imagePath, imageType, partition }),
+  flashStep: (target: string, serial: string, kind: string, image: string, partition: string) =>
+    invoke<number>("flash_step", { target, serial, kind, image, partition }),
 
-  sideloadZip: (serial: string, zipPath: string) =>
-    invoke<FlashStep>("sideload_zip", { serial, zipPath }),
+  flashSideload: (target: string, serial: string, zipPath: string) =>
+    invoke<number>("flash_sideload", { target, serial, zipPath }),
+
+  flashCancel: () => invoke<boolean>("flash_cancel"),
+
+  fileSize: (path: string) => invoke<number>("file_size", { path }),
 
   imageExtract: (serial: string, partition: string) =>
     invoke<ImageExtraction>("image_extract", { serial, partition }),

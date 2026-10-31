@@ -6,6 +6,7 @@ mod flash;
 mod locales;
 mod logcat;
 mod net;
+mod flashrun;
 mod scrcpy;
 mod terminal;
 mod state;
@@ -179,26 +180,48 @@ fn bootloader_ops(
 }
 
 #[tauri::command(async)]
-fn flash_image(
+fn flash_step(
+    app: tauri::AppHandle,
     state: tauri::State<'_, AppState>,
+    target: String,
     serial: String,
     kind: String,
-    image_path: String,
-    image_type: String,
+    image: String,
     partition: String,
-) -> Vec<flash::FlashStep> {
-    let guard = tools::Guard::new(state.cancel.clone(), std::time::Duration::from_secs(45 * 60));
-    flash::flash_image(&state.paths, &serial, &kind, &image_path, &image_type, &partition, &guard)
+) -> Result<i32, String> {
+    flashrun::flash_step(
+        app,
+        &state.flash,
+        &state.paths,
+        flashrun::FlashRequest {
+            target: &target,
+            serial: &serial,
+            kind: &kind,
+            image: &image,
+            partition: &partition,
+        },
+    )
 }
 
 #[tauri::command(async)]
-fn sideload_zip(
+fn flash_sideload(
+    app: tauri::AppHandle,
     state: tauri::State<'_, AppState>,
+    target: String,
     serial: String,
     zip_path: String,
-) -> flash::FlashStep {
-    let guard = tools::Guard::new(state.cancel.clone(), std::time::Duration::from_secs(45 * 60));
-    flash::sideload(&state.paths, &serial, &zip_path, &guard)
+) -> Result<i32, String> {
+    flashrun::sideload(app, &state.flash, &state.paths, &target, &serial, &zip_path)
+}
+
+#[tauri::command(async)]
+fn file_size(path: String) -> u64 {
+    std::fs::metadata(&path).map(|meta| meta.len()).unwrap_or(0)
+}
+
+#[tauri::command(async)]
+fn flash_cancel(state: tauri::State<'_, AppState>) -> bool {
+    flashrun::cancel(&state.flash)
 }
 
 #[tauri::command(async)]
@@ -549,6 +572,20 @@ async fn pick_files(
     kind: String,
     multiple: bool,
 ) -> Result<Vec<String>, String> {
+    // Automation hook: `ATA_PICK_FILES` answers the picker without a dialog so
+    // CDP tests can drive the flash flows. It is ignored in normal runs.
+    if let Ok(list) = std::env::var("ATA_PICK_FILES") {
+        let files: Vec<String> = list
+            .split(',')
+            .map(str::trim)
+            .filter(|entry| !entry.is_empty())
+            .map(str::to_string)
+            .collect();
+        if !files.is_empty() {
+            return Ok(if multiple { files } else { vec![files[0].clone()] });
+        }
+    }
+
     let (sender, receiver) = std::sync::mpsc::channel();
     let mut dialog = app.dialog().file();
     dialog = match kind.as_str() {
@@ -658,6 +695,7 @@ pub fn run() {
                 logcat: std::sync::Mutex::new(None),
                 watcher: std::sync::Mutex::new(None),
                 term: terminal::TermState::default(),
+                flash: flashrun::FlashState::default(),
                 cancel: std::sync::Arc::new(std::sync::atomic::AtomicBool::new(false)),
                 adb_paused: std::sync::Arc::new(std::sync::atomic::AtomicBool::new(false)),
             });
@@ -715,8 +753,10 @@ pub fn run() {
             fastboot_erase,
             fastboot_wipe,
             bootloader_ops,
-            flash_image,
-            sideload_zip,
+            flash_step,
+            flash_sideload,
+            flash_cancel,
+            file_size,
             image_extract,
             adb_connect,
             adb_disconnect,

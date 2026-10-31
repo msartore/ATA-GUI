@@ -33,6 +33,20 @@ root), so existing installations upgrade in place.
   (a missing DLL, a broken binary) reports its exit code instead of leaving an
   empty block.
 
+### Flashing
+
+- Fastboot and recovery flashing share one panel: the queue of steps, the
+  phase reported by the tool (`Sending 'boot_a' (65536 KB)`, `Writing`, the
+  sideload `installing`), the transfer size, elapsed time, live tool output and
+  a Cancel that kills the child. The bar advances on those milestones; it never
+  invents a percentage the tools do not report.
+- Fastboot queues several images at once: partition type and slot per row, both
+  slots for `all`, type guessed from the file name only, and a `boot` action
+  per row. Recovery sideloads a single OTA zip with the archive size shown.
+- Device discovery is bounded now (6 s for `adb devices`, 4 s for fastboot,
+  3 s for the identity lookup). A daemon that died under the watcher used to
+  block the polling thread, so devices plugged in afterwards never appeared.
+
 ### Device log
 
 - logcat output is batched between the reader thread and the UI (up to 300

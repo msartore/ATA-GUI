@@ -85,20 +85,29 @@ static IDENTITIES: LazyLock<Mutex<HashMap<String, Identity>>> =
 fn identity(paths: &AppPaths, id: &str) -> Identity {
     if let Ok(cache) = IDENTITIES.lock() {
         if let Some(hit) = cache.get(id) {
-            if hit.at.elapsed() < Duration::from_secs(60) {
+            // A failed lookup is cached briefly: an unresponsive device must
+            // not cost a timeout on every poll.
+            let ttl = if hit.model.is_empty() { 3 } else { 60 };
+            if hit.at.elapsed() < Duration::from_secs(ttl) {
                 return hit.clone();
             }
         }
     }
 
-    let text = tools::adb_text(
+    // Bounded: `getprop` on a wedged device can block forever, and this runs
+    // on the device watcher thread.
+    let text = tools::adb_guarded(
         paths,
         Some(id),
         &[
             "shell".into(),
             "getprop ro.serialno; getprop ro.product.model".into(),
         ],
-    );
+        Some(Duration::from_secs(3)),
+        None,
+    )
+    .map(|out| out.merged())
+    .unwrap_or_default();
     let mut lines = text.lines().map(|line| line.trim().to_string());
     let serial = lines.next().unwrap_or_default();
     let model = lines.next().unwrap_or_default();
@@ -141,10 +150,12 @@ pub fn connection_for(id: &str) -> &'static str {
 
 pub fn list(paths: &AppPaths, is_adb: bool) -> Result<Vec<DeviceEntry>, String> {
     let args = vec!["devices".to_string()];
+    // Every list is bounded: the watcher calls this in a loop, and an adb
+    // daemon that died under us must not freeze device discovery for good.
     let out = if is_adb {
-        tools::adb(paths, None, &args)?
+        tools::adb_guarded(paths, None, &args, Some(Duration::from_secs(6)), None)?
     } else {
-        tools::fastboot(paths, None, &args)?
+        tools::fastboot_guarded(paths, None, &args, Some(Duration::from_secs(4)), None)?
     };
 
     let mut found: Vec<(String, DeviceEntry)> = Vec::new();

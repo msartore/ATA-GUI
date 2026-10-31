@@ -3,43 +3,90 @@ import { api } from "../lib/api";
 import { useI18n } from "../i18n";
 import { useMain } from "../lib/main-context";
 import { Btn, Empty, Panel, useUi } from "../components/ui";
+import { Icon } from "../components/Icon";
+import { FlashRun, type FlashStepSpec } from "../components/FlashRun";
 import { PARTITION_SLOTS, PARTITION_TYPES, basename, errorText } from "../lib/util";
+
+interface Row {
+  id: number;
+  path: string;
+  type: string;
+  slot: string;
+  size: number;
+}
+
+let rowId = 0;
+
+/** `boot` + slot `all` means both slots; `auto` keeps the unsuffixed name. */
+function partitionsFor(type: string, slot: string): string[] {
+  if (slot === "auto") return [type];
+  if (slot === "all") return [`${type}_a`, `${type}_b`];
+  return [`${type}_${slot}`];
+}
 
 export function FastbootTab() {
   const { t } = useI18n();
   const m = useMain();
   const ui = useUi();
-  const [imagePath, setImagePath] = useState("");
-  const [imageType, setImageType] = useState(PARTITION_TYPES[0]);
-  const [slot, setSlot] = useState(PARTITION_SLOTS[2]);
+  const [rows, setRows] = useState<Row[]>([]);
+  const [run, setRun] = useState<FlashStepSpec[] | null>(null);
 
   const connected = Boolean(m.device);
 
-  const flash = async (kind: "flash" | "boot") => {
-    const target = m.device;
-    if (!target) return;
-    if (!imagePath) {
-      await ui.alert(t("error.noImg"), "warning");
-      return;
+  const addImages = async () => {
+    const files = await api.pickFiles("img", true);
+    if (files.length === 0) return;
+    const added: Row[] = [];
+    for (const file of files) {
+      // Match the file name only: a path like .../cache/scratch/x.img must not
+      // be read as a "cache" partition.
+      const name = basename(file).toLowerCase();
+      const type = PARTITION_TYPES.find((candidate) => name.includes(candidate.toLowerCase())) ?? PARTITION_TYPES[0];
+      added.push({
+        id: ++rowId,
+        path: file,
+        type,
+        slot: PARTITION_SLOTS[2],
+        size: await api.fileSize(file).catch(() => 0),
+      });
     }
+    setRows((current) => [...current, ...added]);
+  };
 
-    await m.runBusy(t("log.flashing", { name: basename(imagePath) }), async () => {
-      m.log("INFO", t("log.flashingImage", { kind, image: imageType, partition: slot }));
-      const steps = await api.flashImage(target.id, kind, imagePath, imageType, slot);
-      for (const step of steps) {
-        m.log(step.ok ? "OK" : "ERROR", `${step.command}\n${step.output}`.trim());
-      }
-    });
+  const update = (id: number, patch: Partial<Row>) =>
+    setRows((current) => current.map((row) => (row.id === id ? { ...row, ...patch } : row)));
+
+  const startFlash = () => {
+    const steps: FlashStepSpec[] = rows.flatMap((row) =>
+      partitionsFor(row.type, row.slot).map((partition) => ({
+        key: `${row.id}-${partition}`,
+        label: partition,
+        kind: "flash" as const,
+        image: row.path,
+        partition,
+        size: row.size,
+      })),
+    );
+    if (steps.length === 0) return;
+    setRun(steps);
+  };
+
+  const bootImage = (row: Row) => {
+    setRun([
+      {
+        key: `boot-${row.id}`,
+        label: `${basename(row.path)} (${t("button.boot")})`,
+        kind: "boot",
+        image: row.path,
+        size: row.size,
+      },
+    ]);
   };
 
   const reboot = async (target: "system" | "recovery") => {
     if (!m.device) return;
     try {
-      if (target === "system") {
-        await api.runTool("fastboot", m.device.id, ["reboot"]);
-      } else {
-        await api.runTool("fastboot", m.device.id, ["reboot", "recovery"]);
-      }
+      await api.runTool("fastboot", m.device.id, target === "system" ? ["reboot"] : ["reboot", "recovery"]);
       m.log("OK", t("log.rebooted"));
     } catch (error) {
       m.log("ERROR", errorText(error));
@@ -72,70 +119,100 @@ export function FastbootTab() {
     }
   };
 
+  const stepCount = rows.reduce((count, row) => count + partitionsFor(row.type, row.slot).length, 0);
+
   return (
     <div className="fastboot-grid">
       <div className="stack">
-        <Panel title={t("section.flashBootImg")}>
-          <div className="row">
-            <input
-              className="input is-mono grow"
-              value={imagePath}
-              placeholder="*.img"
-              onChange={(event) => {
-                setImagePath(event.target.value);
-                const match = PARTITION_TYPES.find((type) =>
-                  event.target.value.toLowerCase().includes(type.toLowerCase()),
-                );
-                if (match) setImageType(match);
+        <Panel
+          title={run ? t("flash.running") : t("flash.imagesTitle")}
+          actions={
+            run ? null : (
+              <div className="row is-tight">
+                <Btn small icon="upload" onClick={() => void addImages()}>
+                  {t("flash.addImages")}
+                </Btn>
+                <Btn small variant="primary" icon="install" disabled={!connected || stepCount === 0} onClick={startFlash}>
+                  {t("flash.flashCount", { count: stepCount })}
+                </Btn>
+              </div>
+            )
+          }
+        >
+          {run ? (
+            <FlashRun
+              target="main"
+              serial={m.device?.id ?? ""}
+              steps={run}
+              onClose={() => setRun(null)}
+              onLog={(ok, steps) => {
+                if (ok) m.log("OK", t("log.flashed", { name: steps.map((step) => step.label).join(", ") }));
+                else m.log("ERROR", t("log.flashFailed", { name: steps.find((step) => step.kind)?.label ?? "" }));
               }}
             />
-            <Btn
-              small
-              icon="folder"
-              onClick={async () => {
-                const files = await api.pickFiles("img", false);
-                if (files[0]) {
-                  setImagePath(files[0]);
-                  const match = PARTITION_TYPES.find((type) => files[0].toLowerCase().includes(type.toLowerCase()));
-                  if (match) setImageType(match);
-                }
-              }}
-            >
-              {t("button.searchFile")}
-            </Btn>
-          </div>
-
-          <div className="row">
-            <label className="control grow">
-              {t("label.type")}
-              <select className="select" value={imageType} onChange={(event) => setImageType(event.target.value)}>
-                {PARTITION_TYPES.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="control grow">
-              {t("label.partition")}
-              <select className="select" value={slot} onChange={(event) => setSlot(event.target.value)}>
-                {PARTITION_SLOTS.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-
-          <div className="row">
-            <Btn variant="primary" icon="install" disabled={!connected} onClick={() => void flash("flash")}>
-              {t("button.flash")}
-            </Btn>
-            <Btn icon="boot" disabled={!connected} onClick={() => void flash("boot")}>
-              {t("button.boot")}
-            </Btn>
-          </div>
+          ) : rows.length === 0 ? (
+            <button type="button" className="flash-pick is-empty" onClick={() => void addImages()}>
+              <span className="flash-pick-icon">
+                <Icon name="upload" size={18} />
+              </span>
+              <span className="flash-pick-body">
+                <span className="flash-pick-title">{t("flash.empty")}</span>
+                <span className="flash-pick-hint">{t("flash.emptyHint")}</span>
+              </span>
+            </button>
+          ) : (
+            <ul className="flash-queue">
+              {rows.map((row) => (
+                <li key={row.id} className="flash-row">
+                  <select
+                    className="select select-sm"
+                    value={row.type}
+                    onChange={(event) => update(row.id, { type: event.target.value })}
+                  >
+                    {PARTITION_TYPES.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    className="select select-sm"
+                    value={row.slot}
+                    onChange={(event) => update(row.id, { slot: event.target.value })}
+                  >
+                    {PARTITION_SLOTS.map((slot) => (
+                      <option key={slot} value={slot}>
+                        {slot}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="flash-file mono" title={row.path}>
+                    {basename(row.path)}
+                  </span>
+                  <span className="flash-size mono">
+                    {row.size > 0 ? `${(row.size / 1_048_576).toFixed(1)} MB` : ""}
+                  </span>
+                  <button
+                    type="button"
+                    className="icon-btn"
+                    title={t("button.boot")}
+                    disabled={!connected}
+                    onClick={() => bootImage(row)}
+                  >
+                    <Icon name="play" size={13} />
+                  </button>
+                  <button
+                    type="button"
+                    className="icon-btn is-danger"
+                    title={t("button.remove")}
+                    onClick={() => setRows((current) => current.filter((item) => item.id !== row.id))}
+                  >
+                    <Icon name="close" size={13} />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
         </Panel>
 
         <Panel title={t("section.rebootMenu")}>

@@ -227,6 +227,8 @@ pub struct AppState {
     pub watcher: Mutex<Option<crate::device::WatcherHandle>>,
     /// The command currently running in the detached terminal window.
     pub term: crate::terminal::TermState,
+    /// The flash or sideload currently running, so Cancel can stop it.
+    pub flash: crate::flashrun::FlashState,
     /// Raised by the Cancel button; long operations poll it and kill their child.
     pub cancel: std::sync::Arc<std::sync::atomic::AtomicBool>,
     /// Set by "Kill ADB": the watcher stops polling so nothing restarts the
