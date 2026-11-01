@@ -93,9 +93,29 @@ try {
       console.log(JSON.stringify(await evaluate(send, argument), null, 2));
       break;
     case "shot": {
-      const result = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
-      fs.writeFileSync(argument ?? "shot.png", Buffer.from(result.result.data, "base64"));
-      console.log(`saved ${argument ?? "shot.png"}`);
+      // shot <path> [x,y,w,h] [scale] — clip a region and/or capture at 2x.
+      const [file, clipArg, scaleArg] = (argument ?? "").split(" ");
+      const options = { format: "png", captureBeyondViewport: false };
+      if (clipArg) {
+        const [x, y, width, height] = clipArg.split(",").map(Number);
+        options.clip = { x, y, width, height, scale: Number(scaleArg) || 1 };
+      }
+      const result = await send("Page.captureScreenshot", options);
+      fs.writeFileSync(file || "shot.png", Buffer.from(result.result.data, "base64"));
+      console.log(`saved ${file || "shot.png"}`);
+      break;
+    }
+    case "shotfull": {
+      // shotfull <path> — capture the whole scrollable page.
+      const metrics = await send("Page.getLayoutMetrics");
+      const size = metrics.result.cssContentSize || metrics.result.contentSize;
+      const result = await send("Page.captureScreenshot", {
+        format: "png",
+        captureBeyondViewport: true,
+        clip: { x: 0, y: 0, width: size.width, height: size.height, scale: 1 },
+      });
+      fs.writeFileSync(argument ?? "shot-full.png", Buffer.from(result.result.data, "base64"));
+      console.log(`saved ${argument ?? "shot-full.png"} (${Math.round(size.width)}x${Math.round(size.height)})`);
       break;
     }
     case "size": {
