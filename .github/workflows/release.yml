@@ -120,34 +120,53 @@ jobs:
       - name: Package portable archive and installers
         run: npm run package
 
-      - name: Collect release assets
+      # The updater picks a ZIP per platform; fail early if packaging regressed.
+      # Windows uses PowerShell: `unzip` is not on the runner image, and the
+      # archive has to be read with an explicit root check, not a substring
+      # grep that also matches a nested ATA-GUI-.../ATA-GUI.exe.
+      - name: Collect release assets (Windows)
+        if: matrix.artifact == 'windows-x64'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Get-ChildItem release | Format-Table Name, Length
+          $zip = Get-ChildItem release -Filter '*portable-windows-x64.zip' | Select-Object -First 1
+          if (-not $zip) { Write-Error 'missing portable Windows ZIP'; exit 1 }
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $archive = [System.IO.Compression.ZipFile]::OpenRead($zip.FullName)
+          try { $names = $archive.Entries | ForEach-Object { $_.FullName } }
+          finally { $archive.Dispose() }
+          Write-Host ($names -join "`n")
+          # The 3.x updater copies the archive root into the install folder and
+          # relaunches ATA-GUI.exe, so the exe must sit at the root.
+          if ($names -notcontains 'ATA-GUI.exe') {
+            Write-Error 'portable ZIP has no ATA-GUI.exe at its root'
+            exit 1
+          }
+          if (-not (Get-ChildItem release -Filter '*.msi')) { Write-Error 'missing .msi'; exit 1 }
+          if (-not (Get-ChildItem release -Filter '*setup.exe')) { Write-Error 'missing installer .exe'; exit 1 }
+
+      - name: Collect release assets (Linux)
+        if: matrix.artifact == 'linux-x64'
         shell: bash
         run: |
           set -euo pipefail
           ls -la release
-          # The updater picks a ZIP per platform; fail early if packaging regressed.
-          case "${{ matrix.artifact }}" in
-            windows-x64)
-              zip_file=$(ls release/*portable-windows-x64.zip 2>/dev/null | head -1) || true
-              test -n "$zip_file" || { echo "::error::missing portable Windows ZIP"; exit 1; }
-              # The 3.x updater copies the archive root into the install folder
-              # and relaunches ATA-GUI.exe — fail the release if that layout breaks.
-              unzip -l "$zip_file" | grep -q "ATA-GUI.exe" || {
-                echo "::error::portable ZIP has no ATA-GUI.exe at its root"; exit 1; }
-              ;;
-            linux-x64)
-              test -n "$(ls release/*portable-linux-x64.zip 2>/dev/null)" || {
-                echo "::error::missing portable Linux ZIP"; exit 1; }
-              test -n "$(ls release/*.deb 2>/dev/null)" || {
-                echo "::error::missing .deb package"; exit 1; }
-              ;;
-            macos-*)
-              test -n "$(ls release/*portable-darwin-*.zip 2>/dev/null)" || {
-                echo "::error::missing portable macOS ZIP"; exit 1; }
-              test -n "$(ls release/*.dmg 2>/dev/null)" || {
-                echo "::error::missing .dmg"; exit 1; }
-              ;;
-          esac
+          test -n "$(ls release/*portable-linux-x64.zip 2>/dev/null)" || {
+            echo "::error::missing portable Linux ZIP"; exit 1; }
+          test -n "$(ls release/*.deb 2>/dev/null)" || {
+            echo "::error::missing .deb package"; exit 1; }
+
+      - name: Collect release assets (macOS)
+        if: startsWith(matrix.artifact, 'macos')
+        shell: bash
+        run: |
+          set -euo pipefail
+          ls -la release
+          test -n "$(ls release/*portable-darwin-*.zip 2>/dev/null)" || {
+            echo "::error::missing portable macOS ZIP"; exit 1; }
+          test -n "$(ls release/*.dmg 2>/dev/null)" || {
+            echo "::error::missing .dmg"; exit 1; }
 
       - uses: actions/upload-artifact@v4
         with:

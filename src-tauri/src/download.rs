@@ -714,12 +714,16 @@ mod tests {
             "ATA-GUI-linux.tar.gz".to_string(),
             "ATA-GUI-windows.zip".to_string(),
         ];
-        let picked = pick_asset(&names).unwrap();
-        if cfg!(windows) {
-            assert!(picked.contains("windows"));
-        } else {
-            assert!(picked.contains("linux"));
-        }
+        assert_eq!(
+            pick_asset_for(AssetTarget::Windows, true, false, &names).as_deref(),
+            Some("ATA-GUI-windows.zip")
+        );
+        assert_eq!(
+            pick_asset_for(AssetTarget::Linux, true, false, &names).as_deref(),
+            Some("ATA-GUI-linux.tar.gz")
+        );
+        // No macOS build in this set: the picker must not fall back to another OS.
+        assert_eq!(pick_asset_for(AssetTarget::MacOs, true, true, &names), None);
     }
 
     #[test]
@@ -728,17 +732,24 @@ mod tests {
             "scrcpy-win32-v5.0.1.zip".to_string(),
             "scrcpy-win64-v5.0.1.zip".to_string(),
         ];
-        if cfg!(windows) && cfg!(target_pointer_width = "64") {
-            assert_eq!(pick_asset(&names).unwrap(), "scrcpy-win64-v5.0.1.zip");
-        }
+        assert_eq!(
+            pick_asset_for(AssetTarget::Windows, true, false, &names).as_deref(),
+            Some("scrcpy-win64-v5.0.1.zip")
+        );
+        assert_eq!(
+            pick_asset_for(AssetTarget::Windows, false, false, &names).as_deref(),
+            Some("scrcpy-win32-v5.0.1.zip")
+        );
+
         // Linux builds must never pick a Windows archive.
         let linux_names = vec![
             "scrcpy-win64-v5.0.1.zip".to_string(),
             "scrcpy-linux-x86_64-v5.0.1.tar.gz".to_string(),
         ];
-        if cfg!(all(unix, not(target_os = "macos"))) {
-            assert_eq!(pick_asset(&linux_names).unwrap(), "scrcpy-linux-x86_64-v5.0.1.tar.gz");
-        }
+        assert_eq!(
+            pick_asset_for(AssetTarget::Linux, true, false, &linux_names).as_deref(),
+            Some("scrcpy-linux-x86_64-v5.0.1.tar.gz")
+        );
     }
 
     #[test]
