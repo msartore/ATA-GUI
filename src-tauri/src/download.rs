@@ -284,21 +284,44 @@ pub async fn platform_tools(app: tauri::AppHandle, paths: AppPaths) -> Result<()
     Ok(())
 }
 
+/// Platform an asset is being picked for. Kept as a value rather than `cfg!`
+/// so the selection rules can be tested for every target from any host.
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+enum AssetTarget {
+    Windows,
+    MacOs,
+    Linux,
+}
+
+fn host_target() -> AssetTarget {
+    if cfg!(windows) {
+        AssetTarget::Windows
+    } else if cfg!(target_os = "macos") {
+        AssetTarget::MacOs
+    } else {
+        AssetTarget::Linux
+    }
+}
+
 /// Pick the release asset that matches the running OS and CPU architecture.
 /// GitHub lists `win32` before `win64`, so a plain "contains win" check would
 /// download the 32-bit build on a 64-bit machine.
 fn pick_asset(names: &[String]) -> Option<String> {
-    let is_64 = cfg!(target_pointer_width = "64");
-    let is_arm = cfg!(target_arch = "aarch64");
-    let want_linux = cfg!(all(unix, not(target_os = "macos")));
-    let want_mac = cfg!(target_os = "macos");
+    pick_asset_for(
+        host_target(),
+        cfg!(target_pointer_width = "64"),
+        cfg!(target_arch = "aarch64"),
+        names,
+    )
+}
 
+fn pick_asset_for(target: AssetTarget, is_64: bool, is_arm: bool, names: &[String]) -> Option<String> {
     let mut best: Option<(i32, &String)> = None;
     for name in names {
         let lower = name.to_ascii_lowercase();
 
         let mut score = 0;
-        if want_linux {
+        if target == AssetTarget::Linux {
             if !lower.contains("linux") {
                 continue;
             }
@@ -308,7 +331,7 @@ fn pick_asset(names: &[String]) -> Option<String> {
                 score += if is_arm { -20 } else { 20 };
             }
             score += 1;
-        } else if want_mac {
+        } else if target == AssetTarget::MacOs {
             if !(lower.contains("macos") || lower.contains("darwin")) {
                 continue;
             }
@@ -629,7 +652,7 @@ mod tests {
             "ATA-GUI-3.15.0-portable-windows-x64.zip".to_string(),
         ];
         assert_eq!(
-            pick_asset(&names).as_deref(),
+            pick_asset_for(AssetTarget::Windows, true, false, &names).as_deref(),
             Some("ATA-GUI-3.15.0-portable-windows-x64.zip")
         );
     }
@@ -642,27 +665,27 @@ mod tests {
             "ATA-GUI-3.15.0-portable-windows-x64.zip".to_string(),
         ];
         assert_eq!(
-            pick_asset(&names).as_deref(),
+            pick_asset_for(AssetTarget::Windows, true, false, &names).as_deref(),
             Some("ATA-GUI-3.15.0-portable-windows-x64.zip")
         );
     }
 
-    #[cfg(target_os = "macos")]
     #[test]
     fn macos_prefers_the_matching_architecture() {
         let names = vec![
             "ATA-GUI-4.0.0-portable-darwin-x64.zip".to_string(),
             "ATA-GUI-4.0.0-portable-darwin-arm64.zip".to_string(),
         ];
-        let expected = if cfg!(target_arch = "aarch64") {
-            "ATA-GUI-4.0.0-portable-darwin-arm64.zip"
-        } else {
-            "ATA-GUI-4.0.0-portable-darwin-x64.zip"
-        };
-        assert_eq!(pick_asset(&names).as_deref(), Some(expected));
+        assert_eq!(
+            pick_asset_for(AssetTarget::MacOs, true, true, &names).as_deref(),
+            Some("ATA-GUI-4.0.0-portable-darwin-arm64.zip")
+        );
+        assert_eq!(
+            pick_asset_for(AssetTarget::MacOs, true, false, &names).as_deref(),
+            Some("ATA-GUI-4.0.0-portable-darwin-x64.zip")
+        );
     }
 
-    #[cfg(all(unix, not(target_os = "macos")))]
     #[test]
     fn linux_picks_the_zip_portable_archive() {
         let names = vec![
@@ -671,7 +694,7 @@ mod tests {
             "ATA-GUI_3.15.0_amd64.deb".to_string(),
         ];
         assert_eq!(
-            pick_asset(&names).as_deref(),
+            pick_asset_for(AssetTarget::Linux, true, false, &names).as_deref(),
             Some("ATA-GUI-3.15.0-portable-linux-x64.zip")
         );
     }
