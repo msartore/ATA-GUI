@@ -726,4 +726,33 @@ mod tests {
             "https://api.github.com/repos/msartore/ATA-GUI/releases"
         );
     }
+
+    #[test]
+    fn extracts_nested_entries_from_a_deflated_zip() {
+        use std::io::Write;
+        use zip::write::SimpleFileOptions;
+
+        let root = std::env::temp_dir().join(format!("ata-zip-{}", std::process::id()));
+        let _ = fs::remove_dir_all(&root);
+        fs::create_dir_all(&root).unwrap();
+        let archive_path = root.join("payload.zip");
+
+        let mut writer = zip::ZipWriter::new(fs::File::create(&archive_path).unwrap());
+        let options =
+            SimpleFileOptions::default().compression_method(zip::CompressionMethod::Deflated);
+        writer.add_directory("ATAUpdate/", options).unwrap();
+        writer
+            .start_file("ATAUpdate/bin/tool.txt", options)
+            .unwrap();
+        writer.write_all(b"hello from zip 9").unwrap();
+        writer.finish().unwrap();
+
+        let destination = root.join("out");
+        fs::create_dir_all(&destination).unwrap();
+        extract_zip(&archive_path, &destination).unwrap();
+
+        let extracted = destination.join("ATAUpdate").join("bin").join("tool.txt");
+        assert_eq!(fs::read_to_string(extracted).unwrap(), "hello from zip 9");
+        let _ = fs::remove_dir_all(&root);
+    }
 }

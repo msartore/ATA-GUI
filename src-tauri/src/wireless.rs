@@ -14,8 +14,8 @@
 
 use crate::state::AppPaths;
 use crate::tools;
-use rand::distributions::Alphanumeric;
-use rand::Rng;
+use rand::distr::Alphanumeric;
+use rand::RngExt;
 use serde::Serialize;
 
 #[derive(Serialize, Clone, Debug)]
@@ -41,7 +41,7 @@ pub struct MdnsService {
 }
 
 fn random_chars(count: usize, lowercase: bool) -> String {
-    let generated: String = rand::thread_rng()
+    let generated: String = rand::rng()
         .sample_iter(&Alphanumeric)
         .take(count)
         .map(char::from)
