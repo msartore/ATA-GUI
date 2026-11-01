@@ -1,5 +1,7 @@
 # Releasing
 
+> How a version becomes a release and which asset names matter. Feature overview: [tour](FEATURES.md).
+
 ## Version bump
 
 Set the same version in `package.json`, `src-tauri/Cargo.toml` and `src-tauri/tauri.conf.json`.

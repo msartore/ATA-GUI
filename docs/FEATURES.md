@@ -1,78 +1,123 @@
-# Features
+# The tour
 
-## Device management
+A walk through what the app shows and what each control does. For the one-paragraph pitch and
+install instructions, see the [README](../README.md).
 
-- Manage system and user apps without root: uninstall, disable/enable, clear data, restore.
-- Install APKs, including split bundles, and push files to the device.
-- Inspect and grant/revoke runtime permissions; set default app roles.
-- Detect and remove bloatware with the Universal Android Debloater list.
-- Reboot to system, recovery or fastboot; unlock/lock the bootloader on supported devices.
-- Flash images, wipe partitions, erase data/cache, sideload ZIPs.
-- Extract and repack `payload.bin` / images.
-- Screen and camera mirroring via scrcpy, with encoder discovery.
-- Device info in system and fastboot modes, with a multi-device selector.
-- Logcat / `getevent` streaming in a detached, scrollable window.
-- Task manager (process list, force-stop), shell command runner, text injection.
-- Terminal in its own window: a full-height screen with a shell prompt (`ata@<host>:~$`), inline command line, scrollback, ↑/↓ history, Ctrl+L to clear and a status bar that switches between adb and fastboot. Output streams while the command runs, so `logcat` prints live; Ctrl+C stops it without closing the window.
+![The system tab](screenshots/system@2x.png)
+
+## The system tab
+
+Everything about a connected phone on one screen.
+
+| Panel | What it does |
+| --- | --- |
+| **Device info** | build user, CPU ABIs, manufacturer, model, board, device, Android version, IP, transport (cable or wireless), active user. **Turn off adb** stops the daemon — the watcher stays dead until you list devices again. |
+| **Reboot menu** | reboot to system, recovery or fastboot, with a confirmation for wireless devices. |
+| **ADB over network** | discovered mDNS endpoints, a manual `ip:port` connect, IP history, and pairing for Android 11+. |
+| **APK menu** | the installed package list, bulk selection, install/uninstall/disable, drag-and-drop, and the bloatware verdicts. |
+| **Device sync** | pulls the app list and device info again for the selected phone, or for a different one. |
+| **Terminal** | opens the shell in its own window. |
+| **Log** | the live, level-tagged log of everything the app is doing. |
+
+## Apps and packages
+
+![APK manager](screenshots/apps@2x.png)
+
+- Every installed package, system and user, per Android user.
+- Search, bulk selection, select-all, and per-row state (`installed`, `disabled`, `system`).
+- **Install app** takes a single APK or a split bundle (`.apks`, `.xapk`, `.apkm`); dropping files
+  on the dashed zone does the same.
+- Uninstall, disable, enable and restore, one or many at a time, each with its own result.
+- The **Universal Android Debloater** list marks packages by recommendation, so you can see what is
+  safe to remove before you touch it.
+- **Extract APKs** saves the selected packages to the APKs folder and offers to open it.
+
+The list is virtualised: an 800-package device renders only the rows you can see.
+
+## Flashing and recovery
+
+The **Fastboot** tab is a queue: add boot, recovery, vbmeta, dtbo or any other image, choose the
+slot (`all` expands to `_a`/`_b`), and flash. The run panel reports what fastboot reports —
+`Sending 'boot' (96 KB)`, `Writing 'boot'`, `Finished.` — plus elapsed time, the size of each image
+and the raw tool output. Cancel kills the child process, not just the UI.
+
+The **Recovery** tab handles the recovery story: sideload an OTA zip with a real progress bar, and
+extract a partition image (boot, recovery, vbmeta, …) straight to disk. Both run through the same
+guarded wrapper, so a slow device is a wait, not a hang.
+
+## Logs and the terminal
+
+![The log panel](screenshots/log@2x.png)
+
+- **Logcat / GetEvent** open in a detached window: level-tagged, filterable, capped at 6000 lines
+  in memory with only the tail rendered, and saved to a file from the toolbar.
+- The **terminal** is a real shell surface: inline prompt (`ata@<host>:~$`), scrollback, ↑/↓ history,
+  Tab completion for adb and fastboot verbs and their closed argument sets, Ctrl+L to clear,
+  Ctrl+C to stop the running command, and a status bar that switches between adb and fastboot.
+- Long output streams while it runs — `logcat` keeps printing and the prompt comes back when you
+  stop it.
 
 ## Wireless ADB
 
-- 6-digit pairing and QR pairing (see below).
-- mDNS discovery listing the real `ip:port` endpoints — Android 11+ uses a random port instead of
-  5555, which is the usual reason manual connects fail.
-- `adb tcpip`, connect/disconnect with readable failure hints, IP history.
-- One row per physical device: adb reporting the same phone as `ip:port`, as an mDNS service name
-  and over a cable is collapsed by `ro.serialno`, preferring the cable.
-- Auto-reconnect on start for wireless endpoints that are already reachable, without stalling on
-  dead addresses.
+![ADB over network](screenshots/wireless@2x.png)
 
-## Interface
-
-- Dark, light and **System** themes. The choice is applied before the first paint (no flash),
-  mirrored onto the native window, broadcast to the detached windows and, in System mode, follows
-  OS changes live.
-- Eight bundled languages loaded at runtime; see [`TRANSLATIONS.md`](TRANSLATIONS.md).
-- Virtualised package list: only the visible rows of an 800+ package list are rendered.
-- Toolbar actions appear only when they can act instead of sitting greyed out.
-- Responsive down to the 1040×720 minimum: the dock gives height back to the workspace, the
-  columns narrow instead of stacking, device columns scroll instead of clipping their last panel,
-  and toolbar buttons drop their label to keep the icon when space is tight.
-
-## Desktop capabilities
-
-Things the WinForms app could not do without freezing or blocking:
-
-- **Cancellable long operations** — installs, pushes, image extraction, flashing and sideloading
-  run through a guarded process wrapper: every child has a watchdog (20–45 min depending on the
-  task), stdout/stderr are drained on separate threads so a full pipe cannot deadlock, the whole
-  process tree is killed on cancel, and the busy overlay shows **Cancel** where supported.
-- **The UI never blocks** — all adb/fastboot commands run off the main thread.
-- **Single instance** — launching the app twice focuses the running window instead of failing on
-  the shared WebView2 profile.
-- **Remembered window** — size, position and maximised state are restored, clamped to the minimum.
-- **Strict CSP** — the webview only loads bundled assets; remote fetches and inline scripts fail.
-- **No console window** — the binary is GUI-subsystem and every child tool is spawned hidden.
-
-## Keyboard shortcuts
-
-| Keys | Action |
-| --- | --- |
-| `Ctrl+F` | Focus the app search box |
-| `F5` | Rescan devices |
-| `Ctrl+L` | Clear the log |
-| `Ctrl+1…4` | System / Fastboot / Recovery / Tools |
-| `Esc` | Close the open dialog |
-
-## QR pairing
-
-Android 11+ can pair over Wi-Fi without typing a code. **System → ADB over network → Wireless →
-QR** renders the official payload:
+- **Discovered on the network** lists mDNS endpoints (`_adb-tls-connect._tcp`). Android 11+ picks a
+  random port instead of 5555, which is why manual connects usually fail — the list shows the real
+  endpoint.
+- **Manual endpoint** remembers the last IP and lets you connect, disconnect and check the daemon.
+- **Pair a new phone** types a 6-digit code, or shows a QR code:
 
 ```text
 WIFI:T:ADB;S:<service-name>;P:<password>;;
 ```
 
-The phone (Wireless debugging → *Pair device with QR code*) scans it, advertises
-`_adb-tls-pairing._tcp`, and the app discovers it through `adb mdns services`, pairs, connects
-through `_adb-tls-connect._tcp` and refreshes the device list. The dialog shows live progress and
-can regenerate the code at any time. Both devices must be on the same Wi-Fi network.
+The phone scans it from *Wireless debugging → Pair device with QR code*, advertises
+`_adb-tls-pairing._tcp`, and the dialog follows the pairing live: waiting → paired → connected →
+device appears in the list. Regenerate the code at any time.
+
+## Devices
+
+One row per physical phone. adb can report the same device three ways — over the cable, as
+`ip:port`, and as an mDNS service name — so the list is merged by `ro.serialno`, preferring the
+cable transport. Each row can be selected as the target for every action in the window.
+
+## Interface
+
+- **Themes**: dark, light or follow the system. Applied before the first paint, mirrored onto the
+  native window frame and pushed to the detached windows; in system mode it follows OS changes live.
+- **Languages**: eight bundled catalogues (English, Italian, Spanish, German, French, Portuguese,
+  Russian, Chinese) loaded at runtime. Files dropped into `locales/` overlay the bundled ones, so a
+  translation can be fixed without a rebuild — see [TRANSLATIONS.md](TRANSLATIONS.md).
+- **Responsive**: the layout holds from 1040×720 upward — the dock gives height back to the
+  workspace, columns narrow before they stack, and toolbar buttons drop their label to keep the
+  icon.
+
+## Desktop behaviour
+
+- **Cancellable work**: installs, pushes, image extraction, flashing and sideloading run through a
+  guarded process wrapper with a watchdog (20–45 minutes depending on the task), drained pipes and a
+  process-tree kill.
+- **Nothing on the UI thread**: every adb/fastboot spawn is off the main thread.
+- **Single instance**: a second launch focuses the running window.
+- **Remembered window**: size, position and maximised state, clamped to the minimum.
+- **No console windows**: the binary is GUI-subsystem and every child tool is spawned hidden.
+- **Strict CSP**: the webview only loads bundled assets.
+
+## Keyboard shortcuts
+
+| Keys | Action |
+| --- | --- |
+| `Ctrl+F` | focus the app search box |
+| `F5` | rescan devices |
+| `Ctrl+L` | clear the log |
+| `Ctrl+1…4` | System / Fastboot / Recovery / Tools |
+| `Esc` | close the open dialog |
+
+## Where things live
+
+| | |
+| --- | --- |
+| `config.json` | settings, theme, language, IP history — beside the executable in a portable build, otherwise in the per-user config directory |
+| `locales/` | bundled catalogues plus any file you drop in to override or add a language |
+| `platform-tools/`, `scrcpy/` | downloaded on first use, next to the app |
+| APK exports | the APKs folder chosen in **Settings**, opened from the snackbar after an extraction |

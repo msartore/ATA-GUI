@@ -1,5 +1,8 @@
 # Translating ATA-GUI
 
+> Adding or overriding a language. Feature overview: [tour](FEATURES.md).
+
+
 The UI is a flat `key -> text` JSON catalogue. Every bundled language lives in
 `src/i18n/locales/*.json` and is compiled into the binary, so the app always has
 a working translation. On top of that, **any `locales/*.json` file found at

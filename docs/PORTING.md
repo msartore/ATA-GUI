@@ -1,5 +1,8 @@
 # Porting map — C# WinForms → Rust + React
 
+> The mapping from the 3.x WinForms forms. Feature overview: [tour](FEATURES.md).
+
+
 This document records how the WinForms 3.15.0 app (now on the `legacy` branch) was converted into the Tauri app on `main`.
 
 ## Forms

@@ -1,5 +1,8 @@
 # Architecture
 
+> Source layout and the process layer. Feature overview: [tour](FEATURES.md).
+
+
 ```
 src-tauri/                       Rust backend (Tauri 2)
   src/lib.rs                     IPC facade: thin #[tauri::command] wrappers + registry

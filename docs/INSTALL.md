@@ -1,5 +1,7 @@
 # Install and upgrade
 
+> Packaging, portable layout and upgrades. New here? Start with the [tour](FEATURES.md) or the [README](../README.md).
+
 ## Bundles
 
 | Platform | Recommended | Also provided |

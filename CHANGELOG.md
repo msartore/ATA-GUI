@@ -7,6 +7,17 @@ C# sources stay available on the `legacy` branch, and the Windows portable ZIP
 keeps the layout the 3.x auto-updater expects (`ATA-GUI.exe` at the archive
 root), so existing installations upgrade in place.
 
+### Documentation
+
+- The README is a showcase now: a screenshot of the main window, a section per
+  capability with real captures, the desktop guarantees and the install table,
+  instead of a wall of links.
+- `docs/FEATURES.md` is a guided tour of every panel (system tab, APK manager,
+  flashing, logs, terminal, wireless ADB, devices, interface) with the same
+  screenshots, and the other documents open with a pointer back to it.
+- Screenshots live in `docs/screenshots/` at 2x, captured from an English UI
+  with the device identifiers masked.
+
 ### Platforms
 
 - Windows, Linux and macOS from one code base; CI builds NSIS/MSI, `.deb`,

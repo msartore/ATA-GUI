@@ -1,5 +1,7 @@
 # Build
 
+> Toolchain, development loop and checks. What the app does: [tour](FEATURES.md).
+
 ## Prerequisites
 
 - Node.js 22+ and npm.
