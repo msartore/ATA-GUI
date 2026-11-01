@@ -393,5 +393,8 @@
   "flash.noOutput": "Ожидание вывода…",
   "button.remove": "Удалить",
   "logs.save": "Сохранить лог",
-  "logs.saved": "Сохранено в {path}"
+  "logs.saved": "Сохранено в {path}",
+  "toast.apksExtracted": "Извлечено APK: {count}",
+  "toast.imageExtracted": "Образ извлечён — {name}",
+  "toast.showInFolder": "Показать в папке"
 }

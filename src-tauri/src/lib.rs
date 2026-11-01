@@ -7,6 +7,7 @@ mod locales;
 mod logcat;
 mod net;
 mod flashrun;
+mod reveal;
 mod scrcpy;
 mod terminal;
 mod state;
@@ -249,6 +250,11 @@ async fn save_text_file(
         }
         None => Ok(None),
     }
+}
+
+#[tauri::command(async)]
+fn reveal_path(path: String) -> Result<(), String> {
+    reveal::show(&path)
 }
 
 #[tauri::command(async)]
@@ -789,6 +795,7 @@ pub fn run() {
             flash_sideload,
             flash_cancel,
             file_size,
+            reveal_path,
             save_text_file,
             image_extract,
             adb_connect,

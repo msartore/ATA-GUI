@@ -356,11 +356,21 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
       await runBusy(t("button.extract"), async () => {
         const results = await api.apksExtract(target.id, packages);
         const failed = results.filter((result) => !result.ok);
+        const saved = results.length - failed.length;
+
         if (failed.length) log("ERROR", failed.map((item) => item.target).join("\n"));
         else log("OK", t("log.apksExtracted", { path: tools?.apksDir ?? "APKS" }));
+
+        if (saved > 0 && tools?.apksDir) {
+          const folder = tools.apksDir;
+          ui.notify(t("toast.apksExtracted", { count: saved }), "ok", {
+            label: t("toast.showInFolder"),
+            run: () => void api.revealPath(folder).catch(() => undefined),
+          });
+        }
       }, { cancelable: true });
     },
-    [deviceIndex, log, runBusy, t, tools?.apksDir],
+    [deviceIndex, log, runBusy, t, tools?.apksDir, ui],
   );
 
   const setRotation = useCallback(

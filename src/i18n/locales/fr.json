@@ -393,5 +393,8 @@
   "flash.noOutput": "En attente de sortie…",
   "button.remove": "Retirer",
   "logs.save": "Enregistrer le log",
-  "logs.saved": "Enregistré dans {path}"
+  "logs.saved": "Enregistré dans {path}",
+  "toast.apksExtracted": "{count} APK extraits",
+  "toast.imageExtracted": "Image extraite — {name}",
+  "toast.showInFolder": "Afficher dans le dossier"
 }

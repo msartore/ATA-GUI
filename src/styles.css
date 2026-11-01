@@ -1101,6 +1101,9 @@ textarea {
 }
 
 .toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   background: var(--toast);
   border: 1px solid var(--border-strong);
   border-radius: 8px;
@@ -1109,6 +1112,32 @@ textarea {
   max-width: 400px;
   box-shadow: 0 12px 30px var(--shadow);
   animation: toast-in 0.16s ease-out;
+  pointer-events: auto;
+}
+
+.toast-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.toast-action {
+  flex: 0 0 auto;
+  height: 24px;
+  padding: 0 9px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-size: 11px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.toast-action:hover {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+  color: var(--accent-hover);
 }
 .toast-ok {
   color: var(--ok);

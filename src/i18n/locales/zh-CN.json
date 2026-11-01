@@ -393,5 +393,8 @@
   "flash.noOutput": "等待输出…",
   "button.remove": "移除",
   "logs.save": "保存日志",
-  "logs.saved": "已保存到 {path}"
+  "logs.saved": "已保存到 {path}",
+  "toast.apksExtracted": "已导出 {count} 个 APK",
+  "toast.imageExtracted": "已导出镜像 — {name}",
+  "toast.showInFolder": "在文件夹中显示"
 }

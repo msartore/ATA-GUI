@@ -353,5 +353,8 @@
   "error.updateManual": "Automatic updates are not available on macOS yet — download the new .dmg from the releases page.",
   "terminal.keys": "↑/↓ history · Ctrl+L clear · Enter run",
   "logs.save": "Save log",
-  "logs.saved": "Saved to {path}"
+  "logs.saved": "Saved to {path}",
+  "toast.apksExtracted": "{count} APKs extracted",
+  "toast.imageExtracted": "Image extracted — {name}",
+  "toast.showInFolder": "Show in folder"
 }

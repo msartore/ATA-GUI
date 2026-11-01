@@ -51,6 +51,10 @@ export function RecoveryTab() {
       for (const line of result.log) if (line.trim()) m.log("INFO", line);
       if (result.ok) {
         m.log("OK", t("log.imageExtracted", { path: result.path }));
+        ui.notify(t("toast.imageExtracted", { name: basename(result.path) }), "ok", {
+          label: t("toast.showInFolder"),
+          run: () => void api.revealPath(result.path).catch(() => undefined),
+        });
       } else {
         m.log("ERROR", t(errorKey(result.error ?? "") || "error.generic"));
       }

@@ -229,10 +229,16 @@ export function DropZone({
 
 /* ------------------------------------------------------------------ ui host */
 
+export interface ToastAction {
+  label: string;
+  run: () => void;
+}
+
 interface Toast {
   id: number;
   message: string;
   kind: MessageKind | "ok";
+  action?: ToastAction;
 }
 
 interface AlertState {
@@ -250,7 +256,7 @@ interface ConfirmState {
 export interface UiApi {
   alert: (message: string, kind?: MessageKind) => Promise<void>;
   confirm: (message: string, title?: string) => Promise<boolean>;
-  notify: (message: string, kind?: MessageKind | "ok") => void;
+  notify: (message: string, kind?: MessageKind | "ok", action?: ToastAction) => void;
 }
 
 const UiContext = createContext<UiApi>({
@@ -299,13 +305,19 @@ export function UiProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const notify = useCallback((message: string, kind: MessageKind | "ok" = "info") => {
-    const id = ++toastId;
-    setToasts((current) => [...current, { id, message, kind }]);
-    window.setTimeout(() => {
-      setToasts((current) => current.filter((toast) => toast.id !== id));
-    }, 4500);
+  const dropToast = useCallback((id: number) => {
+    setToasts((current) => current.filter((toast) => toast.id !== id));
   }, []);
+
+  const notify = useCallback(
+    (message: string, kind: MessageKind | "ok" = "info", action?: ToastAction) => {
+      const id = ++toastId;
+      setToasts((current) => [...current, { id, message, kind, action }]);
+      // A toast with a button needs to stay long enough to be clicked.
+      window.setTimeout(() => dropToast(id), action ? 9000 : 4500);
+    },
+    [dropToast],
+  );
 
   const api = useMemo(() => ({ alert, confirm, notify }), [alert, confirm, notify]);
 
@@ -358,7 +370,19 @@ export function UiProvider({ children }: { children: ReactNode }) {
       <div className="toast-stack">
         {toasts.map((toast) => (
           <div key={toast.id} className={`toast toast-${toast.kind}`}>
-            {toast.message}
+            <span className="toast-text">{toast.message}</span>
+            {toast.action ? (
+              <button
+                type="button"
+                className="toast-action"
+                onClick={() => {
+                  toast.action?.run();
+                  dropToast(toast.id);
+                }}
+              >
+                {toast.action.label}
+              </button>
+            ) : null}
           </div>
         ))}
       </div>

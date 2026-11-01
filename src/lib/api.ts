@@ -83,6 +83,8 @@ export const api = {
   saveTextFile: (name: string, content: string) =>
     invoke<string | null>("save_text_file", { name, content }),
 
+  revealPath: (path: string) => invoke<void>("reveal_path", { path }),
+
   imageExtract: (serial: string, partition: string) =>
     invoke<ImageExtraction>("image_extract", { serial, partition }),
 
