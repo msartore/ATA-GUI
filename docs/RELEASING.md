@@ -15,7 +15,7 @@ git push origin v4.0.0
 ```
 
 `.github/workflows/release.yml` runs the backend tests, builds on `windows-latest`,
-`ubuntu-22.04`, `macos-latest` (Apple silicon) and `macos-13` (Intel), packages the portable
+`ubuntu-22.04` and `macos-latest` (Apple silicon), packages the portable
 archives plus installers, verifies each platform's expected files and publishes a GitHub release
 with generated notes. `workflow_dispatch` rebuilds an existing tag without moving it.
 
@@ -40,7 +40,7 @@ ATA-GUI_<version>_x64_en-US.msi                MSI installer
 ATA-GUI-<version>-portable-linux-x64.zip       Linux portable (used by the 4.x updater)
 ATA-GUI-<version>-portable-linux-x64.tar.gz    Linux portable (manual installs)
 ATA-GUI_<version>_amd64.deb / .rpm / .AppImage Linux packages
-ATA-GUI_<version>_aarch64.dmg / _x64.dmg       macOS installers
+ATA-GUI_<version>_aarch64.dmg                 macOS installer (Apple silicon)
 ATA-GUI-<version>-portable-darwin-arm64.zip    macOS portable (.app bundle)
 ```
 

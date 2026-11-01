@@ -94,7 +94,7 @@ app discovers the new endpoint over mDNS, pairs, connects and refreshes the devi
 | --- | --- | --- |
 | Windows 10/11 x64 | `ATA-GUI_<version>_x64-setup.exe` (per-user NSIS) | `.msi`, portable `.zip` |
 | Linux x64 | `.AppImage` or `.deb` | `.rpm`, portable `.tar.gz` / `.zip` |
-| macOS 10.15+ | `.dmg` (Apple silicon or Intel) | portable `.zip` containing `ATA-GUI.app` |
+| macOS 10.15+ | `.dmg` (Apple silicon) | portable `.zip` containing `ATA-GUI.app` |
 
 Downloads are on the [releases page](https://github.com/msartore/ATA-GUI/releases). Portable builds
 are self-contained; the Windows `.zip` keeps `ATA-GUI.exe` at its root so the 3.x in-place updater

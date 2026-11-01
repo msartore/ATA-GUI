@@ -75,8 +75,6 @@ jobs:
             artifact: linux-x64
           - platform: macos-latest
             artifact: macos-arm64
-          - platform: macos-13
-            artifact: macos-x64
     runs-on: ${{ matrix.platform }}
     env:
       # Baked into the binary so the updater checks the repo that built it.
