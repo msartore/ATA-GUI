@@ -1,6 +1,6 @@
 [package]
 name = "ata-gui"
-version = "4.0.0"
+version = "4.0.1"
 description = "ATA-GUI — advanced Android device manager over ADB/Fastboot"
 authors = ["Massimiliano Sartore"]
 edition = "2021"

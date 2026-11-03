@@ -1,5 +1,26 @@
 # Changelog
 
+## 4.0.1
+
+Maintenance release: current dependencies and a documentation pass. No behaviour change.
+
+### Dependencies
+
+- React 19.3.1, `@tauri-apps/api` and `@tauri-apps/cli` 2.12.4, `@types/react` and
+  `@types/react-dom` 19.3.0, `@vitejs/plugin-react` 6.2.1. Vite 8.3.5, TypeScript 7.0.2,
+  esbuild 0.28.2 and Tabler Icons 3.50.0 were already current.
+- `zip` 9.3.0 and the transitive Rust crates refreshed. Every direct crate resolves to its
+  latest stable release; `glib` stays at 0.18.5 because `webkit2gtk` 2.0.2 pins the gtk 0.18
+  family on Linux.
+
+### Documentation
+
+- The README, this changelog and every page under `docs/` are rewritten without em dashes.
+- macOS is documented as 11+ on Apple silicon, and `tauri.macos.conf.json` now declares
+  `minimumSystemVersion` 11.0 instead of the 10.15 an arm64 build cannot honour.
+- The installer size in the README is the measured 2.4 MB, and `PORTING.md` reports the
+  current 42-test suite instead of the 17 it had at the start of the rewrite.
+
 ## 4.0.0
 
 The WinForms 3.15 code base is now a Tauri 2 + Rust + React application. The
