@@ -27,6 +27,8 @@ export interface FlashPhase {
   phase: "sending" | "writing" | "installing" | "done";
   received: number;
   total: number | null;
+  /** `received` is a real byte counter (sideload), not just the announced size. */
+  streamed?: boolean;
 }
 
 export interface FlashLine {

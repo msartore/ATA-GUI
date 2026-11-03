@@ -147,7 +147,15 @@ export function FlashRun({
     installing: 0.85,
     done: 1,
   };
-  const fraction = state === "running" && phase ? (PHASE_WEIGHT[phase.phase] ?? 0.05) : 0;
+  // A sideload reports real bytes (`serving: (~47%)`), so its bar follows them
+  // across the sending band instead of holding the fixed weight until handoff.
+  const ratio = phase?.streamed && phase.total ? Math.min(1, phase.received / phase.total) : 0;
+  const fraction =
+    state === "running" && phase
+      ? phase.streamed
+        ? 0.02 + 0.33 * ratio
+        : (PHASE_WEIGHT[phase.phase] ?? 0.05)
+      : 0;
   const percent = Math.round(((done + fraction) / Math.max(1, steps.length)) * 100);
 
   const phaseLabel = (withSize = true) => {
@@ -155,7 +163,8 @@ export function FlashRun({
     if (!phase) return t("flash.connecting");
     if (phase.phase === "sending") {
       const size = withSize ? megabytes(phase.total) || megabytes(steps[index]?.size) : "";
-      return `${t("flash.sending")} ${size}`.trim();
+      const pct = phase.streamed && phase.total ? ` ${Math.floor(ratio * 100)}%` : "";
+      return `${t("flash.sending")} ${size}${pct}`.trim();
     }
     if (phase.phase === "writing") return t("flash.writing");
     if (phase.phase === "installing") return t("flash.installing");

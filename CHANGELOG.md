@@ -1,5 +1,28 @@
 # Changelog
 
+## 4.0.2
+
+Bug fixes: a scrcpy install no longer fails while the bundled adb is running, and a sideload
+reports its real transfer progress.
+
+### Fixes
+
+- Sideload now follows the bytes. `serving: '<file>'  (~47%)` is adb's own transfer counter, but
+  the line was only used as a "handed over to recovery" marker, so the panel switched to
+  installing at 0% and the percentage was never read. The figure is parsed into real progress and
+  `installing` is reported at `Total xfer`, when recovery actually takes over. adb rewrites that
+  line with a carriage return, which the newline-only reader lost, so the output reader now splits
+  on both.
+- The scrcpy archive ships its own `adb.exe` and `AdbWinApi.dll`. Flattening it into the runtime
+  directory tried to replace the adb the watcher keeps running from that folder, so `fs::copy` hit
+  a sharing violation and the install aborted after unpacking. An existing destination is now kept
+  when the copy reports a sharing violation or access denied, and the install only fails when a
+  file is genuinely missing. The platform-tools update meets the same race, because the watcher
+  respawns adb a second or two after `kill_tool_processes`.
+- A failed download showed its error behind the loading overlay: the overlay is z-index 120 and a
+  modal 50, so the OK button could not be clicked and the spinner never cleared. Alerts and
+  confirms now render above it, and the busy runner clears the spinner before awaiting the alert.
+
 ## 4.0.1
 
 Maintenance release: current dependencies and a documentation pass. No behaviour change.
