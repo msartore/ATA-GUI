@@ -2,7 +2,7 @@
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "ATA-GUI",
   "mainBinaryName": "ATA-GUI",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "identifier": "dev.msartore.atagui",
   "build": {
     "beforeDevCommand": "npm run dev",
