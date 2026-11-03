@@ -6,15 +6,15 @@
 The UI is a flat `key -> text` JSON catalogue. Every bundled language lives in
 `src/i18n/locales/*.json` and is compiled into the binary, so the app always has
 a working translation. On top of that, **any `locales/*.json` file found at
-runtime overrides or adds a language** — no rebuild needed.
+runtime overrides or adds a language**, with no rebuild needed.
 
 ## Where the app looks for translations
 
 Highest priority first:
 
-1. `<executable folder>/locales/*.json` — portable build, next to the exe
-2. `<executable folder>/resources/locales/*.json` — bundle resource layout
-3. `<user data dir>/locales/*.json` — e.g. `%APPDATA%\dev.msartore.atagui\locales`
+1. `<executable folder>/locales/*.json`: portable build, next to the exe
+2. `<executable folder>/resources/locales/*.json`: bundle resource layout
+3. `<user data dir>/locales/*.json`: e.g. `%APPDATA%\dev.msartore.atagui\locales`
 4. `<config dir>/locales/*.json`
 
 The path is shown in **Settings → Translations → Open locales folder**, together
@@ -37,7 +37,7 @@ Rules:
 - The file name is the language code (`nl.json` → `nl`). Files starting with `_`
   are ignored (`_template.json` is only a template).
 - Keys must match the English catalogue exactly.
-- `_meta.name` is the label shown in the language picker — write it in the
+- `_meta.name` is the label shown in the language picker. Write it in the
   language itself.
 - Keep `{placeholders}` untouched: `{count} {name} {ip} {version} {path}
   {display} {kind} {image} {partition}`.
@@ -58,7 +58,7 @@ Rules:
 4. Translate the values.
 5. Put the file in the `locales` folder, then **Reload languages** and pick it in
    the language selector.
-6. Validate the JSON (`python -m json.tool nl.json`) — invalid files are listed
+6. Validate the JSON (`python -m json.tool nl.json`); invalid files are listed
    in Settings and ignored.
 
 ## Adding a language to the repository (bundled)

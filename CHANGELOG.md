@@ -76,8 +76,8 @@ root), so existing installations upgrade in place.
 
 ### Downloads
 
-- scrcpy and the SDK Platform Tools report every phase — resolving, download
-  percentage, unpacking, installing — instead of sitting at 100% while the
+- scrcpy and the SDK Platform Tools report every phase (resolving, download
+  percentage, unpacking, installing) instead of sitting at 100% while the
   archive is extracted.
 - Downloads have connect/read deadlines (15 s / 45 s) rather than one global
   timeout that aborted large files on slow links, and retry once.
@@ -119,10 +119,10 @@ ones and reloaded at runtime, so an older export can never hide a newer key.
 
 ### Issue tracker
 
-- **Closes #34** — language files for multiple languages: the UI strings live in
+- **Closes #34**: language files for multiple languages. The UI strings live in
   JSON catalogues, ship in eight languages and can be extended without a rebuild.
-- **Closes #37** — Linux version: the release workflow produces `.deb`, `.rpm`,
+- **Closes #37**: Linux version. The release workflow produces `.deb`, `.rpm`,
   AppImage and a portable Linux archive from the same code base.
-- **Refs #35** — paying to remove ATA-Bridge ads. The ads live in ATA-Bridge, the
+- **Refs #35**: paying to remove ATA-Bridge ads. The ads live in ATA-Bridge, the
   Android companion app; ATA-GUI itself has no ads or paid tier, so this request
   is out of scope for this repository.

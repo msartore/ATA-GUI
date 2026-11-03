@@ -7,7 +7,7 @@
 src-tauri/                       Rust backend (Tauri 2)
   src/lib.rs                     IPC facade: thin #[tauri::command] wrappers + registry
   src/state.rs                   AppPaths (portable vs installed), Config, AppState
-  src/tools.rs                   process layer — every adb/fastboot spawn goes through here
+  src/tools.rs                   process layer; every adb/fastboot spawn goes through here
   src/device.rs                  device list, identity/dedupe, getprop/users/rotation parsing
   src/apps.rs                    package listing/apply/install, split-APK extraction
   src/flash.rs                   fastboot flash/erase/wipe/bootloader operations

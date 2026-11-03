@@ -1,4 +1,4 @@
-# Porting map — C# WinForms → Rust + React
+# Porting map: C# WinForms → Rust + React
 
 > The mapping from the 3.x WinForms forms. Feature overview: [tour](FEATURES.md).
 
@@ -25,7 +25,7 @@ This document records how the WinForms 3.15.0 app (now on the `legacy` branch) w
 | `ShellCommandsForm` | `ShellCommandsDialog` | 880-entry permission list in `lib/permissions.ts` |
 | `ScrcpyForm` | `ScrcpyDialog` | Encoder discovery, mirroring flags |
 | `WirelessPairingForm` | `PairingDialog` | 6-digit validation, `adb pair` |
-| — (new) | `QrPairingDialog` + `wireless.rs` | QR pairing: `WIFI:T:ADB;S:;P:;;` payload, SVG QR, `adb mdns services` discovery, pair + connect |
+| (new) | `QrPairingDialog` + `wireless.rs` | QR pairing: `WIFI:T:ADB;S:;P:;;` payload, SVG QR, `adb mdns services` discovery, pair + connect |
 | `BootloaderMenuForm` | `components/BootloaderDialog.tsx` | All OEM/flashing/Vivo operations |
 | `ScrollableMessageBoxForm` | `ScrollableDialog` | Used by OEM drivers and fastboot info |
 | `WaitingForm` | Bootstrap log lines | Startup is non-blocking, progress goes to the log |
@@ -69,8 +69,8 @@ The interactive terminal keeps a shell-like splitter (`lib/util.ts::splitArgs`, 
 
 ## Verified
 
-- `cargo test` — 17 tests: device paths, getprop, users, bootloader info, package validation, encoder parsing, version comparison, platform/arch asset selection.
-- `tsc --noEmit` and `vite build` — frontend type-checks and bundles.
+- `cargo test`: 42 tests covering device paths, getprop, users, bootloader info, package validation, encoder parsing, version comparison and platform/arch asset selection.
+- `tsc --noEmit` and `vite build`: frontend type-checks and bundles.
 - Release build on Windows produced both installers (`ATA-GUI_<version>_x64-setup.exe`, `ATA-GUI_<version>_x64_en-US.msi`).
 - Live WebView2 over CDP: every tab, settings/about/disclaimer/feedback dialogs, Italian locale switch, detached Task Manager and Device Logs windows.
 - Real network + process paths: SDK Platform Tools downloaded/unpacked (adb 1.0.41 executes, `devices` returns an empty list), bloatware endpoint, update check (the then-current version reported up to date), scrcpy 5.0.1 downloaded for win64, unpacked and executed (`scrcpy --version`).

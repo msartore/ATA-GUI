@@ -39,7 +39,7 @@ npm run check:locales     # parity across the 9 catalogues, duplicate and unused
 ## CI
 
 `.github/workflows/build.yml` builds Windows, Linux and macOS on pushes and pull requests.
-`.github/workflows/release.yml` builds and publishes the bundles for a `v*` tag — see
+`.github/workflows/release.yml` builds and publishes the bundles for a `v*` tag. See
 [`RELEASING.md`](RELEASING.md).
 
 ## UI inspection during development

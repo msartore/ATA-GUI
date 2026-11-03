@@ -4,7 +4,7 @@
 
 ATA-GUI puts `adb`, `fastboot`, sideload, logcat and screen mirroring behind one calm desktop
 window. Remove the apps you never asked for, flash a boot image with progress you can actually
-read, watch the device log live, or drop into a real shell — without memorising a single command.
+read, watch the device log live, or drop into a real shell without memorising a single command.
 
 [![Release](https://img.shields.io/github/v/release/msartore/ATA-GUI?cacheSeconds=3600)](https://github.com/msartore/ATA-GUI/releases)
 [![License](https://img.shields.io/github/license/msartore/ATA-GUI?cacheSeconds=3600)](LICENSE)
@@ -18,12 +18,12 @@ read, watch the device log live, or drop into a real shell — without memorisin
 ## The idea
 
 The 3.x app was a WinForms tool that did a lot and froze while doing it. This is the same tool
-rebuilt on **Tauri 2 + Rust + React** — same workflows, none of the blocking. Every adb and
+rebuilt on **Tauri 2 + Rust + React**: same workflows, none of the blocking. Every adb and
 fastboot call runs off the UI thread with a watchdog and a cancel button, the window is a native
-binary around the system webview (≈2.5 MB installer), and the whole thing ships for Windows,
+binary around the system webview (2.4 MB installer), and the whole thing ships for Windows,
 Linux and macOS from one codebase.
 
-No account. No telemetry. No bundled SDK you did not ask for — Platform Tools and scrcpy are
+No account. No telemetry. No bundled SDK you did not ask for: Platform Tools and scrcpy are
 downloaded on first use and live beside the app.
 
 ## What you get
@@ -33,14 +33,14 @@ downloaded on first use and live beside the app.
 The APK manager lists every installed package with search, bulk selection, install-from-file,
 uninstall, disable and restore. Split bundles install as one, a drag-and-drop zone takes APKs
 straight from Explorer, and the bloatware list from the **Universal Android Debloater** marks what
-is safe to remove — no root, no package names to copy.
+is safe to remove. No root, no package names to copy.
 
 ![APK manager: search, bulk selection, install menu and the bloatware status](docs/screenshots/apps@2x.png)
 
 ### Flashing you can watch
 
 Queue boot, recovery, vbmeta or a whole set of partitions, pick a slot, and flash. The panel
-follows the tool it is driving — *sending*, *writing*, *done* — with the transfer size, elapsed
+follows the tool it is driving (*sending*, *writing*, *done*), with the transfer size, elapsed
 time and raw fastboot output, line by line. Sideload an OTA from recovery with a real progress bar,
 or pull a partition image off the device and keep the `.img`. Cancel works mid-flight; the child
 process dies with it.
@@ -70,7 +70,7 @@ app discovers the new endpoint over mDNS, pairs, connects and refreshes the devi
 - **Screen and camera mirroring** through scrcpy, with encoder discovery and a visible download.
 - **Bootloader tools**: unlock, lock, OEM device-info and the current state of the unit.
 - **Task manager**: what is running, and one click to stop it.
-- **Eight languages** — English, Italian, Spanish, German, French, Portuguese, Russian, Chinese —
+- **Eight languages** (English, Italian, Spanish, German, French, Portuguese, Russian, Chinese),
   switchable at runtime; drop a JSON file in `locales/` to add your own.
 - **Dark, light or system theme**, applied before the first paint and mirrored onto the native
   window and every detached window.
@@ -94,7 +94,7 @@ app discovers the new endpoint over mDNS, pairs, connects and refreshes the devi
 | --- | --- | --- |
 | Windows 10/11 x64 | `ATA-GUI_<version>_x64-setup.exe` (per-user NSIS) | `.msi`, portable `.zip` |
 | Linux x64 | `.AppImage` or `.deb` | `.rpm`, portable `.tar.gz` / `.zip` |
-| macOS 10.15+ | `.dmg` (Apple silicon) | portable `.zip` containing `ATA-GUI.app` |
+| macOS 11+ (Apple silicon) | `.dmg` | portable `.zip` containing `ATA-GUI.app` |
 
 Downloads are on the [releases page](https://github.com/msartore/ATA-GUI/releases). Portable builds
 are self-contained; the Windows `.zip` keeps `ATA-GUI.exe` at its root so the 3.x in-place updater
@@ -142,4 +142,4 @@ Massimiliano Sartore · icons by [Tabler Icons](https://tabler.io/icons) (MIT) �
 
 ## License
 
-Apache-2.0 — see [LICENSE](LICENSE).
+Apache-2.0. See [LICENSE](LICENSE).

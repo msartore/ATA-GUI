@@ -34,7 +34,7 @@ To publish a stable release, run the workflow with `workflow_dispatch` and set
 ## Asset contract
 
 ```
-ATA-GUI-<version>-portable-windows-x64.zip     first asset — the 3.x updater downloads this one
+ATA-GUI-<version>-portable-windows-x64.zip     first asset: the 3.x updater downloads this one
 ATA-GUI_<version>_x64-setup.exe                NSIS installer
 ATA-GUI_<version>_x64_en-US.msi                MSI installer
 ATA-GUI-<version>-portable-linux-x64.zip       Linux portable (used by the 4.x updater)

@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | Windows 10/11 x64 | `ATA-GUI_<version>_x64-setup.exe` (per-user NSIS) | `.msi`, portable `.zip` |
 | Linux x64 | `.AppImage` or `.deb` | `.rpm`, portable `.tar.gz` / `.zip` |
-| macOS 10.15+ | `.dmg` (Apple silicon) | portable `.zip` containing `ATA-GUI.app` |
+| macOS 11+ (Apple silicon) | `.dmg` | portable `.zip` containing `ATA-GUI.app` |
 
 All downloads are on the [releases page](https://github.com/msartore/ATA-GUI/releases).
 
