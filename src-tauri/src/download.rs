@@ -218,12 +218,34 @@ fn copy_dir_contents(from: &Path, to: &Path) -> Result<(), String> {
             retry_io(|| fs::create_dir_all(&target)).map_err(|e| e.to_string())?;
             copy_dir_contents(&source, &target)?;
         } else {
-            retry_io(|| fs::copy(&source, &target))
-                .map_err(|e| format!("{}: {e}", source.display()))?;
-            chmod_executable(&target);
+            match retry_io(|| fs::copy(&source, &target)) {
+                Ok(_) => chmod_executable(&target),
+                // A running tool locks its own image: scrcpy ships an adb.exe
+                // and the app's watcher keeps adb alive in the same folder, so
+                // overwriting it fails with a sharing violation. The copy on
+                // disk is the one in use, so keep it and install the rest
+                // instead of losing the whole download to one busy file.
+                Err(error) if is_locked(&error) && target.is_file() => {}
+                Err(error) => return Err(format!("{}: {error}", source.display())),
+            }
         }
     }
     Ok(())
+}
+
+/// `ERROR_SHARING_VIOLATION` / `ERROR_ACCESS_DENIED` on Windows, where a mapped
+/// executable or DLL cannot be replaced. Unix can unlink a running binary, so a
+/// failure there is a real error.
+fn is_locked(error: &std::io::Error) -> bool {
+    #[cfg(windows)]
+    {
+        matches!(error.raw_os_error(), Some(32) | Some(5))
+    }
+    #[cfg(not(windows))]
+    {
+        let _ = error;
+        false
+    }
 }
 
 /// Download SDK Platform Tools for the running platform, unpack them next to

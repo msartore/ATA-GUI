@@ -995,6 +995,12 @@ textarea {
   z-index: 50;
   padding: 26px;
 }
+/* An alert or confirm opened while a task is busy sits above the loading
+   overlay (120): the caller's `await` only finishes when the user dismisses it,
+   so burying it under the spinner would lock the app. */
+.modal-overlay.is-raised {
+  z-index: 130;
+}
 
 .modal {
   width: min(560px, 100%);

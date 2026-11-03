@@ -135,6 +135,7 @@ export function Modal({
   footer,
   wide,
   xl,
+  raised,
 }: {
   title: ReactNode;
   subtitle?: ReactNode;
@@ -143,6 +144,9 @@ export function Modal({
   footer?: ReactNode;
   wide?: boolean;
   xl?: boolean;
+  /** Above the loading overlay: an alert raised while a task is busy is the
+   * only thing that can end that task's `await`. */
+  raised?: boolean;
 }) {
   useEffect(() => {
     if (!onClose) return;
@@ -154,7 +158,10 @@ export function Modal({
   }, [onClose]);
 
   return (
-    <div className="modal-overlay" onMouseDown={(event) => event.target === event.currentTarget && onClose?.()}>
+    <div
+      className={`modal-overlay${raised ? " is-raised" : ""}`}
+      onMouseDown={(event) => event.target === event.currentTarget && onClose?.()}
+    >
       <div className={`modal ${xl ? "modal-xl" : wide ? "modal-wide" : ""}`} role="dialog" aria-modal="true">
         <header className="modal-head">
           <div>
@@ -327,6 +334,7 @@ export function UiProvider({ children }: { children: ReactNode }) {
 
       {alertState ? (
         <Modal
+          raised
           title={alertState.kind === "info" ? "Info" : alertState.kind === "warning" ? "Warning" : "Error"}
           onClose={() => {
             alertState.resolve();
@@ -350,6 +358,7 @@ export function UiProvider({ children }: { children: ReactNode }) {
 
       {confirmState ? (
         <Modal
+          raised
           title={confirmState.title ?? "Confirm"}
           onClose={() => settleConfirm(false)}
           footer={

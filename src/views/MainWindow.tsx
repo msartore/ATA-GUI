@@ -116,6 +116,12 @@ export function MainWindow({ config, setConfig }: { config: Config; setConfig: (
         const key = errorKey(text);
         const message = key ? t(key) : text;
         log("ERROR", message);
+        // Drop the spinner before the alert: `finally` only runs once the user
+        // dismisses it, so leaving the overlay up would hide the error and
+        // leave the app stuck on "installing" forever.
+        setBusy(null);
+        setCancelable(false);
+        setProgress(null);
         await ui.alert(message);
         return undefined;
       } finally {
