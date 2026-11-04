@@ -173,7 +173,9 @@ export function FlashRun({
     if (!phase) return t("flash.connecting");
     if (phase.phase === "sending") {
       const size = withSize ? megabytes(phase.total) || megabytes(steps[index]?.size) : "";
-      const pct = phase.streamed && phase.total ? ` ${Math.round(ratio * 100)}%` : "";
+      // The step row repeats what the headline already says; the size and the
+      // percentage belong to the headline, the row only names the phase.
+      const pct = withSize && phase.streamed && phase.total ? ` ${Math.round(ratio * 100)}%` : "";
       return `${t("flash.sending")} ${size}${pct}`.trim();
     }
     if (phase.phase === "writing") return t("flash.writing");
