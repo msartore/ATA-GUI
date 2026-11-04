@@ -30,8 +30,7 @@ function megabytes(bytes?: number | null): string {
 /**
  * Runs a list of flash steps one after another and renders what is actually
  * happening: the queue, the phase the tool reports, real bytes for sideload
- * (the archive is piped through stdin, so we know how much was sent) and the
- * tool output.
+ * (adb reports its own transfer percentage) and the tool output.
  */
 export function FlashRun({
   target,
@@ -57,10 +56,16 @@ export function FlashRun({
   const outRef = useRef<HTMLDivElement | null>(null);
   const live = useRef(true);
 
+  // The clock stops with the run: leaving the interval alive kept counting
+  // seconds long after a flash had finished.
   useEffect(() => {
+    if (state !== "running") {
+      setElapsed(Date.now() - startedAt);
+      return;
+    }
     const timer = window.setInterval(() => setElapsed(Date.now() - startedAt), 250);
     return () => window.clearInterval(timer);
-  }, [startedAt]);
+  }, [startedAt, state]);
 
   useEffect(() => {
     let disposed = false;
@@ -147,14 +152,19 @@ export function FlashRun({
     installing: 0.85,
     done: 1,
   };
-  // A sideload reports real bytes (`serving: (~47%)`), so its bar follows them
-  // across the sending band instead of holding the fixed weight until handoff.
+  // A streamed transfer is the only real number we get, so the bar *is* that
+  // percentage: 45% of the archive means 45% of the step. Once the archive is
+  // handed to recovery the measurable work is done, so the step stays full
+  // instead of falling back to a phase weight and moving backwards.
   const ratio = phase?.streamed && phase.total ? Math.min(1, phase.received / phase.total) : 0;
+  const sideloadStep = steps[index]?.kind === "sideload";
   const fraction =
     state === "running" && phase
       ? phase.streamed
-        ? 0.02 + 0.33 * ratio
-        : (PHASE_WEIGHT[phase.phase] ?? 0.05)
+        ? ratio
+        : sideloadStep && phase.phase === "installing"
+          ? 1
+          : (PHASE_WEIGHT[phase.phase] ?? 0.05)
       : 0;
   const percent = Math.round(((done + fraction) / Math.max(1, steps.length)) * 100);
 
@@ -163,7 +173,7 @@ export function FlashRun({
     if (!phase) return t("flash.connecting");
     if (phase.phase === "sending") {
       const size = withSize ? megabytes(phase.total) || megabytes(steps[index]?.size) : "";
-      const pct = phase.streamed && phase.total ? ` ${Math.floor(ratio * 100)}%` : "";
+      const pct = phase.streamed && phase.total ? ` ${Math.round(ratio * 100)}%` : "";
       return `${t("flash.sending")} ${size}${pct}`.trim();
     }
     if (phase.phase === "writing") return t("flash.writing");

@@ -7,7 +7,11 @@ reports its real transfer progress.
 
 ### Fixes
 
-- Sideload now follows the bytes. `serving: '<file>'  (~47%)` is adb's own transfer counter, but
+- The flash progress bar is now the percentage the tool reports: a sideload at 45% of the archive
+  shows 45%, where the bar used to be squeezed into the first third of the step and read about 17.
+  The clock stops with the run; the interval behind it was never cleared, so the seconds kept
+  counting after a flash had finished.
+- Sideload follows the bytes. `serving: '<file>'  (~47%)` is adb's own transfer counter, but
   the line was only used as a "handed over to recovery" marker, so the panel switched to
   installing at 0% and the percentage was never read. The figure is parsed into real progress and
   `installing` is reported at `Total xfer`, when recovery actually takes over. adb rewrites that
